@@ -1,0 +1,5 @@
+# Schema for the theme setting configuration file of the atworknext theme.
+
+atworknext.settings:
+  type: theme_settings
+  label: 'atworknext settings'
