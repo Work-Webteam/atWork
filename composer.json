@@ -26,6 +26,7 @@
         "drupal/flag": "^4.0@alpha",
         "drupal/like_dislike": "^1.1",
         "drupal/scheduler": "^1.0",
+        "drupal/video_embed_field": "^2.0",
         "drush/drush": "^9.3",
         "kint-php/kint": "^2.2",
         "vlucas/phpdotenv": "^2.4",
