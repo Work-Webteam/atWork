@@ -1,0 +1,33 @@
+uuid: 7c61c614-0640-484b-ad90-b6c98c297ebc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_likes
+    - node.type.article
+  module:
+    - like_dislike
+id: node.article.field_article_likes
+field_name: field_article_likes
+entity_type: node
+bundle: article
+label: 'Article Likes'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    likes: '0'
+    dislikes: '0'
+    clicked_by: null
+  -
+    likes: '0'
+    dislikes: '0'
+    clicked_by: null
+  -
+    likes: '0'
+    dislikes: '0'
+    clicked_by: null
+default_value_callback: ''
+settings: {  }
+field_type: like_dislike

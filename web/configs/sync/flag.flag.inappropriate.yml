@@ -1,0 +1,30 @@
+uuid: 420e8ef1-2a08-4ecd-ba17-704f5b902811
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: inappropriate
+label: Inappropriate
+bundles:
+  - article
+entity_type: node
+global: false
+weight: 0
+flag_short: 'Flag as Inappropriate'
+flag_long: ''
+flag_message: ''
+unflag_short: 'Unflag this item'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:node'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links: {  }
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+linkTypeConfig: {  }

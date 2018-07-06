@@ -1,0 +1,22 @@
+uuid: 6a5c499a-425e-4891-9023-20fd8ba3adf9
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - atworknext
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: atworknext_content
+theme: atworknext
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }
