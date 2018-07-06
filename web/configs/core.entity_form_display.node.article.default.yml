@@ -5,13 +5,18 @@ dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_article_likes
+    - field.field.node.article.field_attachments
+    - field.field.node.article.field_author_information
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.thumbnail
     - node.type.article
   module:
     - comment
+    - file
     - image
+    - like_dislike
     - path
     - text
 _core:
@@ -42,6 +47,28 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_article_likes:
+    weight: 124
+    settings: {  }
+    third_party_settings: {  }
+    type: like_dislike_widget
+    region: content
+  field_attachments:
+    weight: 123
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_author_information:
+    weight: 122
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_image:
     type: image_image
     weight: 4
