@@ -23,6 +23,7 @@ dependencies:
   module:
     - image
     - postal_code
+    - telephone
     - text
     - user
 _core:
@@ -55,14 +56,14 @@ content:
     region: content
   field_display_name:
     weight: 8
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_email:
     weight: 6
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: basic_string
@@ -76,7 +77,7 @@ content:
     region: content
   field_guid:
     weight: 7
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -99,9 +100,10 @@ content:
   field_phone:
     weight: 11
     label: above
-    settings: {  }
+    settings:
+      title: ''
     third_party_settings: {  }
-    type: basic_string
+    type: telephone_link
     region: content
   field_postal_code:
     weight: 20
@@ -143,6 +145,8 @@ content:
   member_for:
     weight: 5
     region: content
+    settings: {  }
+    third_party_settings: {  }
   user_picture:
     type: image
     weight: 0

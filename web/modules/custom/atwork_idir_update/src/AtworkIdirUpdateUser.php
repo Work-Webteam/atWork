@@ -30,7 +30,7 @@ class AtworkIdirUpdateUser implements AtworkIdirUpdateUserInterface {
    * @return [object] $system_user : We will pull this object if the user exists, and send it back
    */
   public function systemUser($user_array) {
-    // TODO: We need to check $guid and $username together (idir/drupal uname and guid as primary) to get the proper user from the system
+    // We need to check $guid and $username together (idir/drupal uname and guid as primary) to get the proper user from the system
     $possible_user = \Drupal::entityQuery('user')
       ->condition('userid', $user['Username'])
       ->condition('guid', $user['guid'])

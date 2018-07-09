@@ -36,13 +36,17 @@ content:
   account:
     weight: -10
     region: content
+    settings: {  }
+    third_party_settings: {  }
   contact:
     weight: 5
     region: content
+    settings: {  }
+    third_party_settings: {  }
   field_city:
     weight: 19
     settings:
-      rows: 5
+      rows: 1
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
@@ -50,7 +54,7 @@ content:
   field_company:
     weight: 17
     settings:
-      rows: 5
+      rows: 1
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
@@ -58,7 +62,7 @@ content:
   field_department:
     weight: 14
     settings:
-      rows: 5
+      rows: 1
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
@@ -98,7 +102,7 @@ content:
   field_office:
     weight: 15
     settings:
-      rows: 5
+      rows: 1
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
@@ -106,7 +110,7 @@ content:
   field_organization_code:
     weight: 16
     settings:
-      rows: 5
+      rows: 1
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
@@ -127,7 +131,7 @@ content:
   field_province:
     weight: 20
     settings:
-      size: 60
+      size: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
@@ -135,7 +139,7 @@ content:
   field_street:
     weight: 18
     settings:
-      rows: 5
+      rows: 1
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
@@ -159,9 +163,13 @@ content:
   language:
     weight: 0
     region: content
+    settings: {  }
+    third_party_settings: {  }
   timezone:
     weight: 6
     region: content
+    settings: {  }
+    third_party_settings: {  }
   user_picture:
     type: image_image
     settings:
