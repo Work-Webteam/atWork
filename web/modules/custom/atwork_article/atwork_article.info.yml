@@ -1,0 +1,5 @@
+name: Atwork Article
+type: module
+description: Customizations for the article content type.
+package: Custom
+core: 8.x

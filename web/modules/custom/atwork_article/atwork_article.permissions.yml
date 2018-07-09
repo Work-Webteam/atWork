@@ -1,0 +1,4 @@
+administer atwork_article configuration:
+  title: 'Administer atwork_article configuration'
+  description: 'Optional description.'
+  restrict access: true
