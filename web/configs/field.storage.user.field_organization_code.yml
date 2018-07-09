@@ -1,0 +1,19 @@
+uuid: ddbd2529-01d0-48fe-a25b-12f0249b76d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_organization_code
+field_name: field_organization_code
+entity_type: user
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

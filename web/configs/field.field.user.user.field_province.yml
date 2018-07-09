@@ -1,0 +1,20 @@
+uuid: c0aaf9b5-f0bb-4c18-8acb-a378bafcd767
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_province
+  module:
+    - user
+id: user.user.field_province
+field_name: field_province
+entity_type: user
+bundle: user
+label: Province
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

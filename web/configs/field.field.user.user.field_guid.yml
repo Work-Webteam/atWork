@@ -1,0 +1,20 @@
+uuid: 65155256-e27a-4173-a3c7-576996f58da8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_guid
+  module:
+    - user
+id: user.user.field_guid
+field_name: field_guid
+entity_type: user
+bundle: user
+label: GUID
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

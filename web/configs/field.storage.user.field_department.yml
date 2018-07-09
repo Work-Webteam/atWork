@@ -1,0 +1,19 @@
+uuid: 1ee2c606-168e-47d5-ae18-acb5f1fdcb92
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_department
+field_name: field_department
+entity_type: user
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

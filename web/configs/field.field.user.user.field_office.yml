@@ -1,0 +1,20 @@
+uuid: c6c1dc97-f5d4-4409-ba88-e1ad4c9aaae3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_office
+  module:
+    - user
+id: user.user.field_office
+field_name: field_office
+entity_type: user
+bundle: user
+label: Office
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

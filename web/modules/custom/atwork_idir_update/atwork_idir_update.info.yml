@@ -1,0 +1,6 @@
+name: Idir Update Module
+description: Updates users info in our system.
+package: Custom
+type: module
+version: 1.0
+core: 8.x
