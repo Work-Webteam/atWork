@@ -1,7 +1,7 @@
 # Custom module library for general purposes.
 atwork_article:
   js:
-    js/atwork-article.js: {}
+    atwork_article.js: {}
   css:
     component:
       css/atwork-article.css: {}

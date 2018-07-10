@@ -11,30 +11,22 @@
 
 function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 	
-		if($form["#form_id"] == $form_id) {
-			
-			// Add instructions to Article Title field
-			$form['title']['widget'][0]['value']['#description'] = 'Enter the title for the article. This will 
-				appear at the top of the article and on the home page. 
-				Note, the maximum character length, including spaces, is <strong>60</strong>. ';
+  		
+	if($form["#form_id"] == $form_id) {
 		
+		// Attach custom module javascript library
+    $form['#attached']['library'][] = 'atwork_article/atwork_article';
+  
+	  // Add instructions to Article Title field
+	  $form['title']['widget'][0]['value']['#description'] = t('Enter the title for the article. This will 
+	  	appear at the top of the article and on the home page. 
+	  	Note, the maximum character length, including spaces, is <strong>60</strong>. ');
+	  
+	  // Modify title and instructions for article teaser.
+	  $form['body']['widget'][0]['summary']['#title'] = t('Teaser');
+	  $form['body']['widget'][0]['summary']['#description'] = t('Enter the teaser for the article. Note, 
+	  	the maximum character length, including spaces, is 300. The teaser will be posted to the home 
+	  	page along with the image and title of the article to encourage employees to read the full 
+	  	article. There will be a link to the full article available on the home page. ');
 		}
-		
-		
-	//if (isset($form['type']) && $form['type']['#value'] . '_node_settings' == $form_id) {
-	//	$upload_enabled_types = \Drupal::config('mymodule.settings')
-	//	->get('upload_enabled_types');
-	//	$form['workflow']['upload_' . $form['type']['#value']] = array(
-	//			'#type' => 'radios',
-	//			'#title' => t('Attachments'),
-	//			'#default_value' => in_array($form['type']['#value'], $upload_enabled_types) ? 1 : 0,
-	//			'#options' => array(
-	//					t('Disabled'),
-	//					t('Enabled'),
-	//			),
-	//	);
-	//	
-	//	// Add a custom submit handler to save the array of types back to the config file.
-	//	$form['actions']['submit']['#submit'][] = 'mymodule_upload_enabled_types_submit';
-	//}
 }
