@@ -14,7 +14,7 @@ field_name: field_image
 entity_type: node
 bundle: article
 label: Image
-description: ''
+description: 'Add all images that you''d like to be associated with the article. The top image is mandatory as it will appear on the home page and at the top of the article. Next, upload any additional images you want to appear in your article. Once they’re uploaded use your cursor and click in the spot in your article where you want your image to be inserted. Add any photo captions or mouse over text for each of the photos.'
 required: true
 translatable: true
 default_value: {  }

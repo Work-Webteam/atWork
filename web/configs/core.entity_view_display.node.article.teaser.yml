@@ -6,14 +6,75 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.article.body
     - field.field.node.article.comment
+    - field.field.node.article.field_article_likes
+    - field.field.node.article.field_attachments
+    - field.field.node.article.field_author_information
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.medium
     - node.type.article
   module:
     - image
+    - layout_builder
+    - layout_discovery
     - text
     - user
+third_party_settings:
+  layout_builder:
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings: {  }
+        components:
+          c964e54b-6ba8-4a73-80bb-45aae0250609:
+            uuid: c964e54b-6ba8-4a73-80bb-45aae0250609
+            region: content
+            configuration:
+              id: 'field_block:node:article:field_image'
+              label_display: ''
+              formatter:
+                type: image
+                settings:
+                  image_style: medium
+                  image_link: content
+                third_party_settings: {  }
+                label: hidden
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 0
+          85a51379-1d6e-4d8c-915a-44897a89c820:
+            uuid: 85a51379-1d6e-4d8c-915a-44897a89c820
+            region: content
+            configuration:
+              id: 'field_block:node:article:body'
+              label_display: ''
+              formatter:
+                type: text_summary_or_trimmed
+                settings:
+                  trim_length: 600
+                third_party_settings: {  }
+                label: hidden
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 1
+          80bac96d-d6d2-420f-88f0-a6a0ac87c9e7:
+            uuid: 80bac96d-d6d2-420f-88f0-a6a0ac87c9e7
+            region: content
+            configuration:
+              id: 'field_block:node:article:field_tags'
+              label_display: ''
+              formatter:
+                type: entity_reference_label
+                settings:
+                  link: true
+                third_party_settings: {  }
+                label: above
+              context_mapping:
+                entity: layout_builder.entity
+            additional: {  }
+            weight: 2
 _core:
   default_config_hash: 4NcL2hSQZBpJbYtNuh5jC6kyQTcAc1m5bQpTegEWEso
 id: node.article.teaser
@@ -46,10 +107,18 @@ content:
       link: true
     third_party_settings: {  }
     label: above
+  flag_inappropriate:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   comment: true
-  field_image: true
-  field_tags: true
+  field_article_likes: true
+  field_attachments: true
+  field_author_information: true

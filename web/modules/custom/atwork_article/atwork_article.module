@@ -13,7 +13,7 @@ function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface 
 	
   		
 	if($form["#form_id"] == $form_id) {
-		
+$form['uid']['#weight'] = -5;
 		// Attach custom module javascript library
     $form['#attached']['library'][] = 'atwork_article/atwork_article';
   

@@ -14,7 +14,7 @@ field_name: body
 entity_type: node
 bundle: article
 label: Body
-description: ''
+description: 'Enter the body of your article write-up in the field above. Be sure to format any text and add links as appropriate using the CK Editor button/icons at the top. '
 required: true
 translatable: true
 default_value: {  }

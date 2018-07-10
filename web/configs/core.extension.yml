@@ -1,4 +1,5 @@
 module:
+  atwork_article: 0
   automated_cron: 0
   big_pipe: 0
   block: 0
@@ -6,6 +7,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   color: 0
+  colorbox: 0
   comment: 0
   config: 0
   contact: 0
@@ -13,17 +15,22 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
+  ds: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
+  field_layout: 0
   field_ui: 0
   file: 0
   filter: 0
   flag: 0
+  forward: 0
   help: 0
   history: 0
   image: 0
   kint: 0
+  layout_builder: 0
+  layout_discovery: 0
   like_dislike: 0
   link: 0
   menu_ui: 0
@@ -33,8 +40,10 @@ module:
   path: 0
   quickedit: 0
   rdf: 0
+  responsive_image: 0
   scheduler: 0
   search: 0
+  sharethis: 0
   shortcut: 0
   statistics: 0
   system: 0
