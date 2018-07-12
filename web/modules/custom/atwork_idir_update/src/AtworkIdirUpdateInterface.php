@@ -4,7 +4,7 @@ namespace Drupal\atwork_idir_update;
 use \Database\Core\Database\Database;
 
 
-interface IdirUserUpdate
+interface iAtworkIdirUpdate
 {
   /**
    * splitFile : Responsible for turning our .tsv file download into 3 separate .tsv files, at this level we split them simply by keywords in .tsv. These .tsv files are then saved seperatly for future use. NOTE: This does not delete the .tsv file - as we would need it if we decided to rerun script.

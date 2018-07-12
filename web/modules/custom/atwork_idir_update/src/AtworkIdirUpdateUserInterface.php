@@ -1,5 +1,5 @@
 <?php
-Interface AtworkIdirUser {
+Interface iAtworkIdirUpdateUser {
   /**
    * tsvUser:
    *
