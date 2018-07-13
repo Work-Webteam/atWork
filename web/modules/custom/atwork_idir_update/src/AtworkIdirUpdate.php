@@ -12,10 +12,17 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   protected $drupal_path;
   
   function __construct(){
+    // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
-    // TODO: Create possible add/update/delete .tsv files in idir folder ready to be appended too - so we don't have to check every time for them.
+    // TODO: Should these be going into the Public:// file folder?
     $this->drupal_path = $this->getModulePath('atwork_idir_update');
-
+    // Create possible add/update/delete .tsv files in idir folder ready to be appended too - so we don't have to check every time for them.
+    $add_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_add.tsv', 'w');
+    fclose($add_file);
+    $update_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_update.tsv', 'w');
+    fclose($update_file);
+    $delete_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv', 'w');
+    fclose($delete_file);
   }
   /**
    * splitFile : Responsible for turning our .tsv file download into 3 separate .tsv files, at this level we split them simply by keywords in .tsv. These .tsv files are then saved seperatly for future use. NOTE: This does not delete the .tsv file - as we would need it if we decided to rerun script.
@@ -101,7 +108,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     }
     catch( FileNotOpenedException $e)
     {
-      // This lets us knof if the file was missing or is broken.
+      // This lets us know if the file was missing or is broken.
       error_Collect($e);
       return false;
     }
