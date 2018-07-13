@@ -24,4 +24,4 @@
 /.env
 
 # Ignore .tsv that are created via our idir update module
-/.tsv
+/web/modules/custom/atwork_idir_update/idir/
