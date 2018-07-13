@@ -2,6 +2,9 @@ uuid: 3d23831f-40a4-45d2-aa29-49c0a246b79f
 langcode: en
 status: true
 dependencies:
+  module:
+    - node
+    - system
   theme:
     - atworknext
 _core:
@@ -17,4 +20,16 @@ settings:
   label: 'Page title'
   provider: core
   label_display: '0'
-visibility: {  }
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }

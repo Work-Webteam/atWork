@@ -6,31 +6,7 @@ dependencies:
     - comment.type.comment
     - field.field.comment.comment.comment_body
   module:
-    - layout_builder
-    - layout_discovery
     - text
-third_party_settings:
-  layout_builder:
-    sections:
-      -
-        layout_id: layout_onecol
-        layout_settings: {  }
-        components:
-          c53913d5-a5ba-45d9-8a44-58e12bcaee15:
-            uuid: c53913d5-a5ba-45d9-8a44-58e12bcaee15
-            region: content
-            configuration:
-              id: 'field_block:comment:comment:comment_body'
-              label_display: ''
-              formatter:
-                label: hidden
-                type: text_default
-                settings: {  }
-                third_party_settings: {  }
-              context_mapping:
-                entity: layout_builder.entity
-            additional: {  }
-            weight: 0
 _core:
   default_config_hash: 77Ye1kR-P6AaiGfEO8mnXNSr7nqtnP3PiiVBwJeGGMI
 id: comment.comment.default

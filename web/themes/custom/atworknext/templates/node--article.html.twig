@@ -90,21 +90,38 @@
     {% if display_submitted %}
       <div class="node__meta">
         <span{{ author_attributes }}>
-          {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
-          {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
-          {% trans %}Posted by {{ author_name }} on {{ createdDate }} at {{ createdTime }}{% endtrans %}
-          {{ author_picture }}
-          {% if content.comment['#items'].comment_count != 1 %}
-            {% trans %}{{ content.comment['#items'].comment_count }} Comments{% endtrans %}
-          {% else %}
-            {% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}
-          {% endif %}
         </span>
         {{ metadata }}
       </div>
     {% endif %}
   </header>
   <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-    {{ content }}
+    {{ content.field_image }}
+    {% if label %}
+      {% if page %}
+        <h2 class="page-title">{{ label }}</h2>
+      {% else %}
+        <h2 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h2>
+      {% endif %}
+    {% endif %}  
+    {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
+    {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
+    {% trans %}Posted by {{ author_name }} on {{ createdDate }} at {{ createdTime }}{% endtrans %}
+    
+    {# Uncomment once comments are completed to show comment count on articles #}
+    {% if content.comment['#items']|length != 1 %}
+      {#{% trans %}{{ content.comment['#items'].comment_count }} Comments{% endtrans %}#}
+    {% else %}
+      {#{% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}#}
+    {% endif %}
+    
+    {{ content.body }}
+    {{ content.field_tags }}
+    {{ content.field_article_likes }}
+    {{ content.flag_inappropriate }}
+    {{ content.links }}
+    {{ content.field_author_information }}
+    {{ content.field_attachments }}
+    {{ content.comment }}
   </div>
 </article>

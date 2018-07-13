@@ -1,7 +1,7 @@
 langcode: en
 forward_entity_node: true
-forward_view_full: false
-forward_view_teaser: true
+forward_view_full: true
+forward_view_teaser: false
 forward_interface_type: link
 forward_interface_title: 'Email this [forward:entity-type]'
 forward_interface_weight: 0

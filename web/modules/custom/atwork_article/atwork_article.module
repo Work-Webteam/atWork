@@ -3,17 +3,11 @@
 /**
  * @file
  * Primary module hooks for atwork_article module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
+ * 
  */
 
 function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-	
-  		
 	if($form["#form_id"] == $form_id) {
-$form['uid']['#weight'] = -5;
 		// Attach custom module javascript library
     $form['#attached']['library'][] = 'atwork_article/atwork_article';
   
@@ -28,5 +22,5 @@ $form['uid']['#weight'] = -5;
 	  	the maximum character length, including spaces, is 300. The teaser will be posted to the home 
 	  	page along with the image and title of the article to encourage employees to read the full 
 	  	article. There will be a link to the full article available on the home page. ');
-		}
+	}
 }
