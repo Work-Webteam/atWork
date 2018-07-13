@@ -13,9 +13,9 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   
   function __construct(){
     $this->timestamp = date('Ymd');
-    // TODO: Create possible add/update/delete .tsv files in idir folder for today.
-    $this->$drupal_path = $this->getModulePath('atwork_idir_update');
-    
+    // TODO: Create possible add/update/delete .tsv files in idir folder ready to be appended too - so we don't have to check every time for them.
+    $this->drupal_path = $this->getModulePath('atwork_idir_update');
+
   }
   /**
    * splitFile : Responsible for turning our .tsv file download into 3 separate .tsv files, at this level we split them simply by keywords in .tsv. These .tsv files are then saved seperatly for future use. NOTE: This does not delete the .tsv file - as we would need it if we decided to rerun script.
@@ -27,10 +27,11 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   public function splitFile()
   {
     // Check to see if we can grab the latest file, if not, send a notification and end script.
-    $full_tsv = $this->getFiles();
+    $file_split = null;
+    $file_split = $this->getFiles();
     // TODO: Wherever this is fired from, if it is empty, we should send Notify.
     // Nothing to do here, so send back three empty arrays.
-    if(!$full_tsv)
+    if(!$file_split)
     {
       throw new \exception("Something has gone wrong, some or all of the update .tsv files were not parsed.");
       return false;
@@ -50,14 +51,13 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
    * @return void
    */
    private function getFiles(){
-    $filename = 'idir_' . $this->time_stamp . '.tsv';
+    $filename = 'idir_' . $this->timestamp . '.tsv';
     // Use this for global function drupal_get_module() so that we can implement unit tests.
-    $drupal_path = $this->getModulePath('atwork_idir_update');
-    
+   
     try
     {
       // Check to see that the file is where it should be
-      $full_list_check = $drupal_path . '/idir/' . $filename;
+      $full_list_check = $this->drupal_path . '/idir/' . $filename;
       if(!file_exists($full_list_check))
       {
         // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
