@@ -22,3 +22,6 @@
 
 # Ignore .env files as they are personal
 /.env
+
+# Ignore .tsv that are created via our idir update module
+/.tsv
