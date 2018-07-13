@@ -3,21 +3,85 @@ namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
 use Drupal\Core\Entity\EntityManagerInterface;
 
-class AtworkIdirUpdate implements iAtworkIdirUpdate 
+class AtworkIdirUpdate /* implements iAtworkIdirUpdate */ 
 {
+  protected $full_tsv;
+  protected $update_tsv;
+  protected $delete_tsv;
+  protected $add_tsv;
+
 /**
    * splitFile : Responsible for turning our .tsv file download into 3 separate .tsv files, at this level we split them simply by keywords in .tsv. These .tsv files are then saved seperatly for future use. NOTE: This does not delete the .tsv file - as we would need it if we decided to rerun script.
    *
    * @param [array] $update_file - an array of the .tsv file we have pulled from the ftp site
-   * @return null
+   * @return [boolean] $file_split - allows us to know if our files saved properly, or if we have an error.
    * 
    */
-  static public function splitFile($update_file)
+  static public function splitFile()
   {
-
+    // Check to see if we can grab the latest file, if not, send a notification and end script.
+    $full_tsv = AtworkIdirUpdate::getFiles();
+    // TODO: Wherever this is fired from, if it is empty, we should send Notify.
+    // Nothing to do here, so send back three empty arrays.
+    if(!$full_tsv)
+    {
+      return false;
+    };  
   } 
   
-  
+  /**
+   * This function looks for todays idir file, and splits it into three different files.
+   * @param [date] $time_stamp : Timestamp with todays date, so we can identify the proper idir .tsv to pull
+   * @param [string] $filename : Putting together the expected filename
+   * @param [string] $drupal_path : grabbing the filepath to the idir script
+   * @param [strong] $row : Current row from the tsv list
+   * @return void
+   */
+   static public function getFiles(){
+    $time_stamp = date('Ymd');
+    $filename = 'idir_' . $time_stamp . '.tsv';
+    $drupal_path = drupal_get_path('module', 'atwork_idir_update');
+    try
+    {
+      $full_list_check = $drupal_path . '/idir/' . $filename;
+      if(!file_exists($full_list_check))
+      {
+        throw new Exception("Full list file not found at atwork_idir_update/idir/" . $filename );
+        $full_list = fopen($drupal_path . '/idir/' . $filename, 'rb');
+        if( !$full_list )
+        {
+          throw new Exception("Failed to open file at atwork_idir_update/idir/" . $filename );
+        }
+        while ( ($row = fgetcsv($full_list, '', "\t")) !== false) {
+          // we don't need headers now
+          if($row[0] == 'TransactionType'){
+            continue;
+          }
+          // put it in an array
+          switch(true)
+          {
+            // Everything marked as add
+            case($row[0] == "Add") :
+              set_add_tsv( $row );
+              break;
+            case($row[0] == "Modify") :
+              set_update_tsv( $row );
+              break;
+            case($row[0] == "Delete") :
+              set_delete_tsv( $row );
+              break;
+          }
+        return true;
+        }
+      }
+    } 
+    catch( Exception $e) 
+    {
+      // This lets us knof if hte file was missing or is broken.
+      error_Collect($e);
+      return false;
+    }
+  }
 
   /**
    * parseDeleteUserList - This function does the work of parsing the delete.tsv file
@@ -117,7 +181,7 @@ class AtworkIdirUpdate implements iAtworkIdirUpdate
    */
   static public function errorCollect($error)
   {
-
+    echo("Error " . $error);
   }
   
   /**
@@ -138,6 +202,6 @@ class AtworkIdirUpdate implements iAtworkIdirUpdate
    */
   static public function notify()
   {
-
+    // Collect status and send to admin. Collect errors and send to Admin. 
   }
 }

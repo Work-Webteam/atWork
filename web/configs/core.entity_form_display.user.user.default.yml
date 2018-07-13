@@ -10,6 +10,7 @@ dependencies:
     - field.field.user.user.field_email
     - field.field.user.user.field_given_name
     - field.field.user.user.field_guid
+    - field.field.user.user.field_guid_2
     - field.field.user.user.field_office
     - field.field.user.user.field_organization_code
     - field.field.user.user.field_phone
@@ -98,6 +99,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_guid_2:
+    weight: 22
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   field_office:
     weight: 15
