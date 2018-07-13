@@ -99,9 +99,9 @@
     {{ content.field_image }}
     {% if label %}
       {% if page %}
-        <h2 class="page-title">{{ label }}</h2>
+        <h1 class="page-title">{{ label }}</h1>
       {% else %}
-        <h2 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h2>
+        <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
       {% endif %}
     {% endif %}  
     {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
