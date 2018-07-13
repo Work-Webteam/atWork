@@ -20,7 +20,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   static public function splitFile()
   {
     // Check to see if we can grab the latest file, if not, send a notification and end script.
-    $full_tsv = AtworkIdirUpdate::getFiles();
+    $full_tsv = getFiles();
     // TODO: Wherever this is fired from, if it is empty, we should send Notify.
     // Nothing to do here, so send back three empty arrays.
     if(!$full_tsv)
@@ -37,7 +37,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
    * @param [strong] $row : Current row from the tsv list
    * @return void
    */
-   static public function getFiles(){
+   private function getFiles(){
     $time_stamp = date('Ymd');
     $filename = 'idir_' . $time_stamp . '.tsv';
     $drupal_path = drupal_get_path('module', 'atwork_idir_update');
