@@ -15,4 +15,17 @@ class TestAtworkIdirUpdate extends AtworkIdirUpdate
   protected function getModulePath($moduleName) {
     return 'modules/custom/atwork_idir_update';
   }
+
+  /**
+   * Override parent::getGUIDField()
+   * Do NOT call parent:getGUIDField inside this function 
+   * or you will receive the original error
+   * for testing purposes only.
+   *
+   */
+  public function getGUIDField($guid)
+  {
+    return ('1');
+  }
+
 }

@@ -13,6 +13,17 @@ class FileGrabTest extends EntityKernelTestBase  {
   public function testRetrieveFile(){
     $new_update = new TestAtworkIdirUpdate();
     $new_update->splitFile();
-    print_r($new_update);
+    //print_r($new_update);
   } 
+
+  public function testGUIDCheck() {
+    $guid = 'test';
+    $new_update = new TestAtworkIdirUpdate();
+    $check = $new_update->getGUIDField($guid);
+    print_r($check);  
+  }
+
+  public function testDelete() {
+    
+  }
 }
