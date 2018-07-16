@@ -1,7 +1,11 @@
 (function ($) {
-  
+
   $( document ).ready(function() {
     var $button = $('.node-article-edit-form .link-edit-summary');
+    
+    if($button.length === 0) {
+    	$button = $('.node-article-form .link-edit-summary');
+    }
     $button.html('Edit teaser');
   
     var toggleClick = true;
