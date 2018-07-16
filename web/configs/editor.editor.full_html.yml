@@ -24,6 +24,23 @@ settings:
             - Subscript
             - '-'
             - RemoveFormat
+            - Underline
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyBlock
+            - JustifyRight
+            - Outdent
+            - Indent
+            - Undo
+            - Redo
+            - Cut
+            - Paste
+            - Copy
+            - PasteText
+            - PasteFromWord
+            - SpecialChar
+            - Maximize
+            - Language
             - Styles
         -
           name: Linking
