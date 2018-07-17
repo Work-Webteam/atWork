@@ -1,0 +1,70 @@
+/* Site wide font settings */
+
+html, body {
+    font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+    line-height: 23px;
+    p {
+        color: $p-color;
+    }
+}
+
+// Heading Tags / Sizes
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2.25em;
+    color: $black;
+    font-weight: bold;
+}
+h2, h3 {
+    font-size: 20pt;
+    color: $black;
+}
+h4 { // Shown as Subheading A and B on site
+    font-size: 16pt;
+    color: darken($link-blue, 10%);
+}
+
+// Global text links
+a { // initial link state
+    color: $link-blue;
+}
+a:hover {
+    text-decoration: none;
+    background-color: $link-blue;
+    color: $white;
+}
+// Big Quote Block on article pages
+div.bigQuotes {
+    border-top: solid 6px $link-blue;
+    border-bottom: solid 6px $link-blue;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-weight:bold;
+    line-height: 24px;
+    color: $p-color;
+    margin-bottom:12px;
+}
+div.bigQuotes p:before {
+    display:block;
+    float:left;
+    content:url('../images/left-quote.svg');
+    width: 35px;
+    position:relative;
+    margin-left:-45px;
+}
+div.bigQuotes p:after {
+    content:url('../images/right-quote.svg');
+    width: 35px;
+    position:absolute;
+    margin-left:10px;
+}
+// Big Quotes Author
+span.QuoteAuthor {
+    display: block;
+    width:100%;
+    text-align: right;
+    width: 100%;
+    color:darken($link-blue, 10%);
+    font-size: .9em;
+    font-weight:normal;
+}

@@ -1,0 +1,39 @@
+// Homepage and site wide adjustments
+
+
+//Footer
+#footer-info {
+    text-align:center;
+    #footer-left {
+        min-width:20%;
+        max-width:25%;
+    }
+    #footer-middle {
+        margin:0 5px;
+        .users-online {
+            border: solid 1px darken($white,20%);
+        }
+    }
+    #footer-right {
+        text-align: right;
+    }
+    #footer-left, #footer-middle, #footer-right {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+    }
+    p {
+        font-size: .75em;
+        padding: 0;
+        margin: 0;
+        color:$white;
+        opacity: .7;
+    }
+    a {
+        color: $white;
+        text-decoration: underline;
+    }
+}
+footer.footer {
+    padding:10px 0;
+}

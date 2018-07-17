@@ -1,0 +1,161 @@
+/* Corporate / Community article pages */
+
+// Breadcrumbs on articles, background pages, etc.
+
+ol.breadcrumb {
+    background-color:#FFFFFF;
+    margin-bottom: 0px;
+    padding: 8px 0;
+}
+
+// Reposition Article title and posted by to display after article hp image
+
+h1.page-header {
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+}
+
+section.col-sm-12 {
+    h1.page-header,
+    article {
+        max-width:940px;
+        margin:0 auto;
+    }
+}
+//Adds bold text to Author name below article title
+article {
+    h1.page-title {
+        margin-top:10px;
+        margin-bottom:0;
+    }
+    a[property~="schema:name"] {
+        font-weight:bold;
+    }
+    .node__meta {
+        margin-bottom: 10px;
+    }
+    .field--name-body {
+        margin-top:12px;
+    }
+}
+
+// Visual stylings for article tables
+
+article table {
+    margin-bottom: 12px;
+    caption { //table title - black background
+        background-color: $black;
+        color: $white;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    thead { // column titles - blue background
+        background-color:$link-blue;
+        color: $white;
+        th {
+            font-weight: normal;
+            padding: 5px;
+        }
+    }
+    tbody {
+        tr:nth-child(odd) { // odd numbered table rows
+            background: $comment-blue;
+        }
+        tr:nth-child(even) { // even numbered table rows
+            background: $white;
+        }
+        td {
+            padding: 5px;
+        }
+        tr th {
+            background-color:$link-blue;
+            color: $white;
+            padding: 10px 0;
+            p {
+                color: $white;
+                line-height: 22px;
+                font-weight: normal;
+            }
+            a {
+                display: inline-block;
+                background: $black;
+                color: $white;
+                padding: 2px 25px;
+                margin-top: 5px;
+            }
+            a:hover {
+                background: $banner-blue;
+            }
+        }
+    }
+}
+// Updates box used on articles / background pages. Accessed through ckeditor menu
+
+article table.update {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: solid 6px darken($link-blue,10%);
+    background-color: $comment-blue;
+    td {
+        padding: 20px;
+    }
+    p > strong {
+        color:darken($link-blue,10%);
+    }
+}
+
+// Article images and captions
+article figure {
+    display: table;
+    img {
+        display: block;
+        width: auto;
+    }
+    figcaption {
+        display: table-caption;
+        caption-side: bottom;
+        background: $link-blue;
+        color: $white;
+        padding: 5px 8px;
+        font-size: .875em;
+    }
+    figcaption:before {
+        content:url('../images/white-arrow.svg');
+        display: inline-block;
+        width: 14px;
+        margin-right: 6px;
+    }
+}
+article {
+    .align-left { // padding space between left aligned images and text
+        margin-right: 12px;
+    }
+    .align-right { // padding space between right aligned images and text
+        margin-left: 12px;
+    }
+    p.videobyline { // Additional teaser text under video
+        font-size:.9em;
+        line-height:normal;
+        padding: 0 25px 0;
+    }
+    p.videobyline:before {
+        content:url('../images/blue-arrow.svg');
+        display: inline-block;
+        width: 15px;
+        margin-right: 6px;
+        margin-left: -22px;
+    }
+}
+// Related side content
+article table.related {
+    border-top: solid 5px $link-blue;
+    border-bottom: solid 5px $link-blue;
+    border-left: solid 1px lighten($link-blue,50%);
+    border-right: solid 1px lighten($link-blue,50%);
+    margin: 0 8px;
+    td {
+        background: $white;
+        padding: 10px;
+    }
+}
