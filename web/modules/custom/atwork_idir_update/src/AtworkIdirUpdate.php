@@ -194,14 +194,28 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     // Pull the delete list
     while ( ($row = fgetcsv($delete_list, '', "\t")) !== false) {
       // Get the GUID of the first user, this will return either an empty set or a user entity number.
-      $delete_check = $this->check_user = $row[1];
+      $delete_uid = $this->check_user = $row[1];
       // If we are returned an empty set, we know this user is not in our current db, and does not need to be deleted.
       if (empty($delete_check))
       {
         continue;
       }
       // At this point, we know they are in our system, and should be deleted.
-      $result = $this -> delete_user($delete_check);
+      // updateSystemUser($type, $uid, $fields)
+      // Todo: Create our own array with removed info and send them to user-update?
+      $new_fields = 
+      [
+        4 => 'old_user_' . time() . '@gov.bc.ca',
+        5 => '',
+        6 => '',
+        7 => '',
+        8 => '',
+        9 => '',
+        10 => '',
+        11 => '',
+        12 => ''
+      ];
+      $result = $this -> updateSystemUser('delete', $delete_uid, $new_fields);
       // Log this transaction
       if($result == true){
         $this->success($result);
@@ -319,7 +333,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
    * @param [array] $fields : An array of fields we need for the user.  
    * @return void
    */
-  private function updateSystemUser($type, $uid, $fields)
+  public function updateSystemUser($type, $uid, $fields)
   {
     // User fields are updated with new info, and user is saved.
     $this_user = \Drupal\user\Entity\User::load($uid);
@@ -328,7 +342,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     $this_user->setPassword($fields['1']);
     $this_user->setEmail($fields['4']);
     // TODO: add in other user fields here.
-    //$user->set('field_example_string_to_concatenate', $long_string);
+    //$this_user->set('field_example_string_to_concatenate', $long_string);
 
     // We need this to for sure be a new user - we don't want to edit an existing user.
     if($type == 'update')

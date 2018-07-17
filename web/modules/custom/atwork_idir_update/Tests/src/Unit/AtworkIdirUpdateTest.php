@@ -24,6 +24,21 @@ class FileGrabTest extends EntityKernelTestBase  {
   }
 
   public function testDelete() {
-    
+    $new_fields = 
+    [
+      4 => 'old_user_' . time() . '@gov.bc.ca',
+      5 => '',
+      6 => '',
+      7 => '',
+      8 => '',
+      9 => '',
+      10 => '',
+      11 => '',
+      12 => ''
+    ];
+    $delete_uid = '2';
+    $new_delete = new TestAtworkIdirUpdate();
+    $test = $new_delete->updateSystemUser('delete', $delete_uid, $new_fields);
+    print_r($test);
   }
 }
