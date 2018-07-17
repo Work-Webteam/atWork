@@ -29,4 +29,5 @@ class FileGrabTest extends EntityKernelTestBase  {
     call_user_func(AtworkIdirLog::success("This is a log"));
     call_user_func(AtworkIdirLog::notify());
   }
+  
 }
