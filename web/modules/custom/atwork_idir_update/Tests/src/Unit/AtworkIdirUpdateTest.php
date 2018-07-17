@@ -4,11 +4,11 @@ namespace Drupal\Tests\atwork_idir_update;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\atwork_idir_update\AtworkIdirUpdateInterface;
 use Drupal\atwork_idir_update\TestAtworkIdirUpdate;
+use Drupal\atwork_idir_update\AtworkIdirLog;
 /**
  * @file
  * @group atwork_idir_update
  */
-
 class FileGrabTest extends EntityKernelTestBase  {
   public function testRetrieveFile(){
     $new_update = new TestAtworkIdirUpdate();
@@ -23,22 +23,10 @@ class FileGrabTest extends EntityKernelTestBase  {
     print_r($check);  
   }
 
-  public function testDelete() {
-    $new_fields = 
-    [
-      4 => 'old_user_' . time() . '@gov.bc.ca',
-      5 => '',
-      6 => '',
-      7 => '',
-      8 => '',
-      9 => '',
-      10 => '',
-      11 => '',
-      12 => ''
-    ];
-    $delete_uid = '2';
-    $new_delete = new TestAtworkIdirUpdate();
-    $test = $new_delete->updateSystemUser('delete', $delete_uid, $new_fields);
-    print_r($test);
+  public function testErrorLog() {
+    $test_class = new TestAtworkIdirUpdate();
+    call_user_func(AtworkIdirLog::errorCollect("This is an error"));
+    call_user_func(AtworkIdirLog::success("This is a log"));
+    call_user_func(AtworkIdirLog::notify());
   }
 }

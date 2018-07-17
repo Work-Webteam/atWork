@@ -1,6 +1,7 @@
 <?php
 namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
+use Drupal\user\Entity\User;
 
 class AtworkIdirUpdate /* implements iAtworkIdirUpdate */ 
 {
@@ -11,7 +12,8 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   protected $timestamp;
   protected $drupal_path;
   
-  function __construct(){
+  function __construct()
+  {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     // TODO: Should these be going into the Public:// file folder?
@@ -28,7 +30,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   /**
   * Setters for the object. These will write the $user to the appropriate file.
   */
-  protected function set_add_tsv($new_user)
+  protected function setAddTsv($new_user)
   {
     $add_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_add.tsv', 'a');
     if(!$add_file)
@@ -41,10 +43,11 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     fclose($add_file);
     return true;
   }
-  protected function set_delete_tsv($old_user)
+  protected function setDeleteTsv($old_user)
   {
     $delete_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv', 'a');
-    if(!$delete_file){
+    if(!$delete_file)
+    {
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_delete.tsv file");
       return false;
     }
@@ -52,10 +55,11 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     fclose($delete_file);
     return true;
   }
-  protected function set_update_tsv($existing_user)
+  protected function setUpdateTsv($existing_user)
   {
     $update_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_update.tsv', 'a');
-    if(!$update_file){
+    if(!$update_file)
+    {
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_update.tsv file");
       return false;
     }
@@ -97,7 +101,8 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
    * @param [strong] $row : Current row from the tsv list
    * @return void
    */
-   private function getFiles(){
+   private function getFiles()
+   {
     $filename = 'idir_' . $this->timestamp . '.tsv';
     $check = false;
     try
@@ -134,13 +139,13 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
             // Everything marked as add
             case($row[0] == "Add") :
               // Check is a boolean, set to tell us if the record was updated (will return true) or not (will return false). This may be useful for error -checking, or rebooting script if necessary.
-              $check = $this->set_add_tsv( $row );
+              $check = $this->setAddTsv( $row );
               break;
             case($row[0] == "Modify") :
-              $check = $this->set_update_tsv( $row );
+              $check = $this->setUpdateTsv( $row );
               break;
             case($row[0] == "Delete") :
-              $check = $this->set_delete_tsv( $row );
+              $check = $this->setDeleteTsv( $row );
               break;
           }
         }
@@ -149,18 +154,20 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     catch( FileNotFoundException $e) 
     {
       // This lets us know if hte file was missing or is broken.
-      error_Collect($e);
+      AtworkIdirLogs::errorCollect($e);
       return false;
     }
     catch( FileNotOpenedException $e)
     {
       // This lets us know if the file was missing or is broken.
-      error_Collect($e);
+      AtworkIdirLogs::errorCollect($e);
       return false;
     }
-    catch (Exception $e) {
+    catch (Exception $e) 
+    {
       // Generic exception handling if something else gets thrown.
       \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      AtworkIdirLogs::errorCollect($e);
     }
     return $check;
   }
@@ -196,7 +203,7 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
       // Get the GUID of the first user, this will return either an empty set or a user entity number.
       $delete_uid = $this->check_user = $row[1];
       // If we are returned an empty set, we know this user is not in our current db, and does not need to be deleted.
-      if (empty($delete_check))
+      if (empty($delete_uid))
       {
         continue;
       }
@@ -205,6 +212,8 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
       // Todo: Create our own array with removed info and send them to user-update?
       $new_fields = 
       [
+        1 => 'old_guid_' . time(),
+        2 => 'old_user_' . time(),
         4 => 'old_user_' . time() . '@gov.bc.ca',
         5 => '',
         6 => '',
@@ -218,11 +227,11 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
       $result = $this -> updateSystemUser('delete', $delete_uid, $new_fields);
       // Log this transaction
       if($result == true){
-        $this->success($result);
+        AtworkIdirLogs::success($result);
       } 
       else
       {
-        $this->errorCollect($result);
+        AtworkIdirLogs::errorCollect($result);
       }
     }
     
@@ -256,31 +265,6 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   {
 
   }
-
-
-  /**
-   * addUser :  This funciton takes care of adding brand new users - we know they are not in the system, so lets go ahead and add them
-   *
-   * @param [array] $user_to_add
-   * @param [object] $userForSystem
-   * @return void
-   */
-  private function addUser($user_to_add)
-  {
-    $this_user = \Drupal\user\Entity\User::create();
-    $this_user->set('init', $user_to_add['their idir']);
-    $this_user->setUsername($user_to_add['namefield']);
-    $this_user->setPassword($user_to_add['guid']);
-    $this_user->setEmail($user_to_add['user_email']);
-    // TODO: add in other user fields here.
-    // We need this to for sure be a new user - we don't want to edit an existing user.
-    $this_user->enforceIsNew(true);
-    $this_user->activate();
-    // Save user
-    $result = $this_user->save();
-    return $result;
-  }
-
 
   /**
    * checkUser
@@ -336,62 +320,52 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
   public function updateSystemUser($type, $uid, $fields)
   {
     // User fields are updated with new info, and user is saved.
-    $this_user = \Drupal\user\Entity\User::load($uid);
-    $this_user->set('init', $fields['2']);
-    $this_user->setUsername($fields['3']);
+    if($type == 'add')
+    {
+      $this_user = User::create();
+    }
+    else
+    {
+      $this_user = User::load($uid);
+    }
+    $this_user->set('init', $fields['4']);
+    $this_user->setUsername($fields['2']);
     $this_user->setPassword($fields['1']);
     $this_user->setEmail($fields['4']);
     // TODO: add in other user fields here.
-    //$this_user->set('field_example_string_to_concatenate', $long_string);
+    $this_user->set('field_guid', $fields['1']);
+    $this_user->set('field_display_name', $fields['3']);
+    $this_user->set('field_given_name', $fields['5']);
+    $this_user->set('field_surname', $fields['6']);
+    $this_user->set('field_phone', $fields['7']);
+    $this_user->set('field_title', $fields['8']);
+    $this_user->set('field_department', $fields['9']);
+    $this_user->set('field_office', $fields['10']);
+    $this_user->set('field_organization_code', $fields['11']);
+    $this_user->set('field_company', $fields['12']);
+    $this_user->set('field_street', $fields['13']);
+    $this_user->set('field_city', $fields['14']);
+    $this_user->set('field_province', $fields['15']);
+    $this_user->set('field_postal_code', $fields['16']);
 
     // We need this to for sure be a new user - we don't want to edit an existing user.
-    if($type == 'update')
+    if($type == 'add')
     {
-      // This publishes their account.
-      $this_user->activate();
+      $this_user->enforceIsNew(true);
     }
     if($type ==  'delete')
     {
       // This unpublishes their account
       $this_user->block();
     }
+    else
+    {
+      // This publishes their account.
+      $this_user->activate();
+    }
     // Save user
     $result = $this_user->save();
 
     return $result;
-    
-  }
-
-
-
-  /**
-   * errorCollect
-   * @param : $error any errors that are caught will be forwarded here to be added to the error log (dated)
-   * @return void
-   */
-  private function errorCollect($error)
-  {
-    echo("Error " . $error);
-  }
-  
-  /**
-   * success
-   *
-   * @param [string] $complete : a string we will send when an update is completed successfully
-   * @return void
-   */
-  public function success($complete)
-  {
-    echo("sucess " . "$complete");
-  }
-
-  /**
-   * notify: Final function called, simply grabs the current error and success logs and emails them to the site admin - then ends the program
-   *
-   * @return void
-   */
-  public function notify()
-  {
-    // Collect errors and success logs and send to Admin. 
   }
 }
