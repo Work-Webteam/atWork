@@ -19,6 +19,29 @@ settings:
           items:
             - Bold
             - Italic
+            - Strike
+            - RemoveFormat
+            - Subscript
+            - Superscript
+            - Underline
+            - JustifyLeft
+            - JustifyBlock
+            - JustifyCenter
+            - JustifyRight
+            - Outdent
+            - Indent
+            - PasteFromWord
+            - ShowBlocks
+            - HorizontalRule
+            - Undo
+            - Redo
+            - SpecialChar
+            - Cut
+            - Copy
+            - Paste
+            - PasteText
+            - Maximize
+            - Language
             - Styles
         -
           name: Linking

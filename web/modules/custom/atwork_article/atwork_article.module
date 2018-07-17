@@ -5,7 +5,6 @@
  * Primary module hooks for atwork_article module.
  * 
  */
-
 function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 	if($form["#form_id"] == $form_id) {
 		// Attach custom module javascript library
@@ -23,4 +22,13 @@ function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface 
 	  	page along with the image and title of the article to encourage employees to read the full 
 	  	article. There will be a link to the full article available on the home page. ');
 	}
+}
+
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function atwork_article_theme_registry_alter(&$theme_registry) {
+	// Load custom file-upload-help twig template with custom instructions
+  $theme_registry['file_upload_help']['path'] = 'themes/custom/atworknext/templates';
 }
