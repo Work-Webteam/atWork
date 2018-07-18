@@ -4,7 +4,7 @@ namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
 use Drupal\user\Entity\User;
 
-class AtworkIdirAdd extends AtworkIdirUpdate
+class AtworkIdirAdd extends AtworkIdirGUID
 {
 
   /**
@@ -17,6 +17,20 @@ class AtworkIdirAdd extends AtworkIdirUpdate
    */
   private function parseAddUserList()
   {
+    $add_list = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_add.tsv', 'r');
+    // Check if we have anything, if not throw an error.
+    if( !$add_list )
+    {
+      // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
+      throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_add.tsv' );
+      return;
+    }
+    // Pull the add list
+    while ( ($row = fgetcsv($add_list, '', "\t")) !== false) 
+    {
+      
+    }
+
 
   }
 

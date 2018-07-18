@@ -3,7 +3,7 @@ namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
 use Drupal\user\Entity\User;
 
-class AtworkIdirUpdate extends AtworkIdirGUID 
+class AtworkIdirAddUpdate extends AtworkIdirGUID 
 {
   /**
    * parseUpdateUserList - This function pulls users one at a time from the update.tsv, and then completes a check on them
