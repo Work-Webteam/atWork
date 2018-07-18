@@ -14,6 +14,7 @@ class AtworkIdirDelete extends AtworkIdirUpdate
    * @param [boolean] $user_available : Checks if user WAS in teh system, but had been deactivated already. If already deactivated, no further action required
    * @param [object] $user_update : If the user is in our system, grab them and update/deactivate all pertinent fields. Then send this user to the Update method
    * @param [string] $status : Will send error to error method, or success to success method.
+   * @param [string] $drupal_path : path to the module, part of the AtworkIdirGUID __constructor
    * @return void
    */
   private function parseDeleteUserList()
@@ -27,35 +28,41 @@ class AtworkIdirDelete extends AtworkIdirUpdate
       throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_delete.tsv' );
       return;
     }
+    // TODO: Should we programatically count how many fields the user has? Then we don't have to update this everytime we add a new field?
+    $this->new_fields = 
+    [
+      // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave this out.
+      2 => 'old_user_' . time() . '@gov.bc.ca',
+      // We don't want to remove old display names - so leave 3 out
+      4 => 'old_user_' . time() . '@gov.bc.ca',
+      // Custom fields start here
+      5 => '',
+      6 => '',
+      7 => '',
+      8 => '',
+      9 => '',
+      10 => '',
+      11 => '',
+      12 => '',
+      13 => '',
+      15 => '',
+      16 => ''
+    ];
     // Pull the delete list
-    while ( ($row = fgetcsv($delete_list, '', "\t")) !== false) {
+    while (($row = fgetcsv($delete_list, '', "\t")) !== false) 
+    {
       // Get the GUID of the first user, this will return either an empty set or a user entity number.
-      $delete_uid = $this->check_user = $row[1];
+      $delete_uid = $this->getGUIDField($row[1]);
       // If we are returned an empty set, we know this user is not in our current db, and does not need to be deleted.
       if (empty($delete_uid))
       {
         continue;
       }
       // At this point, we know they are in our system, and should be deleted.
-      // updateSystemUser($type, $uid, $fields)
-      // Todo: Create our own array with removed info and send them to user-update?
-      $new_fields = 
-      [
-        1 => 'old_guid_' . time(),
-        2 => 'old_user_' . time(),
-        4 => 'old_user_' . time() . '@gov.bc.ca',
-        5 => '',
-        6 => '',
-        7 => '',
-        8 => '',
-        9 => '',
-        10 => '',
-        11 => '',
-        12 => ''
-      ];
-      $result = $this -> updateSystemUser('delete', $delete_uid, $new_fields);
+      $result = $this -> updateSystemUser('delete', $delete_uid, $this->new_fields);
       // Log this transaction
-      if($result == true){
+      if($result)
+      {
         AtworkIdirLog::success($result);
       } 
       else
@@ -63,10 +70,5 @@ class AtworkIdirDelete extends AtworkIdirUpdate
         AtworkIdirLog::errorCollect($result);
       }
     }
-    
-    // Check if this user is in our system already
-    // If not, we are done, move onto the next user
-    // If so, we need to send this to delete user.
   }
-
 }
