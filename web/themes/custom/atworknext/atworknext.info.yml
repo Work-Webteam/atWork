@@ -22,3 +22,6 @@ regions:
 libraries-extend:
   bootstrap/framework:
     - atworknext/framework
+
+ckeditor_stylesheets:
+ - css/style.css

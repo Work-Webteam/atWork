@@ -1,6 +1,6 @@
 uuid: 45bb7cb9-76b8-4831-888c-6a112a87e8fa
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
@@ -11,7 +11,7 @@ _core:
 id: atworknext_powered
 theme: atworknext
 region: sidebar_first
-weight: 10
+weight: -5
 provider: null
 plugin: system_powered_by_block
 settings:
