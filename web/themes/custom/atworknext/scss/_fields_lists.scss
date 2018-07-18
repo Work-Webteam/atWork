@@ -35,9 +35,4 @@ article .field--type-text-with-summary ul {
         }
         background-color: $comment-blue;
     }
-    .panel-title > a[aria-expanded~="true"] {
-        h4:after {
-            content:"<>";
-        }
-    }
 }

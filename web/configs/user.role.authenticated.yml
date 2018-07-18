@@ -11,9 +11,13 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access forward'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'access user profiles'
+  - 'flag inappropriate'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
+  - 'view post access counter'

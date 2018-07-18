@@ -1,6 +1,6 @@
 uuid: 22cb217b-b315-4264-9b23-64c28ba17c8b
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - system
@@ -10,8 +10,8 @@ _core:
   default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
 id: atworknext_breadcrumbs
 theme: atworknext
-region: navigation
-weight: 0
+region: header
+weight: -7
 provider: null
 plugin: system_breadcrumb_block
 settings:

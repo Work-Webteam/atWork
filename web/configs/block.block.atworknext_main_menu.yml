@@ -13,7 +13,7 @@ _core:
 id: atworknext_main_menu
 theme: atworknext
 region: navigation
-weight: 0
+weight: -6
 provider: null
 plugin: 'system_menu_block:main'
 settings:

@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_article_likes
@@ -14,7 +13,6 @@ dependencies:
     - node.type.article
   module:
     - colorbox
-    - comment
     - file
     - like_dislike
     - text
@@ -33,15 +31,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
-  comment:
-    type: comment_default
-    weight: 8
-    region: content
-    label: hidden
-    settings:
-      pager_id: 0
-      view_mode: default
-    third_party_settings: {  }
   field_article_likes:
     weight: 3
     label: hidden
@@ -97,4 +86,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  comment: true

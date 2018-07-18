@@ -1,0 +1,82 @@
+// Custom styles for CKEditor
+
+div.bigQuotes { // Big Quote Block on article pages. Creates a div tag
+    border-top: solid 6px $link-blue;
+    border-bottom: solid 6px $link-blue;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    font-weight:bold;
+    line-height: 24px;
+    color: $p-color;
+    margin-bottom:12px;
+}
+div.bigQuotes p:before { // Large left quote graphic. Uses SVG graphic.
+    //display:block;
+    float:left;
+    content:url('../images/left-quote.svg');
+    width: 35px; // Change this vale to change the size of the SVG
+    position:absolute;
+    margin-left:-45px;
+}
+div.bigQuotes p:after { // Large right quote graphic. Uses SVG graphic.
+    content:url('../images/right-quote.svg');
+    width: 35px; // Change this vale to change the size of the SVG
+    position:absolute;
+    margin-left:10px;
+}
+span.QuoteAuthor { // Big Quotes Author. Applies the style to the author of the quote. Names must be bold in article text.
+    display: block;
+    width:100%;
+    text-align: right;
+    width: 100%;
+    color:darken($link-blue, 10%);
+    font-size: .9em;
+    font-weight:normal;
+}
+
+article { // Updates box used on articles / background pages.
+    table.update { 
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-bottom: solid 6px darken($link-blue,10%);
+        background-color: $comment-blue;
+        td {
+            padding: 20px;
+        }
+        p > strong {
+            color:darken($link-blue,10%);
+        }
+    }
+    p.videobyline { // Additional teaser text under video
+        font-size:.9em;
+        line-height:normal;
+        padding: 0 25px 0;
+    }
+    p.videobyline:before { // This is the blue triangle located top left of the teaser text
+        content:url('../images/blue-arrow.svg');
+        display: inline-block;
+        width: 15px;
+        margin-right: 6px;
+        margin-left: -22px;
+    }
+    table.related { // Related text placed inside a table placed within the main article.
+        border-top: solid 5px $link-blue;
+        border-bottom: solid 5px $link-blue;
+        border-left: solid 1px lighten($link-blue,50%);
+        border-right: solid 1px lighten($link-blue,50%);
+        margin: 0 8px;
+        td {
+            background: $white;
+            padding: 10px;
+        }
+    }
+    a.blackbtn {
+        display: inline;
+        background-color:$black;
+        color:$white;
+        padding: 5px 25px;
+    }
+    a.blackbtn:hover {
+        background-color:$banner-blue;
+    }
+}

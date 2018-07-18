@@ -38,7 +38,8 @@ article.node--type-article { // Email Article
         content:url("../images/flag-icon.svg");
         width:16px;
         margin-right:5px;
-        vertical-align: text-top;
+        margin-top:2px;
+        vertical-align: top;
     }
     .like_dislike { // Likes button
         .like {
@@ -56,6 +57,14 @@ article.node--type-article { // Email Article
             font-size: 16px;
             padding-top:0px;
         }
+    }
+    li.statistics-counter:before {
+        display: inline-block;
+        content:url("../images/reads-icon.svg");
+        width: 16px;
+        margin-right:5px;
+        margin-top: 1px;
+        vertical-align: top;
     }
     // Position the icons below the tags, across the page
     .field--name-field-article-likes .field--item {

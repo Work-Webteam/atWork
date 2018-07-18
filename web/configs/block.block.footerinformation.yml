@@ -1,0 +1,25 @@
+uuid: 0eeb0b30-2f13-4cba-8fdf-1dc0ea7e8d08
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d027a6b6-2eb0-4cdd-8353-3a452403c5da'
+  module:
+    - block_content
+  theme:
+    - atworknext
+id: footerinformation
+theme: atworknext
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:d027a6b6-2eb0-4cdd-8353-3a452403c5da'
+settings:
+  id: 'block_content:d027a6b6-2eb0-4cdd-8353-3a452403c5da'
+  label: 'Footer Information'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
