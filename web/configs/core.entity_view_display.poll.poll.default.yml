@@ -1,0 +1,20 @@
+uuid: 18b25fa6-2404-470b-9d68-f66f55fcffa3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.poll.poll.field_body
+  module:
+    - poll
+id: poll.poll.default
+targetEntityType: poll
+bundle: poll
+mode: default
+content:
+  poll_votes:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_body: true
