@@ -56,7 +56,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           $result = $this->addUser($row);
         }
       } 
-      // we have a uid to update
+      // we have a uid to update that is associated with a guid
       else
       {
         // Set the fields to update the new user with
