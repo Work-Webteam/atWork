@@ -31,8 +31,8 @@ class AtworkIdirDelete extends AtworkIdirUpdate
     // TODO: Should we programatically count how many fields the user has? Then we don't have to update this everytime we add a new field?
     $this->new_fields = 
     [
-      // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave this out.
-      2 => 'old_user_' . time() . '@gov.bc.ca',
+      // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave 1 out.
+      2 => 'old_user_' . time(),
       // We don't want to remove old display names - so leave 3 out
       4 => 'old_user_' . time() . '@gov.bc.ca',
       // Custom fields start here

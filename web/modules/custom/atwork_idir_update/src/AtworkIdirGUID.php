@@ -39,7 +39,7 @@ class AtworkIdirGUID
       return $result;
   }
 
-    /**
+   /**
    * updateSystemUser: This function makes any necessary updates to our db for the user. By the time the user gets here, we know we need to make some changes. Shared by add/delete and update methods. Once successful, send a note to the success method and return
    *
    * @param [string] $type : This denotes if this is an update or a delete
