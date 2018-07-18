@@ -1,0 +1,25 @@
+{#
+/** Override the poll_vote template in the poll contrib module to display the title in block view.
+ * 
+ * Available Variables: 
+ *  poll_body: Article-style body of poll.
+ *  question: Title and/or poll question
+ 8  show_question: Doesnt do much.
+ */
+#}
+{{ form.messages }}
+<div class="poll">
+  <div class="vote-form">
+    {#{% if show_question %}#}
+      <h3 class="poll-question">{{ question }}</h3>
+    {#{% endif %}#}
+    
+    {# Display added fields here. Don't bother trying to use the poll-manage-display gui to re-order fields. #}
+    {{ poll_body|raw }}
+    
+    {{ form.choice }}
+    {{ form.actions }}
+  </div>
+{{ form|without('actions', 'choice', 'messages', 'question') }}
+</div>
+
