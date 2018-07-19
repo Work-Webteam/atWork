@@ -5,6 +5,11 @@ use Drupal\user\Entity\User;
 
 class AtworkIdirAddUpdate extends AtworkIdirGUID 
 {
+
+  public function initAddUpdate()
+  {
+    $this->parseUpdateUserList('add');
+  }
   /**
    * parseUpdateUserList - This function pulls users one at a time from the update.tsv, and then completes a check on them
    * 
@@ -14,11 +19,11 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
    * @param [string] $list : will state either "add" or "update" to pull the appropriate list. All other checks will decide if user is new/needs to be updated/ hits an integrety constraint (GUID or Idir).
    * @return void
    */
-  private function parseUpdateUserList($list)
+  protected function parseUpdateUserList($list)
   {
     $update_list = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_' . $list . '.tsv', 'r');
     // Check if we have anything, if not throw an error.
-    if( !$update_list )
+    if( !isset($update_list) )
     {
       // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
       throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_' . $list . '.tsv' );
@@ -48,7 +53,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           if( !empty($new_uid) )
           {
             // setup $this->new_fields for a delete and submit
-            $result = $this->removeUser( $row , $new_uid);
+            $result = $this->removeUser( $row , $new_uid[0]);
             //setup $this->new_fields for an add
             $result = $this->addUser($row);
           }
@@ -79,7 +84,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           16 => $row[16], //Postal Code
         ];
         // At this point, we know they are in our system, and should be updated.
-        $result = $this -> updateSystemUser('update', $update_uid, $this->new_fields);
+        $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
       }
       // Log this transaction
       if($result)
@@ -91,22 +96,22 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
   private function addUser( $user_array ) {
     $this->new_fields = 
     [
-      1 => $row[1], // GUID
-      2 => $row[2], //username
-      3 => $row[3], //displayname
-      4 => $row[4], //email
-      5 => $row[5], //givenname
-      6 => $row[6], //Surname
-      7 => $row[7], //Phone
-      8 => $row[8], //Title
-      9 => $row[9], //Department
-      10 => $row[10], //Office
-      11 => $row[11], //OrganizationCode
-      12 => $row[12], //Company
-      13 => $row[13], //Street
-      14 => $row[14], //City
-      15 => $row[15], //Province
-      16 => $row[16], //Postal Code
+      1 => $user_array[1], // GUID
+      2 => $user_array[2], //username
+      3 => $user_array[3], //displayname
+      4 => $user_array[4], //email
+      5 => $user_array[5], //givenname
+      6 => $user_array[6], //Surname
+      7 => $user_array[7], //Phone
+      8 => $user_array[8], //Title
+      9 => $user_array[9], //Department
+      10 => $user_array[10], //Office
+      11 => $user_array[11], //OrganizationCode
+      12 => $user_array[12], //Company
+      13 => $user_array[13], //Street
+      14 => $user_array[14], //City
+      15 => $user_array[15], //Province
+      16 => $user_array[16], //Postal Code
     ];
     // Calls parent function requires udpateSystemUser($type, $uid, array of fields)
     $result = $this->updateSystemUser('add', '', $this->new_fields);
@@ -140,7 +145,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
   {
     $user_uid = null;
     $connection = \Drupal::database();
-    $result = $connection->select('user_field_data', 'fd')
+    $result = $connection->select('users_field_data', 'fd')
       ->fields('fd', array('uid'))
       ->distinct(true)
       ->condition("fd.name", $username, '=')

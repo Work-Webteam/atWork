@@ -10,8 +10,8 @@ class AtworkIdirLog /* implements iAtworkIdirLog */
    */
   public static function errorCollect($error)
   {
-    $error_file = fopen(drupal_get_path('module','atwork_idir_update') . '/Logs/errorlog_' . timestamp('Ymd') . '.log', 'a');
-    fwrite($error_file, "\n", $error);
+    $error_file = fopen(drupal_get_path('module','atwork_idir_update') . '/Logs/errorlog_' . date('Ymd') . '.log', 'a');
+    fwrite($error_file, $error);
     fclose($error_file);
   }
   
@@ -23,8 +23,8 @@ class AtworkIdirLog /* implements iAtworkIdirLog */
    */
   public static function success($complete)
   {
-    $idir_update_file = fopen(drupal_get_path('module','atwork_idir_update') . '/Logs/idir_update_log_' . timestamp('Ymd') . '.log', 'a');
-    fwrite($idir_update_file, "\n", $complete);
+    $idir_update_file = fopen(drupal_get_path('module','atwork_idir_update') . '/Logs/idir_update_log_' . date('Ymd') . '.log', 'a');
+    fwrite($idir_update_file, $complete);
     fclose($idir_update_file);
   }
 

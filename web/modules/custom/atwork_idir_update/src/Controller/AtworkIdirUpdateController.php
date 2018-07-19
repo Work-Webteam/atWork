@@ -5,6 +5,9 @@
  */
 namespace Drupal\atwork_idir_update\Controller;
 use Drupal\atwork_idir_update\AtworkIdirUpdateLogSplit;
+use Drupal\atwork_idir_update\AtworkIdirAddUpdate;
+use Drupal\atwork_idir_update\AtworkIdirDelete;
+use Drupal\atwork_idir_update\AtworkIdirLog;
 class AtworkIdirUpdateController {
   public function content() {
     // Secondary way to run the idir script for testing - or if cron hook does not fire or errors for some reason.
@@ -45,12 +48,21 @@ class AtworkIdirUpdateController {
       $check = $file_handle->splitFile();
       if( !$check )
       {
-        throw new \exception("");
+        throw new \exception("Error splitting up the user .tsv");
       }
     }
     catch ( Exception $e )
     {
-
+      // Generic exception handling if something else gets thrown.
+      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+      AtworkIdirLog::notify();
+      die();
     }
+    // file has been split, so now it is time to parse the .tsv files
+    $Update_List = new AtworkIdirAddUpdate();
+    $update_status = $Update_List->initAddUpdate();
+    AtworkIdirLog::success($update_status);
   }
 }

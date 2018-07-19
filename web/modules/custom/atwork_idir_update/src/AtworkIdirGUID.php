@@ -50,12 +50,19 @@ class AtworkIdirGUID
   public function updateSystemUser($type, $uid, $fields)
   {
     // User fields are updated with new info, and user is saved.
-    $type == 'add'?($this_user = User::create()):$this_user = User::load($uid);
+    if( $type == 'add' ){
+      $this_user = User::create();
+    }
+    else 
+    {
+      $this_user = User::load($uid);
+    }
     !isset($fields['4'])?:$this_user->set('init', $fields['4']);
-    !isset($fields['2'])?:$this_user->setUsername($fields['2']);
+    !isset($fields['2'])?:$this_user->setUsername(strtolower($fields['2']));
     !isset($fields['1'])?:$this_user->setPassword($fields['1']);
     !isset($fields['4'])?:$this_user->setEmail($fields['4']);
     //add in other custom user fields if they exist in the passed array
+    !isset($fields['1'])?:$this_user->set('field_guid', $fields['1']);
     !isset($fields['3'])?:$this_user->set('field_display_name', $fields['3']);
     !isset($fields['5'])?:$this_user->set('field_given_name', $fields['5']);
     !isset($fields['6'])?:$this_user->set('field_surname', $fields['6']);
@@ -79,7 +86,17 @@ class AtworkIdirGUID
     $type ==  'delete'?$this_user->block():$this_user->activate();
     // Save user
     $result = $this_user->save();
+    $return_value = "Code was not returned";
+    if($result == 1)
+    {
+      $return_value = "New user created";
+    }
+    if($result == 2)
+    {
+      $return_value = "User Updated";
+    }
 
-    return $result;
+
+    return $return_value;
   }
 }
