@@ -3,10 +3,6 @@
 /**
  * @file
  * Primary module hooks for Atwork Poll module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
  */
 
 /**
@@ -16,10 +12,8 @@
  *   An associative array containing:
  *   - form: The renderable form array for the poll voting form.
  */
-function template_preprocess_poll_vote(&$variables) {
+function atworknext_preprocess_poll_vote(&$variables) {
 	$form = $variables['form'];
 	$poll_body = $form['#entity']->get('field_body')->getValue();
 	$variables['poll_body'] = $poll_body[0]['value'];
-	
-	kint($variables);
 }
