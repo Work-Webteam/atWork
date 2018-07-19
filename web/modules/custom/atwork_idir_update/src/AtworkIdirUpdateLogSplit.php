@@ -3,7 +3,7 @@ namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
 use Drupal\user\Entity\User;
 
-class AtworkIdirUpdate /* implements iAtworkIdirUpdate */ 
+class AtworkIdirUpdateLogSplit 
 {
   protected $timestamp;
   protected $drupal_path;
@@ -21,6 +21,12 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     fclose($update_file);
     $delete_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv', 'w');
     fclose($delete_file);
+  }
+  public function getTimestamp(){
+    return $this->timestamp;
+  }
+  public function getDrupalPath(){
+    return $this->drupal_path;
   }
     
   /**
@@ -99,27 +105,18 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
    private function getFiles()
    {
     $filename = 'idir_' . $this->timestamp . '.tsv';
-    $check = false;
+    $check = true;
     try
     {
       // Check to see that the file is where it should be
-      $full_list_check = $this->drupal_path . '/idir/' . $filename;
-      if(!file_exists($full_list_check))
-      {
-        // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
-        throw new \exception("Full list file not found at atwork_idir_update/idir/" . $filename );
-        return;
-      }
-      else {
-        // Grab the file and open it for reading
-        $full_list = fopen($this->drupal_path . '/idir/' . $filename, 'rb');
-      }
+      $full_list = fopen($this->drupal_path . '/idir/' . $filename, 'rb');
+
       // Check if the file was opened properly.
       if( !$full_list )
       {
         // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
         throw new \exception("Failed to open file at atwork_idir_update/idir/" . $filename );
-        return;
+        return false;
       } 
       else 
       {
@@ -162,7 +159,10 @@ class AtworkIdirUpdate /* implements iAtworkIdirUpdate */
     {
       // Generic exception handling if something else gets thrown.
       \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
       AtworkIdirLog::errorCollect($e);
+      $check = false;
+      return $check;
     }
     return $check;
   }
