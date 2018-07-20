@@ -8,7 +8,8 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
 
   public function initAddUpdate()
   {
-    $this->parseUpdateUserList('add');
+    $update_status = $this->parseUpdateUserList('add');
+    return $update_status;
   }
   /**
    * parseUpdateUserList - This function pulls users one at a time from the update.tsv, and then completes a check on them

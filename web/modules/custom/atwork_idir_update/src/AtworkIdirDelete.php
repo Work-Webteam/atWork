@@ -4,9 +4,15 @@ namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
 use Drupal\user\Entity\User;
 
-class AtworkIdirDelete extends AtworkIdirUpdate
+class AtworkIdirDelete extends AtworkIdirGUID
 {
-    /**
+  
+  public function deleteInit()
+  {
+    $delete_status = $this->parseDeleteUserList();
+    return $delete_status;
+  }
+  /**
    * parseDeleteUserList - This function does the work of parsing the delete.tsv file
    * @param[array] $active_user_check : An array for the user we are currently checking in the delete.tsv file
    * @param [string] $guid : The guid of the user we pull off of the .tsv sheet
