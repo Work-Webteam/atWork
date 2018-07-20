@@ -1,11 +1,15 @@
 <?php
 
 namespace Drupal\atwork_idir_update;
+use Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController;
 /**
  * Implements hook_cron()
  */
-function atwork_idir_udpate_cron() 
+function atwork_idir_update_cron() 
 { 
+  // Instantiate a new singleton class controller to fire up our idir update.
+  $atwork_idir_update = new AtworkIdirUpdateController;
+  $atwork_idir_update->AtworkIdirInit();
   // Hooking into cron every morning at 6am
   if( date('G') == 6 )
   {

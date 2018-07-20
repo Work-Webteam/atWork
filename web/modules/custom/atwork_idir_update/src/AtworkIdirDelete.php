@@ -32,7 +32,7 @@ class AtworkIdirDelete extends AtworkIdirGUID
     {
       // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
       throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_delete.tsv' );
-      return;
+      return false;
     }
     // TODO: Should we programatically count how many fields the user has? Then we don't have to update this everytime we add a new field?
     $this->new_fields = 
@@ -66,15 +66,9 @@ class AtworkIdirDelete extends AtworkIdirGUID
       }
       // At this point, we know they are in our system, and should be deleted.
       $result = $this -> updateSystemUser('delete', $delete_uid, $this->new_fields);
-      // Log this transaction
-      if($result)
-      {
-        AtworkIdirLog::success($result);
-      } 
-      else
-      {
-        AtworkIdirLog::errorCollect($result);
-      }
+      // TODO: Log this transaction
+
     }
+    return true;
   }
 }

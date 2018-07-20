@@ -28,7 +28,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
     {
       // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
       throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_' . $list . '.tsv' );
-      return;
+      return "failed";
     }
     // Pull the update list
     while ( ($row = fgetcsv($update_list, '', "\t")) !== false) 
@@ -38,16 +38,6 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       // If we are returned an empty set, we know this user is not in our current db, and in fact needs to be added. We should also do a quick check for username (idir) because we can't duplicate this. If this was the user script, we can simply append them to the add script which will run last.
       if (empty($update_uid))
       {
-        if ($list == 'update')
-        {
-          // If we didn't get a uid back, then this user does not exist in our system. We need to add them to the add script to run later.
-          $add_class = new ATworkIdirUpdateLogSplit;
-          $add_class->setAddTsv( $row );
-          // Make sure the destructor breaks down the class before the next iteration.
-          unset($add_class);
-          continue;
-        } 
-        else
         {
           // Need to check if idir is in user - we cannot have two users with the same idir and different GUID's
           $new_uid = $this->getUserName( $row[2] );
@@ -55,8 +45,6 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           {
             // setup $this->new_fields for a delete and submit
             $result = $this->removeUser( $row , $new_uid[0]);
-            //setup $this->new_fields for an add
-            $result = $this->addUser($row);
           }
           //setup $this->new_fields for an add and submit - we don't have this guid or idir in the system.
           $result = $this->addUser($row);
@@ -65,6 +53,14 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       // we have a uid to update that is associated with a guid
       else
       {
+        // TODO: WE have a GUID - lets check that the username matches our new username. If not we need to check if this username already exists.
+        // Need to check if idir is in user - we cannot have two users with the same idir and different GUID's
+        $match_uid = $this->getUserName( $row[2] );
+        if( !empty($new_uid) )
+        {
+          // setup $this->new_fields for a delete and submit
+          $result = $this->removeUser( $row , $new_uid[0]);
+        }
         // Set the fields to update the new user with
         $this->new_fields =
         [
@@ -82,7 +78,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           13 => $row[13], //Street
           14 => $row[14], //City
           15 => $row[15], //Province
-          16 => $row[16], //Postal Code
+          16 => substr($row[16], 0, 7), //Postal Code
         ];
         // At this point, we know they are in our system, and should be updated.
         $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
@@ -93,6 +89,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
         AtworkIdirLog::success($result);
       } 
     }
+    return "success";
   }
   private function addUser( $user_array ) {
     $this->new_fields = 
@@ -112,7 +109,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       13 => $user_array[13], //Street
       14 => $user_array[14], //City
       15 => $user_array[15], //Province
-      16 => $user_array[16], //Postal Code
+      16 => substr($user_array[16], 0, 7), //Postal Code - There have been instaces where the file contains two PC's, which is too large for this field. We trim them to a set 7 chars here.
     ];
     // Calls parent function requires udpateSystemUser($type, $uid, array of fields)
     $result = $this->updateSystemUser('add', '', $this->new_fields);
@@ -140,6 +137,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       16 => ''
     ];
     $result = $this->updateSystemUser('delete', $uid, $this->new_fields);
+    unset($this->new_fields);
     return $result;
   }
   private function getUserName( $username )
@@ -149,7 +147,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
     $result = $connection->select('users_field_data', 'fd')
       ->fields('fd', array('uid'))
       ->distinct(true)
-      ->condition("fd.name", $username, '=')
+      ->condition('fd.name', $username, '=')
       ->execute()->fetchCol();
       return $result;
   }

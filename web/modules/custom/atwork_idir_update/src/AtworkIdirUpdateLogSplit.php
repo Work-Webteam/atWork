@@ -15,10 +15,24 @@ class AtworkIdirUpdateLogSplit
     // TODO: Should these be going into the Public:// file folder?
     $this->drupal_path = $this->getModulePath('atwork_idir_update');
     // Create possible add/update/delete .tsv files in idir folder ready to be appended too - so we don't have to check every time for them.
+    if(file_exists($this->drupal_path . '/idir/idir_' . $this->timestamp . '_add.tsv'))
+    {
+      unlink($this->drupal_path . '/idir/idir_' . $this->timestamp . '_add.tsv');
+    }  
     $add_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_add.tsv', 'w');
     fclose($add_file);
+
+    if(file_exists($this->drupal_path . '/idir/idir_' . $this->timestamp . '_update.tsv'))
+    {
+      unlink($this->drupal_path . '/idir/idir_' . $this->timestamp . '_update.tsv');
+    }  
     $update_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_update.tsv', 'w');
     fclose($update_file);
+
+    if(file_exists($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv'))
+    {
+      unlink($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv');
+    }
     $delete_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv', 'w');
     fclose($delete_file);
   }

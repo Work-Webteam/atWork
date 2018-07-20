@@ -15,7 +15,7 @@ class AtworkIdirUpdateController {
   {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
-    $this->drupal_path = drupal_get_path('module','atwork_idir_update');  
+    $this->drupal_path = drupal_get_path('module','atwork_idir_update');
   }
 
 
@@ -30,6 +30,7 @@ class AtworkIdirUpdateController {
 
   private function AtworkIdirInit()
   {
+
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
@@ -57,7 +58,7 @@ class AtworkIdirUpdateController {
     {
       $full_list = fopen($this->drupal_path . '/idir/' . $filename, 'rb');
       // Check if the file was opened properly.
-      if( !$full_list )
+      if( !isset($full_list) )
       {
         throw new \exception("Failed to open file at atwork_idir_update/idir/" . $filename . '. Script was terminated in Controller.');
       } 
@@ -93,12 +94,13 @@ class AtworkIdirUpdateController {
 
   private function parseFiles($type){
 
-    $CurrentList = $type=='delete' ? new AtworkIdirDelete() : new AtworkAddUpdate();
+    $CurrentList = $type=='delete' ? new AtworkIdirDelete() : new AtworkIdirAddUpdate();
     $filename = 'idir_' . $this->timestamp . '_' . $type . '.tsv';
 
     try
     {
-      $full_list = fopen($this->drupal_path . '/idir/' . $filename, 'rb');
+      $file_path = $this->drupal_path . '/idir/' . $filename;
+      $full_list = fopen($file_path, 'r');
       // Check if the file was opened properly.
       if( !$full_list )
       {
@@ -120,7 +122,7 @@ class AtworkIdirUpdateController {
       $check = $type == 'delete' ? $CurrentList->deleteInit() : $CurrentList->initAddUpdate();
       if( !$check )
       {
-        throw new \exception("Error parsing the " . $type . ".tsv, or no file present");
+        throw new \exception("Error parsing the " . $filename . ", or no file present");
       }
     }
     catch ( Exception $e )

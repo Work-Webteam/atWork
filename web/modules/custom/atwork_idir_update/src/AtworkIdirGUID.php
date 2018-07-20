@@ -89,14 +89,12 @@ class AtworkIdirGUID
     $return_value = "Code was not returned";
     if($result == 1)
     {
-      $return_value = "New user created";
+      $return_value = 'New user ' . $fields[2] . ' created';
     }
     if($result == 2)
     {
-      $return_value = "User Updated";
+      $return_value = 'User ' . $fields[2] . ' Updated';
     }
-
-
     return $return_value;
   }
 }
