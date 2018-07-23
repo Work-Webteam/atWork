@@ -6,3 +6,69 @@
 
 // Base-theme overrides.
 @import 'overrides';
+
+
+/* Primary CSS Files */
+/* No CSS is directly placed in this file. Imports and comments only please */
+/* Comments and styling information */
+
+
+// Load variables first, then mixins, then everything else
+
+@import "mixins.scss";
+@import "extends.scss";
+@import "functions.scss";
+
+// Load colours and fonts
+@import "colours.scss";
+@import "typography.scss";
+
+// Load navigation / menu
+@import "navigation_menu.scss";
+
+// Load content types, forms and lists
+@import "article.scss";
+@import "forms.scss";
+@import "fields_lists.scss";
+@import "media.scss";
+@import "homepage.scss";
+
+// Social icons and Tags
+@import "social_tags.scss";
+
+// Community and Executive Profiles
+@import "profile.scss";
+@import "executives.scss";
+
+// Custome styles for CKEditor
+@import "ckeditor-styles.scss"
+
+// For reference only. BC Gov Style information 
+// https://www2.gov.bc.ca/gov/content/governments/services-for-government/policies-procedures/web-content-development-guides/developers-guide/css-elements#family
+
+// Font information
+
+// Site title <h1 class="sitetitle"> <h1> Semi-bold 42px #fff [note: developer to add to CSS file]
+// Normal <p> Regular 14px #494949
+// Heading one <h1> Semi-bold 42px #494949
+// Heading two <h2> Semi-bold 24px #494949
+// Heading three <h3> Regular 20px #494949
+// Heading four <h4> Semi-bold 16px #494949
+// Title bars <h2 class="blue-heading-bar"> Background 83%; Opacity #003366; Padding 8px 15px 7px; Regular 24px #fff
+// Hyperlinks <a ref> Underlined Regular 13px #1a5a96. Do not customize link styles or behaviours
+// First level navigation <div class="level2Navigation"> Regular 13px #fff, background colour #38598a with vertical line separator colour # c6d6ee (note: this is second level navigation on gov.bc.ca)
+// Second level navigation <div class="level3Navigation"> Regular 13px #fff, background colour #5475a7 with vertical line separator colour # c6d6ee (note:this is third level navigation on gov.bc.ca)
+// Lefthand navigation for navigation levels 3 onward <div class="leftNav-item-wrapper"> Underlined Regular 14px #1a5a96 with # f2f2f2 border
+// Login text 13px Myriad Pro; #ffffff; italics
+// Search box text Regular 13px #bcbec5
+
+// Colour values
+
+// #003366 Header & footer 83% opacity for background colour on title bars
+// #1a5a96 Links and title links
+// #38598a First level background colour for navigation bar (use #fff for navigation text)
+// #5475a7 Second level background colour for navigation bar (use #fff for navigation text)
+// #f2f2f2 Background grey left and right side bars (outside content body)
+// #fcba19 Highlight gold bar under header and above footer
+// #494949 Site wide text on white background
+// #bcbec5 Return to op icon, share button icon, search icon, search box text and search box border

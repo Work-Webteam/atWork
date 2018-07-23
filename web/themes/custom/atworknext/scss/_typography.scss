@@ -1,0 +1,35 @@
+/* Site wide font settings */
+
+html, body {
+    font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+    line-height: 25px;
+    p {
+        color: $p-color;
+    }
+}
+
+// Heading Tags / Sizes
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 2.25em;
+    color: $black;
+    font-weight: bold;
+}
+h2, h3 {
+    font-size: 20pt;
+    color: $black;
+}
+h4 { // Shown as Subheading A and B on site
+    font-size: 16pt;
+    color: darken($link-blue, 10%);
+}
+
+// Global text links
+a { // initial link state
+    color: $link-blue;
+}
+a:hover {
+    text-decoration: none;
+    background-color: $link-blue;
+    color: $white;
+}

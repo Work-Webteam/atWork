@@ -1,0 +1,89 @@
+/* Site wide Social icons, links and TAG displays */
+
+// Articles tags
+article .field--name-field-tags {
+    margin:10px 0;
+    .field--label {
+        display: inline;
+        float: left;
+    }
+    .field--item {
+        display: inline;
+        margin-left:5px;
+        padding-right: 5px;
+        text-transform: uppercase;
+        font-size: .85em;
+        border-right: solid 1px $link-blue;
+    }
+}
+
+// Hide the Dislike button
+.like_dislike .dislike {
+    display: none;
+}
+
+// Subscribe - Forward/Email - Flag - Reads - Comments - Likes
+// Appear at the bottom of each article page
+// Hide Dislike on all pages
+
+article.node--type-article { // Email Article
+    li.forward:before {
+        display: inline-block;
+        content:url("../images/forward-icon.svg");
+        width: 16px;
+        margin-right: 5px;
+    }
+    .flag-inappropriate:before { // Inappropriate flag
+        display: inline-block;
+        content:url("../images/flag-icon.svg");
+        width:16px;
+        margin-right:5px;
+        margin-top:2px;
+        vertical-align: top;
+    }
+    .like_dislike { // Likes button
+        .like {
+            border:none;
+            width:90px;
+            margin-top:-5px;
+        }
+        .like a:before {
+            display: inline-block;
+            content:url("../images/like-icon.svg");
+            width:16px;
+            margin-right:5px;
+        }
+        #like {
+            font-size: 16px;
+            padding-top:0px;
+        }
+    }
+    li.statistics-counter:before {
+        display: inline-block;
+        content:url("../images/reads-icon.svg");
+        width: 16px;
+        margin-right:5px;
+        margin-top: 1px;
+        vertical-align: top;
+    }
+    // Position the icons below the tags, across the page
+    .field--name-field-article-likes .field--item {
+        a:hover {
+            text-decoration: underline;
+            background: none;
+            color:inherit;
+        }
+        display:inline-block;
+        float:right;   
+    }
+    .flag-inappropriate,
+    .links.inline.list-inline {
+        display:inline-block;
+        margin-right: 10px;
+        a:hover {
+            text-decoration: underline;
+            color:inherit;
+            background:none;
+        }
+    }
+}

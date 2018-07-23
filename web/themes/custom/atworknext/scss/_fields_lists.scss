@@ -1,0 +1,38 @@
+/* Primary CSS for site wide fields and lists */
+
+// Article bulleted lists - blue. Also removes the top margin space following paragraphs
+article .field--type-text-with-summary ul {
+    margin-top:-10px;
+    li {
+        list-style: none;
+    }
+    li::before {
+        content:"•  ";
+        color: $link-blue;
+        font-weight: bold;
+    }
+}
+
+// Bootstrap Accordian Panel used on Articles and background pages
+// Content and structure of accordians must be coded by hand at the moment
+
+
+#accordion {
+    div.panel-title {
+        background-color:$black;
+        text-align: center;
+        color:$white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 5px 0px;
+        padding:8px 0 5px 0;
+        font-size: 1em;
+    }
+    .panel-heading {
+        h4 {
+            font-weight:bold;
+            font-size: .95em;
+        }
+        background-color: $comment-blue;
+    }
+}

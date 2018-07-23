@@ -1,0 +1,11 @@
+/* Site Wide Forms also includes comment boxes */
+
+section[rel~="schema:comment"] {
+    background-color:$comment-blue;
+    padding: 10px;
+    h2 {
+        color:$link-blue;
+        text-transform: uppercase;
+        font-size: 1.2em;
+    }
+}

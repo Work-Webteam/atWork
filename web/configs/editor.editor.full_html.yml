@@ -24,34 +24,33 @@ settings:
             - Subscript
             - '-'
             - RemoveFormat
-            - Underline
             - JustifyLeft
             - JustifyCenter
-            - JustifyBlock
             - JustifyRight
+            - '-'
+            - BulletedList
+            - NumberedList
+            - '-'
             - Outdent
             - Indent
-            - Undo
-            - Redo
+            - '-'
+            - SpecialChar
+            - Maximize
+        -
+          name: Copy/Paste/Undo/Redo
+          items:
             - Cut
             - Paste
             - Copy
             - PasteText
             - PasteFromWord
-            - SpecialChar
-            - Maximize
-            - Language
-            - Styles
+            - Undo
+            - Redo
         -
           name: Linking
           items:
             - DrupalLink
             - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
         -
           name: Media
           items:
@@ -65,6 +64,10 @@ settings:
           items:
             - Format
         -
+          name: Custom
+          items:
+            - Styles
+        -
           name: Tools
           items:
             - ShowBlocks
@@ -73,7 +76,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: ''
+      styles: "table.update|Update Table\r\ntable.related|Related Box\r\np.videobyline|Video Byline\r\ndiv.bigQuotes|Big Quotes\r\nspan.QuoteAuthor|Quote Author\r\na.blackbtn|Text Link"
     video_embed:
       defaults:
         children:

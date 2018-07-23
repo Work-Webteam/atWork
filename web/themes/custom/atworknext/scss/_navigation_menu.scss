@@ -1,0 +1,53 @@
+/* System wide navigation - menu CSS */
+
+// Top Nav Bar on each page
+
+
+header.navbar-default, footer.footer {
+    background-color: $banner-blue;
+}
+header.navbar-default {
+    .navbar-btn {
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+    .logo img {
+        width:76px;
+        height: 53px;
+    }
+    #search-block-form {
+        width:30%;
+        float:right;
+        padding-top: 17px;
+        input {
+            height:22px;
+            font-size: 12px;
+        }
+        .btn-primary {
+            background-color:transparent;
+        }
+    }
+} 
+#navbar-collapse {
+    #block-bannerlinks {
+        display: inline-block;
+        font-size: .85em;
+        ul {
+            margin-top: 20px;
+        }
+        li {
+            display: inline-block;
+        }
+        a {
+            color: $white;
+            padding:0 5px;
+        }
+        a:hover {
+           background: none;
+           text-decoration: underline; 
+        }
+    }
+    #block-searchform {
+        display: inline;
+    }
+}

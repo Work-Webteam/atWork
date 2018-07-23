@@ -1,0 +1,22 @@
+uuid: 0dec5124-fc03-4b54-816e-f2800ce10658
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.poll.field_body
+  module:
+    - poll
+    - text
+id: poll.poll.field_body
+field_name: field_body
+entity_type: poll
+bundle: poll
+label: Body
+description: 'Enter the body of the poll.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

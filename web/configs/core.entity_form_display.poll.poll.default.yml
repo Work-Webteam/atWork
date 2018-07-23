@@ -1,0 +1,33 @@
+uuid: f44d907f-27d2-4521-9656-7551c2809bdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.poll.poll.field_body
+  module:
+    - poll
+    - text
+id: poll.poll.default
+targetEntityType: poll
+bundle: poll
+mode: default
+content:
+  field_body:
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: -10
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

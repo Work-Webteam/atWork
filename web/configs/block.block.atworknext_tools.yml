@@ -1,6 +1,6 @@
 uuid: 3ce2dd96-e67a-4072-b247-d866e2783261
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.tools
@@ -13,7 +13,7 @@ _core:
 id: atworknext_tools
 theme: atworknext
 region: sidebar_first
-weight: 0
+weight: -6
 provider: null
 plugin: 'system_menu_block:tools'
 settings:
