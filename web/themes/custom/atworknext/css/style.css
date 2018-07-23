@@ -10395,6 +10395,34 @@ article .field--type-text-with-summary ul li::before {
   font-size: .95em;
 }
 
+/* line 39, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_fields_lists.scss */
+#accordion h4.panel-title a {
+  display: block;
+  text-decoration: none;
+}
+
+/* line 42, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_fields_lists.scss */
+#accordion h4.panel-title a:hover {
+  background: none;
+  color: inherit;
+}
+
+/* line 47, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_fields_lists.scss */
+#accordion h4.panel-title a:after {
+  display: inline-block;
+  content: url("../images/blue-arrow-up.svg");
+  width: 12px;
+  float: right;
+}
+
+/* line 54, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_fields_lists.scss */
+#accordion h4.panel-title a[aria-expanded~="false"]:after {
+  display: inline-block;
+  content: url("../images/blue-arrow-down.svg");
+  width: 12px;
+  float: right;
+}
+
 /* Site CSS for media - video, images and pop-up content */
 /* line 5, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
 #footer-info {
