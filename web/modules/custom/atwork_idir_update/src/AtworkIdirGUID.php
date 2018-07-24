@@ -52,30 +52,35 @@ class AtworkIdirGUID
     // User fields are updated with new info, and user is saved.
     if( $type == 'add' ){
       $this_user = User::create();
+      // If this is a new user - we have to make sure we have an email/username/guid for them, or we need to throw an error.
+      if(!isset($fields[4]) || !isset($fields[1]) || !isset($fields[2]))
+      {
+        return "user did not have necissary fields to allow for them to have a profile. Please check info for following user: " . print_r($fields);
+      }
     }
     else 
     {
       $this_user = User::load($uid);
     }
-    !isset($fields['4'])?:$this_user->set('init', $fields['4']);
-    !isset($fields['2'])?:$this_user->setUsername(strtolower($fields['2']));
-    !isset($fields['1'])?:$this_user->setPassword($fields['1']);
-    !isset($fields['4'])?:$this_user->setEmail($fields['4']);
+    if( isset( $fields[4] )){ $this_user->set('init', $fields[4]); }
+    if( isset( $fields[2] )){ $this_user->setUsername(strtolower($fields[2])); }
+    if( isset( $fields[1] )){ $this_user->setPassword($fields[1]); }
+    if( isset( $fields[4] )){ $this_user->setEmail($fields[4]); }
     //add in other custom user fields if they exist in the passed array
-    !isset($fields['1'])?:$this_user->set('field_guid', $fields['1']);
-    !isset($fields['3'])?:$this_user->set('field_display_name', $fields['3']);
-    !isset($fields['5'])?:$this_user->set('field_given_name', $fields['5']);
-    !isset($fields['6'])?:$this_user->set('field_surname', $fields['6']);
-    !isset($fields['7'])?:$this_user->set('field_phone', $fields['7']);
-    !isset($fields['8'])?:$this_user->set('field_title', $fields['8']);
-    !isset($fields['9'])?:$this_user->set('field_department', $fields['9']);
-    !isset($fields['10'])?:$this_user->set('field_office', $fields['10']);
-    !isset($fields['11'])?:$this_user->set('field_organization_code', $fields['11']);
-    !isset($fields['12'])?:$this_user->set('field_company', $fields['12']);
-    !isset($fields['13'])?:$this_user->set('field_street', $fields['13']);
-    !isset($fields['14'])?:$this_user->set('field_city', $fields['14']);
-    !isset($fields['15'])?:$this_user->set('field_province', $fields['15']);
-    !isset($fields['16'])?:$this_user->set('field_postal_code', $fields['16']);
+    if( isset( $fields[1] )){ $this_user->set('field_guid', $fields[1]); }
+    if( isset( $fields[3] )){ $this_user->set('field_display_name', $fields[3]); }
+    if( isset( $fields[5] )){ $this_user->set('field_given_name', $fields[5]); }
+    if( isset( $fields[6] )){ $this_user->set('field_surname', $fields[6]); }
+    if( isset( $fields[7] )){ $this_user->set('field_phone', $fields[7]); }
+    if( isset( $fields[8] )){ $this_user->set('field_title', $fields[8]); }
+    if( isset( $fields[9] )){ $this_user->set('field_department', $fields[9]); }
+    if( isset( $fields[10] )){ $this_user->set('field_office', $fields[10]); }
+    if( isset( $fields[11] )){ $this_user->set('field_organization_code', $fields[11]); }
+    if( isset( $fields[12] )){ $this_user->set('field_company', $fields[12]); }
+    if( isset( $fields[13] )){ $this_user->set('field_street', $fields[13]); }
+    if( isset( $fields[14] )){ $this_user->set('field_city', $fields[14]); }
+    if( isset( $fields[15] )){ $this_user->set('field_province', $fields[15]); }
+    if( isset( $fields[16] )){ $this_user->set('field_postal_code', $fields[16]); }
 
     // We need this to for sure be a new user - we don't want to edit an existing user.
     if($type == 'add')
@@ -84,6 +89,14 @@ class AtworkIdirGUID
     }
     // This unpublishes their account if they are supposed to be deleted, or activates it if it is an update or add
     $type ==  'delete'?$this_user->block():$this_user->activate();
+    // Validate this user
+    $violations_user = $this_user->validate();
+    if ($violations_user->count() > 0) 
+    {
+      $violation = $violations_user[0]; 
+      drupal_set_message($violation->getMessage(),'warning');
+    }
+
     // Save user
     $result = $this_user->save();
     $return_value = "Code was not returned";

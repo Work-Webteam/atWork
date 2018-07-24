@@ -1,7 +1,7 @@
 hello.content:
-  path: '/hello'
+  path: '/admin/idir'
   defaults:
-    _controller: '\Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController::content'
-    _title: 'Hello World'
+    _controller: '\Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController::main'
+    _title: 'Idir Update Manual Run'
   requirements:
-    _permission: 'access content'
+    _permission: 'administrator'

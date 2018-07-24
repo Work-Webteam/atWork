@@ -37,10 +37,6 @@ class AtworkIdirDelete extends AtworkIdirGUID
     // TODO: Should we programatically count how many fields the user has? Then we don't have to update this everytime we add a new field?
     $this->new_fields = 
     [
-      // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave 1 out.
-      2 => 'old_user_' . time(),
-      // We don't want to remove old display names - so leave 3 out
-      4 => 'old_user_' . time() . '@gov.bc.ca',
       // Custom fields start here
       5 => '',
       6 => '',
@@ -64,10 +60,14 @@ class AtworkIdirDelete extends AtworkIdirGUID
       {
         continue;
       }
-      // At this point, we know they are in our system, and should be deleted.
-      $result = $this -> updateSystemUser('delete', $delete_uid, $this->new_fields);
-      // TODO: Log this transaction
+      // We need a new timestamp appended with a randomized number so we don't hit integrity constraints.
+      $extra_rand = rand( 10000, 99999 );
+      $this->new_fields[2] = 'old_user_' . microtime() . $extra_rand;
+      $this->new_fields[4] = 'old_user_' . microtime() . $extra_rand . '@gov.bc.ca';
 
+      // At this point, we know they are in our system, and should be deleted.
+      $result = $this -> updateSystemUser('delete', $delete_uid[0], $this->new_fields);
+      // TODO: Log this transaction
     }
     return true;
   }

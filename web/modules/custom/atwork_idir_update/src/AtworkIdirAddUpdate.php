@@ -6,9 +6,9 @@ use Drupal\user\Entity\User;
 class AtworkIdirAddUpdate extends AtworkIdirGUID 
 {
 
-  public function initAddUpdate()
+  public function initAddUpdate($type)
   {
-    $update_status = $this->parseUpdateUserList('add');
+    $update_status = $this->parseUpdateUserList($type);
     return $update_status;
   }
   /**
@@ -33,6 +33,10 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
     // Pull the update list
     while ( ($row = fgetcsv($update_list, '', "\t")) !== false) 
     {
+      // These MUST both have a value
+      if($row[2] == null || $row[1] == null){
+        continue;
+      }
       // Get the GUID of the first user, this will return either an empty set or a user entity number.
       $update_uid = $this->getGUIDField( $row[1] );
       // If we are returned an empty set, we know this user is not in our current db, and in fact needs to be added. We should also do a quick check for username (idir) because we can't duplicate this. If this was the user script, we can simply append them to the add script which will run last.
@@ -53,15 +57,18 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       // we have a uid to update that is associated with a guid
       else
       {
-        // TODO: WE have a GUID - lets check that the username matches our new username. If not we need to check if this username already exists.
+        //WE have a GUID - lets check that the username matches our new username. If not we need to check if this username already exists.
         // Need to check if idir is in user - we cannot have two users with the same idir and different GUID's
         $match_uid = $this->getUserName( $row[2] );
-        if( !empty($new_uid) )
+        if(isset($match_uid[0]) && $match_uid[0] != $update_uid[0])
         {
           // setup $this->new_fields for a delete and submit
-          $result = $this->removeUser( $row , $new_uid[0]);
+          $result = $this->removeUser( $row , $match_uid[0] );
         }
+
         // Set the fields to update the new user with
+        // Make sure we are starting fresh first
+        unset($this->new_fields);
         $this->new_fields =
         [
           2 => $row[2], //username
@@ -80,6 +87,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           15 => $row[15], //Province
           16 => substr($row[16], 0, 7), //Postal Code
         ];
+        
         // At this point, we know they are in our system, and should be updated.
         $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
       }
@@ -91,6 +99,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
     }
     return "success";
   }
+
   private function addUser( $user_array ) {
     $this->new_fields = 
     [
@@ -117,12 +126,14 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
   }
   private function removeUser( $user_array , $uid)
   {
+    $extra_rand = rand( 10000, 99999 );
+
     $this->new_fields = 
     [
       // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave this out.
-      2 => 'old_user_' . time(),
+      2 => 'old_user_' . microtime() . $extra_rand,
       // We don't want to remove old display names - so leave 3 out
-      4 => 'old_user_' . time() . '@gov.bc.ca',
+      4 => 'old_user_' . microtime() . $extra_rand . '@gov.bc.ca',
       // Custom fields start here
       5 => '',
       6 => '',
@@ -137,7 +148,6 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       16 => ''
     ];
     $result = $this->updateSystemUser('delete', $uid, $this->new_fields);
-    unset($this->new_fields);
     return $result;
   }
   private function getUserName( $username )

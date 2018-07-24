@@ -16,12 +16,29 @@ class AtworkIdirUpdateController {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     $this->drupal_path = drupal_get_path('module','atwork_idir_update');
+    set_error_handler("exception_error_handler");
   }
 
 
-  public function content() {
-    // Secondary way to run the idir script for testing - or if cron hook does not fire or errors for some reason.
-    $run_cron = $this->AtworkIdirInit();
+  public function main() {
+    $interval = 60 * 2;
+    $next_execution = \Drupal::state()->get('atwork_idir_update.next_execution');
+    $next_execution = !empty($next_execution) ? $next_execution : 0;
+    if(REQUEST_TIME >= $next_execution)
+    {
+      // Secondary way to run the idir script for testing - or if cron hook does not fire or errors for some reason.
+      \Drupal::logger('atwork_idir_update')->notice('Running the update script');
+      // Set time we ran this - and don't let us run it for at least 2 mins to avoid running twice
+      \Drupal::state()->set('atwork_idir_update.next_execution', REQUEST_TIME + $interval);
+      $run_cron = $this->AtworkIdirInit();
+      \Drupal::logger('atwork_idir_update')->notice('Idir update ran successfully');
+    } 
+    else
+    {
+      \Drupal::logger('atwork_idir_update')->warning('Idir script was run less than two minutes ago - please check if it is still running, or wait 2 minutes before trying again');
+      die();
+    }
+    isset($run_cron)?:$run_cron = "Cron did not run";
     return array(
       '#type' => 'markup',
       '#markup' => t('<p>Running Cron ' . $run_cron . '.</p>'),
@@ -30,7 +47,6 @@ class AtworkIdirUpdateController {
 
   private function AtworkIdirInit()
   {
-
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
@@ -47,7 +63,6 @@ class AtworkIdirUpdateController {
     $update_status == "success"?(AtworkIdirLog::success('The add script finished successfully')):$this->sendNotifications();
     // Finally send notifications
     $this->sendNotifications();
-    AtworkIdirLog::success($update_status);
   }
 
   private function splitIdirLogs(){
@@ -71,6 +86,11 @@ class AtworkIdirUpdateController {
       AtworkIdirLog::errorCollect($e);
       return 'fail';
     }
+    // Found a file, so make sure this is closed:
+    if($full_list){
+      fclose($full_list);
+    }
+
     // If we get here - we have a file to split - so lets move on.
     try
     {
@@ -119,7 +139,15 @@ class AtworkIdirUpdateController {
     // If we get here - we have a file to parse - so lets move on.
     try
     {
-      $check = $type == 'delete' ? $CurrentList->deleteInit() : $CurrentList->initAddUpdate();
+      if($type == 'delete')
+      {
+        $check = $CurrentList->deleteInit(); 
+      } elseif($type == 'add')
+      {
+        $check = $CurrentList->initAddUpdate("add");
+      } elseif($type == 'update'){
+        $check = $CurrentList->initAddUpdate("update");
+      }
       if( !$check )
       {
         throw new \exception("Error parsing the " . $filename . ", or no file present");
@@ -141,5 +169,14 @@ class AtworkIdirUpdateController {
     echo("logs");
     AtworkIdirLog::notify();
     die();
+  }
+
+  protected function exception_error_handler($severity, $message, $file, $line ) {
+    if (!(error_reporting() & $severity)) {
+      // This error code is not included in error_reporting
+      return;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+    AtworkIdirLog::errorCollect($message);
   }
 }

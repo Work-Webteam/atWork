@@ -25,4 +25,4 @@
 
 # Ignore .tsv that are created via our idir update module
 /web/modules/custom/atwork_idir_update/idir/
-/web/modules/custom/atwork_idir_udpate/Logs/
+/web/modules/custom/atwork_idir_update/Logs/

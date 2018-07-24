@@ -54,6 +54,13 @@ class AtworkIdirUpdateLogSplit
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_add.tsv file");
       return false;
     }
+    // Make sure we have an email and username or we will ignore this user.
+    if(empty($new_user[4]) || empty($new_user[2]) || empty($new_user[1]))
+    {
+      \Drupal::logger('atwork_idir_update')->warning("User did not have one of the following required fields - email {$new_user[4]}, username {$new_user[2]}, guid {$new_user[1]} \n ");
+      fclose($add_file);
+      return false;
+    }
     // Put this array in .tsv form.
     fputcsv($add_file, $new_user,"\t");
     fclose($add_file);
@@ -62,6 +69,7 @@ class AtworkIdirUpdateLogSplit
   protected function setDeleteTsv($old_user)
   {
     $delete_file = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_delete.tsv', 'a');
+    
     if(!$delete_file)
     {
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_delete.tsv file");
@@ -77,6 +85,13 @@ class AtworkIdirUpdateLogSplit
     if(!$update_file)
     {
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_update.tsv file");
+      return false;
+    }
+    // Make sure we have an email and username or we will ignore this user.
+    if(empty($existing_user[4]) || empty($existing_user[2]) || empty($existing_user[1]))
+    {
+      \Drupal::logger('atwork_idir_update')->warning("User did not have one of the following required fields - email {$existing_user[4]}, username {$existing_user[2]}, guid {$existing_user[1]}");
+      fclose($update_file);
       return false;
     }
     fputcsv($update_file, $existing_user, "\t");
