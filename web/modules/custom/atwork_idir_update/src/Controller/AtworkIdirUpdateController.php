@@ -16,11 +16,11 @@ class AtworkIdirUpdateController {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     $this->drupal_path = drupal_get_path('module','atwork_idir_update');
-    set_error_handler("exception_error_handler");
   }
 
 
   public function main() {
+    set_error_handler(array($this, 'exception_error_handler'));
     $interval = 60 * 2;
     $next_execution = \Drupal::state()->get('atwork_idir_update.next_execution');
     $next_execution = !empty($next_execution) ? $next_execution : 0;
@@ -171,12 +171,12 @@ class AtworkIdirUpdateController {
     die();
   }
 
-  protected function exception_error_handler($severity, $message, $file, $line ) {
+  protected static function exception_error_handler($severity, $message, $file, $line ) {
     if (!(error_reporting() & $severity)) {
       // This error code is not included in error_reporting
       return;
     }
+    AtworkIdirLog::errorCollect($message . "\n");
     throw new ErrorException($message, 0, $severity, $file, $line);
-    AtworkIdirLog::errorCollect($message);
   }
 }

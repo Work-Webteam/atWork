@@ -62,8 +62,8 @@ class AtworkIdirDelete extends AtworkIdirGUID
       }
       // We need a new timestamp appended with a randomized number so we don't hit integrity constraints.
       $extra_rand = rand( 10000, 99999 );
-      $this->new_fields[2] = 'old_user_' . microtime() . $extra_rand;
-      $this->new_fields[4] = 'old_user_' . microtime() . $extra_rand . '@gov.bc.ca';
+      $this->new_fields[2] = 'old_user_' . time() . $extra_rand;
+      $this->new_fields[4] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
 
       // At this point, we know they are in our system, and should be deleted.
       $result = $this -> updateSystemUser('delete', $delete_uid[0], $this->new_fields);

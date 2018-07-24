@@ -131,9 +131,9 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
     $this->new_fields = 
     [
       // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave this out.
-      2 => 'old_user_' . microtime() . $extra_rand,
+      2 => 'old_user_' . time() . $extra_rand,
       // We don't want to remove old display names - so leave 3 out
-      4 => 'old_user_' . microtime() . $extra_rand . '@gov.bc.ca',
+      4 => 'old_user_' . time() . $extra_rand . '@gov.bc.ca',
       // Custom fields start here
       5 => '',
       6 => '',

@@ -95,6 +95,7 @@ class AtworkIdirGUID
     {
       $violation = $violations_user[0]; 
       drupal_set_message($violation->getMessage(),'warning');
+      AtworkIdirLog::errorCollect($violation->getMessage()); 
     }
 
     // Save user
