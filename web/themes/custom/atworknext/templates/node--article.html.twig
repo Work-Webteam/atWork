@@ -115,13 +115,7 @@
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}#}
     {% endif %}
     
-    {{ content.body }}
-    {{ content.field_tags }}
-    {{ content.field_article_likes }}
-    {{ content.flag_inappropriate }}
-    {{ content.links }}
-    {{ content.field_author_information }}
-    {{ content.field_attachments }}
-    {{ content.comment }}
+    {{ content|slice(1,length) }}
+    <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
   </div>
 </article>
