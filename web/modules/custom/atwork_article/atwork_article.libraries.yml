@@ -2,9 +2,6 @@
 atwork_article:
   js:
     atwork_article.js: {}
-  css:
-    component:
-      css/atwork-article.css: {}
   dependencies:
     - core/drupalSettings
     - core/jquery
