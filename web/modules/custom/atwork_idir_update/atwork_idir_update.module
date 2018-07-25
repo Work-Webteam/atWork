@@ -7,7 +7,6 @@ use Drupal\Core\Routing\RouteMatchInterface;
  */
 function atwork_idir_update_cron()
 { 
-  echo("running idir cron");
   //kint("Hook got picked up");
     // We access our configuration.
   //$cron_config = \Drupal::configFactory()->getEditable('atwork_idir_update.settings');
@@ -15,13 +14,6 @@ function atwork_idir_update_cron()
   $atwork_idir_update = new AtworkIdirUpdateController;
   $atwork_idir_update->main();
   // Hooking into cron every morning at 6am
-  if( date('G') == 6 )
-  {
-    // Instantiate a new singleton class controller to fire up our idir update.
-    //$atwork_idir_update = new AtworkIdirUpdateController;
-    //$atwork_idir_update->AtworkIdirInit();
-  }
-  // TODO: Make sure we run this everyday - we may need to check the last-run status to make sure we have run it within the past 12 hours.
 }
 
 function atwork_idir_update_cronapi($op, $job=null)

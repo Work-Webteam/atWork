@@ -57,7 +57,7 @@ class AtworkIdirUpdateLogSplit
     // Make sure we have an email and username or we will ignore this user.
     if(empty($new_user[4]) || empty($new_user[2]) || empty($new_user[1]))
     {
-      \Drupal::logger('atwork_idir_update')->warning("User did not have one of the following required fields - email {$new_user[4]}, username {$new_user[2]}, guid {$new_user[1]} \n ");
+      \Drupal::logger('atwork_idir_update')->info("User did not have one of the following required fields - email {$new_user[4]}, username {$new_user[2]}, guid {$new_user[1]} \n ");
       fclose($add_file);
       return true;
     }
@@ -90,7 +90,7 @@ class AtworkIdirUpdateLogSplit
     // Make sure we have an email and username or we will ignore this user.
     if(empty($existing_user[4]) || empty($existing_user[2]) || empty($existing_user[1]))
     {
-      \Drupal::logger('atwork_idir_update')->warning("User did not have one of the following required fields - email {$existing_user[4]}, username {$existing_user[2]}, guid {$existing_user[1]}");
+      \Drupal::logger('atwork_idir_update')->info("User did not have one of the following required fields - email {$existing_user[4]}, username {$existing_user[2]}, guid {$existing_user[1]}");
       fclose($update_file);
       return true;
     }

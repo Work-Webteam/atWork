@@ -89,14 +89,14 @@ class AtworkIdirGUID
     }
     // This unpublishes their account if they are supposed to be deleted, or activates it if it is an update or add
     $type ==  'delete'?$this_user->block():$this_user->activate();
-    // Validate this user
-    $violations_user = $this_user->validate();
-    if ($violations_user->count() > 0) 
-    {
-      $violation = $violations_user[0]; 
-      drupal_set_message($violation->getMessage(),'warning');
-      AtworkIdirLog::errorCollect($violation->getMessage()); 
-    }
+    // TODO: Validate this user once the Symphony error is fixed.
+    //$violations_user = $this_user->validate();
+    //if ($violations_user->count() > 0) 
+   // {
+    //  $violation = $violations_user[0]; 
+     // drupal_set_message($violation->getMessage(),'warning');
+      //AtworkIdirLog::errorCollect($violation->getMessage()); 
+    //}
 
     // Save user
     $result = $this_user->save();

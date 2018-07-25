@@ -27,11 +27,11 @@ class AtworkIdirUpdateController {
     if(REQUEST_TIME >= $next_execution)
     {
       // Secondary way to run the idir script for testing - or if cron hook does not fire or errors for some reason.
-      \Drupal::logger('atwork_idir_update')->notice('Running the update script');
+      \Drupal::logger('atwork_idir_update')->info('Running the update script');
       // Set time we ran this - and don't let us run it for at least 2 mins to avoid running twice
       \Drupal::state()->set('atwork_idir_update.next_execution', REQUEST_TIME + $interval);
       $run_cron = $this->AtworkIdirInit();
-      \Drupal::logger('atwork_idir_update')->notice('Idir update ran successfully');
+      \Drupal::logger('atwork_idir_update')->info('Idir update ran successfully');
     } 
     else
     {
@@ -41,30 +41,36 @@ class AtworkIdirUpdateController {
     isset($run_cron)?:$run_cron = "Cron did not run";
     return array(
       '#type' => 'markup',
-      '#markup' => t('<p>Running Cron ' . $run_cron . '.</p>'),
+      '#markup' => t('<p>Cron run status: <h1>' . $run_cron . '.</h1></p>'),
     );
   }
 
   private function AtworkIdirInit()
-  {
+  { 
     // TODO: Use FileTransfer
     // TODO: FTP the file here: file_prepare_directory(Public://idir/timestamp/); 
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
     $split_status == 'success'?(AtworkIdirLog::success('Logs were successfully split')):$this->sendNotifications();
+    AtworkIdirLog::success('Beginning to delete old idirs.');
+
     // file has been split, so now it is time to parse the .tsv files
     // First run the delete script 
     $delete_status = $this->parseFiles('delete');
     $delete_status == "success"?(AtworkIdirLog::success('The delete script finished successfully')):$this->sendNotifications();
     // Second is update
+    AtworkIdirLog::success('Beginning to update current Idirs');
     $update_status = $this->parseFiles('update');
     $update_status == "success"?(AtworkIdirLog::success('The update script finished successfully')):$this->sendNotifications();
     // Finally is Add
+    AtworkIdirLog::success('Beginning to add new Idirs');
     $update_status = $this->parseFiles('add');
     $update_status == "success"?(AtworkIdirLog::success('The add script finished successfully')):$this->sendNotifications();
+    AtworkIdirLog::success("All Idir updates finished successfully");
     // Finally send notifications
     $this->sendNotifications();
+    return "Cron ran successfully";
   }
 
   private function splitIdirLogs(){
@@ -168,7 +174,6 @@ class AtworkIdirUpdateController {
   }
 
   private function sendNotifications(){
-    echo("logs");
     AtworkIdirLog::notify();
     die();
   }

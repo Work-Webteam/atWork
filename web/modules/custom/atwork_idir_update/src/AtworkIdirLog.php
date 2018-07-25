@@ -36,6 +36,7 @@ class AtworkIdirLog /* implements iAtworkIdirLog */
   public static function notify()
   {
     // TODO: Find and email errorlog and update log.
-    echo("Send Notify");
+    //echo("Send Notify");
+    return "Notifications sent successfully. Cron complete.";
   }
 }
