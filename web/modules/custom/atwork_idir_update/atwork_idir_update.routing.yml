@@ -1,4 +1,4 @@
-hello.content:
+atwork_idir_update.content:
   path: '/admin/idir'
   defaults:
     _controller: '\Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController::main'

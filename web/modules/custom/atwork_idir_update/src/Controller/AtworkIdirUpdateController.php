@@ -47,6 +47,8 @@ class AtworkIdirUpdateController {
 
   private function AtworkIdirInit()
   {
+    // TODO: Use FileTransfer
+    // TODO: FTP the file here: file_prepare_directory(Public://idir/timestamp/); 
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.

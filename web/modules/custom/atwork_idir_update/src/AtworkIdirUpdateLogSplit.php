@@ -59,7 +59,7 @@ class AtworkIdirUpdateLogSplit
     {
       \Drupal::logger('atwork_idir_update')->warning("User did not have one of the following required fields - email {$new_user[4]}, username {$new_user[2]}, guid {$new_user[1]} \n ");
       fclose($add_file);
-      return false;
+      return true;
     }
     // Put this array in .tsv form.
     fputcsv($add_file, $new_user,"\t");
@@ -92,7 +92,7 @@ class AtworkIdirUpdateLogSplit
     {
       \Drupal::logger('atwork_idir_update')->warning("User did not have one of the following required fields - email {$existing_user[4]}, username {$existing_user[2]}, guid {$existing_user[1]}");
       fclose($update_file);
-      return false;
+      return true;
     }
     fputcsv($update_file, $existing_user, "\t");
     fclose($update_file);
@@ -112,7 +112,7 @@ class AtworkIdirUpdateLogSplit
     $file_split = $this->getFiles();
     // TODO: Wherever this is fired from, if it is empty, we should send Notify.
     // Nothing to do here, so send back three empty arrays.
-    if(!$file_split)
+    if($file_split != true)
     {
       throw new \exception("Something has gone wrong, some or all of the update .tsv files were not parsed.");
       return false;
@@ -190,7 +190,6 @@ class AtworkIdirUpdateLogSplit
       \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
       // And log it as well
       AtworkIdirLog::errorCollect($e);
-      $check = false;
       return $check;
     }
     return $check;
