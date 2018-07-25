@@ -1,0 +1,30 @@
+uuid: 4c2651f7-c8c6-4fed-8ced-628f80d8c756
+langcode: en
+status: true
+dependencies:
+  module:
+    - atwork_idir_update
+title: 'Default cron handler'
+id: atwork_idir_update_cron
+weight: -10
+module: atwork_idir_update
+callback: atwork_idir_update_cron
+scheduler:
+  id: crontab
+  configuration:
+    rules:
+      - '15 6 * * *'
+    catch_up: 0
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 7200
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000

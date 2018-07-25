@@ -26,6 +26,7 @@ module:
   history: 0
   image: 0
   inline_form_errors: 0
+  kint: 0
   link: 0
   media: 0
   menu_ui: 0
@@ -51,6 +52,7 @@ module:
   toolbar: 0
   tour: 0
   tracker: 0
+  ultimate_cron: 0
   update: 0
   user: 0
   views_ui: 0
