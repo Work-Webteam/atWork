@@ -8,14 +8,26 @@ use Drupal\atwork_idir_update\AtworkIdirUpdateLogSplit;
 use Drupal\atwork_idir_update\AtworkIdirAddUpdate;
 use Drupal\atwork_idir_update\AtworkIdirDelete;
 use Drupal\atwork_idir_update\AtworkIdirLog;
+use Drupal\atwork_idir_update\AtworkIdirUpdateFTP;
 class AtworkIdirUpdateController {
   protected $timestamp;
   protected $drupal_path;
+  // FTP credentials - want to make 
+  private $username;
+  private $password;
+  private $hostname;
+  private $jail;
+
   function __construct()
   {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     $this->drupal_path = drupal_get_path('module','atwork_idir_update');
+    $this->username = "psa";
+    $this->password = "Men@W0rk";
+    $this->hostname = "ftp.dir.gov.bc.ca";
+    //$this->hostname = "ftp://142.34.217.168";
+    $this->jail = "Public://idir/" . $this->timestamp;
   }
 
 
@@ -30,6 +42,7 @@ class AtworkIdirUpdateController {
       \Drupal::logger('atwork_idir_update')->info('Running the update script');
       // Set time we ran this - and don't let us run it for at least 2 mins to avoid running twice
       \Drupal::state()->set('atwork_idir_update.next_execution', REQUEST_TIME + $interval);
+
       $run_cron = $this->AtworkIdirInit();
       \Drupal::logger('atwork_idir_update')->info('Idir update ran successfully');
     } 
@@ -49,6 +62,29 @@ class AtworkIdirUpdateController {
   { 
     // TODO: Use FileTransfer
     // TODO: FTP the file here: file_prepare_directory(Public://idir/timestamp/); 
+    // Need to pull down the file and put it in a dir.
+    // TODO: Add FTP class here once developed
+    // filename is idir.tsv 
+    // Connection: Directory Synch FTP Server, 142.34.217.168, TCP port 21000-21100 (142.34.217.168  ftp.dir.gov.bc.ca ftp)
+    $idir_ftp = new AtworkIdirUpdateFTP($this->username, $this->password, $this->hostname, $this->jail, "21");
+    try{
+      //$ftp_result = $idir_ftp->getFTPFile($this->timestamp);
+      $ftp_result = $idir_ftp->getFTPFile($this->timestamp);
+      dpm($ftp_result);
+      // Check if the file was opened properly.
+      if( !isset($ftp_result) )
+      {
+        throw new \exception("Failed to get new ftp");
+      } 
+    }
+    catch ( Exception $e ) 
+    {
+      // Generic exception handling if something else gets thrown.
+      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+      $this->sendNotifications();
+    }
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
@@ -178,12 +214,12 @@ class AtworkIdirUpdateController {
     die();
   }
 
-  protected static function exception_error_handler($severity, $message, $file, $line ) {
+  public static function exception_error_handler($severity, $message, $file, $line ) {
     if (!(error_reporting() & $severity)) {
       // This error code is not included in error_reporting
       return;
     }
-    AtworkIdirLog::errorCollect($message . "\n");
-    throw new ErrorException($message, 0, $severity, $file, $line);
+    AtworkIdirLog::errorCollect($message . " " . $severity . " " . $file . " " . $line . "\n");
+    throw new \exception($message . " " . $severity . " " . $file . " " . $line);
   }
 }

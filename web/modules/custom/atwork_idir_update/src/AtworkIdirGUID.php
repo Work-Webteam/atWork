@@ -94,7 +94,7 @@ class AtworkIdirGUID
     //if ($violations_user->count() > 0) 
    // {
     //  $violation = $violations_user[0]; 
-     // drupal_set_message($violation->getMessage(),'warning');
+     // \Drupal\Core\Messenger\MessengerInterface::addMessage($violation->getMessage(),'warning');
       //AtworkIdirLog::errorCollect($violation->getMessage()); 
     //}
 
