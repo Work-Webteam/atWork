@@ -75,6 +75,7 @@
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'clearfix',
+    content.field_executive_message['#object'].get("field_executive_message").getValue()[0]['value'] == 1 ? 'executive-message',
   ]
 %}
 {{ attach_library('classy/node') }}
