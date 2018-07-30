@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_article_likes
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
+    - field.field.node.article.field_executive_message
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - image.style.thumbnail
@@ -62,6 +63,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_executive_message:
+    weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_image:
     type: image_image
