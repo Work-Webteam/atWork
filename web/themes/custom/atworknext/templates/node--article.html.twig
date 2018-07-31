@@ -75,6 +75,7 @@
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
     'clearfix',
+    content.field_executive_message['#object'].get("field_executive_message").getValue()[0]['value'] == 1 ? 'executive-message',
   ]
 %}
 {{ attach_library('classy/node') }}
@@ -118,14 +119,7 @@
     {% else %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}#}
     {% endif %}
-    
-    {{ content.body }}
-    {{ content.field_tags }}
-    {{ content.field_article_likes }}
-    {{ content.flag_inappropriate }}
-    {{ content.links }}
-    {{ content.field_author_information }}
-    {{ content.field_attachments }}
-    {{ content.comment }}
+    {{ content|without('field_image', 'field_executive_message') }}
+    <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
   </div>
 </article>

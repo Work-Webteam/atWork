@@ -6,7 +6,7 @@
  * 
  */
 function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-	if($form["#form_id"] == $form_id) {
+	if(($form["#form_id"] == $form_id) && (in_array($form["#form_id"], array('node_article_form','node_article_edit_form')))) {
 		// Attach custom module javascript library
     $form['#attached']['library'][] = 'atwork_article/atwork_article';
   
