@@ -97,7 +97,8 @@
     {% endif %}
   </header>
   <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-  {% if content.field_video is not empty %}
+  {{ kint(content) }}
+  {% if content.field_video['#object'] is defined %}
     {{ content.field_video }}
   {% else %}
     {{ content.field_image }}
