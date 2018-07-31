@@ -115,8 +115,7 @@
     {% else %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}#}
     {% endif %}
-    
-    {{ content|slice(1,length) }}
+    {{ content|without('field_image', 'field_executive_message') }}
     <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
   </div>
 </article>
