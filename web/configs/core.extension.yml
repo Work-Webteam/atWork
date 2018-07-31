@@ -1,8 +1,5 @@
 module:
-  admin_toolbar: 0
-  admin_toolbar_tools: 0
   atwork_article: 0
-  atwork_poll: 0
   automated_cron: 0
   big_pipe: 0
   block: 0
@@ -34,7 +31,6 @@ module:
   like_dislike: 0
   link: 0
   menu_ui: 0
-  module_filter: 0
   node: 0
   options: 0
   page_cache: 0
@@ -45,7 +41,6 @@ module:
   responsive_image: 0
   scheduler: 0
   search: 0
-  sharethis: 0
   shortcut: 0
   statistics: 0
   system: 0
