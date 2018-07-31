@@ -33,7 +33,20 @@ function atwork_idir_update_cronapi($op, $job=null)
 }
 
 
-function atwork_idir_update_cron_test()
+/**
+ * Implements hook_help().
+ */
+function atwork_idir_update_help( $route_name, RouteMatchInterface $route_match )
 {
-
+  switch ( $route_name ) 
+  {
+    case 'help.page.atwork_idir_update':
+      return t('
+        <h2>Idir update module for Drupal 8. </h2>
+        <h3>Instructions:</h3>
+        <p>After placing module in the <em>Modules</em> folder, Enable module under Custom on the <em>extend</em> page.</p>
+        <p>This module is built to work with <a href="https://www.drupal.org/project/ultimate_cron" target="_blank">Ultimate Cron.</a></p>
+        <p>The module can also be manually run by hitting the route admin.idir (example.com/admin/idir).</p>
+      ');
+  }
 }

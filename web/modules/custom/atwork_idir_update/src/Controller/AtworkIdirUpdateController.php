@@ -111,7 +111,7 @@ class AtworkIdirUpdateController {
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
     }
-    AtworkIdirLog::success("File found");
+    AtworkIdirLog::success("Remote idir.tsv file found");
     // Get the file
     $new_idir_file = $idir_ftp->ftpFile($this->timestamp, $idir_ftp->connection);
     if ( $new_idir_file == false )
