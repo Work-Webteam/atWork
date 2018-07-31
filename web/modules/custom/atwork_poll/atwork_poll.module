@@ -13,7 +13,13 @@
  *   - form: The renderable form array for the poll voting form.
  */
 function atworknext_preprocess_poll_vote(&$variables) {
+	
+	//Retrieve the form with our entity in it
 	$form = $variables['form'];
+	
+	// Get the field value from the entity by referencing its 'field_name'
 	$poll_body = $form['#entity']->get('field_body')->getValue();
+	
+	// Attach field value to the twig variables array so we can display it in the template
 	$variables['poll_body'] = $poll_body[0]['value'];
 }
