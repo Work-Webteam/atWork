@@ -22,12 +22,12 @@ class AtworkIdirUpdateController {
   {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
-    $this->drupal_path = drupal_get_path('module','atwork_idir_update');
+    $this->drupal_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     // FTP credentials
     $this->username = "psa";
     $this->password = "Men@W0rk";
     $this->hostname = "ftp.dir.gov.bc.ca";
-    $this->jail = "Public://idir/";
+    $this->jail = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     //$this->jail = "/var/www/public/work8/web/sites/default/files/idir";
     $this->port = 21;
   }
@@ -88,13 +88,42 @@ class AtworkIdirUpdateController {
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
     }
-    // TODO: Make dir function
+    // Make dir function
     $directory = $idir_ftp->create_idir_dir($this->timestamp);
-    kint($directory);
-    return;
-    // TODO: Get the file from remote server
-    // TODO: Cleanup function.
+    if ( $directory == false ) {
+      throw new \exception("error creating directory in public folder");
+      // Generic exception handling if something else gets thrown.
+      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+      $this->sendNotifications();
+    }
+    AtworkIdirLog::success("New directory created at Public://idir/" . $this->timestamp);
 
+    // Check if file is there
+    $check_file = $idir_ftp->isFile("idir.tsv");
+    if ( $check_file == false )
+    {
+      throw new \exception("Cannot find idir file at remote server");
+      // Generic exception handling if something else gets thrown.
+      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+      $this->sendNotifications();
+    }
+    AtworkIdirLog::success("File found");
+    // Get the file
+    $new_idir_file = $idir_ftp->ftpFile($this->timestamp, $idir_ftp->connection);
+    if ( $new_idir_file == false )
+    {
+      throw new \exception("Error retrieving idir file from source.");
+      // Generic exception handling if something else gets thrown.
+      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+      $this->sendNotifications();
+    }
+    AtworkIdirLog::success("Copied the file to drupal public folder");    
 
     // Set up the logs
     $split_status = $this->splitIdirLogs();
@@ -115,6 +144,8 @@ class AtworkIdirUpdateController {
     $update_status = $this->parseFiles('add');
     $update_status == "success"?(AtworkIdirLog::success('The add script finished successfully')):$this->sendNotifications();
     AtworkIdirLog::success("All Idir updates finished successfully");
+    // TODO: Cleanup function.
+
     // Finally send notifications
     $this->sendNotifications();
     return "Cron ran successfully";
@@ -126,11 +157,11 @@ class AtworkIdirUpdateController {
 
     try
     {
-      $full_list = fopen($this->drupal_path . '/idir/' . $filename, 'rb');
+      $full_list = fopen($this->drupal_path . 'idir/' . $this->timestamp . '/' . $filename, 'rb');
       // Check if the file was opened properly.
       if( !isset($full_list) )
       {
-        throw new \exception("Failed to open file at atwork_idir_update/idir/" . $filename . '. Script was terminated in Controller.');
+        throw new \exception("Failed to open file at Public:///idir/" . $filename . '. Script was terminated in Controller.');
       } 
     }
     catch ( Exception $e ) 
@@ -174,12 +205,12 @@ class AtworkIdirUpdateController {
 
     try
     {
-      $file_path = $this->drupal_path . '/idir/' . $filename;
+      $file_path = $this->drupal_path . 'idir/' . $this->timestamp . '/' . $filename;
       $full_list = fopen($file_path, 'r');
       // Check if the file was opened properly.
       if( !$full_list )
       {
-        throw new \exception("Failed to open file at atwork_idir_update/idir/" . $filename . '. Script was terminated in Controller.');
+        throw new \exception("Failed to open file at Public://idir/" . $filename . '. Script was terminated in Controller.');
       } 
     }
     catch ( Exception $e ) 

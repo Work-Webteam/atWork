@@ -29,17 +29,31 @@ class AtworkIdirUpdateFTP extends FTPExtension
  
  
   
-  private final function ftpFile($timestamp)
+  public final function ftpFile($timestamp, $connection)
   {
-
-    return true;
+    ftp_pasv($this->connection, true);
+    $transfer_result = ftp_get( $this->connection, $this->jail . 'idir/' . $timestamp . '/idir_' . $timestamp . ".tsv", "idir.tsv", FTP_BINARY);
+    return $transfer_result;
   }
 
   public final function create_idir_dir($timestamp)
   {
     $new_dir = 'public://idir/' . $timestamp;
-    $dir = $this->createDirectoryJailed($new_dir);
-    kint($dir);
+    try
+    {
+      $dir = file_prepare_directory( $new_dir, FILE_CREATE_DIRECTORY );
+      if( !$dir )
+      {
+        throw new \exception( "Could not create a directory for the file." );
+      }
+    }
+    catch( Exception $e )
+    {
+      // Generic exception handling if something else gets thrown.
+      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+    }
     return $dir;
   }
 
