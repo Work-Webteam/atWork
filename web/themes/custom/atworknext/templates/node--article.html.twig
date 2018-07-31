@@ -120,7 +120,7 @@
     {% else %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}#}
     {% endif %}
-    {{ content|without('field_image', 'field_executive_message') }}
+    {{ content|without('field_image', 'field_executive_message', 'field_video') }}
     <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
   </div>
 </article>
