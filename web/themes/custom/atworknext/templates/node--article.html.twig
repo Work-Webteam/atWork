@@ -114,18 +114,20 @@
     {% trans %}{{ author_name }} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
     
     {# Uncomment once comments are completed to show comment count on articles #}
+    {% if content.comment['#items']|length != 1 %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comments{% endtrans %}#}
     {% else %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comment{% endtrans %}#}
     {% endif %}
     {{ content.body }}
     {{ content.field_tags }}
-    {{ content.field_author_information }}
     <div class="social-bar">
       {{ content.field_article_likes }}
       {{ content.flag_inappropriate }}
       {{ content.links }}
     </div>
+    {{ content.field_author_information }}
+    {{ content.field_attachments }}
     {{ content.comment }}
     <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
   </div>
