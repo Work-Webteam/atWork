@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
     - field.field.node.article.field_tags
+    - field.field.node.article.field_video
     - node.type.article
   module:
     - colorbox
@@ -17,6 +18,7 @@ dependencies:
     - like_dislike
     - text
     - user
+    - video_embed_field
 _core:
   default_config_hash: ChmU3AVqDKU32A_fyChG0W9dTRKmVBR58B6OClCLvZI
 id: node.article.default
@@ -76,6 +78,17 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+  field_video:
+    weight: 8
+    label: above
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: true
+    third_party_settings: {  }
+    type: video_embed_field_video
+    region: content
   flag_inappropriate:
     weight: 4
     region: content

@@ -96,7 +96,11 @@
     {% endif %}
   </header>
   <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
+  {% if content.field_video is not empty %}
+    {{ content.field_video }}
+  {% else %}
     {{ content.field_image }}
+  {% endif %}
     {% if label %}
       {% if page %}
         <h1 class="page-title">{{ label }}</h1>
