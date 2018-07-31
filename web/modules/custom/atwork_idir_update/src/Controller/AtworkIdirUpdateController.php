@@ -23,17 +23,20 @@ class AtworkIdirUpdateController {
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     $this->drupal_path = drupal_get_path('module','atwork_idir_update');
+    // FTP credentials
     $this->username = "psa";
     $this->password = "Men@W0rk";
     $this->hostname = "ftp.dir.gov.bc.ca";
-    //$this->hostname = "ftp://142.34.217.168";
-    $this->jail = "Public://idir/" . $this->timestamp;
+    $this->jail = "Public://idir/";
+    //$this->jail = "/var/www/public/work8/web/sites/default/files/idir";
+    $this->port = 21;
   }
 
 
   public function main() {
     set_error_handler(array($this, 'exception_error_handler'));
-    $interval = 60 * 2;
+    //$interval = 60 * 2;
+    $interval = 2;
     $next_execution = \Drupal::state()->get('atwork_idir_update.next_execution');
     $next_execution = !empty($next_execution) ? $next_execution : 0;
     if(REQUEST_TIME >= $next_execution)
@@ -65,16 +68,16 @@ class AtworkIdirUpdateController {
     // Need to pull down the file and put it in a dir.
     // TODO: Add FTP class here once developed
     // filename is idir.tsv 
-    // Connection: Directory Synch FTP Server, 142.34.217.168, TCP port 21000-21100 (142.34.217.168  ftp.dir.gov.bc.ca ftp)
-    $idir_ftp = new AtworkIdirUpdateFTP($this->username, $this->password, $this->hostname, $this->jail, "21");
+    // Connection: Directory Sync FTP Server, 142.34.217.168, TCP port 21000-21100 (142.34.217.168  ftp.dir.gov.bc.ca ftp)
+    
+    $idir_ftp = new AtworkIdirUpdateFTP($this->jail, $this->username, $this->password, $this->hostname, $this->port);
+    
     try{
-      //$ftp_result = $idir_ftp->getFTPFile($this->timestamp);
-      $ftp_result = $idir_ftp->getFTPFile($this->timestamp);
-      dpm($ftp_result);
-      // Check if the file was opened properly.
-      if( !isset($ftp_result) )
+// Check if we can connect
+      $ftp_result = $idir_ftp->connect();
+      if( !$ftp_result )
       {
-        throw new \exception("Failed to get new ftp");
+        throw new \exception("Failed to connect to ftps");
       } 
     }
     catch ( Exception $e ) 
@@ -85,6 +88,14 @@ class AtworkIdirUpdateController {
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
     }
+    // TODO: Make dir function
+    $directory = $idir_ftp->create_idir_dir($this->timestamp);
+    kint($directory);
+    return;
+    // TODO: Get the file from remote server
+    // TODO: Cleanup function.
+
+
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
