@@ -10,6 +10,18 @@ function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface 
 		// Attach custom module javascript library
     $form['#attached']['library'][] = 'atwork_article/atwork_article';
   
+    // Add select field for article type
+    $form['article_type'] = [
+    		'#type' => 'select',
+    		'#title' => 'Article Type',
+    		'#description' => t('Choose which type of article you wish to create.'),
+    		'#options' => [
+    				'1' => 'Corporate Article',
+    				'2' => 'Executive Message',
+    				'3' => 'Video Article',
+    		]
+    ];
+    
 	  // Add instructions to Article Title field
 	  $form['title']['widget'][0]['value']['#description'] = t('Enter the title for the article. This will 
 	  	appear at the top of the article and on the home page. 
