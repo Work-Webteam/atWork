@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
+    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - image.style.thumbnail
@@ -17,6 +18,7 @@ dependencies:
   module:
     - comment
     - file
+    - h5peditor
     - image
     - path
     - scheduler
@@ -80,6 +82,12 @@ content:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
+  field_slideshow:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_editor
+    region: content
   field_tags:
     type: entity_reference_autocomplete_tags
     weight: 7

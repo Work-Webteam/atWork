@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
+    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - node.type.article
@@ -18,6 +19,7 @@ dependencies:
     - colorbox
     - comment
     - file
+    - h5p
     - like_dislike
     - options
     - text
@@ -90,6 +92,13 @@ content:
       colorbox_caption_custom: ''
     third_party_settings: {  }
     label: hidden
+  field_slideshow:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_default
+    region: content
   field_tags:
     type: entity_reference_label
     weight: 2
