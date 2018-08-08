@@ -1,0 +1,27 @@
+uuid: 1c5da453-17f5-406d-b865-8108dfb47451
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.poll.field_attachments
+  module:
+    - file
+    - poll
+id: poll.poll.field_attachments
+field_name: field_attachments
+entity_type: poll
+bundle: poll
+label: Attachments
+description: 'This field allows you to upload supporting files (e.g. PPT, Word, Excel, PDF). To upload, click on the button marked "Browse files" then search for the specific attachment. Once you''ve selected it, click "ok" then hit the "Upload" button. To add more attachments, repeat this process.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx csv ppt xlsx'
+  max_filesize: '20'
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
