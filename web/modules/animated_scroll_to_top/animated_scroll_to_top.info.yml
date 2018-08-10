@@ -1,0 +1,10 @@
+name: Animated scroll to top
+description: 'Animated scroll to top module.'
+# core: 8.x
+type: module
+
+# Information added by Drupal.org packaging script on 2017-05-27
+version: '8.x-1.2'
+core: '8.x'
+project: 'animated_scroll_to_top'
+datestamp: 1495886286

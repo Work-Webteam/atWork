@@ -1,0 +1,69 @@
+insert.config:
+  type: config_object
+  label: 'Insert module configuration settings'
+  mapping:
+    text_formats:
+      type: sequence
+      label: 'Automatic text format support'
+      sequence:
+        type: string
+    css_classes:
+      type: mapping
+      label: 'Additional CSS classes to be added to items inserted using the Insert module'
+      # The mapping keys map to field type names.
+      mapping:
+        file:
+          type: string
+          label: 'CSS classes to be added to file links (File Insert widget)'
+        image:
+          type: string
+          label: 'CSS classes to be added to images and image links (Image Insert widget)'
+
+field.widget.settings.insert_file:
+  type: mapping
+  label: 'Insert File widget settings'
+  mapping:
+    insert_absolute:
+      type: boolean
+      label: 'Use absolute paths'
+    insert_styles:
+      type: sequence
+      label: 'Styles to be available for inserting an image'
+      sequence:
+        type: string
+    insert_default:
+      type: string
+      label: 'Default insert style'
+    # native file widget setting
+    progress_indicator:
+      type: string
+      label: 'Progress indicator'
+
+field.widget.settings.insert_image:
+  type: mapping
+  label: 'Insert Image widget settings'
+  mapping:
+    insert_absolute:
+      type: boolean
+      label: 'Use absolute paths'
+    insert_styles:
+      type: sequence
+      label: 'Styles to be available for inserting an image'
+      sequence:
+        type: string
+    insert_default:
+      type: string
+      label: 'Default insert style'
+    insert_width:
+      type: integer
+      label: 'Maximum image insert width'
+    insert_rotate:
+      type: boolean
+      label: 'Rotation controls'
+    # native image widget settings
+    progress_indicator:
+      type: string
+      label: 'Progress indicator'
+    preview_image_style:
+      type: string
+      label: 'Preview image style'

@@ -3,13 +3,19 @@
 // Article bulleted lists - blue. Also removes the top margin space following paragraphs
 article .field--type-text-with-summary ul {
     margin-top:-10px;
+    ul, ol {
+      display: table;
+    }
     li {
-        list-style: none;
+      list-style: none;
+      display: table-row;
     }
     li::before {
-        content:"•  ";
-        color: $link-blue;
-        font-weight: bold;
+      display: table-cell;
+      text-align: right;
+      content:"•  ";
+      color: $link-blue;
+      font-weight: bold;
     }
 }
 
@@ -34,5 +40,29 @@ article .field--type-text-with-summary ul {
             font-size: .95em;
         }
         background-color: $comment-blue;
+    }
+    h4.panel-title {
+        a {
+            display: block;
+            text-decoration: none;
+            &:hover {
+                background:none;
+                color:inherit;
+            }
+        }
+        a:after {
+            display:inline-block;
+            content:url('../images/blue-arrow-up.svg');
+            width:12px;
+            float:right;
+        }
+        a[aria-expanded~="false"] {
+            &:after {
+                display:inline-block;
+                content:url('../images/blue-arrow-down.svg');
+                width:12px;
+                float:right;
+            }
+        }
     }
 }

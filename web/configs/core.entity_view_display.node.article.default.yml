@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_article_likes
@@ -17,7 +16,6 @@ dependencies:
     - node.type.article
   module:
     - colorbox
-    - comment
     - file
     - h5p
     - like_dislike
@@ -39,15 +37,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
-  comment:
-    type: comment_default
-    weight: 8
-    region: content
-    label: hidden
-    settings:
-      pager_id: 0
-      view_mode: default
-    third_party_settings: {  }
   field_article_likes:
     weight: 3
     label: hidden
@@ -94,7 +83,7 @@ content:
     label: hidden
   field_slideshow:
     weight: 10
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: h5p_default
@@ -109,12 +98,12 @@ content:
     third_party_settings: {  }
   field_video:
     weight: 8
-    label: above
+    label: hidden
     settings:
       responsive: true
       width: 854
       height: 480
-      autoplay: true
+      autoplay: false
     third_party_settings: {  }
     type: video_embed_field_video
     region: content
@@ -128,4 +117,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  comment: true

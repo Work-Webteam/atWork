@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * This module is specifically to house a hook that will allow us to update styles in the h5p module
+ * https://h5p.org/documentation/for-developers/visual-changes
+ */
+use Drupal\h5p\H5PDrupal;
+
+
+function atwork_h5p_h5p_styles_alter(&$styles, $libraries, $mode) {
+  //found here: https://github.com/tajakobsen/h5p_css_overrides/blob/master/h5p_css_overrides.module
+  $styles[] = (object) array(
+    // Path relative to drupal root
+    'path' => drupal_get_path('modules', 'atwork_h5p') . '/h5p-global-overrides.css',
+    // Cache buster
+    'version' => '?ver=1',
+  );
+}

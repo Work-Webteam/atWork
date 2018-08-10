@@ -1,0 +1,6 @@
+name: H5P update module
+description: This will allow us to update css in the H5P module
+package: Custom
+type: module
+version: 1.0
+core: 8.x

@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Template file for links featuring a file icon inserted via the Insert module.
+ *
+ * Available variables:
+ * - class: A set of classes assigned to this item (if any).
+ * - entity_type: The type of the entity inserted.
+ * - field_type: The field type the rendered template belongs to, i.e. "file" or
+ *   "image".
+ * - icon_classes: Classes defining the icon appearance.
+ * - item: The complete item being inserted.
+ * - name: The file name of the item being inserted.
+ * - style_name: The style or pseudo-style name the item is inserted with.
+ * - type: file format information that may be used for setting "type" attribute.
+ * - url: The URL to the item.
+* - uuid: The file's UUID.
+ *
+ * Some placeholders will be replaced by user-entered values when the item is
+ * inserted into a textarea:
+ * - __description__: A description of the item.
+ * - __filename__: The file name.
+ * - __description_or_filename__: A description of the item if available,
+ *   otherwise use the file name.
+ */
+#}
+<span class="file {{ icon_classes }}{% if class %} {{ class }}{% endif %}" contenteditable="false" data-insert-type="{{ field_type }}"><a href="{{ url }}" title="__description__" type="{{ type }}">__description_or_filename__</a></span>

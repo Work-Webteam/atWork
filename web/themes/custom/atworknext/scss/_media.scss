@@ -1,1 +1,87 @@
 /* Site CSS for media - video, images and pop-up content */
+/* Also contains the print media query */
+
+// Printer icon contained in HTML Print button
+#printBtn { // Printer icon and button. Button code is located in article twig file
+  display: inline;
+  margin-left:-10px;
+  input[type=button] { // Cleans up default input button and adds additional styling
+    border:none;
+    background:none;
+    padding:0;
+    margin:0;
+    color: $link-blue;
+    &:hover { // Resets color and underline on mouse hover
+      color:$black;
+      text-decoration: underline;
+    }
+  }
+  &:before { // Adds the Printer SVG icon before the Input button
+    content:url('../images/printer.svg');
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: text-bottom;
+  }
+}
+// This is the print only style sheet.
+@media print {
+  @page {
+    size: 8.5in 11in;
+    &:left {
+      margin-left: 3cm;
+    }
+    &:right {
+      margin-right: 4cm;
+    }
+  }
+  body {
+    font-size: 10pt;
+    line-height: normal;
+  }
+  // Hide / turn off these css-elements
+  header,
+  a[property~="schema:name"]::after,
+  a[href]:after {
+    content: " ";
+  },
+  article .field--type-image,
+  article #player,
+  .field--name-field-tags,
+  .field--name-field-article-likes,
+  ul.links.inline.list-inline,
+  .flag-inappropriate,
+  #printBtn,
+  footer {
+    display: none!important;
+  }
+  // Specific hide for YouTube videos
+  .video-embed-field-provider-youtube,
+  .video-embed-field-responsive-video,
+  .video-embed-field-responsive-video iframe, // These 3 lines hide the video and its surrounding tags
+  p.videobyline { // Hides the video text below the video if in use
+    display: none!important;
+  }
+  // Adjustments made to printable elements
+  article {
+    table {
+      > caption {
+        background:lightgray!important;
+      }
+    }
+    #accordion {
+      > .panel-title {
+        background:lightgray!important;
+      }
+      .panel-collapse.collapse {
+        display: block!important;
+      }
+    }
+  }
+  figcaption {
+    border-left: solid 1px lightgray;
+    border-right: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+    font-size: 8pt;
+  }
+}

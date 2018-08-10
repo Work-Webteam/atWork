@@ -13,13 +13,13 @@ dependencies:
     - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
-    - image.style.thumbnail
+    - image.style.large
     - node.type.article
   module:
     - comment
     - file
     - h5peditor
-    - image
+    - image_widget_crop
     - path
     - scheduler
     - text
@@ -75,12 +75,20 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_image:
-    type: image_image
+    type: image_widget_crop
     weight: 4
     region: content
     settings:
+      show_default_crop: true
+      preview_image_style: large
+      crop_preview_image_style: medium
+      crop_list:
+        - article_730_330
+        - article_hero
       progress_indicator: throbber
-      preview_image_style: thumbnail
+      crop_types_required: {  }
+      show_crop_area: false
+      warn_multiple_usages: false
     third_party_settings: {  }
   field_slideshow:
     weight: 26

@@ -1,0 +1,16 @@
+.insert-button-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.insert-button-wrapper .insert-button-overlay {
+  display: none;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.insert-required {
+  outline: 2px solid red;
+}

@@ -37,3 +37,30 @@
 footer.footer {
     padding:10px 0;
 }
+// Homepage GRID layout - for development only.
+body.path-frontpage {
+  .hp-column {
+    padding-left: 10px;
+    padding-right:10px;
+  }
+  .hp-row {
+    margin-bottom:30px;
+    padding-bottom:30px;
+    border-bottom:solid 15px lighten($exec-greyborder, 30%);
+  }
+  article {
+    header {
+      display:none;
+    }
+    .field--name-field-image img {
+      width:100%;
+    }
+    #printBtn, .social-bar, .field--type-text-with-summary {
+      display: none;
+    }
+    .field--item a[href="/web/taxonomy/term/12"],
+    .field--item a[href="/web/taxonomy/term/13"] {
+      border-bottom:solid 3px lighten($link-blue,30%);
+    }
+  }
+}

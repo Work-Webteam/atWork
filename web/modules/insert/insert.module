@@ -1,0 +1,270 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormState;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
+use Drupal\image\Entity\ImageStyle;
+
+/**
+ * Implements hook_editor_js_settings_alter().
+ */
+function insert_editor_js_settings_alter(array &$settings) {
+  $config = \Drupal::config('insert.config');
+  $text_formats = $config->get('text_formats');
+
+  foreach (array_keys($settings['editor']['formats']) as $text_format_id) {
+    if (in_array($text_format_id, $text_formats)) {
+      $settings['editor']['formats'][$text_format_id]['editorSettings']['extraAllowedContent']
+        = 'img[src,width,height,alt,title,data-insert-class,data-insert-type](*); span[contenteditable,data-insert-type](*); a[title,type,data-insert-type](*)';
+    }
+
+    // If drupalimage is disabled (the editor's image button is removed),
+    // still, CKEditor's naive image2 plugin wraps the image in a span tag
+    // blocking from applying a style to the image making it impossible to set
+    // alignment on the image. Therefore, the image2 plugin needs to be disabled
+    // in that case.
+    // With drupalimage enabled, the user has to set alignment using the
+    // editor's image button; With drupalimage disabled, the user has to set
+    // alignment using the styles drop-down which allows applying additional
+    // styles to images as well.
+    if (!in_array(
+      'drupalimage',
+      array_keys($settings['editor']['formats'][$text_format_id]['editorSettings']['drupalExternalPlugins'])
+    )) {
+      $settings['editor']['formats'][$text_format_id]['editorSettings']['removePlugins'] = 'image2';
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function insert_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'filter_format_edit_form') {
+    $text_formats = \Drupal::config('insert.config')->get('text_formats');
+
+    if (in_array($form['format']['#default_value'], $text_formats)) {
+      $form['filters']['settings']['filter_html']['allowed_html']['#element_validate'][]
+        = 'insert_allowed_html_validate';
+    }
+  }
+}
+
+/**
+ * Additional validation for the filter format edit form.
+ * This function is supposed to alter the allowed HTML filter tags and
+ * attributes settings as to what is required for the Insert module to work
+ * properly. To prevent confusion, this should be done minimally invasive. The
+ * tag an attribute detection logic is copied over from
+ * \Drupal\filter\Plugin\Filter\FilterHtml.
+ * A cleaner, though rather less usable, method would be an individual Filter
+ * extending FilterHtml overwriting FilterHtml::getHtmlRestrictions with
+ * adding necessary tags and attributes to $restrictions['allowed'].
+ *
+ * @see \Drupal\filter\Plugin\Filter\FilterHtml::prepareAttributeValues
+ *
+ * @param array $element
+ * @param \Drupal\Core\Form\FormState $form_state
+ */
+function insert_allowed_html_validate($element, FormState &$form_state) {
+  $value = $element['#value'];
+
+  $tags = [
+    'img' => null,
+    'a' => null,
+    'span' => null,
+  ];
+
+  $attributes = [
+    'img' => [
+      'class' => null,
+      'src' => null,
+      'width' => null,
+      'height' => null,
+      'alt' => null,
+      'title' => null,
+    ],
+    'a' => [
+      'class' => null,
+      'title' => null,
+      'type' => null,
+    ],
+    'span' => [
+      'class' => null,
+    ],
+  ];
+
+  // see \Drupal\filter\Plugin\Filter\FilterHtml::prepareAttributeValues
+  $html = str_replace('>', ' />', $value);
+  $star_protector = '__zqh6vxfbk3cg__';
+  $html = str_replace('*', $star_protector, $html);
+  $body_child_nodes = Html::load($html)->getElementsByTagName('body')->item(0)->childNodes;
+
+  // Detect which tags an attributes are allowed already.
+  foreach ($body_child_nodes as $node) {
+    if ($node->nodeType !== XML_ELEMENT_NODE) {
+      continue;
+    }
+    $tag = $node->tagName;
+
+    if (array_key_exists($tag, $tags)) {
+      $tags[$tag] = TRUE;
+    } else {
+      continue;
+    }
+
+    /** @var DOMNode $node */
+    if ($node->hasAttributes()) {
+      foreach ($node->attributes as $name => $attribute) {
+        // see \Drupal\filter\Plugin\Filter\FilterHtml::prepareAttributeValues
+        $name = str_replace($star_protector, '*', $name);
+        $allowed_attribute_values = preg_split('/\s+/', str_replace($star_protector, '*', $attribute->value), -1, PREG_SPLIT_NO_EMPTY);
+        $allowed_attribute_values = array_filter($allowed_attribute_values, function ($value) use ($star_protector) { return $value !== '*'; });
+
+        // $allowed_attribute_values needs to be empty to allow all values.
+        if (array_key_exists($name, $attributes[$tag])) {
+          $attributes[$tag][$name] = empty($allowed_attribute_values);
+        }
+      }
+    }
+  }
+
+  // Add missing tags and attributes required by the Insert module. This is done
+  // using string parsing as the actually saved string should be altered as
+  // minimally as possible.
+  foreach ($tags as $tag => $found_tag) {
+    if (!$found_tag) {
+      $value .= ' <' . $tag . '>';
+    }
+    foreach ($attributes[$tag] as $name => $found_attribute) {
+      if ($found_attribute === TRUE) {
+        // The attribute is set already and allows all values.
+        continue;
+      } elseif ($found_attribute === null) {
+        // The attribute is not yet set, just add it.
+        $value = preg_replace('/<' . $tag . '/', '<' . $tag . ' ' . $name, $value);
+      } else {
+        // The attribute is set but limited to particular values; Remove that
+        // limitation.
+        $value = preg_replace('/(<' . $tag . '[^>]+' . $name . ')(=("|\')[^"\']+("|\'))/', '$1', $value);
+      }
+
+    }
+  }
+
+  $form_state->setValueForElement($element, $value);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function insert_theme() {
+  return array(
+    'insert_button_widget' => array(
+      'render element' => 'element',
+      'template' => 'insert-button-widget',
+    ),
+    'insert_field_widget_settings_styles' => array(
+      'render element' => 'element',
+    ),
+    'insert_image' => array(
+      'variables' => array('item' => NULL, 'widget' => NULL, 'style_name' => NULL),
+      'template' => 'insert-image',
+      'pattern' => 'insert_image__[a-z0-9_]+',
+    ),
+    'insert_link' => array(
+      'variables' => array('item' => NULL, 'widget' => NULL),
+      'template' => 'insert-link',
+    ),
+    'insert_icon_link' => array(
+      'variables' => array('item' => NULL, 'widget' => NULL),
+      'template' => 'insert-icon-link',
+    ),
+  );
+}
+
+/**
+ * Preprocess variables for the insert-button-widget.html.twig file.
+ */
+function template_preprocess_insert_button_widget(&$vars) {
+  $element = $vars['element'];
+
+  $vars['insert_absolute'] = $element['#insert_absolute'];
+  $vars['insert_styles'] = $element['#options'];
+  $vars['default_style'] = $element['#default_value'];
+  $vars['widget_type'] = $element['#widget']['type'];
+  $vars['insert_rotate'] = isset($element['#insert_rotate'])
+    ? $element['#insert_rotate']
+    : FALSE;
+  $vars['fid'] = $element['#fid'];
+  $vars['nid'] = $element['#nid'];
+}
+
+/**
+ * Preprocess variables for the insert-image.html.twig file.
+ * The function is called for each image style configured to be used. The
+ * particular image is transformed according to the image style.
+ */
+function template_preprocess_insert_image(&$vars) {
+  if (count($vars['item']['fids']) === 0) {
+    return;
+  }
+
+  $vars['file'] = File::load($vars['item']['fids'][0]);
+
+  /** @var \Drupal\Core\Image\ImageInterface $image */
+  $image = \Drupal::service('image.factory')->get($vars['file']->getFileUri());
+  if ($image->isValid()) {
+    $vars['width'] = $image->getWidth();
+    $vars['height'] = $image->getHeight();
+  }
+  else {
+    $vars['width'] = $variables['height'] = NULL;
+  }
+
+  if ($vars['style_name'] === 'image') {
+    // Preprocessing template for inserting original image.
+    return;
+  }
+
+  $style = ImageStyle::load($vars['style_name']);
+
+  if ($style === null) {
+    return;
+  }
+
+  $style->transformDimensions($vars, $vars['file']->getFileUri());
+}
+
+/**
+ * Preprocess variables for the insert-link.html.twig file.
+ */
+function template_preprocess_insert_link(&$vars) {
+  /** @var File $vars['file'] */
+  $vars['name'] = $vars['file']->getFilename();
+}
+
+/**
+ * Preprocess variables for the insert-icon-link.html.twig file.
+ * Basically a slimmed copy of template_preprocess_file_link() with the
+ * exception that it will consistently apply absolute or relative URLs,
+ * according to the Insert setting.
+ */
+function template_preprocess_insert_icon_link(&$vars) {
+  /** @var File $file */
+  $file = $vars['file'];
+
+  $vars['name'] = $file->getFilename();
+
+  $mime_type = $file->getMimeType();
+  $vars['type'] = $file->getMimeType() . '; length=' . $file->getSize();
+
+  $vars['icon_classes'] = join(' ', array(
+    'file',
+    // Add a specific class for each and every mime type.
+    'file--mime-' . strtr($mime_type, array('/' => '-', '.' => '-')),
+    // Add a more general class for groups of well known MIME types.
+    'file--' . file_icon_class($mime_type),
+  ));
+}

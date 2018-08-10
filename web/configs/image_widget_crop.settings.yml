@@ -1,0 +1,13 @@
+settings:
+  library_url: ''
+  css_url: ''
+  crop_preview_image_style: crop_thumbnail
+  crop_list:
+    article_730_330: article_730_330
+    article_hero: article_hero
+  crop_types_required: {  }
+  warn_multiple_usages: false
+  show_default_crop: true
+  show_crop_area: false
+_core:
+  default_config_hash: JTiHOl3PIo9Nyv7j53xwY5OwbwJWwCItksgv_X-NcbE
