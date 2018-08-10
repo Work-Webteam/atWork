@@ -3,8 +3,18 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.poll.poll.field_attachments
+    - field.field.poll.poll.field_author
+    - field.field.poll.poll.field_author_image
+    - field.field.poll.poll.field_author_information
     - field.field.poll.poll.field_body
+    - field.field.poll.poll.field_images
+    - field.field.poll.poll.field_tags
+    - field.field.poll.poll.field_title
+    - image.style.thumbnail
   module:
+    - file
+    - image
     - poll
     - text
 id: poll.poll.default
@@ -12,8 +22,40 @@ targetEntityType: poll
 bundle: poll
 mode: default
 content:
-  field_body:
+  field_attachments:
+    weight: 7
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_author:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_author_image:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_author_information:
     weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_body:
+    weight: 2
     settings:
       rows: 9
       summary_rows: 3
@@ -21,9 +63,34 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
+  field_images:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_tags:
+    weight: 8
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   uid:
     type: entity_reference_autocomplete
-    weight: -10
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
