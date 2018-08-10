@@ -1,0 +1,11 @@
+# Custom module library for general purposes.
+atwork_poll:
+  js:
+    js/atwork-poll.js: {}
+  css:
+    component:
+      css/atwork-poll.css: {}
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+

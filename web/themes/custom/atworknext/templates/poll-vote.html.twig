@@ -1,0 +1,39 @@
+{#
+/** Override the poll_vote template in the poll contrib module to display the title in block view.
+ * 
+ * Available Variables: 
+ *  poll_body: Article-style body of poll.
+ *  question: Title and/or poll question
+ *  show_question: I commented it out, but it can be used to prevent the question from being displayed 
+ *  when the page is in teaser mode. Why you would want to do that, I dont know. 
+ */
+#}
+{{ form.messages }}
+<div class="poll">
+<img src="{{ poll_image.0.uri }}" alt="{{ poll_image.0.alt }}" title="{{  poll_image.0.title }}" class="img-responsive">
+  <div class="vote-form">
+    {#{% if show_question %}#}
+      <h3 class="poll-question">{{ poll_title }}</h3>
+    {#{% endif %}#}
+    
+    {% set createdDate = form['#entity'].get('created').getValue().0.value|format_date('atwork_datetime') %}
+    {% set createdTime = form['#entity'].get('created').getValue().0.value|format_date('atwork_time') %}
+    <a title="View user profile." href="/user/{{ user.getAccount().id() }}" lang about="/user/{{ user.getAccount().id() }}" typeof="schema: Person" property="schema:name" datatype>{{ user.getAccount().name }}</a>{% trans %}&nbsp;posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
+    
+    {# Display added fields here. Don't bother trying to use the poll-manage-display gui to re-order fields. #}
+    {{ poll_body|raw }}
+    {{ question }}
+    {{ form.choice }}
+    {{ form.actions }}
+
+    <div id="taxonomy-terms-bar">
+    <div class="field--label">Tags</div>
+      {% for tag in poll_tags %}
+        <a href="taxonomy/term/{{ tag.tid.getValue().0.value }}" property="schema:about" hreflang="en">{{ tag.name.getValue().0.value }}</a>
+      {% endfor %} 
+    </div>
+    
+  </div>
+{{ form|without('actions', 'choice', 'messages', 'question') }}
+</div>
+
