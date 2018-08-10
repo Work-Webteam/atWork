@@ -10,9 +10,9 @@
           var button_bg_color = drupalSettings.animated_scroll_to_top_button_bg_color;
           var hover_button_bg_color = drupalSettings.animated_scroll_to_top_button_hover_bg_color;
           if (position == 1) {
-            $('.scrollup').css({"left":"5px","background-color":button_bg_color});
+            $('.scrollup').css({"left":"20px","background-color":button_bg_color});
           } else {
-            $('.scrollup').css({"right":"5px","background-color":button_bg_color});
+            $('.scrollup').css({"right":"20px","background-color":button_bg_color});
           }
 
           $(".scrollup").hover(function(){

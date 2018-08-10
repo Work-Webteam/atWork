@@ -1,8 +1,0 @@
-uuid: 0dfd3afa-7172-467f-9ecc-b75199d647f5
-langcode: en
-status: true
-dependencies: {  }
-id: images
-label: Images
-fieldset: ''
-multiple: false
