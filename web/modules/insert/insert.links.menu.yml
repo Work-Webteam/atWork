@@ -1,0 +1,6 @@
+insert.config:
+  title: 'Insert module'
+  description: 'Configure general settings of the Insert module.'
+  parent: system.admin_config_content
+  route_name: insert.config
+  weight: 50

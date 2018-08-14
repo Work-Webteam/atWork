@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Enabled the "colorbox inline" functionality for Drupal 8.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function colorbox_inline_page_attachments(array &$page) {
+  \Drupal::service('colorbox.attachment')->attach($page);
+  $page['#attached']['library'][] = 'colorbox_inline/colorbox_inline';
+}

@@ -35,7 +35,7 @@ span.QuoteAuthor { // Big Quotes Author. Applies the style to the author of the 
 }
 
 article { // Updates box used on articles / background pages.
-    table.update { 
+    table.update {
         margin-top: 10px;
         margin-bottom: 10px;
         border-bottom: solid 6px darken($link-blue,10%);
@@ -59,16 +59,32 @@ article { // Updates box used on articles / background pages.
         margin-right: 6px;
         margin-left: -22px;
     }
-    table.related { // Related text placed inside a table placed within the main article.
-        border-top: solid 5px $link-blue;
-        border-bottom: solid 5px $link-blue;
-        border-left: solid 1px lighten($link-blue,50%);
-        border-right: solid 1px lighten($link-blue,50%);
-        margin: 0 8px;
-        td {
-            background: $white;
-            padding: 10px;
+    table.related { // Related text placed inside a table placed within the main article
+      margin-left:12px;
+      tr {
+        margin:0;
+        img {
+          border-left:solid 1px $exec-greyborder;
+          border-top:solid 1px $exec-greyborder;
+          border-right:solid 1px $exec-greyborder;
         }
+        &:last-child {
+          border-top: solid 5px $link-blue;
+          border-bottom: solid 5px $link-blue;
+          td {
+            padding: 10px 0px;
+          }
+        }
+      }
+      td {
+        background: $white;
+        padding:0;
+        p, ul, li {
+          line-height: 18px;
+          padding:0;
+          margin:0;
+        }
+      }
     }
     a.blackbtn {
         display: inline;

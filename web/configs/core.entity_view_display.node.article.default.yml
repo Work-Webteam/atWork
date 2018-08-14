@@ -6,17 +6,23 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_article_likes
+    - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
+    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
+    - field.field.node.article.field_video
     - node.type.article
   module:
     - colorbox
     - file
+    - h5p
     - like_dislike
+    - options
     - text
     - user
+    - video_embed_field
 _core:
   default_config_hash: ChmU3AVqDKU32A_fyChG0W9dTRKmVBR58B6OClCLvZI
 id: node.article.default
@@ -37,6 +43,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: like_dislike_formatter
+    region: content
+  field_article_type:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_attachments:
     weight: 7
@@ -68,6 +81,13 @@ content:
       colorbox_caption_custom: ''
     third_party_settings: {  }
     label: hidden
+  field_slideshow:
+    weight: 10
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_default
+    region: content
   field_tags:
     type: entity_reference_label
     weight: 2
@@ -76,6 +96,17 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+  field_video:
+    weight: 8
+    label: hidden
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: false
+    third_party_settings: {  }
+    type: video_embed_field_video
+    region: content
   flag_inappropriate:
     weight: 4
     region: content

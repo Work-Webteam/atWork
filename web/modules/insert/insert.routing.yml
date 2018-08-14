@@ -1,0 +1,14 @@
+insert.config:
+  path: '/admin/config/content/insert'
+  defaults:
+    _form: '\Drupal\insert\Form\ConfigForm'
+    _title: 'Insert module configuration'
+  requirements:
+    _permission: 'administer filters'
+
+insert.rotate:
+  path: '/admin/insert/rotate'
+  defaults:
+    _controller: '\Drupal\insert\Controller\RotateController::rotate'
+  requirements:
+    _permission: 'administer nodes'

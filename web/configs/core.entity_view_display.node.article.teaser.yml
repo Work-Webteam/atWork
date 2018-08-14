@@ -62,5 +62,8 @@ content:
 hidden:
   comment: true
   field_article_likes: true
+  field_article_type: true
   field_attachments: true
   field_author_information: true
+  field_slideshow: true
+  field_video: true

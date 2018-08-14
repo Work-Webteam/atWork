@@ -1,0 +1,38 @@
+uuid: 491eaa8f-8c87-4163-9bd7-c87b79e76cf9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.poll.field_images
+  module:
+    - image
+    - poll
+id: poll.poll.field_images
+field_name: field_images
+entity_type: poll
+bundle: poll
+label: Images
+description: 'Add all images that you''d like to be associated with the poll. The top image is mandatory as it will appear on the home page and at the top of the poll. Next, upload any additional images you want to appear in your poll. Once they’re uploaded use your cursor and click in the spot in your poll where you want your image to be inserted. Add any photo captions or mouse over text for each of the photos.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

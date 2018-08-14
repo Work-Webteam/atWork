@@ -1,8 +1,10 @@
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
+  animated_scroll_to_top: 0
   atwork_article: 0
   atwork_poll: 0
+  atwork_h5p: 0
   automated_cron: 0
   big_pipe: 0
   block: 0
@@ -16,6 +18,7 @@ module:
   config: 0
   contact: 0
   contextual: 0
+  crop: 0
   datetime: 0
   dblog: 0
   devel: 0
@@ -27,14 +30,19 @@ module:
   filter: 0
   flag: 0
   forward: 0
+  h5p: 0
+  h5peditor: 0
   help: 0
   history: 0
   image: 0
+  image_widget_crop: 0
+  insert: 0
   kint: 0
+  libraries: 0
   like_dislike: 0
   link: 0
+  media: 0
   menu_ui: 0
-  module_filter: 0
   node: 0
   options: 0
   page_cache: 0
@@ -45,7 +53,7 @@ module:
   responsive_image: 0
   scheduler: 0
   search: 0
-  sharethis: 0
+  settings_tray: 0
   shortcut: 0
   statistics: 0
   system: 0

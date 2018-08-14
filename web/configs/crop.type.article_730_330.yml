@@ -1,0 +1,12 @@
+uuid: 49c06f59-cf96-4b6d-a1da-c76e88f4bfb9
+langcode: en
+status: true
+dependencies: {  }
+label: 'Article 730/330'
+id: article_730_330
+description: 'Standard article top image'
+aspect_ratio: '730:330'
+soft_limit_width: 730
+soft_limit_height: 330
+hard_limit_width: 730
+hard_limit_height: 330

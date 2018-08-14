@@ -5,11 +5,9 @@
     margin-bottom: 0px;
     padding: 8px 0;
 }
-section.col-sm-12 { // Sets the maximum width of the article section to 940px. Max width on the page is 1140px.
-    article {
-        max-width:940px;
-        margin:0 auto;
-    }
+article > .node__content { // Sets the maximum width of the article section to 730px. Max width on the page is 1140px.
+  max-width:730px;
+  margin:0 auto;
 }
 //
 // Stylings for the Corporate Article Page
@@ -59,7 +57,7 @@ article {
                 background-color:$link-blue;
                 color: $white;
                 padding: 10px 0;
-                p { // 
+                p { //
                     color: $white;
                     line-height: 22px;
                     font-weight: normal;
@@ -94,4 +92,85 @@ article {
     .align-right { // padding space between right aligned images and text
         margin-left: 12px;
     }
+}
+
+// Executive Message Layout. Contains stylings for full-width hero image
+article.Executive-Message {
+    border-left: solid 22px $exec-greyborder;
+    border-right: solid 22px $exec-greyborder;
+    .field--type-image {
+      img {
+        max-width:100%;
+      }
+      width:100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      margin-top:-10px;
+    }
+    .video-embed-field-provider-youtube {
+      left: 50%;
+      right: 50%;
+      iframe {
+        width: 100vw;
+        max-height:480px;
+        margin-left: -50vw;
+        margin-right: -50vw;
+      }
+    }
+    max-width:1140px;
+    margin-left: auto;
+    margin-right:auto;
+    overflow-x:hidden;
+}
+// Hero video for Video Articles
+article.Video-Article {
+  margin-left: auto;
+  margin-right:auto;
+  overflow-x:hidden;
+  .video-embed-field-provider-youtube {
+    left: 50%;
+    right: 50%;
+    iframe {
+      min-width:100vw;
+      max-width:1140px;
+      max-height:640px;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+}Honda
+// Poll article pages - These are entity based content and not node node__content
+.poll-view {
+  max-width:730px;
+  margin:0 auto;
+  .field--name-field-title,
+  .field--name-field-author,
+  .field--name-field-author-information,
+  .field--name-field-author-image,
+  .field--name-field-images,
+  .field--name-field-tags {
+    display: none;
+  }
+  .vote-form {
+    > fieldset {
+      legend {
+        display: none;
+      }
+      padding:0;
+      margin-bottom:10px;
+      border:solid 10px darken($comment-blue, 40%);
+      background-color: $comment-blue;
+      .fieldset-wrapper {
+        background-color:$white;
+        padding:15px;
+        margin:15px;
+      }
+    }
+    #edit-actions {
+      text-align: center;
+    }
+  }
 }

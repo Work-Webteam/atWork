@@ -2,7 +2,7 @@ country:
   default: CA
 first_day: 0
 timezone:
-  default: UTC
+  default: America/Vancouver
   user:
     configurable: true
     warn: false

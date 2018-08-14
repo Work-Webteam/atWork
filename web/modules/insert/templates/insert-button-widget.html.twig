@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Template file for the insert button.
+ */
+#}
+{% if insert_rotate %}
+  <div class="insert-rotate">
+    <label>{{ 'Rotate'|trans }}</label>
+    <span class="insert-rotate-controls">
+      <span class="insert-rotate-controls-left"><a href="{{ url('insert.rotate', {'fid': fid, 'degree': 270, 'nid': nid, 'absolute': insert_absolute}) }}">↺</a></span>
+      <span class="insert-rotate-controls-right"><a href="{{ url('insert.rotate', {'fid': fid, 'degree': 90, 'nid': nid, 'absolute': insert_absolute}) }}">↻</a></span>
+    </span>
+  </div>
+{% endif %}
+
+{% if insert_styles|length > 1 %}
+    <div class="insert-style-select">
+      <label for="insert-{{ fid }}">{{ 'Style'|trans }}</label>
+      <select id="insert-{{ fid }}" class="insert-style">
+        {% for value, style in insert_styles %}
+          <option value="{{ value }}"{% if value == default_style %}{{ 'selected="selected"' }}{% endif %}>{{ style }}</option>
+        {% endfor %}
+      </select>
+    </div>
+{% else %}
+  <input type="hidden" class="insert-style" value="{{ default_style }}" />
+{% endif %}
+
+<span class="insert-button-wrapper"><span class="insert-button-overlay"></span><input type="submit" class="button js-form-submit form-submit insert-button" onclick="return false;" value="{{ 'Insert'|trans }}" /></span>

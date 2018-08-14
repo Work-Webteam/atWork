@@ -1,0 +1,17 @@
+uuid: a9f67032-c68b-429b-a79f-bbf73b58d4be
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.article_hero
+  module:
+    - crop
+name: article_hero_image
+label: 'Article - Hero Image'
+effects:
+  fab4847c-a685-4e38-8500-01f49dfcd1b5:
+    uuid: fab4847c-a685-4e38-8500-01f49dfcd1b5
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: article_hero

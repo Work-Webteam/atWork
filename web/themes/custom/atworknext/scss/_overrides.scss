@@ -17,7 +17,12 @@
 
 // jQuery UI style overrides.
 @import "jquery-ui/autocomplete";
-
+#navbar.container,
+.container {
+  max-width: 1140px;
+  padding-left:0px;
+  padding-right:0px;
+}
 ol, ul {
   padding-left: 1.5em;
   .popover &:last-child {
@@ -32,10 +37,10 @@ ol, ul {
 
 // Footer.
 .footer {
-  margin-top: 45px;
+  margin-top: 0px;
   padding-top: 35px;
   padding-bottom: 36px;
-  border-top: 1px solid #E5E5E5;
+  border-top: none;
 }
 
 // Paragraphs.
