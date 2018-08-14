@@ -10410,6 +10410,47 @@ article.Video-Article .video-embed-field-provider-youtube iframe {
   margin-right: -50vw;
 }
 
+/* line 144, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+Honda .poll-view {
+  max-width: 730px;
+  margin: 0 auto;
+}
+
+/* line 149, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+Honda .poll-view .field--name-field-title,
+Honda .poll-view .field--name-field-author,
+Honda .poll-view .field--name-field-author-information,
+Honda .poll-view .field--name-field-author-image,
+Honda .poll-view .field--name-field-images,
+Honda .poll-view .field--name-field-tags {
+  display: none;
+}
+
+/* line 158, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+Honda .poll-view .vote-form > fieldset {
+  padding: 0;
+  margin-bottom: 10px;
+  border: solid 10px #419cd2;
+  background-color: #e6f2f9;
+}
+
+/* line 159, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+Honda .poll-view .vote-form > fieldset legend {
+  display: none;
+}
+
+/* line 166, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+Honda .poll-view .vote-form > fieldset .fieldset-wrapper {
+  background-color: white;
+  padding: 15px;
+  margin: 15px;
+}
+
+/* line 172, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+Honda .poll-view .vote-form #edit-actions {
+  text-align: center;
+}
+
 /* Site Wide Forms also includes comment boxes */
 /* line 3, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section[rel~="schema:comment"] {
@@ -10705,31 +10746,52 @@ article .field--name-field-tags .field--item {
   border-right: solid 1px #0080c7;
 }
 
+/* line 19, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+#taxonomy-terms-bar {
+  margin: 10px 0;
+}
+
 /* line 21, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+#taxonomy-terms-bar .field--label {
+  display: inline;
+  float: left;
+}
+
+/* line 25, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+#taxonomy-terms-bar a {
+  display: inline;
+  margin-left: 5px;
+  padding-right: 5px;
+  text-transform: uppercase;
+  font-size: .85em;
+  border-right: solid 1px #0080c7;
+}
+
+/* line 36, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 .like_dislike .dislike {
   display: none;
 }
 
-/* line 29, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 44, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar {
   display: inline;
   margin-top: 12px;
 }
 
-/* line 32, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 47, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .field--name-field-article-likes {
   display: inline-block;
   float: right;
 }
 
-/* line 37, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 52, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .like_dislike .like {
   border: none;
   width: 90px;
   margin-top: -5px;
 }
 
-/* line 42, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 57, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .like_dislike .like a:before {
   display: inline-block;
   content: url("../images/like-icon.svg");
@@ -10737,13 +10799,13 @@ article .social-bar .like_dislike .like a:before {
   margin-right: 5px;
 }
 
-/* line 48, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 63, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .like_dislike #like {
   font-size: 16px;
   padding-top: 0px;
 }
 
-/* line 53, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 68, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar li.forward:before {
   display: inline-block;
   content: url("../images/forward-icon.svg");
@@ -10751,7 +10813,7 @@ article .social-bar li.forward:before {
   margin-right: 5px;
 }
 
-/* line 59, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 74, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .flag-inappropriate:before {
   display: inline-block;
   content: url("../images/flag-icon.svg");
@@ -10761,7 +10823,7 @@ article .social-bar .flag-inappropriate:before {
   vertical-align: top;
 }
 
-/* line 67, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 82, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar li.statistics-counter:before {
   display: inline-block;
   content: url("../images/reads-icon.svg");
@@ -10771,21 +10833,21 @@ article .social-bar li.statistics-counter:before {
   vertical-align: top;
 }
 
-/* line 77, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 92, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .field--name-field-article-likes .field--item a:hover {
   text-decoration: underline;
   background: none;
   color: inherit;
 }
 
-/* line 83, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 98, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .flag-inappropriate,
 article .social-bar .links.inline.list-inline {
   display: inline-block;
   margin-right: 10px;
 }
 
-/* line 87, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 102, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .flag-inappropriate a:hover,
 article .social-bar .links.inline.list-inline a:hover {
   text-decoration: underline;

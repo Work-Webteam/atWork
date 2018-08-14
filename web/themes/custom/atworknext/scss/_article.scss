@@ -141,4 +141,36 @@ article.Video-Article {
       margin-right: -50vw;
     }
   }
+}Honda
+// Poll article pages - These are entity based content and not node node__content
+.poll-view {
+  max-width:730px;
+  margin:0 auto;
+  .field--name-field-title,
+  .field--name-field-author,
+  .field--name-field-author-information,
+  .field--name-field-author-image,
+  .field--name-field-images,
+  .field--name-field-tags {
+    display: none;
+  }
+  .vote-form {
+    > fieldset {
+      legend {
+        display: none;
+      }
+      padding:0;
+      margin-bottom:10px;
+      border:solid 10px darken($comment-blue, 40%);
+      background-color: $comment-blue;
+      .fieldset-wrapper {
+        background-color:$white;
+        padding:15px;
+        margin:15px;
+      }
+    }
+    #edit-actions {
+      text-align: center;
+    }
+  }
 }
