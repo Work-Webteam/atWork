@@ -1,0 +1,25 @@
+uuid: db20d32a-e28f-4e8c-9b59-ddef1d3afd23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.poll.field_poll_likes
+  module:
+    - like_dislike
+    - poll
+id: poll.poll.field_poll_likes
+field_name: field_poll_likes
+entity_type: poll
+bundle: poll
+label: poll_likes
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    likes: '0'
+    dislikes: '0'
+    clicked_by: null
+default_value_callback: ''
+settings: {  }
+field_type: like_dislike

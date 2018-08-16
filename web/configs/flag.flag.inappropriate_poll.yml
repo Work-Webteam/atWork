@@ -1,0 +1,29 @@
+uuid: 7387b136-2115-49a2-b01d-462c80deeaf9
+langcode: en
+status: true
+dependencies:
+  module:
+    - poll
+id: inappropriate_poll
+label: 'Inappropriate Poll Flag'
+bundles:
+  - poll
+entity_type: poll
+global: false
+weight: 0
+flag_short: 'Flag as Inappropriate'
+flag_long: ''
+flag_message: ''
+unflag_short: 'Unflag this item'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:poll'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links: {  }
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions: {  }
+linkTypeConfig: {  }

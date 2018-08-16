@@ -8,35 +8,11 @@ use Drupal\core\Entity\EntityManager;
  */
 
 /**
- * Implements hook_template_preprocess_default_variables_alter() for poll-vote.html.twig.
- *
- * @param array $variables
- *   An associative array containing:
- *   - form: The renderable form array for the poll voting form.
+ * Implements HOOK_preprocess_HOOK
+ * 
+ * Preprocess theme variables for field--poll--field-author--poll.
  */
-function atworknext_preprocess_poll_vote(&$variables) {
-	//Retrieve the form with our entity in it
-	$form = $variables['form'];
-
-	//Retrieve field_image from file
-	$image_fid = $form['#entity']->get('field_images')->getValue()[0]['target_id'];
-	$file = File::load($image_fid);
-
-	// Load tags
-	$terms = array();
-	foreach($form['#entity']->get('field_tags')->getValue() as $tag) {
-		$terms[] = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tag['target_id']);
-	}
+function atworknext_preprocess_field__poll__field_author__poll(&$variables) {
+	$variables['timestamp'] = $variables['element']['#object']->getCreated();
 	
-	// Attach field value to the twig variables array so we can display it in the template
-	$variables['poll_title'] = $form['#entity']->get('field_title')->getValue()[0]['value'];
-	$variables['poll_body'] = $form['#entity']->get('field_body')->getValue()[0]['value'];
-	$variables['poll_image'] = $form['#entity']->get('field_images')->getValue();
-	
-	if($file != NULL) {
-	  $variables['poll_image'][0]['uri'] = file_create_url($file->getFileUri());
-	}
-	
-	
-	$variables['poll_tags'] = $terms;
 }
