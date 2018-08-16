@@ -15,23 +15,9 @@
       <h3 class="poll-question">{{ question }}</h3>
     {#{% endif %}#}
     
-    {#
-    {% set createdDate = form['#entity'].get('created').getValue().0.value|format_date('atwork_datetime') %}
-    {% set createdTime = form['#entity'].get('created').getValue().0.value|format_date('atwork_time') %}
-    <a title="View user profile." href="/user/{{ user.getAccount().id() }}" lang about="/user/{{ user.getAccount().id() }}" typeof="schema: Person" property="schema:name" datatype>{{ user.getAccount().name }}</a>{% trans %}&nbsp;posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
-    #}
-    
     {{ form.choice }}
     {{ form.actions }}
 
-   {#
-    <div id="taxonomy-terms-bar">
-    <div class="field--label">Tags</div>
-      {% for tag in poll_tags %}
-        <a href="taxonomy/term/{{ tag.tid.getValue().0.value }}" property="schema:about" hreflang="en">{{ tag.name.getValue().0.value }}</a>
-      {% endfor %} 
-    </div>
-   #} 
   </div>
  
 {{ form|without('actions', 'choice', 'messages', 'question','tags') }}
