@@ -33,6 +33,7 @@
         "drupal/poll": "^1.2",
         "drupal/printfriendly": "^3.3",
         "drupal/scheduler": "^1.0",
+        "drupal/tether_stats": "^1.1",
         "drupal/video_embed_field": "^2.0",
         "drush/drush": "^9.3",
         "symfony/var-dumper": "^3.4",

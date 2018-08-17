@@ -20,7 +20,10 @@
 
   </div>
  
-{{ form|without('actions', 'choice', 'messages', 'question','tags') }}
+{{ form|without('actions', 'choice', 'messages', 'question') }}
 
 </div>
 <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
+<div id="poll_hit_counter"> 
+{% trans %}{{ poll_views.count }} Views{% endtrans %}
+<div>

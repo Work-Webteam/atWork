@@ -63,7 +63,7 @@ content:
     type: like_dislike_formatter
     region: content
   field_tags:
-    weight: 6
+    weight: -10
     label: inline
     settings:
       link: true

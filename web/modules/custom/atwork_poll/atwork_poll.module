@@ -16,3 +16,26 @@ function atworknext_preprocess_field__poll__field_author__poll(&$variables) {
 	$variables['timestamp'] = $variables['element']['#object']->getCreated();
 	
 }
+
+/**
+* Implements HOOK_preprocess_HOOK
+*
+* Preprocess theme variables for poll-vote.
+*/
+function atworknext_preprocess_poll_vote(&$variables) {
+
+	// Pull page hits out of database and send it to template variables
+	$poll_url = $variables['form']['#entity']->url();
+	$result = '';
+	
+	try {
+	  $connection = \Drupal::database();
+	  $query = $connection->query("SELECT count FROM tether_stats_element WHERE url = '" . $poll_url . "'");
+	  $result = $query->fetch();
+	}
+	catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	
+	$variables['poll_views'] = $result;
+}
