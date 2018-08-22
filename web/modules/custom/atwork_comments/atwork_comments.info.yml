@@ -1,0 +1,7 @@
+name: Atwork Comment
+type: module
+description: AtworkNext site-specific customizations of core 'comment' module.
+package: Custom
+core: 8.x
+dependencies:
+  - comment

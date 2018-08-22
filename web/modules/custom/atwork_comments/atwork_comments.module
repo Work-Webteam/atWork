@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for atwork_comments module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_template_preprocess_default_variables_alter() for comment--comment.html.twig.
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_comment__comment(&$variables){
+	/*At some point we will add in ministry information to author byline as well*/
+	
+	//Get Timestamp
+	$variables['createdTime'] = $variables['comment']->getCreatedTime();
+	//Fix comment permalink text
+	$variables['comment_link'] = str_replace('Permalink','Link', $variables['permalink']);
+}
+
+
+function atworknext_preprocess_field__comment(&$variables){
+	// Get number of comments on page load 
+	$num_comments = 0;
+	foreach(array_keys($variables['comments']) as $key){
+		if(is_int($key)) $num_comments++;
+	}
+	$variables['num_comments'] = $num_comments;
+}

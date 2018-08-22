@@ -1,0 +1,30 @@
+uuid: 0884fc0a-99f0-4b6e-bfc1-e52f1523aacf
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+id: inappropriate_comment_flag
+label: 'Inappropriate Comment Flag'
+bundles: {  }
+entity_type: comment
+global: false
+weight: 0
+flag_short: Flag
+flag_long: ''
+flag_message: ''
+unflag_short: Unflag
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:comment'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links: {  }
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+    parent_owner: '0'
+linkTypeConfig: {  }

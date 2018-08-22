@@ -5,7 +5,9 @@ dependencies:
   config:
     - comment.type.comment
     - field.field.comment.comment.comment_body
+    - field.field.comment.comment.field_comment_likes
   module:
+    - like_dislike
     - text
 _core:
   default_config_hash: 77Ye1kR-P6AaiGfEO8mnXNSr7nqtnP3PiiVBwJeGGMI
@@ -18,6 +20,18 @@ content:
     label: hidden
     type: text_default
     weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_comment_likes:
+    weight: 101
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: like_dislike_formatter
+    region: content
+  flag_inappropriate_comment_flag:
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
