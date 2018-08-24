@@ -1,0 +1,13 @@
+uuid: 9e5522f2-664a-4be6-a359-b0d2d3d928ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.inappropriate_poll.unflag
+label: 'Unflag this item'
+type: poll
+plugin: 'flag_action:inappropriate_poll.unflag'
+configuration:
+  flag_id: inappropriate_poll
+  flag_action: unflag

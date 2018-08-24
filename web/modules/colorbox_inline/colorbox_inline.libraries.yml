@@ -1,5 +1,0 @@
-colorbox_inline:
-  js:
-    js/colorbox_inline.js: {}
-  dependencies:
-    - colorbox/colorbox
