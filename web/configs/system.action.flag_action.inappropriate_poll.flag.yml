@@ -1,0 +1,13 @@
+uuid: b1eb08cf-9180-4deb-9f0d-a145215d10a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.inappropriate_poll.flag
+label: 'Flag as Inappropriate'
+type: poll
+plugin: 'flag_action:inappropriate_poll.flag'
+configuration:
+  flag_id: inappropriate_poll
+  flag_action: flag

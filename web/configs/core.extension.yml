@@ -59,6 +59,7 @@ module:
   statistics: 0
   system: 0
   taxonomy: 0
+  tether_stats: 0
   text: 0
   toolbar: 0
   tour: 0

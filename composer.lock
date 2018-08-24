@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fabbf2257f13d5fa47d35b0ac8ad12f",
+    "content-hash": "287f2d1bc1abc8c57f0a9e904ca0d691",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2631,6 +2631,56 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/scheduler",
                 "issues": "https://www.drupal.org/project/issues/scheduler"
+            }
+        },
+        {
+            "name": "drupal/tether_stats",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/tether_stats",
+                "reference": "8.x-1.01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/tether_stats-8.x-1.01.zip",
+                "reference": "8.x-1.01",
+                "shasum": "cd087d4167f520cc71027295f269d25d1a170b36"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/php": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.01",
+                    "datestamp": "1458857339",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rzan",
+                    "homepage": "https://www.drupal.org/user/2745073"
+                }
+            ],
+            "description": "Self-contained site statistics tracking for hits, impressions and clicks.",
+            "homepage": "https://www.drupal.org/project/tether_stats",
+            "support": {
+                "source": "http://cgit.drupalcode.org/tether_stats"
             }
         },
         {
