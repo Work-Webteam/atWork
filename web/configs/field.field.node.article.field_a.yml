@@ -1,0 +1,54 @@
+uuid: e9b454af-e4c0-4af8-80e2-c109a6520895
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_a
+    - node.type.article
+  module:
+    - viewsreference
+id: node.article.field_a
+field_name: field_a
+entity_type: node
+bundle: article
+label: 'Article Comments'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: comment
+      display_name: entity_reference_1
+      arguments: {  }
+  plugin_types:
+    default: default
+    block: block
+    page: page
+    entity_reference: entity_reference
+    feed: feed
+  preselect_views:
+    comment: comment
+    author_information: 0
+    block_content: 0
+    comments_recent: 0
+    content: 0
+    content_recent: 0
+    files: 0
+    forward_logs: 0
+    forward_statistics: 0
+    frontpage: 0
+    media: 0
+    poll_admin: 0
+    poll_list: 0
+    scheduler_scheduled_content: 0
+    show_author: 0
+    taxonomy_term: 0
+    user_admin_people: 0
+    watchdog: 0
+    who_s_new: 0
+    who_s_online: 0
+field_type: viewsreference
