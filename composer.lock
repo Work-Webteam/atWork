@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "287f2d1bc1abc8c57f0a9e904ca0d691",
+    "content-hash": "a14c025b947bd16f1a00923dbc0eaabc",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1508,7 +1508,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1533066480",
+                    "datestamp": "1509503288",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2333,17 +2333,17 @@
         },
         {
             "name": "drupal/h5p",
-            "version": "1.0.0-rc7",
+            "version": "1.0.0-rc8",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/h5p",
-                "reference": "8.x-1.0-rc7"
+                "reference": "8.x-1.0-rc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/h5p-8.x-1.0-rc7.zip",
-                "reference": "8.x-1.0-rc7",
-                "shasum": "5263c306fb03ed47622c1db039dc0f8ac3892749"
+                "url": "https://ftp.drupal.org/files/projects/h5p-8.x-1.0-rc8.zip",
+                "reference": "8.x-1.0-rc8",
+                "shasum": "4ce70279d56ed52b7c628b83f39f3d58e65c2b07"
             },
             "require": {
                 "drupal/core": "*",
@@ -2356,8 +2356,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc7",
-                    "datestamp": "1526977384",
+                    "version": "8.x-1.0-rc8",
+                    "datestamp": "1534934580",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -2370,20 +2370,12 @@
             ],
             "authors": [
                 {
-                    "name": "Jamesap",
-                    "homepage": "https://www.drupal.org/user/2547544"
-                },
-                {
                     "name": "falcon",
                     "homepage": "https://www.drupal.org/user/530912"
                 },
                 {
                     "name": "icc",
                     "homepage": "https://www.drupal.org/user/823190"
-                },
-                {
-                    "name": "joergM",
-                    "homepage": "https://www.drupal.org/user/502644"
                 },
                 {
                     "name": "otacke",
@@ -2396,10 +2388,6 @@
                 {
                     "name": "thomasmars",
                     "homepage": "https://www.drupal.org/user/3205159"
-                },
-                {
-                    "name": "timothyylim",
-                    "homepage": "https://www.drupal.org/user/3420067"
                 }
             ],
             "description": "Drupal H5P Module.",
@@ -8197,8 +8185,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/flag": 15,
-        "drupal/h5p": 5
+        "drupal/flag": 15
     },
     "prefer-stable": true,
     "prefer-lowest": false,

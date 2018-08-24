@@ -1,5 +1,14 @@
 /* Corporate / Community article pages */
-
+div.alert {// Centers and floats the Alert boxes on all screens
+  position: absolute;
+    z-index: 1000;
+    width: 50%;
+    left: 25%;
+    border: solid 3px green;
+    text-align: center;
+    background-color: rgba(223, 240, 216, .95);
+    color: black;
+}
 .main-container ol.breadcrumb {// Breadcrumbs on articles, background pages, etc. Located aboce the article.
     background-color:#FFFFFF;
     margin-bottom: 0px;
@@ -139,38 +148,6 @@ article.Video-Article {
       max-height:640px;
       margin-left: -50vw;
       margin-right: -50vw;
-    }
-  }
-}Honda
-// Poll article pages - These are entity based content and not node node__content
-.poll-view {
-  max-width:730px;
-  margin:0 auto;
-  .field--name-field-title,
-  .field--name-field-author,
-  .field--name-field-author-information,
-  .field--name-field-author-image,
-  .field--name-field-images,
-  .field--name-field-tags {
-    display: none;
-  }
-  .vote-form {
-    > fieldset {
-      legend {
-        display: none;
-      }
-      padding:0;
-      margin-bottom:10px;
-      border:solid 10px darken($comment-blue, 40%);
-      background-color: $comment-blue;
-      .fieldset-wrapper {
-        background-color:$white;
-        padding:15px;
-        margin:15px;
-      }
-    }
-    #edit-actions {
-      text-align: center;
     }
   }
 }

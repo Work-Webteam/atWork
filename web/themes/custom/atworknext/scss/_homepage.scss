@@ -58,9 +58,40 @@ body.path-frontpage {
     #printBtn, .social-bar, .field--type-text-with-summary {
       display: none;
     }
-    .field--item a[href="/web/taxonomy/term/12"],
-    .field--item a[href="/web/taxonomy/term/13"] {
-      border-bottom:solid 3px lighten($link-blue,30%);
+  }
+  .main-container {
+    h3 {
+      background-color: lighten($exec-greyborder, 20%);
+      padding:10px;
+      color:$white;
+      border:solid 1px black;
+      font-size: 1.5em;
+    }
+    .hp-grid-row {
+      margin-bottom: 10px;
+    }
+    .hp-grid-column {
+      img {
+        float:left;
+        margin-right: 5px;
+      }
+      .views-field-title {
+        font-size:1.15em;
+        margin-right:20px;
+      }
+      .no-article-image {
+        display:block;
+        float:left;
+        width:220px;
+        height: 100px;
+        margin-right:10px;
+        border: solid 1px lighten($exec-greyborder, 20%);
+        p {
+          text-align:center;
+          padding-top: 25px;
+          color:$exec-greyborder;
+        }
+      }
     }
   }
 }

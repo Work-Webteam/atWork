@@ -1,7 +1,8 @@
 /* Site wide Social icons, links and TAG displays */
 
 // Articles tags
-article .field--name-field-tags {
+article .field--name-field-tags,
+body.path-poll .field--name-field-tags {
     margin:10px 0;
     .field--label {
         display: inline;
@@ -41,7 +42,8 @@ article .field--name-field-tags {
 // Appear at the bottom of each article page
 // Hide Dislike on all pages
 
-article .social-bar { // Social Bar contains the social email like buttons
+article .social-bar,
+body.path-poll { // Social Bar contains the social email like buttons
   display: inline;
   margin-top: 12px;
   .field--name-field-article-likes { // Like button placement
@@ -79,7 +81,8 @@ article .social-bar { // Social Bar contains the social email like buttons
       margin-top:2px;
       vertical-align: top;
   }
-  li.statistics-counter:before {
+  li.statistics-counter:before,
+  #poll_hit_counter {
       display: inline-block;
       content:url("../images/reads-icon.svg");
       width: 16px;

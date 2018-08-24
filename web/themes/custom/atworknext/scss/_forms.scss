@@ -9,3 +9,60 @@ section[rel~="schema:comment"] {
         font-size: 1.2em;
     }
 }
+// Poll article pages - These are entity based content and not node node__content
+body.path-poll {
+ .poll-view,
+ .poll {
+    max-width:730px;
+    margin:0 auto;
+    .field--name-field-title {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 2.25em;
+      color: $black;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+    a[property="schema:name"] {
+      font-weight:bold;
+    }
+    .field--type-text-with-summary {
+      margin: 15px 0;
+    }
+    #edit-actions {
+      text-align:center;
+      margin: 10px 0;
+    }
+  }
+  .poll-view-form {
+    clear:both;
+    background-color: $comment-blue;
+    width:100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top:-10px;
+    padding-top: 25px;
+    legend {
+      display: none;
+    }
+    #printBtn {
+      margin-left: 100px;
+    }
+  }
+  .atwork_poll_box,
+  .poll {
+    max-width:730px;
+    padding: 0 15px;
+    margin:0 auto;
+    background-color: $white;
+    border: solid 10px darken($comment-blue, 40%);
+  }
+  h3.poll-question {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 16pt;
+    text-align: center;
+  }
+}

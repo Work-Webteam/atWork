@@ -28,7 +28,7 @@
         "drupal/ds": "^3.1",
         "drupal/flag": "^4.0@alpha",
         "drupal/forward": "^2.1",
-        "drupal/h5p": "^1.0@RC",
+        "drupal/h5p": "^1.0",
         "drupal/like_dislike": "^1.1",
         "drupal/poll": "^1.2",
         "drupal/printfriendly": "^3.3",
