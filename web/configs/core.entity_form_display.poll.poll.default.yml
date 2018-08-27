@@ -9,7 +9,6 @@ dependencies:
     - field.field.poll.poll.field_author_information
     - field.field.poll.poll.field_body
     - field.field.poll.poll.field_images
-    - field.field.poll.poll.field_poll_likes
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
     - image.style.thumbnail
@@ -31,7 +30,7 @@ content:
     type: file_generic
     region: content
   field_author:
-    weight: 4
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -47,7 +46,7 @@ content:
     type: boolean_checkbox
     region: content
   field_author_information:
-    weight: 3
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -98,5 +97,4 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden:
-  field_poll_likes: true
+hidden: {  }

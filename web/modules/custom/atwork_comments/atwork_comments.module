@@ -39,7 +39,5 @@ function atworknext_preprocess_block__views_block__comment_block_1(&$variables) 
 	// Add any variables to the comment block template here.
 	
 	// Add comment form to our block
-	$comment_form = \Drupal::formBuilder()->getForm('Drupal\comment\CommentForm');
-	
-	kint($variables);
+	//$comment_form = \Drupal::entityFormBuilder()->getForm('Drupal\comment\CommentForm');
 }

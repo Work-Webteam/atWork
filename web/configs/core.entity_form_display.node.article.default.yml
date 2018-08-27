@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_a
     - field.field.node.article.field_article_likes
     - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
@@ -25,7 +24,6 @@ dependencies:
     - scheduler
     - text
     - video_embed_field
-    - viewsreference
 _core:
   default_config_hash: vPb_yvhA-xuNoV_yOmOwYxGuHNRIH1CoMK2qi7BSga0
 id: node.article.default
@@ -54,15 +52,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_a:
-    weight: 27
-    settings:
-      match_operator: CONTAINS
-      size: '60'
-      placeholder: ''
-    third_party_settings: {  }
-    type: viewsreference_autocomplete
-    region: content
   field_article_type:
     weight: 1
     settings: {  }
