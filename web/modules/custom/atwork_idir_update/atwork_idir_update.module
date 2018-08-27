@@ -1,0 +1,112 @@
+<?php
+use Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_cron()
+ */
+function atwork_idir_update_cron()
+{ 
+  //kint("Hook got picked up");
+    // We access our configuration.
+  //$cron_config = \Drupal::configFactory()->getEditable('atwork_idir_update.settings');
+  // Instantiate a new singleton class controller to fire up our idir update.
+  $atwork_idir_update = new AtworkIdirUpdateController;
+  $atwork_idir_update->main();
+  // Hooking into cron every morning at 6am
+}
+
+
+/**
+ * Implements hook_cronapi
+ * This is part of the Ultimate Cron api.
+ */
+function atwork_idir_update_cronapi($op, $job=null)
+{
+  return array(
+    'atwork_idir_update_cronjob__1' => array(
+      'title' => 'Idir-1 Handler',
+      'callback' => 'atwork_idir_update_cron_test',
+      'scheduler' => array(
+        'name' => 'crontab',
+        'crontab' => array(
+          'rules' => array('15 6 * * *')
+        ),
+      ),
+    ),
+  );
+}
+
+
+/**
+ * Implements hook_help().
+ */
+function atwork_idir_update_help( $route_name, RouteMatchInterface $route_match )
+{
+  switch ( $route_name ) 
+  {
+    case 'help.page.atwork_idir_update':
+      return t('
+        <h2>Idir update module for Drupal 8. </h2>
+        <h3>Instructions:</h3>
+        <p>After placing module in the <em>Modules</em> folder, Enable module under Custom on the <em>extend</em> page.</p>
+        <p>This module is built to work with <a href="https://www.drupal.org/project/ultimate_cron" target="_blank">Ultimate Cron.</a></p>
+        <p>The module can also be manually run by hitting the route admin.idir (ex. http://example.com/admin/idir).</p>
+        <p>Before ths module can be used, you will need to fill out your own settings on the settings page. You will need to fill in the ftp location, the password, the username and the filename you are looking for.</p>
+        <p>This module is specifically set to parse idir records that have the following fields, in the following order: </p>
+        <ol>
+          <li>TransactionType</li>
+          <li>GUID</li>
+          <li>Username</li>	
+          <li>Displayname</li>	
+          <li>Email</li>	
+          <li>Givenname</li>	
+          <li>Surname</li>	
+          <li>Phone</li>	
+          <li>Title</li>	
+          <li>Department</li>	
+          <li>Office</li>	
+          <li>OrganizationCode</li>	
+          <li>Company</li>	
+          <li>Street</li>
+          <li>City</li>
+          <li>Province</li>	
+          <li>PostalCode</li>
+          <li>UserAccountControl</li>
+        </ol>
+        <p> (<em>*Future updates may allow the user to map these fields themselves in the user settings</em>) </p>
+
+        <p>In addition, the following machine-name fields are required to map the above fields to:</p>
+        <ol>
+          <li>TransactionType: Not mapped, used to split the list between delete/update/add lists.</li>
+          <li>GUID: field_guid</li>
+          <li>Username: username (drupal\'s username field, this is their idir)</li>	
+          <li>Displayname: field_display_name</li>	
+          <li>Email: field_email, and init (drupal\'s static initial email field)</li>	
+          <li>Givenname: field_given_name</li>	
+          <li>Surname: field_surname</li>	
+          <li>Phone: field_phone</li>	
+          <li>Title: field_title</li>	
+          <li>Department: field_department</li>	
+          <li>Office: field_office</li>	
+          <li>OrganizationCode: field_organization_code</li>	
+          <li>Company: field_company</li>	
+          <li>Street: field_street</li>
+          <li>City: field_city</li>
+          <li>Province: field_province</li>	
+          <li>PostalCode: field_postal_code</li>
+          <li>UserAccountControl: Not used - these are used on the program side to parse who should be added to the idir .tsv</li>
+        </ol>
+      </p>
+      <p>Other recommended modules that were used prior to writing this module, but which I do not beleive are actually required: 
+        <ol>
+          <li>postal_code</li>
+          <li>telephone</li>
+        </ol>
+      </p>
+      ');
+
+    
+    break;
+  }
+}

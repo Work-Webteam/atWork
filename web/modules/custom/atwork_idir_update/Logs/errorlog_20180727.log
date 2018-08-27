@@ -1,0 +1,30 @@
+fopen(modules/custom/atwork_idir_update/idir/idir_20180727.tsv): failed to open stream: No such file or directory 2 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/Controller/AtworkIdirUpdateController.php 119
+
+fopen(modules/custom/atwork_idir_update/idir/idir_20180727.tsv): failed to open stream: No such file or directory 2 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/Controller/AtworkIdirUpdateController.php 119
+
+strpos() expects parameter 1 to be string, object given 2 /var/www/public/work8/web/core/lib/Drupal/Core/Logger/LogMessageParser.php 16
+
+Object of class Drupal\atwork_idir_update\AtworkIdirUpdateFTP could not be converted to string 4096 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/Controller/AtworkIdirUpdateController.php 72
+
+Object of class Drupal\atwork_idir_update\AtworkIdirUpdateFTP could not be converted to string 4096 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/Controller/AtworkIdirUpdateController.php 72
+
+strpos() expects parameter 1 to be string, object given 2 /var/www/public/work8/web/core/lib/Drupal/Core/Logger/LogMessageParser.php 16
+
+Object of class Drupal\atwork_idir_update\AtworkIdirUpdateFTP could not be converted to string 4096 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/AtworkIdirLog.php 27
+
+Array to string conversion 8 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/Controller/AtworkIdirUpdateController.php 73
+
+Array to string conversion 8 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/Controller/AtworkIdirUpdateController.php 73
+
+ftp_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known 2 /var/www/public/work8/web/core/lib/Drupal/Core/FileTransfer/FTPExtension.php 14
+
+ftp_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known 2 /var/www/public/work8/web/core/lib/Drupal/Core/FileTransfer/FTPExtension.php 14
+
+ftp_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known 2 /var/www/public/work8/web/core/lib/Drupal/Core/FileTransfer/FTPExtension.php 14
+
+ftp_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known 2 /var/www/public/work8/web/core/lib/Drupal/Core/FileTransfer/FTPExtension.php 14
+
+ftp_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known 2 /var/www/public/work8/web/core/lib/Drupal/Core/FileTransfer/FTPExtension.php 14
+
+ftp_connect(): php_network_getaddresses: getaddrinfo failed: Name or service not known 2 /var/www/public/work8/web/core/lib/Drupal/Core/FileTransfer/FTPExtension.php 14
+

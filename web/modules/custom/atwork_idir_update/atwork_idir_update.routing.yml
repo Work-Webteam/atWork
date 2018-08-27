@@ -1,0 +1,7 @@
+atwork_idir_update.content:
+  path: '/admin/idir'
+  defaults:
+    _controller: '\Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController::main'
+    _title: 'Idir Update Manual Run'
+  requirements:
+    _permission: 'administrator'
