@@ -1,0 +1,11 @@
+name: Idir Update Module
+description: Updates users info in our system.
+package: Custom
+type: module
+version: 1.0
+core: 8.x
+dependencies: 
+  - drupal:ultimate_cron
+  - drupal:postal_code
+php: 7.x
+config: atwork_idir_update.form
