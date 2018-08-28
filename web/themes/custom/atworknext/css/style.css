@@ -10368,6 +10368,7 @@ article.Executive-Message {
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* line 110, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
@@ -10400,20 +10401,20 @@ article.Executive-Message .video-embed-field-provider-youtube iframe {
   margin-right: -50vw;
 }
 
-/* line 138, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 139, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Video-Article {
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
 }
 
-/* line 142, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 143, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Video-Article .video-embed-field-provider-youtube {
   left: 50%;
   right: 50%;
 }
 
-/* line 145, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 146, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Video-Article .video-embed-field-provider-youtube iframe {
   min-width: 100vw;
   max-width: 1140px;
