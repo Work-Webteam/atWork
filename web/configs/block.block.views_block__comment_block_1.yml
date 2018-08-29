@@ -1,6 +1,6 @@
 uuid: aa205f65-5d5c-4f24-9f6a-836c71f6bf59
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.comment
