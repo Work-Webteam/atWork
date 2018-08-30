@@ -55,7 +55,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_body:
-    weight: 2
+    weight: 99
     settings:
       rows: 9
       summary_rows: 3
