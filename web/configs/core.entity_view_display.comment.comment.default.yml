@@ -5,6 +5,9 @@ dependencies:
   config:
     - comment.type.comment
     - field.field.comment.comment.comment_body
+    - field.field.comment.comment.field_edited_comment
+    - field.field.comment.comment.field_post_as_en_comment
+    - field.field.comment.comment.field_remove_comment
   module:
     - text
 _core:
@@ -21,6 +24,36 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_edited_comment:
+    weight: 98
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_post_as_en_comment:
+    weight: 101
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_remove_comment:
+    weight: 99
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
   flag_inappropriate_comment_flag:
     weight: 10
     region: content

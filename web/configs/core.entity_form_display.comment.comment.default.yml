@@ -5,6 +5,9 @@ dependencies:
   config:
     - comment.type.comment
     - field.field.comment.comment.comment_body
+    - field.field.comment.comment.field_edited_comment
+    - field.field.comment.comment.field_post_as_en_comment
+    - field.field.comment.comment.field_remove_comment
   module:
     - text
 _core:
@@ -27,5 +30,26 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_edited_comment:
+    weight: 3
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_post_as_en_comment:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_remove_comment:
+    weight: 4
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
 hidden:
   subject: true
