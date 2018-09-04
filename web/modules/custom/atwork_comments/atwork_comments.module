@@ -43,3 +43,29 @@ function atworknext_preprocess_block__views_block__comment_block_1(&$variables) 
 	//$comment_form = \Drupal::entityFormBuilder()->getForm('Drupal\comment\CommentForm');
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter
+ *
+ * @param [object] $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param [object] $form_id
+ * @return void
+ */
+function atwork_comments_form_comment_comment_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
+	//dpm($form_state);
+	// *only admins should be able to access some fields
+	$user = \Drupal::currentUser();
+	$uid = \Drupal::currentUser()->id();
+	$roles = $user->getRoles();
+	// TODO: We need to add editor roles to this
+	if(!in_array('administrator', $roles)){
+		$form['field_edited_comment']['#access'] = FALSE;
+		$form['field_remove_comment']['#access'] = FALSE;
+	} else {
+		kint($form);
+		kint($form_state);
+	}
+
+	// TODO: We need to save a comment as Employee News if a specific checkbox is marked.
+
+}
