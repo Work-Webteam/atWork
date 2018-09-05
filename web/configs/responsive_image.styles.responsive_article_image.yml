@@ -1,0 +1,16 @@
+uuid: 92fa417c-c9f7-4bd7-aafa-8853bb0baa69
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.article_top_image
+id: responsive_article_image
+label: 'responsive article image'
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+breakpoint_group: responsive_image
+fallback_image_style: article_top_image

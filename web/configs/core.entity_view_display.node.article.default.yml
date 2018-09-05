@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_article_likes
@@ -10,16 +11,16 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
-    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - node.type.article
+    - responsive_image.styles.responsive_article_image
   module:
-    - colorbox
+    - comment
     - file
-    - h5p
     - like_dislike
     - options
+    - responsive_image
     - text
     - user
     - video_embed_field
@@ -37,6 +38,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     label: hidden
+  comment:
+    type: comment_default
+    weight: 11
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
   field_article_likes:
     weight: 3
     label: hidden
@@ -68,26 +78,14 @@ content:
     type: entity_reference_label
     region: content
   field_image:
-    type: colorbox
+    type: responsive_image
     weight: 0
     region: content
     settings:
-      colorbox_node_style: ''
-      colorbox_node_style_first: ''
-      colorbox_image_style: ''
-      colorbox_gallery: post
-      colorbox_gallery_custom: ''
-      colorbox_caption: auto
-      colorbox_caption_custom: ''
+      responsive_image_style: responsive_article_image
+      image_link: ''
     third_party_settings: {  }
     label: hidden
-  field_slideshow:
-    weight: 10
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: h5p_default
-    region: content
   field_tags:
     type: entity_reference_label
     weight: 2
@@ -117,5 +115,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  comment: true
+hidden: {  }

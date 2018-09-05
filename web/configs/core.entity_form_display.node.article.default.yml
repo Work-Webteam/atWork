@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
-    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - image.style.large
@@ -18,7 +17,6 @@ dependencies:
   module:
     - comment
     - file
-    - h5peditor
     - image_widget_crop
     - path
     - scheduler
@@ -90,12 +88,6 @@ content:
       show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
-  field_slideshow:
-    weight: 26
-    settings: {  }
-    third_party_settings: {  }
-    type: h5p_editor
-    region: content
   field_tags:
     type: entity_reference_autocomplete_tags
     weight: 7
