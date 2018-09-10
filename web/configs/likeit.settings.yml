@@ -1,0 +1,5 @@
+token_seed: A4PprbIegWJvj268Q6BXr6ld2h2FHFlFnaJrrcH3o7A
+target_entities:
+  'node:article': 'node:article'
+  'comment:comment': 'comment:comment'
+after_owner_deletion: set_to_anonymous

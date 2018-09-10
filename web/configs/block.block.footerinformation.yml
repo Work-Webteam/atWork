@@ -2,6 +2,10 @@ uuid: 3758acc9-7fdc-4aab-9e92-68bf13d86513
 langcode: en
 status: true
 dependencies:
+  content:
+    - 'block_content:basic:1859899d-5754-4e20-8347-eeb6b2c80216'
+  module:
+    - block_content
   theme:
     - atworknext
 id: footerinformation

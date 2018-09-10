@@ -11,45 +11,19 @@ dependencies:
     - field.field.poll.poll.field_images
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
+    - responsive_image.styles.responsive_article_image
   module:
-    - file
-    - image
     - poll
+    - responsive_image
     - text
 id: poll.poll.default
 targetEntityType: poll
 bundle: poll
 mode: default
 content:
-  field_attachments:
-    weight: -95
-    label: above
-    settings:
-      use_description_as_link_text: true
-    third_party_settings: {  }
-    type: file_default
-    region: content
   field_author:
-    weight: -98
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_author_image:
     weight: -97
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  field_author_information:
-    weight: -97
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -57,22 +31,22 @@ content:
     region: content
   field_body:
     type: text_default
-    weight: -90
+    weight: -96
     region: content
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
   field_images:
-    weight: -96
-    label: above
+    weight: -99
+    label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: responsive_article_image
       image_link: ''
     third_party_settings: {  }
-    type: image
+    type: responsive_image
     region: content
   field_tags:
-    weight: 9
+    weight: 6
     label: above
     settings:
       link: true
@@ -80,16 +54,19 @@ content:
     type: entity_reference_label
     region: content
   field_title:
-    weight: -99
-    label: above
+    weight: -98
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   poll_votes:
-    weight: 98
+    weight: -95
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_attachments: true
+  field_author_image: true
+  field_author_information: true

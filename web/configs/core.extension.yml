@@ -5,6 +5,8 @@ module:
   atwork_article: 0
   atwork_comments: 0
   atwork_h5p: 0
+  atwork_poll: 0
+  background_image_formatter: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -24,6 +26,7 @@ module:
   devel: 0
   dynamic_page_cache: 0
   editor: 0
+  extrafield_views_integration: 0
   field: 0
   field_ui: 0
   file: 0
@@ -42,9 +45,11 @@ module:
   kint: 0
   libraries: 0
   like_dislike: 0
+  likeit: 0
   link: 0
   media: 0
   menu_ui: 0
+  module_filter: 0
   node: 0
   options: 0
   page_cache: 0

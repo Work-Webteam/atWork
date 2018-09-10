@@ -1,7 +1,8 @@
 /* Site wide Social icons, links and TAG displays */
 
 // Articles tags
-article .field--name-field-tags {
+article .field--name-field-tags,
+body.path-poll .field--name-field-tags {
     margin:10px 0;
     .field--label {
         display: inline;
@@ -21,6 +22,7 @@ article .field--name-field-tags {
   .field--label {
       display: inline;
       float: left;
+      clear:both;
   }
   a {
     display: inline;
@@ -41,10 +43,12 @@ article .field--name-field-tags {
 // Appear at the bottom of each article page
 // Hide Dislike on all pages
 
-article .social-bar { // Social Bar contains the social email like buttons
+article .social-bar,
+body.path-poll  { // Social Bar contains the social email like buttons
   display: inline;
   margin-top: 12px;
-  .field--name-field-article-likes { // Like button placement
+  .field--name-field-article-likes,
+  .field--name-field-poll-likes { // Like button placement
     display:inline-block;
     float:right;
   }
@@ -71,7 +75,8 @@ article .social-bar { // Social Bar contains the social email like buttons
       width: 16px;
       margin-right: 5px;
   }
-  .flag-inappropriate:before { // Inappropriate flag
+  .flag-inappropriate:before,
+  .flag-inappropriate-poll:before  { // Inappropriate flag
       display: inline-block;
       content:url("../images/flag-icon.svg");
       width:16px;
@@ -79,7 +84,8 @@ article .social-bar { // Social Bar contains the social email like buttons
       margin-top:2px;
       vertical-align: top;
   }
-  li.statistics-counter:before {
+  li.statistics-counter:before,
+  #poll_hit_counter:before {
       display: inline-block;
       content:url("../images/reads-icon.svg");
       width: 16px;
@@ -105,4 +111,25 @@ article .social-bar { // Social Bar contains the social email like buttons
           background:none;
       }
   }
+}
+
+// Specific styling for the LikeIt module used on Comments
+article.likeit {
+  display:inline;
+  float:right;
+  .likeit-title {
+    display:none;
+  }
+  .likeit-count:before {
+    display: inline-block;
+    content:url("../images/like-icon.svg");
+    width:16px;
+    margin-right:5px;
+  }
+}
+
+
+/* Placement of social tags at the bottom of pages with polls. These pages are not regular content
+types and as such require seperate placement vallues */
+body.path-poll {
 }

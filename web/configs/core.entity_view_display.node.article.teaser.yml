@@ -6,11 +6,13 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_article_likes
+    - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
+    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
+    - field.field.node.article.field_video
     - image.style.medium
     - node.type.article
   module:
@@ -61,9 +63,9 @@ content:
     third_party_settings: {  }
 hidden:
   comment: true
-  field_article_likes: true
   field_article_type: true
   field_attachments: true
   field_author_information: true
   field_slideshow: true
   field_video: true
+  likeit: true

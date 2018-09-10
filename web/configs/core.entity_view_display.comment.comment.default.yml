@@ -18,7 +18,7 @@ bundle: comment
 mode: default
 content:
   comment_body:
-    label: above
+    label: hidden
     type: text_default
     weight: 0
     region: content
@@ -26,27 +26,17 @@ content:
     third_party_settings: {  }
   field_edited_comment:
     weight: 98
-    label: visually_hidden
+    label: hidden
     settings:
       format: default
       format_custom_true: ''
       format_custom_false: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  field_post_as_en_comment:
-    weight: 101
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
     third_party_settings: {  }
     type: boolean
     region: content
   field_remove_comment:
     weight: 99
-    label: visually_hidden
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -59,9 +49,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  links:
-    weight: 100
+  likeit:
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+  links:
+    weight: 102
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_post_as_en_comment: true

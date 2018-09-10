@@ -14,7 +14,7 @@ dependencies:
     - image.style.thumbnail
   module:
     - file
-    - image
+    - image_widget_crop
     - poll
     - text
 id: poll.poll.default
@@ -66,10 +66,17 @@ content:
   field_images:
     weight: 6
     settings:
-      progress_indicator: throbber
+      show_default_crop: true
+      warn_multiple_usages: true
       preview_image_style: thumbnail
+      crop_preview_image_style: crop_thumbnail
+      crop_list:
+        - article_730_330
+      progress_indicator: throbber
+      crop_types_required: {  }
+      show_crop_area: false
     third_party_settings: {  }
-    type: image_image
+    type: image_widget_crop
     region: content
   field_tags:
     weight: 8
