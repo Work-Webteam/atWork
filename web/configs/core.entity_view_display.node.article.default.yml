@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
+    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - node.type.article
@@ -39,15 +40,8 @@ content:
     label: hidden
   comment:
     type: comment_default
-    weight: 11
+    weight: 12
     region: content
-    label: above
-    settings:
-      view_mode: default
-      pager_id: 0
-    third_party_settings: {  }
-  field_article_likes:
-    weight: 3
     label: hidden
     settings:
       view_mode: default

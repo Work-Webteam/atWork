@@ -1,9 +1,9 @@
-uuid: d60b2020-dc3d-4b94-a633-44a09c249fb1
+uuid: 3758acc9-7fdc-4aab-9e92-68bf13d86513
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:b9432938-b110-41b7-a208-bbf7d81f5918'
+    - 'block_content:basic:1859899d-5754-4e20-8347-eeb6b2c80216'
   module:
     - block_content
   theme:
@@ -13,9 +13,9 @@ theme: atworknext
 region: footer
 weight: -7
 provider: null
-plugin: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
+plugin: 'block_content:1859899d-5754-4e20-8347-eeb6b2c80216'
 settings:
-  id: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
+  id: 'block_content:1859899d-5754-4e20-8347-eeb6b2c80216'
   label: 'Footer Information'
   provider: block_content
   label_display: '0'

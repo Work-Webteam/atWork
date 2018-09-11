@@ -65,4 +65,3 @@ forward_entity_poll: true
 forward_poll_poll: true
 forward_entity_poll_choice: false
 forward_poll_choice_poll_choice: false
-

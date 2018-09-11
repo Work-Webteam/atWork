@@ -40,6 +40,7 @@ module:
   history: 0
   image: 0
   image_widget_crop: 0
+  inline_form_errors: 0
   insert: 0
   kint: 0
   libraries: 0
@@ -54,6 +55,7 @@ module:
   page_cache: 0
   path: 0
   poll: 0
+  postal_code: 0
   quickedit: 0
   rdf: 0
   responsive_image: 0
@@ -64,8 +66,11 @@ module:
   settings_tray: 0
   shortcut: 0
   statistics: 0
+  syslog: 0
   system: 0
   taxonomy: 0
+  telephone: 0
+  tether_stats: 0
   text: 0
   toolbar: 0
   tour: 0
