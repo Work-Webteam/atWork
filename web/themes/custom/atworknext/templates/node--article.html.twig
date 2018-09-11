@@ -110,11 +110,11 @@
       {% else %}
         <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
       {% endif %}
-    {% endif %}  
+    {% endif %}
     {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
     {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
     {% trans %}{{ author_name }} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
-    
+
     {# Uncomment once comments are completed to show comment count on articles #}
     {% if content.comment['#items']|length != 1 %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comments{% endtrans %}#}
@@ -125,14 +125,14 @@
     {{ content.field_interactive_content }}
     {{ content.field_tags }}
     <div class="social-bar">
-      {{ content.field_article_likes }}
+      {{ content.likeit }}
       {{ content.flag_inappropriate }}
       {{ content.links }}
     </div>
     {# 'field_author_information' can be uncommented once we know how we are displaying it #}
     {#{ content.field_author_information }#}
     {{ content.field_attachments }}
-    {{ content.comment }}
     <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
+    {{ content.comment }}
   </div>
 </article>

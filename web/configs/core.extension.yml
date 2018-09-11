@@ -3,9 +3,10 @@ module:
   admin_toolbar_tools: 0
   animated_scroll_to_top: 0
   atwork_article: 0
+  atwork_comments: 0
   atwork_h5p: 0
   atwork_poll: 0
-  automated_cron: 0
+  background_image_formatter: 0
   big_pipe: 0
   block: 0
   block_content: 0
@@ -19,11 +20,13 @@ module:
   contact: 0
   contextual: 0
   crop: 0
+  csv_serialization: 0
   datetime: 0
   dblog: 0
   devel: 0
   dynamic_page_cache: 0
   editor: 0
+  extrafield_views_integration: 0
   field: 0
   field_ui: 0
   file: 0
@@ -41,9 +44,11 @@ module:
   kint: 0
   libraries: 0
   like_dislike: 0
+  likeit: 0
   link: 0
   media: 0
   menu_ui: 0
+  module_filter: 0
   node: 0
   options: 0
   page_cache: 0
@@ -64,11 +69,15 @@ module:
   text: 0
   toolbar: 0
   tour: 0
+  ultimate_cron: 0
   update: 0
   user: 0
   video_embed_field: 0
   video_embed_wysiwyg: 0
+  views_data_export: 0
+  views_infinite_scroll: 0
   views_ui: 0
+  viewsreference: 0
   menu_link_content: 1
   views: 10
   standard: 1000

@@ -11,10 +11,12 @@ dependencies:
     - field.field.poll.poll.field_images
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
+    - responsive_image.styles.responsive_article_image
   module:
     - file
     - image
     - poll
+    - responsive_image
     - text
 id: poll.poll.default
 targetEntityType: poll
@@ -48,10 +50,11 @@ content:
     weight: 0
     label: above
     settings:
-      image_style: ''
+      responsive_image_style: responsive_article_image
       image_link: ''
     third_party_settings: {  }
     type: image
+    type: responsive_image
     region: content
   field_tags:
     weight: 6
@@ -70,10 +73,11 @@ content:
     type: string
     region: content
   poll_votes:
-    weight: 4
+    weight: -95
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_attachments: true
   field_author_image: true
   field_author_information: true

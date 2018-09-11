@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_display.comment.comment.default
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_article_likes
     - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
@@ -18,7 +17,7 @@ dependencies:
   module:
     - comment
     - file
-    - like_dislike
+    - h5p
     - options
     - responsive_image
     - text
@@ -50,19 +49,19 @@ content:
   field_article_likes:
     weight: 3
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: default
+      pager_id: 0
     third_party_settings: {  }
-    type: like_dislike_formatter
-    region: content
   field_article_type:
-    weight: 9
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_attachments:
-    weight: 7
+    weight: 8
     label: above
     settings:
       use_description_as_link_text: true
@@ -70,7 +69,7 @@ content:
     type: file_default
     region: content
   field_author_information:
-    weight: 6
+    weight: 7
     label: hidden
     settings:
       link: true
@@ -86,6 +85,13 @@ content:
       image_link: ''
     third_party_settings: {  }
     label: hidden
+  field_slideshow:
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_default
+    region: content
   field_tags:
     type: entity_reference_label
     weight: 2
@@ -95,7 +101,7 @@ content:
       link: true
     third_party_settings: {  }
   field_video:
-    weight: 8
+    weight: 9
     label: hidden
     settings:
       responsive: true
@@ -110,9 +116,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  links:
+  likeit:
     weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+  links:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  rate_vote_widget: true

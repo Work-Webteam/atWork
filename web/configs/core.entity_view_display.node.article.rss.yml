@@ -6,11 +6,13 @@ dependencies:
     - core.entity_view_mode.node.rss
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_article_likes
+    - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
+    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
+    - field.field.node.article.field_video
     - node.type.article
   module:
     - user
@@ -34,7 +36,6 @@ content:
 hidden:
   body: true
   comment: true
-  field_article_likes: true
   field_article_type: true
   field_attachments: true
   field_author_information: true
@@ -42,3 +43,4 @@ hidden:
   field_slideshow: true
   field_tags: true
   field_video: true
+  likeit: true

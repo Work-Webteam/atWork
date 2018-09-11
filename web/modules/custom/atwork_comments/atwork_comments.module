@@ -1,0 +1,68 @@
+<?php
+
+use \Drupal\core\Form\FormBuilder;
+
+/**
+ * @file
+ * Primary module hooks for atwork_comments module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_template_preprocess_default_variables_alter() for comment--comment.html.twig.
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_comment__comment(&$variables){
+	/*At some point we will add in ministry information to author byline as well*/
+	//dpm($variables);
+	//Get Timestamp and make our own variable
+	//$variables['createdTime'] = $variables['comment']->getCreatedTime();
+	$variables['atworkCreatedTime'] =  $variables['comment']->getCreatedTime();
+	//Fix comment permalink text
+	$variables['comment_link'] = str_replace('Permalink','Link', $variables['permalink']);
+}
+
+
+function atworknext_preprocess_field__comment(&$variables){
+	// Get number of comments on page load
+	$num_comments = 0;
+	foreach(array_keys($variables['comments']) as $key){
+		if(is_int($key)) $num_comments++;
+	}
+	$variables['num_comments'] = $num_comments;
+}
+
+function atworknext_preprocess_block__views_block__comment_block_1(&$variables) {
+	// Add any variables to the comment block template here.
+
+	// Add comment form to our block
+	//$comment_form = \Drupal::entityFormBuilder()->getForm('Drupal\comment\CommentForm');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ *
+ * @param [object] $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param [object] $form_id
+ * @return void
+ */
+function atwork_comments_form_comment_comment_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id){
+	//dpm($form_state);
+	// *only admins should be able to access some fields
+	$user = \Drupal::currentUser();
+	$uid = \Drupal::currentUser()->id();
+	$roles = $user->getRoles();
+	// TODO: We need to add editor roles to this
+	if(!in_array('administrator', $roles)){
+		$form['field_edited_comment']['#access'] = FALSE;
+		$form['field_remove_comment']['#access'] = FALSE;
+	} 
+
+	// TODO: We need to save a comment as Employee News if a specific checkbox is marked.
+
+}

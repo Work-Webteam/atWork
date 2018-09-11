@@ -1,11 +1,182 @@
-/* Site Wide Forms also includes comment boxes */
-
+// Site Wide Forms also includes comment boxes
+// Add Your Comment colors and design
 section[rel~="schema:comment"] {
     background-color:$comment-blue;
-    padding: 10px;
-    h2 {
-        color:$link-blue;
+    padding: 3px 25px;
+    h2 { //Add your comment title
+        color:$black;
         text-transform: uppercase;
-        font-size: 1.2em;
+        font-size: 1.15em;
+        font-weight:bold;
     }
+    .control-label {
+      display:none;
+    }
+}
+// Comment Reply section
+section#block-views-block-comments-new-block-1 {
+  max-width:730px;
+  margin:0 auto;
+  background-color:$comment-blue;
+  padding: 10px 25px;
+  .field--name-field-edited-comment,
+  .field--name-field-remove-comment,
+  .field--name-field-post-as-en-comment {
+    display:none;
+  }
+  .view-header { // Comment reply header
+    display: inline-blockl;
+    float:left;
+    margin-bottom:10px;
+    h4 { //Add your comment title
+      display: inline;
+      margin-right:10px;
+      color:$black;
+      text-transform: uppercase;
+      font-size: 1.15em;
+      font-weight:bold;
+    }
+    > #comment-count {
+      display: inline-block;
+      width:auto;
+      padding:15px;
+      color:$white;
+      background-image:url("../images/text-bubble.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+    }
+  }
+  .view-filters {
+    display:inline-block;
+    float:right;
+    .control-label, .form-item-sort-by {
+      display: none;
+    }
+    .form-control {
+      font-size:12px;
+      text-transform: uppercase;
+    }
+  }
+  .view-content { // main comment reply rows
+    display: block;
+    clear:both;
+    padding:15px;
+    background-color:$white;
+    border-top: solid 5px $link-blue;
+    border-bottom: solid 1px $exec-greyborder;
+    border-left: solid 1px $exec-greyborder;
+    border-right: solid 1px $exec-greyborder;
+    .views-row {
+      margin-top:10px;
+      border-bottom: solid 1px $exec-greyborder;
+      &:last-of-type {
+        border-bottom:none;
+      }
+      p:first-of-type {
+        font-weight:bold;
+      }
+      .indented {
+          padding-left:55px;
+          padding-right:25px;
+          #comment-block {
+            background-color: lighten($exec-greyborder, 35);
+            border:solid 1px $exec-greyborder;
+            padding:12px;
+          }
+      }
+      #comment-avatar {
+        display:block;
+        border: solid 3px $link-blue;
+        background-image:url("../images/blue-avatar.jpg");
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+        width:60px;
+        height:60px;
+        float:left;
+      }
+      #comment-block {
+        margin-left: 70px;
+      }
+    }
+  }
+  .csv-feed .feed-icon {
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    &:hover {
+      background-color:transparent;
+      color:$black;
+    }
+  }
+}
+
+// Poll article pages - These are entity based content and not node node__content
+body.path-poll {
+ .poll-view,
+ .poll {
+    max-width:730px;
+    margin:0 auto;
+    .field--name-field-title {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-size: 2.25em;
+      color: $black;
+      font-weight: bold;
+      margin: 10px 0 5px;
+    }
+    a[property="schema:name"] {
+      font-weight:bold;
+    }
+    .field--type-text-with-summary {
+      margin: 15px 0;
+    }
+    div[id^="edit-actions"] {
+      text-align:center;
+      margin: 10px 0;
+    }
+  }
+  .poll-view-form {
+    clear:both;
+    background-color: $comment-blue;
+    width:100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top:-10px;
+    padding-top: 25px;
+    legend {
+      display: none;
+    }
+    #printBtn {
+      margin-left: 100px;
+    }
+    .poll {
+      dt:nth-child(4n+1) + dd {
+        .foreground {
+          background-color:$poll-blue;
+        }
+      }
+      dt:nth-child(4n+3) + dd {
+        .foreground {
+          background-color:$link-blue;
+        }
+      }
+    }
+  }
+  .atwork_poll_box,
+  .poll {
+    max-width:730px;
+    padding: 0 15px;
+    margin:0 auto;
+    background-color: $white;
+    border: solid 10px darken($comment-blue, 40%);
+  }
+  h3.poll-question {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 16pt;
+    text-align: center;
+  }
 }

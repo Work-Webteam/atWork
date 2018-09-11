@@ -11,7 +11,7 @@ dependencies:
 id: footerinformation
 theme: atworknext
 region: footer
-weight: 0
+weight: -7
 provider: null
 plugin: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
 settings:
