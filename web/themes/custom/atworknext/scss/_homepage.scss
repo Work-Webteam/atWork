@@ -85,7 +85,11 @@ body.path-frontpage {
         width:220px;
         height: 100px;
         margin-right:10px;
-        border: solid 1px lighten($exec-greyborder, 20%);
+        border: solid 1px $exec-greyborder;
+        background-image:url('../images/no-image-logo.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: lighten($exec-greyborder, 20%);
         p {
           text-align:center;
           padding-top: 25px;

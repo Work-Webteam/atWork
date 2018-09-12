@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
-    - field.field.node.article.field_slideshow
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - image.style.medium
@@ -66,6 +65,5 @@ hidden:
   field_article_type: true
   field_attachments: true
   field_author_information: true
-  field_slideshow: true
   field_video: true
   likeit: true

@@ -22,6 +22,8 @@ permissions:
   - 'cast rate vote on poll of poll'
   - 'edit own comments'
   - 'flag inappropriate'
+  - 'flag inappropriate_comment_flag'
+  - 'flag inappropriate_poll_flag'
   - likeit_like
   - likeit_view
   - 'post comments'

@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
-    - field.field.node.article.field_slideshow
+    - field.field.node.article.field_interactive_content
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - image.style.large
@@ -89,7 +89,7 @@ content:
       show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
-  field_slideshow:
+  field_interactive_content:
     weight: 26
     settings: {  }
     third_party_settings: {  }

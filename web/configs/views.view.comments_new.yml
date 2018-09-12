@@ -187,7 +187,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'Load More'
+            button_text: 'Show More'
             automatically_load_content: false
       defaults:
         pager: false

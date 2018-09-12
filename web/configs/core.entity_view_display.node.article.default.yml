@@ -10,7 +10,7 @@ dependencies:
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
     - field.field.node.article.field_image
-    - field.field.node.article.field_slideshow
+    - field.field.node.article.field_interactive_content
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - node.type.article
@@ -79,7 +79,7 @@ content:
       image_link: ''
     third_party_settings: {  }
     label: hidden
-  field_slideshow:
+  field_interactive_content:
     weight: 11
     label: hidden
     settings: {  }
