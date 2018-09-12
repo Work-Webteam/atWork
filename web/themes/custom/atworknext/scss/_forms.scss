@@ -104,9 +104,10 @@ section#block-views-block-comments-new-block-1 {
   .csv-feed .feed-icon {
     background-repeat: no-repeat;
     padding-left: 40px;
+    color:transparent;
     &:hover {
       background-color:transparent;
-      color:$black;
+      color:transparent;
     }
   }
 }
