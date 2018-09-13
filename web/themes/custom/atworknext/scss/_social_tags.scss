@@ -122,7 +122,7 @@ body.path-poll {
   li.forward {
     position: relative;
     top:25px;
-    left:55px;
+    left:135px;
     a {
       color:transparent;
       &:before {
@@ -143,11 +143,11 @@ body.path-poll {
   .flag-inappropriate-comment-flag {
     position: relative;
     top:-25px;
-    left:190px;
+    left:270px;
     width:170px;
   }
   .indented .flag-inappropriate-comment-flag {
-    left: 210px;
+    left: 290px;
   }
   .flag-inappropriate-comment-flag:before  { // Inappropriate flag
       display: inline-block;
@@ -181,7 +181,6 @@ article.likeit {
   display:inline;
   float:right;
   position:relative;
-  top:35px;
   .likeit-title {
     display:none;
   }
