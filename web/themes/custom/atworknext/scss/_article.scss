@@ -95,9 +95,10 @@ article {
 }
 
 // Executive Message Layout. Contains stylings for full-width hero image
+
 article.Executive-Message {
-    border-left: solid 22px $exec-greyborder;
-    border-right: solid 22px $exec-greyborder;
+      border-left: solid 22px $exec-greyborder;
+      border-right: solid 22px $exec-greyborder;
     .field--type-image {
       img {
         max-width:100%;
@@ -124,7 +125,10 @@ article.Executive-Message {
     margin-left: auto;
     margin-right:auto;
     overflow-x:hidden;
+    padding-left:10px;
+    padding-right:10px;
 }
+
 // Hero video for Video Articles
 article.Video-Article {
   margin-left: auto;

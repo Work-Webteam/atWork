@@ -44,7 +44,7 @@ body.path-poll .field--name-field-tags {
 // Hide Dislike on all pages
 
 article .social-bar,
-body.path-poll  { // Social Bar contains the social email like buttons
+body.path-poll { // Social Bar contains the social email like buttons
   display: inline;
   margin-top: 12px;
   .field--name-field-poll-likes { // Like button placement
@@ -58,7 +58,7 @@ body.path-poll  { // Social Bar contains the social email like buttons
       margin-right: 5px;
   }
   .flag-inappropriate:before,
-  .flag-inappropriate-poll:before  { // Inappropriate flag
+  .flag-inappropriate-poll-flag:before { // Inappropriate flag
       display: inline-block;
       content:url("../images/flag-icon.svg");
       width:16px;
@@ -66,6 +66,7 @@ body.path-poll  { // Social Bar contains the social email like buttons
       margin-top:2px;
       vertical-align: top;
   }
+
   li.statistics-counter:before,
   #poll_hit_counter:before {
       display: inline-block;
@@ -84,6 +85,7 @@ body.path-poll  { // Social Bar contains the social email like buttons
       }
   }
   .flag-inappropriate,
+  .flag-inappropriate-poll-flag,
   .links.inline.list-inline {
       display:inline-block;
       margin-right: 10px;
@@ -92,6 +94,85 @@ body.path-poll  { // Social Bar contains the social email like buttons
           color:inherit;
           background:none;
       }
+    }
+}
+
+// Specific Beta Poll social tag placement
+body.path-poll {
+  .flag-inappropriate-poll-flag {
+    position: relative;
+    left:-50px;
+  }
+  ul.list-inline {
+    position: relative;
+    left:160px;
+    bottom:-82px;
+  }
+  #printBtn {
+    position: relative;
+    left: 290px;
+    top:2px;
+  }
+}
+// Specific styling for the Social links in Comments
+#block-views-block-comments-new-block-1 {
+  ul.list-inline {
+    display:inline;
+  }
+  li.forward {
+    position: relative;
+    top:25px;
+    left:55px;
+    a {
+      color:transparent;
+      &:before {
+        content:"Email";
+        color:$link-blue;
+      }
+    }
+  }
+  .indented li.forward {
+    top:38px;
+  }
+  li.forward:before {
+      display: inline-block;
+      content:url("../images/forward-icon.svg");
+      width: 16px;
+      margin-right: 5px;
+  }
+  .flag-inappropriate-comment-flag {
+    position: relative;
+    top:-25px;
+    left:190px;
+    width:170px;
+  }
+  .indented .flag-inappropriate-comment-flag {
+    left: 210px;
+  }
+  .flag-inappropriate-comment-flag:before  { // Inappropriate flag
+      display: inline-block;
+      content:url("../images/flag-icon.svg");
+      width:16px;
+      margin-right:5px;
+      vertical-align: top;
+  }
+  li.comment-reply:before {
+    display: inline-block;
+    content:url("../images/reply-arrow.svg");
+    width:16px;
+    margin-right:5px;
+    margin-top:2px;
+    vertical-align: top;
+  }
+  #comment-links {
+    > a:before {
+      display: inline-block;
+      content:url("../images/link.svg");
+      width:16px;
+      margin-right:5px;
+      margin-top:2px;
+      vertical-align: top;
+    }
   }
 }
 
@@ -99,6 +180,8 @@ body.path-poll  { // Social Bar contains the social email like buttons
 article.likeit {
   display:inline;
   float:right;
+  position:relative;
+  top:35px;
   .likeit-title {
     display:none;
   }
@@ -113,5 +196,3 @@ article.likeit {
 
 /* Placement of social tags at the bottom of pages with polls. These pages are not regular content
 types and as such require seperate placement vallues */
-body.path-poll {
-}

@@ -2,7 +2,8 @@
 // Add Your Comment colors and design
 section[rel~="schema:comment"] {
     background-color:$comment-blue;
-    padding: 3px 25px;
+    padding: 3px 25px 15px;
+    margin-bottom:15px;
     h2 { //Add your comment title
         color:$black;
         text-transform: uppercase;
@@ -16,7 +17,7 @@ section[rel~="schema:comment"] {
 // Comment Reply section
 section#block-views-block-comments-new-block-1 {
   max-width:730px;
-  margin:0 auto;
+  margin:-15px auto 20px;
   background-color:$comment-blue;
   padding: 10px 25px;
   .field--name-field-edited-comment,
@@ -118,6 +119,7 @@ body.path-poll {
  .poll {
     max-width:730px;
     margin:0 auto;
+    padding-bottom: 15px;
     .field--name-field-title {
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       font-size: 2.25em;
@@ -147,6 +149,7 @@ body.path-poll {
     margin-right: -50vw;
     margin-top:-10px;
     padding-top: 25px;
+    padding-bottom:25px;
     legend {
       display: none;
     }
