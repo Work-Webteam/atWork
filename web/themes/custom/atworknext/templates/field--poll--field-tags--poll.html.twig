@@ -52,7 +52,6 @@
     label_display == 'visually_hidden' ? 'sr-only',
   ]
 %}
-
 {% if label_hidden %}
   {% if multiple %}
     <div{{ attributes.addClass(classes, 'field--items') }}>
@@ -79,4 +78,7 @@
     {% endif %}
   </div>
 <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
+<div id="poll_hit_counter"> 
+{% trans %}{{ poll_views }} Views{% endtrans %}
+<div>
 {% endif %}
