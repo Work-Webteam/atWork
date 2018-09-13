@@ -22,8 +22,7 @@ function atworknext_preprocess_field__poll__field_author__poll(&$variables) {
 *
 * Preprocess theme variables for poll-vote.
 */
-function atworknext_preprocess_poll_vote(&$variables) {
-
+function atworknext_preprocess_poll_vote(&$variables) {	
 	// Pull page hits out of database and send it to template variables
 	$poll_url = $variables['form']['#entity']->url();
 	$result = '';
