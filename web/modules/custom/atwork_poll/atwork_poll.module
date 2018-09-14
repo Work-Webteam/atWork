@@ -18,23 +18,33 @@ function atworknext_preprocess_field__poll__field_author__poll(&$variables) {
 }
 
 /**
-* Implements HOOK_preprocess_HOOK
-*
-* Preprocess theme variables for poll-vote.
-*/
-function atworknext_preprocess_poll_vote(&$variables) {	
-	// Pull page hits out of database and send it to template variables
-	$poll_url = $variables['form']['#entity']->url();
-	$result = '';
+ * Implements HOOK_preprocess_HOOK
+ *
+ * Preprocess theme variables for field__poll__field_tags__poll.
+ */
+function atworknext_preprocess_field__poll__field_tags__poll(&$variables) {
+	$poll_id = $variables['element']['#object']->id();
+	$user_id= \Drupal::currentUser()->id();
+	$view_count = '';
 	
+	// Capture page view
 	try {
 	  $connection = \Drupal::database();
-	  $query = $connection->query("SELECT count FROM tether_stats_element WHERE url = '" . $poll_url . "'");
+	  $query = $connection->query("INSERT IGNORE INTO atwork_poll_views(poll_id,uid) VALUES (" . $poll_id . ", " . $user_id. ")");
 	  $result = $query->fetch();
-	}
+	} 
 	catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
 	
-	$variables['poll_views'] = $result;
+	// Retrieve # page views
+	try {
+	  $connection = \Drupal::database();
+		$query = $connection->query("SELECT COUNT(uid) AS count FROM atwork_poll_views where poll_id = " . $poll_id . ";");
+	  $view_count = $query->fetch();
+	} 
+	catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	$variables['poll_views'] = $view_count->count;
 }
