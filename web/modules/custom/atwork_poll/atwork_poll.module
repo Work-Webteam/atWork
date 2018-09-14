@@ -27,6 +27,7 @@ function atworknext_preprocess_field__poll__field_tags__poll(&$variables) {
 	$user_id= \Drupal::currentUser()->id();
 	$view_count = '';
 	
+	// Capture page view
 	try {
 	  $connection = \Drupal::database();
 	  $query = $connection->query("INSERT IGNORE INTO atwork_poll_views(poll_id,uid) VALUES (" . $poll_id . ", " . $user_id. ")");
@@ -36,6 +37,7 @@ function atworknext_preprocess_field__poll__field_tags__poll(&$variables) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
 	
+	// Retrieve # page views
 	try {
 	  $connection = \Drupal::database();
 		$query = $connection->query("SELECT COUNT(uid) AS count FROM atwork_poll_views where poll_id = " . $poll_id . ";");
