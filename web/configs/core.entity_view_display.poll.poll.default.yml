@@ -61,6 +61,9 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  flag_inappropriate_poll_flag:
+    weight: 10
+    region: content
   poll_votes:
     weight: -95
     region: content

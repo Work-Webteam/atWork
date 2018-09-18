@@ -18,7 +18,12 @@ use \Drupal\core\Form\FormBuilder;
  */
 function atworknext_preprocess_comment__comment(&$variables){
 	/*At some point we will add in ministry information to author byline as well*/
-	//dpm($variables);
+	
+	// Determine if comment is a third order or higher comment and should be indented twice
+	if(is_object($variables['parent_comment'])) {
+		$variables['indent_twice'] = $variables['parent_comment']->hasParentComment();
+	}
+	
 	//Get Timestamp and make our own variable
 	//$variables['createdTime'] = $variables['comment']->getCreatedTime();
 	$variables['atworkCreatedTime'] =  $variables['comment']->getCreatedTime();

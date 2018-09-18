@@ -42,6 +42,7 @@
  * - title_attributes: Same as attributes, except applied to the main title
  *   tag that appears in the template.
  * - threaded: A flag indicating whether the comments are threaded or not.
+ * - indent_twice: determines if comment needs to be indented twice (ie: a reply to a reply)
  *
  * These variables are provided to give context about the parent comment (if
  * any):
@@ -67,7 +68,11 @@
  */
 #}
 
-<article{{ attributes.addClass('js-comment') }}>
+{% if indent_twice %} 
+  <article{{ attributes.addClass(['js-comment', 'indented-2']) }}>
+{% else %}
+  <article{{ attributes.addClass('js-comment') }}>
+{% endif %}
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
     server which comments are new for the user. Rendering the final "new"

@@ -21,6 +21,11 @@ settings:
   provider: core
   label_display: '0'
 visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }
   node_type:
     id: node_type
     bundles:
@@ -28,8 +33,3 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
-  request_path:
-    id: request_path
-    pages: ''
-    negate: true
-    context_mapping: {  }
