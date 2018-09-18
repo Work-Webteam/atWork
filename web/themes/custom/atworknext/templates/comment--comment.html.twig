@@ -88,9 +88,16 @@
 
   <div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
   <div id="comment-block">
-    <div id=""comment-byline">
+  
+  {# set posted on/replied to #}
+  
+  <div id=""comment-byline">
+    {% if is_reply %}
+      {% trans %}{{ author['#content'] }} replied to {{ parent_author|render }} {{ atworkCreatedDate }}:{{ atworkCreatedTime }}{% endtrans %}
+    {% else %}
       {% trans %}{{ author['#content'] }} posted on {{ atworkCreatedDate }}:{{ atworkCreatedTime }}{% endtrans %}
-    </div>
+    {% endif %}
+  </div>
 
     {#
       Indicate the semantic relationship between parent and child comments for

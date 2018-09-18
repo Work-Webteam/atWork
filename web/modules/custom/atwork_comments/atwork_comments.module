@@ -1,6 +1,7 @@
 <?php
 
 use \Drupal\core\Form\FormBuilder;
+use \Drupal\user\Entity\User;
 
 /**
  * @file
@@ -22,6 +23,7 @@ function atworknext_preprocess_comment__comment(&$variables){
 	// Determine if comment is a third order or higher comment and should be indented twice
 	if(is_object($variables['parent_comment'])) {
 		$variables['indent_twice'] = $variables['parent_comment']->hasParentComment();
+		$variables['is_reply'] = TRUE; 
 	}
 	
 	//Get Timestamp and make our own variable
