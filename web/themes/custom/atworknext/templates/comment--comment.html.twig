@@ -87,11 +87,11 @@
   {% set atworkCreatedTime = atworkCreatedTime|format_date('atwork_time') %}
 
   <div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
-  <div id="comment-block">
+  <div id="comment-block" class="expandable">
   
   {# set posted on/replied to #}
   
-  <div id=""comment-byline">
+  <div id="comment-byline">
     {% if is_reply %}
       {% trans %}{{ author['#content'] }} replied to {{ parent_author|render }} {{ atworkCreatedDate }}:{{ atworkCreatedTime }}{% endtrans %}
     {% else %}
