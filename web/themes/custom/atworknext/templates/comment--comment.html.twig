@@ -119,7 +119,11 @@
       {{ content|without('links','field_comment_likes','flag_inappropriate_comment_flag') }}
     </div>
   </div>
-  <div id="comment-links"> {{ content.links }} {{ comment_link|raw }} {{ content.field_comment_likes }} {{ content.flag_inappropriate_comment_flag }}
+  <div id="comment-links"> 
+     {{ content.links }} 
+     {{ comment_link|raw }}
+     <div id="likes">{{ content.field_comment_likes }} {{ like_msg }}</div>
+     {{ content.flag_inappropriate_comment_flag }}
   </div>
 
 </article>

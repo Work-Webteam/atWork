@@ -31,6 +31,58 @@ function atworknext_preprocess_comment__comment(&$variables){
 	$variables['atworkCreatedTime'] =  $variables['comment']->getCreatedTime();
 	//Fix comment permalink text
 	$variables['comment_link'] = str_replace('Permalink','Link', $variables['permalink']);
+	
+	
+	// Remove unlike action (if user has liked the comment)...upon further testing, this may not work
+	if($variables['elements']['likeit']['#action'] = 'unlike') {
+		$variables['elements']['likeit']['#action'] = NULL;
+	}
+	
+	// Check if user has liked this comment.
+	$user = User::load(\Drupal::currentUser()->id());
+	$comment_entity_id = $variables['elements']['#entity']->id();
+	$liked = '';
+	$likes_object = '';
+	
+	try {
+		// Select like history from db
+		$connection = \Drupal::database();
+		$query = $connection->query("Select * from likeit where user_id = " . $user->id() . " and target_entity_id = " . $comment_entity_id);
+		$liked = $query->fetch();
+		
+		$query = $connection->query("Select count(*) as num_likes from likeit where target_entity_id = " . $comment_entity_id);
+		$likes_object = $query->fetch();
+		
+	}
+	catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	
+	$num_likes = $likes_object->num_likes;
+	
+	// Build like message
+	if($liked) {
+	  if($num_likes == 1) {
+	  	$variables['like_msg'] = 'You like this';
+	  }
+	  else if($num_likes == 2) {
+	  	$variables['like_msg'] = 'You and 1 person like this';
+	  }
+	  else if($num_likes > 2) {
+	  	$variables['like_msg'] = 'You and ' . $num_likes . ' people like this';
+	  }
+	} 
+	else if (!$liked) {
+		if($num_likes == 1) {
+			$variables['like_msg'] =  '1 person likes this';
+		}
+		else if($num_likes > 1) {
+			$variables['like_msg'] =  $num_likes. ' people like this';
+		}
+		else {
+			$variables['like_msg'] =  '';
+		}
+	}
 }
 
 
