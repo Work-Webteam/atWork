@@ -18,7 +18,7 @@
     version: '1.7.0',
     defaults: {
       // the number of characters at which the contents will be sliced into two parts.
-      slicePoint: 100,
+      slicePoint: 1000,
 
       // a string of characters at which to slice the contents into two parts,
       // but only if the string appears before slicePoint
@@ -75,9 +75,9 @@
 
       // effects for expanding and collapsing
       expandEffect: 'slideDown',
-      expandSpeed: 250,
+      expandSpeed: 500,
       collapseEffect: 'slideUp',
-      collapseSpeed: 200,
+      collapseSpeed: 400,
 
       // allow the user to re-collapse the expanded text.
       userCollapse: true,
