@@ -10348,8 +10348,9 @@ article .align-right {
   margin-left: 12px;
 }
 
-/* line 99, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 98, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Executive-Message {
+  padding-bottom: 85px;
   border-left: solid 22px #939598;
   border-right: solid 22px #939598;
   max-width: 1140px;
@@ -10390,20 +10391,25 @@ article.Executive-Message .video-embed-field-provider-youtube iframe {
   margin-right: -50vw;
 }
 
-/* line 133, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 132, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.Executive-Message ~ section#block-views-block-comments-new-block-1 {
+  margin-top: -89px !important;
+}
+
+/* line 137, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Video-Article {
   margin-left: auto;
   margin-right: auto;
   overflow-x: hidden;
 }
 
-/* line 137, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 141, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Video-Article .video-embed-field-provider-youtube {
   left: 50%;
   right: 50%;
 }
 
-/* line 140, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 144, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.Video-Article .video-embed-field-provider-youtube iframe {
   min-width: 100vw;
   max-width: 1140px;
@@ -10412,13 +10418,13 @@ article.Video-Article .video-embed-field-provider-youtube iframe {
   margin-right: -50vw;
 }
 
-/* line 148, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 152, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 Honda .poll-view {
   max-width: 730px;
   margin: 0 auto;
 }
 
-/* line 153, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 157, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 Honda .poll-view .field--name-field-title,
 Honda .poll-view .field--name-field-author,
 Honda .poll-view .field--name-field-author-information,
@@ -10428,7 +10434,7 @@ Honda .poll-view .field--name-field-tags {
   display: none;
 }
 
-/* line 162, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 166, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 Honda .poll-view .vote-form > fieldset {
   padding: 0;
   margin-bottom: 10px;
@@ -10436,19 +10442,19 @@ Honda .poll-view .vote-form > fieldset {
   background-color: #e6f2f9;
 }
 
-/* line 163, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 167, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 Honda .poll-view .vote-form > fieldset legend {
   display: none;
 }
 
-/* line 170, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 174, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 Honda .poll-view .vote-form > fieldset .fieldset-wrapper {
   background-color: white;
   padding: 15px;
   margin: 15px;
 }
 
-/* line 176, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 180, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 Honda .poll-view .vote-form #edit-actions {
   text-align: center;
 }
@@ -10457,10 +10463,9 @@ Honda .poll-view .vote-form #edit-actions {
 section[rel~="schema:comment"] {
   background-color: #e6f2f9;
   padding: 3px 25px 15px;
-  margin-bottom: 15px;
 }
 
-/* line 7, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 6, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section[rel~="schema:comment"] h2 {
   color: black;
   text-transform: uppercase;
@@ -10468,12 +10473,12 @@ section[rel~="schema:comment"] h2 {
   font-weight: bold;
 }
 
-/* line 13, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 12, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section[rel~="schema:comment"] .control-label {
   display: none;
 }
 
-/* line 18, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 17, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 {
   max-width: 730px;
   margin: -15px auto 20px;
@@ -10481,21 +10486,21 @@ section#block-views-block-comments-new-block-1 {
   padding: 10px 25px;
 }
 
-/* line 23, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 22, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .field--name-field-edited-comment,
 section#block-views-block-comments-new-block-1 .field--name-field-remove-comment,
 section#block-views-block-comments-new-block-1 .field--name-field-post-as-en-comment {
   display: none;
 }
 
-/* line 28, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 27, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-header {
   display: inline-blockl;
   float: left;
   margin-bottom: 10px;
 }
 
-/* line 32, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 31, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-header h4 {
   display: inline;
   margin-right: 10px;
@@ -10505,7 +10510,7 @@ section#block-views-block-comments-new-block-1 .view-header h4 {
   font-weight: bold;
 }
 
-/* line 40, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 39, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-header > #comment-count {
   display: inline-block;
   width: auto;
@@ -10517,24 +10522,24 @@ section#block-views-block-comments-new-block-1 .view-header > #comment-count {
   text-align: center;
 }
 
-/* line 51, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 50, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-filters {
   display: inline-block;
   float: right;
 }
 
-/* line 54, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 53, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-filters .control-label, section#block-views-block-comments-new-block-1 .view-filters .form-item-sort-by {
   display: none;
 }
 
-/* line 57, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 56, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-filters .form-control {
   font-size: 12px;
   text-transform: uppercase;
 }
 
-/* line 62, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 61, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content {
   display: block;
   clear: both;
@@ -10546,36 +10551,42 @@ section#block-views-block-comments-new-block-1 .view-content {
   border-right: solid 1px #939598;
 }
 
-/* line 71, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row {
   margin-top: 10px;
   border-bottom: solid 1px #939598;
 }
 
-/* line 74, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 73, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row:last-of-type {
   border-bottom: none;
 }
 
-/* line 77, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 76, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row p:first-of-type {
   font-weight: bold;
 }
 
-/* line 80, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 79, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row .indented {
   padding-left: 55px;
   padding-right: 25px;
 }
 
-/* line 83, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 82, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+section#block-views-block-comments-new-block-1 .view-content .views-row .indented .indented-2 {
+  padding-left: 55px;
+}
+
+/* line 85, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row .indented #comment-block {
   background-color: #eeefef;
   border: solid 1px #939598;
   padding: 12px;
+  margin-bottom: 10px;
 }
 
-/* line 89, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 92, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row #comment-avatar {
   display: block;
   border: solid 3px #0080c7;
@@ -10588,32 +10599,43 @@ section#block-views-block-comments-new-block-1 .view-content .views-row #comment
   float: left;
 }
 
-/* line 100, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
-section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block {
+/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block,
+section#block-views-block-comments-new-block-1 .view-content .views-row #comment-links {
   margin-left: 70px;
 }
 
-/* line 105, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 108, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block article.likeit {
+  top: 30px;
+}
+
+/* line 112, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+section#block-views-block-comments-new-block-1 .view-content .views-row .indented #comment-block article.likeit {
+  top: 52px;
+}
+
+/* line 117, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .csv-feed .feed-icon {
   background-repeat: no-repeat;
   padding-left: 40px;
   color: transparent;
 }
 
-/* line 109, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 121, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .csv-feed .feed-icon:hover {
   background-color: transparent;
   color: transparent;
 }
 
-/* line 114, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 126, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 section#block-views-block-comments-new-block-1 .comment-delete, section#block-views-block-comments-new-block-1 .comment-edit {
   position: relative;
   top: 25px;
   left: 70px;
 }
 
-/* line 123, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 135, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view,
 body.path-poll .poll {
   max-width: 730px;
@@ -10621,7 +10643,7 @@ body.path-poll .poll {
   padding-bottom: 15px;
 }
 
-/* line 128, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 140, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view .field--name-field-title,
 body.path-poll .poll .field--name-field-title {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -10631,26 +10653,26 @@ body.path-poll .poll .field--name-field-title {
   margin: 10px 0 5px;
 }
 
-/* line 135, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 147, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view a[property="schema:name"],
 body.path-poll .poll a[property="schema:name"] {
   font-weight: bold;
 }
 
-/* line 138, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 150, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view .field--type-text-with-summary,
 body.path-poll .poll .field--type-text-with-summary {
   margin: 15px 0;
 }
 
-/* line 141, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 153, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view div[id^="edit-actions"],
 body.path-poll .poll div[id^="edit-actions"] {
   text-align: center;
   margin: 10px 0;
 }
 
-/* line 146, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 158, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view-form {
   clear: both;
   background-color: #e6f2f9;
@@ -10665,27 +10687,81 @@ body.path-poll .poll-view-form {
   padding-bottom: 25px;
 }
 
-/* line 158, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 170, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view-form legend {
   display: none;
 }
 
-/* line 161, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 173, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .poll-view-form #printBtn {
   margin-left: 100px;
 }
 
-/* line 166, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
-body.path-poll .poll-view-form .poll dt:nth-child(4n+1) + dd .foreground {
-  background-color: #2bbec8;
-}
-
-/* line 171, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
-body.path-poll .poll-view-form .poll dt:nth-child(4n+3) + dd .foreground {
-  background-color: #0080c7;
-}
-
 /* line 177, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll dd.choice-result {
+  margin-bottom: 10px;
+}
+
+/* line 180, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll .bar {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-color: white;
+  border: solid 1px #939598;
+  max-width: 90%;
+}
+
+/* line 189, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll dt:nth-child(1n+0) + dd .foreground {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #2bbec8;
+  height: 12px;
+}
+
+/* line 198, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll dt:nth-child(2n+1) + dd .foreground {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-color: black;
+  height: 12px;
+}
+
+/* line 207, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll dt:nth-child(3n+2) + dd .foreground {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #41ad49;
+  height: 12px;
+}
+
+/* line 216, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll dt:nth-child(4n+3) + dd .foreground {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #0080c7;
+  height: 12px;
+}
+
+/* line 224, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+body.path-poll .poll-view-form .poll .percent {
+  display: inline-block;
+  float: right;
+  margin-top: -25px;
+  border: solid 2px #0080c7;
+  font-size: .9em;
+  min-width: 35px;
+  padding: 6px 0 4px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+/* line 236, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll .atwork_poll_box,
 body.path-poll .poll {
   max-width: 730px;
@@ -10695,7 +10771,7 @@ body.path-poll .poll {
   border: solid 10px #419cd2;
 }
 
-/* line 185, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
+/* line 244, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_forms.scss */
 body.path-poll h3.poll-question {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: bold;
@@ -11084,6 +11160,14 @@ body.path-poll .field--name-field-poll-likes {
 }
 
 /* line 54, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+article .social-bar #printBtn,
+body.path-poll #printBtn {
+  position: relative;
+  left: 350px;
+  top: 2px;
+}
+
+/* line 59, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar li.forward:before,
 body.path-poll li.forward:before {
   display: inline-block;
@@ -11092,7 +11176,15 @@ body.path-poll li.forward:before {
   margin-right: 5px;
 }
 
-/* line 60, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 65, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+article .social-bar .flag-inappropriate-poll-flag,
+body.path-poll .flag-inappropriate-poll-flag {
+  position: relative;
+  left: 0px;
+  bottom: 51px;
+}
+
+/* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .flag-inappropriate:before,
 article .social-bar .flag-inappropriate-poll-flag:before,
 body.path-poll .flag-inappropriate:before,
@@ -11105,20 +11197,28 @@ body.path-poll .flag-inappropriate-poll-flag:before {
   vertical-align: top;
 }
 
-/* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 79, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar li.statistics-counter:before,
-article .social-bar #poll_hit_counter:before,
+article .social-bar #poll_views:before,
 body.path-poll li.statistics-counter:before,
-body.path-poll #poll_hit_counter:before {
+body.path-poll #poll_views:before {
   display: inline-block;
   content: url("../images/reads-icon.svg");
   width: 16px;
-  margin-right: 5px;
   margin-top: 1px;
   vertical-align: top;
 }
 
-/* line 81, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 87, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+article .social-bar #poll_views,
+body.path-poll #poll_views {
+  position: relative;
+  width: 65px;
+  bottom: 25px;
+  left: 160px;
+}
+
+/* line 95, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .field--name-field-article-likes .field--item a:hover,
 body.path-poll .field--name-field-article-likes .field--item a:hover {
   text-decoration: underline;
@@ -11126,7 +11226,7 @@ body.path-poll .field--name-field-article-likes .field--item a:hover {
   color: inherit;
 }
 
-/* line 87, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 101, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .flag-inappropriate,
 article .social-bar .flag-inappropriate-poll-flag,
 article .social-bar .links.inline.list-inline,
@@ -11137,7 +11237,7 @@ body.path-poll .links.inline.list-inline {
   margin-right: 10px;
 }
 
-/* line 92, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 106, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .flag-inappropriate a:hover,
 article .social-bar .flag-inappropriate-poll-flag a:hover,
 article .social-bar .links.inline.list-inline a:hover,
@@ -11149,55 +11249,43 @@ body.path-poll .links.inline.list-inline a:hover {
   background: none;
 }
 
-/* line 102, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
-body.path-poll .flag-inappropriate-poll-flag {
-  position: relative;
-  left: -50px;
-}
-
-/* line 106, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 114, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 body.path-poll ul.list-inline {
   position: relative;
-  left: 160px;
+  left: 230px;
   bottom: -82px;
 }
 
-/* line 111, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
-body.path-poll #printBtn {
-  position: relative;
-  left: 290px;
-  top: 2px;
-}
-
-/* line 119, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 122, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 ul.list-inline {
   display: inline;
 }
 
-/* line 122, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 125, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 li.forward {
   position: relative;
   top: 25px;
-  left: 135px;
+  left: 120px;
 }
 
-/* line 126, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 129, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 li.forward a {
   color: transparent;
 }
 
-/* line 128, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 131, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 li.forward a:before {
   content: "Email";
   color: #0080c7;
 }
 
-/* line 134, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 137, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 .indented li.forward {
-  top: 38px;
+  top: 48px;
+  left: 105px;
 }
 
-/* line 137, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 141, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 li.forward:before {
   display: inline-block;
   content: url("../images/forward-icon.svg");
@@ -11205,20 +11293,20 @@ body.path-poll #printBtn {
   margin-right: 5px;
 }
 
-/* line 143, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 147, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 .flag-inappropriate-comment-flag {
   position: relative;
   top: -25px;
-  left: 270px;
+  left: 190px;
   width: 170px;
 }
 
-/* line 149, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 153, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 .indented .flag-inappropriate-comment-flag {
-  left: 290px;
+  left: 180px;
 }
 
-/* line 152, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 156, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 .flag-inappropriate-comment-flag:before {
   display: inline-block;
   content: url("../images/flag-icon.svg");
@@ -11227,7 +11315,7 @@ body.path-poll #printBtn {
   vertical-align: top;
 }
 
-/* line 159, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 163, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 li.comment-reply:before {
   display: inline-block;
   content: url("../images/reply-arrow.svg");
@@ -11237,7 +11325,7 @@ body.path-poll #printBtn {
   vertical-align: top;
 }
 
-/* line 168, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 172, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #block-views-block-comments-new-block-1 #comment-links > a:before {
   display: inline-block;
   content: url("../images/link.svg");
@@ -11247,19 +11335,19 @@ body.path-poll #printBtn {
   vertical-align: top;
 }
 
-/* line 180, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 184, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article.likeit {
   display: inline;
   float: right;
   position: relative;
 }
 
-/* line 184, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 188, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article.likeit .likeit-title {
   display: none;
 }
 
-/* line 187, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 191, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article.likeit .likeit-count:before {
   display: inline-block;
   content: url("../images/like-icon.svg");
@@ -11267,8 +11355,6 @@ article.likeit .likeit-count:before {
   margin-right: 5px;
 }
 
-/* Placement of social tags at the bottom of pages with polls. These pages are not regular content
-types and as such require seperate placement vallues */
 /* Site Wide profile CSS */
 /* Exevutive Profiles */
 /* line 3, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_ckeditor-styles.scss */

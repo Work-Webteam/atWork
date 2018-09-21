@@ -78,7 +78,6 @@
     {% endif %}
   </div>
 <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
-<div id="poll_hit_counter"> 
-{% trans %}{{ poll_views }} Views{% endtrans %}
-<div>
+<div id="poll_hit_counter"></div>
+<div id="poll_views">{% trans %}{{ poll_views }} Views{% endtrans %}</div>
 {% endif %}

@@ -3,7 +3,6 @@
 section[rel~="schema:comment"] {
     background-color:$comment-blue;
     padding: 3px 25px 15px;
-    margin-bottom:15px;
     h2 { //Add your comment title
         color:$black;
         text-transform: uppercase;
@@ -80,10 +79,14 @@ section#block-views-block-comments-new-block-1 {
       .indented {
           padding-left:55px;
           padding-right:25px;
+          .indented-2 {
+            padding-left: 55px;
+          }
           #comment-block {
             background-color: lighten($exec-greyborder, 35);
             border:solid 1px $exec-greyborder;
             padding:12px;
+            margin-bottom:10px;
           }
       }
       #comment-avatar {
@@ -97,8 +100,17 @@ section#block-views-block-comments-new-block-1 {
         height:60px;
         float:left;
       }
-      #comment-block {
+      #comment-block,
+      #comment-links {
         margin-left: 70px;
+      }
+      #comment-block {
+        article.likeit {
+          top:30px;
+        }
+      }
+      .indented #comment-block article.likeit {
+        top:52px;
       }
     }
   }
@@ -162,15 +174,62 @@ body.path-poll {
       margin-left: 100px;
     }
     .poll {
-      dt:nth-child(4n+1) + dd {
+      dd.choice-result {
+        margin-bottom:10px;
+      }
+      .bar {
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        background-color: $white;
+        border:solid 1px $exec-greyborder;
+        max-width: 90%;
+      }
+      dt:nth-child(1n+0) + dd {
         .foreground {
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          border-radius: 8px;
           background-color:$poll-blue;
+          height:12px;
+        }
+      }
+      dt:nth-child(2n+1) + dd {
+        .foreground {
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          border-radius: 8px;
+          background-color:$black;
+          height:12px;
+        }
+      }
+      dt:nth-child(3n+2) + dd {
+        .foreground {
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          border-radius: 8px;
+          background-color:$poll-green;
+          height:12px;
         }
       }
       dt:nth-child(4n+3) + dd {
         .foreground {
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          border-radius: 8px;
           background-color:$link-blue;
+          height:12px;
         }
+      }
+      .percent {
+        display: inline-block;
+        float:right;
+        margin-top:-25px;
+        border:solid 2px $link-blue;font-size: .9em;
+        min-width: 35px;
+        padding: 6px 0 4px;
+        text-align: center;
+        border-radius: 50%;
       }
     }
   }
