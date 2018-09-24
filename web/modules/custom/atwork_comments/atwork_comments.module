@@ -19,6 +19,17 @@ use \Drupal\user\Entity\User;
  */
 function atworknext_preprocess_comment__comment(&$variables){
 	/*At some point we will add in ministry information to author byline as well*/
+
+	$comment = \Drupal::entityTypeManager()->getStorage('comment')->load($variables['elements']['#comment']->id());
+	if($comment->get('field_edited_comment')->getValue()[0]['value'] == 1) {
+	  // Append to comment: [Editor's note: This comment has been edited to comply with @Work Terms of Use.)]
+		$variables['content']['comment_body'][0]['#text'] = $variables['content']['comment_body'][0]['#text'] . "<p><em>Editor's note: This comment has been <strong>edited</strong> to comply with @Work Terms of Use.)</em><p>";
+	}
+
+	if($comment->get('field_remove_comment')->getValue()[0]['value'] == 1) {
+	  // Replace comment with: [Editor's note: This comment has been removed to comply with @Work Terms of Use.)]
+		$variables['content']['comment_body'][0]['#text'] = "<p><em>Editor's note: This comment has been <strong>removed</strong> to comply with @Work Terms of Use.)</em><p>";
+	}
 	
 	// Determine if comment is a third order or higher comment and should be indented twice
 	if(is_object($variables['parent_comment'])) {
@@ -27,16 +38,9 @@ function atworknext_preprocess_comment__comment(&$variables){
 	}
 	
 	//Get Timestamp and make our own variable
-	//$variables['createdTime'] = $variables['comment']->getCreatedTime();
 	$variables['atworkCreatedTime'] =  $variables['comment']->getCreatedTime();
 	//Fix comment permalink text
 	$variables['comment_link'] = str_replace('Permalink','Link', $variables['permalink']);
-	
-	
-	// Remove unlike action (if user has liked the comment)...upon further testing, this may not work
-	if($variables['elements']['likeit']['#action'] = 'unlike') {
-		$variables['elements']['likeit']['#action'] = NULL;
-	}
 	
 	// Check if user has liked this comment.
 	$user = User::load(\Drupal::currentUser()->id());
@@ -114,6 +118,13 @@ function atwork_comments_form_comment_comment_form_alter(&$form, \Drupal\Core\Fo
 		$form['#attached']['library'][] = 'atwork_comments/atwork_comments';
 	}
 	
+	// Add custom submit handler 
+	foreach (array_keys($form['actions']) as $action) {
+		if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+			$form['actions'][$action]['#submit'][] = 'atwork_comments_form_submit';
+		}
+	}
+	
 	// *only admins should be able to access some fields
 	$user = \Drupal::currentUser();
 	$uid = \Drupal::currentUser()->id();
@@ -123,7 +134,14 @@ function atwork_comments_form_comment_comment_form_alter(&$form, \Drupal\Core\Fo
 		$form['field_edited_comment']['#access'] = FALSE;
 		$form['field_remove_comment']['#access'] = FALSE;
 	} 
+}
 
+/**
+ * Implements hook_form_alter
+ * 
+ */
+function atwork_comments_form_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
 	// TODO: We need to save a comment as Employee News if a specific checkbox is marked.
-
+	
+	
 }
