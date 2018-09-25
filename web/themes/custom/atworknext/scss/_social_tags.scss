@@ -34,7 +34,8 @@ body.path-poll .field--name-field-tags {
   }
 }
 
-// Hide the Dislike button
+// Hide the Like/Dislike button due to Brendan's code adjustment to display You like this etc
+#block-views-block-comments-new-block-1 .likeit.likeit-wrapper,
 .like_dislike .dislike {
     display: none;
 }
@@ -125,7 +126,7 @@ body.path-poll {
   li.forward {
     position: relative;
     top:25px;
-    left:120px;
+    left:270px;
     a {
       color:transparent;
       &:before {
@@ -147,7 +148,7 @@ body.path-poll {
   .flag-inappropriate-comment-flag {
     position: relative;
     top:-25px;
-    left:190px;
+    left:200px;
     width:170px;
   }
   .indented .flag-inappropriate-comment-flag {
@@ -181,14 +182,11 @@ body.path-poll {
 }
 
 // Specific styling for the LikeIt module used on Comments
-article.likeit {
+#likes {
   display:inline;
   float:right;
   position:relative;
-  .likeit-title {
-    display:none;
-  }
-  .likeit-count:before {
+  &:before {
     display: inline-block;
     content:url("../images/like-icon.svg");
     width:16px;
