@@ -21,14 +21,17 @@ function atworknext_preprocess_comment__comment(&$variables){
 	/*At some point we will add in ministry information to author byline as well*/
 
 	$comment = \Drupal::entityTypeManager()->getStorage('comment')->load($variables['elements']['#comment']->id());
-	if($comment->get('field_edited_comment')->getValue()[0]['value'] == 1) {
-	  // Append to comment: [Editor's note: This comment has been edited to comply with @Work Terms of Use.)]
-		$variables['content']['comment_body'][0]['#text'] = $variables['content']['comment_body'][0]['#text'] . "<p><em>Editor's note: This comment has been <strong>edited</strong> to comply with @Work Terms of Use.)</em><p>";
+	if(isset($comment->get('field_edited_comment')->getValue()[0]['value'])){
+	  if($comment->get('field_edited_comment')->getValue()[0]['value'] == 1) {
+	    // Append to comment: [Editor's note: This comment has been edited to comply with @Work Terms of Use.)]
+	  	$variables['content']['comment_body'][0]['#text'] = $variables['content']['comment_body'][0]['#text'] . "<p><em>Editor's note: This comment has been <strong>edited</strong> to comply with @Work Terms of Use.)</em></p>";
+	  }
 	}
-
-	if($comment->get('field_remove_comment')->getValue()[0]['value'] == 1) {
-	  // Replace comment with: [Editor's note: This comment has been removed to comply with @Work Terms of Use.)]
-		$variables['content']['comment_body'][0]['#text'] = "<p><em>Editor's note: This comment has been <strong>removed</strong> to comply with @Work Terms of Use.)</em><p>";
+	if(isset($comment->get('field_remove_comment')->getValue()[0]['value'])){
+	  if($comment->get('field_remove_comment')->getValue()[0]['value'] == 1) {
+	    // Replace comment with: [Editor's note: This comment has been removed to comply with @Work Terms of Use.)]
+	  	$variables['content']['comment_body'][0]['#text'] = "<p><em>Editor's note: This comment has been <strong>removed</strong> to comply with @Work Terms of Use.)</em></p>";
+	  }
 	}
 	
 	// Determine if comment is a third order or higher comment and should be indented twice
