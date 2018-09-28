@@ -107,7 +107,10 @@
 	"patches": {
 	    "drupal/like_dislike": {
 	        "Fixing error where like/dislike module was searching for language": "https://www.drupal.org/files/issues/2832520-php-notice-undefined-index-in-multilingual.patch"
-	    }
+	    },
+	    "drupal/devel": {
+	        "Fixing kint issue": "https://www.drupal.org/files/issues/devel.ksm_.2857361.18.patch"
+            }
 	}
     }
 }

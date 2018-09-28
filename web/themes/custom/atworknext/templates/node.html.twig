@@ -126,14 +126,14 @@
     {{ content.field_tags }}
     {# Social bar is our default link block #}
     <div class="social-bar">
-      <ul>
+      <ul class="footer-links">
         {# This is a placeholder for the subscribe link when it is availabel #}
         <li> Subscribe </li>
-        <li> <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div> </li>
+        <li> <div id="printBtn" class="printer-button"><input onclick="window.print()" type="button" value="Print" /></div> </li>
         {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have forward/link functions #}
         <li>
           {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}      
-          <input type="button" data-toggle="modal" data-target="#dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/>
+          <input class="share-link-holder" type="button" data-toggle="modal" data-target="#dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/>
           {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
           <div id="dialog-share" class="modal fade" tabindex="-1" role="dialog" >
             {# We only want the forward and the link link in this bundle to print out #}

@@ -110,7 +110,7 @@
 
 
     <div{{ content_attributes }}>
-    {# No display title
+      {# No display title
       {% if title %}
         {{ title_prefix }}
         <h3{{ title_attributes }}>{{ title }}</h3>
@@ -121,9 +121,21 @@
   </div>
   <div id="comment-links" class="comment-links-div"> 
     <ul class="comment-link-list">
-      <li> {{ content.forward }} </li>
       <li> {{ content.links }} </li>
-      <li> {{ comment_link|raw }} </li>
+      <li>
+        {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}     
+        <input class="share-link-holder" type="button" data-toggle="modal" data-target="#{{uuid}}-dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/>
+        {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
+        <div id="{{uuid}}-dialog-share" class="modal fade" tabindex="-1" role="dialog" >
+          {# We only want the forward and the link link in this bundle to print out #}
+          <ul>
+            <li class="forward">{{ content.forward }}</li>
+            {# The Full path variable is used to mark an absolute URL. This is built in atwork_comments.module #}
+            <li class="comment-text-link "><input type="text" class="allowCopy allow-copy" name="link-text" value="{{ full_path }}"/>
+            <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
+          </ul>
+        </div>
+      </li>
       <li> {{ content.flag_inappropriate_comment_flag }} </li>
       <li> {{ content.likeit }} {{ like_msg }} </li>
     </ul>
