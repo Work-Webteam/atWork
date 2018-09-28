@@ -49,6 +49,13 @@ module:
   link: 0
   media: 0
   menu_ui: 0
+  message: 0
+  message_digest: 0
+  message_digest_ui: 0
+  message_notify: 0
+  message_subscribe: 0
+  message_subscribe_email: 0
+  message_subscribe_ui: 0
   module_filter: 0
   node: 0
   options: 0

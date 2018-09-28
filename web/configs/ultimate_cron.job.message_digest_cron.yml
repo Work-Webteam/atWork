@@ -1,0 +1,17 @@
+uuid: 2a3f199e-ec53-4cfe-9664-f0a1bfa72338
+langcode: en
+status: true
+dependencies:
+  module:
+    - message_digest
+title: 'Default cron handler'
+id: message_digest_cron
+weight: 0
+module: message_digest
+callback: message_digest_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
