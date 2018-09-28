@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
+    - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_image
     - field.field.node.article.field_interactive_content
     - field.field.node.article.field_tags
@@ -40,7 +41,7 @@ content:
     label: hidden
   comment:
     type: comment_default
-    weight: 12
+    weight: 11
     region: content
     label: hidden
     settings:
@@ -48,14 +49,14 @@ content:
       pager_id: 0
     third_party_settings: {  }
   field_article_type:
-    weight: 10
+    weight: 9
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_attachments:
-    weight: 8
+    weight: 7
     label: above
     settings:
       use_description_as_link_text: true
@@ -63,7 +64,7 @@ content:
     type: file_default
     region: content
   field_author_information:
-    weight: 7
+    weight: 6
     label: hidden
     settings:
       link: true
@@ -80,7 +81,7 @@ content:
     third_party_settings: {  }
     label: hidden
   field_interactive_content:
-    weight: 11
+    weight: 10
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -95,7 +96,7 @@ content:
       link: true
     third_party_settings: {  }
   field_video:
-    weight: 9
+    weight: 8
     label: hidden
     settings:
       responsive: true
@@ -106,19 +107,20 @@ content:
     type: video_embed_field_video
     region: content
   flag_inappropriate:
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   likeit:
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_custom_teaser: true
   rate_vote_widget: true

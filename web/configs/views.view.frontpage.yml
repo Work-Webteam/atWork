@@ -10,9 +10,9 @@ dependencies:
     - image.style.medium
     - taxonomy.vocabulary.tags
   content:
-    - 'taxonomy_term:tags:60557cd8-54e7-430c-8c50-927a30755179'
-    - 'taxonomy_term:tags:7fde3495-5b93-4960-9b73-031be3e49d4c'
-    - 'taxonomy_term:tags:b0e19c89-9866-474d-bfec-86c373ea0c7b'
+    - 'taxonomy_term:tags:2b905a63-ce1a-499b-b412-e4ad1fa979d1'
+    - 'taxonomy_term:tags:3dabf1b0-80e6-4ea8-9771-bd99d5810272'
+    - 'taxonomy_term:tags:c454d297-d9ab-4ce8-8b77-d570f1a639e6'
   module:
     - image
     - node
@@ -382,9 +382,9 @@ display:
           admin_label: ''
           operator: or
           value:
-            - 6
-            - 7
-            - 15
+            - 12
+            - 13
+            - 17
           group: 1
           exposed: false
           expose:

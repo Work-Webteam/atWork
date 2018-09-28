@@ -8,6 +8,7 @@ dependencies:
     - field.field.poll.poll.field_author_image
     - field.field.poll.poll.field_author_information
     - field.field.poll.poll.field_body
+    - field.field.poll.poll.field_custom_teaser
     - field.field.poll.poll.field_images
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
@@ -36,6 +37,13 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_custom_teaser:
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_images:
     weight: -99
     label: hidden
@@ -64,6 +72,8 @@ content:
   flag_inappropriate_poll_flag:
     weight: 10
     region: content
+    settings: {  }
+    third_party_settings: {  }
   poll_votes:
     weight: -95
     region: content
