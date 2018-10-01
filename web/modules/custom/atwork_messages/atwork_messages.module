@@ -1,0 +1,20 @@
+<?php
+
+use Drupal\node\NodeInterface;
+
+/**
+ * @file
+ * Primary module hooks for atwork_messages module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node entities.
+ * 
+ */
+function atwork_messages_node_insert(NodeInterface $node) {
+	kint($node);
+}
