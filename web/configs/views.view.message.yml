@@ -486,6 +486,12 @@ display:
           entity_type: message
           entity_field: created
           plugin_id: date
+        message_ui_contextual_links:
+          id: message_ui_contextual_links
+          table: message
+          field: message_ui_contextual_links
+          entity_type: message
+          label: Operations
       filters:
         template:
           id: template

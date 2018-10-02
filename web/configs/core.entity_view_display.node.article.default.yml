@@ -105,11 +105,21 @@ content:
     third_party_settings: {  }
     type: video_embed_field_video
     region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   flag_inappropriate:
     weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   likeit:
     weight: 5
     region: content

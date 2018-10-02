@@ -1,0 +1,15 @@
+theme: current
+defaults:
+  sender: mime_mail
+  formatter: mime_mail
+_core:
+  default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
+modules:
+  message_digest:
+    none:
+      formatter: mime_mail
+      sender: mime_mail
+  message_notify:
+    none:
+      formatter: mime_mail
+      sender: mime_mail

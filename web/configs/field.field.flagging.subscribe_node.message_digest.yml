@@ -1,0 +1,21 @@
+uuid: 7b11d69b-7108-4cab-9cdc-706ee9221341
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.flagging.message_digest
+    - flag.flag.subscribe_node
+  module:
+    - options
+id: flagging.subscribe_node.message_digest
+field_name: message_digest
+entity_type: flagging
+bundle: subscribe_node
+label: 'Notification interval'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

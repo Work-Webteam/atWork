@@ -17,9 +17,7 @@ label: 'Message digest interval'
 description: 'This will change how frequently message notifications are delivered.'
 required: true
 translatable: false
-default_value:
-  -
-    value: '0'
+default_value: {  }
 default_value_callback: ''
 settings: {  }
 field_type: list_string
