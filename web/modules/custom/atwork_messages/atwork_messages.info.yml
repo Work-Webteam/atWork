@@ -1,0 +1,7 @@
+name: Atwork Message
+type: module
+description: AtworkNext site-specific customizations for message creation
+package: Custom
+core: 8.x
+dependencies:
+  - message

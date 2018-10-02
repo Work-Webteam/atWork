@@ -1,0 +1,52 @@
+<?php
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\message\Entity\Message;
+
+/**
+ * @file
+ * Primary module hooks for atwork_messages module.
+ *
+ * @DCG
+ * This file is no longer required in Drupal 8.
+ * @see https://www.drupal.org/node/2217931
+ */
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for node entities.
+ * 
+ */
+function atwork_messages_node_insert(NodeInterface $node) {
+	kint($node);
+	// Check for entity type, published value and create message 
+	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
+	  // Create Message for Article node
+		atwork_messages_create_message($node);
+	}
+	
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for node entities.
+ *
+ */
+function atwork_messages_node_update(NodeInterface $node) {
+	kint(35);
+	// Check for entity type, published value and create message
+	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
+		// Create Message for Article node
+		atwork_messages_create_message($node);
+	}
+}
+
+/**
+ * Implements message-stack message creation for subscriptions.
+ *  
+ */
+function atwork_messages_create_message(NodeInterface $node) {
+	// Build subscription message
+	$message = Message::create(['template' => 'node_subscriptions_message', 'uid' => $node->getOwnerId()]);
+	$message->set('field_node_ref', $node);
+	$message->save();
+}
