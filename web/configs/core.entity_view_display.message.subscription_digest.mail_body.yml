@@ -5,6 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.message.mail_body
     - message.template.subscription_digest
+  module:
+    - user
 id: message.subscription_digest.mail_body
 targetEntityType: message
 bundle: subscription_digest

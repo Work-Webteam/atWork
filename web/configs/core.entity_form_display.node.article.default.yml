@@ -8,6 +8,8 @@ dependencies:
     - field.field.node.article.field_article_type
     - field.field.node.article.field_attachments
     - field.field.node.article.field_author_information
+    - field.field.node.article.field_development_tags
+    - field.field.node.article.field_editor_tags
     - field.field.node.article.field_image
     - field.field.node.article.field_interactive_content
     - field.field.node.article.field_tags
@@ -73,6 +75,24 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
+  field_development_tags:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_editor_tags:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_image:
     type: image_widget_crop
     weight: 4
@@ -96,7 +116,7 @@ content:
     type: h5p_editor
     region: content
   field_tags:
-    type: entity_reference_autocomplete_tags
+    type: entity_reference_autocomplete
     weight: 7
     region: content
     settings:
@@ -110,6 +130,13 @@ content:
     third_party_settings: {  }
     type: video_embed_field_textfield
     region: content
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
   path:
     type: path
     weight: 15

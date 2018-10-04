@@ -20,6 +20,7 @@ permissions:
   - 'cast rate vote on comment of comment'
   - 'cast rate vote on node of article'
   - 'cast rate vote on poll of poll'
+  - 'create article content'
   - 'edit own comments'
   - 'flag inappropriate'
   - 'flag inappropriate_comment_flag'
@@ -34,3 +35,4 @@ permissions:
   - 'use text format restricted_html'
   - 'view media'
   - 'view post access counter'
+  - 'view terms in tags_community'
