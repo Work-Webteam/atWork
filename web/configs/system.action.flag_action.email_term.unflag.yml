@@ -1,0 +1,13 @@
+uuid: 003ebdf6-891f-4f9d-96f1-1577f83169d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.email_term.unflag
+label: 'Don''t send email'
+type: taxonomy_term
+plugin: 'flag_action:email_term.unflag'
+configuration:
+  flag_id: email_term
+  flag_action: unflag

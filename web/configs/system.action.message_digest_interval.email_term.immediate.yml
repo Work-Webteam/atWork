@@ -1,0 +1,15 @@
+uuid: e6191d0c-7bbe-4481-8799-dec64d9d9e9b
+langcode: en
+status: true
+dependencies:
+  module:
+    - message_digest_ui
+_core:
+  default_config_hash: pGk4ICS7REo3zkRNRwaemvNUd1FRc6FUBHHQdRLB81o
+id: message_digest_interval.email_term.immediate
+label: 'Send notifications immediately'
+type: taxonomy_term
+plugin: 'message_digest_interval:email_term.immediate'
+configuration:
+  flag_id: email_term
+  value: '0'

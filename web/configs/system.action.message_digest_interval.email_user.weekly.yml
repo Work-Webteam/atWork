@@ -1,0 +1,15 @@
+uuid: 2cbdc631-3c4f-4482-b41b-1297c7c3e185
+langcode: en
+status: true
+dependencies:
+  module:
+    - message_digest_ui
+_core:
+  default_config_hash: 2VZNCIVcloeDMUhFXl-r85yQGN_PL0XdvxJ_-GlKqAc
+id: message_digest_interval.email_user.weekly
+label: 'Send notifications weekly'
+type: user
+plugin: 'message_digest_interval:email_user.weekly'
+configuration:
+  flag_id: email_user
+  value: 'message_digest:weekly'

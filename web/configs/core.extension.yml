@@ -43,12 +43,23 @@ module:
   inline_form_errors: 0
   insert: 0
   kint: 0
+  language: 0
   libraries: 0
   like_dislike: 0
   likeit: 0
   link: 0
+  mailsystem: 0
   media: 0
   menu_ui: 0
+  message: 0
+  message_digest: 0
+  message_digest_ui: 0
+  message_notify: 0
+  message_subscribe: 0
+  message_subscribe_email: 0
+  message_subscribe_ui: 0
+  message_ui: 0
+  mimemail: 0
   module_filter: 0
   node: 0
   options: 0
@@ -60,6 +71,7 @@ module:
   rdf: 0
   responsive_image: 0
   rest: 0
+  rules: 0
   scheduler: 0
   search: 0
   serialization: 0
@@ -69,11 +81,14 @@ module:
   syslog: 0
   system: 0
   taxonomy: 0
+  taxonomy_manager: 0
+  taxonomy_permissions: 0
   telephone: 0
   tether_stats: 0
   text: 0
   toolbar: 0
   tour: 0
+  typed_data: 0
   ultimate_cron: 0
   update: 0
   user: 0
