@@ -1,14 +1,14 @@
-uuid: 076c53ad-f437-4c9f-a389-83219360aaba
+uuid: d9245fab-062f-4420-a156-f8acb8c42afb
 langcode: en
 status: true
 dependencies:
   module:
-    - message_digest
+    - atwork_messages
 title: 'Default cron handler'
-id: message_digest_cron
+id: atwork_messages_cron
 weight: 0
-module: message_digest
-callback: message_digest_cron
+module: atwork_messages
+callback: atwork_messages_cron
 scheduler:
   id: simple
 launcher:

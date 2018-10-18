@@ -3,36 +3,37 @@
 use Drupal\node\NodeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\message\Entity\Message;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Mail\MailManagerInterface;
 
 /**
  * @file
  * Primary module hooks for atwork_messages module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
  */
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for node entities.
- * 
  */
 function atwork_messages_node_insert(NodeInterface $node) {
-	kint($node);
 	// Check for entity type, published value and create message 
 	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
 	  // Create Message for Article node
 		atwork_messages_create_message($node);
 	}
-	
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_insert() for comments.
+ */
+function atwork_messages_comment_insert(Comment $comment) {
+	// Get comment & node and pass it to the create message?
+}
+
+
+/**
  * Implements hook_ENTITY_TYPE_update() for node entities.
- *
  */
 function atwork_messages_node_update(NodeInterface $node) {
-	kint(35);
 	// Check for entity type, published value and create message
 	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
 		// Create Message for Article node
@@ -41,12 +42,130 @@ function atwork_messages_node_update(NodeInterface $node) {
 }
 
 /**
- * Implements message-stack message creation for subscriptions.
- *  
+ * Implements hook_ENTITY_TYPE_update() for comments.
+ */
+function atwork_messages_comment_update(Comment $comment) {
+	// Get comment & node and pass it to the create message?
+}
+
+/**
+ * Implements message creation for subscriptions.
  */
 function atwork_messages_create_message(NodeInterface $node) {
+	
 	// Build subscription message
-	$message = Message::create(['template' => 'node_subscriptions_message', 'uid' => $node->getOwnerId()]);
+	$message = Message::create(['template' => 'subscription_digest', 'uid' => $node->getOwnerId()]);
 	$message->set('field_node_ref', $node);
+	
+	// Must save message to get mid (message ID)
 	$message->save();
+	
+	$immediate_subs = atwork_messages_get_subscribers('0');
+	atwork_messages_send_notifications($immediate_subs);
+	
+	
+	//$options = array();
+	//$notifier = \Drupal::service('message_notify.sender');
+	//$notifier->send($message, $options, 'message_digest:weekly');
+	//$notifier->send($message, $options);
 }
+
+/**
+ * Implements hook_cron().
+ */
+function atwork_messages_cron() {
+	// Immediate notifications
+	// Why is it '0' you ask? One of the mysteries of the universe. Also, that was the default value for immediate in message_digest
+	$immediate_subs = atwork_messages_get_subscribers('0');
+	atwork_messages_send_notifications($immediate_subs);
+		
+	
+	// Daily notifications 
+	// TODO: check if daily subs can go out at this time. May need to add a table to the DB to keep track on individual's messages and reference this.
+	// Then pass to atwork_messages_send_notifications
+	$daily_subs = atwork_messages_get_subscribers('message_digest:daily');
+	
+	// Weekly notifications
+	// TODO: check if weekly subs can go out at this time. May need to add a table to the DB to keep track on individual's messages and reference this.
+	// Then pass to atwork_messages_send_notifications
+	$weekly_subs = atwork_messages_get_subscribers('message_digest:weekly');
+}
+
+/**
+ * Return subscribers list by notification frequency
+ * 
+ * @param string $notifier
+ * 	 Notification frequency of desired list of subscribers
+ */
+function atwork_messages_get_subscribers($notifier) {
+	$result = '';
+	try{
+		$connection = \Drupal::database();
+		$query = $connection->query("Select f.uid, fmd.entity_id from flagging f, flagging__message_digest fmd where f.id = fmd.entity_id and fmd.message_digest_value = '" . $notifier . "'");
+		$result = $query->fetchAll();
+	} catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	return $result;
+}
+
+/**
+ * Sends notification messages to desired users
+ * 
+ * @param array $subscribers
+ * 	Array of users being sent the notification message
+ * @param string $msg_key
+ * 	An identifier of the mail.
+ * @param array $message
+ * 	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
+ */
+function atwork_messages_send_notifications($subscribers, $msg_key = 'node_insert', $message = 'Generic Test Message') {
+	foreach($subscribers as $sub) {
+		// Build notification message for each sub/node and send.
+		$user = user_load($sub->uid);
+		$mailManager = \Drupal::service('plugin.manager.mail');
+		$module = 'atwork_messages';
+		$key= $msg_key; // This could also be immediate to distinguish between templates for different frequencies
+		$langcode = \Drupal::currentUser()->getPreferredLangcode();
+	  if($user->__isset('mail')) {
+		  $to = $user->get('mail')->getValue()[0]['value'];
+	  }
+	  
+	  $params['message'] = $message;
+	  $params['username'] = $user->get('name');
+	  $send = true;
+	  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+	  if ($result['result'] != true) {
+	  	\Drupal::logger('mail-log')->error('Unable to send immediate notifications to ' . $user->get('name') . ' at ' . $to);
+	  	return;
+	  } else {
+	   	\Drupal::logger('mail-log')->error('Notification sent to ' . $user->get('name') . ' at ' . $to);
+	  }
+	}
+}
+
+
+/**
+ * Implements hook_mail()
+ * 
+ *  @param string	$key
+ *  	An identifier of the mail.
+ *  @param string $message
+ *  	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
+ *  @param string $params
+ *  	Array: variables to replace tokens in message subject/body; supplied by caller of MailManagerInterface->mail().
+ */
+function atwork_messages_mail($key, &$message, $params) {
+	$options = array(
+			'langcode' => $message['langcode'],
+	);
+	
+	switch ($key) {
+		case 'node_insert':
+			$message['from'] = \Drupal::config('system.site')->get('mail');
+			$message['subject'] = t('@Work Subscriptions');
+			$message['body'][] = Html::escape($params['message']);
+			break;
+	}
+}
+

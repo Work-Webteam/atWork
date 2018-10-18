@@ -1,0 +1,21 @@
+uuid: 2c7c248b-43a3-471f-8f54-44ef8896beb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.flagging.field_test
+    - flag.flag.subscribe_node
+id: flagging.subscribe_node.field_test
+field_name: field_test
+entity_type: flagging
+bundle: subscribe_node
+label: test
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings: {  }
+field_type: entity_reference

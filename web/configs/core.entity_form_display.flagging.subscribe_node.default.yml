@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.flagging.subscribe_node.field_test
     - field.field.flagging.subscribe_node.message_digest
     - flag.flag.subscribe_node
 id: flagging.subscribe_node.default
@@ -10,6 +11,15 @@ targetEntityType: flagging
 bundle: subscribe_node
 mode: default
 content:
+  field_test:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   message_digest:
     weight: 0
     settings: {  }

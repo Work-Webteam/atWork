@@ -40,4 +40,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_editor_tags: true
+  field_tags: true
   langcode: true

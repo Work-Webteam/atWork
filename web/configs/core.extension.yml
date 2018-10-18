@@ -5,6 +5,7 @@ module:
   atwork_article: 0
   atwork_comments: 0
   atwork_h5p: 0
+  atwork_messages: 0
   atwork_poll: 0
   background_image_formatter: 0
   big_pipe: 0
@@ -55,6 +56,7 @@ module:
   message_digest: 0
   message_digest_ui: 0
   message_notify: 0
+  message_notify_ui: 0
   message_subscribe: 0
   message_subscribe_email: 0
   message_subscribe_ui: 0
@@ -86,6 +88,8 @@ module:
   telephone: 0
   tether_stats: 0
   text: 0
+  token: 0
+  token_filter: 0
   toolbar: 0
   tour: 0
   typed_data: 0
