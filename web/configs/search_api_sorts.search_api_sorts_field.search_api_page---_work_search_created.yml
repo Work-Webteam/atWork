@@ -1,0 +1,11 @@
+uuid: ed4d9525-9c09-44c8-a4f5-36c682e9b433
+langcode: en
+status: false
+dependencies: {  }
+id: search_api_page---_work_search_created
+display_id: search_api_page---_work_search
+field_identifier: created
+default_sort: false
+default_order: asc
+label: 'Authored on'
+weight: 0

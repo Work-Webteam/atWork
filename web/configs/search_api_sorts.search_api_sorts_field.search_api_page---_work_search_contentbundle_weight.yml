@@ -1,0 +1,11 @@
+uuid: 6f565328-517f-4813-87cf-713e76a5ae3b
+langcode: en
+status: false
+dependencies: {  }
+id: search_api_page---_work_search_contentbundle_weight
+display_id: search_api_page---_work_search
+field_identifier: contentbundle_weight
+default_sort: false
+default_order: asc
+label: 'Sort Priority by Content Bundle'
+weight: 0

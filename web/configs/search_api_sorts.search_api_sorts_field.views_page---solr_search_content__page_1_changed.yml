@@ -1,0 +1,11 @@
+uuid: ee03db07-a8e8-4a3a-b011-720bcb2496cc
+langcode: en
+status: true
+dependencies: {  }
+id: views_page---solr_search_content__page_1_changed
+display_id: views_page---solr_search_content__page_1
+field_identifier: changed
+default_sort: false
+default_order: asc
+label: Changed
+weight: 0

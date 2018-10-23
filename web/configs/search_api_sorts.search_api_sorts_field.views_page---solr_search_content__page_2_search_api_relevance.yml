@@ -1,0 +1,11 @@
+uuid: ddaad58b-7755-47b1-bb38-5294287ae925
+langcode: en
+status: true
+dependencies: {  }
+id: views_page---solr_search_content__page_2_search_api_relevance
+display_id: views_page---solr_search_content__page_2
+field_identifier: search_api_relevance
+default_sort: true
+default_order: desc
+label: Relevance
+weight: 0

@@ -1,0 +1,11 @@
+uuid: 8cc77723-338b-46e9-8e18-f563cd7ce73a
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_1_status
+display_id: views_page---solr_search_content__page_1
+field_identifier: status
+default_sort: false
+default_order: asc
+label: 'Publishing status'
+weight: 0

@@ -1,0 +1,11 @@
+uuid: b407065b-ba8b-4492-bb21-26015cb81ea5
+langcode: en
+status: true
+dependencies: {  }
+id: views_page---solr_search_content__page_2_type_1
+display_id: views_page---solr_search_content__page_2
+field_identifier: type_1
+default_sort: false
+default_order: asc
+label: 'Content type'
+weight: 0

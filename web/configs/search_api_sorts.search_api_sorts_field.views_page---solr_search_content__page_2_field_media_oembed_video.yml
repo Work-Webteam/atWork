@@ -1,0 +1,11 @@
+uuid: 05198986-3c00-4078-bf39-7838153886bf
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_field_media_oembed_video
+display_id: views_page---solr_search_content__page_2
+field_identifier: field_media_oembed_video
+default_sort: false
+default_order: asc
+label: 'Video URL'
+weight: 0

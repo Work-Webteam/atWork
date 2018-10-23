@@ -1,0 +1,11 @@
+uuid: 27d56266-f209-4211-9b9d-e92d164acc22
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_field_media_audio_file
+display_id: views_page---solr_search_content__page_2
+field_identifier: field_media_audio_file
+default_sort: false
+default_order: asc
+label: 'Audio file'
+weight: 0

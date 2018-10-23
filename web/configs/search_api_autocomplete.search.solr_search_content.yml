@@ -1,0 +1,80 @@
+uuid: ee7259bb-a4a0-49d2-92cb-957716df2e93
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.default_solr_index
+    - views.view.solr_search_content
+    - core.entity_view_mode.node.search_result
+    - core.entity_view_mode.poll.teaser
+  module:
+    - views
+    - search_api_autocomplete
+    - search_api_solr
+id: solr_search_content
+label: 'Solr search content'
+index_id: default_solr_index
+suggester_settings:
+  live_results:
+    fields:
+      - body
+      - description
+      - title
+    view_modes:
+      'entity:comment':
+        comment: default
+      'entity:file':
+        file: default
+      'entity:h5p_content':
+        h5p_content: default
+      'entity:media':
+        audio: default
+        file: default
+        image: default
+        remote_video: default
+        video: default
+      'entity:node':
+        article: search_result
+        page: search_result
+      'entity:poll':
+        poll: teaser
+      'entity:taxonomy_term':
+        tags: ''
+        tags_community: default
+        tags_editor: default
+  server:
+    fields:
+      - body
+      - description
+      - title
+  search_api_solr_spellcheck: {  }
+  search_api_solr_suggester:
+    search_api_solr/site_hash: 1
+    search_api/index: default_solr_index
+    drupal/langcode: en
+  search_api_solr_terms:
+    fields:
+      - body
+      - description
+      - field_custom_teaser
+      - rendered_item
+      - title
+suggester_weights:
+  live_results: 0
+  server: 0
+  search_api_solr_spellcheck: 0
+  search_api_solr_suggester: 0
+  search_api_solr_terms: 0
+suggester_limits: {  }
+search_settings:
+  'views:solr_search_content':
+    displays:
+      default: true
+      selected: {  }
+options:
+  limit: 10
+  min_length: 1
+  show_count: true
+  autosubmit: true
+  submit_button_selector: ':submit'
+  delay: null

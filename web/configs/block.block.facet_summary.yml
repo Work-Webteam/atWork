@@ -1,0 +1,28 @@
+uuid: 719478b4-ac70-4a1f-bcae-3117fbb56746
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets_summary.facets_summary.facet_summary
+  module:
+    - facets_summary
+    - system
+  theme:
+    - atworknext
+id: facet_summary
+theme: atworknext
+region: sidebar_first
+weight: -8
+provider: null
+plugin: 'facets_summary_block:facet_summary'
+settings:
+  id: 'facets_summary_block:facet_summary'
+  label: facet_summary
+  provider: facets_summary
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: "/search/*\r\n/search"
+    negate: false
+    context_mapping: {  }

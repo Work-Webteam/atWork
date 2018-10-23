@@ -1,0 +1,11 @@
+uuid: 12bda5de-084d-4a2c-97fb-e1dc41ad646f
+langcode: en
+status: false
+dependencies: {  }
+id: search_api_page---_work_search_statistics_weight
+display_id: search_api_page---_work_search
+field_identifier: statistics_weight
+default_sort: false
+default_order: asc
+label: 'Sort Priority by Statistics'
+weight: 0

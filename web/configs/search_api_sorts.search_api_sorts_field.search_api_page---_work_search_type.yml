@@ -1,0 +1,11 @@
+uuid: 0b91645a-04f0-4170-ae27-61843f9ff996
+langcode: en
+status: true
+dependencies: {  }
+id: search_api_page---_work_search_type
+display_id: search_api_page---_work_search
+field_identifier: type
+default_sort: false
+default_order: asc
+label: 'Content type'
+weight: 0

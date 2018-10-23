@@ -1,0 +1,11 @@
+uuid: f2f26270-fe1a-4bdc-b5f5-752a52b1ad40
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_1_sticky
+display_id: views_page---solr_search_content__page_1
+field_identifier: sticky
+default_sort: false
+default_order: asc
+label: 'Sticky at top of lists'
+weight: 0

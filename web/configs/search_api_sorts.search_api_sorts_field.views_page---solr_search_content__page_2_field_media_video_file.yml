@@ -1,0 +1,11 @@
+uuid: ca4936f7-1ddd-45dc-8b7c-b8266ed4398d
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_field_media_video_file
+display_id: views_page---solr_search_content__page_2
+field_identifier: field_media_video_file
+default_sort: false
+default_order: asc
+label: 'Video file'
+weight: 0

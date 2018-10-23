@@ -1,0 +1,11 @@
+uuid: c140a8db-a65a-44a2-beff-a39787c380f7
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_1_field_tags
+display_id: views_page---solr_search_content__page_1
+field_identifier: field_tags
+default_sort: false
+default_order: asc
+label: Tags
+weight: 0

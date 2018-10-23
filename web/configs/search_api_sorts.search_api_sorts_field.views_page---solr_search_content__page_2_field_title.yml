@@ -1,0 +1,11 @@
+uuid: 6584f548-f2b1-45e7-a90c-37f6fa4933f1
+langcode: en
+status: true
+dependencies: {  }
+id: views_page---solr_search_content__page_2_field_title
+display_id: views_page---solr_search_content__page_2
+field_identifier: field_title
+default_sort: false
+default_order: asc
+label: Title
+weight: 0

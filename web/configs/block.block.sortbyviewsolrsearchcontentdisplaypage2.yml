@@ -1,0 +1,35 @@
+uuid: 2e535ec8-40ed-4153-8040-8309b9e901f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_sorts
+    - system
+    - user
+  theme:
+    - atworknext
+id: sortbyviewsolrsearchcontentdisplaypage2
+theme: atworknext
+region: sidebar_first
+weight: -7
+provider: null
+plugin: 'search_api_sorts_block:views_page:solr_search_content__page_2'
+settings:
+  id: 'search_api_sorts_block:views_page:solr_search_content__page_2'
+  label: 'Sort by (View Solr search content, display Page 2)'
+  provider: search_api_sorts
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: "/search\r\n/search/*"
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

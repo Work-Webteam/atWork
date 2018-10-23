@@ -1,0 +1,11 @@
+uuid: f8b2fcfb-7133-46dc-a143-4175e356d922
+langcode: en
+status: true
+dependencies: {  }
+id: search_api_page---_work_search_changed
+display_id: search_api_page---_work_search
+field_identifier: changed
+default_sort: false
+default_order: asc
+label: Changed
+weight: 0

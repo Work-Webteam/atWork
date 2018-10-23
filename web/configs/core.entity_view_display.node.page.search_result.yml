@@ -1,0 +1,47 @@
+uuid: 20a39764-5d37-4c9d-9082-427461f02b63
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.page.body
+    - field.field.node.page.field_editor_tags
+    - field.field.node.page.field_tags
+    - node.type.page
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: TAQIn-449vv5zUXLZODjSzfJQqHXJW2N3ZCfmEYqKns
+id: node.page.search_result
+targetEntityType: node
+bundle: page
+mode: search_result
+content:
+  body:
+    type: text_summary_or_trimmed
+    weight: 100
+    settings:
+      trim_length: 300
+    third_party_settings: {  }
+    label: hidden
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_editor_tags: true
+  field_tags: true
+  langcode: true

@@ -1,0 +1,11 @@
+uuid: b019173e-75e0-4582-85d1-7a11f36a3ca7
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_field_image
+display_id: views_page---solr_search_content__page_2
+field_identifier: field_image
+default_sort: false
+default_order: asc
+label: Image
+weight: 0

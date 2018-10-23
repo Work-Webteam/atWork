@@ -1,0 +1,29 @@
+uuid: c9e85813-b32a-4745-8731-763d1c8ade37
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.content_type_search
+  module:
+    - facets
+    - system
+  theme:
+    - atworknext
+id: contenttype
+theme: atworknext
+region: sidebar_first
+weight: -9
+provider: null
+plugin: 'facet_block:content_type_search'
+settings:
+  id: 'facet_block:content_type_search'
+  label: 'Content type'
+  provider: facets
+  label_display: visible
+  block_id: contenttype
+visibility:
+  request_path:
+    id: request_path
+    pages: "/search\r\n/search/*"
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,11 @@
+uuid: ea301b79-8e1c-410f-a209-28c85b8b01ef
+langcode: en
+status: false
+dependencies: {  }
+id: search_api_page---_work_search_status
+display_id: search_api_page---_work_search
+field_identifier: status
+default_sort: false
+default_order: asc
+label: 'Publishing status'
+weight: 0

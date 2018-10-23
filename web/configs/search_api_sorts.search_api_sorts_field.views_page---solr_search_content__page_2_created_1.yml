@@ -1,0 +1,11 @@
+uuid: 65655d9e-a5f3-4401-9b6d-61d26db13f9c
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_created_1
+display_id: views_page---solr_search_content__page_2
+field_identifier: created_1
+default_sort: false
+default_order: asc
+label: 'Authored on'
+weight: 0

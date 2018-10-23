@@ -1,0 +1,11 @@
+uuid: 67322faf-67b3-4b44-b5bf-c94b26664408
+langcode: en
+status: false
+dependencies: {  }
+id: search_api_page---_work_search_uid
+display_id: search_api_page---_work_search
+field_identifier: uid
+default_sort: false
+default_order: asc
+label: 'Author ID'
+weight: 0

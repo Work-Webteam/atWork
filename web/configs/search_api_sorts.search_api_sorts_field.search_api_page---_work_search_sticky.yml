@@ -1,0 +1,11 @@
+uuid: 5650a142-e44d-449f-b38d-c4ace7a85be4
+langcode: en
+status: false
+dependencies: {  }
+id: search_api_page---_work_search_sticky
+display_id: search_api_page---_work_search
+field_identifier: sticky
+default_sort: false
+default_order: asc
+label: 'Sticky at top of lists'
+weight: 0

@@ -1,0 +1,11 @@
+uuid: d4f0806f-a93c-492a-9d69-f87b123d9f97
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_1_contentbundle_weight
+display_id: views_page---solr_search_content__page_1
+field_identifier: contentbundle_weight
+default_sort: false
+default_order: asc
+label: 'Sort Priority by Content Bundle'
+weight: 0

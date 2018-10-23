@@ -24,9 +24,13 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   extrafield_views_integration: 0
+  facets: 0
+  facets_range_widget: 0
+  facets_summary: 0
   field: 0
   field_ui: 0
   file: 0
@@ -73,7 +77,16 @@ module:
   rest: 0
   rules: 0
   scheduler: 0
-  search: 0
+  search_api: 0
+  search_api_autocomplete: 0
+  search_api_exclude_entity: 0
+  search_api_logger: 0
+  search_api_solr: 0
+  search_api_sort_priority: 0
+  search_api_sort_priority_solr: 0
+  search_api_sorts: 0
+  search_api_stats: 0
+  search_api_stats_block: 0
   serialization: 0
   settings_tray: 0
   shortcut: 0

@@ -1,0 +1,11 @@
+uuid: 2576d8d1-6cd9-4077-a850-42049f3f2904
+langcode: en
+status: true
+dependencies: {  }
+id: search_api_page---_work_search_field_tags
+display_id: search_api_page---_work_search
+field_identifier: field_tags
+default_sort: false
+default_order: asc
+label: Tags
+weight: 0

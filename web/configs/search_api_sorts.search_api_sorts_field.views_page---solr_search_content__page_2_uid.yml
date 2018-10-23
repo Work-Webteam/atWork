@@ -1,0 +1,11 @@
+uuid: 92cf662c-59f9-4b95-919e-7a752845ba49
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_uid
+display_id: views_page---solr_search_content__page_2
+field_identifier: uid
+default_sort: false
+default_order: asc
+label: 'Author ID'
+weight: 0

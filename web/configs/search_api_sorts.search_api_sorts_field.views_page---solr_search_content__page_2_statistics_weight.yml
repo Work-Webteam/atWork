@@ -1,0 +1,11 @@
+uuid: 4e4a6526-341e-4b29-a6b1-7a486a8566ba
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_statistics_weight
+display_id: views_page---solr_search_content__page_2
+field_identifier: statistics_weight
+default_sort: false
+default_order: asc
+label: 'Sort Priority by Statistics'
+weight: 0

@@ -1,0 +1,11 @@
+uuid: 6800d3c6-895f-481b-b941-2f9e27a6dcc7
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---solr_search_content__page_2_node_grants
+display_id: views_page---solr_search_content__page_2
+field_identifier: node_grants
+default_sort: false
+default_order: asc
+label: 'Node access information'
+weight: 0
