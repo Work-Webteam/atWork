@@ -83,6 +83,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
   field_development_tags:
     weight: 28
     settings:
@@ -126,8 +127,6 @@ content:
   field_tags:
     type: entity_reference_autocomplete_tags
     weight: 8
-    type: entity_reference_autocomplete
-    weight: 7
     region: content
     settings:
       match_operator: CONTAINS
