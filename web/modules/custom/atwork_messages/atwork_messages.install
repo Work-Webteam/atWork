@@ -1,0 +1,71 @@
+<?php
+
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_schema().
+ *
+ * Add the atwork_messages table.
+ */
+function atwork_messages_schema() {
+	$schema['atwork_messages'] = [
+			'description' => 'Storage of all sent messages for use in daily/weekly atwork_message notifications',
+			'fields' => [
+					'mid' => [
+							'description' => 'The message ID of the originating message.',
+							'type' => 'int',
+							'not null' => TRUE,
+							'default' => 0,
+							'unsigned' => TRUE,
+					],
+					'entity_type' => [
+							'description' => 'The entity type the message pertains to. This is used for grouping digests.',
+							'type' => 'varchar',
+							'length' => EntityTypeInterface::ID_MAX_LENGTH,
+							'not null' => TRUE,
+							'default' => '',
+					],
+					'entity_id' => [
+							'description' => 'The entity ID the message should be grouped with.',
+							'type' => 'varchar',
+							'not null' => TRUE,
+							'default' => '',
+							'length' => 128,
+					],
+					'receiver' => [
+							'description' => 'The user ID of the acting user.',
+							'type' => 'int',
+							'not null' => TRUE,
+							'default' => 0,
+							'unsigned' => TRUE,
+					],
+					'notifier' => [
+							'description' => 'The notification method used to send the notification.',
+							'type' => 'varchar',
+							'length' => 255,
+							'not null' => TRUE,
+							'default' => '',
+					],
+					'sent' => [
+							'type' => 'int',
+							'not null' => TRUE,
+							'default' => 0,
+							'size' => 'tiny',
+							'description' => 'Boolean for whether the message has already been sent in a digest or not.',
+					],
+					'timestamp' => [
+							'description' => 'When the message instance was recorded.',
+							'type' => 'int',
+							'not null' => TRUE,
+							'unsigned' => TRUE,
+							'default' => 0,
+					],
+			],
+			'primary key' => array('entity_id', 'receiver'),
+			'indexes' => [
+					'aggregate' => ['timestamp', 'sent', 'notifier'],
+					'sent' => ['receiver', 'notifier'],
+			],
+	];
+	return $schema;
+}

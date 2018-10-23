@@ -60,14 +60,39 @@ function atwork_messages_create_message(NodeInterface $node) {
 	// Must save message to get mid (message ID)
 	$message->save();
 	
-	$immediate_subs = atwork_messages_get_subscribers('0');
-	atwork_messages_send_notifications($immediate_subs);
+	//$immediate_subs = atwork_messages_get_subscribers(0);
+	//atwork_messages_send_notifications($immediate_subs);
 	
+	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily'));
+	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly'));
+	$subs_list = array($daily_subs, $weekly_subs);
 	
-	//$options = array();
-	//$notifier = \Drupal::service('message_notify.sender');
-	//$notifier->send($message, $options, 'message_digest:weekly');
-	//$notifier->send($message, $options);
+	foreach($subs_list as $list) {
+		foreach($list['subscribers'] as $sub) {
+			if($sub->subscribed_content == $node->id()) {
+				// Insert message data into message_digest table
+				// TODO: Figure out how to do an insert ignore, as this does not exist in Drupal 8
+				try{
+					$connection = \Drupal::database();
+					$query = $connection->merge('atwork_messages')
+					->fields([
+							'mid' => $message->get('mid')->getValue()[0]['value'],
+							'entity_type' => 'node',
+							'entity_id' => $node->id(),
+							'receiver' => $sub->uid,
+							'notifier' => $list['notifier'],
+							'timestamp' => time(),
+					])
+					->condition('entity_id', $node->id(), '=')
+					->condition('receiver', $sub->uid, '=')
+					->execute();
+				} catch(Exception $e) {
+					\Drupal::logger('type')->error($e->getMessage());
+				}
+			}
+		}
+	}
+	
 }
 
 /**
@@ -79,16 +104,27 @@ function atwork_messages_cron() {
 	$immediate_subs = atwork_messages_get_subscribers('0');
 	atwork_messages_send_notifications($immediate_subs);
 		
+	// Get Pacific Standard/Daylight Time
+	$time = new DateTime("now", new DateTimeZone('America/Vancouver'));
 	
 	// Daily notifications 
 	// TODO: check if daily subs can go out at this time. May need to add a table to the DB to keep track on individual's messages and reference this.
 	// Then pass to atwork_messages_send_notifications
-	$daily_subs = atwork_messages_get_subscribers('message_digest:daily');
+	
+	// Send out weekdays at 16h00
+	if((date('N') < 6 ) && ($time->format('H') == 16)) {
+	  $daily_subs = atwork_messages_get_subscribers('message_digest:daily');
+	  atwork_messages_send_notifications($daily_subs);
+	}
 	
 	// Weekly notifications
 	// TODO: check if weekly subs can go out at this time. May need to add a table to the DB to keep track on individual's messages and reference this.
 	// Then pass to atwork_messages_send_notifications
-	$weekly_subs = atwork_messages_get_subscribers('message_digest:weekly');
+	
+	// Send out Friday at 16h00
+	if((date('N') == 5 ) && ($time->format('H') == 16))
+	  $weekly_subs = atwork_messages_get_subscribers('message_digest:weekly');
+	  atwork_messages_send_notifications($weekly_subs);
 }
 
 /**
@@ -101,7 +137,7 @@ function atwork_messages_get_subscribers($notifier) {
 	$result = '';
 	try{
 		$connection = \Drupal::database();
-		$query = $connection->query("Select f.uid, fmd.entity_id from flagging f, flagging__message_digest fmd where f.id = fmd.entity_id and fmd.message_digest_value = '" . $notifier . "'");
+		$query = $connection->query("Select f.uid, f.entity_id as subscribed_content, fmd.entity_id from flagging f, flagging__message_digest fmd where f.id = fmd.entity_id and fmd.message_digest_value = '" . $notifier . "'");
 		$result = $query->fetchAll();
 	} catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
@@ -123,6 +159,7 @@ function atwork_messages_send_notifications($subscribers, $msg_key = 'node_inser
 	foreach($subscribers as $sub) {
 		// Build notification message for each sub/node and send.
 		$user = user_load($sub->uid);
+	  $recipient = $user->get('name')->getValue()[0]['value'];
 		$mailManager = \Drupal::service('plugin.manager.mail');
 		$module = 'atwork_messages';
 		$key= $msg_key; // This could also be immediate to distinguish between templates for different frequencies
@@ -130,20 +167,18 @@ function atwork_messages_send_notifications($subscribers, $msg_key = 'node_inser
 	  if($user->__isset('mail')) {
 		  $to = $user->get('mail')->getValue()[0]['value'];
 	  }
-	  
 	  $params['message'] = $message;
 	  $params['username'] = $user->get('name');
 	  $send = true;
 	  $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 	  if ($result['result'] != true) {
-	  	\Drupal::logger('mail-log')->error('Unable to send immediate notifications to ' . $user->get('name') . ' at ' . $to);
+	  	\Drupal::logger('mail-log')->error('Unable to send immediate notifications to ' . $recipient . ' at ' . $to);
 	  	return;
 	  } else {
-	   	\Drupal::logger('mail-log')->error('Notification sent to ' . $user->get('name') . ' at ' . $to);
+	  	\Drupal::logger('mail-log')->error('Notification sent to ' . $recipient . ' at ' . $to);
 	  }
 	}
 }
-
 
 /**
  * Implements hook_mail()
@@ -168,4 +203,3 @@ function atwork_messages_mail($key, &$message, $params) {
 			break;
 	}
 }
-
