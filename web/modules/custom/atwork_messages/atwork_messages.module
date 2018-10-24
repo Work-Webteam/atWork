@@ -63,8 +63,14 @@ function atwork_messages_create_message(NodeInterface $node) {
 	$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id from flagging f, flagging__message_digest fmd where f.id = fmd.entity_id and fmd.message_digest_value = '";
 	$immediate_subs = atwork_messages_get_subscribers(0, $presave_query);
 	foreach($immediate_subs as $sub) {
-	  atwork_messages_send_notification($sub);
+		//atwork_messages_send_notification($sub,'node_insert','Test');
 	}
+	
+	$renderable = [
+			'#theme' => 'atwork_messages_digest'
+	];
+	kint(\Drupal::service('renderer')->render($renderable));
+	die();
 	
 	// Save messages to database on article creation or update. 
 	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
@@ -170,6 +176,24 @@ function atwork_messages_mail($key, &$message, $params) {
 			$message['body'][] = Html::escape($params['message']);
 			break;
 	}
+}
+
+/**
+ * Implements hook_theme().
+ */
+function atwork_messages_theme() {
+	return [
+			'atwork_messages_digest.html.twig' => [
+					'variables' => [],
+			],
+	];
+}
+
+/**
+ * Implements theme_preprocess_template().
+ */
+function atworknext_preprocess_atwork_messages_digest(&$variables) {
+
 }
 
 /**
