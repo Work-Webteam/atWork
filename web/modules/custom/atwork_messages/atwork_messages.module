@@ -12,17 +12,6 @@ use Drupal\Core\Mail\MailManagerInterface;
  */
 
 /**
- * Implements hook_cronapi(); informs Ultimate Cron about cron jobs.
- * 
- */
-function atwork_messages_cronapi() {
-	$items = array();
-	$items['atwork_messages_daily_cron'] = array();
-	$items['atwork_messages_weekly_cron'] = array();
-	return $items;
-}
-
-/**
  * Implements hook_ENTITY_TYPE_insert() for node entities.
  */
 function atwork_messages_node_insert(NodeInterface $node) {
@@ -39,7 +28,6 @@ function atwork_messages_node_insert(NodeInterface $node) {
 function atwork_messages_comment_insert(Comment $comment) {
 	// Get comment & node and pass it to the create message?
 }
-
 
 /**
  * Implements hook_ENTITY_TYPE_update() for node entities.
@@ -70,11 +58,13 @@ function atwork_messages_create_message(NodeInterface $node) {
 	
 	// Must save message to get mid (message ID)
 	$message->save();
-	
+
 	// Send out immediate notifications
-	$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id from flagging f, flagging__message_digest fmd where f.id = fmd.entity_id and fmd.message_digest_value = '" . $notifier . "'";
+	$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id from flagging f, flagging__message_digest fmd where f.id = fmd.entity_id and fmd.message_digest_value = '";
 	$immediate_subs = atwork_messages_get_subscribers(0, $presave_query);
-	atwork_messages_send_notifications($immediate_subs);
+	foreach($immediate_subs as $sub) {
+	  atwork_messages_send_notification($sub);
+	}
 	
 	// Save messages to database on article creation or update. 
 	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
@@ -118,7 +108,7 @@ function atwork_messages_get_subscribers($notifier, $query) {
 	$result = '';
 	try{
 		$connection = \Drupal::database();
-		$query = $connection->query($query);
+		$query = $connection->query($query . $notifier . "'");
 		$result = $query->fetchAll();
 	} catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
@@ -137,7 +127,6 @@ function atwork_messages_get_subscribers($notifier, $query) {
  * 	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
  */
 function atwork_messages_send_notification($subscriber, $msg_key = 'node_insert', $message = 'Generic Test Message') {
-	//foreach($subscribers as $sub) {
 	// Build notification message for each sub/node and send.
 	$user = user_load($subscriber->uid);
 	$recipient = $user->get('name')->getValue()[0]['value'];
@@ -156,9 +145,8 @@ function atwork_messages_send_notification($subscriber, $msg_key = 'node_insert'
 		\Drupal::logger('mail-log')->error('Unable to send immediate notifications to ' . $recipient . ' at ' . $to);
 		return;
 	} else {
-		\Drupal::logger('mail-log')->error('Notification sent to ' . $recipient . ' at ' . $to);
+		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to);
 	}
-	//}
 }
 
 /**
@@ -175,7 +163,6 @@ function atwork_messages_mail($key, &$message, $params) {
 	$options = array(
 			'langcode' => $message['langcode'],
 	);
-	
 	switch ($key) {
 		case 'node_insert':
 			$message['from'] = \Drupal::config('system.site')->get('mail');
@@ -189,11 +176,12 @@ function atwork_messages_mail($key, &$message, $params) {
  * Implements cron callback for weekly subscribers
  */
 function atwork_messages_daily_cron($job) {
-	$daily_query = "Select receiver as uid from atwork_messages where notifier = 'daily' and sent = 0";
+//function atwork_messages_daily() {
+	$daily_query = "Select receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$daily_subs = atwork_messages_get_subscribers('daily', $daily_query);
 	if($daily_subs) {
 	  foreach($daily_subs as $sub) {
-	    atwork_messages_send_notifications($sub);
+	    atwork_messages_send_notification($sub);
 	  }
 	}
 }
@@ -202,11 +190,11 @@ function atwork_messages_daily_cron($job) {
  * Implements cron callback for daily subscribers
  */
 function atwork_messages_weekly_cron($job) {
-	$daily_query = "Select receiver as uid from atwork_messages where notifier = 'weekly' and sent = 0";
+	$weekly_query = "Select receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$weekly_subs= atwork_messages_get_subscribers('weekly', $weekly_query);
 	if($weekly_subs) {
 		foreach($weekly_subs as $sub) {
-			atwork_messages_send_notifications($sub);
+			atwork_messages_send_notification($sub);
 		}
 	}
 }
