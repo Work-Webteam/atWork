@@ -8,8 +8,10 @@ dependencies:
     - field.storage.node.field_custom_teaser
     - field.storage.node.field_image
     - field.storage.node.field_tags
-    - responsive_image.styles.responsive_article_image
+    - responsive_image.styles.narrow
     - search_api.index.default_solr_index
+    - user.role.administrator
+    - user.role.authenticated
   module:
     - options
     - responsive_image
@@ -204,7 +206,10 @@ display:
       path: search
       style:
         type: default
-        options: {  }
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
       defaults:
         style: false
         row: false
@@ -214,6 +219,8 @@ display:
         filter_groups: false
         cache: false
         exposed_form: false
+        use_ajax: false
+        access: false
       row:
         type: fields
         options:
@@ -223,12 +230,12 @@ display:
             author: author
             created: created
             field_article_type_1: field_article_type_1
-            field_image_1: field_image_1
+            field_image: field_image
             body: body
             field_tags: field_tags
             type: type
             search_api_excerpt: search_api_excerpt
-          separator: ''
+          separator: '          '
           hide_empty: true
       fields:
         title:
@@ -515,15 +522,15 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        field_image_1:
-          id: field_image_1
+        field_image:
+          id: field_image
           table: search_api_index_default_solr_index
           field: field_image
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -566,12 +573,12 @@ display:
           click_sort_column: target_id
           type: responsive_image
           settings:
-            responsive_image_style: responsive_article_image
+            responsive_image_style: narrow
             image_link: content
           group_column: ''
           group_columns: {  }
-          group_rows: false
-          delta_limit: 3
+          group_rows: true
+          delta_limit: 1
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
@@ -604,7 +611,7 @@ display:
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: true
+            trim_whitespace: false
             alt: ''
             rel: ''
             link_class: ''
@@ -632,7 +639,7 @@ display:
           element_default_classes: true
           empty: ''
           hide_empty: false
-          empty_zero: false
+          empty_zero: true
           hide_alter_empty: true
           click_sort_column: value
           type: text_summary_or_trimmed
@@ -994,6 +1001,13 @@ display:
           sort_desc_label: Desc
           text_input_required: 'Please enter some keywords to search.'
           text_input_required_format: basic_html
+      use_ajax: true
+      access:
+        type: role
+        options:
+          role:
+            authenticated: authenticated
+            administrator: administrator
     cache_metadata:
       max-age: -1
       contexts:
@@ -1001,6 +1015,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_article_type'
