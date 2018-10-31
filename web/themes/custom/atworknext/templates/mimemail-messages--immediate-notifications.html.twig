@@ -1,0 +1,43 @@
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      {% if css %}
+      <style type="text/css">
+          <!--
+          {{ css }}
+         -->
+      </style>
+      {% endif %}
+  </head>
+  <body id="mimemail-body" {% if ( module | length > 0 ) and ( key | length > 0 ) %}  {% set class = 'class="' ~ module ~ '-' ~ key ~ '"' %} {% endif %} >
+    <div id="subscription-header">
+      YOUR @WORK SUBSCRIPTIONS | {{ date }}
+    </div>
+    <div id="subscription-banner"></div>
+    <div id="center">
+      <div id="main">
+        Hi {{ username }},
+      
+        Here is latest update from your @Work subscriptions.
+
+        {% for item in article %}
+          <div class="subscription-content">
+            <div class="item-title">
+              {{ item['title'] }}
+            </div>
+            <div class="item-byline">
+            {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+            </div>
+            <div class="item-body">
+              {{ item['body'] }}
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+    <div id="subscription-footer">
+      Manage your @Work subscriptions or Unsubscribe
+    </div>
+  </body>
+</html>

@@ -10,8 +10,31 @@
       {% endif %}
   </head>
   <body id="mimemail-body" {% if ( module | length > 0 ) and ( key | length > 0 ) %}  {% set class = 'class="' ~ module ~ '-' ~ key ~ '"' %} {% endif %} >
+    <div id="subscription-header">
+      YOUR @WORK SUBSCRIPTIONS | {{ date }}
+    </div>
+    <div id="subscription-banner"></div>
     <div id="center">
       <div id="main">
+        Hello {{ username }},
+      
+        Here are is latest update from your @Work subscriptions.
+
+context:
+<ol>
+    {% for key, value in _context  %}
+      <li>{{ key }}</li>
+    {% endfor %}
+</ol>
+
+
+variables:
+<ol>
+    {% for key, value in variables  %}
+      <li>{{ key }}</li>
+    {% endfor %}
+</ol>
+      
         {{ body|raw }}
       </div>
     </div>

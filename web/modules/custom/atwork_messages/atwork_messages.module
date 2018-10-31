@@ -69,7 +69,7 @@ function atwork_messages_create_message(NodeInterface $node) {
 	foreach($subs_list as $list) {
 		foreach($list['subscribers'] as $sub) {
 			if($sub->subscribed_content == $node->id()) {
-				// Insert message data into message_digest table
+				// Insert message data into atwork_message table
 				try{
 					$connection = \Drupal::database();
 					$query = $connection->merge('atwork_messages')
@@ -111,7 +111,9 @@ function atwork_messages_get_subscribers($notifier, $query) {
 }
 
 /**
- * Sends notification messages to desired users
+ * Sends notification messages to desired users based 
+ * on the subscription data in atwork_messages table 
+ * and the message key.
  * 
  * @param array $subscribers
  * 	Array of users being sent the notification message
@@ -120,9 +122,9 @@ function atwork_messages_get_subscribers($notifier, $query) {
  * @param array $message
  * 	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
  */
-function atwork_messages_send_notification($subscriber, $msg_key) {
+function atwork_messages_send_notification($subscription, $msg_key) {
 	// Build notification message for each sub/node and send.
-	$user = user_load($subscriber->uid);
+	$user = user_load($subscription->uid);
 	$recipient = $user->get('name')->getValue()[0]['value'];
 	$mailManager = \Drupal::service('plugin.manager.mail');
 	$module = 'atwork_messages';
@@ -131,17 +133,28 @@ function atwork_messages_send_notification($subscriber, $msg_key) {
 	if($user->__isset('mail')) {
 	  $to = $user->get('mail')->getValue()[0]['value'];
 	}
-	// Could create/set the message body here, but would prefer to use templates.
-  //$params['message'] = $message;
+	
 	$params['username'] = $user->get('name');
 	$send = true;
 	$result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
 	if ($result['result'] != true) {
-		\Drupal::logger('mail-log')->error('Unable to send immediate notifications to ' . $recipient . ' at ' . $to);
+		\Drupal::logger('mail-log')->error('Unable to send notification to ' . $recipient . ' at ' . $to . '. ');
 		return;
 	} else {
-		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to);
+		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to . '. ');
 	}
+	
+	// Delete the message after it has been sent.
+	//try {
+	//	$connection = \Drupal::database();
+	//	$query = $connection->delete("atwork_messages")
+	//	  ->condition('receiver', $subscription->uid, '=')
+	//	  ->condition('entity_id', $subscription->entity_id, '=')
+	//	  ->execute();
+	//}catch(Exception $e) {
+	//	\Drupal::logger('type')->error($e->getMessage());
+	//}
+	
 }
 
 /**
@@ -157,50 +170,27 @@ function atwork_messages_send_notification($subscriber, $msg_key) {
 function atwork_messages_mail($key, &$message, $params) {
 	  switch ($key) {
 	  	case 'immediate_notifications':
-	  	  //$message['from'] = \Drupal::config('system.site')->get('mail');
-	  		$message['subject'] = t('@Work Subscriptions');
+	  		$message['subject'] = t('@Work As-It-Happens Subscriptions');
 	  		$body_data = array (
 	  				'#theme' => $key,
-	  		//		'#submitted_data' => $params['message']
 	  		);
-	  		//$message['body'][] = Html::escape($params['message']);
 	  		$message['body'][] = \Drupal::service('renderer')->render($body_data);
 	  		break;
-	  	//case 'daily_notifications':
-	  	//	$message['from'] = \Drupal::config('system.site')->get('mail');
-	  	//	$message['subject'] = t('@Work Subscriptions');
-	  	//	$message['body'][] = Html::escape($params['message']);
-	  	//	break;
-	  	//case 'weekly_notifications':
-	  	//	$message['from'] = \Drupal::config('system.site')->get('mail');
-	  	//	$message['subject'] = t('@Work Subscriptions');
-	  	//	$message['body'][] = Html::escape($params['message']);
-	  	//	break;
+	  	case 'daily_notifications':
+	  		$message['subject'] = t('@Work Daily Subscriptions');
+	  		$body_data = array (
+	  				'#theme' => $key,
+	  		);
+	  		$message['body'][] = \Drupal::service('renderer')->render($body_data);
+	  		break;
+	  	case 'weekly_notifications':
+	  		$message['subject'] = t('@Work Weekly Subscriptions');
+	  		$body_data = array (
+	  				'#theme' => $key,
+	  		);
+	  		$message['body'][] = \Drupal::service('renderer')->render($body_data);
+	  		break;
 	  }
-}
-
-/**
- * Implements hook_theme().
- */
-function atwork_messages_theme($existing, $type, $theme, $path) {
-		return [
-				'immediate_notifications' => array (
-						'template' => 'atwork-messages--immediate-notifications',
-						'variables' => array('submitted_data'=>[]),
-				),
-				'daily_notifications' => array (
-						'template' => 'atwork-messages--daily-notifications',
-						'variables' => array('submitted_data'=>[]),
-				),
-				'weekly_notifications' => array (
-						'template' => 'atwork-messages--weekly-notifications',
-						'variables' => array('submitted_data'=>[]),
-				),
-				'mimemail_messages' => array (
-						'template' => 'mimemail-messages--immediate-notifications',
-				),
-						
-		];
 }
 
 /**
@@ -208,7 +198,7 @@ function atwork_messages_theme($existing, $type, $theme, $path) {
  */
 function atwork_messages_daily_cron($job) {
 //function atwork_messages_daily() {
-	$daily_query = "Select receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$daily_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$daily_subs = atwork_messages_get_subscribers('daily', $daily_query);
 	if($daily_subs) {
 	  foreach($daily_subs as $sub) {
@@ -221,7 +211,7 @@ function atwork_messages_daily_cron($job) {
  * Implements cron callback for daily subscribers
  */
 function atwork_messages_weekly_cron($job) {
-	$weekly_query = "Select receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$weekly_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$weekly_subs = atwork_messages_get_subscribers('weekly', $weekly_query);
 	if($weekly_subs) {
 		foreach($weekly_subs as $sub) {
@@ -234,11 +224,65 @@ function atwork_messages_weekly_cron($job) {
  * Implements cron callback for immediate subscribers
  */
 function atwork_messages_immediate_cron($job) {
-	$immediate_query = "Select receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$immediate_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$immediate_subs = atwork_messages_get_subscribers('immediate', $immediate_query);
 	if($immediate_subs) {
 		foreach($immediate_subs as $sub) {
 			atwork_messages_send_notification($sub, 'immediate_notifications');
 		}
 	}
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--immediate-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__immediate_notifications(&$variables){
+	$user = user_load_by_mail($variables['recipient']);
+	$node_storage = \Drupal::entityTypeManager()->getStorage('node');
+	$result = '';
+	try{
+		$connection = \Drupal::database();
+		$query = $connection->query("Select entity_id from atwork_messages where receiver = '" . $user->id() . "' and notifier = 'immediate'");
+		$result = $query->fetchAll(PDO::FETCH_COLUMN, 0);
+	} catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	
+	$result = $node_storage->loadMultiple($result);
+	
+	// Load node and add to variables.
+	$variables['date'] = date('F j, Y');
+	$variables['username'] = $user->get('name')->getValue()[0]['value'];
+	
+	foreach($result as $node) {
+	  $variables[$node->get('type')->getValue()[0]['target_id']][] =  [
+	  		'title' => $node->get('title')->getValue()[0]['value'],
+	  		'author' => \Drupal\user\Entity\User::load($node->get('field_author_information')->getValue()[0]['target_id'])->getUsername(),
+	  		'createdDate' => date('F j, Y', $node->get('created')->getValue()[0]['value']),
+	  		'createdTime' => date('g:i a', $node->get('created')->getValue()[0]['value']),
+	  		'body' => $node->get('body')->getValue()[0]['value'],
+	  ];
+	}
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--daily-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__daily_notifications(&$variables){
+	$variables['date'] = '';
+	$variables['username'] = '';
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--weekly-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__weekly_notifications(&$variables){
+	$variables['date'] = '';
+	$variables['username'] = '';
 }
