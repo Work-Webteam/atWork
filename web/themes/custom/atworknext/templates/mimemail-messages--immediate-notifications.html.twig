@@ -16,24 +16,44 @@
     <div id="subscription-banner"></div>
     <div id="center">
       <div id="main">
-        Hi {{ username }},
+  Hi {{ username }},
       
-        Here is latest update from your @Work subscriptions.
+  Here are the latest updates from your @Work subscriptions.
 
-        {% for item in article %}
-          <div class="subscription-content">
-            <div class="item-title">
-              {{ item['title'] }}
+        {% if comment is defined %}
+          <div class="subscription-section-title">New Comments</div>
+          {% for item in comment %}
+            <div class="subscription-content">
+              <div class="item-title">
+                {{ item['title'] }}
+              </div>
+              <div class="item-byline">
+              {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+              </div>
+              <div class="item-body">
+                {{ item['summary'] }}
+              </div>
             </div>
-            <div class="item-byline">
-            {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if article is defined %}
+          <div class="subscription-section-title">New Content</div>
+          {% for item in article %}
+            <div class="subscription-content">
+              <div class="item-title">
+                {{ item['title'] }}
+              </div>
+              <div class="item-byline">
+              {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+              </div>
+              <div class="subscription-item-body">
+                {{ item['summary']|striptags }} <a href="{{ item.url }}"> Read More...</a>
+              </div>
             </div>
-            <div class="item-body">
-              {{ item['body'] }}
-            </div>
-          </div>
-        {% endfor %}
-
+          {% endfor %}
+        {% endif %}
+        
       </div>
     </div>
     <div id="subscription-footer">
