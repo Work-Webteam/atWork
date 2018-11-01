@@ -113,7 +113,12 @@
     {% endif %}
     {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
     {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
-    {% trans %}{{ author_name }} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
+    {% if isEmployeeNews %}
+    <div><a title="View Employee News Information page." href="https://gww.gov.bc.ca/at-work" about="https://gww.gov.bc.ca/at-work" typeof="schema:Person" property="schema:name">Employee News</a>
+      {% trans %} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}</div>
+    {% else %}
+      {% trans %}{{ author_name }} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
+    {% endif %}
 
     {# Uncomment once comments are completed to show comment count on articles #}
     {% if content.comment['#items']|length != 1 %}
