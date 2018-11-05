@@ -144,16 +144,16 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to . '. ');
 	}
 	
-	// Delete the message after it has been sent.
-	//try {
-	//	$connection = \Drupal::database();
-	//	$query = $connection->delete("atwork_messages")
-	//	  ->condition('receiver', $subscription->uid, '=')
-	//	  ->condition('entity_id', $subscription->entity_id, '=')
-	//	  ->execute();
-	//}catch(Exception $e) {
-	//	\Drupal::logger('type')->error($e->getMessage());
-	//}
+	 Delete the message after it has been sent.
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->delete("atwork_messages")
+		  ->condition('receiver', $subscription->uid, '=')
+		  ->condition('entity_id', $subscription->entity_id, '=')
+		  ->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
 	
 }
 
