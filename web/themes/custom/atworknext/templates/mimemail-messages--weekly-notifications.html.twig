@@ -16,27 +16,48 @@
     <div id="subscription-banner"></div>
     <div id="center">
       <div id="main">
-        Hello {{ username }},
+  Hi {{ username }},
       
-        Here are is latest update from your @Work subscriptions.
+  Here are the latest updates from your @Work subscriptions.
 
-context:
-<ol>
-    {% for key, value in _context  %}
-      <li>{{ key }}</li>
-    {% endfor %}
-</ol>
-
-
-variables:
-<ol>
-    {% for key, value in variables  %}
-      <li>{{ key }}</li>
-    {% endfor %}
-</ol>
-      
-        {{ body|raw }}
+        {% if comment is defined %}
+          <div class="subscription-section-title">New Comments</div>
+          {% for item in comment %}
+            <div class="subscription-content">
+              <div class="item-title">
+                {{  item['title'] }}
+              </div>
+              <div class="item-byline">
+              {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+              </div>
+              <div class="item-body">
+                {{ item['body'] }}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+        {% if article is defined %}
+          <div class="subscription-section-title">New Content</div>
+          {% for item in article %}
+            <div class="subscription-content">
+              <div class="item-title">
+                {{ item['title'] }}
+              </div>
+              <div class="item-byline">
+              {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+              </div>
+              <div class="item-body">
+                {{ item['summary']|striptags }}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
       </div>
+    </div>
+    <div id="subscription-footer">
+      Manage your @Work subscriptions or Unsubscribe
     </div>
   </body>
 </html>

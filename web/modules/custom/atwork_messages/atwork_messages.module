@@ -239,13 +239,39 @@ function atwork_messages_immediate_cron($job) {
  * @param array $variables
  */
 function atworknext_preprocess_mimemail_messages__immediate_notifications(&$variables){
+	$variables = atwork_messages_format_message($variables, 'immediate');
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--daily-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__daily_notifications(&$variables){
+	$variables = atwork_messages_format_message($variables, 'daily');
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--weekly-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__weekly_notifications(&$variables){
+	$variables = atwork_messages_format_message($variables, 'weekly');
+}
+
+
+/**
+ * Modifies variables array for subscription messages
+ */
+function atwork_messages_format_message($variables, $notifier) {
 	$user = user_load_by_mail($variables['recipient']);
 	$node_storage = \Drupal::entityTypeManager()->getStorage('node');
 	$result = '';
 	try{
 		$connection = \Drupal::database();
-		$query = $connection->query("Select entity_id from atwork_messages where receiver = '" . $user->id() 
-				. "' and notifier = 'immediate'");
+		$query = $connection->query("Select entity_id from atwork_messages where receiver = '" . $user->id()
+				. "' and notifier = '" . $notifier . "'");
 		$result = $query->fetchAll(PDO::FETCH_COLUMN, 0);
 	} catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
@@ -257,57 +283,37 @@ function atworknext_preprocess_mimemail_messages__immediate_notifications(&$vari
 	$variables['date'] = date('F j, Y');
 	$variables['username'] = $user->get('name')->getValue()[0]['value'];
 	
-	
 	foreach($result as $item) {
-		
-		// Retrieve teaser or create summary from content body. 
-	if(!empty($item->get('body')->getValue()[0]['summary'])) {
-		$summary = $item->get('body')->getValue()[0]['summary'];
+	
+		// Retrieve teaser or create summary from content body.
+		if(!empty($item->get('body')->getValue()[0]['summary'])) {
+			$summary = $item->get('body')->getValue()[0]['summary'];
 		}else {
 			$summary = $item->get('body')->getValue()[0]['value'];
 		}
 		if(strlen($summary) > 150) {
 			$pos = strpos($summary, ' ', 200);
-			$summary = substr($summary,0,$pos); 
-  	}
-	
-    $url = ''; 
-  	// Get node and/or comment url
-    if(isset($item->get('nid')->getValue()[0]['value'])) {
-  	  $url = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$item->get('nid')->getValue()[0]['value']);
-    } else if(isset($item->get('cid')->getValue()[0]['value'])) {
-  	  $url = \Drupal::service('path.alias_manager')->getAliasByPath('/comment/'.$item->get('cid')->getValue()[0]['value']);
-    }
-  	
-  	$variables[$item->get('type')->getValue()[0]['target_id']][] =  [
-  			'title' => $item->get('title')->getValue()[0]['value'],
-  			'author' => \Drupal\user\Entity\User::load($item->get('field_author_information')
-	  				->getValue()[0]['target_id'])->getUsername(),
-  			'createdDate' => date('F j, Y', $item->get('created')->getValue()[0]['value']),
-  			'createdTime' => date('g:i a', $item->get('created')->getValue()[0]['value']),
-  			'body' => $item->get('body')->getValue()[0]['value'],
-	  		'summary' => $summary,  
-  			'url' => $url,
-	  ];
+			$summary = substr($summary,0,$pos);
+		}
+		
+		$url = '';
+		// Get node and/or comment url
+		if(isset($item->get('nid')->getValue()[0]['value'])) {
+			$url = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$item->get('nid')->getValue()[0]['value']);
+		} else if(isset($item->get('cid')->getValue()[0]['value'])) {
+			$url = \Drupal::service('path.alias_manager')->getAliasByPath('/comment/'.$item->get('cid')->getValue()[0]['value']);
+		}
+		
+		$variables[$item->get('type')->getValue()[0]['target_id']][] =  [
+				'title' => $item->get('title')->getValue()[0]['value'],
+				'author' => \Drupal\user\Entity\User::load($item->get('uid')
+						->getValue()[0]['target_id'])->getUsername(),
+				'createdDate' => date('F j, Y', $item->get('created')->getValue()[0]['value']),
+				'createdTime' => date('g:i a', $item->get('created')->getValue()[0]['value']),
+				'body' => $item->get('body')->getValue()[0]['value'],
+				'summary' => $summary,
+				'url' => $url,
+		];
 	}
-}
-
-/**
- * Implements theme_preprocess_template() for atwork-messages--daily-notifications.html.twig
- *
- * @param array $variables
- */
-function atworknext_preprocess_mimemail_messages__daily_notifications(&$variables){
-	$variables['date'] = '';
-	$variables['username'] = '';
-}
-
-/**
- * Implements theme_preprocess_template() for atwork-messages--weekly-notifications.html.twig
- *
- * @param array $variables
- */
-function atworknext_preprocess_mimemail_messages__weekly_notifications(&$variables){
-	$variables['date'] = '';
-	$variables['username'] = '';
+	return $variables;
 }
