@@ -25,13 +25,13 @@
           {% for item in comment %}
             <div class="subscription-content">
               <div class="item-title">
-                {{  item['title'] }}
+                {{ item['title'] }}
               </div>
               <div class="item-byline">
               {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
               </div>
               <div class="item-body">
-                {{ item['body'] }}
+                {{ item['summary'] }}
               </div>
             </div>
           {% endfor %}
@@ -47,8 +47,8 @@
               <div class="item-byline">
               {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
               </div>
-              <div class="item-body">
-                {{ item['summary']|striptags }}
+              <div class="subscription-item-body">
+                {{ item['summary']|striptags }} <a href="{{ item.url }}"> ...Read More>></a>
               </div>
             </div>
           {% endfor %}

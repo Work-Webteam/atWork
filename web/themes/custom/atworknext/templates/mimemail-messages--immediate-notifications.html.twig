@@ -48,7 +48,7 @@
               {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
               </div>
               <div class="subscription-item-body">
-                {{ item['summary']|striptags }} <a href="{{ item.url }}"> Read More...</a>
+                {{ item['summary']|striptags }} <a href="{{ item.url }}"> ...Read More>></a>
               </div>
             </div>
           {% endfor %}
