@@ -144,7 +144,7 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to . '. ');
 	}
 	
-	 Delete the message after it has been sent.
+  // Delete the message after it has been sent.
 	try {
 		$connection = \Drupal::database();
 		$query = $connection->delete("atwork_messages")
@@ -154,7 +154,6 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 	}catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
-	
 }
 
 /**
@@ -259,7 +258,6 @@ function atworknext_preprocess_mimemail_messages__daily_notifications(&$variable
 function atworknext_preprocess_mimemail_messages__weekly_notifications(&$variables){
 	$variables = atwork_messages_format_message($variables, 'weekly');
 }
-
 
 /**
  * Modifies variables array for subscription messages
