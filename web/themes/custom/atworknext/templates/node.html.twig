@@ -136,7 +136,7 @@
           {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
           <div id="dialog-share" class="modal fade" tabindex="-1" role="dialog" >
             {# We only want the forward and the link link in this bundle to print out #}
-            <ul>
+            <ul class="share-links">
               <li class="forward">{{ content.forward }}</li>
               <li class="comment-text-link "><input type="text" class="allowCopy allow-copy" name="link-text" value="{{ url('<current>') }}"/>
               <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
