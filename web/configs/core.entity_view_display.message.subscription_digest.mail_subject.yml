@@ -16,4 +16,5 @@ content:
     weight: 0
     region: content
 hidden:
+  field_node_ref: true
   partial_1: true

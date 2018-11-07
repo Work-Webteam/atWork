@@ -69,6 +69,7 @@ module:
   path: 0
   poll: 0
   postal_code: 0
+  quickedit: 0
   rdf: 0
   responsive_image: 0
   rest: 0

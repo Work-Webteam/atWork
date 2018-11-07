@@ -5,11 +5,8 @@ _core:
 favicon:
   mimetype: image/vnd.microsoft.icon
   path: ''
-  url: 'http://atwork8.local/themes/contrib/bootstrap/favicon.ico'
+  url: ''
   use_default: true
-table_responsive: '-1'
-table: ''
-modal_backdrop: 'false'
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -19,4 +16,3 @@ logo:
   path: ''
   url: ''
   use_default: true
-modal_enabled: 0
