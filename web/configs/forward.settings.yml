@@ -5,15 +5,15 @@ forward_view_teaser: false
 forward_interface_type: link
 forward_interface_title: 'Email this [forward:entity-type]'
 forward_interface_weight: 0
-forward_link_inline: 1
+forward_link_inline: 0
 forward_link_title: 'Forward this [forward:entity-type] to a friend'
 forward_link_icon: ''
 forward_link_style: 0
 forward_link_noindex: true
 forward_link_nofollow: false
 forward_form_instructions: 'Thank you for your interest in spreading the word about <em>[forward:entity-title]</em> on [site:name].'
-forward_form_display_page: false
-forward_form_display_subject: false
+forward_form_display_page: true
+forward_form_display_subject: true
 forward_form_display_body: false
 forward_form_confirmation: 'Thank you for spreading the word about [site:name]. We appreciate your help.'
 forward_personal_message: 1
@@ -65,3 +65,6 @@ forward_entity_poll: true
 forward_poll_poll: true
 forward_entity_poll_choice: false
 forward_poll_choice_poll_choice: false
+forward_flagging_inappropriate_poll_flag: false
+forward_entity_likeit: false
+forward_likeit_likeit: false
