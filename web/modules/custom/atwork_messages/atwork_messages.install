@@ -25,6 +25,12 @@ function atwork_messages_schema() {
 							'not null' => TRUE,
 							'default' => '',
 					],
+					'content_type' => [
+							'description' => 'Content type the message refers to.',
+							'type' => 'int',
+							'not null' => TRUE,
+							'length' => 'tiny',
+					],
 					'entity_id' => [
 							'description' => 'The entity ID the message should be grouped with.',
 							'type' => 'varchar',
@@ -61,11 +67,40 @@ function atwork_messages_schema() {
 							'default' => 0,
 					],
 			],
-			'primary key' => array('entity_id', 'receiver'),
+			'primary key' => array('entity_id', 'receiver', 'content_type'),
 			'indexes' => [
 					'aggregate' => ['timestamp', 'sent', 'notifier'],
 					'sent' => ['receiver', 'notifier'],
 			],
 	];
+	
+	$schema['atwork_messages_comments'] = [
+			'description' => 'Storage of all sent messages for use in daily/weekly atwork_message notifications',
+			'fields' => [
+					'cid' => [
+							'description' => 'The comment ID of the originating comment.',
+							'type' => 'int',
+							'not null' => TRUE,
+							'default' => 0,
+							'unsigned' => TRUE,
+					],
+					'receiver' => [
+							'description' => 'The user ID of the acting user.',
+							'type' => 'int',
+							'not null' => TRUE,
+							'default' => 0,
+							'unsigned' => TRUE,
+					],
+					'entity_id' => [
+							'description' => 'The entity ID the comment should be grouped with.',
+							'type' => 'varchar',
+							'not null' => TRUE,
+							'default' => '',
+							'length' => 128,
+					],
+			],
+			'primary key' => array('entity_id','receiver','cid'),
+	];
+	
 	return $schema;
 }

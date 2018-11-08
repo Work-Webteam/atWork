@@ -20,19 +20,24 @@
       
   Here are the latest updates from your @Work subscriptions.
 
-        {% if comment is defined %}
+        {% if comments is defined %}
           <div class="subscription-section-title">New Comments</div>
-          {% for item in comment %}
+          {% for comment in comments %}
             <div class="subscription-content">
               <div class="item-title">
-                {{ item['title'] }}
+                {{ comment.title }}
               </div>
               <div class="item-byline">
-              {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+                {% trans %}Posted on {{ comment.createdDate}} | {{ comment.createdTime }}{% endtrans %}
               </div>
-              <div class="item-body">
-                {{ item['summary'] }}
-              </div>
+                {% for item in comment.comments %}
+                  <div class="item-byline">
+                    {% trans %}{{ item.author }} posted on {{ item.createdDate }} | {{ item.createdTime }}{% endtrans %}
+                  </div>
+                  <div class="item-body">
+                    {{ item.comment_body|striptags }}
+                  </div>
+                {% endfor %}
             </div>
           {% endfor %}
         {% endif %}
