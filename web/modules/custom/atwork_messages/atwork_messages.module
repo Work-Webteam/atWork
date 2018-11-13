@@ -74,6 +74,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 	$immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
 	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
 	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
+	
 	$subs_list = array($daily_subs, $weekly_subs, $immediate_subs);
 	
 	foreach($subs_list as $list) {
@@ -124,6 +125,27 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 		  	}
 		  }
 		}
+	}
+	
+	// Automatically subscribe employee news to everything
+	try{
+		$connection = \Drupal::database();
+		$query = $connection->merge('atwork_messages')
+		->fields([
+				'mid' 					=> $message->get('mid')->getValue()[0]['value'],
+				'entity_type' 	=> 'node',
+				'content_type' 	=> $type_info['content_type'],
+				'entity_id' 		=> $node->id(),
+				'receiver' 			=> '1',
+				'notifier' 			=> 'immediate',
+				'timestamp' 		=> time(),
+		])
+		->condition('entity_id', $node->id(), '=')
+		->condition('receiver', '1', '=')
+		->condition('content_type', $type_info['content_type'], '=')
+		->execute();
+	} catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
 	}
 }
 
@@ -325,6 +347,7 @@ function atwork_messages_format_message($variables, $notifier) {
 	// Load node and add to variables.
 	$variables['date'] = date('F j, Y');
 	$variables['username'] = $user->get('name')->getValue()[0]['value'];
+	$variables['user_uid'] = $user->get('uid')->getValue()[0]['value'];
 	
 	foreach($result as $item) {
 		if($item->type == COMMENT) {
