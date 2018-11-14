@@ -112,6 +112,9 @@
   @include update-box;
   table.update {
     border-bottom: solid 6px $banner-blue;
+    tbody tr td {
+      padding: 16px 16px 24px;
+    }
   }
 }
 @mixin title-table {
@@ -189,4 +192,18 @@
     position:absolute;
     margin-left:10px;
     }
+}
+// Social Bar icons
+@mixin button-text-reset {
+  input[type=button] { // Cleans up default input button and add styling
+    border:none;
+    background:none;
+    padding:0;
+    margin:0;
+    color: $link-blue;
+    &:hover { // Resets color and underline on mouse hover
+      color:$black;
+      text-decoration: underline;
+    }
+  }
 }

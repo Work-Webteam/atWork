@@ -17,8 +17,7 @@ section.col-sm-12 {
     padding-left:40px;
     padding-right:40px;
   }
-  .field--name-field-tags, #printBtn, .flag,
-  .social-bar,
+  .field--name-field-tags,
   section[rel~="schema:comment"],
   .views-element-container {
     @include make-sm-column(12);
@@ -42,7 +41,7 @@ footer.footer.container {
     background-color:$banner-blue;
     p {
       color:$white;
-      font-size: .8rem;
+      font-size: .9rem;
       line-height: 14px;
       text-align: center;
     }
