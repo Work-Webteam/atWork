@@ -15,7 +15,7 @@
 
 // Load variables first, then mixins, then everything else
 
-@import "mixins.scss";
+@import "atwork-mixins.scss";
 @import "extends.scss";
 @import "functions.scss";
 
@@ -23,11 +23,15 @@
 @import "colours.scss";
 @import "typography.scss";
 
+// Load Grid Layout mods for Atwork
+@import "grid-layout.scss";
+
 // Load navigation / menu
 @import "navigation_menu.scss";
 
 // Load content types, forms and lists
 @import "article.scss";
+@import "comments.scss";
 @import "forms.scss";
 @import "fields_lists.scss";
 @import "media.scss";

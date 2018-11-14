@@ -1,0 +1,65 @@
+/* Atwork Grid Layout Changes */
+
+// Adjusts for the .row class having a slight overlap based on our grid adjustments
+@media (min-width: 1200px) {
+  .container {
+    width: 1140px;
+  }
+}
+
+
+section.col-sm-12 {
+  @include make-sm-column(10);
+  @include make-sm-column-push(1);
+  h1.page-title, .author-byline, .field--name-body.field--type-text-with-summary {
+    @include make-sm-column(12);
+    @include make-sm-column-push(0);
+    padding-left:40px;
+    padding-right:40px;
+  }
+  .field--name-field-tags, #printBtn, .flag,
+  .social-bar,
+  section[rel~="schema:comment"],
+  .views-element-container {
+    @include make-sm-column(12);
+    @include make-sm-column-push(0);
+  }
+}
+// Header and Footer for all pages except home page
+// Header
+header {
+  .navbar-header {
+    background-color: $banner-blue;
+  }
+}
+
+//Footer
+footer.footer.container {
+  border-top:none; // Hides top border from overrides.min.css
+  .region.region-footer {
+    padding-top:15px;
+    padding-bottom:15px;
+    background-color:$banner-blue;
+    p {
+      color:$white;
+      font-size: .8rem;
+      line-height: 14px;
+      text-align: center;
+    }
+    a {
+      color:$white;
+      text-decoration: underline;
+    }
+    #footer-info {
+      display: table;
+      width:100%;
+    }
+    #footer-left, #footer-middle, #footer-right {
+        display: table-cell;
+        vertical-align: top;
+    }
+    #footer-left, #footer-right {
+      width:25%;
+    }
+  }
+}

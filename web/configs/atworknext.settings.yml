@@ -6,6 +6,10 @@ favicon:
 schemas:
   bootstrap: 8000
   atworknext: 8000
+breadcrumb_home: 1
+table_responsive: '-1'
+table: ''
+cdn_provider: custom
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -15,7 +19,4 @@ logo:
   path: ''
   url: ''
   use_default: true
-breadcrumb_home: 1
 button_size: btn-sm
-table_responsive: '-1'
-table: ''

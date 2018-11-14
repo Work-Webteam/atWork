@@ -1,0 +1,107 @@
+// Styling for comments on all node types that show comments
+section[rel~="schema:comment"] {
+  background-color: $comment-blue;
+  h2 {
+    @include comment-h6;
+  }
+  .field--name-field-edited-comment,
+  .field--name-field-remove-comment,
+  .field--name-field-post-as-en-comment {
+    display:none; // hides the Editors Notes options that also show on Edit screen for Admin/Editors
+  }
+  .field--name-comment-body {
+    margin-bottom:30px;
+  }
+  padding-bottom:20px;
+}
+.csv-feed .feed-icon { // Cleans up the CSV export button at the bottom of the Comment section
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  color:transparent;
+  &:hover {
+    background-color:transparent;
+    color:transparent;
+  }
+}
+// Comment Reply section
+section#block-views-block-comments-new-block-1 {
+  .view-content {
+    border-top: solid 5px $banner-blue;
+    padding-top:10px;
+  }
+  .view-header {
+    h4 { // Comment title along with count bubble
+      @include comment-h6;
+      display: inline;
+    }
+    > #comment-count { // Comment count SVG graphic bubble
+      display: inline-block;
+      width:auto;
+      padding:15px;
+      margin-left: 15px;
+      color:$white;
+      background-image:url("../images/text-bubble.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+    }
+  }
+  .view-filters { // Sorting filters for Comments
+    float:right;
+    margin-top:-50px;
+    .control-label, .form-item-sort-by { // Hidden for now until sorting options resolved
+      display: none;
+    }
+    .form-control {
+      @include size1216;
+      text-transform: uppercase;
+    }
+  }
+  .view-content { // Comment blocks for comment
+    display: block;
+    clear:both;
+    padding:15px;
+    background-color:$white;
+    border-top: solid 5px $link-blue;
+    border-bottom: solid 1px $exec-greyborder;
+    border-left: solid 1px $exec-greyborder;
+    border-right: solid 1px $exec-greyborder;
+    .views-row {
+      display: block;
+      clear:both;
+      border-bottom:solid 1px $exec-greyborder;
+      #comment-avatar { // User avatar. Single image for now. This will be revisited when IDIR is active
+        display:block;
+        border: solid 3px $link-blue;
+        background-image:url("../images/blue-avatar.jpg");
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+        width:60px;
+        height:60px;
+      }
+      #comment-block {
+        display: block;
+        border:solid 1px $exec-greyborder;
+        padding:12px;
+        margin-left:70px;
+        margin-bottom:10px;
+        margin-top:-60px;
+        #comment-byline {
+          @include comment-byline;
+        }
+        .field--name-comment-body p {
+          @include size1216;
+        }
+      }
+      #comment-links {
+        clear: both;
+      }
+    }
+  }
+}
+// Hide the Like/Dislike button due to Brendan's code adjustment to display You like this etc
+#block-views-block-comments-new-block-1 .likeit.likeit-wrapper,
+.like_dislike .dislike {
+    display: none;
+}

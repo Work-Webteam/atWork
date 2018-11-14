@@ -3,9 +3,9 @@ atwork_comments:
   js:
     js/atwork_comments.js: {}
     assets/jquery-expander/jquery.expander.js: {}
-  css:
-    component:
-      css/atwork-comments.css: {}
+#  css:
+#    component:
+#      css/atwork-comments.css: {}
   dependencies:
     - core/drupalSettings
     - core/jquery

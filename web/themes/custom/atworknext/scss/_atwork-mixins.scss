@@ -1,0 +1,192 @@
+/* Mixins specific to AtWork CSS. See the Bootstrap mixins for others */
+
+// Font and pixel sizes and line-heights. Example: size1216 is 12px font / 16px line-height
+@mixin size1216 {
+  font-size: .75rem;
+  line-height: 16px;
+}
+@mixin size1416 {
+  font-size:.875rem;
+  line-height: 16px;
+}
+@mixin size1424 {
+  font-size:.875rem;
+  line-height: 24px;
+}
+@mixin size1436 {
+  font-size: .875rem;
+  line-height: 36px;
+}
+@mixin size1624 {
+  font-size: 1rem;
+  line-height: 24px;
+}
+@mixin size1824 {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+@mixin size2024 {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+@mixin size2136 {
+  font-size: 1.312rem;
+  line-height: 36px;
+}
+@mixin size2224 {
+  font-size:1.375rem;
+  line-height: 24px;
+}
+@mixin size3236 {
+  font-size: 2rem;
+  line-height: 36px;
+}
+
+@mixin author-post { // Author name and date below image on articles
+  font-weight:600;
+  text-transform: uppercase;
+}
+@mixin inset-top-bottom { // top and bottom borders on inset boxes
+  border-top:solid 6px $banner-blue;
+  border-bottom:solid 6px $banner-blue;
+}
+@mixin inset-bottom { // bottom border only on inset boxes
+  border-bottom:solid 6px $banner-blue;
+}
+@mixin caption-text { // font size and color for image/video/inset box
+  @include size1416;
+  color: $icon-grey;
+}
+
+@mixin atwork-button { // Text links altered to look more like a button.
+  @include size1824;
+  font-weight: 300;
+  display: inline-block;
+  background-color:$button-up;
+  color:$white;
+  padding: 6px 25px;
+  &:hover {
+    background-color: $button-hover;
+    text-decoration: none;
+  }
+}
+@mixin comment-h6 {
+    font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    @include size1824;
+    letter-spacing: .025rem;
+    text-transform: uppercase;
+    color:$text;
+    padding-top:12px;
+    padding-bottom:12px;
+    margin:0;
+}
+@mixin comment-byline {
+  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  @include size1216;
+  padding-top:8px;
+  padding-bottom:8px;
+}
+
+@mixin update-box {
+  table {
+    caption {
+      background-color: $banner-blue;
+      margin-top:24px;
+      padding: 12px 0 6px;
+      @include size2024;
+      color: $white;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    background-color: $comment-blue;
+    h4 {
+      padding:0;
+      font-weight: 600;
+    }
+    margin-bottom: 12px;
+  }
+}
+@mixin update {
+  @include update-box;
+  table.update {
+    border-bottom: solid 6px $banner-blue;
+  }
+}
+@mixin title-table {
+  @include update-box;
+  table.title-table {
+    th {
+      background: $horz-ad;
+      text-align: center;
+      @include size1824;
+      padding:8px 0;
+    }
+    td {
+      padding: 16px 16px 24px;
+    }
+    tr:nth-child(even) {
+      background:$white;
+    }
+    tr:nth-child(odd) {
+      background:$comment-blue;
+    }
+  }
+}
+@mixin related-inset {
+  @include update-box;
+  table.related-inset {
+    float:right;
+    margin-left: 10px;
+    border-top:solid 6px $banner-blue;
+    border-bottom:solid 6px $banner-blue;
+    tr td img {
+      width:295px;
+      border-left: solid 1px $button-hover;
+      border-right: solid 1px $button-hover;
+      border-bottom: solid 1px $button-hover;
+    }
+    td li {
+      margin-left:17px;
+      &::before {
+        padding-right:10px;
+      }
+    }
+    h5 {
+      margin-bottom:0;
+    }
+    h5, p {
+      padding-left: 16px;
+      padding-right:16px;
+    }
+    p:last-child {
+      padding-bottom: 24px;
+    }
+  }
+}
+@mixin call-out { // Basic Call-out box on article pages. Creates a div tag.
+  border-top: solid 9px $banner-blue;
+  border-bottom: solid 9px $banner-blue;
+  padding: 24px 48px;
+  @include size2136;
+  font-weight:bold;
+  color: $text;
+  margin-bottom:24px;
+  margin-top: 24px;
+}
+@mixin quotes {
+    p:before { // Large left quote graphic. Uses SVG graphic.
+      float:left;
+      content:url('../images/left-quote.svg');
+      width: 30px; // Change this vale to change the size of the SVG
+      position:absolute;
+      margin-left:-45px;
+  }
+  p:after { // Large right quote graphic. Uses SVG graphic.
+    content:url('../images/right-quote.svg');
+    width: 30px; // Change this vale to change the size of the SVG
+    position:absolute;
+    margin-left:10px;
+    }
+}

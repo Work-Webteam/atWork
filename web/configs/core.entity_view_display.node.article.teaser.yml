@@ -75,6 +75,9 @@ hidden:
   field_article_type: true
   field_attachments: true
   field_author_information: true
+  field_custom_teaser: true
+  field_development_tags: true
+  field_editor_tags: true
   field_interactive_content: true
   field_video: true
   langcode: true

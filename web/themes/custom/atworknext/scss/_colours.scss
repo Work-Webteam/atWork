@@ -1,14 +1,24 @@
 /* Site Colours - include primary, panels, text, links and special */
+/* Updated October 2018 */
 
-// Top banner and footer
-$banner-blue: rgb(0,69,132); // #004584
+$banner-blue: #266694; // Top banner and footer
 
-// Text, links
-$link-blue: rgb(0,128,199); // #0080c7
-$p-color: rgb(65,64,66); // #414042
-$black:rgb(0,0,0); // Black
-$white: rgb(255,255,255); //White
-$comment-blue: rgb(230,242,249); // #e6f2f9
-$exec-greyborder: rgb(147,149,152); // #939598
-$poll-blue: rgb(43,190,200); // #2bbec8
-$poll-green: rgb(65,173,73); // #41ad49
+$link-blue:#0080c7; // Links
+$text:#333333; // Default colour for text
+$black:#000000; // Black
+$white:#FFFFFF; // White
+$comment-blue:#e6f2f9; // Blue border around comment form
+$icon-grey:#6B6C6C; // Icon grey if no graphics used
+$exec-greyborder:#E0E7E8; // Borders used on Exec Messages
+$horz-ad:#bfdff0; // Background color for horizontal text ad
+
+// Secondary colours
+$poll-blue:$banner-blue; // Poll blue
+$poll-green:#41ad49; // Poll green
+$poll-yellow:#FEC00F; // Poll yellow
+$poll-teal:#209E92; // Poll teal
+
+
+// Button Colours
+$button-up: $link-blue; // Default button up colour
+$button-hover: #6b6b6b; // Roll over button colour
