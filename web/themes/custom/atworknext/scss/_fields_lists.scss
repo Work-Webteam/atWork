@@ -1,68 +1,38 @@
 /* Primary CSS for site wide fields and lists */
 
 // Article bulleted lists - blue. Also removes the top margin space following paragraphs
-article .field--type-text-with-summary ul {
-    margin-top:-10px;
-    ul, ol {
-      display: table;
-    }
-    li {
-      list-style: none;
-      display: table-row;
-    }
-    li::before {
-      display: table-cell;
-      text-align: right;
-      content:"•  ";
-      color: $link-blue;
-      font-weight: bold;
-    }
+article ul, ol {
+  margin-top:-10px;
+  padding:0;
 }
-
-// Bootstrap Accordian Panel used on Articles and background pages
-// Content and structure of accordians must be coded by hand at the moment
-
-
-#accordion {
-    div.panel-title {
-        background-color:$black;
-        text-align: center;
-        color:$white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin: 5px 0px;
-        padding:8px 0 5px 0;
-        font-size: 1em;
+article ul {
+  li {
+    list-style-position: inside;
+    list-style: none;
+    margin-left: 25px;
+    &::before{
+      content:"•";
+      padding-right:25px;
+      color: $banner-blue;
+      font-weight: bold;
+      font-size: 1.125rem;
     }
-    .panel-heading {
-        h4 {
-            font-weight:bold;
-            font-size: .95em;
-        }
-        background-color: $comment-blue;
-    }
-    h4.panel-title {
-        a {
-            display: block;
-            text-decoration: none;
-            &:hover {
-                background:none;
-                color:inherit;
-            }
-        }
-        a:after {
-            display:inline-block;
-            content:url('../images/blue-arrow-up.svg');
-            width:12px;
-            float:right;
-        }
-        a[aria-expanded~="false"] {
-            &:after {
-                display:inline-block;
-                content:url('../images/blue-arrow-down.svg');
-                width:12px;
-                float:right;
-            }
-        }
-    }
+  }
+}
+article ol {
+    list-style: none;
+    counter-reset: li
+  li::before {
+    content: counter(li);
+    display: inline-block;
+    width:1rem;
+    margin-left: 20px;
+    margin-right:20px;
+    text-align: right;
+    direction: rtl;
+    font-size: .85rem;
+  }
+  li {
+    counter-increment: li
+  }
 }

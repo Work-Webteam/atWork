@@ -1,111 +1,32 @@
 // Homepage and site wide adjustments
 
-
-//Footer
-#footer-info {
-    text-align:center;
-    #footer-left {
-        min-width:20%;
-        max-width:25%;
-    }
-    #footer-middle {
-        margin:0 5px;
-        .users-online {
-            border: solid 1px darken($white,20%);
-        }
-    }
-    #footer-right {
-        text-align: right;
-    }
-    #footer-left, #footer-middle, #footer-right {
-        display: inline-block;
-        vertical-align: middle;
-        text-align: center;
-    }
-    p {
-        font-size: .75em;
-        padding: 0;
-        margin: 0;
-        color:$white;
-        opacity: .7;
-    }
-    a {
-        color: $white;
-        text-decoration: underline;
-    }
-}
-footer.footer {
-    padding:10px 0;
-}
-// Homepage GRID layout - for development only.
-body.path-frontpage {
-  .hp-column {
-    padding-left: 10px;
-    padding-right:10px;
+// Development Home Page Grid
+.view-frontpage {
+  h3 {
+    background-color: $comment-blue;
+    border: solid 1px darken($exec-greyborder, 10%);
+    padding: 5px 15px 2px;
+    margin:10px 0px;
   }
-  .hp-row {
-    margin-bottom:30px;
-    padding-bottom:30px;
-    border-bottom:solid 15px lighten($exec-greyborder, 30%);
-  }
-  article {
-    header {
-      display:none;
+  .hp-grid-column {
+    display: block;
+    max-width: 220px;
+    height: 200px;
+    margin-bottom: 12px;
+    border: solid 1px darken($exec-greyborder, 10%);
+    &.col-2 {
+      margin-left:10px;
+      margin-right:10px;
     }
-    .field--name-field-image img {
-      width:100%;
+    .no-article-image {
+      display: block;
+      width: 220px;
+      height: 118px;
+      background-color: $exec-greyborder;
     }
-    #printBtn, .social-bar, .field--type-text-with-summary {
-      display: none;
-    }
-  }
-  .main-container {
-    h3 {
-      background-color: lighten($exec-greyborder, 20%);
-      padding:10px;
-      color:$white;
-      border:solid 1px black;
-      font-size: 1.5em;
-    }
-    .hp-grid-row {
-      margin-bottom: 10px;
-    }
-    .hp-grid-column {
-      img {
-        float:left;
-        margin-right: 5px;
-      }
-      .views-field-title {
-        font-size:1.15em;
-        margin-right:20px;
-      }
-      .no-article-image {
-        display:block;
-        float:left;
-        width:220px;
-        height: 100px;
-        margin-right:10px;
-        border: solid 1px $exec-greyborder;
-        background-image:url('../images/no-image-logo.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: lighten($exec-greyborder, 20%);
-        p {
-          text-align:center;
-          padding-top: 25px;
-          color:$exec-greyborder;
-        }
-      }
-      .views-label-field-tags {
-          display: inline;
-          float:left;
-          margin-right:5px;
-          font-size: smaller;
-      }
-      .views-field-field-tags a {
-          text-transform: uppercase;
-          font-size: smaller;
-      }
+    > .views-field-title {
+      padding: 10px;
+      @include size1824;
     }
   }
 }

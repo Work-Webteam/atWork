@@ -25,7 +25,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_edited_comment:
-    weight: 98
+    weight: 3
     label: hidden
     settings:
       format: default
@@ -35,7 +35,7 @@ content:
     type: boolean
     region: content
   field_remove_comment:
-    weight: 99
+    weight: 4
     label: hidden
     settings:
       format: default
@@ -45,17 +45,17 @@ content:
     type: boolean
     region: content
   flag_inappropriate_comment_flag:
-    weight: 10
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   likeit:
-    weight: 0
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 102
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }

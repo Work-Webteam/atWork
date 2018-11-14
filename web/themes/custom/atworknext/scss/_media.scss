@@ -25,7 +25,7 @@
   }
 }
 // This is the print only style sheet.
-@media print {
+@media Print {
   @page {
     size: 8.5in 11in;
     &:left {

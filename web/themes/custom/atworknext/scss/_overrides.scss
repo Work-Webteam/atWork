@@ -17,12 +17,7 @@
 
 // jQuery UI style overrides.
 @import "jquery-ui/autocomplete";
-#navbar.container,
-.container {
-  max-width: 1140px;
-  padding-left:0px;
-  padding-right:0px;
-}
+
 ol, ul {
   padding-left: 1.5em;
   .popover &:last-child {
@@ -33,14 +28,6 @@ ol, ul {
 // Page header.
 .page-header {
   margin-top: 0;
-}
-
-// Footer.
-.footer {
-  margin-top: 0px;
-  padding-top: 35px;
-  padding-bottom: 36px;
-  border-top: none;
 }
 
 // Paragraphs.
@@ -62,7 +49,6 @@ p:last-child,
   }
 }
 
-
 .help-block, .control-group .help-inline {
   color: $gray-light;
   font-size: 12px;
@@ -71,4 +57,17 @@ p:last-child,
   &:first-child {
     margin-top: 0;
   }
+}
+
+// Override to the margin-bottom space applied
+// with the bootstrap/_forms.scss $form-group-margin-bottom
+.form-group {
+  margin-bottom:0px;
+}
+// Override to footer spacing from overrides.min.css
+.footer {
+    margin-top: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-top: none;
 }

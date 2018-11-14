@@ -1,184 +1,148 @@
 /* Corporate / Community article pages */
-
-.main-container ol.breadcrumb {// Breadcrumbs on articles, background pages, etc. Located aboce the article.
-    background-color:#FFFFFF;
-    margin-bottom: 0px;
-    padding: 8px 0;
+.author-byline { // Author and date shown for article creation
+  @include size1424;
+  padding: 6px 0 18px;
+  a[property~="schema:name"] {
+    @include author-post;
+  }
 }
-article > .node__content { // Sets the maximum width of the article section to 730px. Max width on the page is 1140px.
-  max-width:730px;
-  margin:0 auto;
+// Video and Image captions
+p.videobyline, figcaption { // text below videos and images
+  @include caption-text;
+  background-color: $comment-blue;
+  padding: 24px 16px;
+  margin-bottom: 24px;
 }
-//
-// Stylings for the Corporate Article Page
-//
-// Adds bold text to Author name below article title
-article {
-    h1.page-title { // Article title below the main top image
-        margin-top:10px;
-        margin-bottom:0;
-    }
-    a[property~="schema:name"] { // Applies bold effect to author name/link only
-        font-weight:bold;
-    }
-    .node__meta {
-        margin-bottom: 10px;
-    }
-    .field--name-body {
-        margin-top:12px;
-    }
-    table { // Default look and feel for all tables on pages.
-        margin-bottom: 12px;
-        caption { // Table title - black background
-            background-color: $black;
-            color: $white;
-            text-transform: uppercase;
-            text-align: center;
-        }
-        thead { // Column titles - blue background
-            background-color:$link-blue;
-            color: $white;
-            th {
-                font-weight: normal;
-                padding: 5px;
-            }
-        }
-        tbody { // Table alternating row colours
-            tr:nth-child(odd) { // Odd numbered table rows
-                background: $comment-blue;
-            }
-            tr:nth-child(even) { // Even numbered table rows
-                background: $white;
-            }
-            td {
-                padding: 5px;
-            }
-            tr th { // Table header row - column titles
-                background-color:$link-blue;
-                color: $white;
-                padding: 10px 0;
-                p { //
-                    color: $white;
-                    line-height: 22px;
-                    font-weight: normal;
-                }
-            }
-        }
-    }
-    figure { // Article images and captions
-        display: table;
-        img {
-            display: block;
-            width: auto;
-        }
-        figcaption {
-            display: table-caption;
-            caption-side: bottom;
-            background: $link-blue;
-            color: $white;
-            padding: 5px 8px;
-            font-size: .875em;
-        }
-        figcaption:before {
-            content:url('../images/white-arrow.svg');
-            display: inline-block;
-            width: 14px;
-            margin-right: 6px;
-        }
-    }
-    .align-left { // padding space between left aligned images and text
-        margin-right: 12px;
-    }
-    .align-right { // padding space between right aligned images and text
-        margin-left: 12px;
-    }
+figure { // Specific to image captions
+  @include inset-top-bottom;
+  img {
+    border-left: solid 1px $icon-grey;
+    border-right: solid 1px $icon-grey;
+    border-bottom: solid 1px $icon-grey;
+  }
+  &.align-left { //Right margin space on left-align
+    margin-right:10px;
+  }
+  &.align-right { //Left margin space on right-align
+    margin-left:10px;
+  }
+  figcaption {
+    margin-bottom:0px;
+  }
 }
-
-// Executive Message Layout. Contains stylings for full-width hero image
+// Executive Page alterations
 article.Executive-Message {
-  padding-bottom: 85px;
-  border-left: solid 22px $exec-greyborder;
-  border-right: solid 22px $exec-greyborder;
-    .field--type-image {
-      img {
-        max-width:100%;
-      }
-      width:100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      margin-top:-10px;
-    }
-    .video-embed-field-provider-youtube {
-      left: 50%;
-      right: 50%;
-      iframe {
-        width: 100vw;
-        max-height:480px;
-        margin-left: -50vw;
-        margin-right: -50vw;
-      }
-    }
-    max-width:1140px;
-    margin-left: auto;
-    margin-right:auto;
-    overflow-x:hidden;
-    padding-left:10px;
-    padding-right:10px;
-}
-.Executive-Message {
-  ~section#block-views-block-comments-new-block-1 {
-    margin-top:-89px!important;
+  border-left: solid 50px $exec-greyborder;
+  border-right: solid 50px $exec-greyborder;
+  margin-left: -50px;
+  margin-right:-50px;
+  .csv-feed .feed-icon {
+    background-color:$white;
   }
 }
-// Hero video for Video Articles
-article.Video-Article {
-  margin-left: auto;
-  margin-right:auto;
-  overflow-x:hidden;
-  .video-embed-field-provider-youtube {
-    left: 50%;
-    right: 50%;
-    iframe {
-      min-width:100vw;
-      max-width:1140px;
-      max-height:640px;
-      margin-left: -50vw;
-      margin-right: -50vw;
-    }
+// Hides the Skype call icon
+span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
+  a[href="#"] {
+    display: none!important;
   }
-}Honda
+}
+
 // Poll article pages - These are entity based content and not node node__content
-.poll-view {
-  max-width:730px;
-  margin:0 auto;
-  .field--name-field-title,
-  .field--name-field-author,
-  .field--name-field-author-information,
-  .field--name-field-author-image,
-  .field--name-field-images,
-  .field--name-field-tags {
-    display: none;
+.poll-view.form-group {
+  legend {
+    display: none; // Hides the legend field that was showing a bottom-border line
   }
-  .vote-form {
-    > fieldset {
-      legend {
-        display: none;
+  .field--name-field-title { // Poll article title
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      @include size3236;
+      color: $text;
+      font-weight: bold;
+      margin:0;
+      padding-top:24px;
+      padding-bottom:6px;
+    }
+    .field--item:nth-of-type(3) { //  Poll author byline
+      @include size1424;
+      padding: 6px 0 18px;
+      a[property~="schema:name"] {
+        @include author-post;
       }
-      padding:0;
-      margin-bottom:10px;
+    }
+    form.poll-view-form {
+      margin:20px 0;
       border:solid 10px darken($comment-blue, 40%);
-      background-color: $comment-blue;
-      .fieldset-wrapper {
-        background-color:$white;
-        padding:15px;
-        margin:15px;
+      .atwork_poll_box {
+        padding: 0 25px;
+        h3.poll-results-title {
+          display:none; // Hides the title "Results" from the form after voting.
+        }
+        h3.poll-question {
+          text-align: center;
+        }
+      }
+      .poll {
+        padding: 0 25px;
+        h3.poll-results-title {
+          text-align: center;
+        }
+        dl {
+          .choice-title {
+            @include size1624;
+            font-weight: normal;
+          }
+          .choice-result, {
+          .foreground,
+          .bar {
+              -webkit-border-radius: 8px;
+              -moz-border-radius: 8px;
+              border-radius: 8px;
+              background-color: $white;
+              border: solid 1px $exec-greyborder;
+            }
+            .bar {
+              max-width:95%;
+            }
+          }
+          dt:nth-of-type(4n+1) + dd {
+            .foreground {
+              background-color:$poll-blue;
+              border:none;
+            }
+          }
+          dt:nth-of-type(5n+2) + dd {
+            .foreground {
+              background-color:$poll-green;
+              border:none;
+            }
+          }
+          dt:nth-of-type(3n+3) + dd {
+            .foreground {
+              background-color:$poll-yellow;
+              border:none;
+            }
+          }
+          dt:nth-of-type(4n+4) + dd {
+            .foreground {
+              background-color:$poll-teal;
+              border:none;
+            }
+          }
+          .percent {
+            display: inline-block;
+            float: right;
+            margin-top: -25px;
+            border: solid 2px #0080c7;
+            min-width: 35px;
+            padding: 6px 0 4px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: .85rem;
+          }
+        }
+      }
+      .form-actions {
+        text-align: center;
+        margin-bottom: 12px;
       }
     }
-    #edit-actions {
-      text-align: center;
-    }
-  }
 }

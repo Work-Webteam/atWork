@@ -11,6 +11,7 @@ module:
   big_pipe: 0
   block: 0
   block_content: 0
+  bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
   color: 0
@@ -22,6 +23,8 @@ module:
   contextual: 0
   crop: 0
   csv_serialization: 0
+  ctools: 0
+  ctools_block: 0
   datetime: 0
   dblog: 0
   devel: 0
@@ -45,6 +48,7 @@ module:
   insert: 0
   kint: 0
   language: 0
+  layout_discovery: 0
   libraries: 0
   like_dislike: 0
   likeit: 0
@@ -66,6 +70,10 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  panelizer: 0
+  panelizer_quickedit: 0
+  panels: 0
+  panels_ipe: 0
   path: 0
   poll: 0
   postal_code: 0
@@ -86,6 +94,7 @@ module:
   taxonomy_manager: 0
   taxonomy_permissions: 0
   telephone: 0
+  term_csv_export_import: 0
   tether_stats: 0
   text: 0
   token: 0

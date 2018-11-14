@@ -33,6 +33,8 @@ permissions:
   - 'use text format basic_html'
   - 'use text format comment_editor'
   - 'use text format restricted_html'
+  - 'use text format teaser_editor'
   - 'view media'
   - 'view post access counter'
+  - 'view terms in tags'
   - 'view terms in tags_community'

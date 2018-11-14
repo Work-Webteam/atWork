@@ -1,35 +1,68 @@
 /* Site wide font settings */
+/* Updated October 2018 */
 
 html, body {
     font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
-    line-height: 25px;
+    font-size: 16px; // Default font size set for REM
+    line-height: 24px;
     p {
-        color: $p-color;
+        color: $text;
+        padding:0;
+        margin: 0 0 10px 0;
     }
 }
 
 // Heading Tags / Sizes
 h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 2.25em;
-    color: $black;
+    @include size3236;
+    color: $text;
     font-weight: bold;
+    margin:0;
+    padding-top:24px;
+    padding-bottom:6px;
 }
-h2, h3 {
-    font-size: 20pt;
-    color: $black;
+h2, h3, h4 {
+  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-weight:600;
+  color: $text;
+  padding-top:20px;
+  padding-bottom:20px;
+  margin:0;
 }
-h4 { // Shown as Subheading A and B on site
-    font-size: 16pt;
-    color: darken($link-blue, 10%);
+h2 {
+  @include size2224;
+}
+h3 {
+  @include size2024;
+}
+h4 {
+  @include size1824;
+}
+h5 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  @include size1824;
+  color: $text;
+  font-weight: bold;
 }
 
+// H6 tags are mainly used in Comment titles and headings. See _atwork-mixins.scss for H6 style
+h6 {
+  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  @include size1824;
+  letter-spacing: .025rem;
+  text-transform: uppercase;
+  color:$text;
+  padding-top:12px;
+  padding-bottom:12px;
+  margin:0;
+}
 // Global text links
 a { // initial link state
     color: $link-blue;
-}
-a:hover {
     text-decoration: none;
-    background-color: $link-blue;
-    color: $white;
+    &:hover {
+      text-decoration: underline;
+    }
 }

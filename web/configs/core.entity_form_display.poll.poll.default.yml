@@ -8,6 +8,7 @@ dependencies:
     - field.field.poll.poll.field_author_image
     - field.field.poll.poll.field_author_information
     - field.field.poll.poll.field_body
+    - field.field.poll.poll.field_custom_teaser
     - field.field.poll.poll.field_images
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
@@ -23,14 +24,14 @@ bundle: poll
 mode: default
 content:
   field_attachments:
-    weight: 7
+    weight: 6
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
   field_author:
-    weight: 3
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -39,14 +40,14 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_author_image:
-    weight: 5
+    weight: 4
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_author_information:
-    weight: 4
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -55,7 +56,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_body:
-    weight: 99
+    weight: 9
     settings:
       rows: 9
       summary_rows: 3
@@ -63,8 +64,16 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
     region: content
+  field_custom_teaser:
+    weight: 8
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_images:
-    weight: 6
+    weight: 5
     settings:
       show_default_crop: true
       warn_multiple_usages: true
@@ -79,7 +88,7 @@ content:
     type: image_widget_crop
     region: content
   field_tags:
-    weight: 8
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
