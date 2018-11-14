@@ -338,7 +338,6 @@ function atwork_messages_format_message($variables, $notifier) {
 		$connection = \Drupal::database();
 		$query = $connection->query("Select entity_id, content_type as type from atwork_messages where receiver = '" . $user->id()
 				. "' and notifier = '" . $notifier . "'");
-		//$result = $query->fetchAll(PDO::FETCH_COLUMN, 0);
 		$result = $query->fetchAll();
 	} catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
