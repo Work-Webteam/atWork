@@ -58,3 +58,4 @@ hidden:
   field_video: true
   langcode: true
   likeit: true
+  panelizer: true
