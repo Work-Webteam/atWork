@@ -130,9 +130,9 @@
         <li class="subscribe">{{ content.flag_subscribe_node }}</li>
         <li> <div id="printBtn" class="printer-button"><input onclick="window.print()" type="button" value="Print" /></div> </li>
         {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have forward/link functions #}
-        <li>
+        <li><span class="share-link-holder">
           {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}
-          <span class="share-link-holder"><input type="button" data-toggle="modal" data-target="#dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/></span>
+          <input type="button" data-toggle="modal" data-target="#dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/>
           {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
           <div id="dialog-share" class="modal fade" tabindex="-1" role="dialog" >
             {# We only want the forward and the link link in this bundle to print out #}
@@ -142,7 +142,7 @@
               <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
             </ul>
           </div>
-        </li>
+        </li></span>
         {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have flag_inappropriate functionality #}
         <li> {{ content.flag_inappropriate }} </li>
         {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have likeit functionality #}

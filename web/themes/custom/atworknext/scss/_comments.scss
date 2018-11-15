@@ -69,7 +69,6 @@ section#block-views-block-comments-new-block-1 {
     .views-row {
       display: block;
       clear:both;
-      border-bottom:solid 1px $exec-greyborder;
       #comment-avatar { // User avatar. Single image for now. This will be revisited when IDIR is active
         display:block;
         border: solid 3px $link-blue;
@@ -91,17 +90,16 @@ section#block-views-block-comments-new-block-1 {
           @include comment-byline;
         }
         .field--name-comment-body p {
-          @include size1216;
+          @include size1416;
         }
       }
       #comment-links {
         clear: both;
       }
+      .field--name-field-edited-comment,
+      .field--name-field-remove-comment {
+        display:none;
+      }
     }
   }
-}
-// Hide the Like/Dislike button due to Brendan's code adjustment to display You like this etc
-#block-views-block-comments-new-block-1 .likeit.likeit-wrapper,
-.like_dislike .dislike {
-    display: none;
 }

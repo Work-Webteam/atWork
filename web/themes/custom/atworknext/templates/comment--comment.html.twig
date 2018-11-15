@@ -68,7 +68,7 @@
  */
 #}
 
-{% if indent_twice %} 
+{% if indent_twice %}
   <article{{ attributes.addClass(['js-comment', 'indented-2']) }}>
 {% else %}
   <article{{ attributes.addClass('js-comment') }}>
@@ -88,9 +88,9 @@
 
   <div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
   <div id="comment-block" class="expandable">
-  
+
   {# set posted on/replied to #}
-  
+
   <div id="comment-byline">
     {% if is_reply %}
       {% trans %}{{ author['#content'] }} replied to {{ parent_author|render }} {{ atworkCreatedDate }}:{{ atworkCreatedTime }}{% endtrans %}
@@ -119,11 +119,11 @@
       {{ content|without('links','field_comment_likes','flag_inappropriate_comment_flag', 'forward', 'likeit', 'permalink' ) }}
     </div>
   </div>
-  <div id="comment-links" class="comment-links-div"> 
+  <div id="comment-links" class="comment-links-div">
     <ul class="comment-link-list">
       <li> {{ content.links }} </li>
-      <li>
-        {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}     
+      <li><span class="share-link-holder">
+        {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}
         <input class="share-link-holder" type="button" data-toggle="modal" data-target="#{{uuid}}-dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/>
         {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
         <div id="{{uuid}}-dialog-share" class="modal fade" tabindex="-1" role="dialog" >
@@ -135,7 +135,7 @@
             <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
           </ul>
         </div>
-      </li>
+      </li></span>
       <li> {{ content.flag_inappropriate_comment_flag }} </li>
       <li> {{ content.likeit }} {{ like_msg }} </li>
     </ul>
