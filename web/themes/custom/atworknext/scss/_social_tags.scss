@@ -1,195 +1,96 @@
-/* Site wide Social icons, links and TAG displays */
+/* Site Wide Social Tags CSS */
 
-// Articles tags
+// Articles tags used by Comms Team
 article .field--name-field-tags,
 body.path-poll .field--name-field-tags {
     margin:10px 0;
+    text-transform: uppercase;
+    @include size1216;
     .field--label {
         display: inline;
         float: left;
+        &:after {
+          content:":";
+        }
     }
     .field--item {
         display: inline;
         margin-left:5px;
         padding-right: 5px;
-        text-transform: uppercase;
-        font-size: .85em;
         border-right: solid 1px $link-blue;
     }
 }
-#taxonomy-terms-bar {
-  margin:10px 0;
-  .field--label {
-      display: inline;
-      float: left;
-      clear:both;
-  }
-  a {
-    display: inline;
-    margin-left:5px;
-    padding-right: 5px;
-    text-transform: uppercase;
-    font-size: .85em;
-    border-right: solid 1px $link-blue;
-  }
-}
+// Social Bar icons
+// Printer icon contained in HTML Print button
 
-// Hide the Like/Dislike button due to Brendan's code adjustment to display You like this etc
-#block-views-block-comments-new-block-1 .likeit.likeit-wrapper,
-.like_dislike .dislike {
-    display: none;
-}
 
 // Subscribe - Forward/Email - Flag - Reads - Comments - Likes
 // Appear at the bottom of each article page
-// Hide Dislike on all pages
-
-article .social-bar,
-body.path-poll { // Social Bar contains the social email like buttons
-  display: inline;
-  margin-top: 12px;
-  .field--name-field-poll-likes { // Like button placement
-    display:inline-block;
-    float:right;
-  }
-  #printBtn {
-    position: relative;
-    left: 350px;
-    top:2px;
-  }
-  li.forward:before {
-      display: inline-block;
-      content:url("../images/forward-icon.svg");
-      width: 16px;
-      margin-right: 5px;
-  }
-  .flag-inappropriate-poll-flag {
-    position: relative;
-    left:0px;
-    bottom:51px;
-  }
-  .flag-inappropriate:before,
-  .flag-inappropriate-poll-flag:before { // Inappropriate flag
-      display: inline-block;
-      content:url("../images/flag-icon.svg");
-      width:16px;
-      margin-right:5px;
-      margin-top:2px;
-      vertical-align: top;
-  }
-  li.statistics-counter:before,
-  #poll_views:before {
-      display: inline-block;
-      content:url("../images/reads-icon.svg");
-      width: 16px;
-      margin-top: 1px;
-      vertical-align: top;
-  }
-  #poll_views {
-    position: relative;
-    width:65px;
-    bottom:25px;
-    left:160px;
-  }
-// Position the icons below the tags, across the page
-  .field--name-field-article-likes .field--item {
-      a:hover {
-          text-decoration: underline;
-          background: none;
-          color:inherit;
-      }
-  }
-  .flag-inappropriate,
-  .flag-inappropriate-poll-flag,
-  .links.inline.list-inline {
+article .social-bar {
+  padding-left:40px;
+  padding-right:40px;
+  @include size1416;
+  @include button-text-reset;
+  .footer-links {
+    li {
       display:inline-block;
-      margin-right: 10px;
-      a:hover {
-          text-decoration: underline;
-          color:inherit;
-          background:none;
+      padding:0;
+      margin:0 10px 0 0;
+      &::before {
+        content:none;
       }
     }
-}
-body.path-poll {
-  ul.list-inline {
-    position: relative;
-    left:230px;
-    bottom:-82px;
-  }
-}
-// Specific styling for the Social links in Comments
-#block-views-block-comments-new-block-1 {
-  ul.list-inline {
-    display:inline;
-  }
-  li.forward {
-    position: relative;
-    top:25px;
-    left:270px;
-    a {
-      color:transparent;
-      &:before {
-        content:"Email";
-        color:$link-blue;
+    li {
+      .flag-subscribe-node:before {
+        display: block;
+        float:left;
+        content:url("../images/subscribe-icon.svg");
+        width: 16px;
+        margin-right: 5px;
+        margin-top:-2px;
+      }
+      .printer-button:before {
+        display: block;
+        float:left;
+        content:url("../images/printer.svg");
+        width: 16px;
+        margin-right: 5px;
+        margin-top:-2px;
+      }
+      .share-link-holder:before {
+        display: block;
+        float:left;
+        content:url("../images/share-icon.svg");
+        width: 16px;
+        margin-right: 5px;
+        margin-top:-2px;
+      }
+      .flag-inappropriate:before {
+        display: block;
+        float:left;
+        content:url("../images/flag-icon.svg");
+        width: 16px;
+        margin-right: 5px;
+        margin-top:-2px;
+      }
+      .likeit:before {
+        display: block;
+        float:left;
+        content:url("../images/like-icon.svg");
+        width: 16px;
+        margin-right: 5px;
+        margin-top:-2px;
       }
     }
   }
-  .indented li.forward {
-    top:48px;
-    left: 105px;
-  }
-  li.forward:before {
-      display: inline-block;
-      content:url("../images/forward-icon.svg");
-      width: 16px;
-      margin-right: 5px;
-  }
-  .flag-inappropriate-comment-flag {
-    position: relative;
-    top:-25px;
-    left:200px;
-    width:170px;
-  }
-  .indented .flag-inappropriate-comment-flag {
-    left: 180px;
-  }
-  .flag-inappropriate-comment-flag:before  { // Inappropriate flag
-      display: inline-block;
-      content:url("../images/flag-icon.svg");
-      width:16px;
-      margin-right:5px;
-      vertical-align: top;
-  }
-  li.comment-reply:before {
-    display: inline-block;
-    content:url("../images/reply-arrow.svg");
-    width:16px;
-    margin-right:5px;
-    margin-top:2px;
-    vertical-align: top;
-  }
-  #comment-links {
-    > a:before {
-      display: inline-block;
-      content:url("../images/link.svg");
-      width:16px;
-      margin-right:5px;
-      margin-top:2px;
-      vertical-align: top;
-    }
-  }
 }
-
-// Specific styling for the LikeIt module used on Comments
-#likes {
-  display:inline;
-  float:right;
+article .field--name-field-tags { // Adjust the spacing for the tags bar to align with the social-bar
+  margin:20px 25px;
+}
+// Share link modal pop-up
+li .share-link-holder {
   position:relative;
-  &:before {
-    display: inline-block;
-    content:url("../images/like-icon.svg");
-    width:16px;
-    margin-right:5px;
-  }
+}
+#dialog-share {
+
 }

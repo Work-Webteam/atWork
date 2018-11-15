@@ -119,7 +119,6 @@
     {% else %}
       {% trans %}{{ author_name }} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
     {% endif %}
-
     {# Uncomment once comments are completed to show comment count on articles #}
     {% if content.comment['#items']|length != 1 %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comments{% endtrans %}#}
@@ -129,16 +128,39 @@
     {{ content.body }}
     {{ content.field_interactive_content }}
     {{ content.field_tags }}
+    {# Social bar is our default link block #}
     <div class="social-bar">
-      {{ content.likeit }}
-      {{ content.flag_inappropriate }}
-      {{ content.links }}
+      <ul class="footer-links">
+        <li class="subscribe">{{ content.flag_subscribe_node }}</li>
+        <li> <div id="printBtn" class="printer-button"><input onclick="window.print()" type="button" value="Print" /></div> </li>
+        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have forward/link functions #}
+        <li>
+          {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}
+          <span class="share-link-holder"><input type="button" data-toggle="modal" data-target="#dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/></span>
+          {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
+          <div id="dialog-share" class="modal fade" tabindex="-1" role="dialog" >
+            {# We only want the forward and the link link in this bundle to print out #}
+            <ul class="share-links">
+              <li class="forward">{{ content.forward }}</li>
+              <li class="comment-text-link "><input type="text" class="allowCopy allow-copy" name="link-text" value="{{ url('<current>') }}"/>
+              <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
+            </ul>
+          </div>
+        </li>
+        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have flag_inappropriate functionality #}
+        <li> {{ content.flag_inappropriate }} </li>
+        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have likeit functionality #}
+        <li> {{ content.likeit }} </li>
+        {# The statistics are lazy-loaded, so we had to force them to render in atwork_article.module > atwork_article_node_view_alter #}
+        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have statistics functionality #}
+        <li> {{ content.rendered_links.statistics }} </li>
+        {# Not really a point of rendering the comment link - the field is directly below this #}
+        {#{ content.rendered_links.comment__comment }#}
+      </ul>
     </div>
     {# 'field_author_information' can be uncommented once we know how we are displaying it #}
     {#{ content.field_author_information }#}
     {{ content.field_attachments }}
-    <div id="printBtn"><input onclick="window.print()" type="button" value="Print" /></div>
-    {{ content.flag_subscribe_node }}
     {{ content.comment }}
   </div>
 </article>

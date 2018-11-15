@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies:
+title: 'Sends weekly subscription messages'
+id: atwork_messages_weekly_cron
+module: atwork_messages
+callback: atwork_messages_weekly_cron 

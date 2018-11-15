@@ -1,0 +1,30 @@
+uuid: e48919aa-e4ce-4226-8201-712aca86ca42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.message.field_node_ref
+    - message.template.subscription_digest
+    - node.type.article
+    - node.type.page
+id: message.subscription_digest.field_node_ref
+field_name: field_node_ref
+entity_type: message
+bundle: subscription_digest
+label: node_ref
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      article: article
+      page: page
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: article
+field_type: entity_reference

@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies:
+title: 'Sends daily subscription messages'
+id: atwork_messages_daily_cron
+module: atwork_messages
+callback: atwork_messages_daily_cron 

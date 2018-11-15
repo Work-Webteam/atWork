@@ -12,8 +12,8 @@ _core:
   default_config_hash: NeHSoqm4XFqA7_0bDmR429ZZQt3LRbZMNRJTMsFyOfI
 id: atworknext_tools
 theme: atworknext
-region: sidebar_first
-weight: -6
+region: navigation_collapsible
+weight: -5
 provider: null
 plugin: 'system_menu_block:tools'
 settings:

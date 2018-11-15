@@ -7,3 +7,7 @@ _core:
 modules:
   message_digest: {  }
   message_notify: {  }
+  atwork_messages:
+    none:
+      formatter: mime_mail
+      sender: devel_mail_log

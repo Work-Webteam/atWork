@@ -1,52 +1,425 @@
 <?php
 
 use Drupal\node\NodeInterface;
+use Drupal\comment\Entity\Comment;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\message\Entity\Message;
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Mail\MailManagerInterface;
+
+const ARTICLE = 1;
+const COMMENT = 2;
 
 /**
  * @file
  * Primary module hooks for atwork_messages module.
- *
- * @DCG
- * This file is no longer required in Drupal 8.
- * @see https://www.drupal.org/node/2217931
  */
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for node entities.
- * 
  */
 function atwork_messages_node_insert(NodeInterface $node) {
-	kint($node);
 	// Check for entity type, published value and create message 
 	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
 	  // Create Message for Article node
-		atwork_messages_create_message($node);
+		atwork_messages_create_message($node, array('content_type' => ARTICLE));
 	}
-	
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for comments.
+ */
+function atwork_messages_comment_insert(Comment $comment) {
+	// Get comment ID & node and pass it to atwork_messages_create_message
+	$cid = array('content_type' => COMMENT, 'cid' => $comment->get('cid')->getValue()[0]['value']);
+	$node = $comment->getCommentedEntity();
+	atwork_messages_create_message($node, $cid);
 }
 
 /**
  * Implements hook_ENTITY_TYPE_update() for node entities.
- *
  */
 function atwork_messages_node_update(NodeInterface $node) {
-	kint(35);
 	// Check for entity type, published value and create message
 	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
 		// Create Message for Article node
-		atwork_messages_create_message($node);
+		atwork_messages_create_message($node, array('content_type' => ARTICLE));
 	}
 }
 
 /**
- * Implements message-stack message creation for subscriptions.
- *  
+ * Implements hook_ENTITY_TYPE_update() for comments.
  */
-function atwork_messages_create_message(NodeInterface $node) {
+function atwork_messages_comment_update(Comment $comment) {
+	// Get comment & node and pass it to the create message?
+}
+
+/**
+ * Implements message creation for subscriptions.
+ */
+function atwork_messages_create_message(NodeInterface $node, $type_info) {
+	
 	// Build subscription message
-	$message = Message::create(['template' => 'node_subscriptions_message', 'uid' => $node->getOwnerId()]);
+	$message = Message::create(['template' => 'subscription_digest', 'uid' => $node->getOwnerId()]);
 	$message->set('field_node_ref', $node);
+	
+	// Must save message to get mid (message ID)
 	$message->save();
+
+	$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id" 
+	  . " FROM flagging f, flagging__message_digest fmd" 
+ 		. " WHERE f.id = fmd.entity_id and fmd.message_digest_value = '";
+	
+	// Save messages to database on article creation or update. 
+	$immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
+	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
+	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
+	
+	$subs_list = array($daily_subs, $weekly_subs, $immediate_subs);
+	
+	foreach($subs_list as $list) {
+		if(!empty($list['subscribers'])) {
+		  foreach($list['subscribers'] as $sub) {
+		  	if($sub->subscribed_content == $node->id()) {
+		  		// Insert message data into atwork_message table
+		  		try{
+		  			$connection = \Drupal::database();
+		  			$query = $connection->merge('atwork_messages')
+		  			->fields([
+		  					'mid' 					=> $message->get('mid')->getValue()[0]['value'],
+		  					'entity_type' 	=> 'node',
+		  					'content_type' 	=> $type_info['content_type'],
+		  					'entity_id' 		=> $node->id(),
+		  					'receiver' 			=> $sub->uid,
+		  					'notifier' 			=> $list['notifier'],
+		  					'timestamp' 		=> time(),
+		  			])
+		  			->condition('entity_id', $node->id(), '=')
+		  			->condition('receiver', $sub->uid, '=')
+		  			->condition('content_type', $type_info['content_type'], '=')
+		  			->execute();
+		  		} catch(Exception $e) {
+		  			\Drupal::logger('type')->error($e->getMessage());
+		  		}
+		  		
+		  		if($type_info['content_type'] == COMMENT) {
+		  			// Now save CID's so we can send them out later
+		  		  try{
+		  		  	$connection = \Drupal::database();
+		  		  	$query = $connection->merge('atwork_messages_comments')
+		  		  	->fields([
+		  		  			'cid'  			 		=> $type_info['cid'],
+		  		  			'entity_id'  		=> $node->id(),
+		  				    'receiver' 	 		=> $sub->uid,
+		  		  	])
+		  		  	->condition('entity_id', $node->id(), '=')
+		  		  	->condition('receiver', $sub->uid, '=')
+		  		  	->condition('cid', $type_info['cid'], '=')
+		  		  	->execute();
+		  		  } catch(Exception $e) {
+		  		  	\Drupal::logger('type')->error($e->getMessage());
+		  		  }
+		  			
+		  		}
+		  		
+		  	}
+		  }
+		}
+	}
+	
+	// Automatically subscribe employee news to everything
+	try{
+		$connection = \Drupal::database();
+		$query = $connection->merge('atwork_messages')
+		->fields([
+				'mid' 					=> $message->get('mid')->getValue()[0]['value'],
+				'entity_type' 	=> 'node',
+				'content_type' 	=> $type_info['content_type'],
+				'entity_id' 		=> $node->id(),
+				'receiver' 			=> '1',
+				'notifier' 			=> 'immediate',
+				'timestamp' 		=> time(),
+		])
+		->condition('entity_id', $node->id(), '=')
+		->condition('receiver', '1', '=')
+		->condition('content_type', $type_info['content_type'], '=')
+		->execute();
+	} catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+}
+
+/**
+ * Return subscribers list by notification frequency
+ * 
+ * @param string $notifier
+ * 	 Notification frequency of desired list of subscribers
+ */
+function atwork_messages_get_subscribers($notifier, $query) {
+	$result = '';
+	try{
+		$connection = \Drupal::database();
+		$query = $connection->query($query . $notifier . "'");
+		$result = $query->fetchAll();
+	} catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	return $result;
+}
+
+/**
+ * Sends notification messages to desired users based 
+ * on the subscription data in atwork_messages table 
+ * and the message key.
+ * 
+ * @param array $subscribers
+ * 	Array of users being sent the notification message
+ * @param string $msg_key
+ * 	An identifier of the mail.
+ * @param array $message
+ * 	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
+ */
+function atwork_messages_send_notification($subscription, $msg_key) {
+	// Build notification message for each sub/node and send.
+	$user = user_load($subscription->uid);
+	$recipient = $user->get('name')->getValue()[0]['value'];
+	$mailManager = \Drupal::service('plugin.manager.mail');
+	$module = 'atwork_messages';
+	$key = $msg_key; // This could also be used to distinguish between templates for different frequencies
+	$langcode = \Drupal::currentUser()->getPreferredLangcode();
+	if($user->__isset('mail')) {
+	  $to = $user->get('mail')->getValue()[0]['value'];
+	}
+	
+	$params['username'] = $user->get('name');
+	$send = true;
+	$result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+	if ($result['result'] != true) {
+		\Drupal::logger('mail-log')->error('Unable to send notification to ' . $recipient . ' at ' . $to . '. ');
+		return;
+	} else {
+		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to . '. ');
+	}
+	
+  // Delete the message after it has been sent.
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->delete("atwork_messages")
+		  ->condition('receiver', $subscription->uid, '=')
+		  ->condition('entity_id', $subscription->entity_id, '=')
+		  ->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+  // Delete the message comments after it has been sent.
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->delete("atwork_messages_comments")
+		  ->condition('receiver', $subscription->uid, '=')
+		  ->condition('entity_id', $subscription->entity_id, '=')
+		  ->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+}
+
+/**
+ * Implements hook_mail()
+ * 
+ *  @param string	$key
+ *  	An identifier of the mail.
+ *  @param string $message
+ *  	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
+ *  @param string $params
+ *  	Array: variables to replace tokens in message subject/body; supplied by caller of MailManagerInterface->mail().
+ */
+function atwork_messages_mail($key, &$message, $params) {
+	  switch ($key) {
+	  	case 'immediate_notifications':
+	  		$message['subject'] = t('@Work As-It-Happens Subscriptions');
+	  		$body_data = array (
+	  				'#theme' => $key,
+	  		);
+	  		$message['body'][] = \Drupal::service('renderer')->render($body_data);
+	  		break;
+	  	case 'daily_notifications':
+	  		$message['subject'] = t('@Work Daily Subscriptions');
+	  		$body_data = array (
+	  				'#theme' => $key,
+	  		);
+	  		$message['body'][] = \Drupal::service('renderer')->render($body_data);
+	  		break;
+	  	case 'weekly_notifications':
+	  		$message['subject'] = t('@Work Weekly Subscriptions');
+	  		$body_data = array (
+	  				'#theme' => $key,
+	  		);
+	  		$message['body'][] = \Drupal::service('renderer')->render($body_data);
+	  		break;
+	  }
+}
+
+/**
+ * Implements cron callback for weekly subscribers
+ */
+function atwork_messages_daily_cron($job) {
+//function atwork_messages_daily() {
+	$daily_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$daily_subs = atwork_messages_get_subscribers('daily', $daily_query);
+	if($daily_subs) {
+	  foreach($daily_subs as $sub) {
+	  	atwork_messages_send_notification($sub, 'daily_notifications');
+	  }
+	}
+}
+
+/**
+ * Implements cron callback for daily subscribers
+ */
+function atwork_messages_weekly_cron($job) {
+	$weekly_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$weekly_subs = atwork_messages_get_subscribers('weekly', $weekly_query);
+	if($weekly_subs) {
+		foreach($weekly_subs as $sub) {
+			atwork_messages_send_notification($sub, 'weekly_notifications');
+		}
+	}
+}
+
+/**
+ * Implements cron callback for immediate subscribers
+ */
+function atwork_messages_immediate_cron($job) {
+	$immediate_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$immediate_subs = atwork_messages_get_subscribers('immediate', $immediate_query);
+	if($immediate_subs) {
+		foreach($immediate_subs as $sub) {
+			atwork_messages_send_notification($sub, 'immediate_notifications');
+		}
+	}
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--immediate-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__immediate_notifications(&$variables){
+	$variables = atwork_messages_format_message($variables, 'immediate');
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--daily-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__daily_notifications(&$variables){
+	$variables = atwork_messages_format_message($variables, 'daily');
+}
+
+/**
+ * Implements theme_preprocess_template() for atwork-messages--weekly-notifications.html.twig
+ *
+ * @param array $variables
+ */
+function atworknext_preprocess_mimemail_messages__weekly_notifications(&$variables){
+	$variables = atwork_messages_format_message($variables, 'weekly');
+}
+
+/**
+ * Modifies variables array for subscription messages
+ */
+function atwork_messages_format_message($variables, $notifier) {
+	$user = user_load_by_mail($variables['recipient']);
+	$node_storage = \Drupal::entityTypeManager()->getStorage('node');
+	$comment_storage = \Drupal::entityTypeManager()->getStorage('comment');
+	$result = '';
+	try{
+		$connection = \Drupal::database();
+		$query = $connection->query("Select entity_id, content_type as type from atwork_messages where receiver = '" . $user->id()
+				. "' and notifier = '" . $notifier . "'");
+		$result = $query->fetchAll();
+	} catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	
+	// Load node and add to variables.
+	$variables['date'] = date('F j, Y');
+	$variables['username'] = $user->get('name')->getValue()[0]['value'];
+	$variables['user_uid'] = $user->get('uid')->getValue()[0]['value'];
+	
+	foreach($result as $item) {
+		if($item->type == COMMENT) {
+				// Grab comment ID's from db
+				$cids = '';
+	      try{
+	      	$connection = \Drupal::database();
+	      	$query = $connection->query("Select cid as id from atwork_messages_comments where receiver = '" . $user->id()
+	      			. "' and entity_id = '" . $item->entity_id . "'");
+	      	$cids = $query->fetchAll(PDO::FETCH_COLUMN, 0);
+	      } catch(Exception $e) {
+	      	\Drupal::logger('type')->error($e->getMessage());
+	      }
+	      
+	      $comments = array();
+	      // Load comments by cid
+	      foreach($cids as $cid) {
+	      	$comment = $comment_storage->load($cid);
+
+	      	$comments[] = [
+	      		'author' => \Drupal\user\Entity\User::load($comment->get('uid')->getValue()[0]['target_id'])->getUsername(),
+	      		'createdDate' => date('F j, Y', $comment->get('created')->getValue()[0]['value']),
+	      		'createdTime' => date('g:i a', $comment->get('created')->getValue()[0]['value']),
+	      		'comment_body' => $comment->get('comment_body')->getValue()[0]['value'],
+	      	];
+	      }
+	      
+		    $node = $node_storage->load($item->entity_id);
+		    $variables['comments'][] =  [
+		    	'title' 			=> $node->get('title')->getValue()[0]['value'],
+		    	//'author' 			=> \Drupal\user\Entity\User::load($node->get('uid')
+	   	  	//							 	->getValue()[0]['target_id'])->getUsername(),
+		    	'createdDate' => date('F j, Y', $node->get('created')->getValue()[0]['value']),
+		    	'createdTime' => date('g:i a', $node->get('created')->getValue()[0]['value']),
+	   	  	'url' 				=> $url,
+		    	'comments' 		=> $comments,	
+		    ];
+	      
+		} else {
+		  $node = $node_storage->load($item->entity_id);
+		  
+	    // Retrieve teaser or create summary from content body.
+		  if(!empty($node->get('body')->getValue()[0]['summary'])) {
+		  	$summary = $node->get('body')->getValue()[0]['summary'];
+		  }else {
+		  	$summary = $node->get('body')->getValue()[0]['value'];
+		  }
+		  if(strlen($summary) > 150) {
+		  	$pos = strpos($summary, ' ', 200);
+		  	$summary = substr($summary,0,$pos);
+		  }
+		  
+		  $url = '';
+		  // Get node and/or comment url
+		  if(isset($node->get('nid')->getValue()[0]['value'])) {
+		  	$url = \Drupal::service('path.alias_manager')->getAliasByPath('/node/'.$node->get('nid')->getValue()[0]['value']);
+		  } else if(isset($item->get('cid')->getValue()[0]['value'])) {
+		  	$url = \Drupal::service('path.alias_manager')->getAliasByPath('/comment/'.$node->get('cid')->getValue()[0]['value']);
+		  }
+      
+		  $variables[$node->get('type')->getValue()[0]['target_id']][] =  [
+		  	'title' 			=> $node->get('title')->getValue()[0]['value'],
+		  	'author' 			=> \Drupal\user\Entity\User::load($node->get('uid')
+	   									 	->getValue()[0]['target_id'])->getUsername(),
+		  	'createdDate' => date('F j, Y', $node->get('created')->getValue()[0]['value']),
+		  	'createdTime' => date('g:i a', $node->get('created')->getValue()[0]['value']),
+		  	'body' 				=> $node->get('body')->getValue()[0]['value'],
+	   		'summary' 		=> $summary,
+	   		'url' 				=> $url,
+		  ];
+		}
+		
+	}
+
+	return $variables;
 }

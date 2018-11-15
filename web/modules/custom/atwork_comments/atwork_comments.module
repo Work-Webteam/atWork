@@ -18,8 +18,10 @@ use \Drupal\user\Entity\User;
  * @param array $variables
  */
 function atworknext_preprocess_comment__comment(&$variables){
-	/*At some point we will add in ministry information to author byline as well*/
-
+	// We need a uniqu id for div id's in comments
+	$uuid = $variables['elements']['#comment']->uuid();
+	$variables['uuid'] = $uuid;
+	/*TODO: At some point we will add in ministry information to author byline as well*/
 	$comment = \Drupal::entityTypeManager()->getStorage('comment')->load($variables['elements']['#comment']->id());
 	if(isset($comment->get('field_edited_comment')->getValue()[0]['value'])){
 	  if($comment->get('field_edited_comment')->getValue()[0]['value'] == 1) {
@@ -44,7 +46,10 @@ function atworknext_preprocess_comment__comment(&$variables){
 	$variables['atworkCreatedTime'] =  $variables['comment']->getCreatedTime();
 	//Fix comment permalink text
 	$variables['comment_link'] = str_replace('Permalink','Link', $variables['permalink']);
-	
+	// Fully qualified in case users want to send it to each other
+	global $base_url;
+	$full_path = $base_url . "/comment/" . $variables['elements']['#comment']->id() . "/#comment-" . $variables['elements']['#comment']->id(); 
+	$variables['full_path'] = $full_path;
 	// Check if user has liked this comment.
 	$user = User::load(\Drupal::currentUser()->id());
 	$comment_entity_id = $variables['elements']['#entity']->id();

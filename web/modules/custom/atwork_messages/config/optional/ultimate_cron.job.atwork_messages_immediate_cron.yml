@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies:
+title: 'Sends immediate subscription messages'
+id: atwork_messages_immediate_cron
+module: atwork_messages
+callback: atwork_messages_immediate_cron 
