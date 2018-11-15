@@ -83,8 +83,10 @@ module:
   rest: 0
   rules: 0
   scheduler: 0
-  search: 0
   search_api: 0
+  search_api_sorts: 0
+  search_api_stats: 0
+  search_api_stats_block: 0
   serialization: 0
   settings_tray: 0
   shortcut: 0
