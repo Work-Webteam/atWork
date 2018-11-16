@@ -26,12 +26,13 @@ body.path-poll .field--name-field-tags {
 
 // Subscribe - Forward/Email - Flag - Reads - Comments - Likes
 // Appear at the bottom of each article page
-article .social-bar {
+article .social-bar,
+.form-group #comment-links {
   padding-left:40px;
   padding-right:40px;
   @include size1416;
   @include button-text-reset;
-  .footer-links {
+  .footer-links, .comment-link-list {
     li {
       display:inline-block;
       padding:0;
@@ -46,7 +47,7 @@ article .social-bar {
         float:left;
         content:url("../images/subscribe-icon.svg");
         width: 16px;
-        margin-right: 5px;
+        margin-right: 3px;
         margin-top:-2px;
       }
       .printer-button:before {
@@ -54,34 +55,59 @@ article .social-bar {
         float:left;
         content:url("../images/printer.svg");
         width: 16px;
-        margin-right: 5px;
+        margin-right: 3px;
         margin-top:-2px;
       }
       .share-link-holder:before {
         display: block;
         float:left;
         content:url("../images/share-icon.svg");
-        width: 16px;
-        margin-right: 5px;
-        margin-top:-2px;
+        width: 14px;
+        margin-right: 3px;
+        margin-top:-1px;
       }
-      .flag-inappropriate:before {
-        display: block;
-        float:left;
-        content:url("../images/flag-icon.svg");
-        width: 16px;
-        margin-right: 5px;
-        margin-top:-2px;
+      .flag-inappropriate,
+      .flag-inappropriate-comment-flag {
+        position: absolute;
+        right:2px;
+        bottom:2px;
+        &::before {
+          display: block;
+          float:left;
+          content:url("../images/flag-icon.svg");
+          width: 14px;
+          margin-right: 4px;
+          margin-top:-1px;
+        }
       }
-      .likeit:before {
-        display: block;
-        float:left;
-        content:url("../images/like-icon.svg");
-        width: 16px;
-        margin-right: 5px;
-        margin-top:-2px;
+      .likeit {
+        display: inline;
+        &:before {
+          display: block;
+          float:left;
+          content:url("../images/like-icon.svg");
+          width: 16px;
+          margin-right: 3px;
+          margin-top:-2px;
+        }
+        a {
+          margin-right: 10px;
+        }
       }
     }
+  }
+}
+.form-group #comment-links {
+  padding-left: 75px;
+  padding-top:12px;
+  margin-right: 0px;
+  li.comment-reply a:before {
+    display: block;
+    float:left;
+    content:url("../images/reply-arrow.svg");
+    width: 20px;
+    margin-right: 3px;
+    margin-left:5px;
   }
 }
 article .field--name-field-tags { // Adjust the spacing for the tags bar to align with the social-bar
