@@ -11,6 +11,7 @@ dependencies:
     - taxonomy.vocabulary.tags
   content:
     - 'taxonomy_term:tags:62894169-ba9e-4ff6-a24f-4888e23ed870'
+    - 'taxonomy_term:tags:6746e03b-3230-4a19-9b76-606809a4e7cc'
     - 'taxonomy_term:tags:b0be5537-0c86-4eff-9a2a-6874017a6afc'
     - 'taxonomy_term:tags:f67e7c09-dc4e-4092-a327-313cee31ca80'
   module:
@@ -385,6 +386,7 @@ display:
             - 6
             - 7
             - 15
+            - 1125
           group: 1
           exposed: false
           expose:
