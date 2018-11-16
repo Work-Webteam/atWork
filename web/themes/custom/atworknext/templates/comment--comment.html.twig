@@ -68,11 +68,7 @@
  */
 #}
 
-{% if indent_twice %} 
-  <article{{ attributes.addClass(['js-comment', 'indented-2']) }}>
-{% else %}
-  <article{{ attributes.addClass('js-comment') }}>
-{% endif %}
+{% if indent_twice %} <article{{ attributes.addClass(['js-comment', 'indented-2']) }}> {% else %} <article{{ attributes.addClass('js-comment') }}> {% endif %}
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
     server which comments are new for the user. Rendering the final "new"
@@ -81,64 +77,51 @@
   {#
     This code seems to be breaking the "new comment" line
     <mark class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
-  #}
+#}
 
   {% set atworkCreatedDate = atworkCreatedTime|format_date('atwork_datetime') %}
   {% set atworkCreatedTime = atworkCreatedTime|format_date('atwork_time') %}
-
-  <div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
-  <div id="comment-block" class="expandable">
-  
-  {# set posted on/replied to #}
-  
-  <div id="comment-byline">
-    {% if is_reply %}
-      {% trans %}{{ author['#content'] }} replied to {{ parent_author|render }} {{ atworkCreatedDate }}:{{ atworkCreatedTime }}{% endtrans %}
+<div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
+<div id="comment-block" class="expandable"> {# set posted on/replied to #}
+  <div id="comment-byline"> {% if is_reply %}
+    {% trans %}{{ author['#content'] }} replied to {{ parent_author|render }} {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
     {% else %}
-      {% trans %}{{ author['#content'] }} posted on {{ atworkCreatedDate }}:{{ atworkCreatedTime }}{% endtrans %}
-    {% endif %}
-  </div>
-
-    {#
-      Indicate the semantic relationship between parent and child comments for
-      accessibility. The list is difficult to navigate in a screen reader
-      without this information.
-    #}
-    {% if parent %}
-      <p class="visually-hidden">{{ parent }}</p>
-    {% endif %}
-
-
-    <div{{ content_attributes }}>
-      {# No display title
-      {% if title %}
-        {{ title_prefix }}
-        <h3{{ title_attributes }}>{{ title }}</h3>
-        {{ title_suffix }}
-      {% endif %} #}
-      {{ content|without('links','field_comment_likes','flag_inappropriate_comment_flag', 'forward', 'likeit', 'permalink' ) }}
+    {% trans %}{{ author['#content'] }} posted on {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
+    {% endif %} </div>
+  {#
+  Indicate the semantic relationship between parent and child comments for
+  accessibility. The list is difficult to navigate in a screen reader
+  without this information.
+  #}
+  {% if parent %}
+  <p class="visually-hidden">{{ parent }}</p>
+  {% endif %} <div{{ content_attributes }}> {# No display title
+  {% if title %}
+  {{ title_prefix }} <h3{{ title_attributes }}>{{ title }}
+  </h3>
+  {{ title_suffix }}
+  {% endif %} #}
+  {{ content|without('links','field_comment_likes','flag_inappropriate_comment_flag', 'forward', 'likeit', 'permalink' ) }} </div>
+</div>
+<div id="comment-links" class="comment-links-div">
+  <ul class="comment-link-list">
+    <li> {{ content.links }} </li>
+    <li><span class="share-link-holder"> {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}
+      <input class="share-link-holder" type="button" data-toggle="modal" data-target="#{{uuid}}-dialog-share" value="Share"/>
+      </span></li>
+    <li> {{ content.flag_inappropriate_comment_flag }} </li>
+    <li> {{ content.likeit }} {{ like_msg }} </li>
+  </ul>
+</div>
+{# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
+<div  class="modal fade" id="{{uuid}}-dialog-share" role="dialog" aria-hidden="true"> {# We only want the forward and the link link in this bundle to print out #}
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input type="text" class="allowCopy allow-copy" name="link-text" value="{{ full_path }}"/>
+        <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" />
+      </div>
     </div>
   </div>
-  <div id="comment-links" class="comment-links-div"> 
-    <ul class="comment-link-list">
-      <li> {{ content.links }} </li>
-      <li>
-        {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}     
-        <input class="share-link-holder" type="button" data-toggle="modal" data-target="#{{uuid}}-dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/>
-        {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
-        <div id="{{uuid}}-dialog-share" class="modal fade" tabindex="-1" role="dialog" >
-          {# We only want the forward and the link link in this bundle to print out #}
-          <ul>
-            <li class="forward">{{ content.forward }}</li>
-            {# The Full path variable is used to mark an absolute URL. This is built in atwork_comments.module #}
-            <li class="comment-text-link "><input type="text" class="allowCopy allow-copy" name="link-text" value="{{ full_path }}"/>
-            <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
-          </ul>
-        </div>
-      </li>
-      <li> {{ content.flag_inappropriate_comment_flag }} </li>
-      <li> {{ content.likeit }} {{ like_msg }} </li>
-    </ul>
-  </div>
-
+</div>
 </article>
