@@ -1,15 +1,15 @@
-uuid: 306e1d64-14e3-43b9-90a9-65806ae8ee1c
+uuid: 42b89b59-6b7a-404a-9c81-5e9279a16583
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.flagging.subscribe_node.message_digest
-    - flag.flag.subscribe_node
+    - field.field.flagging.subscribe_term.message_digest
+    - flag.flag.subscribe_term
   module:
     - options
-id: flagging.subscribe_node.default
+id: flagging.subscribe_term.default
 targetEntityType: flagging
-bundle: subscribe_node
+bundle: subscribe_term
 mode: default
 content:
   message_digest:

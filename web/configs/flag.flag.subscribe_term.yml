@@ -1,6 +1,6 @@
 uuid: da837abb-a252-4044-a687-3eef5e69974d
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - message_subscribe_ui
@@ -24,7 +24,7 @@ unflag_long: ''
 unflag_message: 'You are no longer subscribed to this item.'
 unflag_denied_text: ''
 flag_type: 'entity:taxonomy_term'
-link_type: ajax_link
+link_type: field_entry
 flagTypeConfig:
   show_in_links:
     full: full
@@ -32,4 +32,11 @@ flagTypeConfig:
   show_on_form: false
   show_contextual_link: false
   extra_permissions: {  }
-linkTypeConfig: {  }
+linkTypeConfig:
+  flag_confirmation: Subscribe
+  unflag_confirmation: Unsubscribe
+  flag_create_button: 'Create Subscription'
+  flag_delete_button: Unsubscribe
+  form_behavior: modal
+  edit_flagging: 'Edit Subscription'
+  flag_update_button: 'Update Subscription'

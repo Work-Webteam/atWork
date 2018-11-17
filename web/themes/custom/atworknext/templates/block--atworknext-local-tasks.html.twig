@@ -1,0 +1,18 @@
+{% extends "block--bare.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for tabs.
+ *
+ * @ingroup templates
+ */
+#}
+{% block content %}
+  {% if content %}
+    <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
+      {{ content }}
+      {{ kint(content) }}
+      <div id="mysubscription-title">MANAGE YOUR SUBSCRIPTION SETTINGS</div>
+    </nav>
+  {% endif %}
+{% endblock %}
