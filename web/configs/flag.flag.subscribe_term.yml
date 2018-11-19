@@ -11,7 +11,7 @@ third_party_settings:
 _core:
   default_config_hash: TuS5Yr0rC4k-KjN6ioKSFrZ_W1YSltE_dPSXInohEmk
 id: subscribe_term
-label: Terms
+label: Tags
 bundles: {  }
 entity_type: taxonomy_term
 global: false
@@ -19,7 +19,7 @@ weight: 0
 flag_short: Subscribe
 flag_long: ''
 flag_message: 'You are now subscribed to this item.'
-unflag_short: Unsubscribe
+unflag_short: 'Manage Subscription'
 unflag_long: ''
 unflag_message: 'You are no longer subscribed to this item.'
 unflag_denied_text: ''
@@ -34,9 +34,9 @@ flagTypeConfig:
   extra_permissions: {  }
 linkTypeConfig:
   flag_confirmation: Subscribe
-  unflag_confirmation: Unsubscribe
+  unflag_confirmation: 'Manage Subscription'
   flag_create_button: 'Create Subscription'
-  flag_delete_button: Unsubscribe
+  flag_delete_button: 'Manage Subscription'
   form_behavior: modal
-  edit_flagging: 'Edit Subscription'
-  flag_update_button: 'Update Subscription'
+  edit_flagging: 'Manage Subscription'
+  flag_update_button: Save
