@@ -1,28 +1,28 @@
 <?php
 // For hook_node_links_alter() https://api.drupal.org/api/drupal/core%21modules%21node%21node.api.php/function/hook_node_links_alter/8.2.x
 
-use Drupal\node\NodeInterface; 
+use Drupal\node\NodeInterface;
 
 /**
  * @file
  * Primary module hooks for atwork_article module.
- * 
+ *
  */
 function atwork_article_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 	if(($form["#form_id"] == $form_id) && (in_array($form["#form_id"], array('node_article_form','node_article_edit_form')))) {
 		// Attach custom module javascript library
     $form['#attached']['library'][] = 'atwork_article/atwork_article';
-  
+
 	  // Add instructions to Article Title field
-	  $form['title']['widget'][0]['value']['#description'] = t('Enter the title for the article. This will 
-	  	appear at the top of the article and on the home page. 
+	  $form['title']['widget'][0]['value']['#description'] = t('Enter the title for the article. This will
+	  	appear at the top of the article and on the home page.
 	  	Note, the maximum character length, including spaces, is <strong>60</strong>. ');
-	  
+
 	  // Modify title and instructions for article teaser.
 	  $form['body']['widget'][0]['summary']['#title'] = t('Teaser');
-	  $form['body']['widget'][0]['summary']['#description'] = t('Enter the teaser for the article. Note, 
-	  	the maximum character length, including spaces, is 300. The teaser will be posted to the home 
-	  	page along with the image and title of the article to encourage employees to read the full 
+	  $form['body']['widget'][0]['summary']['#description'] = t('Enter the teaser for the article. Note,
+	  	the maximum character length, including spaces, is 300. The teaser will be posted to the home
+	  	page along with the image and title of the article to encourage employees to read the full
 	  	article. There will be a link to the full article available on the home page. ');
 	}
 }
