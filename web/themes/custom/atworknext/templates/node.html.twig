@@ -80,46 +80,35 @@
     article_type[0]['value']|replace(' ','-')
   ]
 %}
-{{ attach_library('classy/node') }}
-<article{{ attributes.addClass(classes) }}>
-  <header>
-    {{ title_prefix }}
-    {% if not page %}
-      <h2{{ title_attributes.addClass('node__title') }}>
-        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-      </h2>
-    {% endif %}
-    {{ title_suffix }}
-    {% if display_submitted %}
-      <div class="node__meta">
-        <span{{ author_attributes }}>
-        </span>
-        {{ metadata }}
-      </div>
-    {% endif %}
-  </header>
-  <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
-  {% if content.field_video['#object'] is defined %}
+{{ attach_library('classy/node') }} <article{{ attributes.addClass(classes) }}>
+<header> {{ title_prefix }}
+  {% if not page %} <h2{{ title_attributes.addClass('node__title') }}> <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+  </h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% if display_submitted %}
+  <div class="node__meta"> <span{{ author_attributes }}> </span> {{ metadata }} </div>
+  {% endif %} </header>
+<div{{ content_attributes.addClass('node__content', 'clearfix') }}> {% if content.field_video['#object'] is defined %}
     {{ content.field_video }}
   {% else %}
     {{ content.field_image }}
   {% endif %}
     {% if label %}
       {% if page %}
-        <h1 class="page-title">{{ label }}</h1>
-      {% else %}
-        <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
-      {% endif %}
+<h1 class="page-title">{{ label }}</h1>
+{% else %}
+<h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
+{% endif %}
     {% endif %}
     {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
     {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
-    {% if isEmployeeNews %}
-    <div><a title="View Employee News Information page." href="https://gww.gov.bc.ca/at-work" about="https://gww.gov.bc.ca/at-work" typeof="schema:Person" property="schema:name">Employee News</a>
-      {% trans %} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}</div>
-    {% else %}
-      {% trans %}{{ author_name }} posted on {{ createdDate }} | {{ createdTime }}{% endtrans %}
-    {% endif %}
-    {# Uncomment once comments are completed to show comment count on articles #}
+<div class="author-byline"{% trans %}{{ author_name }} posted on {{ createdDate }} {{ createdTime }}{% endtrans %}
+
+
+
+</div>
+{# Uncomment once comments are completed to show comment count on articles #}
     {% if content.comment['#items']|length != 1 %}
       {#{% trans %}{{ content.comment['#items'].comment_count }} Comments{% endtrans %}#}
     {% else %}
@@ -129,38 +118,42 @@
     {{ content.field_interactive_content }}
     {{ content.field_tags }}
     {# Social bar is our default link block #}
-    <div class="social-bar">
-      <ul class="footer-links">
-        <li class="subscribe">{{ content.flag_subscribe_node }}</li>
-        <li> <div id="printBtn" class="printer-button"><input onclick="window.print()" type="button" value="Print" /></div> </li>
-        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have forward/link functions #}
-        <li>
-          {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}
-          <span class="share-link-holder"><input type="button" data-toggle="modal" data-target="#dialog-share"  data-dialog-options='{&quot;width&quot;:&quot;500&quot;}' value="Share"/></span>
-          {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
-          <div id="dialog-share" class="modal fade" tabindex="-1" role="dialog" >
-            {# We only want the forward and the link link in this bundle to print out #}
-            <ul class="share-links">
-              <li class="forward">{{ content.forward }}</li>
-              <li class="comment-text-link "><input type="text" class="allowCopy allow-copy" name="link-text" value="{{ url('<current>') }}"/>
-              <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" /></li>
-            </ul>
-          </div>
-        </li>
-        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have flag_inappropriate functionality #}
-        <li> {{ content.flag_inappropriate }} </li>
-        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have likeit functionality #}
-        <li> {{ content.likeit }} </li>
-        {# The statistics are lazy-loaded, so we had to force them to render in atwork_article.module > atwork_article_node_view_alter #}
-        {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have statistics functionality #}
-        <li> {{ content.rendered_links.statistics }} </li>
-        {# Not really a point of rendering the comment link - the field is directly below this #}
-        {#{ content.rendered_links.comment__comment }#}
-      </ul>
+<div class="social-bar">
+  <ul class="footer-links">
+    <li class="subscribe">{{ content.flag_subscribe_node }}</li>
+    <li>
+      <div id="printBtn" class="printer-button">
+        <input onclick="window.print()" type="button" value="Print" />
+      </div>
+    </li>
+    {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have forward/link functions #}
+    <li><span class="share-link-holder"> {# We want to have a share button that pops a modal so that we can populate both sharing options inside it #}
+      <input type="button" data-toggle="modal" data-target="#dialog-share" value="Share"/>
+      </span> </li>
+    {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have flag_inappropriate functionality #}
+    <li> {{ content.flag_inappropriate }} </li>
+    {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have likeit functionality #}
+    <li> {{ content.likeit }} </li>
+    {# The statistics are lazy-loaded, so we had to force them to render in atwork_article.module > atwork_article_node_view_alter #}
+    {# TODO: We need to put this in a conditional if we have any content that uses this template but does not have statistics functionality #}
+    <li> {{ content.rendered_links.statistics }} </li>
+    {# Not really a point of rendering the comment link - the field is directly below this #}
+    {#{ content.rendered_links.comment__comment }#}
+  </ul>
+</div>
+{# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
+<div class="modal fade" id="dialog-share" role="dialog" aria-hidden="true"> {# We only want the forward and the link link in this bundle to print out #}
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input type="text" class="allowCopy allow-copy" name="link-text" value="{{ url('<current>') }}"/>
+        <input id="node-link" onclick="(function ($, Drupal) { $('.allowCopy').focus(); $('.allowCopy').select(); document.execCommand('copy'); })(jQuery, Drupal);" type="button" value="Copy Link" />
+      </div>
     </div>
-    {# 'field_author_information' can be uncommented once we know how we are displaying it #}
+  </div>
+</div>
+{# 'field_author_information' can be uncommented once we know how we are displaying it #}
     {#{ content.field_author_information }#}
     {{ content.field_attachments }}
     {{ content.comment }}
-  </div>
 </article>
