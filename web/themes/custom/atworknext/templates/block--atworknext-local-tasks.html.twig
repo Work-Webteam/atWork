@@ -11,8 +11,9 @@
   {% if content %}
     <nav class="tabs" role="navigation" aria-label="{{ 'Tabs'|t }}">
       {{ content }}
-      {{ kint(content) }}
-      <div id="mysubscription-title">MANAGE YOUR SUBSCRIPTION SETTINGS</div>
+      {% if content['#primary']['message_subscribe_ui.tab']['#active'] %}
+        <div id="mysubscription-title">MANAGE YOUR SUBSCRIPTION SETTINGS</div>
+      {% endif %}
     </nav>
   {% endif %}
 {% endblock %}
