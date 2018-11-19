@@ -381,7 +381,6 @@ function atwork_messages_format_message($variables, $notifier) {
 	   	  	//							 	->getValue()[0]['target_id'])->getUsername(),
 		    	'createdDate' => date('F j, Y', $node->get('created')->getValue()[0]['value']),
 		    	'createdTime' => date('g:i a', $node->get('created')->getValue()[0]['value']),
-	   	  	'url' 				=> $url,
 		    	'comments' 		=> $comments,	
 		    ];
 	      
