@@ -126,7 +126,7 @@ content:
     type: h5p_editor
     region: content
   field_tags:
-    type: entity_reference_autocomplete_tags
+    type: entity_reference_autocomplete
     weight: 9
     region: content
     settings:
