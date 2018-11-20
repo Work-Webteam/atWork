@@ -1,4 +1,16 @@
-﻿/*!
+@charset "UTF-8";
+/**
+ * Default Variables.
+ *
+ * Modify this file to provide default Bootstrap Framework variables. The
+ * Bootstrap Framework will not override any variables defined here because it
+ * uses the `!default` flag which will only set their default if not already
+ * defined here.
+ *
+ * You can copy existing variables directly from the following file:
+ * ./THEMENAME/bootstrap/assets/stylesheets/bootstrap/_variables.scss
+ */
+/*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -10876,6 +10888,8 @@ body.path-poll .field--name-field-tags .field--item {
 /* line 29, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar,
 .form-group #comment-links {
+  display: inline-block;
+  width: 100%;
   padding-left: 40px;
   padding-right: 40px;
   position: relative;
@@ -10900,7 +10914,7 @@ article .social-bar input[type=button]:hover,
   text-decoration: underline;
 }
 
-/* line 37, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 39, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li, article .social-bar .comment-link-list li,
 .form-group #comment-links .footer-links li,
 .form-group #comment-links .comment-link-list li {
@@ -10909,14 +10923,14 @@ article .social-bar .footer-links li, article .social-bar .comment-link-list li,
   margin: 0 10px 0 0;
 }
 
-/* line 41, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 43, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li::before, article .social-bar .comment-link-list li::before,
 .form-group #comment-links .footer-links li::before,
 .form-group #comment-links .comment-link-list li::before {
   content: none;
 }
 
-/* line 46, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 48, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .flag-subscribe-node:before, article .social-bar .comment-link-list li .flag-subscribe-node:before,
 .form-group #comment-links .footer-links li .flag-subscribe-node:before,
 .form-group #comment-links .comment-link-list li .flag-subscribe-node:before {
@@ -10928,7 +10942,7 @@ article .social-bar .footer-links li .flag-subscribe-node:before, article .socia
   margin-top: -2px;
 }
 
-/* line 54, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 56, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .printer-button:before, article .social-bar .comment-link-list li .printer-button:before,
 .form-group #comment-links .footer-links li .printer-button:before,
 .form-group #comment-links .comment-link-list li .printer-button:before {
@@ -10940,7 +10954,7 @@ article .social-bar .footer-links li .printer-button:before, article .social-bar
   margin-top: -2px;
 }
 
-/* line 62, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 64, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .share-link-holder:before, article .social-bar .comment-link-list li .share-link-holder:before,
 .form-group #comment-links .footer-links li .share-link-holder:before,
 .form-group #comment-links .comment-link-list li .share-link-holder:before {
@@ -10952,7 +10966,7 @@ article .social-bar .footer-links li .share-link-holder:before, article .social-
   margin-top: -1px;
 }
 
-/* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 72, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .flag-inappropriate,
 article .social-bar .footer-links li .flag-inappropriate-comment-flag, article .social-bar .comment-link-list li .flag-inappropriate,
 article .social-bar .comment-link-list li .flag-inappropriate-comment-flag,
@@ -10962,10 +10976,10 @@ article .social-bar .comment-link-list li .flag-inappropriate-comment-flag,
 .form-group #comment-links .comment-link-list li .flag-inappropriate-comment-flag {
   position: absolute;
   right: 2px;
-  bottom: 2px;
+  bottom: 6px;
 }
 
-/* line 75, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 77, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .flag-inappropriate::before,
 article .social-bar .footer-links li .flag-inappropriate-comment-flag::before, article .social-bar .comment-link-list li .flag-inappropriate::before,
 article .social-bar .comment-link-list li .flag-inappropriate-comment-flag::before,
@@ -10981,14 +10995,14 @@ article .social-bar .comment-link-list li .flag-inappropriate-comment-flag::befo
   margin-top: -1px;
 }
 
-/* line 84, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 86, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .likeit, article .social-bar .comment-link-list li .likeit,
 .form-group #comment-links .footer-links li .likeit,
 .form-group #comment-links .comment-link-list li .likeit {
   display: inline;
 }
 
-/* line 86, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 88, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .likeit:before, article .social-bar .comment-link-list li .likeit:before,
 .form-group #comment-links .footer-links li .likeit:before,
 .form-group #comment-links .comment-link-list li .likeit:before {
@@ -11000,21 +11014,21 @@ article .social-bar .footer-links li .likeit:before, article .social-bar .commen
   margin-top: -2px;
 }
 
-/* line 94, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 96, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .social-bar .footer-links li .likeit a, article .social-bar .comment-link-list li .likeit a,
 .form-group #comment-links .footer-links li .likeit a,
 .form-group #comment-links .comment-link-list li .likeit a {
   margin-right: 10px;
 }
 
-/* line 101, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 .form-group #comment-links {
   padding-left: 75px;
   padding-top: 12px;
   margin-right: 0px;
 }
 
-/* line 105, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 107, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 .form-group #comment-links li.comment-reply a:before {
   display: block;
   float: left;
@@ -11024,12 +11038,12 @@ article .social-bar .footer-links li .likeit a, article .social-bar .comment-lin
   margin-left: 5px;
 }
 
-/* line 114, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 116, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .field--name-field-tags {
   margin: 20px 25px;
 }
 
-/* line 118, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share,
 div[id*="-dialog-share"] {
   font-size: .875rem;
@@ -11037,7 +11051,7 @@ div[id*="-dialog-share"] {
   padding-top: 15%;
 }
 
-/* line 122, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 124, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share .modal-content,
 div[id*="-dialog-share"] .modal-content {
   width: 400px;
@@ -11045,16 +11059,32 @@ div[id*="-dialog-share"] .modal-content {
   margin: 0 auto;
 }
 
-/* line 127, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 129, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share .modal-footer,
 div[id*="-dialog-share"] .modal-footer {
   display: none;
 }
 
-/* line 131, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 133, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share .modal-body input.allowCopy,
 div[id*="-dialog-share"] .modal-body input.allowCopy {
   width: 250px;
+}
+
+/* line 139, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+#drupal-modal {
+  top: 15%;
+}
+
+/* line 141, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+#drupal-modal div#drupal-modal--body {
+  overflow: hidden !important;
+}
+
+/* line 144, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+#drupal-modal h4.modal-title {
+  padding: 0;
+  margin: 0;
 }
 
 /* Site Wide profile CSS */
