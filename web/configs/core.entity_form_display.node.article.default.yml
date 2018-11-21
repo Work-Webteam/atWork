@@ -19,6 +19,7 @@ dependencies:
     - image.style.large
     - node.type.article
   module:
+    - chosen_field
     - comment
     - file
     - h5peditor
@@ -96,12 +97,9 @@ content:
     region: content
   field_editor_tags:
     weight: 21
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: chosen_select
     region: content
   field_image:
     type: image_widget_crop
@@ -126,13 +124,10 @@ content:
     type: h5p_editor
     region: content
   field_tags:
-    type: entity_reference_autocomplete_tags
+    type: chosen_select
     weight: 9
     region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_video:
     weight: 7
@@ -194,13 +189,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
   uid:
-    type: entity_reference_autocomplete
+    type: chosen_select
     weight: 3
     region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   unpublish_on:
     type: datetime_timestamp_no_default
