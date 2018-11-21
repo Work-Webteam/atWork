@@ -1,22 +1,25 @@
-uuid: 662934f9-ccae-4402-9484-fa147ad99218
+uuid: 5a634de9-3555-42d9-b82b-8dce66f492ec
 langcode: en
 status: true
 dependencies:
   config:
-    - flag.flag.subscribe_node
+    - field.storage.flagging.message_digest
+    - flag.flag.email_term
+    - flag.flag.subscribe_term
   module:
     - flag
-    - node
+    - options
+    - taxonomy
     - user
 _core:
-  default_config_hash: e-2oG-f5BzrhbTf9CUy3UzDazaIs1xfR4ze0rn3e580
-id: subscribe_node
-label: 'Subscribe node'
+  default_config_hash: Gmb9TIHV8CSY7HI_NMsZaiSxdVyzkupNElS_n_3OHQc
+id: subscribe_all_terms_email
+label: 'Subscribe taxonomy all terms email'
 module: views
 description: ''
 tag: ''
-base_table: node_field_data
-base_field: nid
+base_table: taxonomy_term_field_data
+base_field: tid
 core: 8.x
 display:
   default:
@@ -80,17 +83,9 @@ display:
           summary: ''
           description: ''
           columns:
-            title: title
-            link_flag: link_flag
+            name: name
           info:
-            title:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            link_flag:
+            name:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -107,12 +102,12 @@ display:
           hide_empty: false
           default_field_elements: true
       fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          entity_type: node
-          entity_field: title
+        name:
+          id: name
+          table: taxonomy_term_field_data
+          field: name
+          entity_type: taxonomy_term
+          entity_field: name
           label: ''
           alter:
             alter_text: false
@@ -125,9 +120,10 @@ display:
             html: false
           hide_empty: false
           empty_zero: false
+          type: string
           settings:
             link_to_entity: true
-          plugin_id: field
+          plugin_id: term_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -143,7 +139,6 @@ display:
           empty: ''
           hide_alter_empty: true
           click_sort_column: value
-          type: string
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -154,6 +149,57 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          convert_spaces: false
+        link_flag_1:
+          id: link_flag_1
+          table: flagging
+          field: link_flag
+          relationship: flag_relationship_1
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          entity_type: flagging
+          plugin_id: flag_link
         link_flag:
           id: link_flag
           table: flagging
@@ -204,14 +250,14 @@ display:
           hide_alter_empty: true
           entity_type: flagging
           plugin_id: flag_link
-        changed:
-          id: changed
-          table: node_field_data
-          field: changed
-          relationship: none
+        message_digest:
+          id: message_digest
+          table: flagging__message_digest
+          field: message_digest
+          relationship: flag_relationship
           group_type: group
           admin_label: ''
-          label: Changed
+          label: Frequency
           exclude: false
           alter:
             alter_text: false
@@ -253,11 +299,8 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: timestamp
-          settings:
-            date_format: atwork_subscription_time_format
-            custom_date_format: ''
-            timezone: ''
+          type: list_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -268,59 +311,49 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: node
-          entity_field: changed
           plugin_id: field
-      filters:
-        status:
-          value: '1'
-          table: node_field_data
-          field: status
-          plugin_id: boolean
-          entity_type: node
-          entity_field: status
-          id: status
-          expose:
-            operator: ''
-          group: 1
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          exposed: false
-          expose:
-            label: ''
-          granularity: second
+      filters: {  }
+      sorts: {  }
       header: {  }
       footer: {  }
       empty:
-        area_text_custom:
-          id: area_text_custom
+        area:
+          id: area
           table: views
-          field: area_text_custom
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
           empty: true
-          content: 'You are not subscribed to any items.'
-          plugin_id: text_custom
+          tokenize: false
+          content:
+            value: 'You are not subscribed to any items.'
+            format: basic_html
+          plugin_id: text
       relationships:
         flag_relationship:
           id: flag_relationship
-          table: node_field_data
+          table: taxonomy_term_field_data
           field: flag_relationship
           relationship: none
           group_type: group
-          admin_label: Flags
+          admin_label: 'Flags (content)'
           required: true
-          flag: subscribe_node
+          flag: subscribe_term
           user_scope: any
-          entity_type: node
+          entity_type: taxonomy_term
+          plugin_id: flag_relationship
+        flag_relationship_1:
+          id: flag_relationship_1
+          table: taxonomy_term_field_data
+          field: flag_relationship
+          relationship: none
+          group_type: group
+          admin_label: 'Flags (email)'
+          required: false
+          flag: email_term
+          user_scope: current
+          entity_type: taxonomy_term
           plugin_id: flag_relationship
       arguments:
         uid:
@@ -368,6 +401,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.flagging.message_digest'
