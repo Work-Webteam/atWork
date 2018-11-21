@@ -10,4 +10,4 @@ modules:
   atwork_messages:
     none:
       formatter: mime_mail
-      sender: devel_mail_log
+      sender: mime_mail
