@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31b168821cdb4ba7b8f1c93e630926e4",
+    "content-hash": "084ebd4f0a1d7663ca6be01d1b84847d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5110,6 +5110,61 @@
             }
         },
         {
+            "name": "drupal/synonyms",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/synonyms",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/synonyms-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "98d39b5b0a26c7b5f9e6dfc4f72285ad014d14f4"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1477604941",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Zen",
+                    "homepage": "https://www.drupal.org/user/21209"
+                },
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                }
+            ],
+            "description": "Provides synonyms feature for content entities.",
+            "homepage": "https://www.drupal.org/project/synonyms",
+            "support": {
+                "source": "http://cgit.drupalcode.org/synonyms"
+            }
+        },
+        {
             "name": "drupal/taxonomy_import",
             "version": "1.0.0",
             "source": {
@@ -5312,6 +5367,117 @@
             "homepage": "https://www.drupal.org/project/term_csv_export_import",
             "support": {
                 "source": "http://cgit.drupalcode.org/term_csv_export_import"
+            }
+        },
+        {
+            "name": "drupal/term_merge",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/term_merge",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/term_merge-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "ddfa85644cc5a6e4edcb5bcd8474d6b6b5ec9dca"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1510668185",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bleen",
+                    "homepage": "https://www.drupal.org/user/77375"
+                },
+                {
+                    "name": "bucefal91",
+                    "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "eli",
+                    "homepage": "https://www.drupal.org/user/49774"
+                },
+                {
+                    "name": "legolasbo",
+                    "homepage": "https://www.drupal.org/user/2480548"
+                },
+                {
+                    "name": "nylin",
+                    "homepage": "https://www.drupal.org/user/816040"
+                }
+            ],
+            "description": "Allows users to merge taxonomy terms in the same vocabulary together.",
+            "homepage": "https://www.drupal.org/project/term_merge",
+            "support": {
+                "source": "http://cgit.drupalcode.org/term_merge"
+            }
+        },
+        {
+            "name": "drupal/term_merge_manager",
+            "version": "1.0.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/term_merge_manager",
+                "reference": "8.x-1.0-beta3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/term_merge_manager-8.x-1.0-beta3.zip",
+                "reference": "8.x-1.0-beta3",
+                "shasum": "9df4ab531cc8d4c9556082041ad2531d951c0a4e"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/term_merge": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta3",
+                    "datestamp": "1538092080",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mfrosch",
+                    "homepage": "https://www.drupal.org/user/932156"
+                }
+            ],
+            "description": "This module saves term merge actions and reuse the rules for new terms. Also you can manage the rules",
+            "homepage": "https://www.drupal.org/project/term_merge_manager",
+            "support": {
+                "source": "http://cgit.drupalcode.org/term_merge_manager"
             }
         },
         {
@@ -11577,6 +11743,11 @@
         {
             "name": "webflo/drupal-core-require-dev",
             "version": "8.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webflo/drupal-core-require-dev.git",
+                "reference": "128ed1111501ff14f5acadc50f214b1e47d591ad"
+            },
             "require": {
                 "behat/mink": "1.7.x-dev",
                 "behat/mink-goutte-driver": "^1.2",
@@ -11616,8 +11787,10 @@
         "drupal/search_api_sorts": 10,
         "drupal/search_api_stats": 20,
         "drupal/search_api_stats_block": 20,
+        "drupal/synonyms": 15,
         "drupal/taxonomy_manager": 15,
         "drupal/taxonomy_permissions": 20,
+        "drupal/term_merge_manager": 10,
         "drupal/ultimate_cron": 15,
         "drupal/views_data_export": 10,
         "drupal/webform": 5

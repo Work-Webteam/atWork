@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_tags
     - node.type.article
-    - taxonomy.vocabulary.tags
     - taxonomy.vocabulary.tags_community
 _core:
   default_config_hash: QdUgf_beeoaPiyKorFv0q1fcJpWH_uZTqe_xoVJacrw
@@ -24,7 +23,6 @@ settings:
   handler_settings:
     target_bundles:
       tags_community: tags_community
-      tags: tags
     sort:
       field: _none
     auto_create: false
