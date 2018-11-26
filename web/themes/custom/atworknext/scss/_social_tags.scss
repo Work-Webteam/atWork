@@ -28,6 +28,8 @@ body.path-poll .field--name-field-tags {
 // Appear at the bottom of each article page
 article .social-bar,
 .form-group #comment-links {
+  display: inline-block;
+  width:100%;
   padding-left:40px;
   padding-right:40px;
   position: relative;
@@ -71,7 +73,7 @@ article .social-bar,
       .flag-inappropriate-comment-flag {
         position: absolute;
         right: 2px;
-        bottom: 2px;
+        bottom: 6px;
         &::before {
           display: block;
           float:left;
@@ -131,5 +133,16 @@ div[id*="-dialog-share"] {
     input.allowCopy {
       width:250px;
     }
+  }
+}
+// Subscribe Modal pop-up
+#drupal-modal {
+  top:15%;
+  div#drupal-modal--body { // Hides the scrollbars in IE
+    overflow:hidden!important;
+  }
+  h4.modal-title {
+    padding:0;
+    margin:0;
   }
 }
