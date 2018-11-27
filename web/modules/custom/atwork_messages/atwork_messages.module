@@ -93,6 +93,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 								'receiver' 			=> $sub->uid,
 								'notifier' 			=> $list['notifier'],
 								'timestamp' 		=> time(),
+								'sent'					=> '0',
 						])
 						->condition('entity_id', $node->id(), '=')
 						->condition('receiver', $sub->uid, '=')
@@ -111,7 +112,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 									'cid'  			 		=> $type_info['cid'],
 									'entity_id'  		=> $node->id(),
 									'receiver' 	 		=> $sub->uid,
-									'sent'					=> '0',
+									'sent'					=> 0,
 							])
 							->condition('entity_id', $node->id(), '=')
 							->condition('receiver', $sub->uid, '=')
@@ -140,6 +141,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 				'receiver' 			=> '1',
 				'notifier' 			=> 'immediate',
 				'timestamp' 		=> time(),
+				'sent'					=> 0,
 		])
 		->condition('entity_id', $node->id(), '=')
 		->condition('receiver', '1', '=')
@@ -191,10 +193,11 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 	if($user->__isset('mail')) {
 		$to = $user->get('mail')->getValue()[0]['value'];
 	}
-	
+
 	$params['username'] = $user->get('name');
 	$send = true;
 	$result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+	
 	if ($result['result'] != true) {
 		\Drupal::logger('mail-log')->error('Unable to send notification to ' . $recipient . ' at ' . $to . '. ');
 		return;
@@ -366,7 +369,7 @@ function atwork_messages_format_message($variables, $notifier) {
 	try{
 		$connection = \Drupal::database();
 		$query = $connection->query("Select entity_id, content_type as type from atwork_messages where receiver = '" . $user->id()
-				. "' and notifier = '" . $notifier . "'");
+				. "' and notifier = '" . $notifier . "'" . " and sent = 0");
 		$result = $query->fetchAll();
 	} catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
@@ -384,7 +387,7 @@ function atwork_messages_format_message($variables, $notifier) {
 			try{
 				$connection = \Drupal::database();
 				$query = $connection->query("Select cid as id from atwork_messages_comments where receiver = '" . $user->id()
-						. "' and entity_id = '" . $item->entity_id . "'");
+						. "' and entity_id = '" . $item->entity_id . "'" . " and sent = 0");
 				$cids = $query->fetchAll(PDO::FETCH_COLUMN, 0);
 			} catch(Exception $e) {
 				\Drupal::logger('type')->error($e->getMessage());
