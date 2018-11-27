@@ -13,9 +13,6 @@ module:
   block_content: 0
   bootstrap_layouts: 0
   breakpoint: 0
-  chosen: 0
-  chosen_field: 0
-  chosen_lib: 0
   ckeditor: 0
   color: 0
   colorbox: 0
@@ -94,7 +91,6 @@ module:
   settings_tray: 0
   shortcut: 0
   statistics: 0
-  synonyms: 0
   syslog: 0
   system: 0
   taxonomy: 0
@@ -102,8 +98,6 @@ module:
   taxonomy_permissions: 0
   telephone: 0
   term_csv_export_import: 0
-  term_merge: 0
-  term_merge_manager: 0
   tether_stats: 0
   text: 0
   token: 0

@@ -111,6 +111,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 									'cid'  			 		=> $type_info['cid'],
 									'entity_id'  		=> $node->id(),
 									'receiver' 	 		=> $sub->uid,
+									'sent'					=> '0',
 							])
 							->condition('entity_id', $node->id(), '=')
 							->condition('receiver', $sub->uid, '=')
@@ -202,36 +203,37 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 	}
 	
 	// Delete the message after it has been sent.
-	//try {
-	//	$connection = \Drupal::database(); 
-	//	$query = $connection->delete("atwork_messages")
-	//	->condition('receiver', $subscription->uid, '=')
-	//	->condition('entity_id', $subscription->entity_id, '=')
-	//	->execute();
-	//}catch(Exception $e) {
-	//	\Drupal::logger('type')->error($e->getMessage());
-	//}
-	//// Delete the message comments after it has been sent.
-	//try {
-	//	$connection = \Drupal::database();
-	//	$query = $connection->delete("atwork_messages_comments")
-	//	->condition('receiver', $subscription->uid, '=')
-	//	->condition('entity_id', $subscription->entity_id, '=')
-	//	->execute();
-	//}catch(Exception $e) {
-	//	\Drupal::logger('type')->error($e->getMessage());
-	//}
+	try {
+		$connection = \Drupal::database(); 
+		$query = $connection->update("atwork_messages")
+		->fields(['sent' => '1'])
+		->condition('receiver', $subscription->uid, '=')
+		->condition('entity_id', $subscription->entity_id, '=')
+		->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	// Delete the message comments after it has been sent.
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->update("atwork_messages_comments")
+		->fields(['sent' => '1'])
+		->condition('receiver', $subscription->uid, '=')
+		->condition('entity_id', $subscription->entity_id, '=')
+		->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
 }
 
 /**
  * Implements hook_mail()
  *
  *  @param string	$key
- *  	An identifier of the mail.
- *  @param string $message
- *  	Array: the message object to send to the user. Elements in this array include: id, to, subject, body, from, headers.
+ *  	An identifier of the mail *  @param string $message
+ *  	Array: the message ject to send to the user. Elements in this array include: , to, subject, dy, from, headers.
  *  @param string $params
- *  	Array: variables to replace tokens in message subject/body; supplied by caller of MailManagerInterface->mail().
+ *  	Array: variables to replace kens in message subject/body; supplied by caller of MailManagerInterface->mail().
  */
 function atwork_messages_mail($key, &$message, $params) {
 	switch ($key) {
@@ -241,8 +243,8 @@ function atwork_messages_mail($key, &$message, $params) {
 			$body_data = array (
 					'#theme' => $key,
 			);
-			// If I explained this to you all at once your head would explode. Mimemail wants something in body and misbehaves without it. 
-			// This way, it gets overwritten with the proper template and inserts variables. Trust me.
+			// Mimemail wants something in body and misbehaves without it. 
+			// This way, it gets overwritten with the proper template and inserts variables.
 			$message['body'][] = "<body>foo</body>"; 
 			break;
 		case 'daily_notifications':
@@ -261,6 +263,28 @@ function atwork_messages_mail($key, &$message, $params) {
 			);
 			$message['body'][] = "<body>foo</body>";
 			break;
+	}
+}
+
+/**
+ * Implements cron callback to remove messages that have been flagged as sent
+ */
+function atwork_messages_clean_sent($job) {
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->delete("atwork_messages")
+		->condition('sent', '1', '=')
+		->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->delete("atwork_messages_comments")
+		->condition('sent', '1', '=')
+		->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
 	}
 }
 

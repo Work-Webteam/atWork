@@ -98,6 +98,13 @@ function atwork_messages_schema() {
 							'default' => '',
 							'length' => 128,
 					],
+					'sent' => [
+							'type' => 'int',
+							'not null' => TRUE,
+							'default' => 0,
+							'size' => 'tiny',
+							'description' => 'Boolean for whether the message has already been sent in a digest or not.',
+					],
 			],
 			'primary key' => array('entity_id','receiver','cid'),
 	];
