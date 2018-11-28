@@ -1,14 +1,6 @@
 <html>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <style>#subscription-comments hr:last-of-type {display: none;} #subscription-content hr:last-of-type {display: none;}</style>
-      {% if css %}
-      <style type="text/css">
-          <!--
-          {{ css }}
-         -->
-      </style>
-      {% endif %}
   </head>
   <body id="mimemail-body" style="display: block;width:760px;margin: 0 auto;border:solid 3px #e6f2f9;font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;"
    {% if ( module | length > 0 ) and ( key | length > 0 ) %}  {% set class = 'class="' ~ module ~ '-' ~ key ~ '"' %} {% endif %} >
@@ -57,7 +49,7 @@
               {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
               </div>
               <div class="item-body" style="margin-left:45px;margin-right:45px;">
-                {{ item['summary']|striptags }} <a href="{{ item.url }}"> ...Read More>></a>
+                {{ item['summary']|striptags }}...<a href="{{ item.url }}">Read More >></a>
               </div>
             </div>
             <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
