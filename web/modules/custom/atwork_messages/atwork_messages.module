@@ -113,6 +113,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 									'entity_id'  		=> $node->id(),
 									'receiver' 	 		=> $sub->uid,
 									'sent'					=> 0,
+								  'notifier' 			=> $list['notifier'],
 							])
 							->condition('entity_id', $node->id(), '=')
 							->condition('receiver', $sub->uid, '=')
@@ -204,29 +205,6 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 	} else {
 		\Drupal::logger('mail-log')->notice('Notification sent to ' . $recipient . ' at ' . $to . '. ');
 	}
-	
-	// Delete the message after it has been sent.
-	try {
-		$connection = \Drupal::database(); 
-		$query = $connection->update("atwork_messages")
-		->fields(['sent' => '1'])
-		->condition('receiver', $subscription->uid, '=')
-		->condition('entity_id', $subscription->entity_id, '=')
-		->execute();
-	}catch(Exception $e) {
-		\Drupal::logger('type')->error($e->getMessage());
-	}
-	// Delete the message comments after it has been sent.
-	try {
-		$connection = \Drupal::database();
-		$query = $connection->update("atwork_messages_comments")
-		->fields(['sent' => '1'])
-		->condition('receiver', $subscription->uid, '=')
-		->condition('entity_id', $subscription->entity_id, '=')
-		->execute();
-	}catch(Exception $e) {
-		\Drupal::logger('type')->error($e->getMessage());
-	}
 }
 
 /**
@@ -296,11 +274,12 @@ function atwork_messages_clean_sent($job) {
  */
 function atwork_messages_daily_cron($job) {
 	//function atwork_messages_daily() {
-	$daily_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$daily_query = "Select distinct receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$daily_subs = atwork_messages_get_subscribers('daily', $daily_query);
 	if($daily_subs) {
 		foreach($daily_subs as $sub) {
 			atwork_messages_send_notification($sub, 'daily_notifications');
+			atwork_messages_mark_as_sent($sub, 'daily_notifications');
 		}
 	}
 }
@@ -309,11 +288,12 @@ function atwork_messages_daily_cron($job) {
  * Implements cron callback for daily subscribers
  */
 function atwork_messages_weekly_cron($job) {
-	$weekly_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$weekly_query = "Select distinct receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$weekly_subs = atwork_messages_get_subscribers('weekly', $weekly_query);
 	if($weekly_subs) {
 		foreach($weekly_subs as $sub) {
 			atwork_messages_send_notification($sub, 'weekly_notifications');
+			atwork_messages_mark_as_sent($sub, 'weekly_notifications');
 		}
 	}
 }
@@ -322,13 +302,40 @@ function atwork_messages_weekly_cron($job) {
  * Implements cron callback for immediate subscribers
  */
 function atwork_messages_immediate_cron($job) {
-	$immediate_query = "Select entity_id, receiver as uid from atwork_messages where sent = 0 and notifier = '";
+	$immediate_query = "Select distinct receiver as uid from atwork_messages where sent = 0 and notifier = '";
 	$immediate_subs = atwork_messages_get_subscribers('immediate', $immediate_query);
 	if($immediate_subs) {
 		foreach($immediate_subs as $sub) {
 			atwork_messages_send_notification($sub, 'immediate_notifications');
+			atwork_messages_mark_as_sent($sub, 'immediate');
 		}
 	}
+}
+
+
+function atwork_messages_mark_as_sent($sub, $notifier) {
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->update("atwork_messages")
+		->fields(['sent' => '1'])
+		->condition('receiver', $sub->uid, '=')
+		->condition('notifier', $notifier, '=')
+		->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	// Delete the message comments after it has been sent.
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->update("atwork_messages_comments")
+		->fields(['sent' => '1'])
+		->condition('receiver', $sub->uid, '=')
+		->condition('notifier', $notifier, '=')
+		->execute();
+	}catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
+	
 }
 
 /**
@@ -387,14 +394,13 @@ function atwork_messages_format_message($variables, $notifier) {
 			try{
 				$connection = \Drupal::database();
 				$query = $connection->query("Select cid as id from atwork_messages_comments where receiver = '" . $user->id()
-						. "' and entity_id = '" . $item->entity_id . "'" . " and sent = 0");
+						. "' and entity_id = '" . $item->entity_id . "'" . " and sent = 0 and notifier = '" . $notifier . "'");
 				$cids = $query->fetchAll(PDO::FETCH_COLUMN, 0);
 			} catch(Exception $e) {
 				\Drupal::logger('type')->error($e->getMessage());
 			}
 			
 			$comments = array();
-			
 			// Load comments by cid
 			foreach($cids as $cid) {
 				$comment = $comment_storage->load($cid);

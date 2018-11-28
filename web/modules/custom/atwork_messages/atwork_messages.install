@@ -105,6 +105,13 @@ function atwork_messages_schema() {
 							'size' => 'tiny',
 							'description' => 'Boolean for whether the message has already been sent in a digest or not.',
 					],
+					'notifier' => [
+							'description' => 'The notification method used to send the notification.',
+							'type' => 'varchar',
+							'length' => 255,
+							'not null' => TRUE,
+							'default' => '',
+					],
 			],
 			'primary key' => array('entity_id','receiver','cid'),
 	];
