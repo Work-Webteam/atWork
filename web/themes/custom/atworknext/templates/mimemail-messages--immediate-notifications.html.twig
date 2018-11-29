@@ -8,7 +8,7 @@
       YOUR @WORK SUBSCRIPTIONS | {{ date }}
     </div>
     <div id="subscription-banner" style="width:100%;height:174px;text-align:center;border-bottom:solid 5px #266694;background-repeat:none;background-size:cover;background-position: center center;"><img src="sites/default/files/images/atwork-logo.png"></img></div>
-    <div id="center" style="margin-left:40px;margin-right:40px;padding-top:25px;">
+    <div id="center" style="margin-left:40px;margin-right:40px;margin-top:25px;">
       <div id="main">
   Hi {{ username }}, <br><br>
       
@@ -33,7 +33,10 @@
                   </div>
                 {% endfor %}
             </div>
-            <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% if loop.last == false %}
+              <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% endif %}
+              
           {% endfor %}
         {% endif %}
         </div>
@@ -52,14 +55,16 @@
                 {{ item['summary']|striptags }}...<a href="{{ item.url }}">Read More >></a>
               </div>
             </div>
-            <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% if loop.last == false %}
+              <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% endif %}
           {% endfor %}
         {% endif %}
         </div>
         
       </div>
     </div>
-    <div id="subscription-footer" style="background-color: #266694;color:#FFFFFF;text-align: center;padding-top:10px;padding-bottom:10px;">
+    <div id="subscription-footer" style="background-color: #266694;color:#FFFFFF;text-align: center;margin-top: 10px;padding-top:15px;padding-bottom:10px;">
       <a style="color:#FFFFFF;text-decoration: none;" href="/user/{{ user_uid }}/message-subscribe">Manage your @Work subscriptions or Unsubscribe</a>
     </div>
   </body>
