@@ -51,7 +51,46 @@ function atwork_messages_node_update(NodeInterface $node) {
  * Implements hook_ENTITY_TYPE_update() for comments.
  */
 function atwork_messages_comment_update(Comment $comment) {
-	// Get comment & node and pass it to the create message?
+  // TODO: Maybe Implement this function later
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update() for comments.
+ *
+ * Remove deleted comment so users dont get empty message
+ */
+function atwork_messages_comment_delete(Comment $comment) {
+  try {
+    $connection = \Drupal::database();
+    $query = $connection->delete("atwork_messages_comments")
+      ->condition('cid', $comment->get('cid')->getValue()[0]['value'], '=')
+      ->execute();
+  }catch(Exception $e) {
+    \Drupal::logger('type')->error($e->getMessage());
+  }
+
+  // Check if that was the only new comment for that node, if so remove flag for node
+  $result = '';
+  try{
+    $connection = \Drupal::database();
+    $query = $connection->query("Select count(*) as count from atwork_messages_comments");
+    $result = $query->fetchColumn();
+  } catch(Exception $e) {
+    \Drupal::logger('type')->error($e->getMessage());
+  }
+
+  // Remove node flag from atwork_messages table
+  if($result == 0) {
+    try {
+      $connection = \Drupal::database();
+      $query = $connection->delete("atwork_messages")
+        ->condition('entity_id', $comment->get('entity_id')->getValue()[0]['target_id'], '=')
+        ->condition('content_type', '2', '=')
+        ->execute();
+    }catch(Exception $e) {
+      \Drupal::logger('type')->error($e->getMessage());
+    }
+  }
 }
 
 /**
@@ -462,7 +501,6 @@ function atwork_messages_format_message($variables, $notifier) {
 			  ];
 			}
 		}
-		
 	}
 	
 	return $variables;
