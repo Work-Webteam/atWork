@@ -1,68 +1,71 @@
 <html>
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      {% if css %}
-      <style type="text/css">
-          <!--
-          {{ css }}
-         -->
-      </style>
-      {% endif %}
   </head>
-  <body id="mimemail-body" {% if ( module | length > 0 ) and ( key | length > 0 ) %}  {% set class = 'class="' ~ module ~ '-' ~ key ~ '"' %} {% endif %} >
-    <div id="subscription-header">
+  <body id="mimemail-body" style="display: block;width:760px;margin: 0 auto;border:solid 3px #e6f2f9;font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;"
+   {% if ( module | length > 0 ) and ( key | length > 0 ) %}  {% set class = 'class="' ~ module ~ '-' ~ key ~ '"' %} {% endif %} >
+    <div id="subscription-header" style="background-color: #266694;color:#FFFFFF;text-align: center;padding-top:10px;padding-bottom:10px;">
       YOUR @WORK SUBSCRIPTIONS | {{ date }}
     </div>
-    <div id="subscription-banner"></div>
-    <div id="center">
+    <div id="subscription-banner" style="width:100%;height:174px;text-align:center;border-bottom:solid 5px #266694;background-repeat:none;background-size:cover;background-position: center center;"><img src="sites/default/files/images/atwork-logo.png"></img></div>
+    <div id="center" style="margin-left:40px;margin-right:40px;margin-top:25px;">
       <div id="main">
-  Hi {{ username }},
+  Hi {{ username }}, <br><br>
       
   Here are the latest updates from your @Work subscriptions.
-
+        <div id="subscription-comments">
         {% if comments is defined %}
-          <div class="subscription-section-title">New Comments</div>
+          <div class="subscription-section-title" style="margin-top: 25px;margin-bottom: 15px;text-transform: uppercase;font-weight:bold;color:#333333;">New Comments</div>
           {% for comment in comments %}
             <div class="subscription-content">
-              <div class="item-title">
+              <div class="item-title" style="color:#0080c7;font-weight:bold;">
                 {{ comment.title }}
               </div>
-              <div class="item-byline">
+              <div class="item-byline" style="font-size:14px;margin-bottom:15px;">
                 {% trans %}Posted on {{ comment.createdDate}} | {{ comment.createdTime }}{% endtrans %}
               </div>
                 {% for item in comment.comments %}
-                  <div class="item-byline">
+                  <div class="item-byline" style="font-size:14px;margin-bottom:15px;">
                     {% trans %}{{ item.author }} posted on {{ item.createdDate }} | {{ item.createdTime }}{% endtrans %}
                   </div>
-                  <div class="item-body">
+                  <div class="item-body" style="margin-left:45px;margin-right:45px;">
                     {{ item.comment_body|striptags }}
                   </div>
                 {% endfor %}
             </div>
+            {% if loop.last == false %}
+              <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% endif %}
+              
           {% endfor %}
         {% endif %}
-        
+        </div>
+        <div id="subscription-content">
         {% if article is defined %}
-          <div class="subscription-section-title">New Content</div>
+          <div class="subscription-section-title" style="margin-top: 25px;margin-bottom: 15px;text-transform: uppercase;font-weight:bold;color:#333333;">New Content</div>
           {% for item in article %}
             <div class="subscription-content">
-              <div class="item-title">
+              <div class="item-title" style="color:#0080c7;font-weight:bold;">
                 {{ item['title'] }}
               </div>
-              <div class="item-byline">
+              <div class="item-byline" style="font-size:14px;margin-bottom:15px;">
               {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
               </div>
-              <div class="subscription-item-body">
-                {{ item['summary']|striptags }} <a href="{{ item.url }}"> ...Read More>></a>
+              <div class="item-body" style="margin-left:45px;margin-right:45px;">
+                {{ item['summary']|striptags }}...<a href="{{ item.url }}">Read More >></a>
               </div>
             </div>
+            {% if loop.last == false %}
+              <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% endif %}
           {% endfor %}
         {% endif %}
+        </div>
         
       </div>
     </div>
-    <div id="subscription-footer">
-      <a href="/user/{{ user_uid }}/message-subscribe">Manage your @Work subscriptions or Unsubscribe</a>
+    <div id="subscription-footer" style="background-color: #266694;color:#FFFFFF;text-align: center;margin-top: 10px;padding-top:15px;padding-bottom:10px;">
+      <a style="color:#FFFFFF;text-decoration: none;" href="/user/{{ user_uid }}/message-subscribe">Manage your @Work subscriptions or Unsubscribe</a>
     </div>
   </body>
 </html>
