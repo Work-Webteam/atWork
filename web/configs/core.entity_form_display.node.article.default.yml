@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.article.field_editor_tags
     - field.field.node.article.field_image
     - field.field.node.article.field_interactive_content
+    - field.field.node.article.field_send_notifications
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
@@ -124,6 +125,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: h5p_editor
+    region: content
+  field_send_notifications:
+    weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_tags:
     type: entity_reference_autocomplete_tags

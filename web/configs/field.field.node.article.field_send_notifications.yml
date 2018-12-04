@@ -1,0 +1,23 @@
+uuid: 6222b099-d227-44ed-ae9b-48439d525ce4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_send_notifications
+    - node.type.article
+id: node.article.field_send_notifications
+field_name: field_send_notifications
+entity_type: node
+bundle: article
+label: 'Send subscription notifications'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
