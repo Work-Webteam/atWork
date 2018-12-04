@@ -42,8 +42,11 @@ function atwork_messages_comment_insert(Comment $comment) {
 function atwork_messages_node_update(NodeInterface $node) {
 	// Check for entity type, published value and create message
 	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
-		// Create Message for Article node
-		atwork_messages_create_message($node, array('content_type' => ARTICLE));
+	  // Check if notifications can go out
+    if($node->get('field_send_notifications')->getValue()[0]['value']) {
+      // Create Message for Article node
+      atwork_messages_create_message($node, array('content_type' => ARTICLE));
+    }
 	}
 }
 
