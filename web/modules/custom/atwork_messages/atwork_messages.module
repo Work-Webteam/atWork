@@ -57,7 +57,7 @@ function atwork_messages_comment_update(Comment $comment) {
 /**
  * Implements hook_ENTITY_TYPE_update() for comments.
  *
- * Remove deleted comment so users dont get empty message
+ * Remove deleted comment so users don't get empty message
  */
 function atwork_messages_comment_delete(Comment $comment) {
   try {
