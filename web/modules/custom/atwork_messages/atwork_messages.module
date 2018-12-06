@@ -446,6 +446,7 @@ function atwork_messages_format_message($variables, $notifier) {
 			// Load comments by cid
 			foreach($cids as $cid) {
 				$comment = $comment_storage->load($cid);
+
 				if($comment != NULL) {
 					$comments[] = [
 							'author' => \Drupal\user\Entity\User::load($comment->get('uid')->getValue()[0]['target_id'])->getUsername(),
