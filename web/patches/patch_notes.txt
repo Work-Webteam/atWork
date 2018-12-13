@@ -1,0 +1,10 @@
+
+
+/**
+* HP5 fix  for Ckeditor
+**/
+Applied by twerdal
+date: 12-13-2018
+
+As noted here: https://h5ptechnology.atlassian.net/projects/HFP/issues/HFP-2468?filter=allissues ckeditor can break if the server refuses to parse multiple slashes in the path.
+This can be fixed by making changes outlined in the h5p.patch file in this directory

@@ -1,0 +1,7 @@
+diff --git a/modules/contrib/h5p/vendor/h5p/h5p-editor/scripts/h5peditor-html.js b//modules/contrib/h5p/vendor/h5p/h5p-editor/scripts/h5peditor-html.js
+@@ -320,4 +320,4 @@ define(
+    if (ns.Html.first) {
+-      CKEDITOR.basePath = ns.basePath + 'ckeditor/';
++      CKEDITOR.basePath = ns.basePath + 'ckeditor/'
+    }
+
