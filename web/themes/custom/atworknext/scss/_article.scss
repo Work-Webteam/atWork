@@ -146,3 +146,202 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
       }
     }
 }
+// Program landing pages such as Premiers Awards
+.page-node-type-background-page {
+  .author-byline, .social-bar {
+    display: none; // Hides the author name and creation date and social icons
+  }
+  section.col-sm-12 {
+    .region-content {
+      background-color: $comment-blue;
+    }
+    h1.page-title {
+      background-color: $banner-blue;
+      color: $white;
+      padding-top:15px;
+      padding-left:15px;
+      padding-right:15px;
+    }
+    .field--name-body.field--type-text-with-summary {
+      padding:0 0 25px;
+      margin:0;
+      background-color: $banner-blue;
+      margin-bottom:5px;
+      p {
+        color:$white;
+        padding-left:15px;
+        padding-right:15px;
+      }
+    }
+    #block-programtopic {
+      padding-bottom: 20px;
+        .field--type-text-with-summary {
+          .field--item {
+            @include make-sm-column(6);
+            margin-top:10px;
+            h3 {
+              padding:5px 5px 0 5px;
+              margin:0 0 0 0;
+              background-color: $white;
+              border-left:solid 1px #CCC;
+              border-top:solid 1px #CCC;
+              border-right:solid 1px #CCC;
+            }
+            p {
+              padding: 0 8px 10px 5px;
+              margin:0;
+              background-color:$white;
+              border-left:solid 1px #CCC;
+              border-right:solid 1px #CCC;
+              &:last-of-type {
+                border-bottom:solid 1px #CCC;
+              }
+            }
+            .btn {
+              border-radius: 0;
+              background-color: $banner-blue;
+              color: $white;
+              &::after {
+                content: " ▴";
+                color: $white;
+                font-size: 32px;
+                line-height: 0;
+                vertical-align: inherit;
+              }
+            }
+            .dropup {
+              text-align: center;
+              margin:-34px 0 0 0;
+              .dropdown-menu {
+                left: 50%;
+                right: auto;
+                text-align: center;
+                transform: translate(-50%, 0);
+                > li a:hover {
+                  background-color: $banner-blue;
+                  color:$white;
+                }
+              }
+            }
+          }
+        }
+      }
+  }
+}
+// Related Content Blocks
+#block-views-block-related-content-block-1 {
+  padding-left:0px;
+  padding-right:0px;
+  h2.block-title {
+    @include size1824;
+    text-transform: uppercase;
+    background-color:$banner-blue;
+    color:$white;
+    padding:8px 10px 5px;
+    margin:0;
+  }
+  .views-view-grid .views-row {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .views-col {
+    padding:5px 2px;
+    .related-box {
+      border:solid 1px $exec-greyborder;
+      min-height: 215px;
+      .related-type, .related-title, .related-date {
+        padding-left:10px;
+        padding-right:10px;
+      }
+      .related-type, .related-date {
+        @include size1216;
+      }
+      .related-title {
+        min-height:55px;
+        margin-bottom:20px;
+        h5 {
+          margin:0;
+          padding:0;
+        }
+      }
+      .related-type {
+        padding:10px 0 0 10px;
+        margin:0;
+        text-transform: uppercase;
+      }
+      .related-image > .no-article-image {
+        display:block;
+        width: 100%;
+        min-height:85px;
+        background-color: $exec-greyborder;
+      }
+    }
+  }
+  div [role=navigation] {
+    position: relative;
+    top:-125px;
+    .pager {
+      margin:0;
+      li a {
+        color:transparent;
+        background-color: transparent;
+        border:0;
+      }
+      li.previous {
+        position: absolute;
+        left:-6px;
+        background-image: url("../images/blue-arrow-left.svg");
+        background-repeat: no-repeat;
+        width: 17px;
+      }
+      li.next {
+        position: absolute;
+        right: -6px;
+        background-image: url("../images/blue-arrow-right.svg");
+        background-repeat: no-repeat;
+        width: 17px;
+      }
+    }
+ }
+}
+
+//Group Ad Space on program pages
+#block-views-block-related-content-block-2 {
+  clear:both;
+  margin-top:15px;
+  padding-left:0px;
+  padding-right:0px;
+  #prog-ad-tab {
+    display: inline-block;
+    background-color: $comment-blue;
+    padding: 4px 10px 0px;
+    border-left: solid 1px $exec-greyborder;
+    border-top: solid 1px $exec-greyborder;
+    border-right: solid 1px $exec-greyborder;
+    h3 {
+      padding:0;
+      margin:0;
+    }
+  }
+  #prog-ad-box {
+    display: table;
+    width:100%;
+    border:solid 1px $exec-greyborder;
+    #prog-ad-content, #prog-ad-image {
+        display: table-cell;
+    }
+    #prog-ad-content {
+      padding: 10px;
+      vertical-align: top;
+      background-color: $comment-blue;
+      h5 {
+        margin:0;
+      }
+    }
+    #prog-ad-image {
+      position: relative;
+      right:0;
+      width:225px;
+    }
+  }
+}
