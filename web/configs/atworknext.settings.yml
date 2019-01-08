@@ -7,9 +7,12 @@ schemas:
   bootstrap: 8000
   atworknext: 8000
 breadcrumb_home: 1
-table_responsive: '-1'
-table: ''
-cdn_provider: custom
+button_size: btn-sm
+cdn_custom_css: ''
+cdn_custom_js: ''
+cdn_custom_css_min: ''
+cdn_custom_js_min: ''
+cdn_provider: ''
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -19,4 +22,4 @@ logo:
   path: ''
   url: ''
   use_default: true
-button_size: btn-sm
+table: ''

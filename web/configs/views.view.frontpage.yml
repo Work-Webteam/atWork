@@ -7,13 +7,13 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_development_tags
     - field.storage.node.field_image
-    - image.style.medium
+    - image.style.article_top_image
     - taxonomy.vocabulary.tags
   content:
-    - 'taxonomy_term:tags:62894169-ba9e-4ff6-a24f-4888e23ed870'
-    - 'taxonomy_term:tags:6746e03b-3230-4a19-9b76-606809a4e7cc'
-    - 'taxonomy_term:tags:b0be5537-0c86-4eff-9a2a-6874017a6afc'
-    - 'taxonomy_term:tags:f67e7c09-dc4e-4092-a327-313cee31ca80'
+    - 'taxonomy_term:tags:60557cd8-54e7-430c-8c50-927a30755179'
+    - 'taxonomy_term:tags:7fde3495-5b93-4960-9b73-031be3e49d4c'
+    - 'taxonomy_term:tags:b0e19c89-9866-474d-bfec-86c373ea0c7b'
+    - 'taxonomy_term:tags:fcd7e115-6415-42d4-924b-9870cb8bc8cf'
   module:
     - image
     - node
@@ -477,7 +477,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
+            image_style: article_top_image
             image_link: content
           group_column: ''
           group_columns: {  }
