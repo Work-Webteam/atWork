@@ -70,10 +70,6 @@ module:
   node: 0
   options: 0
   page_cache: 0
-  panelizer: 0
-  panelizer_quickedit: 0
-  panels: 0
-  panels_ipe: 0
   path: 0
   poll: 0
   postal_code: 0

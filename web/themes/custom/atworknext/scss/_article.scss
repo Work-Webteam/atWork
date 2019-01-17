@@ -248,7 +248,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
     padding:5px 2px;
     .related-box {
       border:solid 1px $exec-greyborder;
-      min-height: 215px;
+      min-height: 243px;
       .related-type, .related-title, .related-date {
         padding-left:10px;
         padding-right:10px;
@@ -263,6 +263,10 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
           margin:0;
           padding:0;
         }
+      }
+      .related-date {
+        position:absolute;
+        bottom: 10px;
       }
       .related-type {
         padding:10px 0 0 10px;
