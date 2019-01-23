@@ -1,0 +1,18 @@
+uuid: 6e6f4ccb-a273-40fa-93d3-b6e7be82143c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+id: atwork_groups-member
+label: Member
+weight: -100
+internal: true
+audience: member
+group_type: atwork_groups
+permissions_ui: true
+permissions:
+  - 'view group'
+  - 'update own group_membership content'
+  - 'leave group'
+  - 'view group_membership content'

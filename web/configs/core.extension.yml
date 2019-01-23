@@ -37,6 +37,8 @@ module:
   filter: 0
   flag: 0
   forward: 0
+  gnode: 0
+  group: 0
   h5p: 0
   h5peditor: 0
   hal: 0

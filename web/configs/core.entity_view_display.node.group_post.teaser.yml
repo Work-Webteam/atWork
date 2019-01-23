@@ -1,17 +1,17 @@
-uuid: 58c490ef-1248-4641-9190-dd1de5446ccc
+uuid: 3187fa1f-753f-4d4a-9f6d-653bc7bc8aca
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.background_page.body
-    - node.type.background_page
+    - field.field.node.group_post.body
+    - node.type.group_post
   module:
     - text
     - user
-id: node.background_page.teaser
+id: node.group_post.teaser
 targetEntityType: node
-bundle: background_page
+bundle: group_post
 mode: teaser
 content:
   body:
@@ -38,8 +38,4 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  field_development_tags: true
-  field_image: true
-  field_program_ad_space: true
-  field_program_topic: true
   langcode: true

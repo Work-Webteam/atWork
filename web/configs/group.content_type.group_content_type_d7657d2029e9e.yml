@@ -1,0 +1,19 @@
+uuid: f50c4cc6-da81-433b-a4f8-bf2f819c0c72
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+    - node.type.group_post
+  module:
+    - gnode
+    - node
+id: group_content_type_d7657d2029e9e
+label: 'Atwork Groups: Group node (Group Post)'
+description: 'Adds <em class="placeholder">Group Post</em> content to groups both publicly and privately.'
+group_type: atwork_groups
+content_plugin: 'group_node:group_post'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: true

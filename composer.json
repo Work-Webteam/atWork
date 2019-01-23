@@ -50,6 +50,7 @@
         "drupal/ds": "^3.1",
         "drupal/flag": "^4.0@alpha",
         "drupal/forward": "^2.1",
+        "drupal/group": "^1.0",
         "drupal/h5p": "^1.0@RC",
         "drupal/image_widget_crop": "^2.2",
         "drupal/insert": "^1.0",
