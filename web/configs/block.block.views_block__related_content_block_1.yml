@@ -30,3 +30,10 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'

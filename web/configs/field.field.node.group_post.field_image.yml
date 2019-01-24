@@ -1,26 +1,26 @@
-uuid: ab28c692-2f71-4e58-8c52-0012ddc1b63a
+uuid: 1b4d3101-a1c2-4875-b614-864fe5ab00bd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.group.field_group
-    - group.type.atwork_groups
+    - field.storage.node.field_image
+    - node.type.group_post
   module:
     - image
-id: group.atwork_groups.field_group
-field_name: field_group
-entity_type: group
-bundle: atwork_groups
-label: 'Group Image'
+id: node.group_post.field_image
+field_name: field_image
+entity_type: node
+bundle: group_post
+label: 'Group Post Image'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: sites/default/files/group-images
   file_extensions: 'png gif jpg jpeg'
-  max_filesize: 32MB
+  max_filesize: ''
   max_resolution: ''
   min_resolution: ''
   alt_field: true
