@@ -1,0 +1,59 @@
+uuid: 3dbf7217-7b8f-4b71-9a70-08c5900bf63d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment_photos.default
+    - field.field.node.photos.body
+    - field.field.node.photos.comment_photos
+    - field.field.node.photos.field_tags
+    - node.type.photos
+  module:
+    - comment
+    - text
+    - user
+_core:
+  default_config_hash: hEQerHg3xAa5JEQKH_N8l89xxp32vS3DaBckEuoeB6w
+id: node.photos.default
+targetEntityType: node
+bundle: photos
+mode: default
+content:
+  body:
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    label: hidden
+    region: content
+  comment_photos:
+    label: above
+    type: comment_default
+    weight: 20
+    settings:
+      pager_id: 0
+    third_party_settings: {  }
+    region: content
+  field_tags:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true

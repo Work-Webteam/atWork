@@ -64,8 +64,18 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  flag_inappropriate:
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   flag_subscribe_node:
     weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  likeit:
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }

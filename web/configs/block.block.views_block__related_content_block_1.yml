@@ -6,6 +6,8 @@ dependencies:
     - views.view.related_content
   module:
     - ctools
+    - node
+    - system
     - views
   theme:
     - atworknext
@@ -23,17 +25,24 @@ settings:
   views_label: ''
   items_per_page: none
 visibility:
-  'entity_bundle:node':
-    id: 'entity_bundle:node'
+  node_type:
+    id: node_type
     bundles:
+      article: article
       background_page: background_page
+      group_post: group_post
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }
   'entity_bundle:group':
     id: 'entity_bundle:group'
     bundles:
       atwork_groups: atwork_groups
-    negate: false
+    negate: true
     context_mapping:
       group: '@group.group_route_context:group'

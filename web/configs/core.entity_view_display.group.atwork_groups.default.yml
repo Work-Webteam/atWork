@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.group.atwork_groups.field_group
     - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_tags
     - group.type.atwork_groups
   module:
     - image
@@ -29,6 +30,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_group_tags:
+    weight: -2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   label:
     label: hidden

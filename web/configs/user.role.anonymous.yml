@@ -11,3 +11,4 @@ is_admin: false
 permissions:
   - 'access site-wide contact form'
   - likeit_view
+  - 'view terms in forums'

@@ -1,0 +1,5 @@
+name: Atwork Group
+type: module
+description: Customizations for the Group module
+package: Custom
+core: 8.x

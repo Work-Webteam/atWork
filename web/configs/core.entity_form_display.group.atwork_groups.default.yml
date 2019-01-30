@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.group.atwork_groups.field_group
     - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_tags
     - group.type.atwork_groups
     - image.style.thumbnail
   module:
@@ -31,6 +32,15 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_group_tags:
+    weight: 33
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   label:
     type: string_textfield
