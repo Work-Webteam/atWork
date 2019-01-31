@@ -3,12 +3,21 @@ langcode: en
 status: true
 dependencies:
   module:
+    - ctools
     - group
 id: atwork_group
 label: 'Atwork Group'
 type: 'canonical_entities:group'
-pattern: 'group/[group:title]'
-selection_criteria: {  }
+pattern: 'groups/[group:title]'
+selection_criteria:
+  42a62e82-1dd6-4f71-8c2e-17683261a7e3:
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: group
+    uuid: 42a62e82-1dd6-4f71-8c2e-17683261a7e3
 selection_logic: and
 weight: -5
 relationships: {  }
