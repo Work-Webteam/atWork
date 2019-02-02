@@ -67,15 +67,15 @@
         <a href="/group/{{ group.id() }}/leave">Leave Group</a>
     </div>
     <div>
-        <a href="/group/{{ group.id() }}/node/create">Create New Post</a>
+        {{ post_link }}
     </div>
     
     <div>
-        <a href="/group/{{ group.id() }}/node/create/group_node%3Aphotos">Create New Photo Gallery</a>
+        {{ photos_link }}
     </div>
     
     <div>
-        <a href="/group/{{ group.id() }}/galleries">View Photo Galleries</a>
+        <a href="/group/{{ group.id() }}/galleries">View All {{ label }} Photo Galleries</a>
     </div>
     
     

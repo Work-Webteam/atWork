@@ -2,6 +2,8 @@
 
 use Drupal\group\Entity\GroupContent;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * @file
@@ -36,25 +38,12 @@ function atworknext_preprocess_node__group_post(&$variables) {
  *
  */
 function atworknext_preprocess_page__group__galleries(&$variables) {
-	//if ($variables['node']->getType() == 'group_post' && $variables['view_mode'] == 'full') {
-	//	foreach (GroupContent::loadByEntity($variables['node']) as $group_content) {
-	//		if($variables['node']->id() == $group_content->getEntity()->id()) $variables['label'] = $group_content->getGroup()->label();
-	//	}
-	//}
+	// TODO: Build the label for the group-title banner  
 }
 
-/**
-* Implements hook_preprocess_HOOK().
-*
-*/
-function atworknext_preprocess_breadcrumb__group_post(&$variables) {
-	// Get the group info for the group content (post)
-	// NOTE: This will only work if the cardinality in the Group node (Group Post) plugin is set to 1.
-	//if ($variables['node']->getType() == 'group_post' && $variables['view_mode'] == 'full') {
-	//	foreach (GroupContent::loadByEntity($variables['node']) as $group_content) {
-	//		if($variables['node']->id() == $group_content->getEntity()->id()) $variables['label'] = $group_content->getGroup()->label();
-	//	}
-	//}
+
+function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
 }
 
 /**
@@ -62,6 +51,26 @@ function atworknext_preprocess_breadcrumb__group_post(&$variables) {
  *
  */
 function atworknext_preprocess_group(&$variables) {
+	$group_id = $variables['group']->id();
+	
+	// Add links to group content forms.
+	$linkObject = Link ::createFromRoute(t('Create New Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
+	$linkObject = $linkObject->toRenderable();
+	$variables['post_link'] = $linkObject;
+	
+	$linkObject = Link ::createFromRoute(t('Create New Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
+	$linkObject = $linkObject->toRenderable();
+	$variables['photos_link'] = $linkObject;
+	
+	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
+	$linkObject = $linkObject->toRenderable();
+	$variables['join_link'] = $linkObject;
+	
+	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
+	$linkObject = $linkObject->toRenderable();
+	$variables['leave_link'] = $linkObject;
+	
+	
 	// Load Related Content Block
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
 	$block_content = \Drupal::entityTypeManager()
@@ -80,12 +89,3 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
 		$suggestions[] = 'breadcrumb__'.$content_type;
 	}
 }
-
-/**
- * Implements hook_form_FORM_ID_alter.
- * 
- */
-
-//function atworknext_form__alter(&$form, $form_state, $form_id) {
-//	
-//}

@@ -9,7 +9,6 @@ use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\group\Entity\GroupContent;
 use Drupal\group\Entity\Group;
-use Drupal\Core\Link;
 
 // Define class and implement BreadcrumbBuilderInterface
 class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
@@ -61,10 +60,10 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 				$group = Group::load($gid);
 
 				// Add Group Name 
-				$breadcrumb->addLink(Link ::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $gid]));
 				
 				// Add Group Galleries page. The param 'arg_0' is the value passed to the view for the contextual filter.
-				$breadcrumb->addLink(Link ::createFromRoute(t('Photo Galleries'), 'view.related_content.page_2', ['arg_0' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t('Photo Galleries'), 'view.related_content.page_2', ['arg_0' => $gid]));
 		 		break;
 			case 'group_post':
 				$gid = '';
@@ -74,10 +73,10 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 				$group = Group::load($gid);
 				
 				// Add Group Name 
-				$breadcrumb->addLink(Link ::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $gid]));
 				
 				// Add Group Galleries page. The param 'arg_0' is the value passed to the view for the contextual filter.
-				$breadcrumb->addLink(Link ::createFromRoute(t('Posts'), 'view.related_content.page_1', ['arg_0' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t('Posts'), 'view.related_content.page_1', ['arg_0' => $gid]));
 				
 		 		break;
 		}
