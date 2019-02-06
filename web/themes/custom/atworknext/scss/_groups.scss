@@ -1,0 +1,182 @@
+/* Group pages and related content */
+
+// Uses these colours for Default
+// $mtBlue1:#044573; // Blue 4, 69, 115 / 044573
+// $mtBlue2:#c5d5da; // Pale Blue 197, 213, 218 / c5d5da
+// $mtTeal:#8acccf; // Teal 138, 204, 207 / 8acccf
+// $mtGreen:#82a941; // Grass Green 130, 169, 65 / 82a941
+// $mtOrange:#edb141; // Orange 237, 177, 65 / edb141
+
+
+// Group content
+section.col-sm-12 .group-page-content {
+  .group-title-banner {
+    padding:0;
+    margin:0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    h1, h2 {
+      &:before {
+        content:"Group : ";
+      }
+      @include size2136;
+      font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+      font-weight: normal;
+      padding:3px 0 0 15px;
+      margin:0;
+      text-transform: uppercase;
+      background-color:$mtTeal;
+      color:$white;
+      display: block;
+    }
+  }
+  aside.author-avatar {
+    display:block;
+    border: solid 3px $link-blue;
+    background-image:url("../images/blue-avatar.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    width:60px;
+    height:60px;
+  }
+  .group-join {
+    display:inline-block;
+    background-color:$banner-blue;
+    position: absolute;
+    right:0;
+    top:0;
+    width:180px;
+    padding: 8px 0;
+    text-align: center;
+    > a {
+      color:$white;
+      &:hover {
+        text-decoration: none;
+        color:$mtOrange;
+      }
+    }
+  }
+  .field--name-field-group.field--type-image img {
+  border-bottom:solid 8px $mtTeal;
+  }
+  .field--name-field-group-description {
+  padding-top:12px;
+  padding-bottom: 12px;
+  }
+  section.group-landing-info {
+    display: flex;
+    flex-direction: row;
+    border-top:solid 8px $mtTeal;
+    margin-top:10px;
+    margin-bottom:10px;
+    h4, p, a {
+      padding:0;
+      margin:0;
+    }
+    aside.group-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1 0px;
+      margin-right:10px;
+      padding:10px 10px 10px 0;
+      border-right: solid 1px $banner-blue;
+      a {
+        display: block;
+        &:hover {
+          background-color: $banner-blue;
+          color:$white;
+          text-decoration: none;
+        }
+      }
+      h4 {
+        border-top:solid 1px $mtTeal;
+        border-bottom:solid 1px $mtTeal;
+        margin-top:5px;
+        margin-bottom:5px;
+        padding-top:3px;
+      }
+    }
+    .group-hp-buttons {
+      display: flex;
+      flex-direction: column;
+      flex: 2 auto;
+      flex-wrap: wrap;
+      align-content: stretch;
+      height:200px;
+      padding-top:10px;
+      padding-bottom:10px;
+      > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        min-width:200px;
+        max-width:100%;
+        border:solid 1px aqua;
+        background-color: $mtTeal;
+        padding: 8px 10px;
+        margin: 0px 5px 5px 5px;
+        > span {
+          background-color: $white;
+          padding: 8px;
+          -webkit-border-radius: 50px;
+          -moz-border-radius: 50px;
+          border-radius: 50px;
+        }
+        > a {
+          color:$white;
+          &:hover {
+            text-decoration: none;
+            color:$banner-blue;
+            ~ span {
+              background-color: $mtOrange;
+              color:$white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Group pages - related group Content
+// Inititial stylings for related content is located in the articles.scss file
+.group-related-content {
+  section#block-views-block-related-content-block-3 {
+    padding-left:0px;
+    padding-right:0px;
+      > h2.block-title {
+        background-color: $mtTeal;
+      }
+    }
+}
+// Group Admin panels
+section#block-groupadmin {
+  > h2 {
+    padding:0;
+    margin:0;
+    width:100%;
+    background-color: rgba($mtBlue1, .5);
+  }
+  .well {
+    border-color:$mtBlue2;
+    background-color:rgba($mtBlue2, .5);
+    padding: 10px 10px 0;
+    font-size:.9em;
+  }
+  .draggable-dashboard .draggable-dashboard-column {
+    min-height:inherit;
+  }
+  .draggable-dashboard-block {
+    border-color:$mtBlue2;
+    h2 {
+      padding:0;
+      margin:0;
+    }
+  }
+  .draggable-dashboard-block__content {
+    display:flex;
+  }
+}
