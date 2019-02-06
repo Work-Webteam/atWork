@@ -153,9 +153,12 @@
 	    },
 	    "drupal/devel": {
 	        "Fixing kint issue": "https://www.drupal.org/files/issues/devel.ksm_.2857361.18.patch"
-            },
+      },
 	    "drupal/mimemail": {
 	        "Implements send mail function for mimemail plugin": "https://www.drupal.org/files/issues/2018-07-25/2938963-10.patch"
+	    },
+	    "drupal/group": {
+	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
 	    }
 	}
     }
