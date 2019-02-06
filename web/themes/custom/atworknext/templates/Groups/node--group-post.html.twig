@@ -82,8 +82,9 @@
   ]
 %}
 {{ attach_library('classy/node') }} <article{{ attributes.addClass(classes) }}>
+<div class="group-page-content">
 <header> {{ title_prefix }}
-  {% if not page %} 
+  {% if not page %}
     <h2{{ title_attributes.addClass('node__title') }}> <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </h2>
   {% endif %}
@@ -162,11 +163,11 @@
 {# 'field_author_information' can be uncommented once we know how we are displaying it #}
     {#{ content.field_author_information }#}
     {{ content.field_attachments }}
-    
+
     <div class="group-related-content">
       <h2 class="group-related-content-title">YOU MAY ALSO LIKE</h2>
       {{ related_content }}
     </div>
     {{ content.comment }}
-    
+</div>
 </article>

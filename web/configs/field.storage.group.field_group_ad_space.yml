@@ -1,0 +1,19 @@
+uuid: a49bd16c-0a56-4675-bd0b-f389791f960f
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+id: group.field_group_ad_space
+field_name: field_group_ad_space
+entity_type: group
+type: entity_reference
+settings:
+  target_type: group_content
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

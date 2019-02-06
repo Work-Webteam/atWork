@@ -30,6 +30,7 @@ module:
   dblog: 0
   devel: 0
   devel_generate: 0
+  draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
   extrafield_views_integration: 0
@@ -74,12 +75,9 @@ module:
   node: 0
   options: 0
   page_cache: 0
-  panelizer: 0
-  panelizer_quickedit: 0
-  panels: 0
-  panels_ipe: 0
   path: 0
   photos: 0
+  photos_access: 0
   poll: 0
   postal_code: 0
   quickedit: 0
@@ -111,6 +109,7 @@ module:
   token_filter: 0
   toolbar: 0
   tour: 0
+  tracker: 0
   typed_data: 0
   ultimate_cron: 0
   update: 0
