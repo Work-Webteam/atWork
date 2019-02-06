@@ -60,12 +60,16 @@
     <div{{ content_attributes }}>
         {{ content|without('field_group_tags') }}
     </div>
+    {% if not member %}
     <div>
         <a href="/group/{{ group.id() }}/join">Join Group</a>
     </div>
+    {% endif %}
+    {% if member %}
     <div>
         <a href="/group/{{ group.id() }}/leave">Leave Group</a>
     </div>
+    {% endif %}
     <div>
         {{ post_link }}
     </div>

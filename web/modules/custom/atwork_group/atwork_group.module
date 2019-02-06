@@ -4,6 +4,10 @@ use Drupal\group\Entity\GroupContent;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\Entity\BaseFieldOverride;
+use Drupal\redirect\Entity\Redirect;
+
 
 /**
  * @file
@@ -41,35 +45,32 @@ function atworknext_preprocess_page__group__galleries(&$variables) {
 	// TODO: Build the label for the group-title banner  
 }
 
-
-function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-
-}
-
 /**
  * Implements hook_preprocess_HOOK().
  *
  */
 function atworknext_preprocess_group(&$variables) {
+	// Is the user a member of this group?
+	if($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
+		$variables['member'] = TRUE;
+	} else {
+		$variables['member'] = FALSE;
+	}
+	
 	$group_id = $variables['group']->id();
 	
 	// Add links to group content forms.
 	$linkObject = Link ::createFromRoute(t('Create New Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
-	$linkObject = $linkObject->toRenderable();
-	$variables['post_link'] = $linkObject;
+	$variables['post_link'] = $linkObject->toRenderable();
 	
 	$linkObject = Link ::createFromRoute(t('Create New Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
-	$linkObject = $linkObject->toRenderable();
-	$variables['photos_link'] = $linkObject;
+	$variables['photos_link'] = $linkObject->toRenderable();
 	
 	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
-	$linkObject = $linkObject->toRenderable();
-	$variables['join_link'] = $linkObject;
+	$variables['join_link'] = $linkObject->toRenderable();
 	
 	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
-	$linkObject = $linkObject->toRenderable();
-	$variables['leave_link'] = $linkObject;
-	
+	$variables['leave_link'] = $linkObject->toRenderable();
 	
 	// Load Related Content Block
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
@@ -77,6 +78,47 @@ function atworknext_preprocess_group(&$variables) {
 	->getViewBuilder('block')
 	->view($block);
 	$variables['related_content'] = $block_content;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ */
+function atworknext_preprocess_container__atwork(&$variables) {
+	global $base_url;
+	$current_path = \Drupal::service('path.current')->getPath();
+	// Check if this is a group join page
+	if(preg_match("$\/(group)\/[0-9]+\/(join)$", $current_path, $test)){
+		if(isset($variables['element']) && $variables['element']['#id'] = "edit-path-wrapper" && $variables['element']['#type'] != 'actions') {
+			// This is a input field that the group module is adding. This was the only way i could figure out to get rid of it.
+			$variables['children'] = NULL;
+			$variables['join_group'] = TRUE;
+			$variables['group_link'] = $base_url . substr($current_path , 0,-5);
+		}
+	}
+	if(preg_match("$\/(group)\/[0-9]+\/(leave)$", $current_path, $test)){
+		$variables['leave_group'] = TRUE;
+		$variables['group_link'] = $base_url . substr($current_path , 0,-6);
+	}
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ */
+function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
+	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
+	}
+}
+
+/**
+ * Implements custom submit handler forgroup join form
+ */
+function atwork_group_join_group_submit(array $form, FormStateInterface $form_state){
+	// Set redirect back to the oiginal group page.
+	$route_params = $form_state->getRedirect()->getRouteParameters();
+	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
 }
 
 /**
@@ -88,4 +130,11 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
 		$content_type = $node->bundle();
 		$suggestions[] = 'breadcrumb__'.$content_type;
 	}
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function atworknext_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+	$suggestions[] = 'container__' . 'atwork';
 }
