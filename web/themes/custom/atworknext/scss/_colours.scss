@@ -6,7 +6,7 @@ $banner-blue: #266694; // Top banner and footer
 $link-blue:#0080c7; // Links
 $text:#333333; // Default colour for text
 $black:#000000; // Black
-$white:#FFFFFF; // White
+$white:rgb(255,255,255); // White
 $comment-blue:#e6f2f9; // Blue border around comment form
 $icon-grey:#6B6C6C; // Icon grey if no graphics used
 $exec-greyborder:#E0E7E8; // Borders used on Exec Messages
@@ -22,3 +22,39 @@ $poll-teal:#209E92; // Poll teal
 // Button Colours
 $button-up: $link-blue; // Default button up colour
 $button-hover: #6b6b6b; // Roll over button colour
+
+// Group colour Options
+// Colours based of the WiW Corporate Plan Cover 2016
+// Four colour group
+
+// Bright
+
+$brBlue:#044573; // Blue 4, 69, 115 / 044573
+$brTeal:#8acccf; // Teal 138, 204, 207 / 8acccf
+$brGreen:#82a941; // Grass Green 130, 169, 65 / 82a941
+$brOrange:#edb141; // Orange 237, 177, 65 / edb141
+$brWhite:#eff2f3; // Off White 239, 242, 243 / eff2f3
+
+// Muted. Current default colour scheme as of Jan 31/19
+
+$mtBlue1:#044573; // Blue 4, 69, 115 / 044573
+$mtBlue2:#c5d5da; // Pale Blue 197, 213, 218 / c5d5da
+$mtTeal:#8acccf; // Teal 138, 204, 207 / 8acccf
+$mtGreen:#82a941; // Grass Green 130, 169, 65 / 82a941
+$mtOrange:#edb141; // Orange 237, 177, 65 / edb141
+
+// Dark.
+
+$dkBlue1:#034776; // Br Blue 3, 71, 118 / 034776
+$dkBlue2:#0b2942; // Deep Blue 11, 41, 66 / 0b2942
+$dkGreen1:#445a4a; // 68, 90, 74 / 445a4a
+$dkGreen2:#80a741; // Grass Green 128, 167, 65 / 80a741
+$dkWhite:#eff2f3; // Off White 239, 242, 243 / eff2f3
+
+// Deep
+
+$dpBlue1:#034776; // Br Blue 3, 71, 118 / 034776
+$dpBlue2:#034f77; // Dk Blue 3, 79, 119 / 034f77
+$dpGreen:#80a741; // Green 128, 167, 65 / 80a741
+$dpOrange:#eeb140; // Orange 238, 177, 64 / eeb140
+$dpWhite:#eff2f3; // Off White 239, 242, 243 / eff2f3

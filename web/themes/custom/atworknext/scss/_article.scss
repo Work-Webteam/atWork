@@ -228,8 +228,11 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
       }
   }
 }
+
 // Related Content Blocks
-#block-views-block-related-content-block-1 {
+#block-views-block-related-content-block-1,
+.group-related-content,
+.all-group-posts {
   padding-left:0px;
   padding-right:0px;
   h2.block-title {
@@ -249,6 +252,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
     .related-box {
       border:solid 1px $exec-greyborder;
       min-height: 215px;
+      padding-bottom: 5px;
       .related-type, .related-title, .related-date {
         padding-left:10px;
         padding-right:10px;
@@ -306,9 +310,11 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
 }
 
 //Group Ad Space on program pages
-#block-views-block-related-content-block-2 {
+#block-views-block-related-content-block-2,
+#block-views-block-related-content-block-4 {
   clear:both;
   margin-top:15px;
+  margin-bottom:15px;
   padding-left:0px;
   padding-right:0px;
   #prog-ad-tab {

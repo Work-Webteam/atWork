@@ -1,0 +1,25 @@
+uuid: 016ecdc9-0e6b-4791-88f8-5abae31204d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_interactive_content
+    - node.type.group_post
+  module:
+    - h5p
+id: node.group_post.field_interactive_content
+field_name: field_interactive_content
+entity_type: node
+bundle: group_post
+label: 'Interactive Content'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    h5p_content_id: null
+    h5p_content_revisioning_handled: null
+    h5p_content_new_translation: null
+default_value_callback: ''
+settings: {  }
+field_type: h5p
