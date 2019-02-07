@@ -48,9 +48,11 @@
             <h1{{ title_attributes }}>
                 {{ label }}
             </h1>
-            <div class="group-join">
-                <a href="/group/{{ group.id() }}/join">Join Group</a>
-            </div>
+            {% if member %}
+                <div class="group-join">
+                    {{ join_link }}
+                </div>
+            {% endif %}
         </div>
     {% endif %}
     {% if not page %}
@@ -63,18 +65,8 @@
     <div{{ content_attributes }}>
         {{ content|without('field_group_tags') }}
     </div>
-    {% if not member %}
+    
     <div>
-        <a href="/group/{{ group.id() }}/join">Join Group</a>
-    </div>
-    {% endif %}
-    {% if member %}
-    <div>
-        <a href="/group/{{ group.id() }}/leave">Leave Group</a>
-    </div>
-    {% endif %}
-    <div>
-        {{ post_link }}
     <section class="group-landing-info">
     <aside class="group-info">
       <div class="group-start">
@@ -93,31 +85,30 @@
     </aside>
     <section class="group-hp-buttons">
     <div>
-        <a class="new-post" href="/group/{{ group.id() }}/node/create">Create New Post</a>
+        {{ post_link }}
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
     </div>
 
     <div>
-        <a class="view-grp-posts" href="/group/{{ group.id() }}/posts">View All Posts</a>
+        {{ group_posts }}
         <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
     </div>
 
     <div>
         {{ photos_link }}
-        <a class="new-gallery" href="/group/{{ group.id() }}/node/create/group_node%3Aphotos">Create New Photo Gallery</a>
         <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
     </div>
 
     <div>
-        <a href="/group/{{ group.id() }}/galleries">View All {{ label }} Photo Galleries</a>
-        <a class="view-gallery" href="/group/{{ group.id() }}/galleries">View Photo Galleries</a>
+        {{ photo_galleries }}
         <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
     </div>
-
+    {% if not member %}
     <div>
-        <a class="leave-grp" href="/group/{{ group.id() }}/leave">Leave Group</a>
+        {{ leave_link }}
         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
     </div>
+    {% endif %}
     </section>
     </section>
     <div class="atwork-group-tags">

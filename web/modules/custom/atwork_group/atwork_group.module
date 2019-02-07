@@ -72,6 +72,12 @@ function atworknext_preprocess_group(&$variables) {
 	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
 	$variables['leave_link'] = $linkObject->toRenderable();
 	
+	$linkObject = Link ::createFromRoute(t('View All Photo Galleries'), 'view.related_content.page_2', ["arg_0" => $group_id]);
+	$variables['photo_galleries'] = $linkObject->toRenderable();
+	
+	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => $group_id]);
+	$variables['group_posts'] = $linkObject->toRenderable();
+	
 	// Load Related Content Block
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
 	$block_content = \Drupal::entityTypeManager()

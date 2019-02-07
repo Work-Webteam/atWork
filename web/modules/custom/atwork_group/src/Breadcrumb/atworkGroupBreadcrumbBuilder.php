@@ -22,7 +22,7 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 		$parameters = $attributes->getParameters()->all();
 		
 		// Is this a view page for group content?
-		if($parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
+		if(($parameters['view_id']) && $parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
 			return TRUE;
 		}
 		
@@ -57,7 +57,7 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 		// Add a link to the homepage as our first crumb.
 		$breadcrumb->addLink(Link ::createFromRoute('Home', '<front>'));
 
-		// If this is a view page (ei related content view) handle it differently than a node type
+		// If this is a view page (ie related content view) handle it differently than a node type
 		if((\Drupal::routeMatch()->getParameter('view_id')) && (\Drupal::routeMatch()->getParameter('view_id') == "related_content"))  {
 		  // Add link to groups view page
 		  $breadcrumb->addLink(Link::createFromRoute(t('Groups'), 'view.atwork_groups.page_1'));
