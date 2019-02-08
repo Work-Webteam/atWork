@@ -66,5 +66,3 @@ forward_poll_poll: true
 forward_entity_poll_choice: false
 forward_poll_choice_poll_choice: false
 forward_node_background_page: 0
-forward_max_recipients: 1
-forward_max_recipients_error: 'You can''t send email to more than @number recipient(s) at a time.'

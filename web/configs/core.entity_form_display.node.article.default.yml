@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.article.field_send_notifications
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
+    - field.field.node.article.panelizer
     - image.style.large
     - node.type.article
   module:
@@ -215,9 +216,5 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  url_redirects:
-    weight: 50
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-hidden: {  }
+hidden:
+  panelizer: true

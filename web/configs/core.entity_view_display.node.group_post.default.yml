@@ -7,16 +7,20 @@ dependencies:
     - field.field.node.group_post.body
     - field.field.node.group_post.comment
     - field.field.node.group_post.field_image
-    - field.field.node.group_post.field_interactive_content
     - field.field.node.group_post.field_tags
     - node.type.group_post
-    - responsive_image.styles.responsive_article_image
   module:
     - comment
-    - h5p
-    - responsive_image
+    - image
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.group_post.default
 targetEntityType: node
 bundle: group_post
@@ -30,7 +34,7 @@ content:
     third_party_settings: {  }
     region: content
   comment:
-    weight: 6
+    weight: 5
     label: above
     settings:
       view_mode: default
@@ -42,20 +46,13 @@ content:
     weight: 3
     label: hidden
     settings:
-      responsive_image_style: responsive_article_image
-      image_link: content
+      image_style: ''
+      image_link: ''
     third_party_settings: {  }
-    type: responsive_image
-    region: content
-  field_interactive_content:
-    weight: 5
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: h5p_default
+    type: image
     region: content
   field_tags:
-    weight: 7
+    weight: 6
     label: above
     settings:
       link: true
@@ -68,7 +65,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   flag_inappropriate:
-    weight: 9
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -78,7 +75,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   likeit:
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }

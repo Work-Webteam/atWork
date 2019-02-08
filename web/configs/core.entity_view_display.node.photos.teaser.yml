@@ -39,6 +39,4 @@ content:
     region: content
 hidden:
   comment: true
-  comment_photos: true
-  field_tags: true
   langcode: true

@@ -1,19 +1,21 @@
-uuid: d0cdabb5-4dc9-4050-a292-8eb7009d505a
+uuid: fa1eabd6-f055-4afa-9ef2-64687b8206dc
 langcode: en
 status: true
 dependencies:
   config:
     - views.view.related_content
   module:
+    - ctools
     - group
     - node
+    - system
     - views
   theme:
     - atworknext
 id: views_block__related_content_block_3
 theme: atworknext
 region: content
-weight: 1
+weight: 0
 provider: null
 plugin: 'views_block:related_content-block_3'
 settings:
@@ -23,7 +25,22 @@ settings:
   label_display: visible
   views_label: ''
   items_per_page: none
+  context_mapping: {  }
 visibility:
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      group_post: group_post
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
   group_type:
     id: group_type
     group_types:
@@ -38,3 +55,8 @@ visibility:
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: 'groups/*'
+    negate: false
+    context_mapping: {  }
