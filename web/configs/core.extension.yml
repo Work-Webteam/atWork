@@ -30,6 +30,7 @@ module:
   dblog: 0
   devel: 0
   devel_generate: 0
+  draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
   extrafield_views_integration: 0
