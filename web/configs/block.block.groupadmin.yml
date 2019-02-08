@@ -12,7 +12,7 @@ dependencies:
 id: groupadmin
 theme: atworknext
 region: content
-weight: -9
+weight: -10
 provider: null
 plugin: 'draggable_dashboard_block:draggable_dashboard_1549320685'
 settings:

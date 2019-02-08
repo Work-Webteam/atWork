@@ -242,45 +242,48 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
     color:$white;
     padding:8px 10px 5px;
     margin:0;
+    margin-bottom:10px;
   }
   .views-view-grid .views-row {
     padding-left: 8px;
     padding-right: 8px;
   }
-  .views-col {
-    padding:5px 2px;
-    .related-box {
-      border:solid 1px $exec-greyborder;
-      min-height: 215px;
-      padding-bottom: 5px;
-      .related-type, .related-title, .related-date {
-        padding-left:10px;
-        padding-right:10px;
-      }
-      .related-type, .related-date {
-        @include size1216;
-      }
-      .related-title {
-        min-height:55px;
-        margin-bottom:20px;
-        h5 {
-          margin:0;
-          padding:0;
-        }
-      }
-      .related-type {
-        padding:10px 0 0 10px;
-        margin:0;
-        text-transform: uppercase;
-      }
-      .related-image > .no-article-image {
-        display:block;
-        width: 100%;
-        min-height:85px;
-        background-color: $exec-greyborder;
-      }
-    }
+}
+.related-box {
+  border:solid 1px $exec-greyborder;
+  min-height: 215px;
+  padding-bottom: 5px;
+  margin-left:5px;
+  margin-right:5px;
+}
+.related-type, .related-title, .related-date {
+  padding-left:10px;
+  padding-right:10px;
+}
+.related-type, .related-date {
+  @include size1216;
   }
+.related-title {
+  min-height:55px;
+  margin-bottom:20px;
+  h5 {
+    margin:0;
+    padding:0;
+  }
+}
+.related-type {
+  padding:10px 0 0 10px;
+  margin:0;
+  text-transform: uppercase;
+}
+.related-image > .no-article-image {
+  display:block;
+  width: 100%;
+  min-height:85px;
+  background-color: $exec-greyborder;
+}
+
+.group-related-content {
   div [role=navigation] {
     position: relative;
     top:-125px;
@@ -306,8 +309,9 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
         width: 17px;
       }
     }
- }
+  }
 }
+
 
 //Group Ad Space on program pages
 #block-views-block-related-content-block-2,

@@ -5,6 +5,7 @@ dependencies:
   config:
     - views.view.comments_new
   module:
+    - ctools
     - node
     - user
     - views
@@ -41,3 +42,10 @@ visibility:
     negate: false
     context_mapping:
       user: '@user.current_user_context:current_user'
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'

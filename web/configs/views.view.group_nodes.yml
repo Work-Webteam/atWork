@@ -1432,7 +1432,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"related-box\">\r\n <div class=\"related-image\">{{field_image}}</div>\r\n <div class=\"related-type\">{{type}}</div>\r\n <div class=\"related-created\">{{created}}</div>\r\n <div class=\"related-title\"><h5>{{title}}</h5></div>\r\n <div class=\"related-teaser\"><p>{{body}}</p></div>\r\n <div class=\"related-comments\"><p>{{ comment_count }} Comments</p></div>\r\n <div class=\"related-likes\"><p>0 Likes</p></div>\r\n</div>\r\n"
+            text: " <div class=\"all-post-image\">{{field_image}}</div>\r\n <div class=\"all-post-title\"><h5>{{title}}</h5></div>\r\n<div class=\"all-post-date\">{{created}}</div>\r\n <div class=\"all-post-teaser\">{{body}}</div>\r\n<div class=\"all-post-comments-likes\">\r\n <div class=\"all-post-comments\">{{ comment_count }} Comments</div>\r\n <div class=\"all-post-likes\">0 Likes</div>\r\n</div>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -1650,16 +1650,14 @@ display:
           sort_desc_label: Newest
       exposed_block: false
       style:
-        type: grid
+        type: html_list
         options:
           grouping: {  }
-          columns: 4
-          automatic_width: true
-          alignment: horizontal
-          col_class_default: true
-          col_class_custom: ''
-          row_class_default: true
-          row_class_custom: ''
+          row_class: all-posts-row
+          default_row_class: true
+          type: ul
+          wrapper_class: post-list
+          class: post-list-content
       row:
         type: fields
         options:
