@@ -22,7 +22,7 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 		$parameters = $attributes->getParameters()->all();
 		
 		// Is this a view page for group content?
-		if(($parameters['view_id']) && $parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
+		if(isset($parameters['view_id']) && $parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
 			return TRUE;
 		}
 		
