@@ -12,7 +12,7 @@ dependencies:
 id: views_block__poll_list_block_1
 theme: atworknext
 region: content
-weight: 3
+weight: 2
 provider: null
 plugin: 'views_block:poll_list-block_1'
 settings:

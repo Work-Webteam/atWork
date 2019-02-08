@@ -2,17 +2,10 @@ uuid: a2e3c36d-314a-4064-8901-a63551a94c02
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.body
-    - field.storage.node.field_image
-    - image.style.article_hero_image
   module:
     - gnode
     - group
-    - image
     - node
-    - text
-    - views_infinite_scroll
 _core:
   default_config_hash: ZSKjHkl45YTbsYHiq_H7py04GDuX95t-GOHAAb8ZFbk
 id: group_nodes
@@ -56,15 +49,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: infinite_scroll
+        type: full
         options:
-          items_per_page: 20
+          items_per_page: 50
           offset: 0
           id: 0
           total_pages: null
           tags:
             previous: ‹‹
             next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -73,20 +68,102 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'Load More'
-            automatically_load_content: false
+          quantity: 9
       style:
-        type: grid
+        type: table
         options:
           grouping: {  }
-          columns: 4
-          automatic_width: true
-          alignment: horizontal
-          col_class_default: true
-          col_class_custom: ''
-          row_class_default: true
-          row_class_custom: ''
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: true
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            title: title
+            type: type
+            status: status
+            changed: changed
+            view_group_content: view_group_content
+            edit_group_content: edit_group_content
+            delete_group_content: delete_group_content
+            edit_node: edit_node
+            delete_node: delete_node
+            dropbutton: dropbutton
+          info:
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            type:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            status:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            changed:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            view_group_content:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            edit_group_content:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            delete_group_content:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            edit_node:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            delete_node:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            dropbutton:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: changed
+          empty_table: true
       row:
         type: fields
         options:
@@ -685,7 +762,7 @@ display:
           group_type: group
           admin_label: ''
           operator: '='
-          value: ''
+          value: false
           group: 1
           exposed: true
           expose:
