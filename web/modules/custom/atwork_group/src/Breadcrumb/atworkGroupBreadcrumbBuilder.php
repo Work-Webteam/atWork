@@ -57,14 +57,31 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 		// Add a link to the homepage as our first crumb.
 		$breadcrumb->addLink(Link ::createFromRoute('Home', '<front>'));
 
-		// If this is a view page (ie related content view) handle it differently than a node type
+		// If this is a view page (ie related content view) handle it differently than a node type.
 		if((\Drupal::routeMatch()->getParameter('view_id')) && (\Drupal::routeMatch()->getParameter('view_id') == "related_content"))  {
 		  // Add link to groups view page
 		  $breadcrumb->addLink(Link::createFromRoute(t('Groups'), 'view.atwork_groups.page_1'));
 		  
-			// Add Group Name 
+		  $url_param = str_replace('-', ' ', \Drupal::routeMatch()->getParameter('arg_0'));
+		  $group_data = '';
+		  
+		  try {
+		  	// Select like history from db
+		  	$connection = \Drupal::database();
+		  	$query = $connection->query("Select label, id from groups_field_data");
+		  	$group_data = $query->fetchAll();
+		  }
+		  catch(Exception $e) {
+		  	\Drupal::logger('type')->error($e->getMessage());
+		  }
+		  
+		  foreach($group_data as $group) {
+		  	if (strtolower($url_param) == strtolower($group->label)) {
+		  		$group_data = $group;
+		  	}
+		  }
 		  $group = Group::load(\Drupal::routeMatch()->getParameter('arg_0'));
-		  $breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $group->id()]));
+		  $breadcrumb->addLink(Link::createFromRoute(t($group_data->label), 'entity.group.canonical', ['group' => $group_data->id]));
 		  
 		  return $breadcrumb;
 		}

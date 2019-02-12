@@ -7,14 +7,13 @@ use Drupal\Core\Url;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\Entity\BaseFieldOverride;
 use Drupal\redirect\Entity\Redirect;
-
+use Drupal\group\Entity\Group;
 
 /**
  * @file
  * Primary module hooks for atwork_article module.
  *
  */
-
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -57,7 +56,10 @@ function atworknext_preprocess_group(&$variables) {
 		$variables['member'] = FALSE;
 	}
 	
-	$group_id = $variables['group']->id();
+	$group = Group::load($variables['group']->id());
+	
+	$group_id = $group->id();
+	$group_label = $group->get('label')->getValue()[0]['value'];
 	
 	// Add links to group content forms.
 	$linkObject = Link ::createFromRoute(t('Create New Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
@@ -75,7 +77,7 @@ function atworknext_preprocess_group(&$variables) {
 	$linkObject = Link ::createFromRoute(t('View All Photo Galleries'), 'view.related_content.page_2', ["arg_0" => $group_id]);
 	$variables['photo_galleries'] = $linkObject->toRenderable();
 	
-	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => $group_id]);
+	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => $group_label]);
 	$variables['group_posts'] = $linkObject->toRenderable();
 	
 	// Load Related Content Block
