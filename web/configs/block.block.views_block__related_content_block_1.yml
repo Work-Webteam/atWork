@@ -6,43 +6,27 @@ dependencies:
     - views.view.related_content
   module:
     - ctools
-    - node
-    - system
     - views
   theme:
     - atworknext
 id: views_block__related_content_block_1
 theme: atworknext
 region: content
-weight: 0
+weight: 2
 provider: null
 plugin: 'views_block:related_content-block_1'
 settings:
   id: 'views_block:related_content-block_1'
   label: ''
   provider: views
-  label_display: '0'
+  label_display: visible
   views_label: ''
   items_per_page: none
 visibility:
-  node_type:
-    id: node_type
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     bundles:
-      article: article
       background_page: background_page
-      group_post: group_post
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
-  request_path:
-    id: request_path
-    pages: ''
-    negate: true
-    context_mapping: {  }
-  'entity_bundle:group':
-    id: 'entity_bundle:group'
-    bundles:
-      atwork_groups: atwork_groups
-    negate: true
-    context_mapping:
-      group: '@group.group_route_context:group'

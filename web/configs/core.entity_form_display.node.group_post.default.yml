@@ -6,11 +6,13 @@ dependencies:
     - field.field.node.group_post.body
     - field.field.node.group_post.comment
     - field.field.node.group_post.field_image
+    - field.field.node.group_post.field_interactive_content
     - field.field.node.group_post.field_tags
-    - image.style.thumbnail
+    - image.style.medium
     - node.type.group_post
   module:
-    - image
+    - h5peditor
+    - image_widget_crop
     - text
 id: node.group_post.default
 targetEntityType: node
@@ -28,20 +30,34 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   field_image:
     weight: 1
     settings:
+      show_default_crop: true
+      preview_image_style: medium
+      crop_preview_image_style: medium
+      crop_list:
+        - article_730_330
+      crop_types_required:
+        - article_730_330
       progress_indicator: throbber
-      preview_image_style: thumbnail
+      show_crop_area: false
+      warn_multiple_usages: false
     third_party_settings: {  }
-    type: image_image
+    type: image_widget_crop
+    region: content
+  field_interactive_content:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_editor
     region: content
   field_tags:
-    weight: 26
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
@@ -51,7 +67,7 @@ content:
     region: content
   langcode:
     type: language_select
-    weight: 3
+    weight: 4
     region: content
     settings:
       include_locked: true
@@ -60,7 +76,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 6
+    weight: 7
     region: content
     third_party_settings: {  }
   title:
@@ -73,12 +89,17 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 9
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   comment: true

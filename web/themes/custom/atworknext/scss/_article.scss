@@ -232,7 +232,8 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
 // Related Content Blocks
 #block-views-block-related-content-block-1,
 .group-related-content,
-.all-group-posts {
+.all-group-posts,
+.groups-landing {
   padding-left:0px;
   padding-right:0px;
   h2.block-title {
@@ -283,6 +284,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
   background-color: $exec-greyborder;
 }
 
+#block-views-block-related-content-block-1,
 .group-related-content {
   div [role=navigation] {
     position: relative;

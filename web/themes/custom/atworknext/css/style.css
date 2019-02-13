@@ -10346,6 +10346,16 @@ footer.footer.container .region.region-footer #footer-left, footer.footer.contai
   width: 110px;
 }
 
+/* line 15, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+#navbar .navbar-header .navbar-nav li a {
+  color: white;
+}
+
+/* line 17, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+#navbar .navbar-header .navbar-nav li a.is-active {
+  color: #266694;
+}
+
 /* Corporate / Community article pages */
 /* line 2, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .author-byline {
@@ -10661,15 +10671,17 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 /* line 233, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-1,
 .group-related-content,
-.all-group-posts {
+.all-group-posts,
+.groups-landing {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-/* line 238, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 239, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-1 h2.block-title,
 .group-related-content h2.block-title,
-.all-group-posts h2.block-title {
+.all-group-posts h2.block-title,
+.groups-landing h2.block-title {
   font-size: 1.125rem;
   line-height: 24px;
   text-transform: uppercase;
@@ -10680,15 +10692,16 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   margin-bottom: 10px;
 }
 
-/* line 247, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 248, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-1 .views-view-grid .views-row,
 .group-related-content .views-view-grid .views-row,
-.all-group-posts .views-view-grid .views-row {
+.all-group-posts .views-view-grid .views-row,
+.groups-landing .views-view-grid .views-row {
   padding-left: 8px;
   padding-right: 8px;
 }
 
-/* line 252, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 253, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-box {
   border: solid 1px #E0E7E8;
   min-height: 215px;
@@ -10697,38 +10710,38 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   margin-right: 5px;
 }
 
-/* line 259, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 260, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-type, .related-title, .related-date {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 263, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 264, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-type, .related-date {
   font-size: .75rem;
   line-height: 16px;
 }
 
-/* line 266, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 267, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-title {
   min-height: 55px;
   margin-bottom: 20px;
 }
 
-/* line 269, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 270, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-title h5 {
   margin: 0;
   padding: 0;
 }
 
-/* line 274, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 275, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-type {
   padding: 10px 0 0 10px;
   margin: 0;
   text-transform: uppercase;
 }
 
-/* line 279, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 280, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .related-image > .no-article-image {
   display: block;
   width: 100%;
@@ -10736,25 +10749,29 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   background-color: #E0E7E8;
 }
 
-/* line 287, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 289, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+#block-views-block-related-content-block-1 div [role=navigation],
 .group-related-content div [role=navigation] {
   position: relative;
   top: -125px;
 }
 
-/* line 290, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 292, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+#block-views-block-related-content-block-1 div [role=navigation] .pager,
 .group-related-content div [role=navigation] .pager {
   margin: 0;
 }
 
-/* line 292, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 294, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+#block-views-block-related-content-block-1 div [role=navigation] .pager li a,
 .group-related-content div [role=navigation] .pager li a {
   color: transparent;
   background-color: transparent;
   border: 0;
 }
 
-/* line 297, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 299, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+#block-views-block-related-content-block-1 div [role=navigation] .pager li.previous,
 .group-related-content div [role=navigation] .pager li.previous {
   position: absolute;
   left: -6px;
@@ -10763,7 +10780,8 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   width: 17px;
 }
 
-/* line 304, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 306, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+#block-views-block-related-content-block-1 div [role=navigation] .pager li.next,
 .group-related-content div [role=navigation] .pager li.next {
   position: absolute;
   right: -6px;
@@ -10772,7 +10790,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   width: 17px;
 }
 
-/* line 317, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 319, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2,
 #block-views-block-related-content-block-4 {
   clear: both;
@@ -10782,7 +10800,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   padding-right: 0px;
 }
 
-/* line 324, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 326, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-tab,
 #block-views-block-related-content-block-4 #prog-ad-tab {
   display: inline-block;
@@ -10793,14 +10811,14 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   border-right: solid 1px #E0E7E8;
 }
 
-/* line 331, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 333, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-tab h3,
 #block-views-block-related-content-block-4 #prog-ad-tab h3 {
   padding: 0;
   margin: 0;
 }
 
-/* line 336, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 338, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-box,
 #block-views-block-related-content-block-4 #prog-ad-box {
   display: table;
@@ -10808,14 +10826,14 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   border: solid 1px #E0E7E8;
 }
 
-/* line 340, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 342, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-box #prog-ad-content, #block-views-block-related-content-block-2 #prog-ad-box #prog-ad-image,
 #block-views-block-related-content-block-4 #prog-ad-box #prog-ad-content,
 #block-views-block-related-content-block-4 #prog-ad-box #prog-ad-image {
   display: table-cell;
 }
 
-/* line 343, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 345, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-box #prog-ad-content,
 #block-views-block-related-content-block-4 #prog-ad-box #prog-ad-content {
   padding: 10px;
@@ -10823,13 +10841,13 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   background-color: #e6f2f9;
 }
 
-/* line 347, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 349, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-box #prog-ad-content h5,
 #block-views-block-related-content-block-4 #prog-ad-box #prog-ad-content h5 {
   margin: 0;
 }
 
-/* line 351, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 353, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 #block-views-block-related-content-block-2 #prog-ad-box #prog-ad-image,
 #block-views-block-related-content-block-4 #prog-ad-box #prog-ad-image {
   position: relative;
@@ -11247,7 +11265,7 @@ section.col-sm-12 .group-page-content section.group-landing-info h4, section.col
 section.col-sm-12 .group-page-content section.group-landing-info aside.group-info {
   display: flex;
   flex-direction: column;
-  flex: 1 0px;
+  flex: 1 auto;
   margin-right: 10px;
   padding: 10px 10px 10px 0;
   border-right: solid 1px #266694;
@@ -11278,15 +11296,14 @@ section.col-sm-12 .group-page-content section.group-landing-info aside.group-inf
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons {
   display: flex;
   flex-direction: column;
-  flex: 2 auto;
-  flex-wrap: wrap;
+  flex: 1 auto;
   align-content: stretch;
   height: 200px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-/* line 110, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 109, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons > div {
   display: flex;
   flex-direction: row;
@@ -11300,7 +11317,7 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   margin: 0px 5px 5px 5px;
 }
 
-/* line 121, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons > div > span {
   background-color: white;
   padding: 8px;
@@ -11309,36 +11326,36 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   border-radius: 50px;
 }
 
-/* line 128, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 127, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons > div > a {
   color: white;
 }
 
-/* line 130, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 129, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons > div > a:hover {
   text-decoration: none;
   color: #266694;
 }
 
-/* line 133, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 132, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons > div > a:hover ~ span {
   background-color: #edb141;
   color: white;
 }
 
-/* line 147, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 146, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 .group-related-content section#block-views-block-related-content-block-3 {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-/* line 150, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 149, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 .group-related-content section#block-views-block-related-content-block-3 > h2.block-title {
   background-color: #8acccf;
   margin-bottom: 10px;
 }
 
-/* line 159, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 158, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin > h2 {
   padding: 0;
   margin: 0;
@@ -11346,7 +11363,7 @@ section#block-groupadmin > h2 {
   background-color: rgba(4, 69, 115, 0.5);
 }
 
-/* line 165, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 164, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .well {
   border-color: #c5d5da;
   background-color: rgba(197, 213, 218, 0.5);
@@ -11354,28 +11371,29 @@ section#block-groupadmin .well {
   font-size: .9em;
 }
 
-/* line 171, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 170, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard .draggable-dashboard-column {
   min-height: inherit;
 }
 
-/* line 174, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 173, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block {
   border-color: #c5d5da;
 }
 
-/* line 176, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 175, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block h2 {
   padding: 0;
   margin: 0;
 }
 
-/* line 181, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 180, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block__content {
   display: flex;
 }
 
 /* line 188, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .view-filters,
 .all-group-posts .view-filters {
   display: flex;
   flex-direction: column;
@@ -11383,6 +11401,7 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 194, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content,
 .all-group-posts .post-list .post-list-content {
   padding: 0;
   margin: 10px;
@@ -11397,6 +11416,7 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 207, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row,
 .all-group-posts .post-list .post-list-content .all-posts-row {
   width: 215px;
   margin-bottom: 10px;
@@ -11404,17 +11424,20 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 211, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-title,
 .all-group-posts .post-list .post-list-content .all-posts-row .all-post-title {
   display: flex;
   min-height: 0;
 }
 
 /* line 212, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-title h5,
 .all-group-posts .post-list .post-list-content .all-posts-row .all-post-title h5 {
   margin: 5px 10px 0px;
 }
 
 /* line 218, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-date,
 .all-group-posts .post-list .post-list-content .all-posts-row .all-post-date {
   font-size: .75rem;
   line-height: 16px;
@@ -11422,7 +11445,10 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 222, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-teaser, .all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments, .all-group-posts .post-list .post-list-content .all-posts-row .all-post-likes {
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-teaser, .groups-landing .post-list .post-list-content .all-posts-row .all-post-comments, .groups-landing .post-list .post-list-content .all-posts-row .all-post-likes,
+.all-group-posts .post-list .post-list-content .all-posts-row .all-post-teaser,
+.all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments,
+.all-group-posts .post-list .post-list-content .all-posts-row .all-post-likes {
   font-size: .75rem;
   line-height: 16px;
   padding: 5px 10px;
@@ -11430,18 +11456,21 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 227, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-comments-likes,
 .all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments-likes {
   display: flex;
   flex-direction: row;
 }
 
 /* line 230, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-comments,
 .all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-comments {
   display: inline-flex;
   flex: 1;
 }
 
 /* line 234, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+.groups-landing .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-likes,
 .all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-likes {
   display: inline-flex;
   justify-content: flex-end;
