@@ -74,10 +74,10 @@ function atworknext_preprocess_group(&$variables) {
 	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
 	$variables['leave_link'] = $linkObject->toRenderable();
 	
-	$linkObject = Link ::createFromRoute(t('View All Photo Galleries'), 'view.related_content.page_2', ["arg_0" => $group_id]);
+	$linkObject = Link ::createFromRoute(t('View All Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['photo_galleries'] = $linkObject->toRenderable();
 	
-	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => $group_label]);
+	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['group_posts'] = $linkObject->toRenderable();
 	
 	// Load Related Content Block
@@ -121,7 +121,7 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 }
 
 /**
- * Implements custom submit handler forgroup join form
+ * Implements custom submit handler for group join form
  */
 function atwork_group_join_group_submit(array $form, FormStateInterface $form_state){
 	// Set redirect back to the oiginal group page.

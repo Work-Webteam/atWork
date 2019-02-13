@@ -7,7 +7,7 @@ dependencies:
 id: atwork_group
 label: 'Atwork Group'
 type: 'canonical_entities:group'
-pattern: 'group/[group:title]'
+pattern: 'groups/[group:title]'
 selection_criteria: {  }
 selection_logic: and
 weight: -5

@@ -1,24 +1,22 @@
-uuid: 6e54e09f-9505-44a1-b978-8b29f60f7493
+uuid: 54e98a48-7262-4b27-b726-72b5859e1925
 langcode: en
 status: true
 dependencies:
   module:
-    - ctools
-    - group
+    - node
 id: atwork_group_photo_galleries
-label: 'Atwork Group Content'
-type: 'canonical_entities:group_content'
-pattern: 'group/[group_content:group]/[group_content:group:title]'
+label: 'Atwork Group Photo Galleries'
+type: 'canonical_entities:node'
+pattern: 'groups/[node:group:title]/photo-galleries/[node:title]'
 selection_criteria:
-  5ebbf2c5-204c-48d2-8e31-e7afed3be1c4:
-    id: 'entity_bundle:group_content'
+  6c0d3623-86de-4764-a0e5-7b98ae61e884:
+    id: node_type
     bundles:
-      atwork_groups-group_node-photos: atwork_groups-group_node-photos
-      group_content_type_d7657d2029e9e: group_content_type_d7657d2029e9e
+      photos: photos
     negate: false
     context_mapping:
-      group_content: group_content
-    uuid: 5ebbf2c5-204c-48d2-8e31-e7afed3be1c4
+      node: node
+    uuid: 6c0d3623-86de-4764-a0e5-7b98ae61e884
 selection_logic: and
 weight: -5
 relationships: {  }

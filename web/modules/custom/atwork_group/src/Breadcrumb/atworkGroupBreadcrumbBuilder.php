@@ -107,10 +107,10 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 				$breadcrumb->addLink(Link::createFromRoute(t('Groups'), 'view.atwork_groups.page_1'));
 
 				// Add Group Name 
-				$breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $group->id()]));
 				
 				// Add Group Galleries page. The param 'arg_0' is the value passed to the view for the contextual filter.
-				$breadcrumb->addLink(Link::createFromRoute(t('Photo Galleries'), 'view.related_content.page_2', ['arg_0' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t('Photo Galleries'), 'view.related_content.page_2', ['arg_0' => strtolower(str_replace(' ', '-', $group->label()))]));
 		 		break;
 			case 'group_post':
 				$gid = '';
@@ -123,10 +123,10 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 				$breadcrumb->addLink(Link::createFromRoute(t('Groups'), 'view.atwork_groups.page_1'));
 				
 				// Add Group Name 
-				$breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t($group->label()), 'entity.group.canonical', ['group' => $group->id()]));
 				
 				// Add Group Galleries page. The param 'arg_0' is the value passed to the view for the contextual filter.
-				$breadcrumb->addLink(Link::createFromRoute(t('Posts'), 'view.related_content.page_1', ['arg_0' => $gid]));
+				$breadcrumb->addLink(Link::createFromRoute(t('Posts'), 'view.related_content.page_1', ['arg_0' => strtolower(str_replace(' ', '-', $group->label()))]));
 		 		break;
 			case 'atwork_groups':
 				// Add link to groups view page

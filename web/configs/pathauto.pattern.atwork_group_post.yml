@@ -1,0 +1,22 @@
+uuid: ce14a161-626a-4260-a3ed-2f05cdfd0cbb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: atwork_group_post
+label: 'Atwork Group Post'
+type: 'canonical_entities:node'
+pattern: 'groups/[node:group:title]/posts/[node:title]'
+selection_criteria:
+  47a49569-7384-445e-9f94-39ac391c05f6:
+    id: node_type
+    bundles:
+      group_post: group_post
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 47a49569-7384-445e-9f94-39ac391c05f6
+selection_logic: and
+weight: -5
+relationships: {  }
