@@ -1,4 +1,4 @@
-uuid: 86eada7d-3235-454d-b740-d8c1c1fa3909
+uuid: 8527d958-aa69-43d1-bba7-dae4a6716251
 langcode: en
 status: true
 dependencies:
@@ -6,17 +6,16 @@ dependencies:
     - ctools
     - draggable_dashboard
     - group
-    - user
   theme:
     - atworknext
 id: groupadmin
 theme: atworknext
 region: content
-weight: -10
+weight: -9
 provider: null
-plugin: 'draggable_dashboard_block:draggable_dashboard_1549320685'
+plugin: 'draggable_dashboard_block:draggable_dashboard_1549921752'
 settings:
-  id: 'draggable_dashboard_block:draggable_dashboard_1549320685'
+  id: 'draggable_dashboard_block:draggable_dashboard_1549921752'
   label: 'Group Admin'
   provider: draggable_dashboard
   label_display: '0'
@@ -35,10 +34,3 @@ visibility:
     negate: false
     context_mapping:
       group: '@group.group_route_context:group'
-  user_role:
-    id: user_role
-    roles:
-      administrator: administrator
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'

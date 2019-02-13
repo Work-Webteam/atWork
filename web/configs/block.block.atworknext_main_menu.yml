@@ -1,6 +1,6 @@
 uuid: b8a52550-d79f-4fe4-b495-b857485e29b5
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.main
@@ -12,8 +12,8 @@ _core:
   default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
 id: atworknext_main_menu
 theme: atworknext
-region: navigation_collapsible
-weight: -6
+region: navigation
+weight: -8
 provider: null
 plugin: 'system_menu_block:main'
 settings:

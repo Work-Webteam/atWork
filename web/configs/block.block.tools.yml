@@ -1,4 +1,4 @@
-uuid: 3ce2dd96-e67a-4072-b247-d866e2783261
+uuid: 6758d9ad-dc89-4316-ae3b-aa0c23c7d0b6
 langcode: en
 status: false
 dependencies:
@@ -7,13 +7,11 @@ dependencies:
   module:
     - system
   theme:
-    - atworknext
-_core:
-  default_config_hash: NeHSoqm4XFqA7_0bDmR429ZZQt3LRbZMNRJTMsFyOfI
-id: atworknext_tools
-theme: atworknext
-region: navigation_collapsible
-weight: -9
+    - seven
+id: tools
+theme: seven
+region: header
+weight: null
 provider: null
 plugin: 'system_menu_block:tools'
 settings:
