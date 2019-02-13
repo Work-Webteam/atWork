@@ -1,11 +1,10 @@
 uuid: a0068029-3432-45c2-bae5-481f6351fffc
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.related_content
   module:
-    - ctools
     - views
   theme:
     - atworknext
@@ -22,11 +21,4 @@ settings:
   label_display: '0'
   views_label: ''
   items_per_page: none
-visibility:
-  'entity_bundle:group':
-    id: 'entity_bundle:group'
-    bundles:
-      atwork_groups: atwork_groups
-    negate: false
-    context_mapping:
-      group: '@group.group_route_context:group'
+visibility: {  }

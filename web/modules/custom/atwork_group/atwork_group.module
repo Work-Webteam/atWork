@@ -85,7 +85,14 @@ function atworknext_preprocess_group(&$variables) {
 	$block_content = \Drupal::entityTypeManager()
 	->getViewBuilder('block')
 	->view($block);
-	$variables['related_content'] = $block_content;
+ 	$variables['related_content'] = $block_content;
+	
+	// Load Group Spotlight
+	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_4');
+	$block_content = \Drupal::entityTypeManager()
+	->getViewBuilder('block')
+	->view($block);
+	$variables['group_spotlight'] = $block_content;
 }
 
 /**
