@@ -185,58 +185,5 @@ section#block-groupadmin {
 // Group all posts page
 .groups-landing,
 .all-group-posts {
-  .view-filters {
-    display: flex;
-    flex-direction: column;
-    flex:1;
-  }
-  .post-list {
-    .post-list-content {
-      padding:0;
-      margin:10px;
-      list-style: none;
-
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-
-      -webkit-flex-flow: row wrap;
-      justify-content: space-evenly;
-      .all-posts-row {
-        width:215px;
-        margin-bottom:10px;
-        background-color: $comment-blue;
-        .all-post-title {
-          h5 {
-            margin:5px 10px 0px;
-          }
-          display: flex;
-          min-height:0;
-        }
-        .all-post-date {
-          @include size1216;
-          margin:0 10px;
-        }
-        .all-post-teaser, .all-post-comments, .all-post-likes {
-          @include size1216;
-          padding: 5px 10px;
-          margin:5px 0;
-        }
-        .all-post-comments-likes {
-          display: flex;
-          flex-direction: row;
-          .all-post-comments {
-            display: inline-flex;
-            flex:1;
-          }
-          .all-post-likes {
-            display: inline-flex;
-            justify-content: flex-end;
-          }
-        }
-      }
-    }
-  }
+  @include blue-grid-box;
 }

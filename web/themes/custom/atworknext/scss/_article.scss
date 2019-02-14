@@ -234,84 +234,13 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
 .group-related-content,
 .all-group-posts,
 .groups-landing {
-  padding-left:0px;
-  padding-right:0px;
-  h2.block-title {
-    @include size1824;
-    text-transform: uppercase;
-    background-color:$banner-blue;
-    color:$white;
-    padding:8px 10px 5px;
-    margin:0;
-    margin-bottom:10px;
-  }
-  .views-view-grid .views-row {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
-}
-.related-box {
-  border:solid 1px $exec-greyborder;
-  min-height: 215px;
-  padding-bottom: 5px;
-  margin-left:5px;
-  margin-right:5px;
-}
-.related-type, .related-title, .related-date {
-  padding-left:10px;
-  padding-right:10px;
-}
-.related-type, .related-date {
-  @include size1216;
-  }
-.related-title {
-  min-height:55px;
-  margin-bottom:20px;
-  h5 {
-    margin:0;
-    padding:0;
-  }
-}
-.related-type {
-  padding:10px 0 0 10px;
-  margin:0;
-  text-transform: uppercase;
-}
-.related-image > .no-article-image {
-  display:block;
-  width: 100%;
-  min-height:85px;
-  background-color: $exec-greyborder;
+
 }
 
 #block-views-block-related-content-block-1,
 .group-related-content {
-  div [role=navigation] {
-    position: relative;
-    top:-125px;
-    .pager {
-      margin:0;
-      li a {
-        color:transparent;
-        background-color: transparent;
-        border:0;
-      }
-      li.previous {
-        position: absolute;
-        left:-6px;
-        background-image: url("../images/blue-arrow-left.svg");
-        background-repeat: no-repeat;
-        width: 17px;
-      }
-      li.next {
-        position: absolute;
-        right: -6px;
-        background-image: url("../images/blue-arrow-right.svg");
-        background-repeat: no-repeat;
-        width: 17px;
-      }
-    }
-  }
+  @include related-content;
+  @include related-content-nav;
 }
 
 
