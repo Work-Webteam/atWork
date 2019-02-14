@@ -474,6 +474,8 @@ display:
         use_ajax: false
         fields: false
         sorts: false
+        style: false
+        row: false
       fields:
         field_image:
           id: field_image
@@ -801,6 +803,18 @@ display:
           entity_type: node
           entity_field: created
           plugin_id: date
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: related-content
+          default_row_class: true
+          type: ul
+          wrapper_class: related-wrapper
+          class: related-list
+      row:
+        type: fields
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1259,6 +1273,8 @@ display:
         title: false
         pager: false
         use_ajax: false
+        style: false
+        row: false
       fields:
         field_image:
           id: field_image
@@ -1304,7 +1320,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '<div class="no-article-image"><p>&nbsp;</p></div>'
+          empty: '<div class="no-article-image"><img="../images/no-image-panel.png"</div>'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -1591,6 +1607,18 @@ display:
             offset: false
             offset_label: Offset
       use_ajax: true
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: related-content
+          default_row_class: true
+          type: ul
+          wrapper_class: related-wrapper
+          class: related-list
+      row:
+        type: fields
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:
