@@ -279,12 +279,22 @@
         color:$white;
         padding:8px 10px 5px;
         margin:0;
-        margin-bottom:10px;
       }
     }
   }
+  @at-root {
+    #block-views-block-related-content-block-3 {
+      padding-left:0px;
+      padding-right:0px;
+        > h2.block-title {
+          background-color: $mtTeal;
+          color:$white;
+          padding:8px 10px 5px;
+          margin:0;
+        }
+      }
+    }
   .related-wrapper {
-    clear:both;
     .related-list {
       padding:0;
       margin:10px;
@@ -296,7 +306,7 @@
       display: -webkit-flex;
       display: flex;
 
-      -webkit-flex-flow: row wrap;
+      //-webkit-flex-flow: row wrap;
       justify-content: space-evenly;
       .related-content {
         display: flex;
@@ -337,6 +347,13 @@
         }
       }
     }
+  }
+}
+// Removes the bullet values used on news article page lists.
+.group-related-content .related-wrapper li.related-content {
+  margin-left:initial;
+  &:before {
+    content:none;
   }
 }
 @mixin related-content-nav {

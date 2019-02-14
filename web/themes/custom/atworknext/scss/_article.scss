@@ -234,14 +234,10 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
 .group-related-content,
 .all-group-posts,
 .groups-landing {
-
-}
-
-#block-views-block-related-content-block-1,
-.group-related-content {
   @include related-content;
   @include related-content-nav;
 }
+
 
 
 //Group Ad Space on program pages

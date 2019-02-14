@@ -110,12 +110,12 @@ section.col-sm-12 .group-page-content {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         min-width:200px;
         max-width:100%;
         border:solid 1px aqua;
         background-color: $mtTeal;
-        padding: 8px 10px;
+        padding: 10px;
         margin: 0px 5px 5px 5px;
         > span {
           background-color: $white;
@@ -149,6 +149,8 @@ section.col-sm-12 .group-page-content {
       > h2.block-title {
         background-color: $mtTeal;
         margin-bottom: 10px;
+        color:$white;
+        padding:8px 0 5px 10px;
       }
     }
 }
