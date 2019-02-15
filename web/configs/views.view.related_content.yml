@@ -16,6 +16,7 @@ dependencies:
     - node
     - text
     - user
+    - views_infinite_scroll
 id: related_content
 label: 'Related Content'
 module: views
@@ -474,6 +475,8 @@ display:
         use_ajax: false
         fields: false
         sorts: false
+        style: false
+        row: false
       fields:
         field_image:
           id: field_image
@@ -801,6 +804,18 @@ display:
           entity_type: node
           entity_field: created
           plugin_id: date
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: related-content
+          default_row_class: true
+          type: ul
+          wrapper_class: related-wrapper
+          class: related-list
+      row:
+        type: fields
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1259,6 +1274,8 @@ display:
         title: false
         pager: false
         use_ajax: false
+        style: false
+        row: false
       fields:
         field_image:
           id: field_image
@@ -1591,6 +1608,18 @@ display:
             offset: false
             offset_label: Offset
       use_ajax: true
+      style:
+        type: html_list
+        options:
+          grouping: {  }
+          row_class: related-content
+          default_row_class: true
+          type: ul
+          wrapper_class: related-wrapper
+          class: related-list
+      row:
+        type: fields
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -2102,6 +2131,7 @@ display:
         filters: false
         filter_groups: false
         sorts: false
+        pager: false
       relationships:
         group_content:
           id: group_content
@@ -2696,6 +2726,27 @@ display:
           expose:
             label: '# of comments'
           plugin_id: standard
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 12
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: «
+            next: »
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: false
     cache_metadata:
       max-age: -1
       contexts:
