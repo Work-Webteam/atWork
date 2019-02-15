@@ -118,13 +118,24 @@ function atworknext_preprocess_container__atwork(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_form_alter().
  *
  */
 function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 	if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
 	}
+	
+	if($form_id == "group_content_group_content_type_d7657d2029e9e_add_form" || $form_id == "group_content_atwork_groups-group_node-photos_add_form") {
+	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_content_submit';
+	}
+}
+
+
+function atwork_group_group_content_submit(array $form, FormStateInterface $form_state){
+	// Set redirect back to the oiginal content node page.
+	$nid = $form_state->getRedirect()->getOptions("entity_id")['entity']->get('entity_id')->getValue()[0]['target_id'];
+	$form_state->setRedirect('entity.node.canonical', ['node' => $nid]);
 }
 
 /**
