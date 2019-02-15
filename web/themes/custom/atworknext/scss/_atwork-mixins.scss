@@ -229,7 +229,7 @@
 
       -webkit-flex-flow: row wrap;
       justify-content: space-evenly;
-      .all-posts-row {
+      > .all-posts-row {
         width:215px;
         margin-bottom:10px;
         background-color: $comment-blue;

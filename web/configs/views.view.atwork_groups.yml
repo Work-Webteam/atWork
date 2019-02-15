@@ -9,6 +9,7 @@ dependencies:
     - group
     - image
     - user
+    - views_infinite_scroll
 id: atwork_groups
 label: 'Atwork Groups'
 module: views
@@ -49,12 +50,15 @@ display:
           sort_asc_label: Older
           sort_desc_label: Newer
       pager:
-        type: mini
+        type: infinite_scroll
         options:
-          items_per_page: 10
+          items_per_page: 12
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -63,9 +67,9 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: false
       style:
         type: html_list
         options:
@@ -77,6 +81,11 @@ display:
           class: post-list-content
       row:
         type: fields
+        options:
+          default_field_elements: true
+          inline: {  }
+          separator: ''
+          hide_empty: false
       fields:
         field_group:
           id: field_group
@@ -349,7 +358,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: " <div class=\"all-post-image\">{{field_group}}</div>\r\n   <div class=\"all-post-title\"><h5>{{label}}</h5></div>\r\n   <div class=\"all-post-teaser\"><p>&nbsp;</p></div>\r\n   <div class=\"all-post-date\">Started on: {{created}}</div>\r\n   <div class=\"all-post-date\">Started by: {{uid}}</div>\r\n   <p>&nbsp;</p>\r\n</div>"
+            text: "<div class=\"all-post-image\">{{field_group}}</div>\r\n   <div class=\"all-post-title\"><h5>{{label}}</h5></div>\r\n   <div class=\"all-post-teaser\"><p>&nbsp;</p></div>\r\n   <div class=\"all-post-date\">Started on: {{created}}</div>\r\n   <div class=\"all-post-date\">Started by: {{uid}}</div>\r\n   <p>&nbsp;</p>\r\n\r\n"
             make_link: false
             path: ''
             absolute: false

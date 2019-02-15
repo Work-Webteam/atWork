@@ -11497,8 +11497,8 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 232, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row,
-.all-group-posts .post-list .post-list-content .all-posts-row {
+.groups-landing .post-list .post-list-content > .all-posts-row,
+.all-group-posts .post-list .post-list-content > .all-posts-row {
   width: 215px;
   margin-bottom: 10px;
   background-color: #e6f2f9;
@@ -11506,31 +11506,31 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 237, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-title,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-title {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-title,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-title {
   display: flex;
   min-height: 0;
 }
 
 /* line 238, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-title h5,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-title h5 {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-title h5,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-title h5 {
   margin: 5px 10px 0px;
 }
 
 /* line 244, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-date,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-date {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-date,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-date {
   font-size: .75rem;
   line-height: 16px;
   margin: 0 10px;
 }
 
 /* line 248, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-teaser, .groups-landing .post-list .post-list-content .all-posts-row .all-post-comments, .groups-landing .post-list .post-list-content .all-posts-row .all-post-likes,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-teaser,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-likes {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-teaser, .groups-landing .post-list .post-list-content > .all-posts-row .all-post-comments, .groups-landing .post-list .post-list-content > .all-posts-row .all-post-likes,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-teaser,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-comments,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-likes {
   font-size: .75rem;
   line-height: 16px;
   padding: 5px 10px;
@@ -11538,22 +11538,22 @@ section#block-groupadmin .draggable-dashboard-block__content {
 }
 
 /* line 253, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-comments-likes,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments-likes {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-comments-likes,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-comments-likes {
   display: flex;
   flex-direction: row;
 }
 
 /* line 256, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-comments,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-comments {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-comments-likes .all-post-comments,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-comments-likes .all-post-comments {
   display: inline-flex;
   flex: 1;
 }
 
 /* line 260, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-.groups-landing .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-likes,
-.all-group-posts .post-list .post-list-content .all-posts-row .all-post-comments-likes .all-post-likes {
+.groups-landing .post-list .post-list-content > .all-posts-row .all-post-comments-likes .all-post-likes,
+.all-group-posts .post-list .post-list-content > .all-posts-row .all-post-comments-likes .all-post-likes {
   display: inline-flex;
   justify-content: flex-end;
 }
