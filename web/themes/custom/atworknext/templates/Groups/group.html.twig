@@ -48,7 +48,7 @@
             <h1{{ title_attributes }}>
                 {{ label }}
             </h1>
-            {% if member %}
+            {% if not member %}
                 <div class="group-join">
                     {{ join_link }}
                 </div>
@@ -103,7 +103,7 @@
         {{ photo_galleries }}
         <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
     </div>
-    {% if not member %}
+    {% if member %}
     <div>
         {{ leave_link }}
         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
