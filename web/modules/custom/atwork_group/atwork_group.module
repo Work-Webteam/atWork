@@ -129,10 +129,25 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 	if($form_id == "group_content_group_content_type_d7657d2029e9e_add_form" || $form_id == "group_content_atwork_groups-group_node-photos_add_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_content_submit';
 	}
+	
+	if($form_id == "group_content_atwork_groups-group_membership_add_form") {
+	  $form['path']['#access'] = FALSE;
+	  $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
+	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_create_submit';
+	}
 }
 
 /**
- * Implements custom submit handler for group content forms
+ * Implements custom submit handler for group create form
+ */
+function atwork_group_group_create_submit(array $form, FormStateInterface $form_state) {
+	// Get gid from route parameters and redirect to group page.
+	$route_params = $form_state->getRedirect()->getRouteParameters();
+	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
+}
+
+/**
+ * Implements custom submit handler for group content add form
  */
 function atwork_group_group_content_submit(array $form, FormStateInterface $form_state){
 	// Set redirect back to the oiginal content node page.
