@@ -131,7 +131,9 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 	}
 }
 
-
+/**
+ * Implements custom submit handler for group content forms
+ */
 function atwork_group_group_content_submit(array $form, FormStateInterface $form_state){
 	// Set redirect back to the oiginal content node page.
 	$nid = $form_state->getRedirect()->getOptions("entity_id")['entity']->get('entity_id')->getValue()[0]['target_id'];
