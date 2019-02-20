@@ -34,6 +34,11 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  flag_email_groups:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   label:
     label: hidden
     type: string
