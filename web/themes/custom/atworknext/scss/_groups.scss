@@ -139,6 +139,14 @@ section.col-sm-12 .group-page-content {
     }
   }
 }
+// Empty spacer box if no Group Ad Space specified
+#no-ad-space {
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  height:35px;
+}
+
 
 // Group pages - related group Content
 // Inititial stylings for related content is located in the articles.scss file
