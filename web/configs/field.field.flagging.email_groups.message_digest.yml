@@ -1,0 +1,21 @@
+uuid: 592f49f6-b5ac-470a-bd45-dd1d085e9ecd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.flagging.message_digest
+    - flag.flag.email_groups
+  module:
+    - options
+id: flagging.email_groups.message_digest
+field_name: message_digest
+entity_type: flagging
+bundle: email_groups
+label: 'Notification interval'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

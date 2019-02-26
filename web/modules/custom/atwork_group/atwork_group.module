@@ -40,14 +40,6 @@ function atworknext_preprocess_node__group_post(&$variables) {
  * Implements hook_preprocess_HOOK().
  *
  */
-function atworknext_preprocess_page__group__galleries(&$variables) {
-	// TODO: Build the label for the group-title banner  
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- *
- */
 function atworknext_preprocess_group(&$variables) {
 	// Is the user a member of this group?
 	if($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
@@ -56,12 +48,12 @@ function atworknext_preprocess_group(&$variables) {
 		$variables['member'] = FALSE;
 	}
 	
+	// Get group info
 	$group = Group::load($variables['group']->id());
-	
 	$group_id = $group->id();
 	$group_label = $group->get('label')->getValue()[0]['value'];
 	
-	// Add links to group content forms.
+	// Add links to group content forms and view pages
 	$linkObject = Link ::createFromRoute(t('Create New Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
 	$variables['post_link'] = $linkObject->toRenderable();
 	
