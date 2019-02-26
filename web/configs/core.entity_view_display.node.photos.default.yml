@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_display.comment.comment_photos.default
     - field.field.node.photos.body
     - field.field.node.photos.comment_photos
+    - field.field.node.photos.field_send_notifications
     - field.field.node.photos.field_tags
     - node.type.photos
   module:
@@ -41,6 +42,16 @@ content:
       pager_id: 0
       view_mode: default
     third_party_settings: {  }
+    region: content
+  field_send_notifications:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_tags:
     weight: 6

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.group_post.comment
     - field.field.node.group_post.field_image
     - field.field.node.group_post.field_interactive_content
+    - field.field.node.group_post.field_send_notifications
     - field.field.node.group_post.field_tags
     - image.style.medium
     - node.type.group_post
@@ -55,6 +56,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: h5p_editor
+    region: content
+  field_send_notifications:
+    weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_tags:
     weight: 8

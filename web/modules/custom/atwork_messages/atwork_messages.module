@@ -6,9 +6,13 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\message\Entity\Message;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\group\Entity\Group;
+use Drupal\group\Entity\GroupContent;
 
 const ARTICLE = 1;
 const COMMENT = 2;
+const POSTS 	= 3;
+const PHOTOS 	= 4;
 
 /**
  * @file
@@ -19,10 +23,11 @@ const COMMENT = 2;
  * Implements hook_ENTITY_TYPE_insert() for node entities.
  */
 function atwork_messages_node_insert(NodeInterface $node) {
+	$types = ['article' => 1, 'group_post' => 3, 'photos' => 4];
 	// Check for entity type, published value and create message
-	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
+	if((in_array($node->get('type')->getString(), array_keys($types))) && ($node->get('status')->getString() == 1)){
 		// Create Message for Article node
-		atwork_messages_create_message($node, array('content_type' => ARTICLE));
+		atwork_messages_create_message($node, array('content_type' => $types[$node->get('type')->getString()]));
 	}
 }
 
@@ -40,12 +45,13 @@ function atwork_messages_comment_insert(Comment $comment) {
  * Implements hook_ENTITY_TYPE_update() for node entities.
  */
 function atwork_messages_node_update(NodeInterface $node) {
+	$types = ['article' => 1, 'group_post' => 3, 'photos' => 4];
 	// Check for entity type, published value and create message
-	if(($node->get('type')->getString() == 'article') && ($node->get('status')->getString() == 1)){
+	if((in_array($node->get('type')->getString(), array_keys($types))) && ($node->get('status')->getString() == 1)){
 	  // Check if notifications can go out
-    if($node->get('field_send_notifications')->getValue()[0]['value']) {
+		if($node->hasField('field_send_notifications') && $node->get('field_send_notifications')->getValue()[0]['value']) {
       // Create Message for Article node
-      atwork_messages_create_message($node, array('content_type' => ARTICLE));
+		  atwork_messages_create_message($node, array('content_type' => $types[$node->get('type')->getString()]));
     }
 	}
 }
@@ -108,21 +114,53 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 	// Must save message to get mid (message ID)
 	$message->save();
 	
-	$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
+	$presave_query = '';
+	$groupcontent_immediate_subs = '';
+	$groupcontent_daily_subs = '';
+	$groupcontent_weekly_subs = '';
+	
+	// Check if there are parent-group subscriptions
+	if($type_info['content_type'] = ('group_post' || 'photos')) {
+
+		// Get the group content thingy
+		$group = GroupContent::loadByEntity($node);
+		
+		// Get group ID 
+		$gid = reset($group)->get('gid')->getValue()[0]['target_id'];
+		$groupcontent_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
 			. " FROM flagging f, flagging__message_digest fmd"
-					. " WHERE f.id = fmd.entity_id and fmd.message_digest_value = '";
-					
+			. " WHERE f.entity_id = '" . $gid . "' and f.id = fmd.entity_id and fmd.message_digest_value = '";
+	
+	  // Save messages to database on article creation or update.
+	  $groupcontent_immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
+	  $groupcontent_daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
+	  $groupcontent_weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
+			
+	} else { 
+		$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
+			. " FROM flagging f, flagging__message_digest fmd"
+			. " WHERE f.id = fmd.entity_id and fmd.message_digest_value = '";
+	}
+	
+	// Save messages to database on article creation or update.
+	$immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
+	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
+	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
+			
+			
 	// Save messages to database on article creation or update.
 	$immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
 	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
 	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
 	
-	$subs_list = array($daily_subs, $weekly_subs, $immediate_subs);
+	// So this looks dumb, but i have to check if there group subscriptions separately from regular content. Then because im using a merge into
+	// the atwork_messages table, if there are users subscribed to both the group and a piece of its content, the subscription message should only go out once.
+	$subs_list = array($daily_subs, $weekly_subs, $immediate_subs, $groupcontent_immediate_subs, $groupcontent_daily_subs, $groupcontent_weekly_subs);
 	
 	foreach($subs_list as $list) {
 		if(!empty($list['subscribers'])) {
 			foreach($list['subscribers'] as $sub) {
-				if($sub->subscribed_content == $node->id()) {
+				if($sub->subscribed_content == $node->id()     ) {
 					// Insert message data into atwork_message table
 					try{
 						$connection = \Drupal::database();
