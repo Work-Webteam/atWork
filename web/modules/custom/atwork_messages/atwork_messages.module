@@ -115,27 +115,23 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 	$message->save();
 	
 	$presave_query = '';
+	$gid = '';
 	$groupcontent_immediate_subs = '';
 	$groupcontent_daily_subs = '';
 	$groupcontent_weekly_subs = '';
 	
 	// Check if there are parent-group subscriptions
-	if($type_info['content_type'] = ('group_post' || 'photos')) {
-
-		// Get the group content thingy
-		$group = GroupContent::loadByEntity($node);
+	if($type_info['content_type'] == ('group_post' || 'photos')) {
 		
 		// Get group ID 
-		$gid = reset($group)->get('gid')->getValue()[0]['target_id'];
-		$groupcontent_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
+		$gid = \Drupal::routeMatch()->getParameters()->all()['group']->get('id');
+		$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
 			. " FROM flagging f, flagging__message_digest fmd"
-			. " WHERE f.entity_id = '" . $gid . "' and f.id = fmd.entity_id and fmd.message_digest_value = '";
-	
+			. " WHERE f.entity_id = '" . $gid->getValue()[0]['value'] . "' and f.id = fmd.entity_id and fmd.message_digest_value = '";
 	  // Save messages to database on article creation or update.
 	  $groupcontent_immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
 	  $groupcontent_daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
 	  $groupcontent_weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
-			
 	} else { 
 		$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
 			. " FROM flagging f, flagging__message_digest fmd"
@@ -147,20 +143,18 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
 	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
 			
-			
-	// Save messages to database on article creation or update.
-	$immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
-	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
-	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
 	
 	// So this looks dumb, but i have to check if there group subscriptions separately from regular content. Then because im using a merge into
+
 	// the atwork_messages table, if there are users subscribed to both the group and a piece of its content, the subscription message should only go out once.
 	$subs_list = array($daily_subs, $weekly_subs, $immediate_subs, $groupcontent_immediate_subs, $groupcontent_daily_subs, $groupcontent_weekly_subs);
-	
+
 	foreach($subs_list as $list) {
 		if(!empty($list['subscribers'])) {
 			foreach($list['subscribers'] as $sub) {
-				if($sub->subscribed_content == $node->id()     ) {
+					// TODO Figure out why this doesnt add an entry to atwork_messages
+
+		if(($sub->subscribed_content == $node->id()) || (($type_info['content_type'] == POSTS || $type_info['content_type'] == PHOTOS) && ($sub->subscribed_content == $gid->getValue()[0]['value']))) { 
 					// Insert message data into atwork_message table
 					try{
 						$connection = \Drupal::database();
