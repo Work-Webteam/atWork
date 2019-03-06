@@ -464,12 +464,12 @@ display:
   block_1:
     display_plugin: block
     id: block_1
-    display_title: 'Related Content'
+    display_title: 'Program Related Content'
     position: 1
     display_options:
       display_extenders: {  }
       display_description: ''
-      block_description: 'Related Content Block'
+      block_description: 'Progran Related Content'
       use_ajax: true
       defaults:
         use_ajax: false
@@ -477,6 +477,12 @@ display:
         sorts: false
         style: false
         row: false
+<<<<<<< HEAD
+=======
+        arguments: false
+        title: false
+        relationships: false
+>>>>>>> Groups
       fields:
         field_image:
           id: field_image
@@ -816,6 +822,9 @@ display:
       row:
         type: fields
         options: {  }
+      arguments: {  }
+      title: 'Related content'
+      relationships: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -830,7 +839,7 @@ display:
     display_plugin: block
     id: block_2
     display_title: 'Program Ad Block'
-    position: 2
+    position: 3
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -1262,7 +1271,7 @@ display:
     display_plugin: block
     id: block_3
     display_title: 'Group Related Content'
-    position: 4
+    position: 2
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -1587,7 +1596,24 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
-      relationships: {  }
+      relationships:
+        group_content:
+          id: group_content
+          table: node_field_data
+          field: group_content
+          relationship: none
+          group_type: group
+          admin_label: 'Content group content'
+          required: false
+          group_content_plugins:
+            'group_node:forum': 'group_node:forum'
+            'group_node:group_post': 'group_node:group_post'
+            'group_node:page': 'group_node:page'
+            'group_node:photos': 'group_node:photos'
+            'group_node:article': '0'
+            'group_node:background_page': '0'
+          entity_type: node
+          plugin_id: group_content_to_entity_reverse
       title: 'You may also like...'
       pager:
         type: mini
@@ -1620,6 +1646,7 @@ display:
       row:
         type: fields
         options: {  }
+      block_description: 'Group Related Block'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1634,7 +1661,7 @@ display:
     display_plugin: block
     id: block_4
     display_title: 'Group Ad Block'
-    position: 2
+    position: 4
     display_options:
       display_extenders: {  }
       display_description: ''
@@ -2073,7 +2100,7 @@ display:
     display_plugin: page
     id: page_1
     display_title: 'Group Posts Page'
-    position: 3
+    position: 5
     display_options:
       display_extenders: {  }
       path: groups/%/posts
@@ -2765,7 +2792,7 @@ display:
     display_plugin: page
     id: page_2
     display_title: 'Group Photo Galleries Page'
-    position: 3
+    position: 6
     display_options:
       display_extenders: {  }
       path: groups/%/photo-galleries
