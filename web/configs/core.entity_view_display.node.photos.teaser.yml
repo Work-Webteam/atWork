@@ -1,0 +1,44 @@
+uuid: 9ff5a7da-b7d6-4306-ba46-0d7a469f11aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.photos.body
+    - node.type.photos
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: qAEfpM-XuQS9zElcEG568d0Xox9VrW-_ZfZkc63jxGc
+id: node.photos.teaser
+targetEntityType: node
+bundle: photos
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  comment: true
+  comment_photos: true
+  field_tags: true
+  langcode: true

@@ -1,0 +1,51 @@
+uuid: 3187fa1f-753f-4d4a-9f6d-653bc7bc8aca
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.group_post.body
+    - node.type.group_post
+  module:
+    - text
+    - user
+id: node.group_post.teaser
+targetEntityType: node
+bundle: group_post
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_inappropriate:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  comment: true
+  field_image: true
+  field_interactive_content: true
+  field_tags: true
+  langcode: true
+  likeit: true

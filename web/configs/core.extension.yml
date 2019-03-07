@@ -4,6 +4,7 @@ module:
   animated_scroll_to_top: 0
   atwork_article: 0
   atwork_comments: 0
+  atwork_group: 0
   atwork_h5p: 0
   atwork_messages: 0
   atwork_poll: 0
@@ -28,6 +29,8 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
+  devel_generate: 0
+  draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
   extrafield_views_integration: 0
@@ -37,6 +40,8 @@ module:
   filter: 0
   flag: 0
   forward: 0
+  gnode: 0
+  group: 0
   h5p: 0
   h5peditor: 0
   hal: 0
@@ -75,10 +80,13 @@ module:
   panels: 0
   panels_ipe: 0
   path: 0
+  photos: 0
+  photos_access: 0
   poll: 0
   postal_code: 0
   quickedit: 0
   rdf: 0
+  redirect: 0
   reroute_email: 0
   responsive_image: 0
   rest: 0
@@ -115,7 +123,10 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
+  webprofiler: 0
+  forum: 1
   menu_link_content: 1
+  pathauto: 1
   views: 10
   standard: 1000
 theme:

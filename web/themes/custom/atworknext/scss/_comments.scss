@@ -1,8 +1,15 @@
 // Styling for comments on all node types that show comments
-section[rel~="schema:comment"] {
+//section[rel~="schema:comment"] {
+form#comment-form {
   background-color: $comment-blue;
-  h2 {
+  padding:12px;
+  @at-root section > h2 {
+    display: inline-block;
     @include comment-h6;
+    width:100%;
+    background-color: $comment-blue;
+    padding: 12px 0 0 12px;
+    margin:10px 0 0 0;
   }
   .field--name-field-edited-comment,
   .field--name-field-remove-comment,
@@ -12,7 +19,6 @@ section[rel~="schema:comment"] {
   .field--name-comment-body {
     margin-bottom:30px;
   }
-  padding-bottom:20px;
 }
 .csv-feed .feed-icon { // Cleans up the CSV export button at the bottom of the Comment section
   background-repeat: no-repeat;

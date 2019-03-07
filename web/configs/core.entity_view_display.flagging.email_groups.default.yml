@@ -1,0 +1,22 @@
+uuid: 65f24a65-eaaf-4270-a4a8-7e305e81f329
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.flagging.email_groups.message_digest
+    - flag.flag.email_groups
+  module:
+    - options
+id: flagging.email_groups.default
+targetEntityType: flagging
+bundle: email_groups
+mode: default
+content:
+  message_digest:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

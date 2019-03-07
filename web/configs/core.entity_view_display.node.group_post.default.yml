@@ -1,0 +1,109 @@
+uuid: dda75e22-0b89-4e0e-afb8-1851c90b3d44
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment.default
+    - field.field.node.group_post.body
+    - field.field.node.group_post.comment
+    - field.field.node.group_post.field_image
+    - field.field.node.group_post.field_interactive_content
+    - field.field.node.group_post.field_send_notifications
+    - field.field.node.group_post.field_tags
+    - node.type.group_post
+    - responsive_image.styles.responsive_article_image
+  module:
+    - comment
+    - h5p
+    - panelizer
+    - responsive_image
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.group_post.default
+targetEntityType: node
+bundle: group_post
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  comment:
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    type: comment_default
+    region: content
+  field_image:
+    weight: 3
+    label: hidden
+    settings:
+      responsive_image_style: responsive_article_image
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+    region: content
+  field_interactive_content:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: h5p_default
+    region: content
+  field_send_notifications:
+    weight: 10
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_tags:
+    weight: 7
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_email_node:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_inappropriate:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  likeit:
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true

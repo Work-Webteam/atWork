@@ -1,0 +1,24 @@
+uuid: a0068029-3432-45c2-bae5-481f6351fffc
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.related_content
+  module:
+    - views
+  theme:
+    - atworknext
+id: views_block__related_content_block_4
+theme: atworknext
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:related_content-block_4'
+settings:
+  id: 'views_block:related_content-block_4'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility: {  }

@@ -5,8 +5,7 @@
 @import '../bootstrap/assets/stylesheets/bootstrap';
 
 // Base-theme overrides.
-@import 'overrides';
-
+@import 'overrides.scss';
 
 /* Primary CSS Files */
 /* No CSS is directly placed in this file. Imports and comments only please */
@@ -36,6 +35,7 @@
 @import "fields_lists.scss";
 @import "media.scss";
 @import "homepage.scss";
+@import "groups.scss";
 
 // Social icons and Tags
 @import "social_tags.scss";

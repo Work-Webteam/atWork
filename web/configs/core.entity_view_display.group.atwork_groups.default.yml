@@ -1,0 +1,57 @@
+uuid: bdb8309c-c17c-4ab9-9d20-4a3cc935cf20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group.atwork_groups.field_dev_tag
+    - field.field.group.atwork_groups.field_group
+    - field.field.group.atwork_groups.field_group_ad_space
+    - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_tags
+    - group.type.atwork_groups
+    - responsive_image.styles.responsive_article_image
+  module:
+    - responsive_image
+    - text
+id: group.atwork_groups.default
+targetEntityType: group
+bundle: atwork_groups
+mode: default
+content:
+  field_group:
+    weight: 1
+    label: hidden
+    settings:
+      responsive_image_style: responsive_article_image
+      image_link: ''
+    third_party_settings: {  }
+    type: responsive_image
+    region: content
+  field_group_description:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  flag_email_groups:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  label:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  field_dev_tag: true
+  field_group_ad_space: true
+  field_group_tags: true
+  langcode: true
+  uid: true

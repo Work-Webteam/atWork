@@ -8,6 +8,7 @@ id: inappropriate
 label: Inappropriate
 bundles:
   - article
+  - group_post
 entity_type: node
 global: false
 weight: 0

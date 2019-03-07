@@ -1,0 +1,30 @@
+uuid: 80b29eab-7c2b-48eb-866a-4f4db8cfd728
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_group_ad_space
+    - group.content_type.atwork_groups-group_node-photos
+    - group.content_type.group_content_type_d7657d2029e9e
+    - group.type.atwork_groups
+id: group.atwork_groups.field_group_ad_space
+field_name: field_group_ad_space
+entity_type: group
+bundle: atwork_groups
+label: 'Group Ad Space'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:group_content'
+  handler_settings:
+    target_bundles:
+      group_content_type_d7657d2029e9e: group_content_type_d7657d2029e9e
+      atwork_groups-group_node-photos: atwork_groups-group_node-photos
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: group_content_type_d7657d2029e9e
+field_type: entity_reference

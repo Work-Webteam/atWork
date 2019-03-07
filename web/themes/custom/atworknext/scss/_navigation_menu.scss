@@ -12,5 +12,11 @@
     a.logo.navbar-btn.pull-left {
       width:110px;
     }
+    .navbar-nav li a {
+      color:$white;
+      &.is-active {
+        color:$banner-blue;
+      }
+    }
   }
 }

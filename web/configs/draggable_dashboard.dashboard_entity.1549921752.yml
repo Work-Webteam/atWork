@@ -1,0 +1,9 @@
+uuid: 164a398e-e858-4a5e-b5f3-a5c834dec54f
+langcode: en
+status: true
+dependencies: {  }
+id: '1549921752'
+title: 'Group Admin'
+description: 'Group Admin Dashboard'
+columns: '3'
+blocks: '[{"bid":"groupadminlinks","cln":"1","position":0},{"bid":"shortcuts","cln":"2","position":0},{"bid":"tools","cln":"3","position":0}]'

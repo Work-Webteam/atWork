@@ -1,0 +1,20 @@
+uuid: 98b672e8-e4e0-4c71-8ed4-a36be8f4c1e6
+langcode: en
+status: false
+dependencies:
+  module:
+    - shortcut
+  theme:
+    - seven
+id: shortcuts
+theme: seven
+region: header
+weight: null
+provider: null
+plugin: shortcuts
+settings:
+  id: shortcuts
+  label: Shortcuts
+  provider: shortcut
+  label_display: visible
+visibility: {  }

@@ -1,0 +1,89 @@
+uuid: 2adaa336-d88c-476e-9ea0-25cad95a1c30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group.atwork_groups.field_dev_tag
+    - field.field.group.atwork_groups.field_group
+    - field.field.group.atwork_groups.field_group_ad_space
+    - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_tags
+    - group.type.atwork_groups
+    - image.style.max_325x325
+  module:
+    - image_widget_crop
+    - text
+id: group.atwork_groups.default
+targetEntityType: group
+bundle: atwork_groups
+mode: default
+content:
+  field_dev_tag:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_group:
+    weight: 2
+    settings:
+      show_default_crop: true
+      preview_image_style: max_325x325
+      crop_preview_image_style: max_325x325
+      crop_list:
+        - article_730_330
+      crop_types_required:
+        - article_730_330
+      progress_indicator: throbber
+      show_crop_area: false
+      warn_multiple_usages: false
+    third_party_settings: {  }
+    type: image_widget_crop
+    region: content
+  field_group_ad_space:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_group_description:
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_group_tags:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  label:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 1
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+hidden:
+  path: true
+  uid: true

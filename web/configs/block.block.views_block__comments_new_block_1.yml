@@ -5,6 +5,7 @@ dependencies:
   config:
     - views.view.comments_new
   module:
+    - ctools
     - node
     - user
     - views
@@ -23,11 +24,13 @@ settings:
   label_display: '0'
   views_label: Comments
   items_per_page: none
+  context_mapping: {  }
 visibility:
   node_type:
     id: node_type
     bundles:
       article: article
+      group_post: group_post
       page: page
     negate: false
     context_mapping:
@@ -39,3 +42,10 @@ visibility:
     negate: false
     context_mapping:
       user: '@user.current_user_context:current_user'
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'
