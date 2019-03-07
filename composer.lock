@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed28fa6fb2dbdda432b07bfe9f623964",
+    "content-hash": "b7a687800e939fe2eed827963be443af",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1694,7 +1694,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.26",
-                    "datestamp": "1549218480",
+                    "datestamp": "1549559402",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3202,6 +3202,52 @@
             "homepage": "https://www.drupal.org/project/draggable_dashboard",
             "support": {
                 "source": "http://cgit.drupalcode.org/draggable_dashboard"
+            }
+        },
+        {
+            "name": "drupal/drush",
+            "version": "6.0.0-rc4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/drush",
+                "reference": "8.x-6.0-rc4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/drush-8.x-6.0-rc4.zip",
+                "reference": "8.x-6.0-rc4",
+                "shasum": "b937035f9de947190cc2438decb56483ff7cc1cd"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-6.x": "6.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-6.0-rc4",
+                    "datestamp": "1376806255",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "moshe weitzman",
+                    "homepage": "https://www.drupal.org/user/23"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/drush",
+            "support": {
+                "source": "http://cgit.drupalcode.org/drush"
             }
         },
         {
@@ -12228,6 +12274,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/activity": 20,
+        "drupal/drush": 5,
         "drupal/flag": 15,
         "drupal/h5p": 5,
         "drupal/libraries": 15,
