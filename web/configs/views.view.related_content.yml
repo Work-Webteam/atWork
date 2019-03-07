@@ -477,12 +477,9 @@ display:
         sorts: false
         style: false
         row: false
-<<<<<<< HEAD
-=======
         arguments: false
         title: false
         relationships: false
->>>>>>> Groups
       fields:
         field_image:
           id: field_image
