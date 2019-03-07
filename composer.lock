@@ -12319,7 +12319,6 @@
         },
         {
             "name": "symfony/browser-kit",
-<<<<<<< HEAD
             "version": "v4.2.3",
             "source": {
                 "type": "git",
@@ -12330,18 +12329,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/browser-kit/zipball/ee4462581eb54bf34b746e4a5d522a4f21620160",
                 "reference": "ee4462581eb54bf34b746e4a5d522a4f21620160",
-=======
-            "version": "v3.4.22",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "884689e5d29fc3c48498a0038e96d60e4f91b471"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/884689e5d29fc3c48498a0038e96d60e4f91b471",
-                "reference": "884689e5d29fc3c48498a0038e96d60e4f91b471",
->>>>>>> Groups
                 "shasum": ""
             },
             "require": {
@@ -12385,11 +12372,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-<<<<<<< HEAD
             "time": "2019-01-16T21:31:25+00:00"
-=======
-            "time": "2019-01-16T09:39:14+00:00"
->>>>>>> Groups
         },
         {
             "name": "symfony/phpunit-bridge",
