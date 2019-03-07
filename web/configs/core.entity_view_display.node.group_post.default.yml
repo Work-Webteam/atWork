@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.group_post.comment
     - field.field.node.group_post.field_image
     - field.field.node.group_post.field_interactive_content
+    - field.field.node.group_post.field_send_notifications
     - field.field.node.group_post.field_tags
     - node.type.group_post
     - responsive_image.styles.responsive_article_image
@@ -60,6 +61,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: h5p_default
+    region: content
+  field_send_notifications:
+    weight: 10
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_tags:
     weight: 7

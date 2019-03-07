@@ -7,6 +7,8 @@ dependencies:
   module:
     - ctools
     - group
+    - node
+    - system
     - views
   theme:
     - atworknext
@@ -27,14 +29,16 @@ settings:
 visibility:
   'entity_bundle:group':
     id: 'entity_bundle:group'
-    bundles: {  }
-    negate: true
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
     context_mapping:
       group: '@group.group_route_context:group'
   'entity_bundle:node':
     id: 'entity_bundle:node'
-    bundles: {  }
-    negate: true
+    bundles:
+      group_post: group_post
+    negate: false
     context_mapping:
       node: '@node.node_route_context:node'
   group_type:
@@ -44,3 +48,15 @@ visibility:
     negate: false
     context_mapping:
       group: '@group.group_route_context:group'
+  node_type:
+    id: node_type
+    bundles:
+      group_post: group_post
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_path:
+    id: request_path
+    pages: 'groups/*'
+    negate: false
+    context_mapping: {  }
