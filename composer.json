@@ -60,6 +60,7 @@
         "drupal/libraries": "^3.0@alpha",
         "drupal/like_dislike": "^1.1",
         "drupal/likeit": "^1.0",
+        "drupal/menu_export": "^1.2",
         "drupal/message_digest": "^1.0@beta",
         "drupal/message_subscribe": "^1.0@beta",
         "drupal/message_ui": "^1.0@beta",
