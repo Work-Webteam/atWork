@@ -101,6 +101,7 @@
         "drush/drush": "^9.3",
         "harvesthq/chosen": "^1.8",
         "symfony/var-dumper": "^3.4",
+        "twig/twig": "1.37.1",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
