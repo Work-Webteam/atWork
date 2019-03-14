@@ -64,25 +64,11 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
       '#size' => 64,
       '#default_value' => $config->get('idir_login_password'),
     ];
-    // We need a way to count additional fields if any were saved, then add them to the form via Ajax.
-    $form['idir_generate_fields'] = [
-      '#type' => 'submit',
-      '#title' => $this->t('Generate Fields'),
-      '#value' => $this->t('Generate Fields'),
-      '#description' => $this->t('Generate the fields available in the data file'),
-      '#default_value' => $config->get('idir_generate_fields'),
-      '#ajax' => [
-        'callback' => [$this, 'idirGenerateFields'],
-        'wrapper' => 'names-fieldset-wrapper',
-      ],
-    ];
-    $form['names_fieldset'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Map import to user fields'),
-      '#prefix' => '<div id="names-fieldset-wrapper">',
-      '#suffix' => '</div>',
-    ];
-    $form['#validate'][] = [$this, 'idirValidateFields'];
+    // Check for idir stuff, and generate fields if they are available
+    if($config->get('idir_ftp_location') != '' &&  $config->get('idir_login_name') != '' && $config->get('idir_login_password') != ''){
+      // Add in our other fields - we can now reach out and pull the csv
+      $this->idirGenerateFields($form, $form_state);
+    }
     return parent::buildForm($form, $form_state);
   }
 
@@ -98,26 +84,29 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
+    ksm($form_state);
+    //ksm($form);
+    $this_form = $form_state->getButtons();
+    ksm($this_form);
     // TODO: Gather all additional fields (if any) and save from form-state dropdown (from fieldset).
     $this->config('atwork_idir_update.atworkidirupdateadminsettings')
       ->set('idir_ftp_location', $form_state->getValue('idir_ftp_location'))
       ->set('idir_login_name', $form_state->getValue('idir_login_name'))
       ->set('idir_login_password', $form_state->getValue('idir_login_password'))
       ->set('idir_generate_fields', $form_state->getValue('idir_generate_fields'))
+      ->set('names_fieldset', $form_state->getValue('names_fieldset'))
       ->save();
   }
 
 
   // LABEL == column name, dropdown = available user fields.
   public function idirGenerateFields(array &$form, FormStateInterface $form_state){
-    // Add a fields to our config if required
-    $config = $this->config('atwork_idir_update.atworkidirupdateadminsettings');
-
     // Setup the select field
     // We need to grab all available user fields, so we can add them to a dropdown
     $user_fields = $this->getFillableFields();
     $values = [
       'None' => 'None',
+      'action' => 'action',
     ];
     // Add all field names to dropdown, for mapping.
     foreach($user_fields as $key => $value){
@@ -127,18 +116,22 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     // Function to grab just the .csv labels and return them
     $column_names = $this->getColumnNames();
 
-    // Foreach the labels, then add them to the fieldset
     // csv columns as labels, while the $user_fields will be added to a dropdown.
-    foreach($column_names as $name){
-      $form['names_fieldset'][$name] = [
-        '#type' => 'select',
-        '#title' => $this->t($name),
-        '#description' => $this->t('Choose field mapping'),
-        '#options' => $values,
-      ];
+    foreach($column_names as $name) {
+      // TODO: Check if this field exists - if so, we update rather than add. Else we add and create the field for the form.
+      if (isset($form[$name])) {
+        ksm("We need only update");
+      }
+      else {
+        $form[$name] = [
+          '#type' => 'select',
+          '#title' => $this->t($name),
+          '#description' => $this->t('Choose field mapping'),
+          '#options' => $values,
+        ];
+      }
     }
-
-    return $form['names_fieldset'];
+    $form_state->setRebuild(TRUE);
   }
 
   public function idirValidateFields(array &$form, FormStateInterface $form_state) {
@@ -189,6 +182,13 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     }
     return($user_fields);
   }
+
+
+  /**
+   * Helper method that gathers and returns the column labels in a csv field.
+   * @return array|false|null
+   * @throws \exception
+   */
   public function getColumnNames(){
      $csv = [];
     // If we have a current .csv, we can use that
@@ -217,4 +217,9 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
 
     return $csv;
   }
+
+  private function saveNewFields($array_of_fields){
+
+  }
+
 }
