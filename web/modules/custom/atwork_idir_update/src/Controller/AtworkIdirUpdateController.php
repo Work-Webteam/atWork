@@ -9,6 +9,8 @@ use Drupal\atwork_idir_update\AtworkIdirAddUpdate;
 use Drupal\atwork_idir_update\AtworkIdirDelete;
 use Drupal\atwork_idir_update\AtworkIdirLog;
 use Drupal\atwork_idir_update\AtworkIdirUpdateFTP;
+use Drupal\atwork_idir_update\Form\AtworkIdirUpdateAdminSettingsForm;
+
 class AtworkIdirUpdateController {
   protected $timestamp;
   protected $drupal_path;
@@ -47,6 +49,7 @@ class AtworkIdirUpdateController {
       \Drupal::state()->set('atwork_idir_update.next_execution', REQUEST_TIME + $interval);
 
       $run_cron = $this->AtworkIdirInit();
+      $split_list = $this->splitList();
       \Drupal::logger('atwork_idir_update')->info('Idir update ran successfully');
     } 
     else
@@ -54,14 +57,15 @@ class AtworkIdirUpdateController {
       \Drupal::logger('atwork_idir_update')->warning('Idir script was run less than two minutes ago - please check if it is still running, or wait 2 minutes before trying again');
       die();
     }
-    isset($run_cron)?:$run_cron = "Cron did not run";
+    isset($run_cron)?:$run_cron = "Could not download ftp";
+    isset($split_list)?:$split_list = "Could not divide list";
     return array(
       '#type' => 'markup',
       '#markup' => t('<p>Cron run status: <h1>' . $run_cron . '.</h1></p>'),
     );
   }
 
-  private function AtworkIdirInit()
+  public function AtworkIdirInit()
   { 
     // TODO: Use FileTransfer
     // TODO: FTP the file here: file_prepare_directory(Public://idir/timestamp/); 
@@ -124,7 +128,12 @@ class AtworkIdirUpdateController {
       $this->sendNotifications();
     }
     AtworkIdirLog::success("Copied the file to drupal public folder");    
+    return 'Copied the file to drupal public folder';
+  }
 
+  private function splitList(){
+
+    // TODO:: Move this section to its own function - so we can download independently of taking any actions.
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
@@ -132,7 +141,7 @@ class AtworkIdirUpdateController {
     AtworkIdirLog::success('Beginning to delete old idirs.');
 
     // file has been split, so now it is time to parse the .tsv files
-    // First run the delete script 
+    // First run the delete script
     $delete_status = $this->parseFiles('delete');
     $delete_status == "success"?(AtworkIdirLog::success('The delete script finished successfully')):$this->sendNotifications();
     // Second is update
@@ -150,6 +159,7 @@ class AtworkIdirUpdateController {
     $this->sendNotifications();
     return "Cron ran successfully";
   }
+
 
   private function splitIdirLogs(){
     $file_handle = new AtworkIdirUpdateLogSplit;

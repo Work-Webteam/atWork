@@ -118,7 +118,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       13 => $user_array[13], //Street
       14 => $user_array[14], //City
       15 => $user_array[15], //Province
-      16 => substr($user_array[16], 0, 7), //Postal Code - There have been instaces where the file contains two PC's, which is too large for this field. We trim them to a set 7 chars here.
+      16 => substr($user_array[16], 0, 7), //Postal Code - There have been instances where the file contains two PC's, which is too large for this field. We trim them to a set 7 chars here.
     ];
     // Calls parent function requires udpateSystemUser($type, $uid, array of fields)
     $result = $this->updateSystemUser('add', '', $this->new_fields);
