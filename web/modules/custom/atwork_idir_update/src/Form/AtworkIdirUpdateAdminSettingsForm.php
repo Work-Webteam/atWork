@@ -154,10 +154,25 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     if($form_state->isValueEmpty('idir_login_password') == TRUE){
       $form_state->setErrorByName('[idir_login_password]', $this->t('You must enter a password'));
     }
-    // TODO: We need to have at least on "Action" column, and it should contain specific commands
-    // TODO: We need to have a primary key - This should be GUID, so GUID should be assigned to one of the labels.
-    // TODO: We can't have more than one field mapped to any one label
+    // We need to have at least on "Action" column, and it should contain specific commands
+    $this_form = $form_state->getUserInput();
+    if(!in_array("action", $this_form)){
+      $form_state->setErrorByName('[TransactionType]', $this->t('You must assign action to one of the provided user record fields. This field should include one of three actions - "Add" "Modify" or "Delete". Without these directives, the module will not be able to act on the records.'));
+    }
+    // We need to have a primary key - This should be GUID, so GUID should be assigned to one of the labels.
+    if(!array_key_exists("GUID", $this_form)){
+      $form_state->setErrorByName('[GUID]', $this->t('As part of your .tsv import, you must have a unique identifier. When this module was written, only GUID could be used for this purpose. Therefore, any .csv or .tsv that is pulled in must contain this column for every record, and it should be labelled GUID. If this is no longer the case, this module will need to be patched to use a new primary key.'));
+    }
 
+    //  We can't have more than one field mapped to any one label, unless that field is None
+    foreach($this_form as $key=>$value){
+      if($value == "None"){
+        unset($this_form[$key]);
+      }
+    }
+    if(count($this_form) != count(array_unique($this_form))){
+      $form_state->setErrorByName('', $this->t('You may not assign more than one column label to a field. Please make sure you have not assigned a field to more than one import column.'));
+    }
   }
 
   /**
