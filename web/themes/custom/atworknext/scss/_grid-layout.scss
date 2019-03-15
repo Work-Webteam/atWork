@@ -9,13 +9,13 @@
 
 
 section.col-sm-12 {
-  @include make-sm-column(10);
-  @include make-sm-column-push(1);
+  /*8@include make-sm-column(10);
+  @include make-sm-column-push(1);*/
   h1.page-title, .author-byline, .field--name-body.field--type-text-with-summary {
-    @include make-sm-column(12);
+    /*@include make-sm-column(12);
     @include make-sm-column-push(0);
     padding-left:40px;
-    padding-right:40px;
+    padding-right:40px;*/
   }
   .field--name-field-tags,
   section[rel~="schema:comment"],

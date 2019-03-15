@@ -13,6 +13,7 @@ cdn_custom_js: ''
 cdn_custom_css_min: ''
 cdn_custom_js_min: ''
 cdn_provider: ''
+navbar_position: ''
 features:
   comment_user_picture: true
   comment_user_verification: true

@@ -9,14 +9,33 @@
     padding-top: 20px;
   }
   .navbar-header {
+    @include size1416;
+    width:100%;
     a.logo.navbar-btn.pull-left {
       width:110px;
+      padding-left:12px;
     }
     .navbar-nav li a {
       color:$white;
       &.is-active {
         color:$banner-blue;
       }
+    }
+    .menu.menu--account.nav.navbar-nav.navbar-right {
+      margin-right:12px;
+    }
+  }
+}
+// See Superfish/Default.css for customization css
+#navbar.navbar.container {
+  padding-left:0;
+  padding-right:0;
+  #navbar-collapse {
+    border:solid 1px aqua;
+    @include size1416;
+    padding:0;
+    .next-menu-link {
+      color: $white;
     }
   }
 }

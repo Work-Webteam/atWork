@@ -39,6 +39,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  flag_subscribe_group:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   label:
     label: hidden
     type: string

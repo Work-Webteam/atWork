@@ -1,4 +1,4 @@
-uuid: b14bf693-7a37-483a-9956-a9e30a50575a
+uuid: db760514-fc7d-43a6-a17c-5f65560c0fba
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,7 @@ dependencies:
     - atworknext
 id: mainnavigation
 theme: atworknext
-region: navigation
+region: navigation_collapsible
 weight: 0
 provider: null
 plugin: 'superfish:main'
@@ -18,15 +18,15 @@ settings:
   id: 'superfish:main'
   label: 'Main navigation'
   provider: superfish
-  label_display: visible
+  label_display: '0'
   level: '1'
-  depth: '3'
-  menu_type: horizontal
-  style: none
+  depth: '0'
+  menu_type: navbar
+  style: default
   arrow: 1
-  shadow: 1
+  shadow: 0
   speed: fast
-  delay: '800'
+  delay: '999999'
   slide: vertical
   supposition: 1
   hoverintent: 1
@@ -52,19 +52,19 @@ settings:
   smallich: ''
   smallamt: ''
   smallabt: '1'
-  supersubs: 1
+  supersubs: 0
   minwidth: '12'
   maxwidth: '27'
-  multicolumn: 0
-  multicolumn_depth: '1'
-  multicolumn_levels: '1'
-  pathlevels: '1'
-  expanded: 0
+  multicolumn: 1
+  multicolumn_depth: '3'
+  multicolumn_levels: '3'
+  pathlevels: '4'
+  expanded: 1
   clone_parent: 0
   hide_linkdescription: 0
   add_linkdescription: 0
   link_depth_class: 1
-  custom_list_class: ''
-  custom_item_class: ''
-  custom_link_class: ''
+  custom_list_class: next-menu
+  custom_item_class: next-menu-item
+  custom_link_class: next-menu-link
 visibility: {  }
