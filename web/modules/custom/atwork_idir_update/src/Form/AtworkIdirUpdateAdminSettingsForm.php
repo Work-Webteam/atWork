@@ -69,6 +69,8 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
       // Add in our other fields - we can now reach out and pull the csv
       $this->idirGenerateFields($form, $form_state);
     }
+    //TODO: Set our own Validation to make sure values for the idir scel are unique.
+    $form['#validate'][] = [$this, "idirValidateFields"];
     return parent::buildForm($form, $form_state);
   }
 
@@ -84,18 +86,24 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
-    ksm($form_state);
-    //ksm($form);
-    $this_form = $form_state->getButtons();
-    ksm($this_form);
+    $this_form = $form_state->getUserInput();
+    $config = $this->config('atwork_idir_update.atworkidirupdateadminsettings');
+
+    foreach($this_form as $key=>$value){
+      $config->set($key, $form_state->getValue($key));
+    }
+    $config->save();
+
     // TODO: Gather all additional fields (if any) and save from form-state dropdown (from fieldset).
+    //$this->$set_form;
+    /*
     $this->config('atwork_idir_update.atworkidirupdateadminsettings')
       ->set('idir_ftp_location', $form_state->getValue('idir_ftp_location'))
       ->set('idir_login_name', $form_state->getValue('idir_login_name'))
       ->set('idir_login_password', $form_state->getValue('idir_login_password'))
-      ->set('idir_generate_fields', $form_state->getValue('idir_generate_fields'))
-      ->set('names_fieldset', $form_state->getValue('names_fieldset'))
       ->save();
+    */
+
   }
 
 
@@ -115,7 +123,7 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
 
     // Function to grab just the .csv labels and return them
     $column_names = $this->getColumnNames();
-
+    $config = $this->config('atwork_idir_update.atworkidirupdateadminsettings');
     // csv columns as labels, while the $user_fields will be added to a dropdown.
     foreach($column_names as $name) {
       // TODO: Check if this field exists - if so, we update rather than add. Else we add and create the field for the form.
@@ -123,11 +131,13 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
         ksm("We need only update");
       }
       else {
+
         $form[$name] = [
           '#type' => 'select',
           '#title' => $this->t($name),
           '#description' => $this->t('Choose field mapping'),
           '#options' => $values,
+          '#default_value' => $config->get($name),
         ];
       }
     }
@@ -144,6 +154,10 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     if($form_state->isValueEmpty('idir_login_password') == TRUE){
       $form_state->setErrorByName('[idir_login_password]', $this->t('You must enter a password'));
     }
+    // TODO: We need to have at least on "Action" column, and it should contain specific commands
+    // TODO: We need to have a primary key - This should be GUID, so GUID should be assigned to one of the labels.
+    // TODO: We can't have more than one field mapped to any one label
+
   }
 
   /**
@@ -174,10 +188,8 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
       'message_digest'
     ];
     foreach($default_fields as $key){
-      //ksm($key);
       if(array_key_exists($key, $user_fields)){
         unset($user_fields[$key]);
-        //ksm($user_fields);
       }
     }
     return($user_fields);
@@ -217,9 +229,4 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
 
     return $csv;
   }
-
-  private function saveNewFields($array_of_fields){
-
-  }
-
 }
