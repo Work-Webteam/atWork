@@ -4,8 +4,6 @@ namespace Drupal\atwork_idir_update\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\user\Entity\User;
-use Drupal\Core\Controller\ControllerBase;
 use Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController;
 /**
  * Class AtworkIdirUpdateAdminSettingsForm.

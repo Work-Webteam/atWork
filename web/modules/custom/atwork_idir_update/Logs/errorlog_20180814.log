@@ -1,8 +1,0 @@
-fopen(/var/www/public/work8/web/sites/default/files//idir/idir_20180814_update.tsv): failed to open stream: No such file or directory 2 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/AtworkIdirAddUpdate.php 25
-
-fopen(/var/www/public/work8/web/sites/default/files//idir/idir_20180814_update.tsv): failed to open stream: No such file or directory 2 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/AtworkIdirAddUpdate.php 25
-
-fopen(/var/www/public/work8/web/sites/default/files//idir/idir_20180814_update.tsv): failed to open stream: No such file or directory 2 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/AtworkIdirAddUpdate.php 25
-
-fopen(/var/www/public/work8/web/sites/default/files//idir/idir_20180814_update.tsv): failed to open stream: No such file or directory 2 /var/www/public/work8/web/modules/custom/atwork_idir_update/src/AtworkIdirAddUpdate.php 25
-

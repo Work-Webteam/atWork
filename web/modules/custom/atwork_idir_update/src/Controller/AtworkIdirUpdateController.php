@@ -10,6 +10,8 @@ use Drupal\atwork_idir_update\AtworkIdirDelete;
 use Drupal\atwork_idir_update\AtworkIdirLog;
 use Drupal\atwork_idir_update\AtworkIdirUpdateFTP;
 use Drupal\atwork_idir_update\Form\AtworkIdirUpdateAdminSettingsForm;
+use Drupal\Core\Form\ConfigFormBase;
+
 
 class AtworkIdirUpdateController {
   protected $timestamp;
@@ -22,16 +24,18 @@ class AtworkIdirUpdateController {
 
   function __construct()
   {
+    $config = \Drupal::config('atwork_idir_update.atworkidirupdateadminsettings');
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     $this->drupal_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     // FTP credentials
-    $this->username = "psa";
-    $this->password = "Men@W0rk";
-    $this->hostname = "ftp.dir.gov.bc.ca";
+    $this->username = $config->get("idir_login_name");
+    $this->password = $config->get("idir_login_password");
+    $this->hostname = $config->get("idir_ftp_location");
     $this->jail = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     //$this->jail = "/var/www/public/work8/web/sites/default/files/idir";
     $this->port = 21;
+
   }
 
 
@@ -131,7 +135,7 @@ class AtworkIdirUpdateController {
     return 'Copied the file to drupal public folder';
   }
 
-  private function splitList(){
+  protected function splitList(){
 
     // TODO:: Move this section to its own function - so we can download independently of taking any actions.
     // Set up the logs
@@ -171,7 +175,7 @@ class AtworkIdirUpdateController {
       // Check if the file was opened properly.
       if( !isset($full_list) )
       {
-        throw new \exception("Failed to open file at Public:///idir/" . $filename . '. Script was terminated in Controller.');
+        throw new \exception("Failed to open file at Public://idir/" . $filename . '. Script was terminated in Controller.');
       } 
     }
     catch ( Exception $e ) 
