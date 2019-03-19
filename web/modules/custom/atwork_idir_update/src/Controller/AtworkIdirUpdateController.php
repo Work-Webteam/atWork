@@ -21,17 +21,19 @@ class AtworkIdirUpdateController {
   private $password;
   private $hostname;
   private $jail;
+  protected $config;
+  protected $input_matrix;
 
   function __construct()
   {
-    $config = \Drupal::config('atwork_idir_update.atworkidirupdateadminsettings');
+    $this->config = \Drupal::config('atwork_idir_update.atworkidirupdateadminsettings');
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     $this->drupal_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     // FTP credentials
-    $this->username = $config->get("idir_login_name");
-    $this->password = $config->get("idir_login_password");
-    $this->hostname = $config->get("idir_ftp_location");
+    $this->username = $this->config->get("idir_login_name");
+    $this->password = $this->config->get("idir_login_password");
+    $this->hostname = $this->config->get("idir_ftp_location");
     $this->jail = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     //$this->jail = "/var/www/public/work8/web/sites/default/files/idir";
     $this->port = 21;
@@ -51,8 +53,10 @@ class AtworkIdirUpdateController {
       \Drupal::logger('atwork_idir_update')->info('Running the update script');
       // Set time we ran this - and don't let us run it for at least 2 mins to avoid running twice
       \Drupal::state()->set('atwork_idir_update.next_execution', REQUEST_TIME + $interval);
-
+      // This contains FTP functions
       $run_cron = $this->AtworkIdirInit();
+      // Now we need to set up our arrays to match the idir columns to user fields
+      $this->setConfig();
       $split_list = $this->splitList();
       \Drupal::logger('atwork_idir_update')->info('Idir update ran successfully');
     } 
@@ -138,6 +142,7 @@ class AtworkIdirUpdateController {
   protected function splitList(){
 
     // TODO:: Move this section to its own function - so we can download independently of taking any actions.
+
     // Set up the logs
     $split_status = $this->splitIdirLogs();
     // Unless we mark this as success, send logs and exit script.
@@ -166,7 +171,7 @@ class AtworkIdirUpdateController {
 
 
   private function splitIdirLogs(){
-    $file_handle = new AtworkIdirUpdateLogSplit;
+    $file_handle = new AtworkIdirUpdateLogSplit($this->getInputMatrix());
     $filename = 'idir_' . $this->timestamp . '.tsv';
 
     try
@@ -277,5 +282,97 @@ class AtworkIdirUpdateController {
     }
     AtworkIdirLog::errorCollect($message . " " . $severity . " " . $file . " " . $line . "\n");
     throw new \exception($message . " " . $severity . " " . $file . " " . $line);
+  }
+
+  /**
+   * Helper function that creates an array that contains Drupal field, and the column number for the corresponding value if it exists in the tsv
+   * @throws \exception
+   *
+   */
+  private function setConfig(){
+    $columns = $this->getColumnNames();
+    $user_fields = $this->getFillableFields();
+
+    foreach($user_fields as $key=>$value){
+      if(in_array($this->config->get($key), $columns)){
+        $this->input_matrix[$key] = array_search($this->config->get($key), $columns);
+      }
+    }
+    // We also need to add in our Action field
+    $this->input_matrix['action'] = array_search($this->config->get('action'), $columns);
+  }
+
+
+  /**
+   * Helper method that gathers and returns the column labels in a csv field.
+   * @return array|false|null
+   * @throws \exception
+   */
+  private function getColumnNames(){
+    $csv = [];
+    // If we have a current .csv, we can use that
+    $timestamp = date('Ymd');
+    $exists = file_exists('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv");
+    if($exists){
+      // We have a file, grab the first row and return it
+      $handle = fopen('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv", "r");
+      $csv = fgetcsv($handle, '', "\t");
+      fclose($handle);
+    } else {
+      // Else we need to fire the controller so we can pull one down, and then we can check again.
+      $new_file = new AtworkIdirUpdateController;
+      $generate_csv = $new_file->AtworkIdirInit();
+      if( file_exists('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv")){
+        // now grab and add it - or throw an error and end.
+        $handle = fopen('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv", "r");
+        $csv = fgetcsv($handle, '', "\t");
+        fclose($handle);
+      } else {
+        // throw an error
+        \Drupal::logger('atwork_idir_update')->error('Cannot access or download idir.csv file from location. Please check URL/User and Password and try again.');
+        drupal_set_message("Cannot access or download idir.csv, no fields to generate. Please check credentials and try again.");
+      }
+    }
+
+    return $csv;
+  }
+
+  /**
+   * Helper function to create an array of user fields that we ccan expose to the admin, so they can map .csv entries.
+   * @return array $user_fields A collection of user fields after removeing the ones we shouldn't expose to the user.
+   */
+  public function getFillableFields(){
+    // Grab all useable user fields
+    $fields = \Drupal::service('entity_field.manager')->getFieldMap('user');
+    $user_fields = $fields['user'];
+    $fields = null;
+    // We want to weed out the fields we definitely don't want to mess with
+    $default_fields = [
+      'uid',
+      'uuid',
+      'langcode',
+      'preferred_langcode',
+      'preferred_admin_langcode',
+      'timezone',
+      'status',
+      'created',
+      'changed',
+      'access',
+      'roles',
+      'default_langcode',
+      'path',
+      'message_subscribe_email',
+      'message_digest'
+    ];
+    foreach($default_fields as $key){
+      if(array_key_exists($key, $user_fields)){
+        unset($user_fields[$key]);
+      }
+    }
+    return($user_fields);
+  }
+
+  public function getInputMatrix(){
+    return $this->input_matrix;
   }
 }

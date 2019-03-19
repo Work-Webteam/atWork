@@ -69,6 +69,7 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     }
     //TODO: Set our own Validation to make sure values for the idir scel are unique.
     $form['#validate'][] = [$this, "idirValidateFields"];
+    //ksm($form);
     return parent::buildForm($form, $form_state);
   }
 
@@ -86,7 +87,6 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
     $this_form = $form_state->getUserInput();
     $config = $this->config('atwork_idir_update.atworkidirupdateadminsettings');
-
     foreach($this_form as $key=>$value){
       $config->set($key, $form_state->getValue($key));
     }
@@ -111,7 +111,6 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     // We need to grab all available user fields, so we can add them to a dropdown
     $user_fields = $this->getFillableFields();
     $values = [
-      'None' => 'None',
       'action' => 'action',
     ];
     // Add all field names to dropdown, for mapping.
@@ -121,12 +120,21 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
 
     // Function to grab just the .csv labels and return them
     $column_names = $this->getColumnNames();
+    // Make these strings rather than int arrays
+    foreach($column_names as $label => $label_value){
+      $column_names[$label_value] = $label_value;
+      unset($column_names[$label]);
+    }
+    // Need a none option if we don't want to set a field
+    $column_names['None'] = 'None';
     $config = $this->config('atwork_idir_update.atworkidirupdateadminsettings');
     // csv columns as labels, while the $user_fields will be added to a dropdown.
-    foreach($column_names as $name) {
+    //ksm($values);
+
+    foreach($values as $name=>$filed_value) {
       // TODO: Check if this field exists - if so, we update rather than add. Else we add and create the field for the form.
       if (isset($form[$name])) {
-        ksm("We need only update");
+
       }
       else {
 
@@ -134,7 +142,7 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
           '#type' => 'select',
           '#title' => $this->t($name),
           '#description' => $this->t('Choose field mapping'),
-          '#options' => $values,
+          '#options' => $column_names,
           '#default_value' => $config->get($name),
         ];
       }
@@ -154,17 +162,21 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     }
     // We need to have at least on "Action" column, and it should contain specific commands
     $this_form = $form_state->getUserInput();
-    if(!in_array("action", $this_form)){
+    if(!array_key_exists("action", $this_form) || $this_form["action"] == "None"){
       $form_state->setErrorByName('[TransactionType]', $this->t('You must assign action to one of the provided user record fields. This field should include one of three actions - "Add" "Modify" or "Delete". Without these directives, the module will not be able to act on the records.'));
     }
     // We need to have a primary key - This should be GUID, so GUID should be assigned to one of the labels.
-    if(!array_key_exists("GUID", $this_form)){
+    if(!in_array("GUID", $this_form)){
       $form_state->setErrorByName('[GUID]', $this->t('As part of your .tsv import, you must have a unique identifier. When this module was written, only GUID could be used for this purpose. Therefore, any .csv or .tsv that is pulled in must contain this column for every record, and it should be labelled GUID. If this is no longer the case, this module will need to be patched to use a new primary key.'));
     }
 
     //  We can't have more than one field mapped to any one label, unless that field is None
     foreach($this_form as $key=>$value){
       if($value == "None"){
+        unset($this_form[$key]);
+      }
+      // Init also uses email - so we need to skip this in our check, or we will not have unique values in every field
+      if($key == "init" || $key == "name"){
         unset($this_form[$key]);
       }
     }

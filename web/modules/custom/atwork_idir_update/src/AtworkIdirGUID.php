@@ -100,7 +100,7 @@ class AtworkIdirGUID
 
     // Save user
     $result = $this_user->save();
-    $return_value = "Code was not returned";
+    $return_value = "The system did not record and update or creation for user" . $this_user->get('field_display_name');
     if($result == 1)
     {
       $return_value = 'New user ' . $fields[2] . ' created';
