@@ -52,13 +52,13 @@ settings:
   smallich: ''
   smallamt: ''
   smallabt: '1'
-  supersubs: 0
+  supersubs: 1
   minwidth: '12'
   maxwidth: '27'
   multicolumn: 1
-  multicolumn_depth: '3'
+  multicolumn_depth: '1'
   multicolumn_levels: '3'
-  pathlevels: '4'
+  pathlevels: '3'
   expanded: 1
   clone_parent: 0
   hide_linkdescription: 0
