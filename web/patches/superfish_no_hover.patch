@@ -1,0 +1,13 @@
+diff --git a/web/libraries/superfish/sftouchscreen.js b/web/libraries/superfish/sftouchscreen.js
+index 8364cf4..10b3342 100644
+--- a/web/libraries/superfish/sftouchscreen.js
++++ b/web/libraries/superfish/sftouchscreen.js
+@@ -20,7 +20,7 @@
+       breakpointUnit: 'px',
+       useragent: '',
+       behaviour: 2,
+-      disableHover: false
++      disableHover: true
+     }, options);
+ 
+     function activate(menu){

@@ -20,7 +20,7 @@
       breakpointUnit: 'px',
       useragent: '',
       behaviour: 2,
-      disableHover: false
+      disableHover: true
     }, options);
 
     function activate(menu){

@@ -165,6 +165,9 @@
 	    },
 	    "drupal/group": {
 	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
+	    },
+	    "libraries/superfish": {	
+		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
 	    }
 	}
     }

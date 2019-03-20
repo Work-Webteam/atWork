@@ -7,4 +7,14 @@ Applied by twerdal
 date: 12-13-2018
 
 As noted here: https://h5ptechnology.atlassian.net/projects/HFP/issues/HFP-2468?filter=allissues ckeditor can break if the server refuses to parse multiple slashes in the path.
-This can be fixed by making changes outlined in the h5p.patch file in this directory
+This can be fixed by making changes outlined in the h5p.patch file in this directory\
+
+
+/**
+* Superfish_no_hover
+**/
+Applied by bjenning
+date: 03-20-2019
+
+Superfish_no_hover sets disableHover to true when sftouchscreen sub-plugin for superfish is enabled in block menu options. For some reason, known only to god, this effectively 
+changes the default on hover menu expansion to on click for browsers.
