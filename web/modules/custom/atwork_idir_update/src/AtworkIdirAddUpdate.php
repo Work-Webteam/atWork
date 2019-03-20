@@ -1,6 +1,7 @@
 <?php
 namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
+use Drupal\AtworkIdirUpdateInputMatrix;
 use Drupal\user\Entity\User;
 
 class AtworkIdirAddUpdate extends AtworkIdirGUID 
@@ -18,16 +19,15 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
    * @param [string] $guid : The guid of the user we pulled off of the .tsv sheet
    * @param [boolean] $is_active : Checks with the check function to see if the user is currently in our system. If not we need to add them, if yes we can check the fields to determine if they need to be updated.
    * @param [string] $list : will state either "add" or "update" to pull the appropriate list. All other checks will decide if user is new/needs to be updated/ hits an integrety constraint (GUID or Idir).
-   * @return void
+   * @return string
    */
   protected function parseUpdateUserList($list)
   {
     $update_list = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_' . $list . '.tsv', 'r');
     // Check if we have anything, if not throw an error.
-    if( !isset($update_list) )
-    {
-      // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exeption)
-      throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_' . $list . '.tsv' );
+    if( !isset($update_list) ) {
+      // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exception)
+      throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_' . $list . '.tsv');
       return "failed";
     }
     // Pull the update list

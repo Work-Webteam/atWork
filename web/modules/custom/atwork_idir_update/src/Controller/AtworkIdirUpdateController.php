@@ -9,6 +9,7 @@ use Drupal\atwork_idir_update\AtworkIdirAddUpdate;
 use Drupal\atwork_idir_update\AtworkIdirDelete;
 use Drupal\atwork_idir_update\AtworkIdirLog;
 use Drupal\atwork_idir_update\AtworkIdirUpdateFTP;
+use Drupal\atwork_idir_update\AtworkIdirUpdateInputMatrix;
 use Drupal\atwork_idir_update\Form\AtworkIdirUpdateAdminSettingsForm;
 use Drupal\Core\Form\ConfigFormBase;
 
@@ -56,7 +57,8 @@ class AtworkIdirUpdateController {
       // This contains FTP functions
       $run_cron = $this->AtworkIdirInit();
       // Now we need to set up our arrays to match the idir columns to user fields
-      $this->setConfig();
+      $current_input_matrix = new AtworkIdirUpdateInputMatrix;
+      $this->input_matrix = $current_input_matrix->getInputMatrix();
       $split_list = $this->splitList();
       \Drupal::logger('atwork_idir_update')->info('Idir update ran successfully');
     } 
@@ -140,8 +142,6 @@ class AtworkIdirUpdateController {
   }
 
   protected function splitList(){
-
-    // TODO:: Move this section to its own function - so we can download independently of taking any actions.
 
     // Set up the logs
     $split_status = $this->splitIdirLogs();
@@ -282,97 +282,5 @@ class AtworkIdirUpdateController {
     }
     AtworkIdirLog::errorCollect($message . " " . $severity . " " . $file . " " . $line . "\n");
     throw new \exception($message . " " . $severity . " " . $file . " " . $line);
-  }
-
-  /**
-   * Helper function that creates an array that contains Drupal field, and the column number for the corresponding value if it exists in the tsv
-   * @throws \exception
-   *
-   */
-  private function setConfig(){
-    $columns = $this->getColumnNames();
-    $user_fields = $this->getFillableFields();
-
-    foreach($user_fields as $key=>$value){
-      if(in_array($this->config->get($key), $columns)){
-        $this->input_matrix[$key] = array_search($this->config->get($key), $columns);
-      }
-    }
-    // We also need to add in our Action field
-    $this->input_matrix['action'] = array_search($this->config->get('action'), $columns);
-  }
-
-
-  /**
-   * Helper method that gathers and returns the column labels in a csv field.
-   * @return array|false|null
-   * @throws \exception
-   */
-  private function getColumnNames(){
-    $csv = [];
-    // If we have a current .csv, we can use that
-    $timestamp = date('Ymd');
-    $exists = file_exists('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv");
-    if($exists){
-      // We have a file, grab the first row and return it
-      $handle = fopen('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv", "r");
-      $csv = fgetcsv($handle, '', "\t");
-      fclose($handle);
-    } else {
-      // Else we need to fire the controller so we can pull one down, and then we can check again.
-      $new_file = new AtworkIdirUpdateController;
-      $generate_csv = $new_file->AtworkIdirInit();
-      if( file_exists('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv")){
-        // now grab and add it - or throw an error and end.
-        $handle = fopen('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv", "r");
-        $csv = fgetcsv($handle, '', "\t");
-        fclose($handle);
-      } else {
-        // throw an error
-        \Drupal::logger('atwork_idir_update')->error('Cannot access or download idir.csv file from location. Please check URL/User and Password and try again.');
-        drupal_set_message("Cannot access or download idir.csv, no fields to generate. Please check credentials and try again.");
-      }
-    }
-
-    return $csv;
-  }
-
-  /**
-   * Helper function to create an array of user fields that we ccan expose to the admin, so they can map .csv entries.
-   * @return array $user_fields A collection of user fields after removeing the ones we shouldn't expose to the user.
-   */
-  public function getFillableFields(){
-    // Grab all useable user fields
-    $fields = \Drupal::service('entity_field.manager')->getFieldMap('user');
-    $user_fields = $fields['user'];
-    $fields = null;
-    // We want to weed out the fields we definitely don't want to mess with
-    $default_fields = [
-      'uid',
-      'uuid',
-      'langcode',
-      'preferred_langcode',
-      'preferred_admin_langcode',
-      'timezone',
-      'status',
-      'created',
-      'changed',
-      'access',
-      'roles',
-      'default_langcode',
-      'path',
-      'message_subscribe_email',
-      'message_digest'
-    ];
-    foreach($default_fields as $key){
-      if(array_key_exists($key, $user_fields)){
-        unset($user_fields[$key]);
-      }
-    }
-    return($user_fields);
-  }
-
-  public function getInputMatrix(){
-    return $this->input_matrix;
   }
 }

@@ -11,6 +11,7 @@ class AtworkIdirGUID
   protected $drupal_path;
   // This is a user object that can be set with an array of user info, generally used by child classes and passed back to the updateSystemUser() method
   protected $new_fields = [];
+  protected $input_matrix;
   
   function __construct()
   {
@@ -18,11 +19,22 @@ class AtworkIdirGUID
     $this->timestamp = date('Ymd');
     // grab the path to the Public:// file folder
     $this->drupal_path = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
+    // Get our most current matrix
+    $this->input_matrix = $this->setInputMatrix();
   }
 
   protected function getModulePath($moduleName)
   {
     return drupal_get_path('module', $moduleName);
+  }
+
+  protected function setInputMatrix(){
+    $current_matrix = new AtworkIdirUpdateInputMatrix();
+    return $current_matrix->getInputMatrix();
+  }
+
+  protected function getInputMatrix() {
+    return $this->input_matrix;
   }
 
     /** 
