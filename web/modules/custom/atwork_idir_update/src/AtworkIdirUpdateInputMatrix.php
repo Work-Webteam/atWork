@@ -12,6 +12,7 @@ class AtworkIdirUpdateInputMatrix {
 
 
   private $input_matrix;
+  private $user_fields;
   protected $config;
 
 
@@ -19,12 +20,22 @@ class AtworkIdirUpdateInputMatrix {
   {
     $this->config = \Drupal::config('atwork_idir_update.atworkidirupdateadminsettings');
     $this->input_matrix = $this->atworkBuildMatrix();
+    $this->user_fields = $this->setUserFieldsArray();
   }
 
 
   public function getInputMatrix(){
     return $this->input_matrix;
   }
+
+  private function setUserFieldsArray(){
+    return  $this->getFillableFields();
+  }
+
+  public function getUserFieldArray(){
+    return $this->user_fields;
+  }
+
   /**
    * Helper function that creates an array that contains Drupal field, and the column number for the corresponding value if it exists in the tsv
    *

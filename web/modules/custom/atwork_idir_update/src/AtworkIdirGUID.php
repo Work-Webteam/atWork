@@ -65,14 +65,55 @@ class AtworkIdirGUID
     if( $type == 'add' ){
       $this_user = User::create();
       // If this is a new user - we have to make sure we have an email/username/guid for them, or we need to throw an error.
-      if(!isset($fields[4]) || !isset($fields[1]) || !isset($fields[2]))
+
+      if(!isset($this->input_matrix['name']) || !isset($this->input_matrix['field_user_guid']))
       {
-        return "user did not have necissary fields to allow for them to have a profile. Please check info for following user: " . print_r($fields);
+        return "user did not have necissary fields (username or guid) to allow for them to have a profile. Please check info for following user: " . print_r($fields);
       }
     }
     else 
     {
+      // This is not a brand new user - and we need to update fields rather than add a new user object.
       $this_user = User::load($uid);
+    }
+    // Need to take specific special case fields into account (have their own setters)
+    $special_cases = [
+      'init'=>'init',
+      'name'=>'name',
+      'pass'=>'pass',
+      'mail'=>'mail'
+    ];
+    // grab all user fields from AtowrkIdirUpdateInputMatrix - returns an array
+    $fillable_user_fields = new AtworkIdirUpdateInputMatrix();
+    // Loop through all available user fields
+    foreach($fillable_user_fields as $key=>$value){
+      // If our field is included in the matrix....
+      if(array_key_exists($key, $this->input_matrix)){
+        // Check if it is a special case
+        if(in_array($key, $special_cases)){
+          // Debatable whether we require a switch here or should stick just with if's - but it definitely makes it easier to read.
+          switch ($key){
+            case "init":
+              if(isset($fields[$this->input_matrix["init"]])){
+                $this_user->set('init', $fields[$this->input_matrix["init"]]);
+              }
+              break;
+            case "name":
+              if(isset($fields[$this->input_matrix["name"]])){
+                $this_user->set('name', $fields[$this->input_matrix["name"]]);
+              }
+              break;
+            case "pass":
+              if(isset($fields[$this->input_matrix["pass"]])){
+                $this_user->set('pass', $fields[$this->input_matrix["pass"]]);
+              }
+              break;
+          }
+        } else {
+          // Set it with appropriate column value.
+          isset($this->input_matrix[$key])?$this_user->set($key, $fields[$this->input_matrix[$key]]) : $this_user->set($key, "") ;
+        }
+      }
     }
     if( isset( $fields[4] )){ $this_user->set('init', $fields[4]); }
     if( isset( $fields[2] )){ $this_user->setUsername(strtolower($fields[2])); }
@@ -112,14 +153,14 @@ class AtworkIdirGUID
 
     // Save user
     $result = $this_user->save();
-    $return_value = "The system did not record and update or creation for user" . $this_user->get('field_display_name');
+    $return_value = "The system did not record and update or create user " . $this_user->get('field_display_name');
     if($result == 1)
     {
-      $return_value = 'New user ' . $fields[2] . ' created';
+      $return_value = 'New user ' . $this_user->get('field_display_name') . ' created';
     }
     if($result == 2)
     {
-      $return_value = 'User ' . $fields[2] . ' Updated';
+      $return_value = 'User ' . $this_user->get('field_display_name') . ' Updated';
     }
     return $return_value;
   }
