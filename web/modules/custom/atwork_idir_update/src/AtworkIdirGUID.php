@@ -43,10 +43,10 @@ class AtworkIdirGUID
   public function getGUIDField($guid)
   {
     $connection = \Drupal::database();
-    $result = $connection->select('user__field_guid', 'fg')
+    $result = $connection->select('user__field_user_guid', 'fg')
       ->fields('fg', array('entity_id'))
       ->distinct(true)
-      ->condition("fg.field_guid_value", $guid, '=')
+      ->condition("fg.field_user_guid_value", $guid, '=')
       ->execute()->fetchCol();
       return $result;
   }
@@ -57,7 +57,7 @@ class AtworkIdirGUID
    * @param [string] $type : This denotes if this is an update or a delete
    * @param  [string] $uid : userid we found when checking for a user - can load with this
    * @param [array] $fields : An array of fields we need for the user.  
-   * @return void
+   * @return string
    */
   public function updateSystemUser($type, $uid, $fields)
   {
@@ -84,7 +84,8 @@ class AtworkIdirGUID
       'mail'=>'mail'
     ];
     // grab all user fields from AtowrkIdirUpdateInputMatrix - returns an array
-    $fillable_user_fields = new AtworkIdirUpdateInputMatrix();
+    $matrix = new AtworkIdirUpdateInputMatrix();
+    $fillable_user_fields = $matrix->getUserFieldArray();
     // Loop through all available user fields
     foreach($fillable_user_fields as $key=>$value){
       // If our field is included in the matrix....
@@ -115,6 +116,7 @@ class AtworkIdirGUID
         }
       }
     }
+    /* Not used anymore - but helpful to show what the original mapping was (some fields changed names slightly)
     if( isset( $fields[4] )){ $this_user->set('init', $fields[4]); }
     if( isset( $fields[2] )){ $this_user->setUsername(strtolower($fields[2])); }
     if( isset( $fields[1] )){ $this_user->setPassword($fields[1]); }
@@ -134,7 +136,7 @@ class AtworkIdirGUID
     if( isset( $fields[14] )){ $this_user->set('field_city', $fields[14]); }
     if( isset( $fields[15] )){ $this_user->set('field_province', $fields[15]); }
     if( isset( $fields[16] )){ $this_user->set('field_postal_code', $fields[16]); }
-
+    */
     // We need this to for sure be a new user - we don't want to edit an existing user.
     if($type == 'add')
     {
@@ -153,14 +155,14 @@ class AtworkIdirGUID
 
     // Save user
     $result = $this_user->save();
-    $return_value = "The system did not record and update or create user " . $this_user->get('field_display_name');
+    $return_value = "The system did not record and update or create user " . $this_user->field_user_display_name->value;
     if($result == 1)
     {
-      $return_value = 'New user ' . $this_user->get('field_display_name') . ' created';
+      $return_value = 'New user ' . $this_user->field_user_display_name->value . ' created';
     }
     if($result == 2)
     {
-      $return_value = 'User ' . $this_user->get('field_display_name') . ' Updated';
+      $return_value = 'User ' . $this_user->field_user_display_name->value . ' Updated';
     }
     return $return_value;
   }

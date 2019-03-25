@@ -64,9 +64,9 @@ class AtworkIdirUpdateLogSplit
     }
 
     // Make sure we have an email and username, and GUID = or else we cannot update the fields, and will ignore this user.
-    if(empty($new_user[$this->input_matrix['mail']]) || empty($new_user[$this->input_matrix['name']]) || empty($new_user[$this->input_matrix['field_user_guid']]))
+    if(empty($new_user[$this->input_matrix['name']]) || empty($new_user[$this->input_matrix['field_user_guid']]))
     {
-      \Drupal::logger('atwork_idir_update')->info("Line 64: User did not have one of the following required fields - email {$new_user[$this->input_matrix['mail']]}, username {$new_user[$this->input_matrix['name']]}, guid {$new_user[$this->input_matrix['field_user_guid']]} \n ");
+      \Drupal::logger('atwork_idir_update')->info("Line 64: User did not have one of the following required fields - username {$new_user[$this->input_matrix['name']]}, guid {$new_user[$this->input_matrix['field_user_guid']]} \n ");
       fclose($add_file);
       return true;
     }
@@ -98,9 +98,9 @@ class AtworkIdirUpdateLogSplit
     }
 
     // Make sure we have an email and username or we will ignore this user.
-    if(empty($existing_user[$this->input_matrix['mail']]) || empty($existing_user[$this->input_matrix['name']]) || empty($existing_user[$this->input_matrix['field_user_guid']]))
+    if( empty($existing_user[$this->input_matrix['name']]) || empty($existing_user[$this->input_matrix['field_user_guid']]))
     {
-      \Drupal::logger('atwork_idir_update')->info("Line 98: User did not have one of the following required fields - email {$existing_user[$this->input_matrix['mail']]}, username {$existing_user[$this->input_matrix['name']]}, guid {$existing_user[$this->input_matrix['field_user_guid']]}");
+      \Drupal::logger('atwork_idir_update')->info("Line 98: User did not have one of the following required fields - username {$existing_user[$this->input_matrix['name']]}, guid {$existing_user[$this->input_matrix['field_user_guid']]}");
       fclose($update_file);
       return true;
     }

@@ -130,7 +130,6 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     $config = $this->config('atwork_idir_update.atworkidirupdateadminsettings');
     // csv columns as labels, while the $user_fields will be added to a dropdown.
     //ksm($values);
-
     foreach($values as $name=>$filed_value) {
       // TODO: Check if this field exists - if so, we update rather than add. Else we add and create the field for the form.
       if (isset($form[$name])) {

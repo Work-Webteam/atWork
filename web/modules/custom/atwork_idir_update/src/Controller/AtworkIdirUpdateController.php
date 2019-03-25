@@ -171,7 +171,7 @@ class AtworkIdirUpdateController {
 
 
   private function splitIdirLogs(){
-    $file_handle = new AtworkIdirUpdateLogSplit($this->getInputMatrix());
+    $file_handle = new AtworkIdirUpdateLogSplit();
     $filename = 'idir_' . $this->timestamp . '.tsv';
 
     try

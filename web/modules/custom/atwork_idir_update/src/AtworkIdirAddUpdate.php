@@ -23,28 +23,29 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
    */
   protected function parseUpdateUserList($list)
   {
-    $update_list = fopen($this->drupal_path . '/idir/idir_' . $this->timestamp . '_' . $list . '.tsv', 'r');
+    $update_list = fopen($this->drupal_path . 'idir/' . $this->timestamp . '/idir_' . $this->timestamp . '_' . $list . '.tsv', 'r');
     // Check if we have anything, if not throw an error.
     if( !isset($update_list) ) {
       // TODO: Eventually this should be updated to reflect this exact Exception (FileNotFoundException extends Exception)
-      throw new \exception("Failed to open file at atwork_idir_update/idir/idir_" . $this->timestamp . '_' . $list . '.tsv');
+      throw new \exception("Failed to open file at atwork_idir_update/idir/" . $this->timestamp . "/idir_" . $this->timestamp . '_' . $list . '.tsv');
       return "failed";
     }
     // Pull the update list
     while ( ($row = fgetcsv($update_list, '', "\t")) !== false) 
     {
+
       // These MUST both have a value
-      if($row[2] == null || $row[1] == null){
+      if(!isset($row[$this->input_matrix['name']]) || !isset($row[$this->input_matrix['field_user_guid']])){
         continue;
       }
       // Get the GUID of the first user, this will return either an empty set or a user entity number.
-      $update_uid = $this->getGUIDField( $row[1] );
+      $update_uid = $this->getGUIDField( $row[$this->input_matrix['field_user_guid']] );
       // If we are returned an empty set, we know this user is not in our current db, and in fact needs to be added. We should also do a quick check for username (idir) because we can't duplicate this. If this was the user script, we can simply append them to the add script which will run last.
       if (empty($update_uid))
       {
         {
           // Need to check if idir is in user - we cannot have two users with the same idir and different GUID's
-          $new_uid = $this->getUserName( $row[2] );
+          $new_uid = $this->getUserName( $row[$this->input_matrix['name']] );
           if( !empty($new_uid) )
           {
             // setup $this->new_fields for a delete and submit
@@ -59,7 +60,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       {
         //WE have a GUID - lets check that the username matches our new username. If not we need to check if this username already exists.
         // Need to check if idir is in user - we cannot have two users with the same idir and different GUID's
-        $match_uid = $this->getUserName( $row[2] );
+        $match_uid = $this->getUserName( $row[$this->input_matrix['name']] );
         if(isset($match_uid[0]) && $match_uid[0] != $update_uid[0])
         {
           // setup $this->new_fields for a delete and submit
@@ -69,6 +70,12 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
         // Set the fields to update the new user with
         // Make sure we are starting fresh first
         unset($this->new_fields);
+        // Here we need to get all userfields, and map back the values in the proper row#
+        // TODO: We need to set this up so that the new field numbers point to the column numbers
+        foreach($this->input_matrix as $key=>$value){
+          $this->new_fields[$value] = $row[$value];
+        }
+        /* Don't use this anymore - but good for us to see previous mappings
         $this->new_fields =
         [
           2 => $row[2], //username
@@ -87,6 +94,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           15 => $row[15], //Province
           16 => substr($row[16], 0, 7), //Postal Code
         ];
+        */
         
         // At this point, we know they are in our system, and should be updated.
         $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
@@ -101,7 +109,15 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
   }
 
   private function addUser( $user_array ) {
-    $this->new_fields = 
+    unset($this->new_fields);
+    // Here we need to get all userfields, and map back the values in the proper row#
+    // TODO: We need to set this up so that the new field numbers point to the column numbers
+    foreach($this->input_matrix as $key=>$value){
+      $this->new_fields[$value] = $user_array[$value];
+    }
+
+    /* Not using this anymore - but useful to see the old mapping
+    $this->new_fields =
     [
       1 => $user_array[1], // GUID
       2 => $user_array[2], //username
@@ -119,7 +135,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       14 => $user_array[14], //City
       15 => $user_array[15], //Province
       16 => substr($user_array[16], 0, 7), //Postal Code - There have been instances where the file contains two PC's, which is too large for this field. We trim them to a set 7 chars here.
-    ];
+    ]; */
     // Calls parent function requires udpateSystemUser($type, $uid, array of fields)
     $result = $this->updateSystemUser('add', '', $this->new_fields);
     return $result;
@@ -127,7 +143,19 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
   private function removeUser( $user_array , $uid)
   {
     $extra_rand = rand( 10000, 99999 );
-
+    foreach($this->input_matrix as $key=>$value){
+      if($key == "username") {
+        // Replace username
+        $this->new_fields[$value] = 'old_user_' . time() . $extra_rand;
+      } elseif($key == "mail"){
+        // Replace email
+        $this->new_fields[$value] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
+      } else {
+        // We are removing all info
+        $this->new_fields[$value] = '';
+      }
+    }
+    /* No longer use this - but lets keep it around to remember our field mappings
     $this->new_fields = 
     [
       // Don't need to remove old password and don't want to remove GUID in case this user comes back, so leave this out.
@@ -147,6 +175,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       15 => '',
       16 => ''
     ];
+    */
     $result = $this->updateSystemUser('delete', $uid, $this->new_fields);
     return $result;
   }
