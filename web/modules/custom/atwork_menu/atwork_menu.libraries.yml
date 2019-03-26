@@ -1,0 +1,4 @@
+# Custom module library for general purposes.
+atwork_menu:
+  js:
+    js/atwork_menu.js: {}

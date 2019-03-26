@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a menu.
+ *
+ * Available variables:
+ * - classes: A list of classes to apply to the top level <ul> element.
+ * - dropdown_classes: A list of classes to apply to the dropdown <ul> element.
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *
+ * @ingroup templates
+ */
+#}
+{#
+{% extends "menu.html.twig" %}
+{%
+  set classes = [
+    'menu',
+    'menu--' ~ menu_name|clean_class,
+    'nav',
+    'navbar-nav',
+  ]
+%}
+#}
+{% set classes = [] %}
+{% for item in items %}
+
+  <div id="atwork-main-menu" class="navbar">
+    <div class="subnav">
+      <button class="subnavbtn">{{ item.title }} <i class="fa fa-caret-down"></i></button>
+        <div class="subnav-content">
+        {% for child in item.below %}
+          {% if child.below is empty %}
+            <a href="{{ child.url }}">{{ child.title }}</a>
+          {% endif %}
+          {% if child.below is not empty %}
+            <button class="subnavbtn">{{ child.title }} </button>
+            <div class="subnav-content">
+              {% for grandchild in child.below %}
+                <a href="{{ grandchild.url }}">{{ grandchild.title }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endfor %}
+        </div>
+    </div>
+  </div>
+
+{% endfor %}
+
+
+
+
+{#
+{% for item in items %}
+  <ul id="atwork-main-menu" class="nav navbar">
+    
+    {% if item.below is empty %}
+      <li class="atwork-menu-depth-1 no-children nav-item"><a class="nav-link" href="{{ item.url }}">{{ item.title }}</a></li>
+    {% endif %}
+    
+    {% if item.below is not empty %}
+      <li class="atwork-menu-depth-1 nav-item submenu-inactive">
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        {% for child in item.below %}
+          <ul>
+          
+            {% if child.below is empty %}
+              <li class="atwork-menu-depth-2 no-children">
+                <a href="{{ child.url }}">{{ child.title }}</a>
+              </li>
+            {% endif %}
+            
+            {% if child.below is not empty %}
+              <li class="atwork-menu-depth-2">
+                <a href="{{ child.url }}">{{ child.title }}</a>
+                  <ul>
+                    {% for child in child.below %}
+                      <li class="atwork-menu-depth-3">
+                        <a href="{{ child.url }}">{{ child.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+              </li>
+            {% endif %}
+          </ul>
+        {% endfor %}
+      </li>
+    {% endif %}
+    
+  </ul>
+{% endfor %}
+#}

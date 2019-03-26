@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * @file
+ * Contains atwork_menu.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function atwork_menu_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the atwork_menu module.
+    case 'help.page.atwork_menu':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Customizations for the main menu navigation.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_preprocess_hook().
+ */
+function atworknext_preprocess_menu__main(&$variables) {
+	foreach ($variables['items'] as $item) {
+		atwork_menu_add_links_to_menu_items($item);
+	}
+}
+
+/**
+ * Adds link object to menu items that should have links
+ */
+function atwork_menu_add_links_to_menu_items(&$item) {
+	// Add link to menu item
+	// Menu link properties.
+	$link = $item['original_link']->getPluginDefinition();
+	$url_object = $item['original_link']->getUrlObject();
+	
+	// Check for child links and recurse, if any
+	if($item['below']) {
+		foreach ($item['below'] as $child) {
+			atwork_menu_add_links_to_menu_items($child);
+		}
+	}else {
+		$item['link'] = $url_object;
+	}
+}

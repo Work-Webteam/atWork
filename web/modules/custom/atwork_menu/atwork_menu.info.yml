@@ -1,0 +1,5 @@
+name: 'atwork_menu'
+type: module
+description: 'Customizations for the main menu navigation.'
+core: 8.x
+package: 'Custom'
