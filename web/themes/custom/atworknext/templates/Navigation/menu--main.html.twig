@@ -33,7 +33,7 @@
 
   <div id="atwork-main-menu" class="navbar">
     <div class="subnav">
-      <button class="subnavbtn">{{ item.title }} <i class="fa fa-caret-down"></i></button>
+      <button class="subnavbtn">{{ item.title }}</button>
         <div class="subnav-content">
         {% for child in item.below %}
           {% if child.below is empty %}
