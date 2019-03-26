@@ -8,9 +8,11 @@ dependencies:
     - field.field.group.atwork_groups.field_group_ad_space
     - field.field.group.atwork_groups.field_group_description
     - field.field.group.atwork_groups.field_group_tags
+    - field.field.group.atwork_groups.field_menu
     - group.type.atwork_groups
     - responsive_image.styles.responsive_article_image
   module:
+    - entity_reference_revisions
     - responsive_image
     - text
 id: group.atwork_groups.default
@@ -33,6 +35,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
+    region: content
+  field_menu:
+    type: entity_reference_revisions_entity_view
+    weight: 11
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
     region: content
   flag_email_groups:
     weight: 10

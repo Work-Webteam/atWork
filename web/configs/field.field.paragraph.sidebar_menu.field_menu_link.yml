@@ -1,0 +1,30 @@
+uuid: bf824f19-d495-40fa-ae0e-93baf2debd96
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_menu_link
+    - paragraphs.paragraphs_type.sidebar_menu
+  module:
+    - entity_reference_revisions
+id: paragraph.sidebar_menu.field_menu_link
+field_name: field_menu_link
+entity_type: paragraph
+bundle: sidebar_menu
+label: 'Menu Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      sidebar_menu: sidebar_menu
+    target_bundles_drag_drop:
+      sidebar_menu:
+        enabled: true
+        weight: 2
+field_type: entity_reference_revisions
