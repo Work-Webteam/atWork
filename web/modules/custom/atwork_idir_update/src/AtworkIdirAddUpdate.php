@@ -40,12 +40,14 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
       }
       // Get the GUID of the first user, this will return either an empty set or a user entity number.
       $update_uid = $this->getGUIDField( $row[$this->input_matrix['field_user_guid']] );
+
       // If we are returned an empty set, we know this user is not in our current db, and in fact needs to be added. We should also do a quick check for username (idir) because we can't duplicate this. If this was the user script, we can simply append them to the add script which will run last.
       if (empty($update_uid))
       {
         {
           // Need to check if idir is in user - we cannot have two users with the same idir and different GUID's
           $new_uid = $this->getUserName( $row[$this->input_matrix['name']] );
+
           if( !empty($new_uid) )
           {
             // setup $this->new_fields for a delete and submit
@@ -75,6 +77,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
         foreach($this->input_matrix as $key=>$value){
           $this->new_fields[$value] = $row[$value];
         }
+
         /* Don't use this anymore - but good for us to see previous mappings
         $this->new_fields =
         [
@@ -95,7 +98,6 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
           16 => substr($row[16], 0, 7), //Postal Code
         ];
         */
-        
         // At this point, we know they are in our system, and should be updated.
         $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
       }
@@ -142,17 +144,25 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
   }
   private function removeUser( $user_array , $uid)
   {
+    // We need to make sure we aren't carrying any old information in the new_fields var.
+    $this->new_fields = null;
     $extra_rand = rand( 10000, 99999 );
     foreach($this->input_matrix as $key=>$value){
-      if($key == "username") {
-        // Replace username
+      if($key == "name") {
+       // Replace username
         $this->new_fields[$value] = 'old_user_' . time() . $extra_rand;
-      } elseif($key == "mail"){
+      } elseif($key == "mail") {
         // Replace email
         $this->new_fields[$value] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
+      } elseif($key == "field_user_guid"){
+        // Keep GUID in place, in case we re-activate this user, they will get back their old content
+        $this->new_fields[$value] = $user_array[$value];
+
       } else {
-        // We are removing all info
-        $this->new_fields[$value] = '';
+        // We are removing all info. We don't want to overwrite name or mail with init or login name, so if it has already been set, ignore
+        if(!isset($this->new_fields[$value])){
+          $this->new_fields[$value] = '';
+        }
       }
     }
     /* No longer use this - but lets keep it around to remember our field mappings

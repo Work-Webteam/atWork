@@ -2,6 +2,8 @@
 namespace Drupal\atwork_idir_update;
 use Drupal\Database\Core\Database\Database;
 use Drupal\user\Entity\User;
+use Drupal\Core\Field\FieldDefinitionInterface;
+
 /**
  * This class is the parent of the parse classes. We deal with updating users and checking users here, but this class won't be invoked on its own.
  */
@@ -42,12 +44,14 @@ class AtworkIdirGUID
    */
   public function getGUIDField($guid)
   {
+
     $connection = \Drupal::database();
     $result = $connection->select('user__field_user_guid', 'fg')
       ->fields('fg', array('entity_id'))
       ->distinct(true)
       ->condition("fg.field_user_guid_value", $guid, '=')
       ->execute()->fetchCol();
+
       return $result;
   }
 
@@ -61,15 +65,18 @@ class AtworkIdirGUID
    */
   public function updateSystemUser($type, $uid, $fields)
   {
+    $this_user = null;
     // User fields are updated with new info, and user is saved.
     if( $type == 'add' ){
       $this_user = User::create();
       // If this is a new user - we have to make sure we have an email/username/guid for them, or we need to throw an error.
-
       if(!isset($this->input_matrix['name']) || !isset($this->input_matrix['field_user_guid']))
       {
-        return "user did not have necissary fields (username or guid) to allow for them to have a profile. Please check info for following user: " . print_r($fields);
+        return "user did not have necessary fields (username or guid) to allow for them to have a profile. Please check info for following user: " . print_r($fields);
       }
+      // We need to set a user password on initial import - something hashed.
+      // We need to create a hashed password for this user in case we don't set one from a field. We will use the GUID seeing as we know we need this - it will be hashed on save.
+      $this_user->setPassword($fields[$this->input_matrix["field_user_guid"]]);
     }
     else 
     {
@@ -86,6 +93,8 @@ class AtworkIdirGUID
     // grab all user fields from AtowrkIdirUpdateInputMatrix - returns an array
     $matrix = new AtworkIdirUpdateInputMatrix();
     $fillable_user_fields = $matrix->getUserFieldArray();
+    $all_fields = \Drupal::service('entity_field.manager')->getFieldDefinitions('user', 'user');
+
     // Loop through all available user fields
     foreach($fillable_user_fields as $key=>$value){
       // If our field is included in the matrix....
@@ -101,18 +110,26 @@ class AtworkIdirGUID
               break;
             case "name":
               if(isset($fields[$this->input_matrix["name"]])){
-                $this_user->set('name', $fields[$this->input_matrix["name"]]);
+                $this_user->set('name', strtolower($fields[$this->input_matrix["name"]]));
               }
               break;
             case "pass":
               if(isset($fields[$this->input_matrix["pass"]])){
-                $this_user->set('pass', $fields[$this->input_matrix["pass"]]);
+                $this_user->setPassword('pass', $fields[$this->input_matrix["pass"]]);
               }
               break;
           }
         } else {
           // Set it with appropriate column value.
-          isset($this->input_matrix[$key])?$this_user->set($key, $fields[$this->input_matrix[$key]]) : $this_user->set($key, "") ;
+          // This is kind of Hacky - but the drupal default validators are difficult to manage (especially in a cron run).
+          // Want to make sure our postal-code fits in the field - some users have two for some reason.
+          $field_type = $this_user->get($key)->getFieldDefinition()->getType();
+          if($field_type == "postal_code"){
+            isset($this->input_matrix[$key]) ? $this_user->set($key, substr($fields[$this->input_matrix[$key]], 0, 7)) : $this_user->set($key, "");
+
+          } else {
+            isset($this->input_matrix[$key]) ? $this_user->set($key, $fields[$this->input_matrix[$key]]) : $this_user->set($key, "");
+          }
         }
       }
     }
@@ -145,14 +162,15 @@ class AtworkIdirGUID
     // This unpublishes their account if they are supposed to be deleted, or activates it if it is an update or add
     $type ==  'delete'?$this_user->block():$this_user->activate();
     // TODO: Validate this user once the Symphony error is fixed.
-    //$violations_user = $this_user->validate();
-    //if ($violations_user->count() > 0) 
-   // {
-    //  $violation = $violations_user[0]; 
-     // \Drupal\Core\Messenger\MessengerInterface::addMessage($violation->getMessage(),'warning');
-      //AtworkIdirLog::errorCollect($violation->getMessage()); 
-    //}
-
+    /*
+    $violations_user = $this_user->validate();
+    if ($violations_user->count() > 0)
+    {
+      $violation = $violations_user[0];
+      \Drupal\Core\Messenger\MessengerInterface::addMessage($violation->getMessage(),'warning');
+      AtworkIdirLog::errorCollect($violation->getMessage());
+    }
+    */
     // Save user
     $result = $this_user->save();
     $return_value = "The system did not record and update or create user " . $this_user->field_user_display_name->value;

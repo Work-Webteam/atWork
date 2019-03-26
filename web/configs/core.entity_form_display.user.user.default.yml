@@ -39,6 +39,12 @@ content:
       display_label: true
     third_party_settings: {  }
     region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   timezone:
     weight: 6
     region: content
@@ -51,4 +57,17 @@ content:
     weight: -1
     region: content
 hidden:
+  field_company: true
+  field_street: true
+  field_user_city: true
+  field_user_department: true
+  field_user_display_name: true
+  field_user_given_name: true
+  field_user_offic: true
+  field_user_organization_code: true
+  field_user_phone: true
+  field_user_postal_code: true
+  field_user_province: true
+  field_user_surname: true
+  field_user_title: true
   langcode: true

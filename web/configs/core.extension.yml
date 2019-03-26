@@ -6,6 +6,7 @@ module:
   atwork_comments: 0
   atwork_group: 0
   atwork_h5p: 0
+  atwork_idir_update: 0
   atwork_messages: 0
   atwork_poll: 0
   background_image_formatter: 0

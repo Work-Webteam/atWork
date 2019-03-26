@@ -10,8 +10,6 @@ use Drupal\atwork_idir_update\AtworkIdirDelete;
 use Drupal\atwork_idir_update\AtworkIdirLog;
 use Drupal\atwork_idir_update\AtworkIdirUpdateFTP;
 use Drupal\atwork_idir_update\AtworkIdirUpdateInputMatrix;
-use Drupal\atwork_idir_update\Form\AtworkIdirUpdateAdminSettingsForm;
-use Drupal\Core\Form\ConfigFormBase;
 
 
 class AtworkIdirUpdateController {
@@ -21,6 +19,7 @@ class AtworkIdirUpdateController {
   private $username;
   private $password;
   private $hostname;
+  private $filename;
   private $jail;
   protected $config;
   protected $input_matrix;
@@ -35,10 +34,11 @@ class AtworkIdirUpdateController {
     $this->username = $this->config->get("idir_login_name");
     $this->password = $this->config->get("idir_login_password");
     $this->hostname = $this->config->get("idir_ftp_location");
+    $this->filename = $this->config->get("idir_filename");
+    // TODO - we should allow the user to stipulate the filename as well.
     $this->jail = \Drupal::service('file_system')->realpath(file_default_scheme() . "://") . '/';
     //$this->jail = "/var/www/public/work8/web/sites/default/files/idir";
     $this->port = 21;
-
   }
 
 
@@ -51,7 +51,7 @@ class AtworkIdirUpdateController {
     if(REQUEST_TIME >= $next_execution)
     {
       // Secondary way to run the idir script for testing - or if cron hook does not fire or errors for some reason.
-      \Drupal::logger('atwork_idir_update')->info('Running the update script');
+      \Drupal::logger('AtworkIdirUpdate')->info('Running the update script');
       // Set time we ran this - and don't let us run it for at least 2 mins to avoid running twice
       \Drupal::state()->set('atwork_idir_update.next_execution', REQUEST_TIME + $interval);
       // This contains FTP functions
@@ -60,11 +60,11 @@ class AtworkIdirUpdateController {
       $current_input_matrix = new AtworkIdirUpdateInputMatrix;
       $this->input_matrix = $current_input_matrix->getInputMatrix();
       $split_list = $this->splitList();
-      \Drupal::logger('atwork_idir_update')->info('Idir update ran successfully');
+      \Drupal::logger('AtworkIdirUpdate')->info('Idir update ran successfully');
     } 
     else
     {
-      \Drupal::logger('atwork_idir_update')->warning('Idir script was run less than two minutes ago - please check if it is still running, or wait 2 minutes before trying again');
+      \Drupal::logger('AtworkIdirUpdate')->warning('Idir script was run less than two minutes ago - please check if it is still running, or wait 2 minutes before trying again');
       die();
     }
     isset($run_cron)?:$run_cron = "Could not download ftp";
@@ -77,11 +77,8 @@ class AtworkIdirUpdateController {
 
   public function AtworkIdirInit()
   { 
-    // TODO: Use FileTransfer
-    // TODO: FTP the file here: file_prepare_directory(Public://idir/timestamp/); 
     // Need to pull down the file and put it in a dir.
-    // TODO: Add FTP class here once developed
-    // filename is idir.tsv 
+    // filename is idir.tsv
     // Connection: Directory Sync FTP Server, 142.34.217.168, TCP port 21000-21100 (142.34.217.168  ftp.dir.gov.bc.ca ftp)
     
     $idir_ftp = new AtworkIdirUpdateFTP($this->jail, $this->username, $this->password, $this->hostname, $this->port);
@@ -94,10 +91,15 @@ class AtworkIdirUpdateController {
         throw new \exception("Failed to connect to ftps");
       } 
     }
+    catch ( FileTransferException $e ) {
+      \Drupal::logger('atwork_idir_update')->error($e->getMessage());
+      // And log it as well
+      AtworkIdirLog::errorCollect($e);
+    }
     catch ( Exception $e ) 
     {
       // Generic exception handling if something else gets thrown.
-      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      \Drupal::logger('atwork_idir_update')->error($e->getMessage());
       // And log it as well
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
@@ -105,37 +107,37 @@ class AtworkIdirUpdateController {
     // Make dir function
     $directory = $idir_ftp->create_idir_dir($this->timestamp);
     if ( $directory == false ) {
-      throw new \exception("error creating directory in public folder");
       // Generic exception handling if something else gets thrown.
-      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      \Drupal::logger('atwork_idir_update')->error($e->getMessage());
       // And log it as well
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
+      throw new \exception("error creating directory in public folder");
     }
     AtworkIdirLog::success("New directory created at Public://idir/" . $this->timestamp);
 
     // Check if file is there
-    $check_file = $idir_ftp->isFile("idir.tsv");
+    $check_file = $idir_ftp->isFile($this->filename);
     if ( $check_file == false )
     {
-      throw new \exception("Cannot find idir file at remote server");
       // Generic exception handling if something else gets thrown.
-      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      \Drupal::logger('atwork_idir_update')->error($e->getMessage());
       // And log it as well
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
+      throw new \exception("Cannot find idir file at remote server");
     }
-    AtworkIdirLog::success("Remote idir.tsv file found");
+    AtworkIdirLog::success("Remote file " . $this->filename . " found");
     // Get the file
-    $new_idir_file = $idir_ftp->ftpFile($this->timestamp, $idir_ftp->connection);
+    $new_idir_file = $idir_ftp->ftpFile($this->timestamp, $this->filename, $idir_ftp->connection);
     if ( $new_idir_file == false )
     {
-      throw new \exception("Error retrieving idir file from source.");
       // Generic exception handling if something else gets thrown.
-      \Drupal::logger('AtworkIdirUpdate')->error($e->getMessage());
+      \Drupal::logger('atwork_idir_update')->error($e->getMessage());
       // And log it as well
       AtworkIdirLog::errorCollect($e);
       $this->sendNotifications();
+      throw new \exception("Error retrieving idir file from source.");
     }
     AtworkIdirLog::success("Copied the file to drupal public folder");    
     return 'Copied the file to drupal public folder';
@@ -229,8 +231,8 @@ class AtworkIdirUpdateController {
       // Check if the file was opened properly.
       if( !$full_list )
       {
-        throw new \exception("Failed to open file at Public://idir/" . $filename . '. Script was terminated in Controller.');
-      } 
+        throw new \exception("Failed to open file at Public://idir/" . $this->timestamp . '/'. $filename . '. Script was terminated in Controller.');
+      }
     }
     catch ( Exception $e ) 
     {

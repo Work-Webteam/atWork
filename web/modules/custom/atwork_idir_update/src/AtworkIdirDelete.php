@@ -21,10 +21,11 @@ class AtworkIdirDelete extends AtworkIdirGUID
    * @param [object] $user_update : If the user is in our system, grab them and update/deactivate all pertinent fields. Then send this user to the Update method
    * @param [string] $status : Will send error to error method, or success to success method.
    * @param [string] $drupal_path : path to the module, part of the AtworkIdirGUID __constructor
-   * @return void
+   * @return string
    */
   private function parseDeleteUserList()
   {
+    $result = NULL;
     // Grab the list of users to be deleted
     $delete_list = fopen($this->drupal_path . 'idir/' . $this->timestamp . '/idir_' . $this->timestamp . '_delete.tsv', 'r');
     // Check if we have anything, if not throw an error.
@@ -35,7 +36,7 @@ class AtworkIdirDelete extends AtworkIdirGUID
       return false;
     }
     // TODO: Should we programatically count how many fields the user has? Then we don't have to update this everytime we add a new field?
-    $this->new_fields = 
+    /*$this->new_fields =
     [
       // Custom fields start here
       5 => '',
@@ -50,25 +51,47 @@ class AtworkIdirDelete extends AtworkIdirGUID
       15 => '',
       16 => ''
     ];
+    */
     // Pull the delete list
     while (($row = fgetcsv($delete_list, '', "\t")) !== false) 
     {
-      // Get the GUID of the first user, this will return either an empty set or a user entity number.
-      $delete_uid = $this->getGUIDField($row[1]);
+      $delete_uid = $this->getGUIDField($row[$this->input_matrix["field_user_guid"]]);
       // If we are returned an empty set, we know this user is not in our current db, and does not need to be deleted.
-      if (empty($delete_uid))
-      {
+      if (empty($delete_uid)) {
         continue;
       }
+
       // We need a new timestamp appended with a randomized number so we don't hit integrity constraints.
       $extra_rand = rand( 10000, 99999 );
-      $this->new_fields[2] = 'old_user_' . time() . $extra_rand;
-      $this->new_fields[4] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
+      foreach($this->input_matrix as $key => $value){
+        switch(TRUE){
+          case $key == "name":
+            $this->new_fields[$value] = 'old_user_' . time() . $extra_rand;
+            break;
+          case $key == "login":
+            $this->new_fields[$value] = 'old_user_' . time() . $extra_rand;
+            break;
+          case $key == "field_user_guid":
+            $this->new_fields[$value] = $row[$value];
+          case $key == "mail":
+          case $key == "init":
+            $this->new_fields[$value] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
+            break;
+          default:
+            $this->new_fields[$value] = "";
+            break;
+        }
+      }
 
       // At this point, we know they are in our system, and should be deleted.
       $result = $this -> updateSystemUser('delete', $delete_uid[0], $this->new_fields);
-      // TODO: Log this transaction
+      // Log this transaction
+      if($result)
+      {
+        AtworkIdirLog::success($result);
+      }
     }
-    return true;
+    // We are finished here - let the calling method know we finished.
+    return TRUE;
   }
 }

@@ -32,6 +32,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  photos_album_count:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  photos_image_count:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   user_picture:
     type: image
     weight: 0
@@ -42,6 +52,19 @@ content:
     third_party_settings: {  }
     label: hidden
 hidden:
+  field_company: true
+  field_street: true
+  field_user_city: true
+  field_user_department: true
+  field_user_display_name: true
+  field_user_given_name: true
+  field_user_offic: true
+  field_user_organization_code: true
+  field_user_phone: true
+  field_user_postal_code: true
+  field_user_province: true
+  field_user_surname: true
+  field_user_title: true
   langcode: true
   message_digest: true
   message_subscribe_email: true

@@ -62,8 +62,16 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
       '#size' => 64,
       '#default_value' => $config->get('idir_login_password'),
     ];
+    $form['idir_filename'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('File name'),
+      '#descriptions' => $this->t("Enter the name of the file you would like to retrieve"),
+      '#maxlength' => 128,
+      "#size" => 64,
+      "#default_value" => $config->get('idir_filename'),
+    ];
     // Check for idir stuff, and generate fields if they are available
-    if($config->get('idir_ftp_location') != '' &&  $config->get('idir_login_name') != '' && $config->get('idir_login_password') != ''){
+    if($config->get('idir_ftp_location') != '' &&  $config->get('idir_login_name') != '' && $config->get('idir_login_password') != '' && $config->get('idir_filename') != ''){
       // Add in our other fields - we can now reach out and pull the csv
       $this->idirGenerateFields($form, $form_state);
     }
