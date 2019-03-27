@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains \Drupal\hello_world\Controller\HelloController.
+ * Contains \Drupal\atwork_idir_update\Controller\AtworkIdirUpdateController.
  */
 namespace Drupal\atwork_idir_update\Controller;
 use Drupal\atwork_idir_update\AtworkIdirUpdateLogSplit;
@@ -11,7 +11,11 @@ use Drupal\atwork_idir_update\AtworkIdirLog;
 use Drupal\atwork_idir_update\AtworkIdirUpdateFTP;
 use Drupal\atwork_idir_update\AtworkIdirUpdateInputMatrix;
 
-
+/**
+ * Class AtworkIdirUpdateController
+ *
+ * @package Drupal\atwork_idir_update\Controller
+ */
 class AtworkIdirUpdateController {
   protected $timestamp;
   protected $drupal_path;
@@ -24,6 +28,9 @@ class AtworkIdirUpdateController {
   protected $config;
   protected $input_matrix;
 
+  /**
+   * AtworkIdirUpdateController constructor.
+   */
   function __construct()
   {
     $this->config = \Drupal::config('atwork_idir_update.atworkidirupdateadminsettings');
@@ -41,7 +48,10 @@ class AtworkIdirUpdateController {
     $this->port = 21;
   }
 
-
+  /**
+   * @return array
+   * @throws \exception
+   */
   public function main() {
     set_error_handler(array($this, 'exception_error_handler'));
     //$interval = 60 * 2;
@@ -65,7 +75,10 @@ class AtworkIdirUpdateController {
     else
     {
       \Drupal::logger('AtworkIdirUpdate')->warning('Idir script was run less than two minutes ago - please check if it is still running, or wait 2 minutes before trying again');
-      die();
+      return [
+        '#type' => 'markup',
+        '#markup' => t("Idir script was run less than two minutes ago, please check if it is still running before attempting to run it again."),
+      ];
     }
     isset($run_cron)?:$run_cron = "Could not download ftp";
     isset($split_list)?:$split_list = "Could not divide list";
@@ -154,7 +167,7 @@ class AtworkIdirUpdateController {
     // file has been split, so now it is time to parse the .tsv files
     // First run the delete script
     $delete_status = $this->parseFiles('delete');
-    $delete_status == "success"?(AtworkIdirLog::success('The delete script finished successfully')):$this->sendNotifications();
+    $delete_status == "success"?(AtworkIdirLog::success('The delete script finished successfully')):AtworkIdirLog::error(t("Error was experienced while deleting user, see logs for more details"));
     // Second is update
     AtworkIdirLog::success('Beginning to update current Idirs');
     $update_status = $this->parseFiles('update');
@@ -246,8 +259,7 @@ class AtworkIdirUpdateController {
     // If we get here - we have a file to parse - so lets move on.
     try
     {
-      if($type == 'delete')
-      {
+      if($type == 'delete') {
         $check = $CurrentList->deleteInit(); 
       } elseif($type == 'add')
       {
@@ -274,7 +286,6 @@ class AtworkIdirUpdateController {
 
   private function sendNotifications(){
     AtworkIdirLog::notify();
-    die();
   }
 
   public static function exception_error_handler($severity, $message, $file, $line ) {
