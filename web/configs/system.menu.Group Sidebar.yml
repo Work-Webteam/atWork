@@ -1,0 +1,10 @@
+uuid: 3835d504-6233-4227-8bf4-b7d6e0715631
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vf9tc-wYOSpkaWCxHXrrqaBtnIb3BYl-lEnVlJdEEVA
+id: 'Group Sidebar'
+label: 'Group sidebar menu'
+description: 'Links related to Group sidebar menu'
+locked: true

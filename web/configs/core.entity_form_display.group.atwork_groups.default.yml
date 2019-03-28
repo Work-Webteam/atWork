@@ -8,12 +8,10 @@ dependencies:
     - field.field.group.atwork_groups.field_group_ad_space
     - field.field.group.atwork_groups.field_group_description
     - field.field.group.atwork_groups.field_group_tags
-    - field.field.group.atwork_groups.field_menu
     - group.type.atwork_groups
     - image.style.max_325x325
   module:
     - image_widget_crop
-    - paragraphs
     - text
 id: group.atwork_groups.default
 targetEntityType: group
@@ -70,18 +68,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_menu:
-    type: entity_reference_paragraphs
-    weight: 7
-    settings:
-      title: Paragraph
-      title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
-    third_party_settings: {  }
     region: content
   label:
     type: string_textfield

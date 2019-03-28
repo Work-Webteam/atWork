@@ -12,6 +12,7 @@ regions:
   header: 'Top Bar'
   highlighted: 'Highlighted'
   help: 'Help'
+  sidebar_nav: 'Sidebar Nav'
   content: 'Content'
   footer: 'Footer'
   page_top: 'Page top'
