@@ -1,0 +1,3 @@
+administer siteminder:
+  title: 'Administer Siteminder'
+  restrict access: true

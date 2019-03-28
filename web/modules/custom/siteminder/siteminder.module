@@ -1,0 +1,112 @@
+<?php
+
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Access\AccessResult;
+
+/**
+ * @file
+ * Siteminder authentication module for Drupal.
+ *
+ */
+
+/**
+ * Implements hook_help().
+ */
+function siteminder_help($route_name) {
+  switch ($route_name) {
+    case 'siteminder.admin_settings':
+    case 'help.page.siteminder':
+      $output = t('<p>This module integrates Drupal with a Siteminder Agent running on the webserver.</p>');
+
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function siteminder_user_logout($account) {
+  // Destroy Drupal Session and remove the cookie from the
+  // browser set by the siteminder. Redirect the user to
+  // the Siteminder agent to log-off.
+  $logout_url = \Drupal::config('siteminder.settings')->get('logout_url');
+  $siteminder_cookie = \Drupal::config('siteminder.settings')->get('siteminder_cookie');
+  $siteminder = \Drupal::service('siteminder.siteminderhelper');
+  session_destroy();
+  if ($siteminder_cookie) {
+    setrawcookie($siteminder_cookie, '', time() - 1000, '/', '.inbcu.com');
+  }
+  $response = new RedirectResponse("/user/login");
+  $request = \Drupal::request();
+  $response->prepare($request);
+  // Make sure to trigger kernel events.
+  \Drupal::service('kernel')->terminate($request, $response);
+  $response->send();
+}
+
+/**
+ * Implements hook_user_delete().
+ */
+function siteminder_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityType() == 'user') {
+    \Drupal::database()
+            ->delete("authmap")
+            ->condition(
+                    'uid', $entity->id()
+            )->execute();
+  }
+}
+
+/**
+ * Implements hook_user_access().
+ * Allow anonymous user to only edit own profile when the option "user manually enters first name and last name" is enabled
+ *
+ */
+function siteminder_user_access(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Session\AccountInterface $account) {
+  // Only if manual username settings is enabled
+  if (\Drupal::config('siteminder.settings')->get('user.username_form')) {
+    // Only for anonymous user
+    if ($account->isAnonymous() && ($entity->get('field_user_status')->value == "Pending")) {
+      $siteminder = \Drupal::service('siteminder.siteminderhelper');
+      // Get the GUID from the HTTP header
+      $guid = $siteminder->getId();
+      // Check if the GUID matches an UID database record
+      $uid = $siteminder->getUid($guid);
+      // Access allowed only if it's the user's profile
+      if ($uid == $entity->get('uid')->value) {
+        return AccessResult::allowed();
+      } else {
+        return AccessResult::forbidden();
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ * Alter user own profile when the option "user manually enters first name and last name" is enabled
+ *
+ */
+function siteminder_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Only if manual username settings is enabled
+  if (\Drupal::config('siteminder.settings')->get('user.username_form')) {
+    if (($form_id == "user_form") && (\Drupal::request()->query->get('status') == "new_user")) {
+      $form['#title'] = 'Please update your profile';
+      // Reinitiate the first name and last name fields
+      $form['field_first_name']['widget'][0]['value']['#default_value'] = "";
+      $form['field_last_name']['widget'][0]['value']['#default_value'] = "";
+      // Don't display the status field
+      unset($form['field_user_status']);
+      $form['actions']['submit']['#submit'][] = 'siteminder_user_form_submit';
+    }
+  }
+}
+
+/**
+ * Custom submit handler for user form.
+ */
+function siteminder_user_form_submit($form, FormStateInterface $form_state) {
+  // Set redirect to login form.
+  $form_state->setRedirect('<front>');
+}

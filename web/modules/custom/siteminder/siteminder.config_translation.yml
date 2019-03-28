@@ -1,0 +1,5 @@
+siteminder.admin_settings:
+  title: 'Siteminder Settings'
+  base_route_name: siteminder.admin_settings
+  names:
+    - siteminder.settings

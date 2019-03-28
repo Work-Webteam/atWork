@@ -1,0 +1,31 @@
+siteminder.admin_settings:
+  path: '/admin/config/people/siteminder'
+  defaults:
+    _title: 'Siteminder Settings'
+    _form: '\Drupal\siteminder\Form\SettingsForm'
+  requirements:
+    _permission: 'administer siteminder'
+siteminder.sitemider_login:
+  path: '/siteminder_login'
+  defaults:
+    _controller: '\Drupal\siteminder\Controller\SiteminderController::authenticate'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+siteminder.access_denied:
+  path: '/access_denied'
+  defaults:
+    _controller: '\Drupal\siteminder\Controller\SiteminderController::denied'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE
+siteminder.pending_validation:
+  path: '/pending_validation'
+  defaults:
+    _controller: '\Drupal\siteminder\Controller\SiteminderController::pending'
+  requirements:
+    _access: 'TRUE'
+  options:
+    no_cache: TRUE

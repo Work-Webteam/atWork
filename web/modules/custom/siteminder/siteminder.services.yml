@@ -1,0 +1,13 @@
+services:
+  siteminder.siteminderhelper:
+    class: Drupal\siteminder\Service\Siteminder
+    arguments: ['@config.factory']
+  siteminder.drupalauthentication:
+    class: Drupal\siteminder\Service\SiteminderDrupalAuthentication
+    arguments: ['@siteminder.siteminderhelper', '@config.factory', '@entity.manager', '@externalauth.externalauth', '@current_user']
+  # Subscribers
+  siteminder.event_subscriber:
+    class: Drupal\siteminder\EventSubscriber\InitSubscriber
+    arguments: ['@siteminder.siteminderhelper']
+    tags:
+      - {name: event_subscriber}

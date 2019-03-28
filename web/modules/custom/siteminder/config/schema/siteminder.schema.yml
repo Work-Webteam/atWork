@@ -1,0 +1,42 @@
+# Schema for the configuration files of the siteminder module.
+
+siteminder.settings:
+  type: mapping
+  label: 'Siteminder Settings'
+  mapping:
+    langcode:
+      type: string
+      label: 'Language code'
+    default_langcode:
+      type: string
+      label: 'Site default language code'
+    user:
+      type: mapping
+      label: 'User mapping population'
+      mapping:
+        username_mapping:
+          type: string
+          label: 'Siteminder variable to be used as user name'		  
+        prefix_strip:
+          type: boolean
+          label: 'Siteminder configuration adds a prefix to the username and you do not want it used in the username'		  
+        domain_strip:
+          type: boolean
+          label: 'Siteminder configuration adds a domain to the username and you do not want it used in the username'	 	  
+        mail_mapping:
+          type: string
+          label: 'Siteminder variable to be used as email address for the user'	  
+        role_mapping:
+          type: string
+          label: 'Automatic role population from siteminder variables'
+        role_evaluate_everytime:
+          type: boolean
+    logout_url:
+      type: string
+      label: 'Redirect users to Siteminder for logging out'
+    siteminder_cookie:
+      type: string
+      label: 'Set the client side Cookie name'
+    user_register_original:
+      type: string
+      label: 'Original user register status'

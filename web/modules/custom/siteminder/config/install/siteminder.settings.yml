@@ -1,0 +1,13 @@
+langcode: en
+default_langcode: en
+user:
+  username_mapping: HTTP_SM_USER
+  prefix_strip: false
+  domain_strip: false
+  mail_mapping:
+  role_mapping:
+  role_evaluate_everytime: false
+logout_url:
+siteminder_cookie:
+user_register_original:
+debug: false
