@@ -231,6 +231,7 @@ class Siteminder {
   public function getUserName($map, $headers) {
     $string = $map;
     // If our map is only a string, there is no reason to go through all of this
+    // If we swap out the name variable from idir, we may need to remove this.
     if(gettype($map) == "string"){
       return $map;
     }
@@ -243,7 +244,6 @@ class Siteminder {
       return implode(" ", $parts);
     } else {
       //return $headers[$string];
-git status
       $name_stripped = explode(', ', preg_replace("/\s[a-zA-Z]*\:[a-zA-Z]{2}/", "", $headers[$string]));
       // Check and format if IDIR ID is still in the name
       if (preg_match('/(.*)\((.*?)\)(.*)/', $name_stripped[1])) {
