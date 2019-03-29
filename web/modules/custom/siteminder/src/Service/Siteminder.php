@@ -243,9 +243,7 @@ class Siteminder {
       return implode(" ", $parts);
     } else {
       //return $headers[$string];
-      dpm($headers);
-      dpm($string);
-      dpm($map);
+git status
       $name_stripped = explode(', ', preg_replace("/\s[a-zA-Z]*\:[a-zA-Z]{2}/", "", $headers[$string]));
       // Check and format if IDIR ID is still in the name
       if (preg_match('/(.*)\((.*?)\)(.*)/', $name_stripped[1])) {
