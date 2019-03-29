@@ -125,7 +125,7 @@
         "drupal/webform": "^5.0@RC",
         "drush/drush": "^9.3",
         "harvesthq/chosen": "^1.8",
-        "symfony/property-access": "^4.2",
+        "symfony/property-access": "^3.4",
         "symfony/var-dumper": "^3.4",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
