@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation to display a block.
+ * Atworknext theme implementation to display sidebar menus in groups.
  *
  * Available variables:
  * - $block->subject: Block title.
@@ -45,22 +45,27 @@
  * @see template_process()
  */
 #}
-{%
-  set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'clearfix',
-  ]
-%}
-<section{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
-  {% if label %}
-    <h2{{ title_attributes.addClass('block-title') }}>{{ label }}</h2>
-  {% endif %}
-  {{ title_suffix }}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</section>
+{% set items = simplify_menu(group_name) %}
+
+<div id="atworkgroups-sidebar-menu>
+  <ul>
+  {% for item in items['menu_tree'] %}
+    <li><a href="{{ item['url'] }}">{{ item['text'] }}</a></li>
+    {% if item['submenu'] %}
+      <ul>
+      {% for subitem in item['submenu'] %}
+        <li><a href="{{ subitem['url'] }}">{{ subitem['text'] }}</a></li>
+        {% if subitem['submenu'] %}
+          <ul>
+            {% for item in subitem['submenu'] %}
+              <li><a href="{{ item['url'] }}">{{ item['text'] }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+  </ul>
+</div>
