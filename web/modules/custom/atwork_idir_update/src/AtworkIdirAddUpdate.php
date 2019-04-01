@@ -67,39 +67,49 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
         {
           // setup $this->new_fields for a delete and submit
           $result = $this->removeUser( $row , $match_uid[0] );
-        }
+          unset($this->new_fields);
+          foreach($this->input_matrix as $key=>$value){
+            $this->new_fields[$value] = $row[$value];
+          }
+          $result = $this->addUser( $row );
+          if($result)
+          {
+            AtworkIdirLog::success($result);
+          }
+          continue;
+        } else {
+          // Set the fields to update the new user with
+          // Make sure we are starting fresh first
+          unset($this->new_fields);
+          // Here we need to get all userfields, and map back the values in the proper row#
+          // TODO: We need to set this up so that the new field numbers point to the column numbers
+          foreach ($this->input_matrix as $key => $value) {
+            $this->new_fields[$value] = $row[$value];
+          }
 
-        // Set the fields to update the new user with
-        // Make sure we are starting fresh first
-        unset($this->new_fields);
-        // Here we need to get all userfields, and map back the values in the proper row#
-        // TODO: We need to set this up so that the new field numbers point to the column numbers
-        foreach($this->input_matrix as $key=>$value){
-          $this->new_fields[$value] = $row[$value];
+          /* Don't use this anymore - but good for us to see previous mappings
+          $this->new_fields =
+          [
+            2 => $row[2], //username
+            3 => $row[3], //displayname
+            4 => $row[4], //email
+            5 => $row[5], //givenname
+            6 => $row[6], //Surname
+            7 => $row[7], //Phone
+            8 => $row[8], //Title
+            9 => $row[9], //Department
+            10 => $row[10], //Office
+            11 => $row[11], //OrganizationCode
+            12 => $row[12], //Company
+            13 => $row[13], //Street
+            14 => $row[14], //City
+            15 => $row[15], //Province
+            16 => substr($row[16], 0, 7), //Postal Code
+          ];
+          */
+          // At this point, we know they are in our system, and should be updated.
+          $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
         }
-
-        /* Don't use this anymore - but good for us to see previous mappings
-        $this->new_fields =
-        [
-          2 => $row[2], //username
-          3 => $row[3], //displayname
-          4 => $row[4], //email
-          5 => $row[5], //givenname
-          6 => $row[6], //Surname
-          7 => $row[7], //Phone
-          8 => $row[8], //Title
-          9 => $row[9], //Department
-          10 => $row[10], //Office
-          11 => $row[11], //OrganizationCode
-          12 => $row[12], //Company
-          13 => $row[13], //Street
-          14 => $row[14], //City
-          15 => $row[15], //Province
-          16 => substr($row[16], 0, 7), //Postal Code
-        ];
-        */
-        // At this point, we know they are in our system, and should be updated.
-        $result = $this->updateSystemUser('update', $update_uid[0], $this->new_fields);
       }
       // Log this transaction
       if($result)
