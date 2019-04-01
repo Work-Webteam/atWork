@@ -110,3 +110,16 @@ function siteminder_user_form_submit($form, FormStateInterface $form_state) {
   // Set redirect to login form.
   $form_state->setRedirect('<front>');
 }
+
+/**
+ * Custom code to use field_user_display_name rather than username for users.
+ */
+function siteminder_user_format_name_alter(&$name, $account){
+  $current_user = \Drupal\user\Entity\User::load($account->id());
+  $display_name = $current_user->get("field_user_display_name")->value;
+  if($display_name != NULL) {
+    $name = t('@username', [
+      '@username' => t($display_name),
+    ]);
+  }
+}

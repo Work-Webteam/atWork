@@ -190,6 +190,7 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
         unset($this_form[$key]);
       }
     }
+    // Check if we have assiged data multiple times.
     if(count($this_form) != count(array_unique($this_form))){
       $form_state->setErrorByName('', $this->t('You may not assign more than one column label to a field. Please make sure you have not assigned a field to more than one import column.'));
     }
