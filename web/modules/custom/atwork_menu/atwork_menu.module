@@ -7,6 +7,10 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+use Drupal\group\Entity\Group;
+use Drupal\Core\Entity\EntityManager;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_help().
@@ -51,3 +55,58 @@ function atwork_menu_add_links_to_menu_items(&$item) {
 		$item['link'] = $url_object;
 	}
 }
+
+/**
+ * Implements hook_ENTITY_TYPE_insert() for group entities.
+ */
+function atwork_menu_group_insert(Group $group) {
+	// Create group sidebar menu.
+	\Drupal::entityTypeManager()->getStorage('menu')
+	->create([
+			'langcode' => 'en',
+			'status' => TRUE,
+			'dependencies' => array(),
+			'id' => str_replace(' ', '-', strtolower($group->label())),
+			'label' => $group->label() . ' Menu',
+			'description' => '',
+			'locked' => TRUE,
+	])->save();
+	
+	// Create some default links for group menus
+	MenuLinkContent::create([
+			'title' => $group->label() . 'Home',
+			'link' => ['uri' => 'internal:' . $group->url()],
+			'menu_name' => $group->label(),
+	])->save();
+	
+	MenuLinkContent::create([
+			'title' => 'Group Posts',
+			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
+			'menu_name' => $group->label(),
+	])->save();
+	
+	MenuLinkContent::create([
+			'title' => 'Group Photo Galleries',
+			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
+			'menu_name' => $group->label(),
+	])->save();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for group sidebar nav menu.
+ */
+function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
+	$group_name = \Drupal::routeMatch()->getParameters()->get('group')->get('label')->getValue()[0]['value'];
+	$variables['group_name'] = $group_name;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
