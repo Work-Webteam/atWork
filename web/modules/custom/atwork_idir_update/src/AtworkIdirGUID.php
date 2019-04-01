@@ -110,14 +110,18 @@ class AtworkIdirGUID
               break;
             case "name":
               if(isset($fields[$this->input_matrix["name"]])){
-                $this_user->set('name', strtolower($fields[$this->input_matrix["name"]]));
+                $this_user->setUsername(strtolower($fields[$this->input_matrix["name"]]));
               }
               break;
             case "pass":
               if(isset($fields[$this->input_matrix["pass"]])){
-                $this_user->setPassword('pass', $fields[$this->input_matrix["pass"]]);
+                $this_user->setPassword($fields[$this->input_matrix["pass"]]);
               }
               break;
+            case "mail":
+              if(isset($fields[$this->input_matrix["mail"]])){
+                $this_user->setEmail($fields[$this->input_matrix["mail"]]);
+              }
           }
         } else {
           // Set it with appropriate column value.
