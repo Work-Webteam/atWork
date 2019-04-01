@@ -74,21 +74,24 @@ function atwork_menu_group_insert(Group $group) {
 	
 	// Create some default links for group menus
 	MenuLinkContent::create([
-			'title' => $group->label() . 'Home',
+			'title' => $group->label() . ' Home',
 			'link' => ['uri' => 'internal:' . $group->url()],
 			'menu_name' => $group->label(),
+			'weight' => 0,
 	])->save();
 	
 	MenuLinkContent::create([
 			'title' => 'Group Posts',
 			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
 			'menu_name' => $group->label(),
+			'weight' => 1,
 	])->save();
 	
 	MenuLinkContent::create([
 			'title' => 'Group Photo Galleries',
 			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
 			'menu_name' => $group->label(),
+			'weight' => 2,
 	])->save();
 }
 
