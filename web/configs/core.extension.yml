@@ -104,6 +104,7 @@ module:
   serialization: 0
   settings_tray: 0
   shortcut: 0
+  simplify_menu: 0
   statistics: 0
   superfish: 0
   syslog: 0
