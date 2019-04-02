@@ -166,7 +166,7 @@ class AtworkIdirAddUpdate extends AtworkIdirGUID
         $this->new_fields[$value] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
       } elseif($key == "field_user_guid"){
         // Keep GUID in place, in case we re-activate this user, they will get back their old content
-        $this->new_fields[$value] = $user_array[$value];
+        //$this->new_fields[$value] = $user_array[$value];
 
       } else {
         // We are removing all info. We don't want to overwrite name or mail with init or login name, so if it has already been set, ignore
