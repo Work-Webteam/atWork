@@ -88,12 +88,12 @@ class AtworkIdirGUID
       'init'=>'init',
       'name'=>'name',
       'pass'=>'pass',
-      'mail'=>'mail'
+      'mail'=>'mail',
+      'field_user_guid'=>'field_user_guid',
     ];
     // grab all user fields from AtowrkIdirUpdateInputMatrix - returns an array
     $matrix = new AtworkIdirUpdateInputMatrix();
     $fillable_user_fields = $matrix->getUserFieldArray();
-    $all_fields = \Drupal::service('entity_field.manager')->getFieldDefinitions('user', 'user');
 
     // Loop through all available user fields
     foreach($fillable_user_fields as $key=>$value){
@@ -121,7 +121,12 @@ class AtworkIdirGUID
             case "mail":
               if(isset($fields[$this->input_matrix["mail"]])){
                 $this_user->setEmail($fields[$this->input_matrix["mail"]]);
+                break;
               }
+            case "field_user_guid":
+              // Don't want to mess with guid if this is a delete - need to only have one in the system.
+              $type == "delete"?:$this_user->set('field_user_guid', $fields[$this->input_matrix["field_user_guid"]]);
+              break;
           }
         } else {
           // Set it with appropriate column value.
@@ -132,7 +137,7 @@ class AtworkIdirGUID
             isset($this->input_matrix[$key]) ? $this_user->set($key, substr($fields[$this->input_matrix[$key]], 0, 7)) : $this_user->set($key, "");
 
           } else {
-            isset($this->input_matrix[$key]) ? $this_user->set($key, $fields[$this->input_matrix[$key]]) : $this_user->set($key, "");
+            $this_user->set($key, $fields[$this->input_matrix[$key]]);
           }
         }
       }
