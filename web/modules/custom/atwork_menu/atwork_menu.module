@@ -49,7 +49,7 @@ function atwork_menu_add_links_to_menu_items(&$item) {
 	// Check for child links and recurse, if any
 	if($item['below']) {
 		foreach ($item['below'] as $child) {
-			atwork_menu_add_links_to_menu_items($child);
+			atwork_menu_add_links_to_menu_items($child); 
 		}
 	}else {
 		$item['link'] = $url_object;
@@ -92,6 +92,40 @@ function atwork_menu_group_insert(Group $group) {
 	])->save();
 }
 
+
+function atwork_menu_group_update(Group $group) {
+	// Create group sidebar menu.
+	\Drupal::entityTypeManager()->getStorage('menu')
+	->create([
+			'langcode' => 'en',
+			'status' => TRUE,
+			'dependencies' => array(),
+			'id' => str_replace(' ', '-', strtolower($group->label())),
+			'label' => $group->label() . ' Menu',
+			'description' => '',
+			'locked' => TRUE,
+	])->save();
+	
+	// Create some default links for group menus
+	MenuLinkContent::create([
+			'title' => $group->label() . 'Home',
+			'link' => ['uri' => 'internal:' . $group->url()],
+			'menu_name' => $group->label(),
+	])->save();
+	
+	MenuLinkContent::create([
+			'title' => 'Group Posts',
+			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
+			'menu_name' => $group->label(),
+	])->save();
+	
+	MenuLinkContent::create([
+			'title' => 'Group Photo Galleries',
+			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
+			'menu_name' => $group->label(),
+	])->save();
+}
+
 /**
  * Implements hook_preprocess_HOOK() for group sidebar nav menu.
  */
@@ -100,13 +134,20 @@ function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
 	$variables['group_name'] = $group_name;
 }
 	
+/**
+ * Implements hook_form_alter().
+ *
+ */
+function atwork_menu_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+	$group_label = \Drupal::routeMatch()->getParameters();
+	ksm($group_label->all()); 
+	ksm(\Drupal::entityTypeManager()->getStorage('menu')->loadByProperties(['id' => $group_label]));
+	ksm(\Drupal::entityTypeManager()->getStorage('menu')->loadByProperties(['id' => 'banana']));
 	
+	// Set menu redirect to redirect group sidebar menu config page back to group page.
+	//if() {
+	//	$route_params = $form_state->getRedirect()->getRouteParameters();
+	//	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
+	//}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+}

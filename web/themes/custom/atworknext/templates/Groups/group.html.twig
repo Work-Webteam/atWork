@@ -103,6 +103,12 @@
         {{ photo_galleries }}
         <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
     </div>
+    {% if admin %}
+    <div>
+        {{ administer_sidebar }}
+        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+    </div>
+    {% endif %}
     {% if member %}
     <div>
         {{ leave_link }}

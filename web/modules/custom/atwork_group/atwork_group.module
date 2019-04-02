@@ -41,11 +41,16 @@ function atworknext_preprocess_node__group_post(&$variables) {
  *
  */
 function atworknext_preprocess_group(&$variables) {
-	// Is the user a member of this group?
+	// Is the user a member of this group? Admin?
 	if($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
 		$variables['member'] = TRUE;
+		// Check for group admin role
+		if(array_key_exists('atwork_groups-admin', $variables['group']->getMember(\Drupal::currentUser()->getAccount())->getRoles())) {
+		  $variables['admin'] = TRUE;
+		}
 	} else {
 		$variables['member'] = FALSE;
+		$variables['admin'] = FALSE;
 	}
 	
 	// Get group info
@@ -71,6 +76,10 @@ function atworknext_preprocess_group(&$variables) {
 	
 	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['group_posts'] = $linkObject->toRenderable();
+	
+	// Note: Group label has been used as menu id
+	$linkObject = Link ::createFromRoute(t('Administer Group Sidebar Menu'), 'entity.menu.edit_form', ["menu" => $group_label]);
+	$variables['administer_sidebar'] = $linkObject->toRenderable();
 	
 	// Load Related Content Block
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
