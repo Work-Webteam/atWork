@@ -139,11 +139,13 @@ function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
  *
  */
 function atwork_menu_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-	$group_params = \Drupal::routeMatch()->getParameters();
-	$group = \Drupal::entityTypeManager()->getStorage('group')->loadByProperties(['label' => $group_params->all()['menu']->id()]);
-	$group = reset($group);
-	// Set menu redirect to redirect group sidebar menu config page back to group page.
-	if($group !== false) {
-		$form_state->setRedirect('entity.group.canonical', ['group' => $group->id()]);
+	if($form_id === 'menu_edit_form') {
+	  $group_params = \Drupal::routeMatch()->getParameters();
+	  $group = \Drupal::entityTypeManager()->getStorage('group')->loadByProperties(['label' => $group_params->all()['menu']->id()]);
+	  $group = reset($group);
+	  // Set menu redirect to redirect group sidebar menu config page back to group page.
+	  if($group !== false) {
+	  	$form_state->setRedirect('entity.group.canonical', ['group' => $group->id()]);
+	  }
 	}
 }
