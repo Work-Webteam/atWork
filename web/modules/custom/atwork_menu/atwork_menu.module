@@ -66,7 +66,7 @@ function atwork_menu_group_insert(Group $group) {
 			'langcode' => 'en',
 			'status' => TRUE,
 			'dependencies' => array(),
-			'id' => str_replace(' ', '-', strtolower($group->label())),
+			'id' => str_replace(' ', '_', strtolower($group->label())),
 			'label' => $group->label() . ' Menu',
 			'description' => '',
 			'locked' => TRUE,
@@ -76,60 +76,51 @@ function atwork_menu_group_insert(Group $group) {
 	MenuLinkContent::create([
 			'title' => $group->label() . 'Home',
 			'link' => ['uri' => 'internal:' . $group->url()],
-			'menu_name' => $group->label(),
+			'menu_name' => $group->label() . ' Menu',
 	])->save();
 	
 	MenuLinkContent::create([
 			'title' => 'Group Posts',
 			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
-			'menu_name' => $group->label(),
+			'menu_name' => $group->label() . ' Menu',
 	])->save();
 	
 	MenuLinkContent::create([
 			'title' => 'Group Photo Galleries',
 			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
-			'menu_name' => $group->label(),
+			'menu_name' => $group->label() . ' Menu',
 	])->save();
 }
 
-
-function atwork_menu_group_update(Group $group) {
-	// Create group sidebar menu.
-	\Drupal::entityTypeManager()->getStorage('menu')
-	->create([
-			'langcode' => 'en',
-			'status' => TRUE,
-			'dependencies' => array(),
-			'id' => str_replace(' ', '-', strtolower($group->label())),
-			'label' => $group->label() . ' Menu',
-			'description' => '',
-			'locked' => TRUE,
-	])->save();
-	
-	// Create some default links for group menus
-	MenuLinkContent::create([
-			'title' => $group->label() . 'Home',
-			'link' => ['uri' => 'internal:' . $group->url()],
-			'menu_name' => $group->label(),
-	])->save();
-	
-	MenuLinkContent::create([
-			'title' => 'Group Posts',
-			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
-			'menu_name' => $group->label(),
-	])->save();
-	
-	MenuLinkContent::create([
-			'title' => 'Group Photo Galleries',
-			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
-			'menu_name' => $group->label(),
-	])->save();
+function atwork_menu_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+	// If this is a new program area page, create a menu
+	if($entity->get('type')->getValue()[0]['target_id'] && $entity->get('type')->getValue()[0]['target_id'] == 'background_page'){
+		\Drupal::entityTypeManager()->getStorage('menu')
+		->create([
+				'langcode' => 'en',
+				'status' => TRUE,
+				'dependencies' => array(),
+				'id' => str_replace(' ', '_', strtolower($entity->get('title')->getValue()[0]['value'])),
+				'label' => $entity->get('title')->getValue()[0]['value'] . ' Menu',
+				'description' => '',
+				'locked' => TRUE,
+		])->save();
+		
+		// Create some default links for program menus
+		MenuLinkContent::create([
+				'title' => $entity->get('title')->getValue()[0]['value'] . 'Home',
+				'link' => ['uri' => 'internal:/node/' . $entity->get('nid')->getValue()[0]['value']],
+				'menu_name' => $entity->get('title')->getValue()[0]['value'] . ' Menu',
+		])->save();
+	}
 }
 
 /**
  * Implements hook_preprocess_HOOK() for group sidebar nav menu.
  */
 function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
+	$node_types = \Drupal\node\Entity\NodeType::loadMultiple();
+	ksm($node_types);
 	$group_name = \Drupal::routeMatch()->getParameters()->get('group')->get('label')->getValue()[0]['value'];
 	$variables['group_name'] = $group_name;
 }
