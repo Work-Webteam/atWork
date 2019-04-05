@@ -31,17 +31,17 @@
 {% set classes = [] %}
 {% for item in items %}
 
-  <div id="atwork-main-menu" class="navbar">
+  <div class="menu-header-{{ loop.index }} navbar">
     <div class="subnav">
       <button class="subnavbtn">{{ item.title }}</button>
-        <div class="subnav-content">
+        <div class="subnav-content-1">
         {% for child in item.below %}
           {% if child.below is empty %}
             <a href="{{ child.url }}">{{ child.title }}</a>
           {% endif %}
           {% if child.below is not empty %}
             <button class="subnavbtn">{{ child.title }} </button>
-            <div class="subnav-content">
+            <div class="subnav-content-2">
               {% for grandchild in child.below %}
                 <a href="{{ grandchild.url }}">{{ grandchild.title }}</a>
               {% endfor %}
@@ -53,47 +53,3 @@
   </div>
 
 {% endfor %}
-
-
-
-
-{#
-{% for item in items %}
-  <ul id="atwork-main-menu" class="nav navbar">
-    
-    {% if item.below is empty %}
-      <li class="atwork-menu-depth-1 no-children nav-item"><a class="nav-link" href="{{ item.url }}">{{ item.title }}</a></li>
-    {% endif %}
-    
-    {% if item.below is not empty %}
-      <li class="atwork-menu-depth-1 nav-item submenu-inactive">
-        <a href="{{ item.url }}">{{ item.title }}</a>
-        {% for child in item.below %}
-          <ul>
-          
-            {% if child.below is empty %}
-              <li class="atwork-menu-depth-2 no-children">
-                <a href="{{ child.url }}">{{ child.title }}</a>
-              </li>
-            {% endif %}
-            
-            {% if child.below is not empty %}
-              <li class="atwork-menu-depth-2">
-                <a href="{{ child.url }}">{{ child.title }}</a>
-                  <ul>
-                    {% for child in child.below %}
-                      <li class="atwork-menu-depth-3">
-                        <a href="{{ child.url }}">{{ child.title }}</a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-              </li>
-            {% endif %}
-          </ul>
-        {% endfor %}
-      </li>
-    {% endif %}
-    
-  </ul>
-{% endfor %}
-#}
