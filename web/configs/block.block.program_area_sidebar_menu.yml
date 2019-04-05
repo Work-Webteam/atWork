@@ -7,6 +7,7 @@ dependencies:
   module:
     - block_content
     - ctools
+    - node
   theme:
     - atworknext
 id: program_area_sidebar_menu
@@ -26,6 +27,13 @@ settings:
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
+    bundles:
+      background_page: background_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  node_type:
+    id: node_type
     bundles:
       background_page: background_page
     negate: false

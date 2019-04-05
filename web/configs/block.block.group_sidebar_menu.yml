@@ -7,6 +7,7 @@ dependencies:
   module:
     - block_content
     - ctools
+    - group
   theme:
     - atworknext
 id: group_sidebar_menu
@@ -27,6 +28,13 @@ visibility:
   'entity_bundle:group':
     id: 'entity_bundle:group'
     bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'
+  group_type:
+    id: group_type
+    group_types:
       atwork_groups: atwork_groups
     negate: false
     context_mapping:

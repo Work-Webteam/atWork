@@ -78,7 +78,7 @@ function atworknext_preprocess_group(&$variables) {
 	$variables['group_posts'] = $linkObject->toRenderable();
 	
 	// Note: Group label has been used as menu id
-	$linkObject = Link ::createFromRoute(t('Administer Group Sidebar Menu'), 'entity.menu.edit_form', ["menu" => $group_label]);
+	$linkObject = Link ::createFromRoute(t('Administer Group Sidebar Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['administer_sidebar'] = $linkObject->toRenderable();
 	
 	// Load Related Content Block

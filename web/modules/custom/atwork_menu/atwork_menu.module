@@ -9,6 +9,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
 use Drupal\group\Entity\Group;
 use Drupal\Core\Entity\EntityManager;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\Core\Link;
 
@@ -58,6 +59,8 @@ function atwork_menu_add_links_to_menu_items(&$item) {
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for group entities.
+ * 
+ * Create sidebar nav menu on creation of new atwork group.
  */
 function atwork_menu_group_insert(Group $group) {
 	// Create group sidebar menu.
@@ -66,8 +69,8 @@ function atwork_menu_group_insert(Group $group) {
 			'langcode' => 'en',
 			'status' => TRUE,
 			'dependencies' => array(),
-			'id' => str_replace(' ', '_', strtolower($group->label())),
-			'label' => $group->label() . ' Menu',
+			'id' => str_replace(' ', '-', strtolower($group->label())),
+			'label' => $group->label(),
 			'description' => '',
 			'locked' => TRUE,
 	])->save();
@@ -76,44 +79,46 @@ function atwork_menu_group_insert(Group $group) {
 	MenuLinkContent::create([
 			'title' => $group->label() . ' Home',
 			'link' => ['uri' => 'internal:' . $group->url()],
-			'menu_name' => $group->label() . ' Menu',
+			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 	])->save();
 	
 	MenuLinkContent::create([
 			'title' => 'Group Posts',
 			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
-			'menu_name' => $group->label() . ' Menu',
+			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 	])->save();
 	
 	MenuLinkContent::create([
 			'title' => 'Group Photo Galleries',
 			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
-			'menu_name' => $group->label() . ' Menu',
+			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 	])->save();
 }
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for program area pages.
+ * 
+ * Create sidebar nav menu on creation of new program area background page.
  */
-function atwork_menu_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+function atwork_menu_node_insert(Drupal\node\Entity\Node $node) {
 	// If this is a new program area page, create a menu
-	if($entity->get('type')->getValue()[0]['target_id'] && $entity->get('type')->getValue()[0]['target_id'] == 'background_page'){
+	if($node->get('type') && $node->get('type')->getValue()[0]['target_id'] == 'background_page'){
 		\Drupal::entityTypeManager()->getStorage('menu')
 		->create([
 				'langcode' => 'en',
 				'status' => TRUE,
 				'dependencies' => array(),
-				'id' => str_replace(' ', '_', strtolower($entity->get('title')->getValue()[0]['value'])),
-				'label' => $entity->get('title')->getValue()[0]['value'] . ' Menu',
+				'id' => str_replace(' ', '-', strtolower($node->get('title')->getValue()[0]['value'])),
+				'label' => $node->get('title')->getValue()[0]['value'],
 				'description' => '',
 				'locked' => TRUE,
 		])->save();
 		
 	  // Create some default links for program area menus
 		MenuLinkContent::create([
-				'title' => $entity->get('title')->getValue()[0]['value'] . ' Home',
-				'link' => ['uri' => 'internal:/node/' . $entity->get('nid')->getValue()[0]['value']],
-				'menu_name' => str_replace(' ', '_', strtolower($entity->get('title')->getValue()[0]['value'])),
+				'title' => $node->get('title')->getValue()[0]['value'] . ' Home',
+				'link' => ['uri' => 'internal:/node/' . $node->get('nid')->getValue()[0]['value']],
+				'menu_name' => str_replace(' ', '-', strtolower($node->get('title')->getValue()[0]['value'])),
 				'weight' => 0,
 		])->save();
 	}
@@ -124,16 +129,23 @@ function atwork_menu_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
  */
 function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
 	$group_name = \Drupal::routeMatch()->getParameters()->get('group')->get('label')->getValue()[0]['value'];
-	$variables['group_name'] = $group_name;
+	$variables['group_name'] = str_replace(' ', '-', strtolower($group_name));
 }
 	
 /**
-* Implements hook_preprocess_HOOK() for group sidebar nav menu.
+* Implements hook_preprocess_HOOK() for program area sidebar nav menu.
 */
 function atworknext_preprocess_block__program_area_sidebar_menu(&$variables) {
-	$program_name = str_replace(' ', '_', strtolower(\Drupal::routeMatch()->getParameters()->get('node')->get('title')->getValue()[0]['value']));
+	// These or whatever other roles can alter the sidebar nav menu for program areas
+	$auth_roles = ['administrator', 'program_area_admin'];
+	$variables['admin'] = FALSE;
+	if(count(array_intersect($auth_roles, \Drupal::currentUser()->getAccount()->getRoles())) > 0) {
+	  $variables['admin'] = TRUE;
+	}
+	
+	$program_name = str_replace(' ', '-', strtolower(\Drupal::routeMatch()->getParameters()->get('node')->get('title')->getValue()[0]['value']));
 	$variables['program_name'] = $program_name;
-
+	
 	// No other good place for this, really
 	$linkObject = Link ::createFromRoute(t('Administer Program Area Sidebar Menu'), 'entity.menu.edit_form', ["menu" => $program_name]);
 	$variables['administer_sidebar'] = $linkObject->toRenderable();
@@ -142,16 +154,36 @@ function atworknext_preprocess_block__program_area_sidebar_menu(&$variables) {
 /**
  * Implements hook_form_alter().
  *
+ * Set menu edit page redirects for group and program area sidebars
  */
 function atwork_menu_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 	if($form_id === 'menu_edit_form') {
-	  $group_params = \Drupal::routeMatch()->getParameters();
-	  $group = \Drupal::entityTypeManager()->getStorage('group')->loadByProperties(['label' => $group_params->all()['menu']->id()]);
-	  $group = reset($group);
-	  // Set menu redirect to redirect group sidebar menu config page back to group page.
-	  if($group !== false) {
-	  	$form_state->setRedirect('entity.group.canonical', ['group' => $group->id()]);
-	  }
+		$form['actions']['submit']['#submit'][] = 'atwork_menu_sidebar_menu_edit_form_submit';
+	}
+}
+
+/**
+ * Implements custom submit handler
+ * 
+ * Add a redirect to group sidebar menu and program area sidebar menu config pages.
+ */
+function atwork_menu_sidebar_menu_edit_form_submit(array $form, \Drupal\Core\Form\FormStateInterface$form_state){
+  $route_params = \Drupal::routeMatch()->getParameters();
+  // Is it a group sidebar  menu? If yes, set redirect.
+  $groups = \Drupal::entityTypeManager()->getStorage('group')->loadMultiple();
+  $group = \Drupal::entityTypeManager()->getStorage('group')->loadByProperties(['label' => $route_params->all()['menu']->label()]);
+  $group = reset($group);
+  // Set menu redirect to redirect group sidebar menu config page back to group page.
+  if($group !== FALSE) {
+  	$form_state->setRedirect('entity.group.canonical', ['group' => $group->id()]);
+  	return;
+  }
+  // Is it a program area sidebar menu? If yes, set redirect.
+	$program_area = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['title' => $route_params->all()['menu']->label()]);
+	$program_area = reset($program_area);
+	if($program_area !== FALSE) {
+		$form_state->setRedirect('entity.node.canonical', ['node' => $program_area->id()]);
+		return;
 	}
 }
 

@@ -1,4 +1,4 @@
-name: 'atwork_menu'
+name: 'Atwork Menu'
 type: module
 description: 'Customizations for the main menu navigation.'
 core: 8.x

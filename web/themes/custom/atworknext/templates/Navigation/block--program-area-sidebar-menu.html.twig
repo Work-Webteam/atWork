@@ -47,8 +47,9 @@
 #}
 
 {% set items = simplify_menu(program_name) %}
- 
-{{ administer_sidebar }}
+{% if admin %}
+  {{ administer_sidebar }}
+{% endif %}
  
 <div id="atworkgroups-sidebar-menu>
   <ul>

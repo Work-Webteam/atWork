@@ -1,0 +1,17 @@
+uuid: cf35e2bd-ac59-4b85-ae46-33a076cacca3
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+  enforced:
+    config:
+      - user.role.program_area_admin
+id: atwork_groups-89c82baba
+label: 'Program Area Admin'
+weight: 3
+internal: true
+audience: outsider
+group_type: atwork_groups
+permissions_ui: false
+permissions: {  }
