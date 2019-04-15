@@ -2,10 +2,7 @@ uuid: 508e1380-57ed-4ee2-b535-13b3ca827500
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:basic:75f642c1-3057-4a23-a7e5-386670cbbfa6'
   module:
-    - block_content
     - ctools
     - group
   theme:
@@ -13,14 +10,14 @@ dependencies:
 id: group_sidebar_menu
 theme: atworknext
 region: sidebar_nav
-weight: 0
+weight: -9
 provider: null
 plugin: 'block_content:75f642c1-3057-4a23-a7e5-386670cbbfa6'
 settings:
   id: 'block_content:75f642c1-3057-4a23-a7e5-386670cbbfa6'
   label: 'Group Sidebar Menu'
-  provider: block_content
-  label_display: visible
+  provider: core
+  label_display: '0'
   status: true
   info: ''
   view_mode: full

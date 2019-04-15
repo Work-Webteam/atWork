@@ -50,9 +50,9 @@
 {% if admin %}
   {{ administer_sidebar }}
 {% endif %}
- 
-<div id="atworkgroups-sidebar-menu>
-  <ul>
+<aside id="side-menu">
+<h3>Menu</h3>
+<ul id="atworkgroups-sidebar-menu">
   {% for item in items['menu_tree'] %}
     <li><a href="{{ item['url'] }}">{{ item['text'] }}</a></li>
     {% if item['submenu'] %}
@@ -70,5 +70,5 @@
       </ul>
     {% endif %}
   {% endfor %}
-  </ul>
-</div>
+</ul>
+</aside>

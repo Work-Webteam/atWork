@@ -26,16 +26,213 @@
     }
   }
 }
-// See Superfish/Default.css for customization css
+// Superfish main navigation
 #navbar.navbar.container {
   padding-left:0;
   padding-right:0;
-  #navbar-collapse {
-    border:solid 1px aqua;
-    @include size1416;
-    padding:0;
+  @include size1416;
+  padding:0;
     .next-menu-link {
       color: $white;
+  }
+  section#block-mainnavigation {
+    ul.sf-menu.sf-style-none {
+      float: left;
+      margin-bottom: 0px;
+      padding: 0;
     }
+    ul.sf-menu.sf-style-none.sf-navbar {
+      width: 100%;
+    }
+    ul.sf-menu.sf-style-none ul {
+      margin: 0;
+      padding: 0;
+    }
+    ul.sf-menu.sf-style-none a,
+    ul.sf-menu.sf-style-none a:visited,
+    ul.sf-menu.sf-style-none span.nolink {
+      border: 0 none;
+      padding: 0.75em 1em;
+    }
+    ul.sf-menu.sf-style-none a.sf-with-ul,
+    ul.sf-menu.sf-style-none span.nolink.sf-with-ul {
+      padding-right: 2.25em;
+    }
+    ul.sf-menu.sf-style-none.rtl a.sf-with-ul,
+    ul.sf-menu.sf-style-none.rtl span.nolink.sf-with-ul {
+      padding-left: 2.25em;
+      padding-right: 1em;
+    }
+    ul.sf-menu.sf-style-none span.sf-description {
+      color: #13a;
+      display: block;
+      font-size: smaller;
+      line-height: 1.5;
+      margin: 0.25em 0 0 0;
+      padding: 0;
+    }
+    ul.sf-menu.sf-style-none li,
+    ul.sf-menu.sf-style-none.sf-navbar {
+      background: transparent;
+    }
+    ul.sf-menu.sf-style-none li li,
+    ul.sf-menu.sf-style-none.sf-navbar > li > ul {
+      background: #CCCCCC;
+    }
+    ul.sf-menu.sf-style-none li li li {
+      background: $comment-blue;
+      border-bottom:solid 1px $white;
+    }
+    ul.sf-menu.sf-style-none li:hover,
+    ul.sf-menu.sf-style-none li.sfHover,
+    ul.sf-menu.sf-style-none a:focus,
+    ul.sf-menu.sf-style-none a:hover,
+    ul.sf-menu.sf-style-none span.nolink:hover {
+      background: $mtBlue1;
+      outline: 0;
+      text-decoration: none;
+      color: $mtTeal;
+    }
+    div.sf-accordion-toggle.sf-style-none a {
+      background: #bdd2ff;
+      color: #13a;
+      display: inline-block;
+      font-weight: bold;
+      padding: 1em 3em 1em 1em;
+      position: relative;
+    }
+    div.sf-accordion-toggle.sf-style-none  > a:after {
+      content: "≡";
+      font-size: 2em;
+      position: absolute;
+      right: 0.5em;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      speak: none;
+    }
+    div.sf-accordion-toggle.sf-style-none a.sf-expanded,
+    ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded {
+      background: #cfdeff;
+    }
+    div.sf-accordion-toggle.sf-style-none a.sf-expanded,
+    ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded > a,
+    ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded > span.nolink {
+      font-weight: bold;
+    }
+    ul.sf-menu.sf-style-none.sf-accordion li a.sf-accordion-button {
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 499;
+    }
+    ul.sf-menu.sf-style-none.sf-accordion li li a,
+    ul.sf-menu.sf-style-none.sf-accordion li li span.nolink {
+      padding-left: 2em;
+    }
+    ul.sf-menu.sf-style-none.sf-accordion li li li a,
+    ul.sf-menu.sf-style-none.sf-accordion li li li span.nolink {
+      padding-left: 3em;
+    }
+    ul.sf-menu.sf-style-none.sf-accordion li li li li a,
+    ul.sf-menu.sf-style-none.sf-accordion li li li li span.nolink {
+      padding-left: 4em;
+    }
+    ul.sf-menu.sf-style-none.sf-accordion li li li li li a,
+    ul.sf-menu.sf-style-none.sf-accordion li li li li li span.nolink {
+      padding-left: 5em;
+    }
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li a,
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li span.nolink {
+      padding-left: auto;
+      padding-right: 2em;
+    }
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li li a,
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li li span.nolink {
+      padding-left: auto;
+      padding-right: 3em;
+    }
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li a,
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li span.nolink {
+      padding-left: auto;
+      padding-right: 4em;
+    }
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li li a,
+    ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li li span.nolink {
+      padding-left: auto;
+      padding-right: 5em;
+    }
+    ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper ol,
+    ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper ol li {
+      margin: 0;
+      padding: 0;
+    }
+    ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper a.menuparent,
+    ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper span.nolink.menuparent {
+      font-weight: bold;
+    }
+// Superfish Main menu changes
+    .sf-clicked {
+      color:$mtTeal;
+    }
+    a.sf-depth-3.next-menu-link {
+      color:black;
+    }
+    .sf-depth-2 {
+      > ul {
+        border: solid 1px #CCCCCC;
+      }
+    }
+  }
+}
+// Group and Landing Page side menus
+body.path-group,
+body.page-node-type-program-area-content {
+  .region-sidebar-nav {
+    @include make-sm-column(3);
+    padding-left:0px;
+    padding-right:0px;
+    aside#side-menu {
+      border:solid 1px $exec-greyborder;
+      margin-top:10px;
+      margin-bottom:10px;
+      @include size1416;
+      h3 {
+        background-color: $mtTeal;
+        color:$white;
+        text-align: center;
+        padding:7px 0;
+        margin:0;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+      ul {
+        list-style: none;
+        padding:0;
+        margin:0;
+        a {
+          display:block;
+          border-bottom:solid 1px $exec-greyborder;
+          padding: 10px;
+          max-width: inherit;
+          &:hover {
+            background-color:$exec-greyborder;
+            color:$black;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  nav.tabs, .group-page-content, .node--type-program-area-content {
+    @include make-sm-column(9);
+    @include make-sm-column-push(0);
+    margin-top:10px;
+  }
+  nav.tabs {
+    @include size1416;
   }
 }

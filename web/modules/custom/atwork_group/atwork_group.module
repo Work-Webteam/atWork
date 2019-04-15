@@ -17,7 +17,7 @@ use Drupal\group\Entity\Group;
 
 /**
  * Implements hook_preprocess_HOOK().
- * 
+ *
  */
 function atworknext_preprocess_node__group_post(&$variables) {
 	// Get the group info for the group content (post)
@@ -27,7 +27,7 @@ function atworknext_preprocess_node__group_post(&$variables) {
 			if($variables['node']->id() == $group_content->getEntity()->id()) $variables['label'] = $group_content->getGroup()->label();
 		}
 	}
-	
+
 	// Load Related Content Block
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
 	$block_content = \Drupal::entityTypeManager()
@@ -52,42 +52,42 @@ function atworknext_preprocess_group(&$variables) {
 		$variables['member'] = FALSE;
 		$variables['admin'] = FALSE;
 	}
-	
+
 	// Get group info
 	$group = Group::load($variables['group']->id());
 	$group_id = $group->id();
 	$group_label = $group->get('label')->getValue()[0]['value'];
-	
+
 	// Add links to group content forms and view pages
-	$linkObject = Link ::createFromRoute(t('Create New Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
+	$linkObject = Link ::createFromRoute(t('Create Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
 	$variables['post_link'] = $linkObject->toRenderable();
-	
-	$linkObject = Link ::createFromRoute(t('Create New Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
+
+	$linkObject = Link ::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
 	$variables['photos_link'] = $linkObject->toRenderable();
-	
+
 	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
 	$variables['join_link'] = $linkObject->toRenderable();
-	
+
 	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
 	$variables['leave_link'] = $linkObject->toRenderable();
-	
-	$linkObject = Link ::createFromRoute(t('View All Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
+
+	$linkObject = Link ::createFromRoute(t('View Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['photo_galleries'] = $linkObject->toRenderable();
-	
-	$linkObject = Link ::createFromRoute(t('View All Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
+
+	$linkObject = Link ::createFromRoute(t('View Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['group_posts'] = $linkObject->toRenderable();
-	
+
 	// Note: Group label has been used as menu id
-	$linkObject = Link ::createFromRoute(t('Administer Group Sidebar Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
+	$linkObject = Link ::createFromRoute(t('Administer Group Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
 	$variables['administer_sidebar'] = $linkObject->toRenderable();
-	
+
 	// Load Related Content Block
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
 	$block_content = \Drupal::entityTypeManager()
 	->getViewBuilder('block')
 	->view($block);
  	$variables['related_content'] = $block_content;
-	
+
 	// Load Group Spotlight
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_4');
 	$block_content = \Drupal::entityTypeManager()
@@ -126,11 +126,11 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 	if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
 	}
-	
+
 	if($form_id == "group_content_group_content_type_d7657d2029e9e_add_form" || $form_id == "group_content_atwork_groups-group_node-photos_add_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_content_submit';
 	}
-	
+
 	if($form_id == "group_content_atwork_groups-group_membership_add_form") {
 	  $form['path']['#access'] = FALSE;
 	  $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
@@ -167,7 +167,7 @@ function atwork_group_join_group_submit(array $form, FormStateInterface $form_st
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
- * 
+ *
  */
 function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, array $variables) {
 	if ($node = \Drupal::routeMatch()->getParameter('node')) {

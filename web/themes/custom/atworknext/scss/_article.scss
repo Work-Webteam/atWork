@@ -241,44 +241,32 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
 
 
 //Group Ad Space on program pages
-#block-views-block-related-content-block-2,
-#block-views-block-related-content-block-4 {
-  clear:both;
-  margin-top:15px;
-  margin-bottom:15px;
-  padding-left:0px;
-  padding-right:0px;
-  #prog-ad-tab {
-    display: inline-block;
-    background-color: $comment-blue;
-    padding: 4px 10px 0px;
-    border-left: solid 1px $exec-greyborder;
-    border-top: solid 1px $exec-greyborder;
-    border-right: solid 1px $exec-greyborder;
-    h3 {
-      padding:0;
-      margin:0;
-    }
-  }
-  #prog-ad-box {
-    display: table;
-    width:100%;
-    border:solid 1px $exec-greyborder;
-    #prog-ad-content, #prog-ad-image {
-        display: table-cell;
-    }
-    #prog-ad-content {
-      padding: 10px;
-      vertical-align: top;
-      background-color: $comment-blue;
-      h5 {
-        margin:0;
+body.path-group, body.page-node-type-background-page {
+  div#group-ad-space, #program-ad-space {
+    display:flex;
+    flex-direction: column;
+    flex-wrap:nowrap;
+    margin-top:10px;
+    margin-bottom:10px;
+    div#ad-box {
+      display:flex;
+      flex-direction: row;
+      border:solid 1px $exec-greyborder;
+      div#ad-content {
+        padding: 5px 10px;
+        flex: 1 400%
+      }
+      div#ad-image {
+        flex:0 1 auto;
       }
     }
-    #prog-ad-image {
-      position: relative;
-      right:0;
-      width:225px;
+    #ad-tab h3 {
+      background-color: $comment-blue;
+      padding:8px;
+      margin:0px;
+      border-left: solid 1px $exec-greyborder;
+      border-top: solid 1px $exec-greyborder;
+      border-right: solid 1px $exec-greyborder;
     }
   }
 }

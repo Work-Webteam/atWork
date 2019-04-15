@@ -22,6 +22,8 @@ section.col-sm-12 {
   .views-element-container {
     @include make-sm-column(12);
     @include make-sm-column-push(0);
+    padding-left:0px;
+    padding-right:0px;
   }
 }
 // Header and Footer for all pages except home page

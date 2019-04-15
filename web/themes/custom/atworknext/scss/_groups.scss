@@ -66,6 +66,7 @@ section.col-sm-12 .group-page-content {
   padding-bottom: 12px;
   }
   section.group-landing-info {
+    @include size1416;
     display: flex;
     flex-direction: row;
     border-top:solid 8px $mtTeal;
@@ -75,10 +76,8 @@ section.col-sm-12 .group-page-content {
       padding:0;
       margin:0;
     }
-    aside.group-info {
-      display: flex;
-      flex-direction: column;
-      flex: 1 auto;
+    span.group-info {
+      flex: 1;
       margin-right:10px;
       padding:10px 10px 10px 0;
       border-right: solid 1px $banner-blue;
@@ -99,27 +98,26 @@ section.col-sm-12 .group-page-content {
       }
     }
     .group-hp-buttons {
-      display: flex;
-      flex-direction: column;
-      flex: 1 auto;
-      align-content: stretch;
-      height:200px;
+      @include size1416;
+      height:240px;
+      display:flex;
+      flex-direction:column;
+      flex-wrap: wrap;
+      flex: 1 1 auto;
       padding-top:10px;
       padding-bottom:10px;
-      > div {
+      span.group-button {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        flex:1 none auto;
         justify-content: space-between;
         align-items: center;
-        min-width:200px;
-        max-width:100%;
-        border:solid 1px aqua;
         background-color: $mtTeal;
-        padding: 10px;
-        margin: 0px 5px 5px 5px;
+        padding: inherit;
+        margin: 0px 3px 5px 3px;
         > span {
           background-color: $white;
-          padding: 8px;
+          padding: 6px;
           -webkit-border-radius: 50px;
           -moz-border-radius: 50px;
           border-radius: 50px;

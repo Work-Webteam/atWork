@@ -1194,7 +1194,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"prog-ad-tab\"><h3>Program Spotlight</h3></div>\r\n<div id=\"prog-ad-box\">\r\n <div id=\"prog-ad-content\">\r\n   <div class=\"prog-ad-title\"><h5>{{title}}</h5></div>\r\n   <div class=\"prog-ad-tease\">{{body}}</div>\r\n </div>\r\n<div id=\"prog-ad-image\">{{field_image}}</div>\r\n</div>\r\n"
+            text: "<div id=\"program-ad-space\">\r\n<div id=\"ad-tab\"><h3>Program Spotlight</h3></div>\r\n<div id=\"ad-box\">\r\n <div id=\"ad-content\">\r\n   <div class=\"ad-title\"><h5>{{title}}</h5></div>\r\n   <div class=\"ad-tease\">{{body}}</div>\r\n </div>\r\n<div id=\"ad-image\">{{field_image}}</div>\r\n</div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -1998,7 +1998,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"prog-ad-tab\"><h3>Group Spotlight</h3></div>\r\n<div id=\"prog-ad-box\">\r\n <div id=\"prog-ad-content\">\r\n   <div class=\"prog-ad-title\"><h5>{{title}}</h5></div>\r\n   <div class=\"prog-ad-tease\">{{body}}</div>\r\n </div>\r\n<div id=\"prog-ad-image\">{{field_image}}</div>\r\n</div>\r\n"
+            text: "<div id=\"group-ad-space\">\r\n<div id=\"ad-tab\"><h3>Group Spotlight</h3></div>\r\n<div id=\"ad-box\">\r\n <div id=\"ad-content\">\r\n   <div class=\"ad-title\"><h5>{{title}}</h5></div>\r\n   <div class=\"ad-tease\">{{body}}</div>\r\n </div>\r\n<div id=\"ad-image\">{{field_image}}</div>\r\n</div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false

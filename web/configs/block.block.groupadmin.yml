@@ -3,15 +3,14 @@ langcode: en
 status: true
 dependencies:
   module:
-    - ctools
     - draggable_dashboard
     - group
   theme:
     - atworknext
 id: groupadmin
 theme: atworknext
-region: content
-weight: -9
+region: sidebar_nav
+weight: -8
 provider: null
 plugin: 'draggable_dashboard_block:draggable_dashboard_1549921752'
 settings:
@@ -20,13 +19,6 @@ settings:
   provider: draggable_dashboard
   label_display: '0'
 visibility:
-  'entity_bundle:group':
-    id: 'entity_bundle:group'
-    bundles:
-      atwork_groups: atwork_groups
-    negate: false
-    context_mapping:
-      group: '@group.group_route_context:group'
   group_type:
     id: group_type
     group_types:

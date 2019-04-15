@@ -46,11 +46,11 @@ function atwork_menu_add_links_to_menu_items(&$item) {
 	// Menu link properties.
 	$link = $item['original_link']->getPluginDefinition();
 	$url_object = $item['original_link']->getUrlObject();
-	
+
 	// Check for child links and recurse, if any
 	if($item['below']) {
 		foreach ($item['below'] as $child) {
-			atwork_menu_add_links_to_menu_items($child); 
+			atwork_menu_add_links_to_menu_items($child);
 		}
 	}else {
 		$item['link'] = $url_object;
@@ -59,7 +59,7 @@ function atwork_menu_add_links_to_menu_items(&$item) {
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for group entities.
- * 
+ *
  * Create sidebar nav menu on creation of new atwork group.
  */
 function atwork_menu_group_insert(Group $group) {
@@ -74,22 +74,22 @@ function atwork_menu_group_insert(Group $group) {
 			'description' => '',
 			'locked' => TRUE,
 	])->save();
-	
+
 	// Create some default links for group menus
 	MenuLinkContent::create([
-			'title' => $group->label() . ' Home',
+			'title' => 'Home',
 			'link' => ['uri' => 'internal:' . $group->url()],
 			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 			'weight' => 0,
 	])->save();
-	
+
 	MenuLinkContent::create([
 			'title' => 'Group Posts',
 			'link' => ['uri' => 'internal:' . $group->url() . '/posts'],
 			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 			'weight' => 1,
 	])->save();
-	
+
 	MenuLinkContent::create([
 			'title' => 'Group Photo Galleries',
 			'link' => ['uri' => 'internal:' . $group->url() . '/photo-galleries'],
@@ -100,7 +100,7 @@ function atwork_menu_group_insert(Group $group) {
 
 /**
  * Implements hook_ENTITY_TYPE_insert() for program area pages.
- * 
+ *
  * Create sidebar nav menu on creation of new program area background page.
  */
 function atwork_menu_node_insert(Drupal\node\Entity\Node $node) {
@@ -116,7 +116,7 @@ function atwork_menu_node_insert(Drupal\node\Entity\Node $node) {
 				'description' => '',
 				'locked' => TRUE,
 		])->save();
-		
+
 	  // Create some default links for program area menus
 		MenuLinkContent::create([
 				'title' => $node->get('title')->getValue()[0]['value'] . ' Home',
@@ -134,7 +134,7 @@ function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
 	$group_name = \Drupal::routeMatch()->getParameters()->get('group')->get('label')->getValue()[0]['value'];
 	$variables['group_name'] = str_replace(' ', '-', strtolower($group_name));
 }
-	
+
 /**
 * Implements hook_preprocess_HOOK() for program area sidebar nav menu.
 */
@@ -145,12 +145,12 @@ function atworknext_preprocess_block__program_area_sidebar_menu(&$variables) {
 	if(count(array_intersect($auth_roles, \Drupal::currentUser()->getAccount()->getRoles())) > 0) {
 	  $variables['admin'] = TRUE;
 	}
-	
+
 	$program_name = str_replace(' ', '-', strtolower(\Drupal::routeMatch()->getParameters()->get('node')->get('title')->getValue()[0]['value']));
 	$variables['program_name'] = $program_name;
-	
+
 	// No other good place for this, really
-	$linkObject = Link ::createFromRoute(t('Administer Program Area Sidebar Menu'), 'entity.menu.edit_form', ["menu" => $program_name]);
+	$linkObject = Link ::createFromRoute(t('Administer Program Menu'), 'entity.menu.edit_form', ["menu" => $program_name]);
 	$variables['administer_sidebar'] = $linkObject->toRenderable();
 }
 
@@ -167,7 +167,7 @@ function atwork_menu_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
 
 /**
  * Implements custom submit handler
- * 
+ *
  * Add a redirect to group sidebar menu and program area sidebar menu config pages.
  */
 function atwork_menu_sidebar_menu_edit_form_submit(array $form, \Drupal\Core\Form\FormStateInterface$form_state){
@@ -189,5 +189,3 @@ function atwork_menu_sidebar_menu_edit_form_submit(array $form, \Drupal\Core\For
 		return;
 	}
 }
-
-

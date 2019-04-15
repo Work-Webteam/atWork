@@ -5,5 +5,5 @@ dependencies: {  }
 id: '1549921752'
 title: 'Group Admin'
 description: 'Group Admin Dashboard'
-columns: '3'
-blocks: '[{"bid":"groupadminlinks","cln":"1","position":0},{"bid":"shortcuts","cln":"2","position":0},{"bid":"tools","cln":"3","position":0}]'
+columns: '1'
+blocks: '[{"bid":"tools","cln":"1","position":0},{"bid":"shortcuts","cln":"1","position":1},{"bid":"groupstuff","cln":"1","position":2}]'

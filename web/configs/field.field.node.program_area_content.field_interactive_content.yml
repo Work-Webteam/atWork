@@ -1,0 +1,23 @@
+uuid: 85cb5715-1906-4081-86b3-644c0fa4077f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_interactive_content
+    - node.type.program_area_content
+  module:
+    - h5p
+id: node.program_area_content.field_interactive_content
+field_name: field_interactive_content
+entity_type: node
+bundle: program_area_content
+label: 'Interactive Content'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    h5p_content_id: null
+default_value_callback: ''
+settings: {  }
+field_type: h5p

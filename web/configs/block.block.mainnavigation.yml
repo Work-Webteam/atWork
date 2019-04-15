@@ -10,18 +10,18 @@ dependencies:
     - atworknext
 id: mainnavigation
 theme: atworknext
-region: navigation_collapsible
-weight: 0
+region: navigation
+weight: -9
 provider: null
 plugin: 'superfish:main'
 settings:
   id: 'superfish:main'
   label: 'Main navigation'
   provider: superfish
-  label_display: visible
+  label_display: '0'
   level: '1'
   depth: '0'
-  menu_type: horizontal
+  menu_type: navbar
   style: none
   arrow: 1
   shadow: 1
@@ -30,8 +30,8 @@ settings:
   slide: vertical
   supposition: 1
   hoverintent: 1
-  touch: '0'
-  touchbh: '2'
+  touch: '1'
+  touchbh: '1'
   touchbp: '768'
   touchua: '0'
   touchual: ''
@@ -64,7 +64,7 @@ settings:
   hide_linkdescription: 0
   add_linkdescription: 0
   link_depth_class: 1
-  custom_list_class: ''
-  custom_item_class: ''
-  custom_link_class: ''
+  custom_list_class: next-menu
+  custom_item_class: next-menu-item
+  custom_link_class: next-menu-link
 visibility: {  }
