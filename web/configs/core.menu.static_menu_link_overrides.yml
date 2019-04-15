@@ -6,11 +6,11 @@ definitions:
     weight: 0
     expanded: false
   standard__front_page:
-    weight: -70
+    enabled: false
     menu_name: main
     parent: ''
-    enabled: false
     expanded: false
+    weight: -70
   node__add_page:
     weight: -50
     menu_name: tools
