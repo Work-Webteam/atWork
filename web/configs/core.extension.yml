@@ -34,6 +34,7 @@ module:
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  externalauth: 0
   extrafield_views_integration: 0
   field: 0
   field_ui: 0
@@ -100,6 +101,7 @@ module:
   serialization: 0
   settings_tray: 0
   shortcut: 0
+  siteminder: 0
   statistics: 0
   syslog: 0
   system: 0

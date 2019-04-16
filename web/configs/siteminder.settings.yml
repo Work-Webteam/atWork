@@ -1,0 +1,15 @@
+langcode: en
+default_langcode: en
+user:
+  username_mapping: HTTP_SM_USER
+  prefix_strip: false
+  domain_strip: false
+  mail_mapping: null
+  role_mapping: null
+  role_evaluate_everytime: false
+logout_url: null
+siteminder_cookie: null
+user_register_original: visitors_admin_approval
+debug: false
+_core:
+  default_config_hash: fPCoBRYteR1ap65-uyiOnDqj3D7BwiPs9gIncXm48NM

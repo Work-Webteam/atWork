@@ -58,6 +58,7 @@ hidden:
   field_user_department: true
   field_user_display_name: true
   field_user_given_name: true
+  field_user_guid: true
   field_user_offic: true
   field_user_organization_code: true
   field_user_phone: true
