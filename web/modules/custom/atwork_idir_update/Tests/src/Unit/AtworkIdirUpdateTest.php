@@ -14,13 +14,13 @@ class FileGrabTest extends EntityKernelTestBase  {
     $new_update = new TestAtworkIdirUpdate();
     $new_update->splitFile();
     //print_r($new_update);
-  } 
+  }
 
   public function testGUIDCheck() {
     $guid = 'test';
     $new_update = new TestAtworkIdirUpdate();
     $check = $new_update->getGUIDField($guid);
-    print_r($check);  
+    print_r($check);
   }
 
   public function testErrorLog() {
@@ -29,5 +29,5 @@ class FileGrabTest extends EntityKernelTestBase  {
     call_user_func(AtworkIdirLog::success("This is a log"));
     call_user_func(AtworkIdirLog::notify());
   }
-  
+
 }

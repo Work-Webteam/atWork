@@ -1,0 +1,4 @@
+simplesamlphp_auth.admin_settings_tab:
+  route_name: simplesamlphp_auth.admin_settings
+  title: General Settings
+  base_route: simplesamlphp_auth.admin_settings

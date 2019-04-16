@@ -1,6 +1,6 @@
 ul.sf-menu.sf-style-default {
   float: left;
-  margin-bottom: 0px;
+  margin-bottom: 1em;
   padding: 0;
 }
 ul.sf-menu.sf-style-default.sf-navbar {
@@ -14,7 +14,7 @@ ul.sf-menu.sf-style-default a,
 ul.sf-menu.sf-style-default a:visited,
 ul.sf-menu.sf-style-default span.nolink {
   border: 0 none;
-  color: #FFFFFF;
+  color: #13a;
   padding: 0.75em 1em;
 }
 ul.sf-menu.sf-style-default a.sf-with-ul,
@@ -36,11 +36,11 @@ ul.sf-menu.sf-style-default span.sf-description {
 }
 ul.sf-menu.sf-style-default li,
 ul.sf-menu.sf-style-default.sf-navbar {
-  background: transparent;
+  background: #bdd2ff;
 }
 ul.sf-menu.sf-style-default li li,
 ul.sf-menu.sf-style-default.sf-navbar > li > ul {
-  background: #CCCCCC;
+  background: #aabde6;
 }
 ul.sf-menu.sf-style-default li li li {
   background: #9aaedb;

@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * The install file for the siteminder module.
+ */
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Site\Settings;
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_install().
+ */
+function siteminder_install() {
+  //Remove the permission for users to change their own password.
+  user_role_revoke_permissions(AccountInterface::AUTHENTICATED_ROLE, array('change own password'));
+
+  /**
+   * Disable the User registration to the site
+   * and store the original setting.
+   * Only Admin user can register new user in the application.
+   */
+  $user_settings = \Drupal::configFactory()->getEditable('user.settings');
+  $config = \Drupal::configFactory()->getEditable('siteminder.settings');
+  $config->set('user_register_original', $user_settings->get('register'));
+  $user_settings->set('register', 'admin_only');
+  $user_settings->save();
+  $config->save();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function siteminder_uninstall() {
+  // Restore the original user registration directive.
+  $user_settings = \Drupal::configFactory()->getEditable('user.settings');
+  $config = \Drupal::config('siteminder.settings');
+  $user_settings->set('register', $config->get('user_register_original'));
+  $user_settings->save();
+}

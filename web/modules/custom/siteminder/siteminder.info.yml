@@ -1,0 +1,11 @@
+name: Siteminder Authentication
+type: module
+description: Allows users to authenticate to a Siteminder.
+package: Custom
+type: module
+version: 1.0
+core: 8.x
+configure: siteminder.admin_settings
+dependencies:
+ - user
+ - externalauth

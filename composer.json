@@ -28,11 +28,37 @@
                     "composer/installers": "^1.2.0"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "d3/d3",
+                "version": "v3.5.17",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/d3/d3/archive/v3.5.17.zip",
+                    "type": "zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "components/highlightjs",
+                "version": "9.7.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/components/highlightjs/archive/9.7.0.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
-        "composer/installers": "^1.2",
+        "components/highlightjs": "9.7.*",
+        "composer/installers": "^1.6",
         "cweagans/composer-patches": "^1.6",
+        "d3/d3": "3.5.*",
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/activity": "1.x-dev",
         "drupal/admin_toolbar": "^1.26",
@@ -51,6 +77,7 @@
         "drupal/draggable_dashboard": "^1.1",
         "drupal/drush": "^6.0@RC",
         "drupal/ds": "^3.1",
+        "drupal/externalauth": "^1.1",
         "drupal/flag": "^4.0@alpha",
         "drupal/forward": "^2.1",
         "drupal/group": "^1.0",
@@ -103,8 +130,8 @@
         "drupal/webform": "^5.0@RC",
         "drush/drush": "^9.3",
         "harvesthq/chosen": "^1.8",
+        "symfony/property-access": "^3.4",
         "symfony/var-dumper": "^3.4",
-        "twig/twig": "1.37.1",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"

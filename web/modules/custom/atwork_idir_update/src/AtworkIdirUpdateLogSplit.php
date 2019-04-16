@@ -7,9 +7,12 @@ class AtworkIdirUpdateLogSplit
 {
   protected $timestamp;
   protected $drupal_path;
-  
+  protected $config;
+  protected $input_matrix;
+
   function __construct()
   {
+    $this->input_matrix = $this->setInputMatrix();
     // Use timestamp and drupal_path mainly for files (accessing/writing etc) - so setting them here once.
     $this->timestamp = date('Ymd');
     // TODO: Should these be going into the Public:// file folder?
@@ -42,6 +45,11 @@ class AtworkIdirUpdateLogSplit
   public function getDrupalPath(){
     return $this->drupal_path;
   }
+  public function setInputMatrix(){
+    // We have a builder class for this - should only be run after we have downloaded the current idir file
+    $current_matrix = new AtworkIdirUpdateInputMatrix();
+    return $current_matrix->getInputMatrix();
+  }
     
   /**
   * Setters for the object. These will write the $user to the appropriate file.
@@ -54,10 +62,11 @@ class AtworkIdirUpdateLogSplit
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_add.tsv file");
       return false;
     }
-    // Make sure we have an email and username or we will ignore this user.
-    if(empty($new_user[4]) || empty($new_user[2]) || empty($new_user[1]))
+
+    // Make sure we have an email and username, and GUID = or else we cannot update the fields, and will ignore this user.
+    if(empty($new_user[$this->input_matrix['name']]) || empty($new_user[$this->input_matrix['field_user_guid']]))
     {
-      \Drupal::logger('atwork_idir_update')->info("User did not have one of the following required fields - email {$new_user[4]}, username {$new_user[2]}, guid {$new_user[1]} \n ");
+      \Drupal::logger('atwork_idir_update')->info("Line 64: User did not have one of the following required fields - username {$new_user[$this->input_matrix['name']]}, guid {$new_user[$this->input_matrix['field_user_guid']]} \n ");
       fclose($add_file);
       return true;
     }
@@ -87,10 +96,11 @@ class AtworkIdirUpdateLogSplit
       throw new \exception("Something has gone wrong, a user could not be added to the idir_" . $this->timestamp . "_update.tsv file");
       return false;
     }
+
     // Make sure we have an email and username or we will ignore this user.
-    if(empty($existing_user[4]) || empty($existing_user[2]) || empty($existing_user[1]))
+    if( empty($existing_user[$this->input_matrix['name']]) || empty($existing_user[$this->input_matrix['field_user_guid']]))
     {
-      \Drupal::logger('atwork_idir_update')->info("User did not have one of the following required fields - email {$existing_user[4]}, username {$existing_user[2]}, guid {$existing_user[1]}");
+      \Drupal::logger('atwork_idir_update')->info("Line 98: User did not have one of the following required fields - username {$existing_user[$this->input_matrix['name']]}, guid {$existing_user[$this->input_matrix['field_user_guid']]}");
       fclose($update_file);
       return true;
     }
@@ -149,23 +159,25 @@ class AtworkIdirUpdateLogSplit
       } 
       else 
       {
+        // We have a file, and need to identify which field holds the "Action" value (set in Admin settings)"
         while ( ($row = fgetcsv($full_list, '', "\t")) !== false) {
           // we don't need headers now
           if($row[0] == 'TransactionType'){
             continue;
           }
+
           // put it in an array
           switch(true)
           {
             // Everything marked as add
-            case($row[0] == "Add") :
+            case($row[$this->input_matrix['action']] == "Add") :
               // Check is a boolean, set to tell us if the record was updated (will return true) or not (will return false). This may be useful for error -checking, or rebooting script if necessary.
               $check = $this->setAddTsv( $row );
               break;
-            case($row[0] == "Modify") :
+            case($row[$this->input_matrix['action']] == "Modify") :
               $check = $this->setUpdateTsv( $row );
               break;
-            case($row[0] == "Delete") :
+            case($row[$this->input_matrix['action']] == "Delete") :
               $check = $this->setDeleteTsv( $row );
               break;
           }

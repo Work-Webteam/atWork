@@ -48,65 +48,40 @@ function atwork_idir_update_help( $route_name, RouteMatchInterface $route_match 
     case 'help.page.atwork_idir_update':
       return t('
         <h2>Idir update module for Drupal 8. </h2>
-        <h3>Instructions:</h3>
+        <div>
+        <h3> Installation: </h3>
         <p>After placing module in the <em>Modules</em> folder, Enable module under Custom on the <em>extend</em> page.</p>
         <p>This module is built to work with <a href="https://www.drupal.org/project/ultimate_cron" target="_blank">Ultimate Cron.</a></p>
-        <p>The module can also be manually run by hitting the route admin.idir (ex. http://example.com/admin/idir).</p>
+        <p>The module can also be manually run by hitting the route admin.idir (ex. http://example.com/admin/idir), however there is not a lot of info put out on this page now (it is written in watchdog instead). It is useful if you want to debug the module via kint.</p>
+        </div>
+        <div>
+        <h3>Instructions:</h3>
         <p>Before ths module can be used, you will need to fill out your own settings on the settings page. You will need to fill in the ftp location, the password, the username and the filename you are looking for.</p>
-        <p>This module is specifically set to parse idir records that have the following fields, in the following order: </p>
+        <p><em>NOTE: The columns from the .tsv are generated dynamically after you have entered the required fields mentioned above. These will appear with all user fields allowing you to map columns to fields.</em></p>
+        </div>
+        <div>
+        <h3>Requirements:</h3>
+        <p>This module is specifically set to parse government idir records, and must have a GUID field (this will be generated as field_user_guid when the module is installed).</p>
+        <p> All other fields are mappable, however you must have a username and the guid present or the script will not run. </p> 
+        <p> (<em>*NOTE: Not all idir records include an email address, so make sure you use idir for username/login field or you could run into issues)</em>) </p>
+        </div>
+        <div>
+        <h3> Additional Notes: </h3>
+        <p>You probably will not need to map all .tsv columns to a field, simply switch these to "None" and they will be ignored by the parser.</p>
+        <p>One exception is the "Action" field. This is not really a field, but rather a marker that needs to be set to the transaction type in the .tsv. The allowed values for the transaction types are Add, Modify, Delete</p>
+        <p> Users who are marked to be deleted are not actually removed from the system (so we don\'t lose content, or their relationship to content if they return). Rather this sets them to blocked, and removes all field data besides GUID. It also creates a dummy username and password for them.</p>
+        </p>
+        </div>
+        <div>
+        <h3>Additional modules:</h3>
+        <p>Other recommended modules that were used prior to writing this module, but which I do not believe are actually required: 
         <ol>
-          <li>TransactionType</li>
-          <li>GUID</li>
-          <li>Username</li>	
-          <li>Displayname</li>	
-          <li>Email</li>	
-          <li>Givenname</li>	
-          <li>Surname</li>	
-          <li>Phone</li>	
-          <li>Title</li>	
-          <li>Department</li>	
-          <li>Office</li>	
-          <li>OrganizationCode</li>	
-          <li>Company</li>	
-          <li>Street</li>
-          <li>City</li>
-          <li>Province</li>	
-          <li>PostalCode</li>
-          <li>UserAccountControl</li>
-        </ol>
-        <p> (<em>*Future updates may allow the user to map these fields themselves in the user settings</em>) </p>
-
-        <p>In addition, the following machine-name fields are required to map the above fields to:</p>
-        <ol>
-          <li>TransactionType: Not mapped, used to split the list between delete/update/add lists.</li>
-          <li>GUID: field_guid</li>
-          <li>Username: username (drupal\'s username field, this is their idir)</li>	
-          <li>Displayname: field_display_name</li>	
-          <li>Email: field_email, and init (drupal\'s static initial email field)</li>	
-          <li>Givenname: field_given_name</li>	
-          <li>Surname: field_surname</li>	
-          <li>Phone: field_phone</li>	
-          <li>Title: field_title</li>	
-          <li>Department: field_department</li>	
-          <li>Office: field_office</li>	
-          <li>OrganizationCode: field_organization_code</li>	
-          <li>Company: field_company</li>	
-          <li>Street: field_street</li>
-          <li>City: field_city</li>
-          <li>Province: field_province</li>	
-          <li>PostalCode: field_postal_code</li>
-          <li>UserAccountControl: Not used - these are used on the program side to parse who should be added to the idir .tsv</li>
-        </ol>
-      </p>
-      <p>Other recommended modules that were used prior to writing this module, but which I do not beleive are actually required: 
-        <ol>
-          <li>postal_code</li>
+          <li>postal_code (We check for a field of type postal_code, as some users have two postal codes and this breaks the query. If there are two included, we only record the first. This can be changed in AtworkIdirGUID if you wish.)</li>
           <li>telephone</li>
         </ol>
-      </p>
+        </p>
+        </div>
       ');
-
-    
     break;
   }
 }

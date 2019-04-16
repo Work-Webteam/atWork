@@ -1,0 +1,5 @@
+siteminder.admin_settings:
+  title: 'Siteminder Settings'
+  parent: user.admin_index
+  description: 'Configure the basic settings to allow Drupal to authenticate via Siteminder'
+  route_name: siteminder.admin_settings
