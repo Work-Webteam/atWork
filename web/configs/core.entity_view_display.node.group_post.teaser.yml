@@ -46,7 +46,6 @@ hidden:
   comment: true
   field_image: true
   field_interactive_content: true
-  field_send_notifications: true
   field_tags: true
   langcode: true
   likeit: true

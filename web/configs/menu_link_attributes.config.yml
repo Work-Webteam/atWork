@@ -1,0 +1,10 @@
+attributes:
+  class:
+    label: ''
+    description: ''
+  target:
+    label: ''
+    description: 'Set the link to open in the same window or a new one'
+    options:
+      _blank: 'New window (_blank)'
+      _self: 'Same window (_self)'
