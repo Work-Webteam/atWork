@@ -106,10 +106,10 @@
   {% endif %}
     {% if label %}
       {% if page %}
-<h1 class="page-title">{{ label }}</h1>
-{% else %}
-<h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
-{% endif %}
+        <h1 class="page-title">{{ label }}</h1>
+          {% else %}
+        <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
+      {% endif %}
     {% endif %}
     {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
     {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}

@@ -77,7 +77,7 @@ function atwork_menu_group_insert(Group $group) {
 
 	// Create some default links for group menus
 	MenuLinkContent::create([
-			'title' => 'Home',
+			'title' => 'Group Home',
 			'link' => ['uri' => 'internal:' . $group->url()],
 			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 			'weight' => 0,
@@ -137,10 +137,10 @@ function atwork_menu_node_insert(Drupal\node\Entity\Node $node) {
 		catch(Exception $e) {
 			\Drupal::logger('type')->error($e->getMessage());
 		}
-		
+
 		$program_area_id = $result->field_parent_program_target_id;
 		$program = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['nid' => $program_area_id]);
-		
+
 		// Add link to this content to program area sidebar menu
 		// Create some default links for program area menus
 		MenuLinkContent::create([
@@ -181,11 +181,11 @@ function atworknext_preprocess_block__program_area_sidebar_menu(&$variables) {
 	catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
-	
+
 	$program_area_id = $result->field_parent_program_target_id;
 	$program = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['nid' => $program_area_id]);
 	$variables['program_name'] = str_replace(' ', '-', strtolower($program[$program_area_id]->getTitle()));
-	
+
 	//// No other good place for this, really
 	$linkObject = Link ::createFromRoute(t('Administer Program Menu'), 'entity.menu.edit_form', ["menu" => str_replace(' ', '-', strtolower($program[$program_area_id]->getTitle()))]);
 	$variables['administer_sidebar'] = $linkObject->toRenderable();

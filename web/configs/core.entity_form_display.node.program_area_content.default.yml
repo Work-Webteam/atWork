@@ -54,7 +54,7 @@ content:
       preview_image_style: medium
       crop_preview_image_style: medium
       crop_list:
-        - gallery_crop
+        - article_730_330
       progress_indicator: throbber
       crop_types_required: {  }
       show_crop_area: false
