@@ -89,6 +89,7 @@
         "drupal/likeit": "^1.0",
         "drupal/menu_block": "^1.5",
         "drupal/menu_export": "^1.2",
+        "drupal/menu_link_attributes": "^1.0",
         "drupal/message_digest": "^1.0@beta",
         "drupal/message_subscribe": "^1.0@beta",
         "drupal/message_ui": "^1.0@beta",

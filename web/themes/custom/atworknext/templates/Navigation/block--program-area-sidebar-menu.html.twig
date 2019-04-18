@@ -47,11 +47,12 @@
 #}
 
 {% set items = simplify_menu(program_name) %}
+<aside id="side-menu">
+<h3>Menu</h3>
+{# Show link to sidebar menu config page for group/site admins #}
 {% if admin %}
   {{ administer_sidebar }}
 {% endif %}
-<aside id="side-menu">
-<h3>Menu</h3>
 <ul id="atworkgroups-sidebar-menu">
   {% for item in items['menu_tree'] %}
     <li><a href="{{ item['url'] }}">{{ item['text'] }}</a></li>

@@ -77,7 +77,7 @@ function atwork_menu_group_insert(Group $group) {
 
 	// Create some default links for group menus
 	MenuLinkContent::create([
-			'title' => 'Home',
+			'title' => 'Group Home',
 			'link' => ['uri' => 'internal:' . $group->url()],
 			'menu_name' => str_replace(' ', '-', strtolower($group->label())),
 			'weight' => 0,
@@ -125,6 +125,31 @@ function atwork_menu_node_insert(Drupal\node\Entity\Node $node) {
 				'weight' => 0,
 		])->save();
 	}
+
+	// Add menu links for new program area content to program area page sidebar menus
+	if($node->get('type') && $node->get('type')->getValue()[0]['target_id'] == 'program_area_content'){
+		// Add link to this content to program area sidebar menu
+		try {
+			$connection = \Drupal::database();
+			$query = $connection->query("SELECT field_parent_program_target_id FROM {node__field_parent_program} WHERE entity_id like '" . $node->id(). "'");
+			$result = $query->fetch();
+		}
+		catch(Exception $e) {
+			\Drupal::logger('type')->error($e->getMessage());
+		}
+
+		$program_area_id = $result->field_parent_program_target_id;
+		$program = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['nid' => $program_area_id]);
+
+		// Add link to this content to program area sidebar menu
+		// Create some default links for program area menus
+		MenuLinkContent::create([
+				'title' => $node->get('title')->getValue()[0]['value'],
+				'link' => ['uri' => 'internal:/node/' . $node->get('nid')->getValue()[0]['value']],
+				'menu_name' => str_replace(' ', '-', strtolower($program[$program_area_id]->getTitle())),
+				'weight' => 0,
+		])->save();
+	}
 }
 
 /**
@@ -146,11 +171,23 @@ function atworknext_preprocess_block__program_area_sidebar_menu(&$variables) {
 	  $variables['admin'] = TRUE;
 	}
 
-	$program_name = str_replace(' ', '-', strtolower(\Drupal::routeMatch()->getParameters()->get('node')->get('title')->getValue()[0]['value']));
-	$variables['program_name'] = $program_name;
+	$nid = \Drupal::routeMatch()->getParameters()->all()['node']->get('nid')->getValue()[0]['value'];
+	// Find program area homepage/content and add links to menu
+	try {
+		$connection = \Drupal::database();
+		$query = $connection->query("SELECT field_parent_program_target_id FROM {node__field_parent_program} WHERE entity_id like '" . $nid . "'");
+		$result = $query->fetch();
+	}
+	catch(Exception $e) {
+		\Drupal::logger('type')->error($e->getMessage());
+	}
 
-	// No other good place for this, really
-	$linkObject = Link ::createFromRoute(t('Administer Program Menu'), 'entity.menu.edit_form', ["menu" => $program_name]);
+	$program_area_id = $result->field_parent_program_target_id;
+	$program = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['nid' => $program_area_id]);
+	$variables['program_name'] = str_replace(' ', '-', strtolower($program[$program_area_id]->getTitle()));
+
+	//// No other good place for this, really
+	$linkObject = Link ::createFromRoute(t('Administer Program Menu'), 'entity.menu.edit_form', ["menu" => str_replace(' ', '-', strtolower($program[$program_area_id]->getTitle()))]);
 	$variables['administer_sidebar'] = $linkObject->toRenderable();
 }
 

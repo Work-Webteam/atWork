@@ -66,6 +66,7 @@ module:
   media: 0
   menu_block: 0
   menu_export: 0
+  menu_link_attributes: 0
   menu_ui: 0
   message: 0
   message_digest: 0

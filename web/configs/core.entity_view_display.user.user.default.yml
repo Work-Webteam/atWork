@@ -32,16 +32,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  photos_album_count:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  photos_image_count:
-    weight: 15
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   user_picture:
     type: image
     weight: 0
