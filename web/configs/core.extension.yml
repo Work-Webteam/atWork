@@ -6,11 +6,8 @@ module:
   atwork_comments: 0
   atwork_group: 0
   atwork_h5p: 0
-<<<<<<< HEAD
   atwork_menu: 0
-=======
   atwork_idir_update: 0
->>>>>>> idir-work
   atwork_messages: 0
   atwork_poll: 0
   background_image_formatter: 0
@@ -38,11 +35,8 @@ module:
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
-<<<<<<< HEAD
   entity_reference_revisions: 0
-=======
   externalauth: 0
->>>>>>> idir-work
   extrafield_views_integration: 0
   field: 0
   field_ui: 0
@@ -112,11 +106,8 @@ module:
   serialization: 0
   settings_tray: 0
   shortcut: 0
-<<<<<<< HEAD
   simplify_menu: 0
-=======
   siteminder: 0
->>>>>>> idir-work
   statistics: 0
   superfish: 0
   syslog: 0
