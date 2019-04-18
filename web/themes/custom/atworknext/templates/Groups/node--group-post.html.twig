@@ -99,21 +99,16 @@
   {% if display_submitted %}
   <div class="node__meta"> <span{{ author_attributes }}> </span> {{ metadata }} </div>
   {% endif %} </header>
-<div{{ content_attributes.addClass('node__content', 'clearfix') }}> {% if content.field_video['#object'] is defined %}
+  <div{{ content_attributes.addClass('node__content', 'clearfix') }}> 
+  {% if content.field_video['#object'] is defined %}
     {{ content.field_video }}
   {% else %}
     {{ content.field_image }}
   {% endif %}
-    {% if label %}
-      {% if page %}
-<h1 class="page-title">{{ label }}</h1>
-{% else %}
-<h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
-{% endif %}
-    {% endif %}
-    {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
-    {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
-<div class="author-byline"{% trans %}{{ author_name }} posted on {{ createdDate }} {{ createdTime }}{% endtrans %}
+  <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ node_title }}</a></h1>
+  {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
+  {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
+  <div class="author-byline"{% trans %}{{ author_name }} posted on {{ createdDate }} {{ createdTime }}{% endtrans %}
 
 </div>
 {# Uncomment once comments are completed to show comment count on articles #}

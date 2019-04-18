@@ -34,6 +34,7 @@ function atworknext_preprocess_node__group_post(&$variables) {
 	->getViewBuilder('block')
 	->view($block);
 	$variables['related_content'] = $block_content;
+	$variables['node_title'] = $variables['elements']['#node']->getTitle();
 }
 
 /**
