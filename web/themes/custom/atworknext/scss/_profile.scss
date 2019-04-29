@@ -1,1 +1,109 @@
 /* Site Wide profile CSS */
+// Profile styling
+
+body.path-my-profile, .employee-profile-page {
+  #profile-card {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: inline-flex;
+    flex-direction: row;
+    @include profile-look;
+    #profile-edit a, #subscribe a {
+      display: block;
+      @include size1216;
+      border: solid 1px $exec-greyborder;
+      width: max-content;
+      padding: 2px 5px 0;
+      margin: 10px auto 0;
+      text-decoration: none;
+      &:hover {
+        background: $banner-blue;
+        color:#FFFFFF;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// All Employees Landing page
+body.path-employees {
+  .all-employee-page {
+    text-align: center;
+    .views-row {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: inline-flex;
+      flex-direction: row;
+      flex:0 1 auto;
+      align-items: center;
+      #profile-card {
+        display: inline-flex;
+        flex: 0 1 auto;
+        justify-content: space-between;
+        @include profile-look;
+        width:365px;
+        height: 110px;
+        @include size1216;
+        .no-results {
+          color: #e0e0e0;
+          font-style: oblique;
+        }
+        a {
+          text-decoration: none;
+        }
+        aside {
+          padding: 5px;
+          span.profile-img {
+            width:75px;
+            height:75px;
+            img[alt*="Profile Image"] {
+              opacity: .20;
+            }
+          }
+        }
+        section.profile-detail {
+          padding:5px;
+        }
+      }
+    }
+    > .form-group {
+      border: solid 1px $exec-greyborder;
+      padding: 5px;
+      margin-bottom: 20px;
+      text-align: left;
+      @include size1216;
+      .form-item {
+        max-width:210px;
+        width: -moz-available;
+        margin-bottom:3px;
+      }
+      label.control-label {
+        font-weight: normal;
+        padding-right: 5px;
+      }
+      input.form-control, .form-select.form-control {
+        padding:0px 5px;
+        height: inherit;
+        color: $banner-blue;
+        @include size1216;
+        &:focus {
+          background-color: beige;
+        }
+      }
+      .form-item-sort-by, .form-item-sort-order{
+        max-width:min-content;
+        margin-right: 10px;
+        .form-select.form-control {
+          padding:0 20px 0 0;
+        }
+      }
+    }
+  }
+  nav.pager-nav {
+    @include size1216;
+  }
+}

@@ -1,6 +1,6 @@
 uuid: 0f8a5e63-c7cd-44da-be59-2266b3755cc9
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.account
@@ -23,9 +23,4 @@ settings:
   label_display: '0'
   level: 1
   depth: 1
-visibility:
-  request_path:
-    id: request_path
-    pages: '<front>'
-    negate: false
-    context_mapping: {  }
+visibility: {  }

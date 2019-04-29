@@ -24,14 +24,14 @@ settings:
   menu_type: navbar
   style: none
   arrow: 1
-  shadow: 1
+  shadow: 0
   speed: fast
   delay: '800'
   slide: vertical
   supposition: 1
   hoverintent: 1
   touch: '1'
-  touchbh: '1'
+  touchbh: '0'
   touchbp: '768'
   touchua: '0'
   touchual: ''

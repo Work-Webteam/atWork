@@ -15,6 +15,9 @@
       width:110px;
       padding-left:12px;
     }
+    section#block-mainnavigation {
+      display: inline-block;
+    }
     .navbar-nav li a {
       color:$white;
       &.is-active {

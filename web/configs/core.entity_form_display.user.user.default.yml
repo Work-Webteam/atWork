@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
@@ -20,12 +22,13 @@ dependencies:
     - field.field.user.user.message_digest
     - field.field.user.user.message_subscribe_email
     - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - image.style.background_image_profile
   module:
-    - image
+    - image_widget_crop
     - path
     - postal_code
     - telephone
+    - text
     - user
 _core:
   default_config_hash: K-1rBM8mTIkFp9RqOC2tMRUukOQ1xbRCfSKK8dEddnA
@@ -44,39 +47,24 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_about_me:
+    weight: 21
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_blog_bio:
+    weight: 22
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_company:
-    type: string_textfield
-    weight: 9
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_street:
-    type: string_textfield
-    weight: 11
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_user_city:
-    type: string_textfield
-    weight: 12
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_user_department:
-    type: string_textfield
-    weight: 13
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_user_display_name:
     type: string_textfield
     weight: 8
     region: content
@@ -84,17 +72,41 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_user_given_name:
+  field_street:
     type: string_textfield
-    weight: 14
+    weight: 10
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_user_guid:
+  field_user_city:
     type: string_textfield
-    weight: 5
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_department:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_display_name:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_given_name:
+    type: string_textfield
+    weight: 13
     region: content
     settings:
       size: 60
@@ -102,7 +114,7 @@ content:
     third_party_settings: {  }
   field_user_offic:
     type: string_textfield
-    weight: 15
+    weight: 14
     region: content
     settings:
       size: 60
@@ -110,7 +122,7 @@ content:
     third_party_settings: {  }
   field_user_organization_code:
     type: string_textfield
-    weight: 16
+    weight: 15
     region: content
     settings:
       size: 60
@@ -118,20 +130,20 @@ content:
     third_party_settings: {  }
   field_user_phone:
     type: telephone_default
-    weight: 17
+    weight: 16
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_user_postal_code:
     type: postal_code_any_postal_code_form
-    weight: 18
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   field_user_province:
     type: string_textfield
-    weight: 19
+    weight: 18
     region: content
     settings:
       size: 60
@@ -139,7 +151,7 @@ content:
     third_party_settings: {  }
   field_user_surname:
     type: string_textfield
-    weight: 20
+    weight: 19
     region: content
     settings:
       size: 60
@@ -147,7 +159,7 @@ content:
     third_party_settings: {  }
   field_user_title:
     type: string_textfield
-    weight: 21
+    weight: 20
     region: content
     settings:
       size: 60
@@ -155,7 +167,7 @@ content:
     third_party_settings: {  }
   langcode:
     type: language_select
-    weight: 10
+    weight: 9
     region: content
     settings:
       include_locked: true
@@ -168,7 +180,7 @@ content:
   message_digest:
     type: options_select
     settings: {  }
-    weight: 6
+    weight: 5
     third_party_settings: {  }
     region: content
   message_subscribe_email:
@@ -180,7 +192,7 @@ content:
     region: content
   path:
     type: path
-    weight: 7
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -188,11 +200,19 @@ content:
     weight: 6
     region: content
   user_picture:
-    type: image_image
+    type: image_widget_crop
     settings:
+      show_default_crop: true
+      warn_multiple_usages: true
+      preview_image_style: background_image_profile
+      crop_preview_image_style: crop_thumbnail
+      crop_list:
+        - gallery_crop
       progress_indicator: throbber
-      preview_image_style: thumbnail
+      crop_types_required: {  }
+      show_crop_area: false
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  field_user_guid: true

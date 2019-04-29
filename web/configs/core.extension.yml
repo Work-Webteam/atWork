@@ -6,10 +6,11 @@ module:
   atwork_comments: 0
   atwork_group: 0
   atwork_h5p: 0
-  atwork_menu: 0
   atwork_idir_update: 0
+  atwork_menu: 0
   atwork_messages: 0
   atwork_poll: 0
+  background_image: 0
   background_image_formatter: 0
   big_pipe: 0
   block: 0
@@ -108,7 +109,6 @@ module:
   settings_tray: 0
   shortcut: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
