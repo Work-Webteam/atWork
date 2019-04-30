@@ -11,7 +11,7 @@ dependencies:
 id: mainnavigation
 theme: atworknext
 region: navigation
-weight: -9
+weight: -8
 provider: null
 plugin: 'superfish:main'
 settings:
@@ -24,13 +24,13 @@ settings:
   menu_type: navbar
   style: none
   arrow: 1
-  shadow: 0
+  shadow: 1
   speed: fast
   delay: '800'
   slide: vertical
   supposition: 1
   hoverintent: 1
-  touch: '1'
+  touch: '0'
   touchbh: '0'
   touchbp: '768'
   touchua: '0'
