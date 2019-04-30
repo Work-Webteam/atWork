@@ -1,0 +1,30 @@
+langcode: en
+default_langcode: en
+user:
+  username_mapping: HTTP_SM_USER
+  prefix_strip: false
+  domain_strip: false
+  mail_mapping: HTTP_SMGOV_USEREMAIL
+  role_mapping: ''
+  role_evaluate_everytime: false
+  username_mapping_field: name
+  id_mapping: HTTP_SMGOV_USERGUID
+  guid_mapping: field_user_guid
+  username_form: 0
+  username_duplicate: 0
+  dn_required: 0
+  dn_mapping: HTTP_SM_USERDN
+  email_required: 1
+  usertype_mapping: HTTP_SMGOV_USERTYPE
+  sync_everytime: 0
+  auth_group: ;
+  new_user_validation: 0
+  pending_message: 'Validating... '
+  disable_url: 0
+  excluded_url: ''
+logout_url: null
+siteminder_cookie: SMSESSION
+user_register_original: visitors_admin_approval
+debug: false
+_core:
+  default_config_hash: fPCoBRYteR1ap65-uyiOnDqj3D7BwiPs9gIncXm48NM
