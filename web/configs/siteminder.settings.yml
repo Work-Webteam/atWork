@@ -13,7 +13,7 @@ user:
   username_form: 0
   username_duplicate: 0
   dn_required: 0
-  dn_mapping: HTTP_SM_USERDN
+  dn_mapping: HTTP_SMGOV_USEREMAIL
   email_required: 1
   usertype_mapping: HTTP_SMGOV_USERTYPE
   sync_everytime: 0

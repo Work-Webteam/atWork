@@ -11,6 +11,7 @@ module:
   atwork_menu: 0
   atwork_messages: 0
   atwork_poll: 0
+  background_image: 0
   background_image_formatter: 0
   big_pipe: 0
   block: 0
@@ -30,7 +31,6 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
-  datetime_range: 0
   dblog: 0
   devel: 0
   devel_generate: 0

@@ -3,13 +3,38 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_about_me
+    - field.field.user.user.field_blog_bio
+    - field.field.user.user.field_company
+    - field.field.user.user.field_street
+    - field.field.user.user.field_user_city
+    - field.field.user.user.field_user_department
+    - field.field.user.user.field_user_display_name
+    - field.field.user.user.field_user_given_name
+    - field.field.user.user.field_user_guid
+    - field.field.user.user.field_user_offic
+    - field.field.user.user.field_user_organization_code
+    - field.field.user.user.field_user_phone
+    - field.field.user.user.field_user_postal_code
+    - field.field.user.user.field_user_province
+    - field.field.user.user.field_user_surname
+    - field.field.user.user.field_user_title
     - field.field.user.user.message_digest
     - field.field.user.user.message_subscribe_email
     - field.field.user.user.user_picture
     - image.style.thumbnail
   module:
     - image
+    - panelizer
+    - telephone
+    - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 _core:
   default_config_hash: V51QPCKkgNREKtSmB9Iu2wmAMEpktVpnzklWaZV8UYo
 id: user.user.default
@@ -17,31 +42,103 @@ targetEntityType: user
 bundle: user
 mode: default
 content:
-  flag_email_user:
+  field_about_me:
     weight: 10
+    label: above
     settings: {  }
     third_party_settings: {  }
+    type: text_default
     region: content
-  flag_subscribe_user:
-    weight: 10
-    settings: {  }
+  field_blog_bio:
+    weight: 11
+    label: above
+    settings:
+      trim_length: 300
     third_party_settings: {  }
+    type: text_trimmed
     region: content
-  member_for:
+  field_company:
+    type: string
+    weight: 3
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_city:
+    type: string
+    weight: 7
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_department:
+    type: string
+    weight: 4
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_display_name:
+    type: string
+    weight: 8
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_given_name:
+    type: string
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_offic:
+    type: string
+    weight: 9
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_phone:
+    type: telephone_link
+    weight: 6
+    region: content
+    label: inline
+    settings:
+      title: ''
+    third_party_settings: {  }
+  field_user_surname:
+    type: string
+    weight: 2
+    region: content
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_user_title:
+    type: string
     weight: 5
     region: content
-    settings: {  }
+    label: inline
+    settings:
+      link_to_entity: false
     third_party_settings: {  }
-  photos_album_count:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
+  flag_email_user:
+    weight: 12
     region: content
-  photos_image_count:
-    weight: 15
     settings: {  }
     third_party_settings: {  }
+  flag_subscribe_user:
+    weight: 13
     region: content
+    settings: {  }
+    third_party_settings: {  }
   user_picture:
     type: image
     weight: 0
@@ -52,20 +149,14 @@ content:
     third_party_settings: {  }
     label: hidden
 hidden:
-  field_company: true
   field_street: true
-  field_user_city: true
-  field_user_department: true
-  field_user_display_name: true
-  field_user_given_name: true
   field_user_guid: true
-  field_user_offic: true
   field_user_organization_code: true
-  field_user_phone: true
   field_user_postal_code: true
   field_user_province: true
-  field_user_surname: true
-  field_user_title: true
   langcode: true
+  member_for: true
   message_digest: true
   message_subscribe_email: true
+  photos_album_count: true
+  photos_image_count: true

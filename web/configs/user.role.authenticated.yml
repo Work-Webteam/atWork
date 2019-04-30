@@ -45,6 +45,7 @@ permissions:
   - 'use text format comment_editor'
   - 'use text format restricted_html'
   - 'use text format teaser_editor'
+  - 'view background image'
   - 'view media'
   - 'view post access counter'
   - 'view terms in forums'
