@@ -1,0 +1,21 @@
+uuid: 01a4e37a-56f1-4afc-9cad-92a51f1515fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_blog_bio
+  module:
+    - text
+    - user
+id: user.user.field_blog_bio
+field_name: field_blog_bio
+entity_type: user
+bundle: user
+label: 'Blog Bio'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
