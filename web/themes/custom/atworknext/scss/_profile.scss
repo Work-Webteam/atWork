@@ -27,8 +27,8 @@ body.path-my-profile, .employee-profile-page {
   }
 }
 
-// All Employees Landing page
-body.path-employees {
+// All Employees Landing page and Executive Landing Page
+body.path-employees, body.path-executives {
   .all-employee-page {
     text-align: center;
     .views-row {
@@ -60,9 +60,6 @@ body.path-employees {
           span.profile-img {
             width:75px;
             height:75px;
-            img[alt*="Profile Image"] {
-              opacity: .20;
-            }
           }
         }
         section.profile-detail {
@@ -105,5 +102,23 @@ body.path-employees {
   }
   nav.pager-nav {
     @include size1216;
+  }
+}
+body.path-executives {
+  aside {
+    background-color:$banner-blue;
+  }
+  .profile-img {
+    border: solid 5px $exec-greyborder;
+    background-color: $white;
+  }
+}
+body.path-employees {
+  aside {
+    background-color:$exec-greyborder;
+  }
+  .profile-img {
+    border:solid 5px $banner-blue;
+    background-color: $white;
   }
 }

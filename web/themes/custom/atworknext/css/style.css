@@ -12110,25 +12110,24 @@ body.path-my-profile #profile-card aside span.profile-img, .employee-profile-pag
   display: block;
   width: 125px;
   height: 125px;
-  border: solid 5px #266694;
   border-radius: 50%;
   overflow: hidden;
 }
 
-/* line 406, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 405, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card section.profile-detail, .employee-profile-page #profile-card section.profile-detail {
   width: 100%;
   padding: 15px;
 }
 
-/* line 409, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 408, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card section.profile-detail ul, .employee-profile-page #profile-card section.profile-detail ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 414, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 413, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card section.profile-detail h3, .employee-profile-page #profile-card section.profile-detail h3 {
   border-bottom: solid 10px #E0E7E8;
   padding: 0;
@@ -12155,12 +12154,12 @@ body.path-my-profile #profile-card #profile-edit a:hover, body.path-my-profile #
 }
 
 /* line 32, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page {
+body.path-employees .all-employee-page, body.path-executives .all-employee-page {
   text-align: center;
 }
 
 /* line 34, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row {
+body.path-employees .all-employee-page .views-row, body.path-executives .all-employee-page .views-row {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -12172,7 +12171,7 @@ body.path-employees .all-employee-page .views-row {
 }
 
 /* line 43, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card {
+body.path-employees .all-employee-page .views-row #profile-card, body.path-executives .all-employee-page .views-row #profile-card {
   display: inline-flex;
   flex: 0 1 auto;
   justify-content: space-between;
@@ -12187,75 +12186,69 @@ body.path-employees .all-employee-page .views-row #profile-card {
 }
 
 /* line 394, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-body.path-employees .all-employee-page .views-row #profile-card aside {
+body.path-employees .all-employee-page .views-row #profile-card aside, body.path-executives .all-employee-page .views-row #profile-card aside {
   padding: 15px;
   border-right: solid 1px #E0E7E8;
 }
 
 /* line 397, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img {
+body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img, body.path-executives .all-employee-page .views-row #profile-card aside span.profile-img {
   display: block;
   width: 125px;
   height: 125px;
-  border: solid 5px #266694;
   border-radius: 50%;
   overflow: hidden;
 }
 
-/* line 406, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-body.path-employees .all-employee-page .views-row #profile-card section.profile-detail {
+/* line 405, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+body.path-employees .all-employee-page .views-row #profile-card section.profile-detail, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail {
   width: 100%;
   padding: 15px;
 }
 
-/* line 409, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-body.path-employees .all-employee-page .views-row #profile-card section.profile-detail ul {
+/* line 408, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+body.path-employees .all-employee-page .views-row #profile-card section.profile-detail ul, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 414, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-body.path-employees .all-employee-page .views-row #profile-card section.profile-detail h3 {
+/* line 413, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+body.path-employees .all-employee-page .views-row #profile-card section.profile-detail h3, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail h3 {
   border-bottom: solid 10px #E0E7E8;
   padding: 0;
   margin: 20px 0 20px 0;
 }
 
 /* line 51, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card .no-results {
+body.path-employees .all-employee-page .views-row #profile-card .no-results, body.path-executives .all-employee-page .views-row #profile-card .no-results {
   color: #e0e0e0;
   font-style: oblique;
 }
 
 /* line 55, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card a {
+body.path-employees .all-employee-page .views-row #profile-card a, body.path-executives .all-employee-page .views-row #profile-card a {
   text-decoration: none;
 }
 
 /* line 58, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card aside {
+body.path-employees .all-employee-page .views-row #profile-card aside, body.path-executives .all-employee-page .views-row #profile-card aside {
   padding: 5px;
 }
 
 /* line 60, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img {
+body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img, body.path-executives .all-employee-page .views-row #profile-card aside span.profile-img {
   width: 75px;
   height: 75px;
 }
 
-/* line 63, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img img[alt*="Profile Image"] {
-  opacity: .20;
-}
-
-/* line 68, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page .views-row #profile-card section.profile-detail {
+/* line 65, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page .views-row #profile-card section.profile-detail, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail {
   padding: 5px;
 }
 
-/* line 73, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group {
+/* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group, body.path-executives .all-employee-page > .form-group {
   border: solid 1px #E0E7E8;
   padding: 5px;
   margin-bottom: 20px;
@@ -12264,21 +12257,21 @@ body.path-employees .all-employee-page > .form-group {
   line-height: 16px;
 }
 
-/* line 79, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group .form-item {
+/* line 76, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group .form-item, body.path-executives .all-employee-page > .form-group .form-item {
   max-width: 210px;
   width: -moz-available;
   margin-bottom: 3px;
 }
 
-/* line 84, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group label.control-label {
+/* line 81, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group label.control-label, body.path-executives .all-employee-page > .form-group label.control-label {
   font-weight: normal;
   padding-right: 5px;
 }
 
-/* line 88, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group input.form-control, body.path-employees .all-employee-page > .form-group .form-select.form-control {
+/* line 85, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group input.form-control, body.path-employees .all-employee-page > .form-group .form-select.form-control, body.path-executives .all-employee-page > .form-group input.form-control, body.path-executives .all-employee-page > .form-group .form-select.form-control {
   padding: 0px 5px;
   height: inherit;
   color: #266694;
@@ -12286,26 +12279,48 @@ body.path-employees .all-employee-page > .form-group input.form-control, body.pa
   line-height: 16px;
 }
 
-/* line 93, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group input.form-control:focus, body.path-employees .all-employee-page > .form-group .form-select.form-control:focus {
+/* line 90, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group input.form-control:focus, body.path-employees .all-employee-page > .form-group .form-select.form-control:focus, body.path-executives .all-employee-page > .form-group input.form-control:focus, body.path-executives .all-employee-page > .form-group .form-select.form-control:focus {
   background-color: beige;
 }
 
-/* line 97, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group .form-item-sort-by, body.path-employees .all-employee-page > .form-group .form-item-sort-order {
+/* line 94, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group .form-item-sort-by, body.path-employees .all-employee-page > .form-group .form-item-sort-order, body.path-executives .all-employee-page > .form-group .form-item-sort-by, body.path-executives .all-employee-page > .form-group .form-item-sort-order {
   max-width: min-content;
   margin-right: 10px;
 }
 
-/* line 100, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-employees .all-employee-page > .form-group .form-item-sort-order .form-select.form-control {
+/* line 97, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-employees .all-employee-page > .form-group .form-item-sort-order .form-select.form-control, body.path-executives .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-executives .all-employee-page > .form-group .form-item-sort-order .form-select.form-control {
   padding: 0 20px 0 0;
 }
 
-/* line 106, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees nav.pager-nav {
+/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees nav.pager-nav, body.path-executives nav.pager-nav {
   font-size: .75rem;
   line-height: 16px;
+}
+
+/* line 108, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-executives aside {
+  background-color: #266694;
+}
+
+/* line 111, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-executives .profile-img {
+  border: solid 5px #E0E7E8;
+  background-color: white;
+}
+
+/* line 117, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees aside {
+  background-color: #E0E7E8;
+}
+
+/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .profile-img {
+  border: solid 5px #266694;
+  background-color: white;
 }
 
 /* Exevutive Profiles */
