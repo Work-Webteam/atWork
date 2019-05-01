@@ -31,7 +31,7 @@ settings:
   supposition: 1
   hoverintent: 1
   touch: '1'
-  touchbh: '0'
+  touchbh: '1'
   touchbp: '768'
   touchua: '0'
   touchual: ''

@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.group.field_group
-    - image.style.medium
+    - image.style.article_top_image
   module:
     - group
     - image
@@ -138,7 +138,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
+            image_style: article_top_image
             image_link: content
           group_column: ''
           group_columns: {  }
@@ -414,7 +414,20 @@ display:
           entity_field: created
           plugin_id: date
       title: Groups
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<style>\r\n  #group-add {\r\n    display: inline-block;\r\n    border: solid 1px rgb(0, 128, 199);\r\n    float: right;\r\n    padding: 3px 8px;\r\n    margin: 0 30px 0 0;\r\n    background-color: #ececec;\r\n    font-size: 14px;\r\n  }\r\n</style>\r\n\r\n<div id=\"group-add\">Create a <a href=\"group/add\">Group</a></div>"
+            format: full_html
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships:
