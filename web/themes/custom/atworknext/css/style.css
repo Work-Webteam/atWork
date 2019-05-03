@@ -11218,6 +11218,16 @@ body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space
   border-right: solid 1px #E0E7E8;
 }
 
+/* line 276, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+body.page-node-type-page h1.page-title {
+  margin-bottom: 20px;
+}
+
+/* line 279, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+body.page-node-type-page .author-byline {
+  display: none;
+}
+
 /* line 3, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
 form#comment-form {
   background-color: #e6f2f9;
@@ -12180,7 +12190,7 @@ body.path-employees .all-employee-page .views-row #profile-card, body.path-execu
   text-align: left;
   width: 100%;
   width: 365px;
-  height: 110px;
+  height: 140px;
   font-size: .75rem;
   line-height: 16px;
 }
@@ -12244,7 +12254,7 @@ body.path-employees .all-employee-page .views-row #profile-card aside span.profi
 
 /* line 65, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page .views-row #profile-card section.profile-detail, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail {
-  padding: 5px;
+  padding: 10px;
 }
 
 /* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
@@ -12302,22 +12312,27 @@ body.path-employees nav.pager-nav, body.path-executives nav.pager-nav {
 }
 
 /* line 108, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-executives .view-filters.form-group {
+  border: solid 1px transparent;
+}
+
+/* line 111, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-executives aside {
   background-color: #266694;
 }
 
-/* line 111, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 114, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-executives .profile-img {
   border: solid 5px #E0E7E8;
   background-color: white;
 }
 
-/* line 117, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees aside {
   background-color: #E0E7E8;
 }
 
-/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 123, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .profile-img {
   border: solid 5px #266694;
   background-color: white;
