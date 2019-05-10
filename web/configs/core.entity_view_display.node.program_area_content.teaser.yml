@@ -5,6 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.program_area_content.body
+    - field.field.node.program_area_content.field_attachments
+    - field.field.node.program_area_content.field_image
+    - field.field.node.program_area_content.field_interactive_content
+    - field.field.node.program_area_content.field_parent_program
+    - field.field.node.program_area_content.field_tags
+    - field.field.node.program_area_content.field_video
     - node.type.program_area_content
   module:
     - text

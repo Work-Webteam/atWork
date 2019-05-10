@@ -5,6 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.background_page.body
+    - field.field.node.background_page.field_development_tags
+    - field.field.node.background_page.field_image
+    - field.field.node.background_page.field_program_ad_space
+    - field.field.node.background_page.field_program_topic
     - node.type.background_page
   module:
     - text

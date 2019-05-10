@@ -13,7 +13,7 @@ body.path-my-profile, .employee-profile-page {
     #profile-edit a, #subscribe a {
       display: block;
       @include size1216;
-      border: solid 1px $exec-greyborder;
+      border: solid 1px $white;
       width: max-content;
       padding: 2px 5px 0;
       margin: 10px auto 0;
@@ -47,9 +47,10 @@ body.path-employees, body.path-executives {
         @include profile-look;
         width:365px;
         height: 140px;
+        margin:5px;
         @include size1216;
         .no-results {
-          color: #e0e0e0;
+          color: lighten($black, 50%);
           font-style: oblique;
         }
         a {
@@ -63,6 +64,7 @@ body.path-employees, body.path-executives {
           }
         }
         section.profile-detail {
+          background-color: darken($white,3%);
           padding:10px;
         }
       }
@@ -116,7 +118,7 @@ body.path-executives {
     background-color: $white;
   }
 }
-body.path-employees {
+body.path-employees, body.path-my-profile {
   aside {
     background-color:$exec-greyborder;
   }

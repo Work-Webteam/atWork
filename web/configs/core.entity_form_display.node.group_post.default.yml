@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.group_post.field_interactive_content
     - field.field.node.group_post.field_send_notifications
     - field.field.node.group_post.field_tags
-    - image.style.medium
+    - image.style.max_325x325
     - node.type.group_post
   module:
     - h5peditor
@@ -39,13 +39,12 @@ content:
     weight: 1
     settings:
       show_default_crop: true
-      preview_image_style: medium
+      preview_image_style: max_325x325
       crop_preview_image_style: medium
       crop_list:
-        - article_730_330
-      crop_types_required:
-        - article_730_330
+        - article_hero
       progress_indicator: throbber
+      crop_types_required: {  }
       show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }

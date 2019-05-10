@@ -5,6 +5,11 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.group_post.body
+    - field.field.node.group_post.comment
+    - field.field.node.group_post.field_image
+    - field.field.node.group_post.field_interactive_content
+    - field.field.node.group_post.field_send_notifications
+    - field.field.node.group_post.field_tags
     - node.type.group_post
   module:
     - text

@@ -268,7 +268,7 @@
 }
 // Related content boxes on Article / Program / Group pages
 @mixin related-content {
-  @at-root {
+  @at-root {// Sets syle for H2 tag title
     #block-views-block-related-content-block-1 {
       padding-left:0px;
       padding-right:0px;
@@ -278,48 +278,54 @@
         background-color:$banner-blue;
         color:$white;
         padding:8px 10px 5px;
-        margin:0;
+        margin:10px 0 0;
       }
     }
-  }
-  @at-root {
     #block-views-block-related-content-block-3 {
       padding-left:0px;
       padding-right:0px;
-        > h2.block-title {
-          background-color: $mtTeal;
-          color:$white;
-          padding:8px 10px 5px;
-          margin:0;
-        }
+      h2.block-title {
+        background-color: $mtTeal;
+        color:$white;
+        padding:8px 10px 5px;
+        margin:10px 0 0;
       }
     }
+  }
   .related-wrapper {
-    .related-list {
-      padding:0;
-      margin:10px;
-      list-style: none;
+    padding:0;
+    margin:0;
 
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
+    .view-content {
       display: flex;
-
-      //-webkit-flex-flow: row wrap;
-      justify-content: space-evenly;
+      margin:0 auto;
+      flex-flow: wrap;
       .related-content {
-        display: flex;
-        flex-direction: row;
+        width:200px;
         justify-content: space-between;
-        width: 220px;
-        border:solid 1px $exec-greyborder;
-        .views-field-nothing {
-          width:100%;
+        margin:10px;
+        border: solid 1px $exec-greyborder;
+        .no-article-image {
+          background-color: $exec-greyborder;
+          max-width:200px;
+          height:112px;
         }
         .related-box {
           min-height: 215px;
           padding-bottom: 5px;
+          .related-image {
+            width:198px;
+            height:111px;
+            overflow: hidden;
+            background-color: $exec-greyborder;
+          }
         }
         .related-type, .related-title, .related-date {
           padding-left:10px;
@@ -341,10 +347,6 @@
           margin:0;
           text-transform: uppercase;
         }
-        .no-article-image  {
-          min-height:98px;
-          border-bottom:solid 1px $exec-greyborder;
-        }
       }
     }
   }
@@ -359,8 +361,7 @@
 @mixin related-content-nav {
   // Related content nav arrows
   div [role=navigation] {
-    position: relative;
-    top:-125px;
+    margin-top:125px;
     .pager {
       margin:0;
       li a {

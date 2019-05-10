@@ -22,7 +22,7 @@ dependencies:
     - field.field.user.user.message_digest
     - field.field.user.user.message_subscribe_email
     - field.field.user.user.user_picture
-    - image.style.thumbnail
+    - image.style.profile_crop
   module:
     - image
     - panelizer
@@ -144,7 +144,7 @@ content:
     weight: 0
     region: content
     settings:
-      image_style: thumbnail
+      image_style: profile_crop
       image_link: content
     third_party_settings: {  }
     label: hidden

@@ -5,5 +5,4 @@ dependencies: {  }
 name: Tags-Editor
 vid: tags_editor
 description: 'Editor Exclusive Tags'
-hierarchy: 0
 weight: 0

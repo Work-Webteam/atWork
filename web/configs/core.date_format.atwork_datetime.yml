@@ -5,4 +5,4 @@ dependencies: {  }
 id: atwork_datetime
 label: 'Atwork Date'
 locked: false
-pattern: 'F d, Y |'
+pattern: 'F d, Y'

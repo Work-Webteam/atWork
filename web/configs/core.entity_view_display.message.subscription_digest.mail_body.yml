@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.message.mail_body
+    - field.field.message.subscription_digest.field_node_ref
     - message.template.subscription_digest
   module:
     - user

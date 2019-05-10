@@ -3,13 +3,13 @@ settings:
   css_url: ''
   crop_preview_image_style: crop_thumbnail
   crop_list:
-    gallery_crop: gallery_crop
     article_730_330: article_730_330
     article_hero: article_hero
+    gallery_crop: gallery_crop
   crop_types_required:
-    gallery_crop: gallery_crop
     article_730_330: article_730_330
     article_hero: article_hero
+    gallery_crop: gallery_crop
   warn_multiple_usages: false
   show_default_crop: true
   show_crop_area: false

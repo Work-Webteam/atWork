@@ -5,6 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.photos.body
+    - field.field.node.photos.comment_photos
+    - field.field.node.photos.field_send_notifications
+    - field.field.node.photos.field_tags
     - node.type.photos
   module:
     - text

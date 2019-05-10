@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_image
     - image.style.article_top_image
+    - image.style.max_325x325
     - image.style.thumbnail
     - node.type.forum
     - node.type.group_post
@@ -60,7 +61,7 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 4
+          items_per_page: 5
           offset: 0
           id: 0
           total_pages: null
@@ -477,6 +478,8 @@ display:
         sorts: false
         style: false
         row: false
+        query: false
+        css_class: false
       fields:
         field_image:
           id: field_image
@@ -529,7 +532,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: article_top_image
+            image_style: max_325x325
             image_link: content
           group_column: ''
           group_columns: {  }
@@ -805,17 +808,23 @@ display:
           entity_field: created
           plugin_id: date
       style:
-        type: html_list
+        type: default
         options:
           grouping: {  }
           row_class: related-content
           default_row_class: true
-          type: ul
-          wrapper_class: related-wrapper
-          class: related-list
       row:
         type: fields
         options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: null
+      css_class: related-wrapper
     cache_metadata:
       max-age: -1
       contexts:
@@ -1248,6 +1257,7 @@ display:
         operator: AND
         groups: {  }
       arguments: {  }
+      block_description: 'Program Spotlight'
     cache_metadata:
       max-age: -1
       contexts:
@@ -1276,6 +1286,8 @@ display:
         use_ajax: false
         style: false
         row: false
+        query: false
+        css_class: false
       fields:
         field_image:
           id: field_image
@@ -1328,7 +1340,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: article_top_image
+            image_style: max_325x325
             image_link: content
           group_column: ''
           group_columns: {  }
@@ -1592,7 +1604,7 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 4
+          items_per_page: 5
           offset: 0
           id: 0
           total_pages: null
@@ -1609,17 +1621,23 @@ display:
             offset_label: Offset
       use_ajax: true
       style:
-        type: html_list
+        type: default
         options:
           grouping: {  }
           row_class: related-content
           default_row_class: true
-          type: ul
-          wrapper_class: related-wrapper
-          class: related-list
       row:
         type: fields
         options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: null
+      css_class: related-wrapper
     cache_metadata:
       max-age: -1
       contexts:
@@ -2095,6 +2113,7 @@ display:
           entity_type: group_content
           entity_field: gid
           plugin_id: group_id
+      block_description: 'Group Spotlight'
     cache_metadata:
       max-age: -1
       contexts:

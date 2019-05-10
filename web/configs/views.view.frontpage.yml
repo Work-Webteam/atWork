@@ -7,7 +7,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.storage.node.field_development_tags
     - field.storage.node.field_image
-    - image.style.article_top_image
+    - image.style.max_325x325
     - taxonomy.vocabulary.tags
   content:
     - 'taxonomy_term:tags:60557cd8-54e7-430c-8c50-927a30755179'
@@ -477,7 +477,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: article_top_image
+            image_style: max_325x325
             image_link: content
           group_column: ''
           group_columns: {  }
