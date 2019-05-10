@@ -121,7 +121,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 	$groupcontent_weekly_subs = '';
 	
 	// Check if there are parent-group subscriptions
-	if($type_info['content_type'] == ('group_post' || 'photos')) {
+	if($type_info['content_type'] == ('group_post' || 'photos') && array_key_exists('group', \Drupal::routeMatch()->getParameters()->all())) {
 		
 		// Get group ID 
 		$gid = \Drupal::routeMatch()->getParameters()->all()['group']->get('id');
