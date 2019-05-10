@@ -270,3 +270,13 @@ body.path-group, body.page-node-type-background-page {
     }
   }
 }
+
+// Hide the author byline on basic pages
+body.page-node-type-page {
+  h1.page-title {
+    margin-bottom:20px;
+  }
+  .author-byline {
+    display:none;
+  }
+}
