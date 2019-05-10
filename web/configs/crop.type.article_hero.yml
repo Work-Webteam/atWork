@@ -2,11 +2,11 @@ uuid: 123ad73d-0379-446f-85fc-75e8af64c1b2
 langcode: en
 status: true
 dependencies: {  }
-label: 'Article - Hero'
+label: 'Article 1140/400'
 id: article_hero
-description: 'Hero image for articles'
-aspect_ratio: '1140:330'
-soft_limit_width: 730
-soft_limit_height: 330
+description: 'Full width image for articles'
+aspect_ratio: '3:1'
+soft_limit_width: 1140
+soft_limit_height: 400
 hard_limit_width: 1140
-hard_limit_height: 330
+hard_limit_height: 400

@@ -10101,12 +10101,12 @@ p:last-child,
 /* No CSS is directly placed in this file. Imports and comments only please */
 /* Comments and styling information */
 /* Mixins specific to AtWork CSS. See the Bootstrap mixins for others */
-/* line 353, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 355, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 .group-related-content .related-wrapper li.related-content {
   margin-left: initial;
 }
 
-/* line 355, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 357, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 .group-related-content .related-wrapper li.related-content:before {
   content: none;
 }
@@ -10210,16 +10210,19 @@ a:hover {
   /* line 5, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
   .container {
     width: 1140px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 35px;
   }
 }
 
-/* line 11, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 14, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 section.col-sm-12 {
   /*8@include make-sm-column(10);
   @include make-sm-column-push(1);*/
 }
 
-/* line 14, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 17, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 section.col-sm-12 h1.page-title, section.col-sm-12 .author-byline, section.col-sm-12 .field--name-body.field--type-text-with-summary {
   /*@include make-sm-column(12);
     @include make-sm-column-push(0);
@@ -10227,7 +10230,7 @@ section.col-sm-12 h1.page-title, section.col-sm-12 .author-byline, section.col-s
     padding-right:40px;*/
 }
 
-/* line 20, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 23, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 section.col-sm-12 .field--name-field-tags,
 section.col-sm-12 section[rel~="schema:comment"],
 section.col-sm-12 .views-element-container {
@@ -10240,7 +10243,7 @@ section.col-sm-12 .views-element-container {
 }
 
 @media (min-width: 768px) {
-  /* line 20, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+  /* line 23, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
   section.col-sm-12 .field--name-field-tags,
   section.col-sm-12 section[rel~="schema:comment"],
   section.col-sm-12 .views-element-container {
@@ -10250,7 +10253,7 @@ section.col-sm-12 .views-element-container {
 }
 
 @media (min-width: 768px) {
-  /* line 20, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+  /* line 23, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
   section.col-sm-12 .field--name-field-tags,
   section.col-sm-12 section[rel~="schema:comment"],
   section.col-sm-12 .views-element-container {
@@ -10258,24 +10261,24 @@ section.col-sm-12 .views-element-container {
   }
 }
 
-/* line 32, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 35, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 header .navbar-header {
   background-color: #266694;
 }
 
-/* line 38, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 41, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container {
   border-top: none;
 }
 
-/* line 40, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 43, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container .region.region-footer {
   padding-top: 15px;
   padding-bottom: 15px;
   background-color: #266694;
 }
 
-/* line 44, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 47, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container .region.region-footer p {
   color: white;
   font-size: .9rem;
@@ -10283,25 +10286,25 @@ footer.footer.container .region.region-footer p {
   text-align: center;
 }
 
-/* line 50, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 53, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container .region.region-footer a {
   color: white;
   text-decoration: underline;
 }
 
-/* line 54, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 57, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container .region.region-footer #footer-info {
   display: table;
   width: 100%;
 }
 
-/* line 58, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 61, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container .region.region-footer #footer-left, footer.footer.container .region.region-footer #footer-middle, footer.footer.container .region.region-footer #footer-right {
   display: table-cell;
   vertical-align: top;
 }
 
-/* line 62, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 65, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 footer.footer.container .region.region-footer #footer-left, footer.footer.container .region.region-footer #footer-right {
   width: 25%;
 }
@@ -10571,7 +10574,15 @@ footer.footer.container .region.region-footer #footer-left, footer.footer.contai
   border: solid 1px #CCCCCC;
 }
 
-/* line 197, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 192, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+#navbar.navbar.container section#block-mainnavigation .is-active.sf-depth-2.next-menu-link,
+#navbar.navbar.container section#block-mainnavigation .is-active.sf-depth-3.next-menu-link,
+#navbar.navbar.container section#block-mainnavigation .active-trail.sf-depth-2.next-menu-item.menuparent {
+  background-color: #044573;
+  color: white;
+}
+
+/* line 204, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav,
 body.page-node-type-program-area-content .region-sidebar-nav {
   position: relative;
@@ -10583,7 +10594,7 @@ body.page-node-type-program-area-content .region-sidebar-nav {
 }
 
 @media (min-width: 768px) {
-  /* line 197, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+  /* line 204, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
   body.path-group .region-sidebar-nav,
   body.page-node-type-program-area-content .region-sidebar-nav {
     float: left;
@@ -10591,7 +10602,7 @@ body.page-node-type-program-area-content .region-sidebar-nav {
   }
 }
 
-/* line 201, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 208, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu {
   border: solid 1px #E0E7E8;
@@ -10601,7 +10612,7 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu {
   line-height: 16px;
 }
 
-/* line 206, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 213, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu h3,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu h3 {
   background-color: #8acccf;
@@ -10613,7 +10624,7 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu h3 
   text-transform: uppercase;
 }
 
-/* line 215, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 222, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu ul,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu ul {
   list-style: none;
@@ -10621,7 +10632,7 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu ul 
   margin: 0;
 }
 
-/* line 219, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 226, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu ul a,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu ul a {
   display: block;
@@ -10630,7 +10641,7 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu ul 
   max-width: inherit;
 }
 
-/* line 224, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 231, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu ul a:hover,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu ul a:hover {
   background-color: #E0E7E8;
@@ -10638,7 +10649,7 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu ul 
   text-decoration: none;
 }
 
-/* line 233, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 240, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group nav.tabs, body.path-group .group-page-content, body.path-group .node--type-program-area-content,
 body.page-node-type-program-area-content nav.tabs,
 body.page-node-type-program-area-content .group-page-content,
@@ -10651,7 +10662,7 @@ body.page-node-type-program-area-content .node--type-program-area-content {
 }
 
 @media (min-width: 768px) {
-  /* line 233, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+  /* line 240, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
   body.path-group nav.tabs, body.path-group .group-page-content, body.path-group .node--type-program-area-content,
   body.page-node-type-program-area-content nav.tabs,
   body.page-node-type-program-area-content .group-page-content,
@@ -10662,7 +10673,7 @@ body.page-node-type-program-area-content .node--type-program-area-content {
 }
 
 @media (min-width: 768px) {
-  /* line 233, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+  /* line 240, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
   body.path-group nav.tabs, body.path-group .group-page-content, body.path-group .node--type-program-area-content,
   body.page-node-type-program-area-content nav.tabs,
   body.page-node-type-program-area-content .group-page-content,
@@ -10671,7 +10682,7 @@ body.page-node-type-program-area-content .node--type-program-area-content {
   }
 }
 
-/* line 238, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 245, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group nav.tabs,
 body.page-node-type-program-area-content nav.tabs {
   font-size: .875rem;
@@ -11004,142 +11015,154 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   background-color: #266694;
   color: white;
   padding: 8px 10px 5px;
-  margin: 0;
+  margin: 10px 0 0;
 }
 
-/* line 286, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 284, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 #block-views-block-related-content-block-3 {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-/* line 289, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-3 > h2.block-title {
+/* line 287, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-3 h2.block-title {
   background-color: #8acccf;
   color: white;
   padding: 8px 10px 5px;
-  margin: 0;
+  margin: 10px 0 0;
 }
 
-/* line 298, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list,
-.group-related-content .related-wrapper .related-list,
-.all-group-posts .related-wrapper .related-list,
-.groups-landing .related-wrapper .related-list {
+/* line 295, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper,
+.group-related-content .related-wrapper,
+.all-group-posts .related-wrapper,
+.groups-landing .related-wrapper {
   padding: 0;
-  margin: 10px;
-  list-style: none;
+  margin: 0;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  justify-content: space-evenly;
+  flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
 }
 
-/* line 311, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content,
-.group-related-content .related-wrapper .related-list .related-content,
-.all-group-posts .related-wrapper .related-list .related-content,
-.groups-landing .related-wrapper .related-list .related-content {
+/* line 306, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content,
+.group-related-content .related-wrapper .view-content,
+.all-group-posts .related-wrapper .view-content,
+.groups-landing .related-wrapper .view-content {
   display: flex;
-  flex-direction: row;
+  margin: 0 auto;
+  flex-flow: wrap;
+}
+
+/* line 310, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content,
+.group-related-content .related-wrapper .view-content .related-content,
+.all-group-posts .related-wrapper .view-content .related-content,
+.groups-landing .related-wrapper .view-content .related-content {
+  width: 200px;
   justify-content: space-between;
-  width: 220px;
+  margin: 10px;
   border: solid 1px #E0E7E8;
 }
 
-/* line 317, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .views-field-nothing,
-.group-related-content .related-wrapper .related-list .related-content .views-field-nothing,
-.all-group-posts .related-wrapper .related-list .related-content .views-field-nothing,
-.groups-landing .related-wrapper .related-list .related-content .views-field-nothing {
-  width: 100%;
+/* line 315, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .no-article-image,
+.group-related-content .related-wrapper .view-content .related-content .no-article-image,
+.all-group-posts .related-wrapper .view-content .related-content .no-article-image,
+.groups-landing .related-wrapper .view-content .related-content .no-article-image {
+  background-color: #E0E7E8;
+  max-width: 200px;
+  height: 112px;
 }
 
 /* line 320, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-box,
-.group-related-content .related-wrapper .related-list .related-content .related-box,
-.all-group-posts .related-wrapper .related-list .related-content .related-box,
-.groups-landing .related-wrapper .related-list .related-content .related-box {
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-box,
+.group-related-content .related-wrapper .view-content .related-content .related-box,
+.all-group-posts .related-wrapper .view-content .related-content .related-box,
+.groups-landing .related-wrapper .view-content .related-content .related-box {
   min-height: 215px;
   padding-bottom: 5px;
 }
 
-/* line 324, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-type, #block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-title, #block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-date,
-.group-related-content .related-wrapper .related-list .related-content .related-type,
-.group-related-content .related-wrapper .related-list .related-content .related-title,
-.group-related-content .related-wrapper .related-list .related-content .related-date,
-.all-group-posts .related-wrapper .related-list .related-content .related-type,
-.all-group-posts .related-wrapper .related-list .related-content .related-title,
-.all-group-posts .related-wrapper .related-list .related-content .related-date,
-.groups-landing .related-wrapper .related-list .related-content .related-type,
-.groups-landing .related-wrapper .related-list .related-content .related-title,
-.groups-landing .related-wrapper .related-list .related-content .related-date {
+/* line 323, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-box .related-image,
+.group-related-content .related-wrapper .view-content .related-content .related-box .related-image,
+.all-group-posts .related-wrapper .view-content .related-content .related-box .related-image,
+.groups-landing .related-wrapper .view-content .related-content .related-box .related-image {
+  width: 198px;
+  height: 111px;
+  overflow: hidden;
+  background-color: #E0E7E8;
+}
+
+/* line 330, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-type, #block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-title, #block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-date,
+.group-related-content .related-wrapper .view-content .related-content .related-type,
+.group-related-content .related-wrapper .view-content .related-content .related-title,
+.group-related-content .related-wrapper .view-content .related-content .related-date,
+.all-group-posts .related-wrapper .view-content .related-content .related-type,
+.all-group-posts .related-wrapper .view-content .related-content .related-title,
+.all-group-posts .related-wrapper .view-content .related-content .related-date,
+.groups-landing .related-wrapper .view-content .related-content .related-type,
+.groups-landing .related-wrapper .view-content .related-content .related-title,
+.groups-landing .related-wrapper .view-content .related-content .related-date {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* line 328, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-type, #block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-date,
-.group-related-content .related-wrapper .related-list .related-content .related-type,
-.group-related-content .related-wrapper .related-list .related-content .related-date,
-.all-group-posts .related-wrapper .related-list .related-content .related-type,
-.all-group-posts .related-wrapper .related-list .related-content .related-date,
-.groups-landing .related-wrapper .related-list .related-content .related-type,
-.groups-landing .related-wrapper .related-list .related-content .related-date {
+/* line 334, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-type, #block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-date,
+.group-related-content .related-wrapper .view-content .related-content .related-type,
+.group-related-content .related-wrapper .view-content .related-content .related-date,
+.all-group-posts .related-wrapper .view-content .related-content .related-type,
+.all-group-posts .related-wrapper .view-content .related-content .related-date,
+.groups-landing .related-wrapper .view-content .related-content .related-type,
+.groups-landing .related-wrapper .view-content .related-content .related-date {
   font-size: .75rem;
   line-height: 16px;
 }
 
-/* line 331, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-title,
-.group-related-content .related-wrapper .related-list .related-content .related-title,
-.all-group-posts .related-wrapper .related-list .related-content .related-title,
-.groups-landing .related-wrapper .related-list .related-content .related-title {
+/* line 337, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-title,
+.group-related-content .related-wrapper .view-content .related-content .related-title,
+.all-group-posts .related-wrapper .view-content .related-content .related-title,
+.groups-landing .related-wrapper .view-content .related-content .related-title {
   min-height: 55px;
   margin-bottom: 20px;
 }
 
-/* line 334, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-title h5,
-.group-related-content .related-wrapper .related-list .related-content .related-title h5,
-.all-group-posts .related-wrapper .related-list .related-content .related-title h5,
-.groups-landing .related-wrapper .related-list .related-content .related-title h5 {
+/* line 340, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-title h5,
+.group-related-content .related-wrapper .view-content .related-content .related-title h5,
+.all-group-posts .related-wrapper .view-content .related-content .related-title h5,
+.groups-landing .related-wrapper .view-content .related-content .related-title h5 {
   margin: 0;
   padding: 0;
 }
 
-/* line 339, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .related-type,
-.group-related-content .related-wrapper .related-list .related-content .related-type,
-.all-group-posts .related-wrapper .related-list .related-content .related-type,
-.groups-landing .related-wrapper .related-list .related-content .related-type {
+/* line 345, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+#block-views-block-related-content-block-1 .related-wrapper .view-content .related-content .related-type,
+.group-related-content .related-wrapper .view-content .related-content .related-type,
+.all-group-posts .related-wrapper .view-content .related-content .related-type,
+.groups-landing .related-wrapper .view-content .related-content .related-type {
   padding: 10px 0 0 10px;
   margin: 0;
   text-transform: uppercase;
 }
 
-/* line 344, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
-#block-views-block-related-content-block-1 .related-wrapper .related-list .related-content .no-article-image,
-.group-related-content .related-wrapper .related-list .related-content .no-article-image,
-.all-group-posts .related-wrapper .related-list .related-content .no-article-image,
-.groups-landing .related-wrapper .related-list .related-content .no-article-image {
-  min-height: 98px;
-  border-bottom: solid 1px #E0E7E8;
-}
-
-/* line 361, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 363, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 #block-views-block-related-content-block-1 div [role=navigation],
 .group-related-content div [role=navigation],
 .all-group-posts div [role=navigation],
 .groups-landing div [role=navigation] {
-  position: relative;
-  top: -125px;
+  margin-top: 125px;
 }
 
-/* line 364, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 365, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 #block-views-block-related-content-block-1 div [role=navigation] .pager,
 .group-related-content div [role=navigation] .pager,
 .all-group-posts div [role=navigation] .pager,
@@ -11147,7 +11170,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   margin: 0;
 }
 
-/* line 366, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 367, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 #block-views-block-related-content-block-1 div [role=navigation] .pager li a,
 .group-related-content div [role=navigation] .pager li a,
 .all-group-posts div [role=navigation] .pager li a,
@@ -11157,7 +11180,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   border: 0;
 }
 
-/* line 371, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 372, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 #block-views-block-related-content-block-1 div [role=navigation] .pager li.previous,
 .group-related-content div [role=navigation] .pager li.previous,
 .all-group-posts div [role=navigation] .pager li.previous,
@@ -11169,7 +11192,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   width: 17px;
 }
 
-/* line 378, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 379, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 #block-views-block-related-content-block-1 div [role=navigation] .pager li.next,
 .group-related-content div [role=navigation] .pager li.next,
 .all-group-posts div [role=navigation] .pager li.next,
@@ -11181,7 +11204,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   width: 17px;
 }
 
-/* line 245, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 244, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page-node-type-background-page div#group-ad-space, body.page-node-type-background-page #program-ad-space {
   display: flex;
   flex-direction: column;
@@ -11190,25 +11213,25 @@ body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page
   margin-bottom: 10px;
 }
 
-/* line 251, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 250, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space div#ad-box, body.path-group #program-ad-space div#ad-box, body.page-node-type-background-page div#group-ad-space div#ad-box, body.page-node-type-background-page #program-ad-space div#ad-box {
   display: flex;
   flex-direction: row;
   border: solid 1px #E0E7E8;
 }
 
-/* line 255, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 254, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space div#ad-box div#ad-content, body.path-group #program-ad-space div#ad-box div#ad-content, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-content, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-content {
   padding: 5px 10px;
   flex: 1 400%;
 }
 
-/* line 259, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 258, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space div#ad-box div#ad-image, body.path-group #program-ad-space div#ad-box div#ad-image, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-image, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-image {
   flex: 0 1 auto;
 }
 
-/* line 263, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 262, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space #ad-tab h3, body.page-node-type-background-page div#group-ad-space #ad-tab h3, body.page-node-type-background-page #program-ad-space #ad-tab h3 {
   background-color: #e6f2f9;
   padding: 8px;
@@ -11218,12 +11241,12 @@ body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space
   border-right: solid 1px #E0E7E8;
 }
 
-/* line 276, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 275, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.page-node-type-page h1.page-title {
   margin-bottom: 20px;
 }
 
-/* line 279, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 278, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.page-node-type-page .author-byline {
   display: none;
 }
@@ -11570,7 +11593,7 @@ section.col-sm-12 .group-page-content .group-title-banner h1, section.col-sm-12 
 
 /* line 20, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content .group-title-banner h1:before, section.col-sm-12 .group-page-content .group-title-banner h2:before {
-  content: "Group : ";
+  content: "Group: ";
 }
 
 /* line 34, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
@@ -11586,7 +11609,7 @@ section.col-sm-12 .group-page-content aside.author-avatar {
 }
 
 /* line 44, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content .group-join {
+section.col-sm-12 .group-page-content .group-join, section.col-sm-12 .group-page-content .group-leave {
   display: inline-block;
   background-color: #266694;
   position: absolute;
@@ -11598,12 +11621,12 @@ section.col-sm-12 .group-page-content .group-join {
 }
 
 /* line 53, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content .group-join > a {
+section.col-sm-12 .group-page-content .group-join > a, section.col-sm-12 .group-page-content .group-leave > a {
   color: white;
 }
 
 /* line 55, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content .group-join > a:hover {
+section.col-sm-12 .group-page-content .group-join > a:hover, section.col-sm-12 .group-page-content .group-leave > a:hover {
   text-decoration: none;
   color: #edb141;
 }
@@ -11637,27 +11660,32 @@ section.col-sm-12 .group-page-content section.group-landing-info h4, section.col
 }
 
 /* line 79, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content section.group-landing-info span.group-info {
+section.col-sm-12 .group-page-content section.group-landing-info span.group-admin-info {
+  flex: 2;
+}
+
+/* line 81, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+section.col-sm-12 .group-page-content section.group-landing-info span.group-admin-info div.group-info {
   flex: 1;
   margin-right: 10px;
   padding: 10px 10px 10px 0;
   border-right: solid 1px #266694;
 }
 
-/* line 84, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content section.group-landing-info span.group-info a {
+/* line 86, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+section.col-sm-12 .group-page-content section.group-landing-info span.group-admin-info div.group-info a {
   display: block;
 }
 
-/* line 86, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content section.group-landing-info span.group-info a:hover {
+/* line 88, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+section.col-sm-12 .group-page-content section.group-landing-info span.group-admin-info div.group-info a:hover {
   background-color: #266694;
   color: white;
   text-decoration: none;
 }
 
-/* line 92, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
-section.col-sm-12 .group-page-content section.group-landing-info span.group-info h4 {
+/* line 94, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+section.col-sm-12 .group-page-content section.group-landing-info span.group-admin-info div.group-info h4 {
   border-top: solid 1px #8acccf;
   border-bottom: solid 1px #8acccf;
   margin-top: 5px;
@@ -11665,7 +11693,7 @@ section.col-sm-12 .group-page-content section.group-landing-info span.group-info
   padding-top: 3px;
 }
 
-/* line 100, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons {
   font-size: .875rem;
   line-height: 16px;
@@ -11678,7 +11706,7 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   padding-bottom: 10px;
 }
 
-/* line 109, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 112, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons span.group-button {
   display: flex;
   flex-direction: column;
@@ -11690,7 +11718,7 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   margin: 0px 3px 5px 3px;
 }
 
-/* line 118, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 121, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons span.group-button > span {
   background-color: white;
   padding: 6px;
@@ -11699,24 +11727,24 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   border-radius: 50px;
 }
 
-/* line 125, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 128, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons span.group-button > a {
   color: white;
 }
 
-/* line 127, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 130, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons span.group-button > a:hover {
   text-decoration: none;
   color: #266694;
 }
 
-/* line 130, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 133, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section.col-sm-12 .group-page-content section.group-landing-info .group-hp-buttons span.group-button > a:hover ~ span {
   background-color: #edb141;
   color: white;
 }
 
-/* line 141, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 144, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 #no-ad-space {
   display: flex;
   flex-direction: row;
@@ -11724,13 +11752,13 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   height: 35px;
 }
 
-/* line 152, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 155, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 .group-related-content section#block-views-block-related-content-block-3 {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-/* line 155, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 158, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 .group-related-content section#block-views-block-related-content-block-3 > h2.block-title {
   background-color: #8acccf;
   margin-bottom: 10px;
@@ -11738,7 +11766,7 @@ section.col-sm-12 .group-page-content section.group-landing-info .group-hp-butto
   padding: 8px 0 5px 10px;
 }
 
-/* line 166, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 169, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin > h2 {
   padding: 0;
   margin: 0;
@@ -11746,7 +11774,7 @@ section#block-groupadmin > h2 {
   background-color: rgba(4, 69, 115, 0.5);
 }
 
-/* line 172, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 175, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .well {
   border-color: #c5d5da;
   background-color: rgba(197, 213, 218, 0.5);
@@ -11754,23 +11782,23 @@ section#block-groupadmin .well {
   font-size: .9em;
 }
 
-/* line 178, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 181, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard .draggable-dashboard-column {
   min-height: inherit;
 }
 
-/* line 181, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 184, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block {
   border-color: #c5d5da;
 }
 
-/* line 183, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 186, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block h2 {
   padding: 0;
   margin: 0;
 }
 
-/* line 188, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 191, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block__content {
   display: flex;
 }
@@ -12109,13 +12137,13 @@ body.path-my-profile #profile-card, .employee-profile-page #profile-card {
   width: 100%;
 }
 
-/* line 394, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 395, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card aside, .employee-profile-page #profile-card aside {
   padding: 15px;
   border-right: solid 1px #E0E7E8;
 }
 
-/* line 397, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 398, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card aside span.profile-img, .employee-profile-page #profile-card aside span.profile-img {
   display: block;
   width: 125px;
@@ -12124,20 +12152,20 @@ body.path-my-profile #profile-card aside span.profile-img, .employee-profile-pag
   overflow: hidden;
 }
 
-/* line 405, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 406, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card section.profile-detail, .employee-profile-page #profile-card section.profile-detail {
   width: 100%;
   padding: 15px;
 }
 
-/* line 408, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 409, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card section.profile-detail ul, .employee-profile-page #profile-card section.profile-detail ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 413, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 414, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card section.profile-detail h3, .employee-profile-page #profile-card section.profile-detail h3 {
   border-bottom: solid 10px #E0E7E8;
   padding: 0;
@@ -12149,7 +12177,7 @@ body.path-my-profile #profile-card #profile-edit a, body.path-my-profile #profil
   display: block;
   font-size: .75rem;
   line-height: 16px;
-  border: solid 1px #E0E7E8;
+  border: solid 1px white;
   width: max-content;
   padding: 2px 5px 0;
   margin: 10px auto 0;
@@ -12191,17 +12219,18 @@ body.path-employees .all-employee-page .views-row #profile-card, body.path-execu
   width: 100%;
   width: 365px;
   height: 140px;
+  margin: 5px;
   font-size: .75rem;
   line-height: 16px;
 }
 
-/* line 394, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 395, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-employees .all-employee-page .views-row #profile-card aside, body.path-executives .all-employee-page .views-row #profile-card aside {
   padding: 15px;
   border-right: solid 1px #E0E7E8;
 }
 
-/* line 397, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 398, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img, body.path-executives .all-employee-page .views-row #profile-card aside span.profile-img {
   display: block;
   width: 125px;
@@ -12210,54 +12239,55 @@ body.path-employees .all-employee-page .views-row #profile-card aside span.profi
   overflow: hidden;
 }
 
-/* line 405, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 406, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-employees .all-employee-page .views-row #profile-card section.profile-detail, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail {
   width: 100%;
   padding: 15px;
 }
 
-/* line 408, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 409, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-employees .all-employee-page .views-row #profile-card section.profile-detail ul, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-/* line 413, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+/* line 414, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-employees .all-employee-page .views-row #profile-card section.profile-detail h3, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail h3 {
   border-bottom: solid 10px #E0E7E8;
   padding: 0;
   margin: 20px 0 20px 0;
 }
 
-/* line 51, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 52, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page .views-row #profile-card .no-results, body.path-executives .all-employee-page .views-row #profile-card .no-results {
-  color: #e0e0e0;
+  color: gray;
   font-style: oblique;
 }
 
-/* line 55, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 56, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page .views-row #profile-card a, body.path-executives .all-employee-page .views-row #profile-card a {
   text-decoration: none;
 }
 
-/* line 58, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 59, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page .views-row #profile-card aside, body.path-executives .all-employee-page .views-row #profile-card aside {
   padding: 5px;
 }
 
-/* line 60, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 61, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page .views-row #profile-card aside span.profile-img, body.path-executives .all-employee-page .views-row #profile-card aside span.profile-img {
   width: 75px;
   height: 75px;
 }
 
-/* line 65, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 66, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page .views-row #profile-card section.profile-detail, body.path-executives .all-employee-page .views-row #profile-card section.profile-detail {
+  background-color: #f7f7f7;
   padding: 10px;
 }
 
-/* line 70, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 72, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group, body.path-executives .all-employee-page > .form-group {
   border: solid 1px #E0E7E8;
   padding: 5px;
@@ -12267,20 +12297,20 @@ body.path-employees .all-employee-page > .form-group, body.path-executives .all-
   line-height: 16px;
 }
 
-/* line 76, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 78, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group .form-item, body.path-executives .all-employee-page > .form-group .form-item {
   max-width: 210px;
   width: -moz-available;
   margin-bottom: 3px;
 }
 
-/* line 81, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 83, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group label.control-label, body.path-executives .all-employee-page > .form-group label.control-label {
   font-weight: normal;
   padding-right: 5px;
 }
 
-/* line 85, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 87, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group input.form-control, body.path-employees .all-employee-page > .form-group .form-select.form-control, body.path-executives .all-employee-page > .form-group input.form-control, body.path-executives .all-employee-page > .form-group .form-select.form-control {
   padding: 0px 5px;
   height: inherit;
@@ -12289,51 +12319,51 @@ body.path-employees .all-employee-page > .form-group input.form-control, body.pa
   line-height: 16px;
 }
 
-/* line 90, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 92, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group input.form-control:focus, body.path-employees .all-employee-page > .form-group .form-select.form-control:focus, body.path-executives .all-employee-page > .form-group input.form-control:focus, body.path-executives .all-employee-page > .form-group .form-select.form-control:focus {
   background-color: beige;
 }
 
-/* line 94, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 96, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group .form-item-sort-by, body.path-employees .all-employee-page > .form-group .form-item-sort-order, body.path-executives .all-employee-page > .form-group .form-item-sort-by, body.path-executives .all-employee-page > .form-group .form-item-sort-order {
   max-width: min-content;
   margin-right: 10px;
 }
 
-/* line 97, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 99, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-employees .all-employee-page > .form-group .form-item-sort-order .form-select.form-control, body.path-executives .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-executives .all-employee-page > .form-group .form-item-sort-order .form-select.form-control {
   padding: 0 20px 0 0;
 }
 
-/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 105, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees nav.pager-nav, body.path-executives nav.pager-nav {
   font-size: .75rem;
   line-height: 16px;
 }
 
-/* line 108, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 110, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-executives .view-filters.form-group {
   border: solid 1px transparent;
 }
 
-/* line 111, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 113, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-executives aside {
   background-color: #266694;
 }
 
-/* line 114, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 116, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-executives .profile-img {
   border: solid 5px #E0E7E8;
   background-color: white;
 }
 
-/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees aside {
+/* line 122, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees aside, body.path-my-profile aside {
   background-color: #E0E7E8;
 }
 
-/* line 123, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
-body.path-employees .profile-img {
+/* line 125, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .profile-img, body.path-my-profile .profile-img {
   border: solid 5px #266694;
   background-color: white;
 }

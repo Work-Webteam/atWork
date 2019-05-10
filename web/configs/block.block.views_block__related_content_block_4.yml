@@ -1,6 +1,6 @@
 uuid: 2de0e883-a24e-4420-b3a1-0d9a1ad7054c
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.related_content

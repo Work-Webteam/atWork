@@ -18,7 +18,7 @@ section.col-sm-12 .group-page-content {
     flex-direction: column;
     h1, h2 {
       &:before {
-        content:"Group : ";
+        content:"Group: ";
       }
       @include size2136;
       font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
@@ -41,7 +41,7 @@ section.col-sm-12 .group-page-content {
     width:60px;
     height:60px;
   }
-  .group-join {
+  .group-join, .group-leave {
     display:inline-block;
     background-color:$banner-blue;
     position: absolute;
@@ -76,25 +76,28 @@ section.col-sm-12 .group-page-content {
       padding:0;
       margin:0;
     }
-    span.group-info {
-      flex: 1;
-      margin-right:10px;
-      padding:10px 10px 10px 0;
-      border-right: solid 1px $banner-blue;
-      a {
-        display: block;
-        &:hover {
-          background-color: $banner-blue;
-          color:$white;
-          text-decoration: none;
+    span.group-admin-info {
+      flex: 2;
+      div.group-info {
+        flex: 1;
+        margin-right:10px;
+        padding:10px 10px 10px 0;
+        border-right: solid 1px $banner-blue;
+        a {
+          display: block;
+          &:hover {
+            background-color: $banner-blue;
+            color:$white;
+            text-decoration: none;
+          }
         }
-      }
-      h4 {
-        border-top:solid 1px $mtTeal;
-        border-bottom:solid 1px $mtTeal;
-        margin-top:5px;
-        margin-bottom:5px;
-        padding-top:3px;
+        h4 {
+          border-top:solid 1px $mtTeal;
+          border-bottom:solid 1px $mtTeal;
+          margin-top:5px;
+          margin-bottom:5px;
+          padding-top:3px;
+        }
       }
     }
     .group-hp-buttons {

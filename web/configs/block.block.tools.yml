@@ -10,7 +10,7 @@ dependencies:
     - seven
 id: tools
 theme: seven
-region: header
+region: background_image
 weight: null
 provider: null
 plugin: 'menu_block:tools'

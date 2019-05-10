@@ -189,6 +189,13 @@
         border: solid 1px #CCCCCC;
       }
     }
+    .is-active.sf-depth-2.next-menu-link,
+    .is-active.sf-depth-3.next-menu-link,
+    .active-trail.sf-depth-2.next-menu-item.menuparent
+     {
+      background-color: #044573;
+      color:$white;
+    }
   }
 }
 // Group and Landing Page side menus

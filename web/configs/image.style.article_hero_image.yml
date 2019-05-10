@@ -7,7 +7,7 @@ dependencies:
   module:
     - crop
 name: article_hero_image
-label: 'Article - Hero Image'
+label: 'Article 1140x400'
 effects:
   fab4847c-a685-4e38-8500-01f49dfcd1b5:
     uuid: fab4847c-a685-4e38-8500-01f49dfcd1b5

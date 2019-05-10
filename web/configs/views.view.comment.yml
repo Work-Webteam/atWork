@@ -1738,6 +1738,8 @@ display:
         - user.permissions
       tags:
         - 'config:core.entity_view_display.comment.comment.default'
+        - 'config:core.entity_view_display.comment.comment_forum.default'
+        - 'config:core.entity_view_display.comment.comment_photos.default'
         - 'config:field.storage.comment.comment_body'
   entity_reference_1:
     display_plugin: entity_reference

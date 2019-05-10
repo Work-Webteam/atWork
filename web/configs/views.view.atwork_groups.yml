@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.group.field_group
+    - field.storage.group_content.group_roles
     - image.style.medium
   module:
     - group

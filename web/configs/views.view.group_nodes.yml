@@ -2,16 +2,10 @@ uuid: a2e3c36d-314a-4064-8901-a63551a94c02
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.node.body
-    - field.storage.node.field_image
-    - image.style.article_hero_image
   module:
     - gnode
     - group
-    - image
     - node
-    - text
 _core:
   default_config_hash: ZSKjHkl45YTbsYHiq_H7py04GDuX95t-GOHAAb8ZFbk
 id: group_nodes

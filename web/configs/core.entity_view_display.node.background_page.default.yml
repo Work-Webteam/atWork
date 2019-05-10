@@ -8,11 +8,11 @@ dependencies:
     - field.field.node.background_page.field_image
     - field.field.node.background_page.field_program_ad_space
     - field.field.node.background_page.field_program_topic
-    - image.style.article_top_image
     - node.type.background_page
+    - responsive_image.styles.responsive_article_image
   module:
-    - image
     - panelizer
+    - responsive_image
     - text
     - user
 third_party_settings:
@@ -38,10 +38,10 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: article_top_image
+      responsive_image_style: responsive_article_image
       image_link: ''
     third_party_settings: {  }
-    type: image
+    type: responsive_image
     region: content
   field_program_topic:
     weight: 2

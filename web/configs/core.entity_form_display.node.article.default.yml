@@ -17,7 +17,7 @@ dependencies:
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
-    - image.style.large
+    - image.style.max_325x325
     - node.type.article
   module:
     - comment
@@ -110,10 +110,9 @@ content:
     region: content
     settings:
       show_default_crop: true
-      preview_image_style: large
+      preview_image_style: max_325x325
       crop_preview_image_style: medium
       crop_list:
-        - article_730_330
         - article_hero
       progress_indicator: throbber
       crop_types_required: {  }
@@ -218,8 +217,8 @@ content:
     third_party_settings: {  }
   url_redirects:
     weight: 50
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   panelizer: true
