@@ -1267,7 +1267,7 @@ display:
           table: file_usage
           field: count
           relationship: gc__user
-          group_type: count
+          group_type: count_distinct
           admin_label: ''
           label: ''
           exclude: true

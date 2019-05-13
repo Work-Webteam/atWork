@@ -12,5 +12,6 @@ audience: outsider
 group_type: atwork_groups
 permissions_ui: true
 permissions:
-  - 'view group'
-  - 'join group'
+  0: 'view group'
+  1: 'join group'
+  4: 'view group_membership content'
