@@ -118,6 +118,10 @@ class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
 					$gid = $group_content->getGroup()->id();
 				}
 				$group = Group::load($gid);
+				if($group == null){
+				  // If we don't have the group info, then lets eject.
+				  return;
+        }
 				
 				// Add link to groups view page
 				$breadcrumb->addLink(Link::createFromRoute(t('Groups'), 'view.atwork_groups.page_1'));
