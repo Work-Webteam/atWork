@@ -2,11 +2,11 @@ uuid: 49c06f59-cf96-4b6d-a1da-c76e88f4bfb9
 langcode: en
 status: true
 dependencies: {  }
-label: 'Article 825/300'
+label: 'Article 825/400'
 id: article_730_330
 description: 'Top image with sidebar'
-aspect_ratio: '3:1'
-soft_limit_width: 825
-soft_limit_height: 300
+aspect_ratio: '825:400'
+soft_limit_width: null
+soft_limit_height: null
 hard_limit_width: 825
-hard_limit_height: 300
+hard_limit_height: 400

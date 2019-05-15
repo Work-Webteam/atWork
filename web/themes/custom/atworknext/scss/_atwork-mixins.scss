@@ -308,7 +308,7 @@
       margin:0 auto;
       flex-flow: wrap;
       .related-content {
-        width:200px;
+        width:265px;
         justify-content: space-between;
         margin:10px;
         border: solid 1px $exec-greyborder;
@@ -321,7 +321,7 @@
           min-height: 215px;
           padding-bottom: 5px;
           .related-image {
-            width:198px;
+            width:100%;
             height:111px;
             overflow: hidden;
             background-color: $exec-greyborder;

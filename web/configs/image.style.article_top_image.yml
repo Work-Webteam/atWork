@@ -7,7 +7,7 @@ dependencies:
   module:
     - crop
 name: article_top_image
-label: 'Article 825x300'
+label: 'Article 825x400'
 effects:
   18a36216-cafb-45a0-b5af-b6aa73d85118:
     uuid: 18a36216-cafb-45a0-b5af-b6aa73d85118

@@ -1,22 +1,24 @@
-uuid: 508e1380-57ed-4ee2-b535-13b3ca827500
+uuid: f04bc5db-b75a-47cb-bae2-1938bac102e5
 langcode: en
 status: true
 dependencies:
+  content:
+    - 'block_content:basic:0415d63a-3961-448e-bcbe-be404098d791'
   module:
+    - block_content
     - ctools
-    - group
   theme:
     - atworknext
 id: group_sidebar_menu
 theme: atworknext
 region: sidebar_nav
-weight: -10
+weight: -9
 provider: null
-plugin: 'block_content:75f642c1-3057-4a23-a7e5-386670cbbfa6'
+plugin: 'block_content:0415d63a-3961-448e-bcbe-be404098d791'
 settings:
-  id: 'block_content:75f642c1-3057-4a23-a7e5-386670cbbfa6'
+  id: 'block_content:0415d63a-3961-448e-bcbe-be404098d791'
   label: 'Group Sidebar Menu'
-  provider: core
+  provider: block_content
   label_display: '0'
   status: true
   info: ''
@@ -25,13 +27,6 @@ visibility:
   'entity_bundle:group':
     id: 'entity_bundle:group'
     bundles:
-      atwork_groups: atwork_groups
-    negate: false
-    context_mapping:
-      group: '@group.group_route_context:group'
-  group_type:
-    id: group_type
-    group_types:
       atwork_groups: atwork_groups
     negate: false
     context_mapping:

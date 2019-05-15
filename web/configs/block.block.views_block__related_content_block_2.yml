@@ -26,7 +26,10 @@ visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
+      article: article
       background_page: background_page
+      group_post: group_post
+      program_area_content: program_area_content
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'

@@ -10,7 +10,7 @@ dependencies:
     - field.field.node.program_area_content.field_parent_program
     - field.field.node.program_area_content.field_tags
     - field.field.node.program_area_content.field_video
-    - image.style.max_325x325
+    - image.style.medium
     - node.type.program_area_content
   module:
     - file
@@ -51,7 +51,7 @@ content:
     weight: 1
     settings:
       show_default_crop: true
-      preview_image_style: max_325x325
+      preview_image_style: medium
       crop_preview_image_style: medium
       crop_list:
         - article_730_330

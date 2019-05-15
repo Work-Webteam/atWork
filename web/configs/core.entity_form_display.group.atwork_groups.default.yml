@@ -9,7 +9,7 @@ dependencies:
     - field.field.group.atwork_groups.field_group_description
     - field.field.group.atwork_groups.field_group_tags
     - group.type.atwork_groups
-    - image.style.max_325x325
+    - image.style.medium
   module:
     - image_widget_crop
     - text
@@ -30,15 +30,15 @@ content:
   field_group:
     weight: 2
     settings:
+      show_crop_area: true
       show_default_crop: true
-      preview_image_style: max_325x325
+      preview_image_style: medium
       crop_preview_image_style: medium
       crop_list:
         - article_730_330
       crop_types_required:
         - article_730_330
       progress_indicator: throbber
-      show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
     type: image_widget_crop

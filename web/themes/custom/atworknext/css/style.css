@@ -11063,7 +11063,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 .group-related-content .related-wrapper .view-content .related-content,
 .all-group-posts .related-wrapper .view-content .related-content,
 .groups-landing .related-wrapper .view-content .related-content {
-  width: 200px;
+  width: 265px;
   justify-content: space-between;
   margin: 10px;
   border: solid 1px #E0E7E8;
@@ -11093,7 +11093,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 .group-related-content .related-wrapper .view-content .related-content .related-box .related-image,
 .all-group-posts .related-wrapper .view-content .related-content .related-box .related-image,
 .groups-landing .related-wrapper .view-content .related-content .related-box .related-image {
-  width: 198px;
+  width: 100%;
   height: 111px;
   overflow: hidden;
   background-color: #E0E7E8;

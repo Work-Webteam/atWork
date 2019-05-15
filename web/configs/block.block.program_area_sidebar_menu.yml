@@ -9,7 +9,7 @@ dependencies:
 id: program_area_sidebar_menu
 theme: atworknext
 region: sidebar_nav
-weight: -11
+weight: -10
 provider: null
 plugin: 'block_content:6f0fae91-2b6f-4afb-bce4-7ba1479ba701'
 settings:

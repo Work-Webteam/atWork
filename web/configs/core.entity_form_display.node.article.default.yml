@@ -17,7 +17,7 @@ dependencies:
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
-    - image.style.max_325x325
+    - image.style.medium
     - node.type.article
   module:
     - comment
@@ -109,14 +109,14 @@ content:
     weight: 6
     region: content
     settings:
+      show_crop_area: true
       show_default_crop: true
-      preview_image_style: max_325x325
+      preview_image_style: medium
       crop_preview_image_style: medium
       crop_list:
         - article_hero
       progress_indicator: throbber
       crop_types_required: {  }
-      show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
   field_interactive_content:

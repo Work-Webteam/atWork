@@ -12,7 +12,7 @@ field_name: field_group
 entity_type: group
 bundle: atwork_groups
 label: 'Group Image'
-description: ''
+description: "<p>Images must be a minimum of 900px X 400px and be the png, gif, jpg, jpeg format. After uploading the image you may crop the image to suit your needs.</p>\r\n<p><strong>Please Note: You must move or resize the blue grid box in order to issue a crop change. Not doing so will result in crop image error.</strong></p>\r\n\r\n<p>The blue outlined grid viewable over the image can be resized or moved around the image. The grid is locked to the allowable proportion. If you select too small an area the blue outline will flash red. Clicking the 'reset crop' button will reset the area and crop settings. Your crop changes are automatically saved. Saving your page will save your image changes.</p>"
 required: false
 translatable: false
 default_value: {  }
