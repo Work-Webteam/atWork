@@ -23,6 +23,8 @@ module:
   colorbox_inline: 0
   comment: 0
   config: 0
+  config_filter: 0
+  config_ignore: 0
   contact: 0
   contextual: 0
   crop: 0
@@ -111,6 +113,7 @@ module:
   settings_tray: 0
   shortcut: 0
   simplify_menu: 0
+  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0

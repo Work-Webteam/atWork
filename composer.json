@@ -70,6 +70,7 @@
         "drupal/chosen": "^2.6",
         "drupal/colorbox": "^1.4",
         "drupal/colorbox_inline": "^1.0",
+        "drupal/config_ignore": "^2.1",
         "drupal/console": "^1.8",
         "drupal/core": "^8.6.0",
         "drupal/crop": "^1.5",
