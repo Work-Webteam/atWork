@@ -1,27 +1,27 @@
-uuid: 073ca3f5-e0ec-4837-b8da-0176f0c59798
+uuid: 25cb9ecc-1c54-4cff-88a0-296a8fc2989e
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.poll_list
+    - views.view.atwork_groups
   module:
     - system
     - views
   theme:
     - atworknext
-id: views_block__poll_list_block_1
+id: views_block__atwork_groups_block_1
 theme: atworknext
 region: content
-weight: -1
+weight: -2
 provider: null
-plugin: 'views_block:poll_list-block_1'
+plugin: 'views_block:atwork_groups-block_1'
 settings:
-  id: 'views_block:poll_list-block_1'
+  id: 'views_block:atwork_groups-block_1'
   label: ''
   provider: views
   label_display: visible
   views_label: ''
-  items_per_page: none
+  items_per_page: '10'
 visibility:
   request_path:
     id: request_path

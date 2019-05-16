@@ -1,32 +1,49 @@
 // Homepage and site wide adjustments
 
 // Development Home Page Grid
-.view-frontpage {
-  h3 {
-    background-color: $comment-blue;
-    border: solid 1px darken($exec-greyborder, 10%);
-    padding: 5px 15px 2px;
-    margin:10px 0px;
-  }
-  .hp-grid-column {
-    display: block;
-    max-width: 220px;
-    height: 200px;
-    margin-bottom: 12px;
-    border: solid 1px darken($exec-greyborder, 10%);
-    &.col-2 {
-      margin-left:10px;
-      margin-right:10px;
-    }
-    .no-article-image {
-      display: block;
-      width: 220px;
-      height: 118px;
-      background-color: $exec-greyborder;
-    }
-    > .views-field-title {
-      padding: 10px;
-      @include size1824;
+body.path-frontpage {
+  .region-content {
+    .view-content {
+      h3 {
+        background-color: $comment-blue;
+        border: solid 1px darken($exec-greyborder, 10%);
+        padding: 5px 15px 2px;
+        margin:10px 0px;
+        & a {
+          color:$black;
+        }
+      }
+      .views-row {
+        display: inline-flex;
+        flex-direction: column;
+        flex: 1 auto;
+        align-items: flex-start;
+        vertical-align: top;
+        width:220px;
+        height: 225px;
+        border: solid 1px $exec-greyborder;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
     }
   }
+  #block-views-block-atwork-groups-block-1,
+  #block-views-block-poll-list-block-1 {
+     h3.block-title {
+       color:$black;
+       background-color: $comment-blue;
+       border: solid 1px darken($exec-greyborder, 10%);
+       padding: 5px 15px 2px;
+       margin:10px 0px;
+     }
+   }
+   .feed-icons {
+     display:none;
+   }
+   .no-article-image p {
+     display:block;
+     width: 208px;
+     height:117px;
+     background-color: $exec-greyborder;
+   }
 }

@@ -11205,7 +11205,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 }
 
 /* line 244, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page-node-type-background-page div#group-ad-space, body.page-node-type-background-page #program-ad-space {
+body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page-node-type-background-page div#group-ad-space, body.page-node-type-background-page #program-ad-space, body.page-node-type-article div#group-ad-space, body.page-node-type-article #program-ad-space {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -11214,25 +11214,25 @@ body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page
 }
 
 /* line 250, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space div#ad-box, body.path-group #program-ad-space div#ad-box, body.page-node-type-background-page div#group-ad-space div#ad-box, body.page-node-type-background-page #program-ad-space div#ad-box {
+body.path-group div#group-ad-space div#ad-box, body.path-group #program-ad-space div#ad-box, body.page-node-type-background-page div#group-ad-space div#ad-box, body.page-node-type-background-page #program-ad-space div#ad-box, body.page-node-type-article div#group-ad-space div#ad-box, body.page-node-type-article #program-ad-space div#ad-box {
   display: flex;
   flex-direction: row;
   border: solid 1px #E0E7E8;
 }
 
 /* line 254, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space div#ad-box div#ad-content, body.path-group #program-ad-space div#ad-box div#ad-content, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-content, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-content {
+body.path-group div#group-ad-space div#ad-box div#ad-content, body.path-group #program-ad-space div#ad-box div#ad-content, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-content, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-content, body.page-node-type-article div#group-ad-space div#ad-box div#ad-content, body.page-node-type-article #program-ad-space div#ad-box div#ad-content {
   padding: 5px 10px;
-  flex: 1 400%;
+  flex: 1;
 }
 
 /* line 258, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space div#ad-box div#ad-image, body.path-group #program-ad-space div#ad-box div#ad-image, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-image, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-image {
+body.path-group div#group-ad-space div#ad-box div#ad-image, body.path-group #program-ad-space div#ad-box div#ad-image, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-image, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-image, body.page-node-type-article div#group-ad-space div#ad-box div#ad-image, body.page-node-type-article #program-ad-space div#ad-box div#ad-image {
   flex: 0 1 auto;
 }
 
 /* line 262, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space #ad-tab h3, body.page-node-type-background-page div#group-ad-space #ad-tab h3, body.page-node-type-background-page #program-ad-space #ad-tab h3 {
+body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space #ad-tab h3, body.page-node-type-background-page div#group-ad-space #ad-tab h3, body.page-node-type-background-page #program-ad-space #ad-tab h3, body.page-node-type-article div#group-ad-space #ad-tab h3, body.page-node-type-article #program-ad-space #ad-tab h3 {
   background-color: #e6f2f9;
   padding: 8px;
   margin: 0px;
@@ -11381,9 +11381,10 @@ section#block-views-block-comments-new-block-1 .view-content .views-row #comment
   background-size: contain;
   width: 60px;
   height: 60px;
+  overflow: hidden;
 }
 
-/* line 88, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
+/* line 89, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block {
   display: block;
   border: solid 1px #E0E7E8;
@@ -11393,7 +11394,7 @@ section#block-views-block-comments-new-block-1 .view-content .views-row #comment
   margin-top: -60px;
 }
 
-/* line 95, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
+/* line 96, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block #comment-byline {
   font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
   font-weight: bold;
@@ -11403,18 +11404,18 @@ section#block-views-block-comments-new-block-1 .view-content .views-row #comment
   padding-bottom: 8px;
 }
 
-/* line 98, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
+/* line 99, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block .field--name-comment-body p {
   font-size: .875rem;
   line-height: 16px;
 }
 
-/* line 102, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
+/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row #comment-links {
   clear: both;
 }
 
-/* line 105, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
+/* line 106, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row .field--name-field-edited-comment,
 section#block-views-block-comments-new-block-1 .view-content .views-row .field--name-field-remove-comment {
   display: none;
@@ -11529,42 +11530,54 @@ article ol li {
   }
 }
 
-/* line 5, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
-.view-frontpage h3 {
+/* line 7, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage .region-content .view-content h3 {
   background-color: #e6f2f9;
   border: solid 1px #c3d0d2;
   padding: 5px 15px 2px;
   margin: 10px 0px;
 }
 
-/* line 11, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
-.view-frontpage .hp-grid-column {
-  display: block;
-  max-width: 220px;
-  height: 200px;
-  margin-bottom: 12px;
-  border: solid 1px #c3d0d2;
+/* line 12, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage .region-content .view-content h3 a {
+  color: #000000;
 }
 
-/* line 17, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
-.view-frontpage .hp-grid-column.col-2 {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
-/* line 21, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
-.view-frontpage .hp-grid-column .no-article-image {
-  display: block;
+/* line 16, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage .region-content .view-content .views-row {
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1 auto;
+  align-items: flex-start;
+  vertical-align: top;
   width: 220px;
-  height: 118px;
-  background-color: #E0E7E8;
+  height: 225px;
+  border: solid 1px #E0E7E8;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
-/* line 27, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
-.view-frontpage .hp-grid-column > .views-field-title {
-  padding: 10px;
-  font-size: 1.125rem;
-  line-height: 24px;
+/* line 32, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage #block-views-block-atwork-groups-block-1 h3.block-title,
+body.path-frontpage #block-views-block-poll-list-block-1 h3.block-title {
+  color: #000000;
+  background-color: #e6f2f9;
+  border: solid 1px #c3d0d2;
+  padding: 5px 15px 2px;
+  margin: 10px 0px;
+}
+
+/* line 40, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage .feed-icons {
+  display: none;
+}
+
+/* line 43, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage .no-article-image p {
+  display: block;
+  width: 208px;
+  height: 117px;
+  background-color: #E0E7E8;
 }
 
 /* Group pages and related content */

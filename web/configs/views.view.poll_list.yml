@@ -5,7 +5,6 @@ dependencies:
   config:
     - core.entity_view_mode.poll.teaser
     - field.storage.poll.field_images
-    - field.storage.poll.field_tags
     - image.style.medium
     - system.menu.tools
   module:
@@ -188,27 +187,23 @@ display:
   block_1:
     display_plugin: block
     id: block_1
-    display_title: Block
+    display_title: 'FP Poll Block'
     position: 2
     display_options:
       display_extenders: {  }
       style:
-        type: grid
+        type: default
         options:
           grouping: {  }
-          columns: 2
-          automatic_width: true
-          alignment: horizontal
-          col_class_default: true
-          col_class_custom: hp-grid-column
-          row_class_default: true
-          row_class_custom: hp-grid-row
+          row_class: ''
+          default_row_class: true
       defaults:
         style: false
         row: false
         fields: false
         header: false
         title: false
+        pager: false
       row:
         type: fields
         options:
@@ -346,69 +341,6 @@ display:
           entity_type: null
           entity_field: question
           plugin_id: field
-        field_tags:
-          id: field_tags
-          table: poll__field_tags
-          field: field_tags
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'TAGS:'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 5
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
       header:
         area:
           id: area
@@ -420,21 +352,24 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<h2 style="font-style:oblique; font-weight:bold; text-align:center; color:#999999;">Polls, Forms and Special Projects</h2>'
-            format: full_html
+            value: '<h3 class="block-title">Polls</h3>'
+            format: comment_editor
           plugin_id: text
       block_description: 'Polls and Forms'
       title: ''
+      display_description: ''
+      pager:
+        type: none
+        options:
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
         - user.permissions
       tags:
         - 'config:field.storage.poll.field_images'
-        - 'config:field.storage.poll.field_tags'
   page_1:
     display_plugin: page
     id: page_1
