@@ -33,7 +33,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access comments'
+          perm: 'post comments'
       cache:
         type: tag
         options: {  }
