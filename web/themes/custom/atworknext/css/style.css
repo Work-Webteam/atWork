@@ -11205,7 +11205,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 }
 
 /* line 244, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page-node-type-background-page div#group-ad-space, body.page-node-type-background-page #program-ad-space, body.page-node-type-article div#group-ad-space, body.page-node-type-article #program-ad-space {
+body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page-node-type-background-page div#group-ad-space, body.page-node-type-background-page #program-ad-space, body.page-node-type-article div#group-ad-space, body.page-node-type-article #program-ad-space, body.page-node-type-group-post div#group-ad-space, body.page-node-type-group-post #program-ad-space {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -11214,25 +11214,25 @@ body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page
 }
 
 /* line 250, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space div#ad-box, body.path-group #program-ad-space div#ad-box, body.page-node-type-background-page div#group-ad-space div#ad-box, body.page-node-type-background-page #program-ad-space div#ad-box, body.page-node-type-article div#group-ad-space div#ad-box, body.page-node-type-article #program-ad-space div#ad-box {
+body.path-group div#group-ad-space div#ad-box, body.path-group #program-ad-space div#ad-box, body.page-node-type-background-page div#group-ad-space div#ad-box, body.page-node-type-background-page #program-ad-space div#ad-box, body.page-node-type-article div#group-ad-space div#ad-box, body.page-node-type-article #program-ad-space div#ad-box, body.page-node-type-group-post div#group-ad-space div#ad-box, body.page-node-type-group-post #program-ad-space div#ad-box {
   display: flex;
   flex-direction: row;
   border: solid 1px #E0E7E8;
 }
 
 /* line 254, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space div#ad-box div#ad-content, body.path-group #program-ad-space div#ad-box div#ad-content, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-content, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-content, body.page-node-type-article div#group-ad-space div#ad-box div#ad-content, body.page-node-type-article #program-ad-space div#ad-box div#ad-content {
+body.path-group div#group-ad-space div#ad-box div#ad-content, body.path-group #program-ad-space div#ad-box div#ad-content, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-content, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-content, body.page-node-type-article div#group-ad-space div#ad-box div#ad-content, body.page-node-type-article #program-ad-space div#ad-box div#ad-content, body.page-node-type-group-post div#group-ad-space div#ad-box div#ad-content, body.page-node-type-group-post #program-ad-space div#ad-box div#ad-content {
   padding: 5px 10px;
   flex: 1;
 }
 
 /* line 258, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space div#ad-box div#ad-image, body.path-group #program-ad-space div#ad-box div#ad-image, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-image, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-image, body.page-node-type-article div#group-ad-space div#ad-box div#ad-image, body.page-node-type-article #program-ad-space div#ad-box div#ad-image {
+body.path-group div#group-ad-space div#ad-box div#ad-image, body.path-group #program-ad-space div#ad-box div#ad-image, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-image, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-image, body.page-node-type-article div#group-ad-space div#ad-box div#ad-image, body.page-node-type-article #program-ad-space div#ad-box div#ad-image, body.page-node-type-group-post div#group-ad-space div#ad-box div#ad-image, body.page-node-type-group-post #program-ad-space div#ad-box div#ad-image {
   flex: 0 1 auto;
 }
 
 /* line 262, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space #ad-tab h3, body.page-node-type-background-page div#group-ad-space #ad-tab h3, body.page-node-type-background-page #program-ad-space #ad-tab h3, body.page-node-type-article div#group-ad-space #ad-tab h3, body.page-node-type-article #program-ad-space #ad-tab h3 {
+body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space #ad-tab h3, body.page-node-type-background-page div#group-ad-space #ad-tab h3, body.page-node-type-background-page #program-ad-space #ad-tab h3, body.page-node-type-article div#group-ad-space #ad-tab h3, body.page-node-type-article #program-ad-space #ad-tab h3, body.page-node-type-group-post div#group-ad-space #ad-tab h3, body.page-node-type-group-post #program-ad-space #ad-tab h3 {
   background-color: #e6f2f9;
   padding: 8px;
   margin: 0px;
@@ -11557,7 +11557,14 @@ body.path-frontpage .region-content .view-content .views-row {
   margin-bottom: 10px;
 }
 
-/* line 32, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+/* line 27, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+body.path-frontpage .region-content .view-content .views-row .views-field-field-image {
+  width: 208px;
+  height: 117px;
+  overflow: hidden;
+}
+
+/* line 37, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
 body.path-frontpage #block-views-block-atwork-groups-block-1 h3.block-title,
 body.path-frontpage #block-views-block-poll-list-block-1 h3.block-title {
   color: #000000;
@@ -11567,12 +11574,12 @@ body.path-frontpage #block-views-block-poll-list-block-1 h3.block-title {
   margin: 10px 0px;
 }
 
-/* line 40, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+/* line 45, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
 body.path-frontpage .feed-icons {
   display: none;
 }
 
-/* line 43, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
+/* line 48, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_homepage.scss */
 body.path-frontpage .no-article-image p {
   display: block;
   width: 208px;
