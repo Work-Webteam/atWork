@@ -163,10 +163,10 @@
 {# 'field_author_information' can be uncommented once we know how we are displaying it #}
     {#{ content.field_author_information }#}
     {{ content.field_attachments }}
-
+    {{ drupal_view('related_content', 'block_2') }}
     <div class="group-related-content">
       {{ related_content }}
     </div>
-    {{ content.comment }}
 </div>
 </article>
+    {{ content.comment }}

@@ -6,7 +6,7 @@ dependencies:
     - 'block_content:basic:0415d63a-3961-448e-bcbe-be404098d791'
   module:
     - block_content
-    - ctools
+    - group
   theme:
     - atworknext
 id: group_sidebar_menu
@@ -24,9 +24,9 @@ settings:
   info: ''
   view_mode: full
 visibility:
-  'entity_bundle:group':
-    id: 'entity_bundle:group'
-    bundles:
+  group_type:
+    id: group_type
+    group_types:
       atwork_groups: atwork_groups
     negate: false
     context_mapping:
