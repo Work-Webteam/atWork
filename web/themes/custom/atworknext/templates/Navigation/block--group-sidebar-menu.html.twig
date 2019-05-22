@@ -45,10 +45,9 @@
  * @see template_process()
  */
 #}
-
 {% set items = simplify_menu(group_name) %}
 <aside id="side-menu">
-<h3>Menu</h3>
+<h3>{{ group_name }}</h3>
 <ul id="atworkgroups-sidebar-menu">
   {% for item in items['menu_tree'] %}
     <li><a href="{{ item['url'] }}">{{ item['text'] }}</a></li>
