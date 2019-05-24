@@ -62,6 +62,7 @@ function atwork_menu_add_links_to_menu_items(&$item) {
  *
  * Create sidebar nav menu on creation of new atwork group.
  */
+/*
 function atwork_menu_group_insert(Group $group) {
 	// Create group sidebar menu.
 	\Drupal::entityTypeManager()->getStorage('menu')
@@ -97,7 +98,7 @@ function atwork_menu_group_insert(Group $group) {
 			'weight' => 2,
 	])->save();
 }
-
+*/
 /**
  * Implements hook_ENTITY_TYPE_insert() for program area pages.
  *
@@ -155,11 +156,13 @@ function atwork_menu_node_insert(Drupal\node\Entity\Node $node) {
 /**
  * Implements hook_preprocess_HOOK() for group sidebar nav menu.
  */
+/*
 function atworknext_preprocess_block__group_sidebar_menu(&$variables) {
   $variables['#cache']['max-age'] = 0;
 	$group_name = \Drupal::routeMatch()->getParameters()->get('group')->get('label')->getValue()[0]['value'];
 	$variables['group_name'] = str_replace(' ', '-', strtolower($group_name));
 }
+*/
 
 /**
 * Implements hook_preprocess_HOOK() for program area sidebar nav menu.
@@ -210,6 +213,7 @@ function atwork_menu_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $fo
  */
 function atwork_menu_sidebar_menu_edit_form_submit(array $form, \Drupal\Core\Form\FormStateInterface$form_state){
   $route_params = \Drupal::routeMatch()->getParameters();
+  /*
   // Is it a group sidebar  menu? If yes, set redirect.
   $groups = \Drupal::entityTypeManager()->getStorage('group')->loadMultiple();
   $group = \Drupal::entityTypeManager()->getStorage('group')->loadByProperties(['label' => $route_params->all()['menu']->label()]);
@@ -219,6 +223,7 @@ function atwork_menu_sidebar_menu_edit_form_submit(array $form, \Drupal\Core\For
   	$form_state->setRedirect('entity.group.canonical', ['group' => $group->id()]);
   	return;
   }
+  */
   // Is it a program area sidebar menu? If yes, set redirect.
 	$program_area = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['title' => $route_params->all()['menu']->label()]);
 	$program_area = reset($program_area);
