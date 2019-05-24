@@ -13,7 +13,7 @@ field_name: field_group_menu_link
 entity_type: group
 bundle: atwork_groups
 label: 'Group Menu Links'
-description: ''
+description: 'Add your links here. Links will nest under a menu title. You may add as many links as you like under any menu title - but the recommended maximum is 6 titles and 5 links under each title. More than this are likely to page your menu, which may make it difficult to find all links.'
 required: false
 translatable: false
 default_value: {  }
