@@ -7,11 +7,13 @@ dependencies:
     - field.field.group.atwork_groups.field_group
     - field.field.group.atwork_groups.field_group_ad_space
     - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_menu_link
     - field.field.group.atwork_groups.field_group_tags
     - group.type.atwork_groups
     - image.style.medium
   module:
     - image_widget_crop
+    - paragraphs
     - text
 id: group.atwork_groups.default
 targetEntityType: group
@@ -59,6 +61,25 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_group_menu_link:
+    type: paragraphs
+    weight: 7
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed_expand_nested
+      closed_mode: preview
+      autocollapse: none
+      closed_mode_threshold: 3
+      add_mode: modal
+      form_display_mode: default
+      default_paragraph_type: group_menu_link
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+        add_above: '0'
+    third_party_settings: {  }
     region: content
   field_group_tags:
     weight: 4

@@ -52,6 +52,21 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "sortablejs/sortable",
+                "version": "1.8.0-rc1",
+                "type": "drupal-library",
+                "extra": {
+                    "installer-name": "Sortable"
+                },
+                "dist": {
+                    "url": "https://github.com/SortableJS/Sortable/archive/1.8.0-rc1.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -85,6 +100,7 @@
         "drupal/group": "^1.0",
         "drupal/h5p": "^1.0@RC",
         "drupal/image_widget_crop": "^2.2",
+        "drupal/inline_entity_form": "^1.0@RC",
         "drupal/insert": "^1.0",
         "drupal/libraries": "^3.0@alpha",
         "drupal/like_dislike": "^1.1",
@@ -134,6 +150,7 @@
         "drupal/webform": "^5.0@RC",
         "drush/drush": "^9.3",
         "harvesthq/chosen": "^1.8",
+        "sortablejs/sortable": "^1.8@RC",
         "symfony/property-access": "^3.4",
         "symfony/var-dumper": "^3.4",
         "vlucas/phpdotenv": "^2.4",

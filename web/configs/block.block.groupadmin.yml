@@ -10,14 +10,14 @@ dependencies:
 id: groupadmin
 theme: atworknext
 region: sidebar_nav
-weight: -8
+weight: -10
 provider: null
 plugin: 'draggable_dashboard_block:draggable_dashboard_1549921752'
 settings:
   id: 'draggable_dashboard_block:draggable_dashboard_1549921752'
   label: 'Group Admin'
   provider: draggable_dashboard
-  label_display: '0'
+  label_display: visible
 visibility:
   group_type:
     id: group_type

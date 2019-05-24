@@ -7,6 +7,7 @@ dependencies:
     - field.field.group.atwork_groups.field_group
     - field.field.group.atwork_groups.field_group_ad_space
     - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_menu_link
     - field.field.group.atwork_groups.field_group_tags
     - group.type.atwork_groups
     - image.style.article_top_image
@@ -35,12 +36,12 @@ content:
     type: text_default
     region: content
   flag_email_groups:
-    weight: 10
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_group:
-    weight: 10
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -57,6 +58,7 @@ hidden:
   created: true
   field_dev_tag: true
   field_group_ad_space: true
+  field_group_menu_link: true
   field_group_tags: true
   langcode: true
   uid: true
