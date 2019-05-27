@@ -36,6 +36,10 @@
  * @see template_preprocess_paragraph()
  *
  * @ingroup themeable
+ *
+ * Controls the group side-menus custom links
+ * Hard-links for view/create content are set in the "group_menu" view block header
+ *
  */
 #}
 {%
@@ -59,7 +63,7 @@
             </a>
           </h4>
         </div>
-        <div id="collapse{{ paragraph.id() }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{ paragraph.id() }}">
+        <div id="collapse{{ paragraph.id() }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ paragraph.id() }}">
           {% block content %}
             {{ content.field_group_menu_link }}
           {% endblock content %}

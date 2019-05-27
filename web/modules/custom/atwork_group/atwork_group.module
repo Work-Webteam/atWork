@@ -119,7 +119,6 @@ function atworknext_preprocess_container__atwork(&$variables) {
  *
  */
 function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-	ksm($form_id);
   if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
 	}
@@ -133,9 +132,6 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 	  $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_create_submit';
 	}
-	if($form_id == "group_atwork_groups_edit_form") {
-	  // TODO: We need to fill in some links here, change the button text and add some more instructions I think.
-  }
 }
 
 /**
