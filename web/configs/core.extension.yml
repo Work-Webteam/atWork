@@ -18,6 +18,8 @@ module:
   bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
+  ckeditor_bootstrap_grid: 0
+  ckeditor_widgets: 0
   color: 0
   colorbox: 0
   colorbox_inline: 0
@@ -38,6 +40,7 @@ module:
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  editor_advanced_link: 0
   entity_reference_revisions: 0
   externalauth: 0
   extrafield_views_integration: 0
@@ -66,6 +69,7 @@ module:
   like_dislike: 0
   likeit: 0
   link: 0
+  linkit: 0
   mailsystem: 0
   media: 0
   media_library: 0

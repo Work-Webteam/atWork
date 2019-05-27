@@ -10,13 +10,13 @@ dependencies:
     - field.field.node.group_post.field_interactive_content
     - field.field.node.group_post.field_send_notifications
     - field.field.node.group_post.field_tags
+    - image.style.article_hero_image
     - node.type.group_post
-    - responsive_image.styles.responsive_article_image
   module:
     - comment
     - h5p
+    - image
     - panelizer
-    - responsive_image
     - text
     - user
 third_party_settings:
@@ -50,10 +50,10 @@ content:
     weight: 0
     label: hidden
     settings:
-      responsive_image_style: responsive_article_image
+      image_style: article_hero_image
       image_link: ''
     third_party_settings: {  }
-    type: responsive_image
+    type: image
     region: content
   field_interactive_content:
     weight: 2

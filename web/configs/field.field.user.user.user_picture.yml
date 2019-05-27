@@ -21,7 +21,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: 'pictures/[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png gif jpg jpeg'
+  file_extensions: 'png gif jpg jpeg svg'
   max_filesize: ''
   max_resolution: ''
   min_resolution: 400x400
@@ -30,11 +30,11 @@ settings:
   title_field: true
   title_field_required: true
   default_image:
-    uuid: 27d8f835-51c4-4f39-9049-528b59dc237f
+    uuid: 297f6538-ccb5-4cd9-8789-d323f237cd58
     alt: 'Profile Image'
     title: 'Profile Image'
-    width: 346
-    height: 352
+    width: 128
+    height: 128
   handler: 'default:file'
   handler_settings: {  }
 field_type: image

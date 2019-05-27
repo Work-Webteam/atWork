@@ -11,7 +11,7 @@ dependencies:
 id: programtopic
 theme: atworknext
 region: content
-weight: -7
+weight: -8
 provider: null
 plugin: 'entity_field:node:field_program_topic'
 settings:

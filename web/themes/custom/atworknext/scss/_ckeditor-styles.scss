@@ -1,18 +1,6 @@
 // Custom styles for CKEditor
 
 
-span.QuoteAuthor { // Big Quotes Author. Applies the style to the author of the quote. Names must be bold in article text.
-    display: block;
-    width:100%;
-    @include size1436;
-    text-align: left;
-    font-weight:normal;
-    a {
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-}
-
 article { // Updates box used on articles / background pages.
   @include update;
   @include title-table;
@@ -20,10 +8,10 @@ article { // Updates box used on articles / background pages.
   div.CallOut {
     @include call-out;
   }
-  div.BigQuotes {
-    @include call-out;
-    @include quotes;
-  }
+  //div.BigQuotes {
+    //@include call-out;
+    //@include quotes;
+  //}
   a.text-button {
     @include atwork-button;
   }
@@ -32,5 +20,15 @@ article { // Updates box used on articles / background pages.
     display: block;
     background-color: $horz-ad;
     padding: 24px;
+  }
+  div.row.quotebox {
+    text-align: center;
+    @include call-out;
+    div.row.quote {
+      @include quotes;
+    }
+    div.row.byline {
+      @include QuoteAuthor;
+    }
   }
 }
