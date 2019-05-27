@@ -46,26 +46,27 @@ body.path-employees, body.path-executives {
         justify-content: space-between;
         @include profile-look;
         width:365px;
-        height: 140px;
+        height: 160px;
         margin:5px;
-        @include size1216;
+        @include size1416;
         .no-results {
-          color: lighten($black, 50%);
-          font-style: oblique;
+          color: lighten($black, 70%);
         }
         a {
           text-decoration: none;
         }
+        li.employee a {
+          font-weight: bold;
+        }
         aside {
-          padding: 5px;
           span.profile-img {
             width:75px;
             height:75px;
           }
         }
         section.profile-detail {
-          background-color: darken($white,3%);
           padding:10px;
+          background-color: $white;
         }
       }
     }
@@ -112,18 +113,19 @@ body.path-executives {
   }
   aside {
     background-color:$banner-blue;
+    .profile-img {
+      border: solid 2px $exec-greyborder;
+      background-color: $white;
+    }
   }
-  .profile-img {
-    border: solid 5px $exec-greyborder;
-    background-color: $white;
-  }
+
 }
 body.path-employees, body.path-my-profile {
   aside {
     background-color:$exec-greyborder;
-  }
-  .profile-img {
-    border:solid 5px $banner-blue;
-    background-color: $white;
+    .profile-img {
+      border:solid 2px darken($exec-greyborder, 20);
+      background-color: $white;
+    }
   }
 }

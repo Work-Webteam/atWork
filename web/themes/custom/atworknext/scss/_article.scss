@@ -32,10 +32,21 @@ figure { // Specific to image captions
 }
 // Executive Page alterations
 article.Executive-Message {
-  border-left: solid 50px $exec-greyborder;
-  border-right: solid 50px $exec-greyborder;
-  margin-left: -50px;
-  margin-right:-50px;
+  //border-left: solid 50px $exec-greyborder;
+  //border-right: solid 50px $exec-greyborder;
+  //margin-left: -50px;
+  //margin-right:-50px;
+  h1.page-title, .author-byline {
+    background-color: $exec-greyborder;
+    padding-left: 10px;
+  }
+  h1.page-title {
+    border-top:solid 20px darken($exec-greyborder,20);
+    padding-top:10px;
+  }
+  .field--type-text-with-summary {
+    margin-top: 10px;
+  }
   .csv-feed .feed-icon {
     background-color:$white;
   }

@@ -8,7 +8,7 @@ dependencies:
     - field.field.node.background_page.field_image
     - field.field.node.background_page.field_program_ad_space
     - field.field.node.background_page.field_program_topic
-    - image.style.max_325x325
+    - image.style.medium
     - node.type.background_page
   module:
     - image_widget_crop
@@ -47,14 +47,14 @@ content:
   field_image:
     weight: 1
     settings:
+      show_crop_area: true
       show_default_crop: true
-      preview_image_style: max_325x325
+      preview_image_style: medium
       crop_preview_image_style: medium
       crop_list:
         - article_hero
       progress_indicator: throbber
       crop_types_required: {  }
-      show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
     type: image_widget_crop

@@ -141,6 +141,7 @@
     {#{ content.rendered_links.comment__comment }#}
   </ul>
 </div>
+
 {# This is a modal popup that shows up when a user selects that they want to share a piece of content #}
 <div class="modal fade" id="dialog-share" role="dialog" aria-hidden="true"> {# We only want the forward and the link link in this bundle to print out #}
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -155,5 +156,7 @@
 {# 'field_author_information' can be uncommented once we know how we are displaying it #}
     {#{ content.field_author_information }#}
     {{ content.field_attachments }}
-    {{ content.comment }}
 </article>
+<div class="add-comment">
+  {{ content.comment }}
+</div>

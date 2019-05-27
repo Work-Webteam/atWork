@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "ecbb242de85a84bd76de86f9705db1fc",
+=======
+    "content-hash": "9f8f03d5fe103c1857d4826dab9e822d",
+>>>>>>> CSS-Maintenance-Overview
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2425,6 +2429,95 @@
             }
         },
         {
+            "name": "drupal/ckeditor_bootstrap_grid",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_bootstrap_grid.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_bootstrap_grid-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "ccd29a967a7a1d51b35e5acd7beee977f6bbc68c"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1538514417",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lexsoft",
+                    "homepage": "https://www.drupal.org/user/3487887"
+                }
+            ],
+            "description": "Adds Bootstrap Grid to CKEditor",
+            "homepage": "https://www.drupal.org/project/ckeditor_bootstrap_grid",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_bootstrap_grid"
+            }
+        },
+        {
+            "name": "drupal/ckeditor_widgets",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_widgets.git",
+                "reference": "2d462637f8804b6d0b530604d0376e97a23a3b7f"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1472798939",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jlyon",
+                    "homepage": "https://www.drupal.org/user/256444"
+                }
+            ],
+            "description": "Adds widgets and an Insert Template menu to CKEditor",
+            "homepage": "https://www.drupal.org/project/ckeditor_widgets",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_widgets"
+            },
+            "time": "2016-09-02T06:39:25+00:00"
+        },
+        {
             "name": "drupal/colorbox",
             "version": "1.4.0",
             "source": {
@@ -3708,6 +3801,48 @@
             }
         },
         {
+            "name": "drupal/editor_advanced_link",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/editor_advanced_link.git",
+                "reference": "8de7df228d13d515a7bfbe75e7d530e4c5ac95dd"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5+0-dev",
+                    "datestamp": "1522240985",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "DuaelFr",
+                    "homepage": "https://www.drupal.org/user/931394"
+                }
+            ],
+            "description": "Add title, target etc. attributes to Text Editor's link dialog if the text format allows them.",
+            "homepage": "https://www.drupal.org/project/editor_advanced_link",
+            "support": {
+                "source": "https://git.drupalcode.org/project/editor_advanced_link"
+            },
+            "time": "2019-04-05T15:55:38+00:00"
+        },
+        {
             "name": "drupal/entity_reference_revisions",
             "version": "1.6.0",
             "source": {
@@ -3762,7 +3897,7 @@
             "description": "Adds a Entity Reference field type with revision support.",
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
-                "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+                "source": "http://cgit.drupalcode.org/entity_reference_revisions"
             }
         },
         {
@@ -3817,7 +3952,7 @@
             "description": "Helper module to authenticate users using an external site / service and storing identification details",
             "homepage": "https://www.drupal.org/project/externalauth",
             "support": {
-                "source": "http://cgit.drupalcode.org/externalauth"
+                "source": "https://git.drupalcode.org/project/externalauth"
             }
         },
         {
@@ -4548,6 +4683,54 @@
             }
         },
         {
+            "name": "drupal/linkit",
+            "version": "dev-5.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/linkit.git",
+                "reference": "fd8535105fdd11398b4be4d0622ce055db999630"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/imce": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-5.x": "5.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-5.0-beta8+3-dev",
+                    "datestamp": "1556923381",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Emil Stjerneman",
+                    "homepage": "https://stjerneman.com",
+                    "email": "emil@stjerneman.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Linkit - Enriched linking experience",
+            "homepage": "http://drupal.org/project/linkit",
+            "support": {
+                "source": "http://cgit.drupalcode.org/linkit",
+                "issues": "http://drupal.org/project/linkit"
+            },
+            "time": "2019-05-03T23:09:46+00:00"
+        },
+        {
             "name": "drupal/mailsystem",
             "version": "4.1.0",
             "source": {
@@ -4670,7 +4853,7 @@
             "description": "Provides configurable blocks of menu links.",
             "homepage": "https://www.drupal.org/project/menu_block",
             "support": {
-                "source": "https://git.drupalcode.org/project/menu_block"
+                "source": "http://cgit.drupalcode.org/menu_block"
             }
         },
         {
@@ -4717,7 +4900,7 @@
             "description": "This module exports and imports menus and menu links.",
             "homepage": "https://www.drupal.org/project/menu_export",
             "support": {
-                "source": "https://git.drupalcode.org/project/menu_export"
+                "source": "http://cgit.drupalcode.org/menu_export"
             }
         },
         {
@@ -5516,7 +5699,7 @@
             "description": "Enables the creation of Paragraphs entities.",
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
-                "source": "https://git.drupalcode.org/project/paragraphs"
+                "source": "http://cgit.drupalcode.org/paragraphs"
             }
         },
         {
@@ -5870,7 +6053,7 @@
             "description": "Easily print any page through Printfriendly.",
             "homepage": "https://www.drupal.org/project/printfriendly",
             "support": {
-                "source": "https://git.drupalcode.org/project/printfriendly"
+                "source": "http://cgit.drupalcode.org/printfriendly"
             }
         },
         {
@@ -6472,7 +6655,7 @@
             "description": "Adds a TwigExtension that grants access to Drupal's menu render array so it can be used within a twig template.",
             "homepage": "https://www.drupal.org/project/simplify_menu",
             "support": {
-                "source": "https://git.drupalcode.org/project/simplify_menu"
+                "source": "http://cgit.drupalcode.org/simplify_menu"
             }
         },
         {
@@ -13770,11 +13953,14 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/activity": 20,
+        "drupal/ckeditor_widgets": 20,
         "drupal/drush": 5,
+        "drupal/editor_advanced_link": 20,
         "drupal/flag": 15,
         "drupal/h5p": 5,
         "drupal/inline_entity_form": 5,
         "drupal/libraries": 15,
+        "drupal/linkit": 20,
         "drupal/message_digest": 10,
         "drupal/message_subscribe": 10,
         "drupal/message_ui": 10,

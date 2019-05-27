@@ -18,15 +18,15 @@ dependencies:
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
+    - image.style.article_hero_image
     - node.type.article
-    - responsive_image.styles.responsive_article_image
   module:
     - comment
     - file
     - h5p
+    - image
     - options
     - panelizer
-    - responsive_image
     - text
     - user
     - video_embed_field
@@ -351,12 +351,12 @@ content:
       link: true
     third_party_settings: {  }
   field_image:
-    type: responsive_image
+    type: image
     weight: 0
     region: content
     label: hidden
     settings:
-      responsive_image_style: responsive_article_image
+      image_style: article_hero_image
       image_link: ''
     third_party_settings: {  }
   field_interactive_content:

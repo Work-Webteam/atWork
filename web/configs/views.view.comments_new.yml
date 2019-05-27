@@ -219,6 +219,7 @@ display:
         row: false
         header: false
         exposed_form: false
+        title: false
       block_description: 'comments new'
       arguments:
         nid:
@@ -344,6 +345,7 @@ display:
           expose_sort_order: true
           sort_asc_label: Oldest
           sort_desc_label: Newest
+      title: ''
     cache_metadata:
       max-age: -1
       contexts:

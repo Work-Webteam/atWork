@@ -19,9 +19,6 @@ settings:
           items:
             - Bold
             - Italic
-            - Strike
-            - Superscript
-            - Subscript
             - '-'
             - RemoveFormat
             - JustifyLeft
@@ -34,8 +31,19 @@ settings:
             - Outdent
             - Indent
             - '-'
-            - SpecialChar
             - Maximize
+        -
+          name: Widgets
+          items:
+            - WidgetTemplateMenu
+            - widgetbootstrapLeftCol
+            - widgetbootstrapRightCol
+            - widgetbootstrapTwoCol
+            - widgetbootstrapThreeCol
+            - widgetbootstrapAlert
+            - widgetbootstrapAccordion
+            - widgetcommonBox
+            - widgetcommonQuotebox
         -
           name: Copy/Paste/Undo/Redo
           items:
@@ -55,10 +63,12 @@ settings:
           name: Media
           items:
             - Blockquote
+            - oembed
             - DrupalImage
             - video_embed
             - Table
             - HorizontalRule
+            - leaflet
         -
           name: 'Block Formatting'
           items:
@@ -73,10 +83,15 @@ settings:
             - ShowBlocks
             - Source
   plugins:
+    stylescombo:
+      styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
+    drupallink:
+      linkit_enabled: true
+      linkit_profile: atwork_links
     language:
       language_list: un
-    stylescombo:
-      styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\ndiv.BigQuotes|Big Quotes\r\ndiv.CallOut|Call Out\r\nspan.QuoteAuthor|Quote Author\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
+    tokenbrowser:
+      token_types: {  }
     video_embed:
       defaults:
         children:

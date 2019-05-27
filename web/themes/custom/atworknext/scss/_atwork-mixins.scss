@@ -140,12 +140,10 @@
 @mixin related-inset {
   @include update-box;
   table.related-inset {
-    float:right;
-    margin-left: 10px;
     border-top:solid 6px $banner-blue;
     border-bottom:solid 6px $banner-blue;
     tr td img {
-      width:295px;
+      width:100%;
       border-left: solid 1px $button-hover;
       border-right: solid 1px $button-hover;
       border-bottom: solid 1px $button-hover;
@@ -171,7 +169,7 @@
 @mixin call-out { // Basic Call-out box on article pages. Creates a div tag.
   border-top: solid 9px $banner-blue;
   border-bottom: solid 9px $banner-blue;
-  padding: 24px 48px;
+  padding: 24px 100px;
   @include size2136;
   font-weight:bold;
   color: $text;
@@ -179,18 +177,30 @@
   margin-top: 24px;
 }
 @mixin quotes {
-    p:before { // Large left quote graphic. Uses SVG graphic.
-      float:left;
-      content:url('../images/left-quote.svg');
-      width: 30px; // Change this vale to change the size of the SVG
-      position:absolute;
-      margin-left:-45px;
+  :before { // Large left quote graphic. Uses SVG graphic.
+    float:left;
+    content:url('../images/left-quote.svg');
+    width: 30px; // Change this vale to change the size of the SVG
+    position:absolute;
+    margin-left:-45px;
   }
-  p:after { // Large right quote graphic. Uses SVG graphic.
+  :after { // Large right quote graphic. Uses SVG graphic.
     content:url('../images/right-quote.svg');
     width: 30px; // Change this vale to change the size of the SVG
     position:absolute;
     margin-left:10px;
+  }
+}
+@mixin QuoteAuthor { // Big Quotes Author. Applies the style to the author of the quote. Names must be bold in article text.
+    display: block;
+    @include size1436;
+    line-height: normal;
+    padding-top:12px;
+    text-align: right;
+    font-weight:normal;
+    a {
+      font-weight: bold;
+      text-transform: uppercase;
     }
 }
 // Social Bar icons
@@ -388,7 +398,7 @@
 }
 // Employee profile and Employeee Landing page card look
 @mixin profile-look {
-  border: solid 1px $exec-greyborder;
+  border: solid 2px $exec-greyborder;
   padding: 0px;
   text-align: left;
   width:100%;
@@ -401,6 +411,7 @@
       height: 125px;
       border-radius: 50%;
       overflow: hidden;
+      padding-top:8px;
       }
     }
   section.profile-detail {
