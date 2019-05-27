@@ -24,6 +24,11 @@ body.path-frontpage {
         border: solid 1px $exec-greyborder;
         padding: 5px;
         margin-bottom: 10px;
+        .views-field-field-image {
+          width:208px;
+          height:117px;
+          overflow:hidden;
+        }
       }
     }
   }
