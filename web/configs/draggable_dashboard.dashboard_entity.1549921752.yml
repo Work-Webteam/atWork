@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: '1549921752'
-title: 'Group Admin'
+title: 'Group Administration'
 description: 'Group Admin Dashboard'
 columns: '1'
-blocks: '[{"bid":"tools","cln":"1","position":0},{"bid":"shortcuts","cln":"1","position":1},{"bid":"views_block__atwork_groups_group_info_block","cln":"1","position":2}]'
+blocks: '[{"bid":"views_block__group_menu_block_2","cln":"1","position":0},{"bid":"views_block__group_nodes_block_1","cln":"1","position":1}]'

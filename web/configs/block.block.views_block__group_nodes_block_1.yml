@@ -1,0 +1,25 @@
+uuid: 0da6b25b-c918-4643-b7be-a91bb7cc1031
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.group_nodes
+  module:
+    - views
+  theme:
+    - seven
+id: views_block__group_nodes_block_1
+theme: seven
+region: background_image
+weight: null
+provider: null
+plugin: 'views_block:group_nodes-block_1'
+settings:
+  id: 'views_block:group_nodes-block_1'
+  label: 'Quick Stats'
+  provider: views
+  label_display: visible
+  views_label: 'Quick Stats'
+  items_per_page: none
+  views_label_checkbox: 0
+visibility: {  }

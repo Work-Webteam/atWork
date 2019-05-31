@@ -17,7 +17,7 @@ settings:
   id: 'draggable_dashboard_block:draggable_dashboard_1549921752'
   label: 'Group Admin'
   provider: draggable_dashboard
-  label_display: visible
+  label_display: '0'
 visibility:
   group_type:
     id: group_type
