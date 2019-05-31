@@ -6,6 +6,7 @@ dependencies:
     - field.field.user.user.field_about_me
     - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
+    - field.field.user.user.field_job_function_code
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
     - field.field.user.user.field_user_department
@@ -149,6 +150,7 @@ content:
     third_party_settings: {  }
     label: hidden
 hidden:
+  field_job_function_code: true
   field_street: true
   field_user_guid: true
   field_user_organization_code: true

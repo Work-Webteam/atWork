@@ -7,6 +7,7 @@ dependencies:
 id: atwork_links
 label: 'Atwork Links'
 description: 'Links contained within the current site'
+attributes: {  }
 matchers:
   9e06fed8-1b41-4c66-95eb-7286845c4f25:
     uuid: 9e06fed8-1b41-4c66-95eb-7286845c4f25
@@ -19,3 +20,4 @@ matchers:
       group_by_bundle: true
       substitution_type: canonical
       limit: 100
+      result_description: ''

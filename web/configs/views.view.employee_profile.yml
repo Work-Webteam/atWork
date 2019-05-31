@@ -1115,7 +1115,8 @@ display:
           group_type: group
           admin_label: ''
           operator: in
-          value: {  }
+          value:
+            - '67801'
           group: 1
           exposed: true
           expose:
@@ -3551,10 +3552,29 @@ display:
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
+            group_items:
+              1:
+                title: 'Deputy Minister'
+                operator: '='
+                value:
+                  value: '041'
+                  min: ''
+                  max: ''
+              2:
+                title: 'Asst Dep Minister'
+                operator: '='
+                value:
+                  value: '043'
+                  min: ''
+                  max: ''
+              3:
+                title: Managers
+                operator: '='
+                value:
+                  value: '047'
+                  min: ''
+                  max: ''
+          plugin_id: numeric
       filter_groups:
         operator: AND
         groups:
@@ -5497,16 +5517,21 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       filters:
-        uid_1:
-          id: uid_1
+        uid:
+          id: uid
           table: users_field_data
           field: uid
           relationship: none
           group_type: group
           admin_label: ''
-          operator: 'not in'
+          operator: in
           value:
-            - '0'
+            - '32461'
+            - '56350'
+            - '62634'
+            - '64284'
+            - '65169'
+            - '65719'
           group: 1
           exposed: false
           expose:
@@ -5537,9 +5562,149 @@ display:
           entity_type: user
           entity_field: uid
           plugin_id: user_name
+        uid_1:
+          id: uid_1
+          table: users_field_data
+          field: uid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            - '25317'
+            - '25733'
+            - '31645'
+            - '65684'
+            - '68834'
+          group: 2
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: user
+          entity_field: uid
+          plugin_id: user_name
+        uid_3:
+          id: uid_3
+          table: users_field_data
+          field: uid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            - '33510'
+            - '56871'
+            - '58557'
+            - '61809'
+            - '64858'
+            - '65202'
+            - '66195'
+          group: 3
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: user
+          entity_field: uid
+          plugin_id: user_name
+        uid_2:
+          id: uid_2
+          table: users_field_data
+          field: uid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            - '36131'
+            - '48944'
+            - '54526'
+            - '58773'
+            - '66102'
+            - '66522'
+            - '66801'
+          group: 4
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: user
+          entity_field: uid
+          plugin_id: user_name
       filter_groups:
-        operator: AND
-        groups: {  }
+        operator: OR
+        groups:
+          1: AND
+          2: AND
+          3: AND
+          4: AND
       exposed_block: false
       exposed_form:
         type: basic

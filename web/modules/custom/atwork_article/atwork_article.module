@@ -44,23 +44,21 @@ function atworknext_preprocess_node__article(&$variables) {
 	if(isset($variables['elements']['field_author_information'][0]['#title']) &&  $variables['elements']['field_author_information'][0]['#title'] == 'Employee News') {
 		$variables['isEmployeeNews'] = True;
 	}
+  // Load Related Content Block
+  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_1');
+  $block_content = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+  $variables['related_content'] = $block_content;
+
+  // So we can load program Spotlight block independently
+  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_2');
+  $block_content = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+  $variables['program_spotlight'] = $block_content;
+
 	$theme_registry['file_upload_help']['path'] = 'themes/custom/atworknext/templates';
-}
-
-function atwork_article_contextual_links_alter( array &$links, $group, array $route_parameters ){
-  //kint($links);
-  //kint($group);
-  //kint($route_paramerters);
-}
-
-
-function atwork_article_node_links_alter(array &$links, NodeInterface $node, array &$context){
-	//kint($links);
-	//kint($node);
-}
-
-function atworknext_preprocess_links__node(&$variables){
-  //kint($variables);
 }
 
 function atwork_article_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display){
