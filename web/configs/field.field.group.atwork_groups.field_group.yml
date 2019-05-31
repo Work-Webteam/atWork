@@ -31,8 +31,8 @@ settings:
     uuid: ''
     alt: ''
     title: ''
-    width: null
-    height: null
+    width: 128
+    height: 128
   handler: 'default:file'
   handler_settings: {  }
 field_type: image
