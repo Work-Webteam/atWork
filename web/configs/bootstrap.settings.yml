@@ -7,6 +7,8 @@ favicon:
   path: ''
   url: 'http://localhost/web/themes/contrib/bootstrap/favicon.ico'
   use_default: true
+table_responsive: '-1'
+table: ''
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -16,6 +18,4 @@ logo:
   path: ''
   url: ''
   use_default: true
-cdn_jsdelivr_theme: bootstrap_theme
-table_responsive: '-1'
-table: ''
+cdn_theme: bootstrap_theme

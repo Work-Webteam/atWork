@@ -24,6 +24,12 @@ body.path-my-profile, .employee-profile-page {
         text-decoration: none;
       }
     }
+    &.j41 {
+      @include j41;
+    }
+    &.j43 {
+      @include j43;
+    }
   }
 }
 
@@ -57,6 +63,7 @@ body.path-employees, body.path-executives {
         }
         li.employee a {
           font-weight: bold;
+          text-transform: uppercase;
         }
         aside {
           span.profile-img {
@@ -67,6 +74,12 @@ body.path-employees, body.path-executives {
         section.profile-detail {
           padding:10px;
           background-color: $white;
+        }
+        &.j41 {
+          @include j41;
+        }
+        &.j43 {
+          @include j43;
         }
       }
     }
@@ -111,21 +124,5 @@ body.path-executives {
   .view-filters.form-group {
     border:solid 1px transparent;
   }
-  aside {
-    background-color:$banner-blue;
-    .profile-img {
-      border: solid 2px $exec-greyborder;
-      background-color: $white;
-    }
-  }
+}
 
-}
-body.path-employees, body.path-my-profile {
-  aside {
-    background-color:$exec-greyborder;
-    .profile-img {
-      border:solid 2px darken($exec-greyborder, 20);
-      background-color: $white;
-    }
-  }
-}
