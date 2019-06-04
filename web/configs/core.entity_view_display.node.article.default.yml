@@ -327,12 +327,11 @@ content:
       use_description_as_link_text: true
     third_party_settings: {  }
   field_author_information:
-    type: entity_reference_label
+    type: author
     weight: 6
     region: content
     label: hidden
-    settings:
-      link: true
+    settings: {  }
     third_party_settings: {  }
   field_development_tags:
     type: entity_reference_label

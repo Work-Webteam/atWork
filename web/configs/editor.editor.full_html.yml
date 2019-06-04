@@ -85,17 +85,16 @@ settings:
   plugins:
     stylescombo:
       styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
-    drupallink:
-      linkit_enabled: true
-      linkit_profile: atwork_links
     language:
       language_list: un
+    linkit:
+      linkit_profile: ''
     tokenbrowser:
       token_types: {  }
     video_embed:
       defaults:
         children:
-          autoplay: true
+          autoplay: false
           responsive: true
           width: '854'
           height: '480'

@@ -405,6 +405,7 @@
   aside {
     padding:15px;
     border-right: solid 1px $exec-greyborder;
+    background-color:$exec-greyborder;
     span.profile-img {
       display: block;
       width: 125px;
@@ -412,6 +413,8 @@
       border-radius: 50%;
       overflow: hidden;
       padding-top:8px;
+      border:solid 2px darken($exec-greyborder, 20);
+      background-color: $white;
       }
     }
   section.profile-detail {
@@ -427,5 +430,24 @@
       padding: 0;
       margin:20px 0 20px 0;
       }
+  }
+}
+
+@mixin j41 {
+  aside {
+    background-color: $banner-blue;
+    .profile-img {
+      border: solid 2px $exec-greyborder;
+      background-color: $white;
+    }
+  }
+}
+@mixin j43 {
+  aside {
+    background-color: $comment-blue;
+    .profile-img {
+      border: solid 2px $exec-greyborder;
+      background-color: $white;
+    }
   }
 }

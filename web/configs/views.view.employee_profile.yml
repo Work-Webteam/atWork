@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.user.field_about_me
     - field.storage.user.field_company
+    - field.storage.user.field_job_function_code
     - field.storage.user.field_user_city
     - field.storage.user.field_user_given_name
     - field.storage.user.field_user_offic
@@ -369,6 +370,70 @@ display:
           field_api_classes: false
           entity_type: user
           entity_field: name
+          plugin_id: field
+        field_job_function_code:
+          id: field_job_function_code
+          table: user__field_job_function_code
+          field: field_job_function_code
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
         view_user:
           id: view_user
@@ -1068,7 +1133,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }}  -  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n   <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }}  -  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n   <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -1116,18 +1181,21 @@ display:
           admin_label: ''
           operator: in
           value:
-            - '67801'
+            - '22502'
           group: 1
-          exposed: true
+          exposed: false
           expose:
+            operator_id: uid_op
+            label: 'Name (autocomplete)'
+            description: null
             use_operator: false
             operator: uid_op
             identifier: uid
-            label: 'Name (autocomplete)'
-            description: null
+            required: false
             remember: false
             multiple: false
-            required: false
+            remember_roles:
+              authenticated: authenticated
             reduce: false
           is_grouped: false
           group_info:
@@ -1243,6 +1311,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.user.field_company'
+        - 'config:field.storage.user.field_job_function_code'
         - 'config:field.storage.user.field_user_city'
         - 'config:field.storage.user.field_user_given_name'
         - 'config:field.storage.user.field_user_offic'
@@ -2174,6 +2243,70 @@ display:
           absolute: false
           entity_type: user
           plugin_id: entity_link_edit
+        field_job_function_code:
+          id: field_job_function_code
+          table: user__field_job_function_code
+          field: field_job_function_code
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         nothing:
           id: nothing
           table: views
@@ -2185,7 +2318,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n  <div id=\"subscribe\"> {{ nothing_1 }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }}, {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n  <div id=\"subscribe\"> {{ nothing_1 }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }}, {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -2326,6 +2459,7 @@ display:
       tags:
         - 'config:field.storage.user.field_about_me'
         - 'config:field.storage.user.field_company'
+        - 'config:field.storage.user.field_job_function_code'
         - 'config:field.storage.user.field_user_city'
         - 'config:field.storage.user.field_user_given_name'
         - 'config:field.storage.user.field_user_offic'
@@ -3214,6 +3348,70 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_job_function_code:
+          id: field_job_function_code
+          table: user__field_job_function_code
+          field: field_job_function_code
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         nothing:
           id: nothing
           table: views
@@ -3225,7 +3423,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"> {{ field_user_given_name }} {{ field_user_surname }} </li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"> {{ field_user_given_name }} {{ field_user_surname }} </li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li> \r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -3575,6 +3773,69 @@ display:
                   min: ''
                   max: ''
           plugin_id: numeric
+        field_job_function_code_value:
+          id: field_job_function_code_value
+          table: user__field_job_function_code
+          field: field_job_function_code_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_job_function_code_value_op
+            label: 'Job Function Code (field_job_function_code)'
+            description: null
+            use_operator: false
+            operator: field_job_function_code_value_op
+            identifier: field_job_function_code_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+            min_placeholder: null
+            max_placeholder: null
+          is_grouped: true
+          group_info:
+            label: Role
+            description: ''
+            identifier: field_job_function_code_value
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Deputy Minister'
+                operator: '='
+                value:
+                  value: '041'
+                  min: ''
+                  max: ''
+              2:
+                title: 'Asst Deputy Minister'
+                operator: '='
+                value:
+                  value: '043'
+                  min: ''
+                  max: ''
+              3:
+                title: Management
+                operator: '='
+                value:
+                  value: '047'
+                  min: ''
+                  max: ''
+          plugin_id: numeric
       filter_groups:
         operator: AND
         groups:
@@ -3698,6 +3959,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.user.field_company'
+        - 'config:field.storage.user.field_job_function_code'
         - 'config:field.storage.user.field_user_city'
         - 'config:field.storage.user.field_user_given_name'
         - 'config:field.storage.user.field_user_offic'
@@ -4470,6 +4732,70 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_job_function_code:
+          id: field_job_function_code
+          table: user__field_job_function_code
+          field: field_job_function_code
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         nothing:
           id: nothing
           table: views
@@ -4481,7 +4807,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }} -  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }} -  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -4579,6 +4905,7 @@ display:
       tags:
         - 'config:field.storage.user.field_about_me'
         - 'config:field.storage.user.field_company'
+        - 'config:field.storage.user.field_job_function_code'
         - 'config:field.storage.user.field_user_city'
         - 'config:field.storage.user.field_user_given_name'
         - 'config:field.storage.user.field_user_offic'
@@ -4714,6 +5041,70 @@ display:
           field_api_classes: false
           entity_type: user
           entity_field: uid
+          plugin_id: field
+        field_job_function_code:
+          id: field_job_function_code
+          table: user__field_job_function_code
+          field: field_job_function_code
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
         name_1:
           id: name_1
@@ -5478,7 +5869,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }} </li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }} </li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -5517,21 +5908,18 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       filters:
-        uid:
-          id: uid
-          table: users_field_data
-          field: uid
+        field_job_function_code_value:
+          id: field_job_function_code_value
+          table: user__field_job_function_code
+          field: field_job_function_code_value
           relationship: none
           group_type: group
           admin_label: ''
-          operator: in
+          operator: '='
           value:
-            - '32461'
-            - '56350'
-            - '62634'
-            - '64284'
-            - '65169'
-            - '65719'
+            min: ''
+            max: ''
+            value: '041'
           group: 1
           exposed: false
           expose:
@@ -5546,7 +5934,9 @@ display:
             multiple: false
             remember_roles:
               authenticated: authenticated
-            reduce: false
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -5559,152 +5949,10 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
-        uid_1:
-          id: uid_1
-          table: users_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value:
-            - '25317'
-            - '25733'
-            - '31645'
-            - '65684'
-            - '68834'
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
-        uid_3:
-          id: uid_3
-          table: users_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value:
-            - '33510'
-            - '56871'
-            - '58557'
-            - '61809'
-            - '64858'
-            - '65202'
-            - '66195'
-          group: 3
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
-        uid_2:
-          id: uid_2
-          table: users_field_data
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: in
-          value:
-            - '36131'
-            - '48944'
-            - '54526'
-            - '58773'
-            - '66102'
-            - '66522'
-            - '66801'
-          group: 4
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          entity_type: user
-          entity_field: uid
-          plugin_id: user_name
+          plugin_id: numeric
       filter_groups:
         operator: OR
-        groups:
-          1: AND
-          2: AND
-          3: AND
-          4: AND
+        groups: {  }
       exposed_block: false
       exposed_form:
         type: basic
@@ -5810,6 +6058,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.user.field_company'
+        - 'config:field.storage.user.field_job_function_code'
         - 'config:field.storage.user.field_user_city'
         - 'config:field.storage.user.field_user_given_name'
         - 'config:field.storage.user.field_user_offic'
