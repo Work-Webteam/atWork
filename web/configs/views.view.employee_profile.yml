@@ -1015,7 +1015,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"exec-name\"><a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li>  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n   <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"><a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li>  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n   <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -2200,7 +2200,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n  <div id=\"subscribe\"> {{ nothing_1 }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }}, {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n  <div id=\"subscribe\"> {{ nothing_1 }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li><span class=\"employee\"> {{ field_user_given_name }} {{ field_user_surname }}</span>, {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -3187,7 +3187,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"> <a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li> \r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"> <a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li class=\"email\"> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li> \r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -3586,17 +3586,17 @@ display:
                   min: ''
                   max: ''
               2:
+                title: 'Assoc Deputy Minister'
+                operator: '='
+                value:
+                  value: '042'
+                  min: ''
+                  max: ''
+              3:
                 title: 'Asst Deputy Minister'
                 operator: '='
                 value:
                   value: '043'
-                  min: ''
-                  max: ''
-              3:
-                title: Management
-                operator: '='
-                value:
-                  value: '047'
                   min: ''
                   max: ''
           plugin_id: numeric
@@ -4571,7 +4571,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li> {{ field_user_given_name }} {{ field_user_surname }} -  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li ><span class=\"employee\">{{ field_user_given_name }} {{ field_user_surname }}</span>, {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li class=\"email\"> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -5515,7 +5515,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"exec-name\"><a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"><a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li> {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false

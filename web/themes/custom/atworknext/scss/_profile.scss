@@ -27,6 +27,9 @@ body.path-my-profile, .employee-profile-page {
     &.j41 {
       @include j41;
     }
+    &.j42 {
+      @include j42;
+    }
     &.j43 {
       @include j43;
     }
@@ -61,14 +64,6 @@ body.path-employees, body.path-executives {
         a {
           text-decoration: none;
         }
-        li.exec-name {
-          text-transform: uppercase;
-          font-weight: bold;
-        }
-        li.employee a {
-          font-weight: bold;
-          text-transform: uppercase;
-        }
         aside {
           span.profile-img {
             width:75px;
@@ -81,6 +76,9 @@ body.path-employees, body.path-executives {
         }
         &.j41 {
           @include j41;
+        }
+        &.j42 {
+          @include j42;
         }
         &.j43 {
           @include j43;
@@ -118,6 +116,15 @@ body.path-employees, body.path-executives {
           padding:0 20px 0 0;
         }
       }
+    }
+  }
+  section.profile-detail {
+    .employee {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .email {
+      margin-top:10px;
     }
   }
   nav.pager-nav {

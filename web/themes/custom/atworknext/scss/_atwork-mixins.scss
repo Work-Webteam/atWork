@@ -412,7 +412,6 @@
       height: 125px;
       border-radius: 50%;
       overflow: hidden;
-      padding-top:8px;
       border:solid 2px darken($exec-greyborder, 20);
       background-color: $white;
       }
@@ -436,6 +435,15 @@
 @mixin j41 {
   aside {
     background-color: $banner-blue;
+    .profile-img {
+      border: solid 2px $exec-greyborder;
+      background-color: $white;
+    }
+  }
+}
+@mixin j42 {
+  aside {
+    background-color: $mtBlue2;
     .profile-img {
       border: solid 2px $exec-greyborder;
       background-color: $white;
