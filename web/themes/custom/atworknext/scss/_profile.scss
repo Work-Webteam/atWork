@@ -61,6 +61,10 @@ body.path-employees, body.path-executives {
         a {
           text-decoration: none;
         }
+        li.exec-name {
+          text-transform: uppercase;
+          font-weight: bold;
+        }
         li.employee a {
           font-weight: bold;
           text-transform: uppercase;
