@@ -113,40 +113,13 @@ function siteminder_user_form_submit($form, FormStateInterface $form_state) {
 
 /**
  * Custom code to use field_user_display_name rather than username for users.
- * Implements hook_user_format_name_alter
  */
 function siteminder_user_format_name_alter(&$name, $account){
-  // Make sure we have a user - Batch doesn't actually have one.
-  // Let anon user out as well.
-  if($account->id() == 0 || is_null($account)){
-    return;
-  }
-  // Pull up user if we have one
   $current_user = \Drupal\user\Entity\User::load($account->id());
-  // Double check we have an actual user, and they are not anonymous
-  if(is_null($current_user) || $current_user->isAnonymous()){
-    return;
-  }
-  /*
-  ksm($current_user);
-  $test_display = $current_user->get("field_user_display_name")->getValue();
-
-  ksm($test_display);
-  */
-  //ksm($current_user);
-  // Failsafe variable here - if we don't get anything back, it goes through as NULL and isn't used.
-  $display_name = NULL;
-  // Check that we have the actual field, and that the field is not empty.
-  if($current_user->hasField('field_user_display_name') && !$current_user->get("field_user_display_name")->isEmpty()) {
-    //$display_name = $current_user->get("field_user_display_name")->value;
-  }
-  // Make the change if we have an actual value to apply.
-   // TODO: This is way to wide open, overtakig links etc - need to restrict it much more or find a different way to use it. Maybe in twig?
-  /*
+  $display_name = $current_user->get("field_user_display_name")->value;
   if($display_name != NULL) {
     $name = t('@username', [
       '@username' => t($display_name),
     ]);
   }
-  */
 }
