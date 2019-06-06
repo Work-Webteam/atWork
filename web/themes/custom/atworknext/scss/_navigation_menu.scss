@@ -206,6 +206,9 @@ body.page-node-type-program-area-content {
     padding-left:0px;
     padding-right:0px;
     @include size1416;
+    .draggable-dashboard-block__header {
+      border-bottom:solid 1px #999;
+    }
     .group-side-menu {
       border:solid 1px $exec-greyborder;
       margin-top:10px;
@@ -219,11 +222,16 @@ body.page-node-type-program-area-content {
         margin:0 0 10px 0;
         font-weight: normal;
         text-transform: uppercase;
+        border-bottom:solid 2px #999;
       }
       #accordion.panel-group {
         margin-bottom: 5px;
         h4.panel-title {
           padding: 5px 10px;
+          border-bottom:solid 1px #999;
+        }
+        .field--name-field-group-menu-link .panel-body {
+          border-bottom:solid 1px $exec-greyborder;
         }
       }
     }

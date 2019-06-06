@@ -100,6 +100,16 @@ article .social-bar,
     }
   }
 }
+body.path-group { // Adds subscription icon to the Group Subscription link.
+  .flag-subscribe-group:before {
+    display: block;
+    float:left;
+    content:url("../images/subscribe-icon.svg");
+    width: 16px;
+    margin-right: 5px;
+    margin-top: 2px;
+  }
+}
 .form-group #comment-links {
   padding-left: 75px;
   padding-top:12px;
