@@ -12063,14 +12063,24 @@ article .social-bar .footer-links li .likeit a, article .social-bar .comment-lin
   margin-right: 10px;
 }
 
-/* line 103, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 104, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+body.path-group .flag-subscribe-group:before {
+  display: block;
+  float: left;
+  content: url("../images/subscribe-icon.svg");
+  width: 16px;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+/* line 113, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 .form-group #comment-links {
   padding-left: 75px;
   padding-top: 12px;
   margin-right: 0px;
 }
 
-/* line 107, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 117, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 .form-group #comment-links li.comment-reply a:before {
   display: block;
   float: left;
@@ -12080,12 +12090,12 @@ article .social-bar .footer-links li .likeit a, article .social-bar .comment-lin
   margin-left: 5px;
 }
 
-/* line 116, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 126, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 article .field--name-field-tags {
   margin: 20px 25px;
 }
 
-/* line 120, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 130, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share,
 div[id*="-dialog-share"] {
   font-size: .875rem;
@@ -12093,7 +12103,7 @@ div[id*="-dialog-share"] {
   padding-top: 15%;
 }
 
-/* line 124, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 134, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share .modal-content,
 div[id*="-dialog-share"] .modal-content {
   width: 400px;
@@ -12101,29 +12111,29 @@ div[id*="-dialog-share"] .modal-content {
   margin: 0 auto;
 }
 
-/* line 129, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 139, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share .modal-footer,
 div[id*="-dialog-share"] .modal-footer {
   display: none;
 }
 
-/* line 133, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 143, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #dialog-share .modal-body input.allowCopy,
 div[id*="-dialog-share"] .modal-body input.allowCopy {
   width: 250px;
 }
 
-/* line 139, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 149, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #drupal-modal {
   top: 15%;
 }
 
-/* line 141, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 151, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #drupal-modal div#drupal-modal--body {
   overflow: hidden !important;
 }
 
-/* line 144, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
+/* line 154, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_social_tags.scss */
 #drupal-modal h4.modal-title {
   padding: 0;
   margin: 0;
