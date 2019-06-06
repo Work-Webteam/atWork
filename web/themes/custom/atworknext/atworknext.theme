@@ -9,3 +9,15 @@ function atworknext_preprocess_links(&$variables){
   $variables['links_new'] = $variables['links'];
 }
 
+function atworknext_preprocess_views_view_field(&$variables) {
+  //$current_user = Drupal\user\Entity\User::load($variables['fields']['uid']->content);
+  if($variables['field']->field == 'uid'){
+    //$current_user = Drupal\user\Entity\User::load($variables['output']);
+    //$value = $variables['output'];
+    //var_dump($value);
+  }
+  //$variables['email'] = $current_user->getEmail();
+  /*
+  var_dump($test_user);
+  */
+}

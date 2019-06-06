@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+  {# currently this includes user-picture, name, field-user-given-name, field-user-surname, field-company, field-user-offic, field-user-city, field-user-title, mail, field-user-phone, field-about-me, field-job-function-code #}
+<div id="profile-card" class="j{{ fields.field_job_function_code.content }}">
+  <aside>
+    <span class="profile-img"> {{ fields.user_picture.content }} </span>
+    <div id="profile-edit">   {{ fields.edit_user.content }} </div>
+  </aside>
+  <section class="profile-detail">
+    <ul class="profile">
+      <li ><span class="employee">{{ fields.field_user_given_name.content }} {{ fields.field_user_surname.content }}</span>, {{ fields.field_user_title.content }} </li>
+      <li> {{ fields.field_company.content }}  - {{ fields.field_user_offic.content }} </li>
+      <li> {{ fields.field_user_city.content }} </li>
+      <li class="email2"><a href="mailto:{{ email }}">{{ email }} </a></li>
+      <li> {{ fields.field_user_phone.content }} </li>
+    </ul>
+    <h3>About Me </h3>
+    <p> {{ fields.field_about_me.content }} </p>
+  </section>
+</div>
