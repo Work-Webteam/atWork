@@ -12,7 +12,8 @@ audience: member
 group_type: atwork_groups
 permissions_ui: true
 permissions:
-  - 'view group'
-  - 'update own group_membership content'
-  - 'leave group'
-  - 'view group_membership content'
+  0: 'view group'
+  1: 'update own group_membership content'
+  2: 'leave group'
+  3: 'view group_membership content'
+  8: 'view unpublished group_node:group_post entity'
