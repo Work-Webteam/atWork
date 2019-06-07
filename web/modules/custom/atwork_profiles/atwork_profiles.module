@@ -1,0 +1,46 @@
+<?php
+
+use \Drupal\views\ViewExecutable;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+
+
+/**
+ * Implements hook_profiles_entity_field_access
+ * @param $operation
+ * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
+ * @param \Drupal\Core\Session\AccountInterface $account
+ * @param \Drupal\Core\Field\FieldItemListInterface|NULL $items
+ *
+ * @return \Drupal\Core\Access\AccessResultAllowed|\Drupal\Core\Access\AccessResultNeutral
+ *
+ * Drupal does not allow authenticated users to see the email field currently. There are no settings to change this so we have to do it here
+ *
+ */
+function atwork_profiles_entity_field_access($operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL) {
+  $result = AccessResult::neutral();
+
+  if ($field_definition->getName() == 'mail') {
+    if (in_array('authenticated', $account->getRoles())) {
+      $result = AccessResult::allowed();
+    }
+  }
+  return $result;
+}
+
+/**
+ * implements hook_entity_base_field_info_alter
+ * @param $fields
+ * @param $entity_type
+ *
+ * Drupal does not allow authenticated users to see the email field currently. There are no settings to change this so we have to do it here
+ */
+function atwork_profiles_entity_base_field_info_alter(&$fields, $entity_type) {
+  if ($entity_type->id() == 'user') {
+    if (isset($fields['mail'])) {
+      $fields['mail']->setDisplayConfigurable('view', TRUE);
+    }
+  }
+}
