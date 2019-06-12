@@ -3808,7 +3808,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -3872,7 +3872,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -3937,7 +3937,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4000,7 +4000,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4063,7 +4063,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4126,7 +4126,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4189,7 +4189,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4252,7 +4252,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4315,7 +4315,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4379,7 +4379,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4442,7 +4442,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -4568,7 +4568,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: true
             text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside>\r\n  <span class=\"profile-img\"> {{ user_picture }} </span>\r\n  <div id=\"profile-edit\">   {{ edit_user }} </div>\r\n</aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li ><span class=\"employee\">{{ field_user_given_name }} {{ field_user_surname }}</span>, {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li class=\"email\"> {{ mail }} </li>\r\n  <li> {{ field_user_phone }} </li>\r\n </ul>\r\n <h3>About Me </h3>\r\n <p> {{ field_about_me }} </p>\r\n</section>\r\n</div>"

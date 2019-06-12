@@ -10,10 +10,12 @@ dependencies:
     - field.field.poll.poll.field_body
     - field.field.poll.poll.field_custom_teaser
     - field.field.poll.poll.field_images
+    - field.field.poll.poll.field_poll_publishing_date
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
     - image.style.thumbnail
   module:
+    - datetime
     - file
     - image_widget_crop
     - poll
@@ -86,6 +88,12 @@ content:
       show_crop_area: false
     third_party_settings: {  }
     type: image_widget_crop
+    region: content
+  field_poll_publishing_date:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_tags:
     weight: 7

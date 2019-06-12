@@ -10,6 +10,7 @@ dependencies:
     - field.field.poll.poll.field_body
     - field.field.poll.poll.field_custom_teaser
     - field.field.poll.poll.field_images
+    - field.field.poll.poll.field_poll_publishing_date
     - field.field.poll.poll.field_tags
     - field.field.poll.poll.field_title
     - responsive_image.styles.responsive_article_image
@@ -23,7 +24,7 @@ bundle: poll
 mode: default
 content:
   field_author:
-    weight: -97
+    weight: 2
     label: hidden
     settings:
       link: true
@@ -32,20 +33,20 @@ content:
     region: content
   field_body:
     type: text_default
-    weight: -96
+    weight: 3
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_custom_teaser:
-    weight: 11
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_images:
-    weight: -99
+    weight: 0
     label: hidden
     settings:
       responsive_image_style: responsive_article_image
@@ -54,7 +55,7 @@ content:
     type: responsive_image
     region: content
   field_tags:
-    weight: 6
+    weight: 5
     label: above
     settings:
       link: true
@@ -62,7 +63,7 @@ content:
     type: entity_reference_label
     region: content
   field_title:
-    weight: -98
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
@@ -70,12 +71,12 @@ content:
     type: string
     region: content
   flag_inappropriate_poll_flag:
-    weight: 10
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   poll_votes:
-    weight: -95
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -83,3 +84,4 @@ hidden:
   field_attachments: true
   field_author_image: true
   field_author_information: true
+  field_poll_publishing_date: true

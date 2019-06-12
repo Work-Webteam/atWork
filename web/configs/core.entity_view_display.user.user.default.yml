@@ -131,13 +131,20 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   flag_email_user:
-    weight: 12
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_user:
-    weight: 13
+    weight: 14
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  mail:
+    type: email_mailto
+    weight: 12
+    region: content
+    label: inline
     settings: {  }
     third_party_settings: {  }
   user_picture:
