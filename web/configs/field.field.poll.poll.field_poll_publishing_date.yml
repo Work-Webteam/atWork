@@ -1,0 +1,24 @@
+uuid: 74c15edc-c290-4e12-8907-0c4992a9a7b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.poll.field_poll_publishing_date
+  module:
+    - datetime
+    - poll
+id: poll.poll.field_poll_publishing_date
+field_name: field_poll_publishing_date
+entity_type: poll
+bundle: poll
+label: 'Publishing Date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
