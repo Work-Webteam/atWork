@@ -29,6 +29,7 @@ body.path-group section.col-sm-12 {
         margin:inherit;
         font-weight: normal;
         text-align: center;
+        border-bottom:solid 2px #999;
       }
       h3 {
         border-top:solid 1px $exec-greyborder;
@@ -134,6 +135,11 @@ body.path-group section.col-sm-12 {
       margin:0;
       width:100%;
       background-color:$mtTeal;
+      border-bottom:solid 2px #999;
+      .btn-primary {
+        border-radius: 0px;
+        border-color: transparent;
+      }
     }
     .view-content {
       a {
