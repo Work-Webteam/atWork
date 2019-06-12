@@ -2,6 +2,7 @@
 
 use Drupal\file\Entity\File;
 use Drupal\core\Entity\EntityManager;
+use Drupal\atwork_poll\AtworkPollStorage;
 /**
  * @file
  * Primary module hooks for Atwork Poll module.
@@ -47,4 +48,28 @@ function atworknext_preprocess_field__poll__field_tags__poll(&$variables) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
 	$variables['poll_views'] = $view_count->count;
+}
+
+/**
+ * Implements hook_cron()
+ * $date - the current date time.
+ * $polls - the polls that need to be activated.
+ *
+ * We have a field field_poll_publishing_date that lets us know the poll should be published if it is after this date.
+ * By default, the poll also has a closing date - this is part of the main poll functionality.
+ * So if the poll is not published, and is not past it's  closing date, but is past its publishing date and time, we should make it live.
+ *
+ */
+function atwork_poll_cron(){
+  // To do - collect all polls that are unpublished, and are not past their end-date.
+  // Get all polls that have not expired yet
+  $checkPolls = new AtworkPollStorage();
+
+  $polls = $checkPolls->getPollsToPublish();
+  if($polls != Null) {
+    foreach ($polls as $poll) {
+      $poll->set('status', 1);
+      $poll->save();
+    }
+  }
 }
