@@ -63,9 +63,9 @@ function atworknext_preprocess_field__poll__field_tags__poll(&$variables) {
 function atwork_poll_cron(){
   // To do - collect all polls that are unpublished, and are not past their end-date.
   // Get all polls that have not expired yet
-  $checkPolls = new AtworkPollStorage();
+ // $checkPolls = new AtworkPollStorage();
 
-  $polls = $checkPolls->getPollsToPublish();
+  $polls = AtworkPollStorage::getPollsToPublish();
   if($polls != Null) {
     foreach ($polls as $poll) {
       $poll->set('status', 1);
