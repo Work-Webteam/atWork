@@ -27,27 +27,33 @@ function atworknext_preprocess_field__poll__field_tags__poll(&$variables) {
 	$poll_id = $variables['element']['#object']->id();
 	$user_id= \Drupal::currentUser()->id();
 	$view_count = '';
-	
-	// Capture page view
-	try {
-	  $connection = \Drupal::database();
-	  $query = $connection->query("INSERT IGNORE INTO atwork_poll_views(poll_id,uid) VALUES (" . $poll_id . ", " . $user_id. ")");
-	  $result = $query->fetch();
-	} 
-	catch(Exception $e) {
-		\Drupal::logger('type')->error($e->getMessage());
-	}
-	
-	// Retrieve # page views
-	try {
-	  $connection = \Drupal::database();
-		$query = $connection->query("SELECT COUNT(uid) AS count FROM atwork_poll_views where poll_id = " . $poll_id . ";");
-	  $view_count = $query->fetch();
-	} 
-	catch(Exception $e) {
-		\Drupal::logger('type')->error($e->getMessage());
-	}
-	$variables['poll_views'] = $view_count->count;
+  // TODO: Currently this table does not exist - so we will always get an empty set return - lets suppress the error for now.
+
+  /*
+  // Capture page view
+  try {
+    $connection = \Drupal::database();
+    $query = $connection->query("INSERT IGNORE INTO atwork_poll_views(poll_id,uid) VALUES (" . $poll_id . ", " . $user_id. ")");
+    $result = $query->fetch();
+  }
+  catch(Exception $e) {
+    \Drupal::logger('type')->error($e->getMessage());
+  }
+
+  // Retrieve # page views
+  try {
+    $connection = \Drupal::database();
+    $query = $connection->query("SELECT COUNT(uid) AS count FROM atwork_poll_views where poll_id = " . $poll_id . ";");
+    $view_count = $query->fetch();
+  }
+  catch(Exception $e) {
+    \Drupal::logger('type')->error($e->getMessage());
+  }
+  */
+  // TODO: Currently this table does not exist - so we will always get an empty set return - lets suppress the error for now.
+  if(!empty($view_count)) {
+    $variables['poll_views'] = $view_count->count;
+  }
 }
 
 /**
