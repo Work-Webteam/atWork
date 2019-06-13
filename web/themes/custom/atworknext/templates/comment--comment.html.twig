@@ -83,7 +83,6 @@
 <div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
 <div id="comment-block" class="expandable"> {# set posted on/replied to #}
   <div id="comment-byline"> {% if is_reply %}
-      {{ kint(author) }}
       {% trans %}<a href="/employees/{{ author_idir }}">{{ author_name }}</a> replied to {{ parent_author|render }} {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
     {% else %}
       {% trans %}<a href="/employees/{{ author_idir }}">{{ author_name }}</a> posted on {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
