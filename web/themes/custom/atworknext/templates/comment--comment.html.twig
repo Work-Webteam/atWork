@@ -78,15 +78,15 @@
     This code seems to be breaking the "new comment" line
     <mark class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
 #}
-
   {% set atworkCreatedDate = atworkCreatedTime|format_date('atwork_datetime') %}
   {% set atworkCreatedTime = atworkCreatedTime|format_date('atwork_time') %}
 <div id="comment-avatar" class="img-circle">{{ user_picture }}</div>
 <div id="comment-block" class="expandable"> {# set posted on/replied to #}
   <div id="comment-byline"> {% if is_reply %}
-    {% trans %}{{ author['#content'] }} replied to {{ parent_author|render }} {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
+      {{ kint(author) }}
+      {% trans %}<a href="/employees/{{ author_idir }}">{{ author_name }}</a> replied to {{ parent_author|render }} {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
     {% else %}
-    {% trans %}{{ author['#content'] }} posted on {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
+      {% trans %}<a href="/employees/{{ author_idir }}">{{ author_name }}</a> posted on {{ atworkCreatedDate }} {{ atworkCreatedTime }}{% endtrans %}
     {% endif %} </div>
   {#
   Indicate the semantic relationship between parent and child comments for

@@ -95,6 +95,12 @@ function atworknext_preprocess_comment__comment(&$variables){
 			$variables['like_msg'] =  '';
 		}
 	}
+	// We want to use the $user display name, not the username of the author.
+  $author = User::load($variables['author_id']);
+	$author_name = $author->hasField('field_user_display_name') && !empty($author->get('field_user_display_name')->getValue()) ? $author->get('field_user_display_name')->getValue()[0]['value'] : "User decommissioned";
+	$author_idir = $author->hasField('field_user_display_name') ? $author->get('name')->getValue()[0]['value'] : "";
+	$variables['author_name'] = $author_name;
+	$variables['author_idir'] = $author_idir;
 }
 
 /**

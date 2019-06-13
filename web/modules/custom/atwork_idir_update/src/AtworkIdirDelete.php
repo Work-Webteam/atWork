@@ -73,9 +73,14 @@ class AtworkIdirDelete extends AtworkIdirGUID
             break;
           case $key == "field_user_guid":
             $this->new_fields[$value] = $row[$value];
+            break;
           case $key == "mail":
           case $key == "init":
             $this->new_fields[$value] = 'old_user_' . time() . $extra_rand . '@gov.bc.ca';
+            break;
+          case $key == "field_user_display_name":
+            $this->new_fields[$value] = $row[$value];
+            // We don't want to remove this - or we get blank users in blogs/comments etc.
             break;
           default:
             $this->new_fields[$value] = "";
