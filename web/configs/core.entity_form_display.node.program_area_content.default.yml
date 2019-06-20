@@ -30,8 +30,8 @@ content:
     weight: 2
     settings:
       rows: 9
+      placeholder: 'Limit is 300 characters including spaces.'
       summary_rows: 3
-      placeholder: ''
     third_party_settings: {  }
     region: content
   created:
@@ -131,7 +131,7 @@ content:
     region: content
     settings:
       size: 60
-      placeholder: ''
+      placeholder: 'Limit is 75 characters including spaces.'
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete

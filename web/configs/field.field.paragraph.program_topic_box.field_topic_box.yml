@@ -1,0 +1,21 @@
+uuid: c8db1ad7-0e6d-48e3-aada-08f5ba3ca6f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_topic_box
+    - paragraphs.paragraphs_type.program_topic_box
+  module:
+    - text
+id: paragraph.program_topic_box.field_topic_box
+field_name: field_topic_box
+entity_type: paragraph
+bundle: program_topic_box
+label: 'Topic box'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

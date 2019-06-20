@@ -1,0 +1,23 @@
+uuid: 57b0468b-5815-4844-aa31-87870f452b6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_group_menu_link
+    - paragraphs.paragraphs_type.program_topic_box
+  module:
+    - link
+id: paragraph.program_topic_box.field_group_menu_link
+field_name: field_group_menu_link
+entity_type: paragraph
+bundle: program_topic_box
+label: 'Explore Menu Link'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 2
+field_type: link

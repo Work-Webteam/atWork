@@ -1,18 +1,18 @@
-uuid: 0d066a95-73c9-46f3-80f1-bf30066325e1
+uuid: 1416d5db-05bd-4daa-988a-9d4378b211ac
 langcode: en
 status: true
 dependencies:
   module:
-    - node
+    - paragraphs
     - text
-id: node.field_program_topic
-field_name: field_program_topic
-entity_type: node
-type: text_with_summary
+id: paragraph.field_topic_box
+field_name: field_topic_box
+entity_type: paragraph
+type: text_long
 settings: {  }
 module: text
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

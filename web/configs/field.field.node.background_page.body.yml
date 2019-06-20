@@ -12,11 +12,11 @@ field_name: body
 entity_type: node
 bundle: background_page
 label: Body
-description: ''
+description: 'Limit is 300 characters including spaces.'
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  display_summary: true
+  display_summary: false
 field_type: text_with_summary

@@ -184,59 +184,32 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
         padding-right:15px;
       }
     }
-    #block-programtopic {
-      padding-bottom: 20px;
-        .field--type-text-with-summary {
-          .field--item {
-            @include make-sm-column(6);
-            margin-top:10px;
-            h3 {
-              padding:5px 5px 0 5px;
-              margin:0 0 0 0;
-              background-color: $white;
-              border-left:solid 1px #CCC;
-              border-top:solid 1px #CCC;
-              border-right:solid 1px #CCC;
-            }
-            p {
-              padding: 0 8px 10px 5px;
-              margin:0;
-              background-color:$white;
-              border-left:solid 1px #CCC;
-              border-right:solid 1px #CCC;
-              &:last-of-type {
-                border-bottom:solid 1px #CCC;
-              }
-            }
-            .btn {
-              border-radius: 0;
-              background-color: $banner-blue;
-              color: $white;
-              &::after {
-                content: " ▴";
-                color: $white;
-                font-size: 32px;
-                line-height: 0;
-                vertical-align: inherit;
-              }
-            }
-            .dropup {
-              text-align: center;
-              margin:-34px 0 0 0;
-              .dropdown-menu {
-                left: 50%;
-                right: auto;
-                text-align: center;
-                transform: translate(-50%, 0);
-                > li a:hover {
-                  background-color: $banner-blue;
-                  color:$white;
-                }
-              }
+    #block-programtopicboxes {
+      .field--name-field-program-topic-boxes {
+        .paragraph--type--program-topic-box {
+          .field--name-field-title {
+            @include size2024;
+            font-weight:bold;
+            padding:5px 5px 0 5px;
+            margin:0 0 0 0;
+            background-color: $white;
+            border-left:solid 1px #CCC;
+            border-top:solid 1px #CCC;
+            border-right:solid 1px #CCC;
+          }
+          p {
+            padding: 0 8px 10px 5px;
+            margin:0;
+            background-color:$white;
+            border-left:solid 1px #CCC;
+            border-right:solid 1px #CCC;
+            &:last-of-type {
+              border-bottom:solid 1px #CCC;
             }
           }
         }
       }
+    }
   }
 }
 

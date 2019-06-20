@@ -10,7 +10,6 @@ module:
   atwork_menu: 0
   atwork_messages: 0
   atwork_poll: 0
-  atwork_profiles: 0
   background_image: 0
   background_image_formatter: 0
   big_pipe: 0
@@ -19,6 +18,8 @@ module:
   bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
+  ckeditor_bootstrap_grid: 0
+  ckeditor_widgets: 0
   color: 0
   colorbox: 0
   colorbox_inline: 0
@@ -39,6 +40,7 @@ module:
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  editor_advanced_link: 0
   entity_reference_revisions: 0
   externalauth: 0
   extrafield_views_integration: 0
@@ -115,7 +117,6 @@ module:
   settings_tray: 0
   shortcut: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -137,7 +138,6 @@ module:
   update: 0
   user: 0
   video_embed_field: 0
-  video_embed_media: 0
   video_embed_wysiwyg: 0
   views_data_export: 0
   views_infinite_scroll: 0

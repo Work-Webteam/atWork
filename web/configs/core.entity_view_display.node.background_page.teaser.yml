@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.background_page.field_development_tags
     - field.field.node.background_page.field_image
     - field.field.node.background_page.field_program_ad_space
-    - field.field.node.background_page.field_program_topic
     - node.type.background_page
   module:
     - text
@@ -45,5 +44,4 @@ hidden:
   field_development_tags: true
   field_image: true
   field_program_ad_space: true
-  field_program_topic: true
   langcode: true

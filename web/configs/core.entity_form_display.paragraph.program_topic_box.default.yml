@@ -1,0 +1,56 @@
+uuid: 25e7ca1d-cda6-4d20-bf08-9d26c3959db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.program_topic_box.field_explore_menu_block
+    - field.field.paragraph.program_topic_box.field_group_menu_link
+    - field.field.paragraph.program_topic_box.field_title
+    - field.field.paragraph.program_topic_box.field_topic_box
+    - paragraphs.paragraphs_type.program_topic_box
+  module:
+    - paragraphs
+    - text
+id: paragraph.program_topic_box.default
+targetEntityType: paragraph
+bundle: program_topic_box
+mode: default
+content:
+  field_explore_menu_block:
+    type: paragraphs
+    weight: 2
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      features:
+        duplicate: duplicate
+        collapse_edit_all: collapse_edit_all
+    third_party_settings: {  }
+    region: content
+  field_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_topic_box:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  field_group_menu_link: true
+  status: true
