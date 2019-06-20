@@ -259,7 +259,7 @@ function atwork_messages_get_subscribers($notifier, $query) {
  */
 function atwork_messages_send_notification($subscription, $msg_key) {
 	// Build notification message for each sub/node and send.
-	$user = user_load($subscription->uid);
+	$user = User::load($subscription->uid);
 	$recipient = $user->get('name')->getValue()[0]['value'];
 	$mailManager = \Drupal::service('plugin.manager.mail');
 	$module = 'atwork_messages';
