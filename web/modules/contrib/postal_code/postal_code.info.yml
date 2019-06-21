@@ -1,0 +1,12 @@
+name: Postal Code
+description: Defines postal code field type.
+package: Field types
+
+type: module
+core: 8.x
+
+configure: postal_code.admin
+
+dependencies:
+  - field
+  - options

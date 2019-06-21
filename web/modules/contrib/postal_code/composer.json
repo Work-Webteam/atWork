@@ -1,0 +1,6 @@
+{
+  "name": "drupal/postal_code",
+  "description": "Postal Code Field Module.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+"
+}

@@ -1,0 +1,7 @@
+postal_code.admin:
+  path: '/admin/config/regional/postal_code'
+  defaults:
+    _form: '\Drupal\postal_code\Form\PostalCodeSettingsForm'
+    _title: 'Postal Codes'
+  requirements:
+    _permission: 'administer postal code'

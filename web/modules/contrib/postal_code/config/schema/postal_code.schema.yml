@@ -1,0 +1,15 @@
+# Schema for the configuration files of the Postal code module.
+
+postal_code.settings:
+  type: config_object
+  label: 'Postal code settings'
+  mapping:
+    validate:
+      type: integer
+      label: 'Postal code validate'
+    valid_countries:
+      type: sequence
+      label: 'Postal code valid countries'
+      sequence:
+        type: string
+        label: 'Country code'

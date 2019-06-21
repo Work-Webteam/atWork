@@ -1,0 +1,56 @@
+<?php
+
+/**
+ * @file
+ * Postal Code field type module file
+ *
+ * This module allows site administrators to add a postal code field type
+ * with basic validation for US and Canadian
+ * Postal Codes.
+ *
+ * Based on examples from
+ * http://www.slideshare.net/zugec/fields-in-core-how-to-create-a-custom-field
+ * and http://drupal.org/project/examples .
+ * Some regexes from:
+ *  - US & Canadian regexes from
+ * http://geekswithblogs.net/MainaD/archive/2007/12/03/117321.aspx
+ * "http://www.pixelenvision.com/1708/zip-postal-code-validation-regex-php-code
+ * -for-12-countries/"
+ */
+
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Locale\CountryManager;
+use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Url;
+use Drupal\postal_code\PostalCodeValidation;
+
+/**
+ * Implements hook_help().
+ */
+function postal_code_help($route_name, RouteMatchInterface $route_match) {
+  if ($route_name == 'help.page.postal_code') {
+    $country_list = CountryManager::getStandardList();
+    $postal_code_validation_data = PostalCodeValidation::getAllowedValidationPatterns();
+    $country_list_items = '';
+    foreach ($postal_code_validation_data as $country => $info) {
+      $country_list_items .= '<li>' . $country_list[Unicode::strtoupper($country)] . '</li>';
+    }
+    $configurl = Url::fromRoute('postal_code.admin')->toString();
+    $conturl   = Url::fromRoute('entity.node_type.collection')->toString();
+    $helptext = <<<EOT
+<p>A very minimal D7 Postal Code field with validation for one country (listed below) or a combination of countries.</p>
+
+<p>Countries with validation:
+<ul>
+  $country_list_items
+</ul>
+</p>
+<p>To configure this module, navigate to the <a href="$configurl">Structure > Postal Code</a>. Selecting countries in the 'Valid "Any" Countries' list will validate the submitted postal code against regexes for those countries using the "Any Country" widget type. If you want submissions validated, make sure to check the "Validate" checkbox.</p>
+<p>To configure content types to add this field type, navigate to <a href="$conturl">Structure > Content Types</a>. Select "manage fields" beside the content type (eg: blog, page, article...) and follow the normal procedure to add a new field, choosing "Postal Code" under field type. Beneath "Widget" a number of selections will appear for each country type, as well as an "Any" country which is configurable (see above) to validate any included country's postal code.</p>
+<p>Thanks to <a href="http://www.pixelenvision.com/1708/zip-postal-code-validation-regex-php-code-for-12-countries/">Pixel Envision</a> and <a href="http://geekswithblogs.net/MainaD/archive/2007/12/03/117321.aspx">Geeks With Blogs</a> for the list of countries and <a href="http://www.knowclassic.com">Classic Graphics</a> for the time to complete it.</p>
+EOT;
+
+    return t($helptext);
+  }
+}

@@ -1,0 +1,7 @@
+name: Taxonomy Permissions
+description: Adds the missing 'view' permissions to the Taxonomy module.
+type: module
+dependencies:
+  - taxonomy
+package: Other
+core: 8.x

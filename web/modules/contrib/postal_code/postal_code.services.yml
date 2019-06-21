@@ -1,0 +1,4 @@
+services:
+  postal_code.validator:
+    class: Drupal\postal_code\PostalCodeValidation
+    arguments: []
