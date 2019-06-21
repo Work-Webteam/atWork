@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Theme override for background pages explore withing blocks titles.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ * @ingroup templates
+ *
+ * @see template_preprocess_field()
+ */
+#}
+
+{# This creates a button for explore within fields - used in conjunction with  field--paragraph--program-menu-links-box.html.twig #}
+{% for item in items %}
+  <button aria-expanded='false' aria-haspopup='true' class='btn btn-default dropdown-toggle' data-toggle='dropdown' id='dropdownMenu' type='button'>
+    {{ item.content }}
+  </button>
+{% endfor %}
