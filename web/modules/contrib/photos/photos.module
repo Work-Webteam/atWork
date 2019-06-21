@@ -1,0 +1,1455 @@
+<?php
+
+/**
+ * @file
+ * Implementation of photos.module.
+ */
+
+use Drupal\comment\CommentInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Drupal\crop\Entity\Crop;
+use Drupal\crop\Entity\CropType;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Drupal\photos\PhotosAlbum;
+use Drupal\photos\PhotosImage;
+use Drupal\user\UserInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+/**
+ * Photos access checks for different operations.
+ *
+ * @param string $op
+ *   Operation to check access.
+ * @param int|\Drupal\node\Entity\Node|\Drupal\user\Entity\User $value
+ *   $node, $user, $file->id() OR $node->id().
+ *
+ * @return bool
+ *   TRUE if user is allowed access content, otherwise FALSE.
+ */
+function _photos_access($op, $value) {
+  $user = \Drupal::currentUser();
+  switch ($op) {
+    case 'viewUser':
+      return ($value->id() && $value->hasPermission('create photo') || \Drupal::currentUser()->hasPermission('access user profiles') && \Drupal::currentUser()->hasPermission('view photo'));
+      break;
+
+    case 'imageOrig':
+      if (!\Drupal::currentUser()->hasPermission('view original')) {
+        return FALSE;
+      }
+      else {
+        return TRUE;
+      }
+      break;
+
+    case 'imageView':
+      // Value is fid, check if user can view this photo's album.
+      if ($user->id() == 1) {
+        return TRUE;
+      }
+      if (\Drupal::config('photos.settings')->get('photos_access_photos')) {
+        // Check if album password is required.
+        photos_access_request_album_password();
+        $node = _photos_access_pass_type($value, 1);
+        $uid = FALSE;
+        // Check if user is node author.
+        if (isset($node['node'])) {
+          $uid = $node['node']->uid;
+        }
+        elseif (isset($node['view'])) {
+          $uid = $node['view']->uid;
+        }
+        if ($uid && $user->id() == $uid) {
+          return TRUE;
+        }
+        if (\Drupal::currentUser()->hasPermission('view photo')) {
+          if (isset($node['node']->viewid) && $node['node']->viewid <> 3) {
+            // Check node access.
+            $node = Node::load($node['node']->nid);
+            return $node->access('view');
+          }
+          elseif (isset($node['view']->pass)) {
+            // Check password.
+            if (isset($_SESSION[$node['view']->nid . '_' . session_id()]) && $node['view']->pass == $_SESSION[$node['view']->nid . '_' . session_id()] || !photos_access_pass_validate($node)) {
+              return TRUE;
+            }
+          }
+        }
+        return \Drupal::currentUser()->hasPermission('view photo');
+      }
+      else {
+        return \Drupal::currentUser()->hasPermission('view photo');
+      }
+      break;
+
+    case 'album':
+      if (\Drupal::config('photos.settings')->get('photos_access_photos')) {
+        // Check if album password is required.
+        photos_access_request_album_password();
+      }
+      return ($value->getType() == 'photos') && $value->access('view');
+      break;
+
+    case 'editAlbum':
+      if ($value->getType() == 'photos') {
+        return $value->access('update');
+      }
+      break;
+
+    case 'imageEdit':
+      if (!is_object($value)) {
+        $db = \Drupal::database();
+        $query = $db->select('node', 'n');
+        $query->join('photos_image', 'p', 'p.pid = n.nid');
+        $query->fields('n', ['nid'])
+          ->condition('p.fid', $value);
+        $nid = $query->execute()->fetchField();
+        if ($nid) {
+          $value = \Drupal::entityManager()->getStorage('node')->load($nid);
+        }
+        else {
+          // Not found.
+          throw new NotFoundHttpException();
+        }
+      }
+      return $value->access('update') || $value->access('delete');
+      break;
+
+    case 'imageDelete':
+      if (!is_object($value)) {
+        $db = \Drupal::database();
+        $query = $db->select('node', 'n');
+        $query->join('photos_image', 'p', 'p.pid = n.nid');
+        $query->fields('n', ['nid'])
+          ->condition('p.fid', $value);
+        $nid = $query->execute()->fetchField();
+        $value = \Drupal::entityManager()->getStorage('node')->load($nid);
+      }
+      return $value->access('delete');
+      break;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_photos_access().
+ */
+function photos_photos_access() {
+  if (\Drupal::config('photos.settings')->get('photos_access_photos')) {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    if (isset($path_args[3]) && $path_args[1] == 'photos' && $path_args[2] <> 'get' && is_numeric($path_args[3])) {
+      switch ($path_args[2]) {
+        case 'album':
+          return [$path_args[3]];
+
+        case 'image':
+          $db = \Drupal::database();
+          $nid = $db->query("SELECT pid FROM {photos_image} WHERE fid = :fid", [':fid' => $path_args[3]])->fetchField();
+          return [$nid];
+      }
+    }
+    if (isset($path_args[4]) && $path_args[1] == 'photos' && $path_args[2] == 'data' && is_numeric($path_args[4])) {
+      return [$path_args[4]];
+    }
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function photos_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  // Check user access.
+  switch ($op) {
+    case 'create':
+      return AccessResult::allowedIfHasPermission($account, 'create photo');
+
+    case 'update':
+      if ($account->hasPermission('edit any photo') || ($account->hasPermission('edit own photo') && ($account->id() == $node->getOwnerId()))) {
+        return AccessResult::allowed()->cachePerPermissions();
+      }
+
+    case 'delete':
+      if ($account->hasPermission('delete any photo') || ($account->hasPermission('delete own photo') && ($account->id() == $node->getOwnerId()))) {
+        return AccessResult::allowed()->cachePerPermissions();
+      }
+
+    default:
+      // No opinion.
+      return AccessResult::neutral();
+  }
+}
+
+/**
+ * Implements hook_file_download().
+ */
+function photos_file_download($uri) {
+  if (strpos($uri, '/photos/')) {
+    if (strpos($uri, '/tmp_images/')) {
+      $pathinfo = pathinfo($uri);
+      $ext = $pathinfo['extension'];
+      $filename = $pathinfo['filename'];
+      $fid = str_replace('.' . $ext, '', $filename);
+      $fid = str_replace('image_', '', $fid);
+      // Check photos access.
+      if (!_photos_access('imageView', $fid)) {
+        \Drupal::logger('photos')->notice('Private file access denied imageView for file id:%fid.', ['%fid' => $fid]);
+        // Access to the file is denied.
+        return -1;
+      }
+      // Load image.
+      $image = \Drupal::service('image.factory')->get($uri);
+      if ($image->isValid()) {
+        return [
+          // Send headers describing the image's size, and MIME-type.
+          'Content-Type' => $image->getMimeType(),
+          'Content-Length' => $image->getFileSize(),
+          'Cache-Control' => 'private',
+        ];
+      }
+    }
+    else {
+      // Load file.
+      $files = entity_load_multiple_by_properties('file', ['uri' => $uri]);
+      if (count($files)) {
+        foreach ($files as $item) {
+          // Since some database servers sometimes use a case-insensitive
+          // comparison by default, double check that the filename is an
+          // exact match.
+          if ($item->getFileUri() === $uri) {
+            $file = $item;
+            break;
+          }
+        }
+      }
+
+      // Check file.
+      if (!isset($file)) {
+        return;
+      }
+
+      // Check file usage.
+      $db = \Drupal::database();
+      $photos_usage = $db->query("SELECT id FROM {file_usage} WHERE module = 'photos' AND fid = :fid",
+        [':fid' => $file->id()])->fetchField();
+      if ($photos_usage) {
+        // Check photos access.
+        if (!_photos_access('imageView', $file->id())) {
+          \Drupal::logger('photos')->notice('Private file access denied imageView for file id:%fid.', ['%fid' => $file->id()]);
+          // Access to the file is denied.
+          return -1;
+        }
+
+        // Access is granted.
+        $headers = file_get_content_headers($file);
+        $headers['Cache-Control'] = 'private';
+        return $headers;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function photos_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // @todo re-work this code.
+  $node = $form_state->getFormObject()->getEntity();
+  if ($node->getType() == 'photos') {
+    require_once 'inc/photos.form.inc';
+    $form += _photos_form($node);
+    // Make sure $node->album data is saved.
+    $form['#entity_builders'][] = 'photos_node_builder';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function photos_form_photos_image_edit_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Integrate image_widget_crop module.
+  if (\Drupal::moduleHandler()->moduleExists('image_widget_crop') &&
+      $crop_config = \Drupal::config('image_widget_crop.settings')) {
+    if ($crop_config->get('settings.crop_list')) {
+      $form['#submit'][] = 'photos_image_edit_submit_crops';
+    }
+  }
+  // Integrate comment module.
+  if (\Drupal::moduleHandler()->moduleExists('comment')) {
+    $form['#submit'][] = 'photos_image_edit_submit_comment';
+  }
+}
+
+/**
+ * Form submission handler for image_widget_crop.
+ */
+function photos_image_edit_submit_crops(array &$form, FormStateInterface $form_state) {
+  $form_state_values = $form_state->getValues();
+  // Skip if image is being deleted.
+  if (empty($form_state_values['del'])) {
+    $fid = $form_state_values['fid'];
+    // @var \Drupal\file_entity\Entity\FileEntity $entity.
+    $entity = \Drupal::entityManager()->getStorage('file')->load($fid);
+
+    // @var \Drupal\image_widget_crop\ImageWidgetCropManager $image_widget_crop_manager.
+    $image_widget_crop_manager = \Drupal::service('image_widget_crop.manager');
+    // Parse all values and get properties associate with the crop type.
+    foreach ($form_state_values['image_crop']['crop_wrapper'] as $crop_type_name => $properties) {
+      $properties = $properties['crop_container']['values'];
+      // @var \Drupal\crop\Entity\CropType $crop_type.
+      $crop_type = \Drupal::entityTypeManager()
+        ->getStorage('crop_type')
+        ->load($crop_type_name);
+
+      // If the crop type needed is disabled or delete.
+      if (empty($crop_type) && $crop_type instanceof CropType) {
+        drupal_set_message(t("The CropType ('@cropType') is not active or not defined. Please verify configuration of image style or ImageWidgetCrop formatter configuration", ['@cropType' => $crop_type->id()]), 'error');
+        return;
+      }
+
+      if (is_array($properties) && isset($properties)) {
+        $crop_exists = Crop::cropExists($entity->getFileUri(), $crop_type_name);
+        if (!$crop_exists) {
+          if ($properties['crop_applied'] == '1' && isset($properties) && (!empty($properties['width']) && !empty($properties['height']))) {
+            $image_widget_crop_manager->applyCrop($properties, $form_state_values['image_crop'], $crop_type);
+          }
+        }
+        else {
+          // Get all imagesStyle used this crop_type.
+          $image_styles = $image_widget_crop_manager->getImageStylesByCrop($crop_type_name);
+          $crops = $image_widget_crop_manager->loadImageStyleByCrop($image_styles, $crop_type, $entity->getFileUri());
+          // If the entity already exist & is not deleted by user update
+          // $crop_type_name crop entity.
+          if ($properties['crop_applied'] == '0' && !empty($crops)) {
+            $image_widget_crop_manager->deleteCrop($entity->getFileUri(), $crop_type, $entity->id());
+          }
+          elseif (isset($properties) && (!empty($properties['width']) && !empty($properties['height']))) {
+            $image_widget_crop_manager->updateCrop($properties, [
+              'file-uri' => $entity->getFileUri(),
+              'file-id' => $entity->id(),
+            ], $crop_type);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Image edit submit move comments to new node.
+ */
+function photos_image_edit_submit_comment($form, FormStateInterface &$form_state) {
+  $fid = $form_state->getValue('fid');
+  $pid = $form_state->getValue('pid');
+  $old_pid = $form_state->getValue('oldpid');
+  if ($pid <> $old_pid) {
+    $db = \Drupal::database();
+    $sub_select = $db->select('photos_comment', 'v')
+      ->fields('v', ['cid'])
+      ->condition('v.fid', $fid)
+      ->execute()->fetchCol();
+    if (!empty($sub_select)) {
+      // Update comment entity_id.
+      $db->update('comment_field_data')
+        ->fields([
+          'entity_id' => $pid,
+        ])
+        ->condition('cid', $sub_select, 'IN')
+        ->execute();
+      // Update comment statistics.
+      foreach ($sub_select as $cid) {
+        $comment = \Drupal::entityManager()->getStorage('comment')->load($cid);
+        // Update old album comment statistics.
+        \Drupal::service('comment.statistics')->update($comment);
+        // Reset cache and reload comment.
+        \Drupal::entityManager()->getStorage('comment')->resetCache([$cid]);
+        $comment = \Drupal::entityManager()->getStorage('comment')->load($cid);
+        Cache::invalidateTags($comment->getCacheTagsToInvalidate());
+        // Update new album comment statistics.
+        \Drupal::service('comment.statistics')->update($comment);
+      }
+    }
+  }
+}
+
+/**
+ * Entity form builder to add the book information to the node.
+ *
+ * @todo: Remove this in favor of an entity field.
+ */
+function photos_node_builder($entity_type, NodeInterface $entity, &$form, FormStateInterface $form_state) {
+  if (!$form_state->isValueEmpty('album')) {
+    $entity->album = $form_state->getValue('album');
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_load().
+ */
+function photos_node_load($nodes) {
+  $info = [];
+
+  foreach ($nodes as $nid => $node) {
+    if ($node->getType() == 'photos') {
+      $db = \Drupal::database();
+      $query = $db->select('photos_album')
+        ->fields('photos_album')
+        ->condition('pid', $node->id());
+      $result = $query->execute();
+      foreach ($result as $a) {
+        if ($a->pid) {
+          $info['album'] = [];
+          // Check if album data is corrupt to prevent unserialize notice.
+          // @todo cleanup remove?
+          if ($a->data <> 'N;') {
+            $info['album'] = unserialize($a->data);
+          }
+          $info['album']['pid'] = $a->pid;
+          $info['album']['count'] = $a->count;
+          $photos_album = new PhotosAlbum($a->pid);
+          $info['album']['cover'] = $photos_album->getCover($a->fid, $node->getTitle());
+          $nodes[$nid]->album = $info['album'];
+        }
+      }
+    }
+
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function photos_node_view(array &$build, EntityInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  if ($node->getType() == 'photos') {
+    $user = \Drupal::currentUser();
+    if ($user->hasPermission('view photo')) {
+      $display_types = ['none', 'cover', 'thumbnails', 'covercolorbox'];
+      switch ($view_mode) {
+        case 'full':
+          $default_display = \Drupal::config('photos.settings')->get('photos_display_page_display');
+          $display = isset($node->album['page_display']) ? $node->album['page_display'] : $default_display;
+          $photos_album = new PhotosAlbum($node->id());
+          $album_view = $photos_album->nodeView($node, $display, $view_mode);
+          $build['photos_album-' . $display_types[$display]] = $album_view;
+          break;
+
+        case 'teaser':
+          $default_display = \Drupal::config('photos.settings')->get('photos_display_teaser_display');
+          $display = isset($node->album['teaser_display']) ? $node->album['teaser_display'] : $default_display;
+          $photos_album = new PhotosAlbum($node->id());
+          $album_view = $photos_album->nodeView($node, $display, $view_mode);
+          $build['photos_album-' . $display_types[$display]] = $album_view;
+          break;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_links_alter().
+ */
+function photos_node_links_alter(array &$links, NodeInterface $node, array &$context) {
+  // Add node link(s).
+  $node_type = $node->getType();
+  if ($node_type == 'photos') {
+    // Links.
+    $node_links = [];
+    if (\Drupal::currentUser()->hasPermission('view photo') && isset($node->album['count'])) {
+      $title = t('Album view');
+      $type = 'album';
+      $count = 0;
+      if (!empty($node->album['count'])) {
+        $count = $node->album['count'];
+      }
+      if ($count <> 0) {
+        $node_links['photos_album'] = [
+          'title' => $title,
+          'url' => Url::fromUri('base:photos/' . $type . '/' . $node->id()),
+          'attributes' => ['title' => t('A total of @count images', ['@count' => $count])],
+        ];
+      }
+    }
+
+    $links['photos'] = [
+      '#theme' => 'links__node__photos',
+      '#attributes' => ['class' => ['links', 'inline']],
+      '#links' => $node_links,
+    ];
+  }
+}
+
+/**
+ * Implements hook_node_validate().
+ *
+ * @todo not currently in use.
+ */
+function photos_node_validate(NodeInterface $node, $form, FormStateInterface &$form_state) {
+  if ($node->getType() == 'photos') {
+    // @todo check album limits for creating new albums.
+    // $t = PhotosAlbum::userAlbumCount();
+    // (isset($t['rest']) && arg(2) <> 'edit') ?
+    // $form_state->setErrorByName('title', t('Album limit reached.'));
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function photos_node_insert(NodeInterface $node) {
+  if ($node->getType() == 'photos') {
+    $node_album = serialize($node->album);
+    $db = \Drupal::database();
+    $db->insert('photos_album')
+      ->fields([
+        'pid' => $node->id(),
+        'data' => $node_album,
+        'fid' => 0,
+        'count' => 0,
+      ])
+      ->execute();
+    PhotosAlbum::setCount('user_album', $node->getOwnerId());
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function photos_node_update(NodeInterface $node) {
+  if ($node->getType() == 'photos') {
+    $db = \Drupal::database();
+    $db->update('photos_album')
+      ->fields([
+        'data' => serialize($node->album),
+      ])
+      ->condition('pid', $node->id())
+      ->execute();
+    PhotosAlbum::setCount('user_album', $node->getOwnerId());
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function photos_node_delete(NodeInterface $node) {
+  if ($node->getType() == 'photos') {
+    $db = \Drupal::database();
+    if ($node->album['count'] || !\Drupal::config('photos.settings')->get('photos_user_count_cron')) {
+      $result = $db->query('SELECT f.fid, f.uri FROM {file_managed} f INNER JOIN {photos_image} p ON f.fid = p.fid WHERE p.pid = :nid',
+        [':nid' => $node->id()]);
+
+      foreach ($result as $file) {
+        $image = new PhotosImage($file->fid);
+        $msg[] = $image->delete($file->uri);
+      }
+      if (isset($msg[0])) {
+        PhotosAlbum::setCount('user_image', $node->getOwnerId());
+        $image_count = count($msg);
+        $message = \Drupal::translation()->formatPlural($image_count, '1 image deleted.', '@count images deleted.');
+        drupal_set_message($message);
+      }
+    }
+    // Cleanup photos_album table.
+    $db->delete('photos_album')
+      ->condition('pid', $node->id())
+      ->execute();
+    PhotosAlbum::setCount('user_album', $node->getOwnerId());
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function photos_user_insert(UserInterface $account) {
+  $db = \Drupal::database();
+  $values = [
+    [
+      'cid' => $account->id(),
+      'changed' => 0,
+      'type' => 'user_album',
+      'value' => 0,
+    ],
+    [
+      'cid' => $account->id(),
+      'changed' => 0,
+      'type' => 'user_image',
+      'value' => 0,
+    ],
+  ];
+  $query = $db->insert('photos_count')
+    ->fields([
+      'cid',
+      'changed',
+      'type',
+      'value',
+    ]);
+  foreach ($values as $record) {
+    $query->values($record);
+  }
+  $query->execute();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_load().
+ */
+function photos_user_load($users) {
+  foreach ($users as $account) {
+    // @todo rename album to photos?
+    $account->album['album']['count'] = PhotosAlbum::getCount('user_album', $account->id());
+    $account->album['image']['count'] = PhotosAlbum::getCount('user_image', $account->id());
+  }
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function photos_entity_extra_field_info() {
+  // User albums.
+  $fields['user']['user']['display']['photos_album_count'] = [
+    'label' => t('User albums'),
+    'description' => t('User album count view element.'),
+    'weight' => 10,
+  ];
+  // User images.
+  $fields['user']['user']['display']['photos_image_count'] = [
+    'label' => t('User images'),
+    'description' => t('User image count view element.'),
+    'weight' => 15,
+  ];
+  return $fields;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for user entities.
+ */
+function photos_user_view(array &$build, EntityInterface $account, EntityViewDisplayInterface $display, $view_mode) {
+  if ($view_mode == 'full') {
+    if (\Drupal::currentUser()->hasPermission('view photo') || $account->hasPermission('create photo')) {
+      $user = \Drupal::currentUser();
+      if ($display->getComponent('photos_album_count')) {
+        $description = '';
+        if ($account->album['album']['count']) {
+          $url = Url::fromUri('base:photos/user/' . $account->id() . '/album');
+          $user_albums = \Drupal::translation()->formatPlural($account->album['album']['count'], '@count album', '@count albums');
+          $description = Link::fromTextAndUrl($user_albums, $url)->toString();
+          if ($account->id() == $user->id()) {
+            $description .= ' ' . Link::fromTextAndUrl(t('Create new album'), Url::fromUri('base:node/add/photos'))->toString();
+          }
+        }
+        elseif ($account->id() == $user->id()) {
+          // @todo check permissions before displaying.
+          $create_album_link = Link::fromTextAndUrl(t('Create album'), Url::fromRoute('node.add', [
+            'node_type' => 'photos',
+          ]))->toString();
+          $description = t('No albums yet, @link', ['@link' => $create_album_link]);
+        }
+        else {
+          $description = t('No albums yet.');
+        }
+        $build['photos_album_count'] = [
+          '#type' => 'item',
+          '#markup' => '<h4 class="label">' . t('User albums') . '</h4> ' . $description,
+        ];
+      }
+
+      if ($display->getComponent('photos_image_count')) {
+        $description = '';
+        if ($account->album['image']['count']) {
+          $url = Url::fromUri('base:photos/user/' . $account->id() . '/image');
+          $user_images = \Drupal::translation()->formatPlural($account->album['image']['count'], '@count image', '@count images');
+          $description = Link::fromTextAndUrl($user_images, $url)->toString();
+        }
+        else {
+          $description = t('No images yet.');
+        }
+        $build['photos_image_count'] = [
+          '#type' => 'item',
+          '#markup' => '<h4 class="label">' . t('User images') . '</h4> ' . $description,
+        ];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_comment_links_alter().
+ */
+function photos_comment_links_alter(array &$links, CommentInterface $entity, array &$context) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  if ($entity->getCommentedEntityTypeId() == 'node' && $context['commented_entity']->getType() == 'photos' && $path_args[1] <> 'photos') {
+    $db = \Drupal::database();
+    $fid = $db->select('photos_comment', 'v')
+      ->fields('v', ['fid'])
+      ->condition('v.cid', $entity->id())
+      ->execute()->fetchField();
+    if (!empty($fid)) {
+      $links['photos'] = [
+        '#theme' => 'links__comment__photos',
+        '#attributes' => ['class' => ['links', 'inline']],
+        '#links' => [
+          'comment-report' => [
+            'title' => t('View image'),
+            'url' => Url::fromRoute('photos.image', ['file' => $fid]),
+          ],
+        ],
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function photos_comment_delete(CommentInterface $comment) {
+  // Get fid.
+  $db = \Drupal::database();
+  $fid = $db->select('photos_comment', 'v')
+    ->fields('v', ['fid'])
+    ->condition('v.cid', $comment->id())
+    ->execute()->fetchField();
+  // Delete comment from {photos_comment}.
+  $db->delete('photos_comment')
+    ->condition('cid', $comment->id())
+    ->execute();
+  // Update image comment count.
+  $count = $db->query("SELECT COUNT(fid) FROM {photos_comment} WHERE fid = :fid", [':fid' => $fid])->fetchField();
+  $db->update('photos_image')
+    ->fields([
+      'comcount' => $count,
+    ])
+    ->condition('fid', $fid)
+    ->execute();
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function photos_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  // Comment form(s).
+  // @todo dynamic comment form id?
+  if ($form_id == 'comment_node_photos_form' && \Drupal::config('photos.settings')->get('photos_comment')
+    || $form_id == 'comment_comment_form' && \Drupal::config('photos.settings')->get('photos_comment')) {
+
+    // Get path args.
+    $current_path = \Drupal::service('path.current')->getPath();
+    $arg = explode('/', $current_path);
+
+    // Get fid.
+    $fid = FALSE;
+    if ($form_state->getValue('photos_fid')) {
+      $fid = $form_state->getValue('photos_fid');
+    }
+    elseif ($form_state->getValue('fid')) {
+      $fid = $form_state->getValue('fid');
+    }
+    elseif (isset($arg[3]) && $arg[1] == 'photos' && is_numeric($arg[3])) {
+      $fid = $arg[3];
+    }
+    elseif (isset($arg[6]) && $arg[2] == 'reply' && is_numeric($arg[6])) {
+      $db = \Drupal::database();
+      $fid = $db->query('SELECT fid FROM {photos_comment} WHERE cid = :cid',
+        [':cid' => $arg[6]])->fetchField();
+    }
+    if ($fid) {
+      // Form action.
+      $action_url = Url::fromUri('base:photos/image/' . $fid)->toString();
+      $form['#action'] = $action_url;
+      // Hidden fid fields.
+      $form['fid'] = [
+        '#type' => 'hidden',
+        '#value' => $fid,
+      ];
+      $form['comment']['photos_fid'] = [
+        '#type' => 'hidden',
+        '#value' => $fid,
+      ];
+      // Custom submit handler.
+      foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+          $form['actions'][$action]['#submit'][] = 'photos_comment_form_submit';
+        }
+      }
+    }
+  }
+
+  // Photos node form.
+  if ($form_id == 'node_photos_form') {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'photos_form_redirect';
+      }
+    }
+  }
+
+}
+
+/**
+ * Redirect photos form to image management page.
+ */
+function photos_form_redirect($form, FormStateInterface &$form_state) {
+  $nid = $form_state->getValue('nid');
+  $url = Url::fromUri('base:node/' . $nid . '/photos');
+  $form_state->setRedirectUrl($url);
+}
+
+/**
+ * Submit handler for image comments.
+ */
+function photos_comment_form_submit($form, FormStateInterface &$form_state) {
+  if ($fid = $form_state->getValue('photos_fid')) {
+    $comment = $form_state->getFormObject()->getEntity();
+    $db = \Drupal::database();
+    // Record comment in photos_comment.
+    $db->insert('photos_comment')
+      ->fields([
+        'fid' => $fid,
+        'cid' => $comment->id(),
+      ])
+      ->execute();
+    // Update image comment count.
+    $count = $db->query("SELECT COUNT(fid) FROM {photos_comment} WHERE fid = :fid", [':fid' => $fid])->fetchField();
+    $db->update('photos_image')
+      ->fields([
+        'comcount' => $count,
+      ])
+      ->condition('fid', $fid)
+      ->execute();
+
+    // Redirect back to image page.
+    $url = Url::fromUri('base:photos/image/' . $fid);
+    $form_state->setRedirectUrl($url);
+  }
+}
+
+/**
+ * Theme photos block.
+ */
+function photos_theme_photos_block($variables) {
+  $type = $variables['block_type'];
+  $images = $variables['images'];
+  $items = [];
+  // Get thumbnail size image style.
+  $image_sizes = \Drupal::config('photos.settings')->get('photos_size');
+  $style_name = key($image_sizes);
+  switch ($type) {
+    case 'image':
+      foreach ($images as $image) {
+        $render_array = [
+          '#theme' => 'photos_image_html',
+          '#image' => $image,
+          '#style_name' => $style_name,
+        ];
+        $items[] = $render_array;
+      }
+      break;
+
+    case 'album':
+      foreach ($images as $album) {
+        $op['attributes']['title'] = $album['node']->count ? t('A total of @title images', ['@title' => $album['node']->count]) : t('Album is empty');
+        $url = Url::fromUri('base:node/' . $album['node']->nid, $op);
+        $render_array = [
+          '#markup' => $album['view'] . '<div class="photos_block_album_title">' . Link::fromTextAndUrl($album['node']->title, $url)->toString() . '</div>',
+        ];
+        $items[] = $render_array;
+      }
+      break;
+  }
+  $render_array = [
+    '#theme' => 'item_list',
+    '#items' => $items,
+  ];
+  $content = drupal_render($render_array);
+
+  return $content;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function photos_preprocess_photos_album_view(&$variables, $hook) {
+  // Set additional variables.
+  if ($variables['node']) {
+    $variables['node_type'] = $variables['node']->getType();
+    $variables['node_title'] = $variables['node']->getTitle();
+    $account = $variables['node']->getOwner();
+    $account_link = [
+      '#theme' => 'username',
+      '#account' => $account,
+    ];
+    $variables['author_name'] = drupal_render($account_link);
+    $variables['date'] = \Drupal::service('date.formatter')->format($variables['node']->getCreatedTime());
+  }
+  $variables['display_type'] = \Drupal::config('photos.settings')->get('photos_album_display_type');
+  if ($variables['display_type'] == 'grid') {
+    $variables['#attached']['library'][] = 'photos/photos.album-grid';
+    $variables['grid_col_count'] = \Drupal::config('photos.settings')->get('photos_album_column_count');
+    $variables['grid_col_width'] = 'width: ' . (100 / $variables['grid_col_count']) . '%;';
+  }
+  $variables['pager'] = $variables['album']['pager'];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function photos_preprocess_photos_image_html(&$variables, $hook) {
+  $style_name = $variables['style_name'];
+  $image = $variables['image'];
+  $filename = isset($image->filename) ? strip_tags($image->filename) : '';
+  $title = isset($image->title) ? strip_tags($image->title) : $filename;
+  $alt = isset($image->alt) ? strip_tags($image->alt) : $title;
+  $image->alt = $alt;
+  if ($style_name == 'original') {
+    $image_styles = image_style_options(FALSE);
+    if (isset($image_styles['original'])) {
+      // Original image style override.
+      // Render image view.
+      // @todo redundant code.
+      $image_view_array = [
+        '#theme' => 'image_style',
+        '#style_name' => $style_name,
+        '#uri' => $image->uri,
+        '#width' => $image->width,
+        '#height' => $image->height,
+        '#title' => $alt,
+        '#alt' => $alt,
+      ];
+    }
+    else {
+      // Original image.
+      $image_view_array = [
+        '#theme' => 'image',
+        '#uri' => $image->uri,
+        '#width' => $image->width,
+        '#height' => $image->height,
+        '#title' => $alt,
+        '#alt' => $alt,
+      ];
+    }
+  }
+  else {
+    // Check scheme and prep image.
+    $scheme = file_uri_scheme($image->uri);
+    $uri = $image->uri;
+    // If private create temporary derivative.
+    if ($scheme == 'private') {
+      $photos_image = new PhotosImage($image->fid);
+      $url = $photos_image->derivative($uri, $style_name, $scheme);
+      // Do not use filename as alt or title with private files.
+      if ($alt == $filename) {
+        $alt = '';
+      }
+      if ($title == $filename) {
+        $title = '';
+      }
+    }
+    else {
+      // Public and all other images.
+      $style = ImageStyle::load($style_name);
+      $url = $style->buildUrl($uri);
+    }
+
+    // Render image view.
+    $image_view_array = [
+      '#theme' => 'image',
+      '#uri' => $url,
+      '#title' => $alt,
+      '#alt' => $alt,
+    ];
+  }
+  $image->view = $image_view_array;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function photos_cron() {
+  // Update photos count.
+  PhotosAlbum::resetCount(1);
+  // Delete temporary private image styles.
+  if (\Drupal::config('photos.settings')->get('photos_private_file_styles') == 'automatic') {
+    // @todo set duration e.g. 1 month / week / day?
+    if (file_exists('private://photos/tmp_images')) {
+      file_unmanaged_delete_recursive('private://photos/tmp_images');
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function photos_theme($existing, $type, $theme, $path) {
+  return [
+    'photos_comment_count' => [
+      'function' => 'photos_theme_photos_comment_count',
+      'variables' => ['comcount' => NULL, 'url' => NULL],
+    ],
+    'photos_default' => [
+      'template' => 'photos_default',
+      'variables' => ['content' => NULL],
+    ],
+    'photos_image_view' => [
+      'template' => 'photos_image_view',
+      'variables' => ['image' => NULL, 'display_type' => 'view'],
+    ],
+    'photos_image_block' => [
+      'template' => 'photos_image_block',
+      'variables' => ['image' => NULL],
+    ],
+    'photos_block' => [
+      'function' => 'photos_theme_photos_block',
+      'variables' => ['images' => NULL, 'block_type' => NULL],
+    ],
+    'photos_album_view' => [
+      'template' => 'photos_album_view',
+      'variables' => ['album' => NULL, 'node' => NULL],
+    ],
+    'photos_albumlist' => [
+      'template' => 'photos_albumlist',
+      'variables' => ['image' => NULL],
+    ],
+    'photos_album_links' => [
+      'template' => 'photos_album_links',
+      'variables' => ['links' => NULL],
+    ],
+    'photos_image_colorbox_link' => [
+      'template' => 'photos_image_colorbox_link',
+      'variables' => [
+        'image' => NULL,
+        'image_title' => NULL,
+        'image_url' => NULL,
+        'nid' => NULL,
+      ],
+    ],
+    'photos_image_html' => [
+      'template' => 'photos_image_html',
+      'variables' => ['image' => NULL, 'style_name' => NULL],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function photos_preprocess_photos_image_block(&$variables) {
+  // Prepare variables for photos_image_block.html.twig.
+  $variables['created'] = \Drupal::service('date.formatter')->format($variables['image']->created, 'short');
+  $variables['user_url'] = Url::fromUri('base:photos/user/' . $variables['image']->uid . '/image')->toString();
+  $variables['album_url'] = Url::fromUri('base:photos/album/' . $variables['image']->nid)->toString();
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function photos_preprocess_photos_default(&$variables) {
+  // Prepare content.
+  $content = $variables['content'];
+  if (isset($content['user'])) {
+    $user_images = [
+      '#markup' => $content['user']['image'],
+    ];
+    $variables['user_images'] = drupal_render($user_images);
+    $user_albums = [
+      '#markup' => $content['user']['album'],
+    ];
+  }
+  $variables['user_albums'] = drupal_render($user_albums);
+  $site_images = [
+    '#markup' => $content['site']['image'],
+  ];
+  $variables['site_images'] = drupal_render($site_images);
+  $site_albums = [
+    '#markup' => $content['site']['album'],
+  ];
+  $variables['site_albums'] = drupal_render($site_albums);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function photos_preprocess_photos_album_links(&$variables) {
+  // Prepare content.
+  $render_array = [
+    '#markup' => $variables['links']['link'],
+  ];
+  $variables['links_display'] = drupal_render($render_array);
+  $variables['links_sort'] = drupal_render($variables['links']['sort']);
+  $render_array = [
+    '#markup' => $variables['links']['limit'],
+  ];
+  $variables['links_limit'] = drupal_render($render_array);
+}
+
+/**
+ * Theme photos comment count.
+ */
+function photos_theme_photos_comment_count($variables) {
+  $url = $variables['url'];
+  $comcount = $variables['comcount'];
+  $comment = '';
+  if (\Drupal::moduleHandler()->moduleExists('comment')) {
+    // @todo also check if comments are enabled for photos content type.
+    if (empty($comcount)) {
+      if (!\Drupal::currentUser()->hasPermission('post comments')) {
+        $comment = t('<a href="@login">Login</a> to post comments', ['@login' => Url::fromRoute('user.login')->toString()]);
+      }
+      else {
+        $comment = '<a href="' . (isset($url) ? $url . '#comment-form' : '#comment-form') . '">' . t('Add new comment') . '</a>';
+      }
+    }
+    else {
+      $comment_count = \Drupal::translation()->formatPlural($comcount, '1 comment', '@count comments');
+      $comment = '<a href="' . (isset($url) ? $url . '#comments' : '#comments') . '">' . $comment_count . '</a>';
+    }
+  }
+  return $comment;
+}
+
+/**
+ * Expands on photos filter process.
+ */
+function _photos_filter_process($mat) {
+  $value = '';
+  if ($mat[1] == 'image' || $mat[1] == 'album') {
+    $align = [
+      'left' => 'photos_filter_left',
+      'right' => 'photos_filter_right',
+      'center' => 'photos_filter_center',
+    ];
+    $array = explode('|', $mat[2]);
+    if (is_array($array)) {
+      foreach ($array as $setting) {
+        $t = explode('=', $setting);
+        $set[$t[0]] = $t[1];
+      }
+    }
+    $sizes = PhotosImage::sizeInfo();
+    $style_name = '';
+    if (isset($set['label'])) {
+      $styles = [];
+      // Check photos style label.
+      foreach ($sizes['size'] as $size) {
+        $styles[$size['name']] = $size['style'];
+      }
+      if (isset($styles[$set['label']])) {
+        $style_name = $styles[$set['label']];
+      }
+      else {
+        $styles = [];
+        // Fall back on style id.
+        foreach ($sizes['size'] as $size) {
+          $styles[$size['style']] = $size['name'];
+        }
+        if (isset($styles[$set['label']])) {
+          $style_name = $styles[$set['label']];
+        }
+      }
+    }
+    $set['link'] = 1;
+    if ($set['id']) {
+      if (preg_match('/[^\d,]/i', $set['id'])) {
+        return;
+      }
+      elseif (!strstr($set['id'], ',')) {
+        if ($mat[1] == 'image') {
+          $set['style_name'] = $style_name;
+          $photos_image = new PhotosImage($set['id']);
+          $image_view = $photos_image->view();
+          $value = \Drupal::service('renderer')->render($image_view);
+        }
+        else {
+          $db = \Drupal::database();
+          $album = $db->select('photos_album', 'p')
+            ->fields('p', ['pid', 'fid'])
+            ->condition('p.pid', $set['id'])
+            ->execute()->fetchObject();
+          if (!empty($album->pid)) {
+            if (isset($set['limit']) && intval($set['limit']) == $set['limit']) {
+              $limit = ($set['limit'] > 10) ? 10 : $set['limit'];
+              $db = \Drupal::database();
+              $query = $db->select('file_managed', 'f');
+              $query->join('photos_image', 'p', 'p.fid = f.fid');
+              $query->fields('f', ['fid', 'uri', 'filename'])
+                ->condition('p.pid', $album->pid)
+                ->orderBy('f.fid', 'DESC')
+                ->range(0, $limit);
+              $result = $query->execute();
+              foreach ($result as $image) {
+                $set['style_name'] = $style_name;
+                $photos_image = new PhotosImage($image->fid);
+                $image_view = $photos_image->view();
+                $value .= \Drupal::service('renderer')->render($image_view);
+              }
+            }
+            elseif ($album->fid) {
+              $set['link'] = 0;
+              $set['href'] = 'photos/album/' . $album->pid;
+              $set['style_name'] = $style_name;
+              $photos_image = new PhotosImage($album->fid);
+              $image_view = $photos_image->view();
+              $value = \Drupal::service('renderer')->render($image_view);
+            }
+            else {
+              $set['link'] = 0;
+              $set['href'] = 'photos/album/' . $album->pid;
+              $db = \Drupal::database();
+              $query = $db->select('file_managed', 'f');
+              $query->join('photos_image', 'p', 'p.fid = f.fid');
+              $query->fields('f', ['fid', 'uri', 'filename'])
+                ->condition('p.pid', $album->pid)
+                ->orderBy('f.fid', 'DESC');
+              $image = $query->execute()->fetchObject();
+              $set['style_name'] = $style_name;
+              $photos_image = new PhotosImage($image->fid);
+              $image_view = $photos_image->view();
+              $value = \Drupal::service('renderer')->render($image_view);
+            }
+          }
+        }
+      }
+      elseif ($mat[1] == 'image') {
+        $in_set_ids = explode(',', $set['id']);
+        $db = \Drupal::database();
+        $result = $db->select('file_managed', 'f')
+          ->fields('f', ['fid', 'uri', 'filename'])
+          ->condition('f.fid', $in_set_ids, 'IN')
+          ->execute();
+        foreach ($result as $image) {
+          $set['style_name'] = $style_name;
+          $photos_image = new PhotosImage($image->fid);
+          $image_view = $photos_image->view();
+          $value .= \Drupal::service('renderer')->render($image_view);
+        }
+      }
+      if ($value) {
+        $set_align = isset($set['align']) ? $set['align'] : '';
+        $output = isset($align[$set_align]) ? '<div class="' . $align[$set_align] . '">' : '';
+        $output .= $value;
+        $output .= isset($align[$set_align]) ? '</div>' : '';
+        return $output;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function photos_views_data() {
+  $data = [];
+  $data['photos_album'] = [];
+  $data['photos_album']['table'] = [];
+  $data['photos_album']['table']['group'] = t('Photos');
+  $data['photos_album']['table']['provider'] = 'photos';
+
+  // Join node_field_data.
+  $data['photos_album']['table']['join'] = [
+    'node_field_data' => [
+      'left_field' => 'nid',
+      'field' => 'pid',
+    ],
+    'photos_image' => [
+      'left_field' => 'pid',
+      'field' => 'pid',
+    ],
+  ];
+
+  // File ID table field.
+  $data['photos_album']['fid'] = [
+    'title' => t('Album cover'),
+    'help' => t('The album cover image.'),
+    'field' => [
+      'id' => 'photos_image',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+    'filter' => [
+      'id' => 'boolean',
+      'label' => t('Has cover'),
+      'type' => 'yes-no',
+    ],
+    // Define a relationship to the {file_managed} table.
+    'relationship' => [
+      'id' => 'standard',
+      'base' => 'file_managed',
+      'entity type' => 'file',
+      'base field' => 'fid',
+      'label' => t('Cover'),
+      'title' => t('The cover associated with this album.'),
+      'help' => t('Access to the file associated with the cover of this Album.'),
+    ],
+  ];
+
+  // Album weight.
+  $data['photos_album']['wid'] = [
+    'title' => t('Album weight'),
+    'help' => t('The weight of this album.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+  ];
+
+  // Album image count.
+  $data['photos_album']['count'] = [
+    'title' => t('Album image count'),
+    'help' => t('The number of images in this album.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+  ];
+
+  $data['photos_image'] = [];
+  $data['photos_image']['table'] = [];
+  $data['photos_image']['table']['group'] = t('Photos');
+  $data['photos_image']['table']['provider'] = 'photos';
+
+  // Join album info to images.
+  $data['photos_image']['table']['join'] = [
+    'file_managed' => [
+      'left_field' => 'fid',
+      'field' => 'fid',
+    ],
+    'node_field_data' => [
+      'left_field' => 'nid',
+      'field' => 'pid',
+    ],
+    'photos_album' => [
+      'left_field' => 'pid',
+      'field' => 'pid',
+    ],
+  ];
+
+  // File ID table field.
+  $data['photos_image']['fid'] = [
+    'title' => t('Image'),
+    'help' => t('Album image.'),
+    'field' => [
+      'id' => 'photos_image',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+    'relationship' => [
+      'id' => 'standard',
+      'base' => 'file_managed',
+      'entity type' => 'file',
+      'base field' => 'fid',
+      'label' => t('Image file'),
+      'title' => t('The file associated with this image.'),
+      'help' => t('Access to the file information associated with this image.'),
+    ],
+  ];
+
+  // Image title.
+  $data['photos_image']['title'] = [
+    'title' => t('Image title'),
+    'help' => t('The title for this image.'),
+    'field' => [
+      'id' => 'standard',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+    'filter' => [
+      'id' => 'string',
+    ],
+  ];
+
+  // Image description.
+  $data['photos_image']['des'] = [
+    'title' => t('Image description'),
+    'help' => t('The description for this image.'),
+    'area' => [
+      'id' => 'text',
+    ],
+    'filter' => [
+      'id' => 'boolean',
+      'label' => t('Has Description'),
+      'type' => 'yes-no',
+    ],
+  ];
+
+  // Image weight.
+  $data['photos_image']['wid'] = [
+    'title' => t('Image weight'),
+    'help' => t('The image weight - custom sort order.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+  ];
+
+  // Image views count.
+  $data['photos_image']['count'] = [
+    'title' => t('Image views'),
+    'help' => t('Number of times this image has been viewed.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+  ];
+
+  // Image comment count.
+  $data['photos_image']['comcount'] = [
+    'title' => t('Image comments'),
+    'help' => t('Number of comments this image has.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'filter' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+  ];
+
+  return $data;
+}
+
+/**
+ * Implements hook_help().
+ */
+function photos_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.photos':
+      return t('<p>The Album Photos module provides a solution for creating photo albums and uploading multiple images. The module automatically creates the photos content type which creates a node that contains all the photos (saved as managed files).</p>
+      <p>The Album Photos module comes with the Photo Access sub-module that provides settings for each album including open, locked, designated users, or password required.</p>
+      <p>See the <a href=":project_page">project page on Drupal.org</a> for more details.</p>',
+        [
+          ':project_page' => 'https://www.drupal.org/project/photos',
+        ]);
+  }
+}

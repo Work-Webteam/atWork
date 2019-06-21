@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * like_dislike module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_help().
+ */
+function like_dislike_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.like_dislike':
+      $output = '';
+      $output .= '<h3>' . t('Like/Dislike') . '</h3>';
+      $output .= '<p>' . t('Add a Like and Dislike field on every entity (like content, comments etc) and Get instant statistics..') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_user_register_form_alter().
+ */
+function like_dislike_form_user_register_form_alter(&$form, &$form_state) {
+  $form['actions']['submit']['#submit'][] = 'like_dislike_registration_alter';
+}
+
+/**
+ * Callback function for handling redirect on registration.
+ */
+function like_dislike_registration_alter($form, &$form_state) {
+  like_dislike_redirect_to_previous_page('register');
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function like_dislike_user_login($account) {
+  like_dislike_redirect_to_previous_page('');
+}
+
+/**
+ * Redirect to the previous page on like/dislike.
+ */
+function like_dislike_redirect_to_previous_page($status) {
+  // To be handled only if like/dislike module is installed.
+  if (\Drupal::moduleHandler()->moduleExists('like_dislike')) {
+    $destination = \Drupal::request()->cookies->get('Drupal_visitor_destination');
+    user_cookie_save(['destination' => '']);
+    $url = \Drupal::pathValidator()->getUrlIfValid($destination);
+    $url->setAbsolute();
+    $redirect = $url->toString();
+    if ($status == 'register') {
+      drupal_set_message('Registration completed!, kindly check your mail for further details.');
+    }
+    return (new RedirectResponse($redirect))->send();
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function like_dislike_theme() {
+  return array(
+    'like_dislike' => array(
+      'variables' => array(
+        'likes' => NULL,
+        'dislikes' => NULL,
+        'like_url' => NULL,
+        'dislike_url' => NULL,
+      ),
+    ),
+  );
+}

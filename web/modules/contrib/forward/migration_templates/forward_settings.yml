@@ -1,0 +1,32 @@
+id: forward_settings
+label: Forward configuration
+migration_tags:
+  - Drupal 6
+  - Drupal 7
+source:
+  plugin: variable
+  variables:
+    - forward_display_nodes
+    - forward_display_teasers
+    - forward_filter_html
+    - forward_filter_tags
+    - forward_flood_control
+    - forward_form_type
+    - forward_link_nofollow
+    - forward_link_noindex
+    - forward_link_style
+    - forward_message
+process:
+  forward_view_full: forward_display_nodes
+  forward_view_teaser: forward_display_teasers
+  forward_personal_message_filter: forward_filter_html
+  forward_personal_message_tags: forward_filter_tags
+  forward_flood_control_limit: forward_flood_control
+  forward_interface_type: forward_form_type
+  forward_link_nofollow: forward_link_nofollow
+  forward_link_noindex: forward_link_noindex
+  forward_link_style: forward_link_style
+  forward_personal_message: forward_message
+destination:
+  plugin: config
+  config_name: forward.settings

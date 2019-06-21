@@ -1,0 +1,25 @@
+likeit.settings_form:
+  path: '/admin/config/likeit'
+  defaults:
+    _form: '\Drupal\likeit\Form\LikeItSettingsForm'
+    _title: 'LikeIt configuration'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
+
+likeit.likeit_controller_like:
+  path: 'likeit/like/{entity}/{id}/{html_id}/{token}'
+  defaults:
+    _controller: '\Drupal\likeit\Controller\LikeItController::like'
+    _title: 'Like'
+  requirements:
+    _permission: 'likeit_like'
+
+likeit.likeit_controller_unlike:
+  path: 'likeit/unlike/{entity}/{id}/{html_id}/{token}'
+  defaults:
+    _controller: '\Drupal\likeit\Controller\LikeItController::unlike'
+    _title: 'Unlike'
+  requirements:
+    _permission: 'likeit_unlike'

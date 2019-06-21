@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ */
+#}
+{% if image.href is empty %}
+  {{ image.view }}
+{% else %}
+  <div class="photos-image-html">
+    <a href="{{ image.href }}">{{ image.view }}</a>
+    {% if image.colorbox %}
+      {# // @todo original image link. #}
+      <a class="photos-image-html-colorbox colorbox" rel="colorbox_{{ image.pid }}" href="{{ image.uri }}" title="{{ title }}">
+        view original
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

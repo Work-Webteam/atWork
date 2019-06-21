@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a formatted like dislike field.
+ *
+ * Available variables:
+ * - like_url: like url.
+ * - dislike_url: dislike url.
+ * - likes: number of likes.
+ * - dislikes: number of dislikes.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="like_dislike">
+    <div class="like">
+        <a class="use-ajax" href={{ like_url }}>Like</a>
+        <span id="like">{{ likes }}</span>
+    </div>
+    <div class="dislike">
+        <a class="use-ajax" href={{ dislike_url }}>Dislike</a>
+        <span id="dislike">{{ dislikes }}</span>
+    </div>
+</div>
+<div id="like_dislike_status"></div>

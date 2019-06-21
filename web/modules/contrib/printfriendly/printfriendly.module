@@ -1,0 +1,208 @@
+<?php
+
+/**
+ * @file
+ * Adds PrintFriendly button to chosen node types and provides a block.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\NodeInterface;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_help().
+ */
+function printfriendly_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the block module.
+    case 'help.page.printfriendly':
+      return '<p>' . t('PrintFriendly module lets you include a link to let your site users to quickly print, email or download the page as a PDF file using printfriendly service. <a href="http://www.printfriendly.com">PrintFriendly.com</a>') . '</p>';
+  }
+}
+
+/**
+ *
+ */
+function printfriendly_upgrade_db() {
+  $config = \Drupal::configFactory()->getEditable('printfriendly.settings');
+  $db_version = $config->get('db_version');
+
+  if ($db_version == NULL) {
+    $db_version = 0;
+  }
+
+  if ($db_version < 1) {
+    switch ($config->get('printfriendly_image')) {
+      case 'button-print-blu20.png':
+      case 'button-print-whgn20.png':
+        $config->set('printfriendly_image', 'print-button-nobg.png');
+        break;
+
+      case 'button-print-grnw20.png':
+        $config->set('printfriendly_image', 'print-button.png');
+        break;
+
+      case 'button-print-gry20.png':
+        $config->set('printfriendly_image', 'print-button-gray.png');
+        break;
+
+      case 'button-print-blu20.png':
+        $config->set('printfriendly_image', 'print-button-nobg.png');
+        break;
+
+      case 'pf-button-big.gif':
+        $config->set('printfriendly_image', 'printfriendly-button-lg.png');
+        break;
+
+      case 'pf-button-big.gif':
+        $config->set('printfriendly_image', 'printfriendly-button-lg.png');
+        break;
+
+      case 'pf-button-both.gif':
+        $config->set('printfriendly_image', 'printfriendly-pdf-button.png');
+        break;
+
+      case 'pf-button.gif':
+        $config->set('printfriendly_image', 'printfriendly-button.png');
+        break;
+
+      case 'pf-icon-small.gif':
+        $config->set('printfriendly_image', 'printfriendly-icon-sm.png');
+        break;
+
+      case 'pf-icon.gif':
+        $config->set('printfriendly_image', 'printfriendly-icon-md.png');
+        break;
+
+      case 'pf-pdf-icon.gif':
+        $config->set('printfriendly_image', 'pdf-icon-md.png');
+        break;
+
+      case 'pf_button_sq_grn_m.png':
+      case 'pf_button_sq_gry_m.png':
+        $config->set('printfriendly_image', 'printfriendly-icon-lg.png');
+        break;
+
+      default:
+        $config->set('printfriendly_image', 'printfriendly-button.png');
+    }
+  }
+
+  $config->set('db_version', 1);
+  $config->save();
+}
+
+/**
+ * Attach PrintFriendly Script.
+ */
+function printfriendly_page_attachments(array &$page) {
+  printfriendly_upgrade_db();
+
+  $config = \Drupal::config('printfriendly.settings');
+
+  // Attach JS custom settings.
+  $custom_js = "var pfHeaderImgUrl = '" . $config->get('printfriendly_page_custom_header') . "';";
+  $custom_js .= "var pfHeaderTagline = '" . $config->get('printfriendly_tagline') . "';";
+  $custom_js .= "var pfdisableClickToDel  = " . $config->get('printfriendly_click_delete') . ";";
+  $custom_js .= "var pfHideImages = " . $config->get('printfriendly_images') . ";";
+  $custom_js .= "var pfImageDisplayStyle = '" . $config->get('printfriendly_image_style') . "';";
+  $custom_js .= "var pfDisablePDF = " . $config->get('printfriendly_pdf') . ";";
+  $custom_js .= "var pfDisableEmail = " . $config->get('printfriendly_email') . ";";
+  $custom_js .= "var pfDisablePrint = " . $config->get('printfriendly_print') . ";";
+  $custom_js .= "var pfCustomCSS = '" . $config->get('printfriendly_custom_css') . "';";
+  $custom_js .= "var pfPlatform = 'Drupal 8';";
+
+  // Use schema less URLs to load all PF Assets.
+  $js = '//cdn.printfriendly.com/printfriendly.js';
+
+  $custom_js .= "(function(){var js, pf;pf = document.createElement('script');pf.type = 'text/javascript';";
+  $custom_js .= "pf.src='" . $js . "';document.getElementsByTagName('head')[0].appendChild(pf)})();";
+
+  $page['#attached']['html_head'][] = [
+    [
+      '#tag' => 'script',
+      '#value' => $custom_js,
+    ],
+    'declare_printfriendly_inline',
+  ];
+
+  // Attach CSS.
+  $page['#attached']['library'][] = 'printfriendly/printfriendly-libraries';
+
+}
+
+/**
+ *
+ */
+function printfriendly_node_view(array &$build, NodeInterface $node, EntityViewDisplayInterface $display, $view_mode) {
+  $config = \Drupal::config('printfriendly.settings');
+
+  if (in_array($node->getType(), array_filter($config->get('printfriendly_display'))) && \Drupal::currentUser()->hasPermission('access printfriendly')) {
+
+    if ($view_mode == 'teaser' && in_array($view_mode, array_filter($config->get('printfriendly_display', ['teaser'])))) {
+      $block = printfriendly_create_button('/node/' . $node->id(), FALSE);
+      $build['printfriendly'] = [
+        '#markup' => $block['#markup'],
+        '#attributes' => ['class' => ['links', 'inline', 'printfriendly-node', $node->getType()]],
+      ];
+    }
+    elseif ($view_mode != 'teaser') {
+      $block = printfriendly_create_button();
+      $build['printfriendly'] = [
+        '#markup' => $block['#markup'],
+        '#attributes' => ['class' => ['links', 'inline', 'printfriendly-node', $node->getType()]],
+      ];
+    }
+
+  }
+}
+
+/**
+ * Call printfriendly_create_button()
+ */
+function printfriendly_create_button($url = NULL, $popup = TRUE) {
+  global $base_url;
+  $config = \Drupal::config('printfriendly.settings');
+  $current_path = \Drupal::service('path.current')->getPath();
+  $query_string = \Drupal::request()->query->all();
+
+  if (!$url) {
+    $url = Url::fromURI($base_url . $current_path, ['query' => $query_string]);
+    $full_path = $url->toString();
+  }
+  else {
+    $url = Url::fromURI($base_url . $url, ['query' => $query_string]);
+    $full_path = $url->toString();
+  }
+
+  if ($config->get('printfriendly_image') == 'custom-button-img-url') {
+    $image = $config->get('custom_button_img_url', '');
+  }
+  else {
+    $image_name = $config->get('printfriendly_image', 'print-button.png');
+
+    if (strpos($image_name, 'button') !== FALSE) {
+      $folder = 'buttons';
+    }
+    else {
+      $folder = 'icons';
+    }
+
+    $image = '//cdn.printfriendly.com/' . $folder . '/' . $image_name;
+  }
+
+  if ($popup) {
+    return [
+      '#type' => 'link',
+      '#markup' => Markup::create('<a href="https://www.printfriendly.com/print?url=' . $full_path . '" class="printfriendly" onclick="window.print(); return false;" title="Printer Friendly, PDF & Email"><img src="' . $image . '" alt="Printer Friendly, PDF & Email" /></a>'),
+    ];
+  }
+  else {
+    return [
+      '#markup' => Markup::create('<a href="https://www.printfriendly.com/print?url=' . $full_path . '" class="printfriendly" title="Printer Friendly, PDF & Email"><img src="' . $image . '" alt="Printer Friendly, PDF & Email" /></a>'),
+    ];
+  }
+
+}

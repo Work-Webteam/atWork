@@ -1,0 +1,90 @@
+insert:
+  version: 1.x
+  js:
+    js/insert.js: {}
+  dependencies:
+    - core/drupalSettings
+    - core/jquery
+    - insert/namespace
+    - insert/editors
+    - insert/EditorManager
+    - insert/FileInserter
+    - insert/FocusManager
+    - insert/ImageInserter
+
+editors:
+  version: 1.x
+  js:
+    js/editors/CKEditor.js: {}
+  dependencies:
+    - core/ckeditor
+    - insert/editors.namespace
+    - insert/EditorInterface
+
+editors.namespace:
+  version: 1.x
+  js:
+    js/editors/namespace.js: {}
+  dependencies:
+    - insert/namespace
+
+EditorInterface:
+  version: 1.x
+  js:
+    js/EditorInterface.js: {}
+  dependencies:
+    - core/jquery
+    - insert/namespace
+
+EditorManager:
+  version: 1.x
+  js:
+    js/EditorManager.js: {}
+  dependencies:
+    - core/jquery
+    - insert/namespace
+
+FileInserter:
+  version: 1.x
+  js:
+    js/FileInserter.js: {}
+  css:
+    component:
+      css/FileInserter.css: {}
+  dependencies:
+    - core/jquery
+    - insert/namespace
+
+FocusManager:
+  version: 1.x
+  js:
+    js/FocusManager.js: {}
+  dependencies:
+    - core/jquery
+    - insert/namespace
+
+ImageInserter:
+  version: 1.x
+  js:
+    js/ImageInserter.js: {}
+  css:
+    component:
+      css/ImageInserter.css: {}
+  dependencies:
+    - core/jquery
+    - insert/FileInserter
+    - insert/namespace
+    - insert/Rotator
+
+Rotator:
+  version: 1.x
+  js:
+    js/Rotator.js: {}
+  dependencies:
+    - core/jquery
+    - insert/namespace
+
+namespace:
+  version: 1.x
+  js:
+    js/namespace.js: {}

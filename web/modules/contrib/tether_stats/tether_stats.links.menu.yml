@@ -1,0 +1,5 @@
+tether_stats.settings_form:
+  title: 'Tether Stats'
+  parent: system.admin_config_system
+  description: 'Configure Tether Stats tracking settings and view recent stats.'
+  route_name: tether_stats.settings_form

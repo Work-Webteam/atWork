@@ -1,0 +1,21 @@
+forward_entity_forward:
+  label: 'After forwarding an entity'
+  category: 'Forward'
+  context:
+    account:
+      type: 'entity:user'
+      label: 'User who forwarded'
+    entity:
+      type: 'entity'
+      label: 'Entity that was forwarded'
+
+forward_entity_preforward:
+  label: 'Before forwarding an entity'
+  category: 'Forward'
+  context:
+    account:
+      type: 'entity:user'
+      label: 'User who is forwarding'
+    entity:
+      type: 'entity'
+      label: 'Entity being forwarded'

@@ -1,0 +1,15 @@
+name: 'Tether Stats'
+type: module
+description: 'Self-contained site statistics tracking for hits, impressions and clicks.'
+package: Statistics
+# version: VERSION
+# core: 8.x
+configure: tether_stats.admin_settings_form
+test_dependencies:
+  - php:php
+
+# Information added by Drupal.org packaging script on 2016-03-24
+version: '8.x-1.01'
+core: '8.x'
+project: 'tether_stats'
+datestamp: 1458857341

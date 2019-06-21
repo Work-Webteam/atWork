@@ -1,0 +1,16 @@
+id: d7_photos_count
+label: Photos
+migration_tags:
+  - Drupal 7
+source:
+  plugin: d7_photos_count
+  source_module: photos
+process:
+  id: id
+  cid: cid
+  changed: changed
+  type: type
+  value: value
+destination:
+  plugin: d7_photos_count
+  destination_module: photos

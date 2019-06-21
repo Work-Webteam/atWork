@@ -1,0 +1,5 @@
+forward.settings:
+  title: 'Forward settings'
+  base_route_name: forward.settings
+  names:
+    - forward.settings

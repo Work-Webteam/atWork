@@ -1,0 +1,35 @@
+photos_access_photos: false
+photos_additional_sizes: 5
+photos_comment: true
+photos_cover_imagesize: thumbnail
+photos_display_full_imagesize: large
+photos_display_full_viewnum: 10
+photos_display_imageorder: weight|asc
+photos_display_list_imagesize: large
+photos_display_page_display: 1
+photos_display_page_user: true
+photos_display_teaser_display: 1
+photos_display_teaser_imagesize: medium
+photos_display_teaser_user: true
+photos_display_teaser_viewnum: 5
+photos_display_user: true
+photos_display_view_imagesize: large
+photos_display_viewpager: 10
+photos_exif: false
+photos_exif_cache: false
+photos_image_count: true
+photos_num: 5
+photos_pager_imagesize: thumbnail
+photos_path: photos/image_%uid
+photos_plupload_status: false
+photos_private_file_styles: automatic
+photos_rname: false
+photos_size:
+  thumbnail: Small
+  large: Large
+  medium: Medium
+photos_size_max: ''
+photos_upzip: true
+photos_user_count_cron: true
+photos_pnum_authenticated: 20
+photos_pnum_administrator: 20

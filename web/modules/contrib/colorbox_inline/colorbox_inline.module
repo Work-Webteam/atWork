@@ -1,0 +1,31 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * @file
+ * Enabled the "colorbox inline" functionality for Drupal 8.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function colorbox_inline_page_attachments(array &$page) {
+  \Drupal::service('colorbox.attachment')->attach($page);
+  $page['#attached']['library'][] = 'colorbox_inline/colorbox_inline';
+}
+
+/**
+  * Implements hook_help().
+  */
+
+function colorbox_inline_help($route_name, RouteMatchInterface $route_match) {
+ switch ($route_name) {
+ case 'help.page.colorbox_inline':
+ return t('<p>The Colorbox Inline module allows you to open content already on the page within a colorbox.</p>
+ <p>See the <a href=":project_page">project page on Drupal.org</a> for more details.</p>',
+ [
+ ':project_page' => 'https://www.drupal.org/project/colorbox_inline',
+ ]);
+ }
+}

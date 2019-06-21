@@ -1,0 +1,18 @@
+id: forward_statistics
+label: Forward statistics
+migration_tags:
+  - Drupal 6
+  - Drupal 7
+source:
+  plugin: forward_statistics
+process:
+  type:
+    plugin: default_value
+    default_value: node
+  bundle: type
+  id: nid
+  last_forward_timestamp: last_forward_timestamp
+  forward_count: forward_count
+  clickthrough_count: clickthrough_count
+destination:
+  plugin: forward_statistics

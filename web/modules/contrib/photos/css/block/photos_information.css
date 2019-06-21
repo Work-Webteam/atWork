@@ -1,0 +1,16 @@
+.photos-pager {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.photos-pager * {
+  box-sizing: border-box;
+}
+.photos-pager .photos-pager-image {
+  display: inline-block;
+  width: 30%;
+}
+.photos-pager .photos-pager-image img {
+  max-width: 100%;
+  height: auto;
+}

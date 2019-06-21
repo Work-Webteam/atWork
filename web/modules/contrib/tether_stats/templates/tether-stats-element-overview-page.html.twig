@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an element overview page.
+ *
+ * This template is used when generating an overview page for a particular
+ * element.
+ *
+ * Available variables:
+ *   - element: An associative array containing the element identity set as
+ *     well as the id and element type.
+ *
+ * @ingroup themeable
+ */
+#}
+<h2>{{ 'Hit Activity Over The Last Week' | t }}</h2>
+
+{{ page.combo_chart }}
+
+<details>
+  <summary role="button">{{ 'Element Details' | t }}</summary>
+  <div class="details-wrapper">
+    <strong>{{ 'Id' | t }}</strong>: {{ element.id }}<br />
+    <strong>{{ 'Type' | t }}</strong>: {{ element.type }}<br /><br />
+
+    <strong>{{ 'URL' | t }}</strong>: {{ element.url }}<br />
+    {% if element.query %}
+    <strong>{{ 'Query' | t }}</strong>: {{ element.query }}<br />
+    {% endif %}
+
+    {% if element.name %}
+    <strong>{{ 'Element Name' | t }}</strong>: {{ element.name }}<br />
+    {% elseif element.entity_id %}
+    <strong>{{ 'Entity Id' | t }}</strong>: {{ element.entity_id }}<br />
+    <strong>{{ 'Entity Type' | t }}</strong>: {{ element.entity_type }}<br />
+    {% endif %}
+
+    {% if element.derivative %}
+    <strong>{{ 'Derivative' | t }}</strong>: {{ element.derivative }}<br />
+    {% endif %}
+  </div>
+</details>

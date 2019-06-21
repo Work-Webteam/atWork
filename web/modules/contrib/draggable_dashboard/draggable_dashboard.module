@@ -1,0 +1,111 @@
+<?php
+
+/**
+ * @file
+ * Contains draggable_dashboard.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\draggable_dashboard\Entity\DashboardEntity;
+
+/**
+ * Implements hook_help().
+ *
+ * @inheritdoc
+ */
+function draggable_dashboard_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.draggable_dashboard':
+      $text = file_get_contents(dirname(__FILE__) . "/README.md");
+      if (!\Drupal::moduleHandler()->moduleExists('markdown')) {
+        return '<pre>' . $text . '</pre>';
+      }
+      else {
+        // Use the Markdown filter to render the README.
+        $filter_manager = \Drupal::service('plugin.manager.filter');
+        $settings = \Drupal::configFactory()->get('markdown.settings')->getRawData();
+        $config = ['settings' => $settings];
+        $filter = $filter_manager->createInstance('markdown', $config);
+        return $filter->process($text, 'en');
+      }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function draggable_dashboard_form_block_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if ( strpos(\Drupal::request()->get('region'), 'draggable_dashboard') !== false){
+    $relation = json_decode(base64_decode(str_replace('draggable_dashboard-', '', \Drupal::request()->get('region'))), true);
+  }
+  else{
+    $entity = $form_state->getBuildInfo()['callback_object']->getEntity();
+    $dashboards = \Drupal::entityQuery('dashboard_entity')->execute();
+
+    foreach ($dashboards as $dashboardID) {
+      $dashboard = DashboardEntity::load($dashboardID);
+      $blocks = json_decode($dashboard->get('blocks'), TRUE);
+      if (!empty($blocks)){
+        foreach ($blocks as $block){
+          if ($block['bid'] == $entity->id()){
+            $relation = $block;
+            $relation['did'] = $dashboardID;
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  if (!empty($relation['did'])){
+    $form['actions']['submit']['#submit']  = [
+      'Drupal\draggable_dashboard\Controller\DraggableDashboardController::assignBlock'
+    ];
+    $dashboard = DashboardEntity::load($relation['did']);
+    $regions = [];
+    for ($i = 1; $i <= $dashboard->get('columns'); $i++){
+      $regions[$i] = t('Column') . ' ' . $i;
+    }
+    $form['region']['#options'] = $regions;
+    $form['region']['#default_value'] = str_replace('draggable_dashboard-', '', $relation['cln']);
+    $form['visibility']['#access'] = FALSE;
+    $form['theme']['#access'] = FALSE;
+    if (isset($form['actions']['delete']['#url']) && isset($relation['bid'])) {
+      $form['actions']['delete']['#url'] = Url::fromRoute('draggable_dashboard.delete_block', ['did' => $relation['did'], 'bid' => $relation['bid']]);
+    }
+    $form['dashboard_id'] = array(
+      '#type' => 'hidden',
+      '#value' => $relation['did'],
+    );
+  }
+}
+
+/**
+ * Theme hook
+ */
+function draggable_dashboard_theme($existing, $type, $theme, $path) {
+  return array('draggable_dashboard_block' =>
+    array(
+      'variables' => array(
+        'columns' => [],
+        'dashboard' => [],
+      ),
+      'template' => 'draggable-dashboard-view'
+    )
+  );
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * @param array $attachments
+ */
+function draggable_dashboard_page_attachments_alter(array &$attachments) {
+  $request = \Drupal::request();
+  if ($request->get('_route') == 'block.admin_library' && strpos($request->get('region'), 'draggable_dashboard') === 0) {
+    $attachments['#attached']['library'][] = 'draggable_dashboard/draggable_dashboard.main';
+  }
+}

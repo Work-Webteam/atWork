@@ -1,0 +1,21 @@
+<div class="draggable-dashboard" data-id="{{ dashboard.id }}">
+{% set column_num = columns|length %}
+  {% for column in columns %}
+      <div class="draggable-dashboard-column col-{{ 12 / column_num }}" id="column-{{ loop.index }}" data-id="{{ loop.index }}">
+          {% for block in column %}
+              <div class="draggable-dashboard-block" id="block-{{ block.id }}" data-id="{{ block.id }}">
+                <div class="draggable-dashboard-block__header">
+                  <h2>{{ block.title }}</h2>
+                  <div class="draggable-dashboard-block__controls">
+                    <button class="draggable-dashboard__icon draggable-dashboard__icon--toggle draggable-dashboard__icon--collapse" title="Collapse" id="draggable-dashboard__icon--toggle"></button>
+                    <button class="draggable-dashboard__icon draggable-dashboard__icon--resize draggable-dashboard__icon--maximize" title="Maximize" id="draggable-dashboard__icon--resize"></button>
+                  </div>
+                </div>
+                <div class="draggable-dashboard-block__content">
+                  {{ block.view }}
+                </div>
+              </div>
+          {% endfor %}
+      </div>
+  {% endfor %}
+</div>

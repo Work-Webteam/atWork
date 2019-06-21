@@ -1,0 +1,109 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations for the Message Digest module.
+ */
+
+use Drupal\Core\Database\Database;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_cron().
+ *
+ * Aggregate, format and and queue digests for sending.
+ */
+function message_digest_cron() {
+  /** @var \Drupal\message_digest\DigestManagerInterface $digest_manager */
+  $digest_manager = \Drupal::service('message_digest.manager');
+
+  // Process message digests.
+  $digest_manager->processDigests();
+
+  // Cleanup old messages.
+  $digest_manager->cleanupOldMessages();
+}
+
+/**
+ * Implements hook_mail().
+ */
+function message_digest_mail($key, &$message, $params) {
+  if ($key === 'digest') {
+    $title = \Drupal::config('system.site')->get('name');
+    if (!empty($params['entity_type']) && !empty($params['entity_id'])) {
+      /** @var \Drupal\Core\Entity\EntityInterface $entity */
+      $entity = \Drupal::entityTypeManager()->getStorage($params['entity_type'])->load($params['entity_id']);
+      $title = $entity->label();
+    }
+    $message['subject'] = t('@title message digest', ['@title' => $title]);
+    $message['body'][] = $params['body'];
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function message_digest_theme() {
+  return [
+    'message_digest' => [
+      'render element' => 'elements',
+    ],
+    'message_digest_rows' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for individual messages in a digest.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - 'elements': An associative array containing renderable rows.
+ */
+function template_preprocess_message_digest_rows(array &$variables) {
+  $elements = $variables['elements'];
+  foreach (Element::children($elements) as $key) {
+    $variables['rows'][$key] = $elements[$key];
+  }
+  $variables['message'] = $elements['#message'];
+}
+
+/**
+ * Prepares messages to be concatenated into a digest.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - 'elements': An associative array containing renderable messages to be
+ *     condensed into a digest.
+ */
+function template_preprocess_message_digest(array &$variables) {
+  $elements = $variables['elements'];
+  foreach (Element::children($elements) as $key) {
+    $variables['messages'][$key] = $elements[$key];
+  }
+}
+
+/**
+ * Implements hook_entity_predelete().
+ *
+ * Cleans up any references to the entity that is being deleted.
+ */
+function message_digest_entity_predelete(EntityInterface $entity) {
+  switch ($entity->getEntityTypeId()) {
+    case 'message':
+      Database::getConnection()
+        ->delete('message_digest')
+        ->condition('mid', $entity->id())
+        ->execute();
+      break;
+
+    case 'user':
+      Database::getConnection()
+        ->delete('message_digest')
+        ->condition('receiver', $entity->id())
+        ->execute();
+      break;
+  }
+}

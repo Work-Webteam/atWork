@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Template file for generic links inserted via the Insert module.
+ *
+ * Available variables:
+ * - class: A set of classes assigned to this item (if any).
+ * - entity_type: The type of the entity inserted.
+ * - field_type: The field type the rendered template belongs to, i.e. "file" or
+ *   "image".
+ * - item: The complete item being inserted.
+ * - name: The file name of the item being inserted.
+ * - style_name: The style or pseudo-style name the item is inserted with.
+ * - url: The URL to the item.
+ * - uuid: The file's UUID.
+ *
+ * Some placeholders will be replaced by user-entered values when the item is
+ * inserted into a textarea:
+ * - __description__: A description of the item.
+ * - __filename__: The file name.
+ * - __description_or_filename__: A description of the item if available,
+ *   otherwise use the file name.
+ */
+#}
+<a href="{{ url }}"{% if class %} class="{{ class }}"{% endif %} title="__description__" data-insert-type="{{ field_type }}">__description_or_filename__</a>

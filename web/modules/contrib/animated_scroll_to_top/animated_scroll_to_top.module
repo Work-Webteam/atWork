@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function animated_scroll_to_top_install() {  
+  \Drupal::configFactory()->getEditable('animated_scroll_to_top.settings')
+    ->set('animated_scroll_to_top_position', 1)
+    ->set('animated_scroll_to_top_button_bg_color', '#CCCCCC')
+    ->set('animated_scroll_to_top_button_hover_bg_color', '#000000')
+    ->save();
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function animated_scroll_to_top_preprocess_page(&$variables) {
+  
+  $config = \Drupal::config('animated_scroll_to_top.settings');
+  $variables['#attached']['library'][] = 'animated_scroll_to_top/animated_scroll_to_top';
+  $variables['#attached']['drupalSettings']['animated_scroll_to_top_position'] = $config->get('animated_scroll_to_top_position');
+  $variables['#attached']['drupalSettings']['animated_scroll_to_top_button_bg_color'] = $config->get('animated_scroll_to_top_button_bg_color');
+  $variables['#attached']['drupalSettings']['animated_scroll_to_top_button_hover_bg_color'] = $config->get('animated_scroll_to_top_button_hover_bg_color');
+}
+
+

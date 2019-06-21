@@ -1,0 +1,227 @@
+<?php
+
+/**
+ * @file
+ * Allows forwarding of entities by email.
+ */
+
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function forward_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.forward':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Adds a "forward this page" link to each node.') . '</p>';
+      $output .= '<p>' . t('This module allows users to email a specific node or other entity on your site to a friend.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function forward_page_attachments(array &$page) {
+  if (\Drupal::routeMatch()->getRouteName() == 'forward.form') {
+    $settings = \Drupal::config('forward.settings')->get();
+
+    if ($settings['forward_interface_type'] == 'link') {
+      // Tell SEO to ignore this page on request.
+      if ($settings['forward_link_noindex']) {
+        $element = [
+          '#type' => 'html_tag',
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'robots',
+            'content' => 'noindex, nofollow',
+          ],
+        ];
+        $page['#attached']['html_head'][] = [$element, 'forward_meta_noindex'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_links_alter().
+ */
+function forward_node_links_alter(array &$node_links, NodeInterface $node, array &$context) {
+  $settings = \Drupal::config('forward.settings')->get();
+
+  if ($settings['forward_link_inline'] && ($settings['forward_interface_type'] == 'link')) {
+    $show = \Drupal::service('forward.access_checker')
+      ->isAllowed($settings, $node, $context['view_mode']);
+
+    if ($show) {
+      $node_links += \Drupal::service('forward.link_builder')
+        ->buildForwardEntityLink($node, $settings);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function forward_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $settings = \Drupal::config('forward.settings')->get();
+
+  // Let hook_node_links_alter handle Forward inline links on nodes.
+  if ($settings['forward_link_inline'] && ($settings['forward_interface_type'] == 'link') && ($entity->getEntityTypeId() == 'node')) {
+    return;
+  }
+
+  // Display a forward link or form unless the entity is being rendered for a forward email.
+  $show = \Drupal::service('forward.access_checker')
+    ->isAllowed($settings, $entity, $view_mode) && empty($build['#forward_build']);
+  if ($show) {
+    if ($settings['forward_interface_type'] == 'link') {
+      $build['forward'] = \Drupal::service('forward.link_builder')
+        ->buildForwardEntityLink($entity, $settings);
+    }
+    else {
+      $build['forward'] = \Drupal::service('forward.form_builder')
+        ->buildForwardEntityForm($entity, $settings);
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function forward_theme($existing, $type, $theme, $path) {
+  return [
+    'forward' => [
+      'variables' => [
+        'email' => NULL,
+        'header' => NULL,
+        'message' => NULL,
+        'settings' => NULL,
+        'entity' => NULL,
+        'content' => NULL,
+        'view_mode' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements template_preprocess_module().
+ */
+function template_preprocess_forward(&$variables) {
+  // Site info.
+  $url = 'internal:' . \Drupal::config('system.site')->get('page.front');
+  $variables['site_url'] = Url::fromUri($url, ['absolute' => TRUE]);
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+
+  // Read more link; skipped for teasers since most teasers already include a link.
+  $variables['link'] = '';
+  $entity = $variables['entity'];
+  if ($entity->access('view') && ($variables['view_mode'] != 'teaser')) {
+    $variables['link'] = t('<a href="@entity-url">Read more about @entity-name</a>', [
+      '@entity-url' => $entity->toUrl('canonical', ['absolute' => TRUE])->toString(),
+      '@entity-name' => $entity->label(),
+    ]);
+  }
+
+  // Logo.
+  if (!empty($variables['settings']['forward_email_logo'])) {
+    $url = 'base:' . $variables['settings']['forward_email_logo'];
+    $url = Url::fromUri($url, ['absolute' => TRUE])->toString();
+  }
+  else {
+    $url = theme_get_setting('logo.url');
+    if (!UrlHelper::isExternal($url)) {
+      $url = Url::fromUri('base:/' . $url, ['absolute' => TRUE])->toString();
+    }
+  }
+  $variables['logo'] = ['#markup' => '<img src="' . $url . '" />'];
+}
+
+/**
+ * Implements hook_mail().
+ */
+function forward_mail($key, &$message, $params) {
+  $message['subject'] = $params['subject'];
+  $message['body'][] = $params['body'];
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function forward_mail_alter(&$message) {
+  if ($message['module'] == 'forward') {
+    if (($message['key'] == 'mail_entity') || ($message['key'] == 'send_entity')) {
+      $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
+      $message['headers']['Reply-to'] = $message['params']['headers']['Reply-To'];
+      $message['headers']['Sender'] = $message['headers']['From'];
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function forward_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add the node-type settings option to activate the email this page link.
+  if ($form_id == 'node_type_edit_form') {
+    $settings = \Drupal::config('forward.settings')->get();
+    $url = Url::fromUri('internal:/admin/config/user-interface/forward');
+    $node_type = \Drupal::routeMatch()->getParameters()->get('node_type')->id();
+    $form['#node_type'] = $node_type;
+
+    $form['display']['forward_node'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Show forwarding link/form'),
+      '#return_value' => 1,
+      '#default_value' => $settings['forward_node_' . $node_type],
+      '#description' => t('Further configuration is available on the <a href="@settings-url">Forward settings page</a>.', ['@settings-url' => $url->toString()]),
+    ];
+    $form['actions']['submit']['#submit'][] = 'forward_node_type_edit_form_submit';
+  }
+}
+
+/**
+ * Implements submit handler for hook_form_alter().
+ */
+function forward_node_type_edit_form_submit($form, FormStateInterface $form_state) {
+  \Drupal::getContainer()
+    ->get('config.factory')
+    ->getEditable('forward.settings')
+    ->set('forward_node_' . $form['#node_type'], $form_state->getValue('forward_node'))
+    ->save();
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function forward_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    // Process forward form alters last so that any Mollom protection is already added by the time the BASE_FORM_ID alter hook is called.
+    $group = $implementations['forward'];
+    unset($implementations['forward']);
+    $implementations['forward'] = $group;
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function forward_form_forward_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // If the inline form interface is being used, move any Mollom protection inside the collapsible fieldset.
+  if (isset($form['message']['actions']['submit']) && isset($form['mollom'])) {
+    $form['message']['mollom'] = $form['mollom'];
+    unset($form['mollom']);
+  }
+}

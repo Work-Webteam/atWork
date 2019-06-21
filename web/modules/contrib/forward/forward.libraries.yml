@@ -1,0 +1,5 @@
+forward:
+  version: VERSION
+  css:
+    theme:
+      css/forward.css: {}

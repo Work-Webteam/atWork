@@ -1,0 +1,54 @@
+draggable_dashboard.overview:
+  path: '/admin/config/system/draggable_dashboard'
+  defaults:
+    _title: 'Draggable Dashboard'
+    _controller: '\Drupal\draggable_dashboard\Controller\DraggableDashboardController::adminOverview'
+  requirements:
+    _permission: 'administer_draggable_dashboard'
+
+draggable_dashboard.add_dashboard:
+  path: '/admin/config/system/draggable_dashboard/add'
+  defaults:
+    _title: 'Add Draggable Dashboard'
+    _form: '\Drupal\draggable_dashboard\Form\DashboardAddForm'
+  requirements:
+    _permission: 'administer_draggable_dashboard'
+
+draggable_dashboard.edit_dashboard:
+  path: '/admin/config/system/draggable_dashboard/edit/{did}'
+  defaults:
+    _title: 'Edit Draggable Dashboard'
+    _form: '\Drupal\draggable_dashboard\Form\DashboardEditForm'
+  requirements:
+    _permission: 'administer_draggable_dashboard'
+
+draggable_dashboard.manage_dashboard:
+  path: '/admin/config/system/draggable_dashboard/manage/{did}'
+  defaults:
+    _title: 'Edit Draggable Dashboard'
+    _form: '\Drupal\draggable_dashboard\Form\DashboardManageForm'
+  requirements:
+    _permission: 'administer_draggable_dashboard'
+
+draggable_dashboard.delete_dashboard:
+  path: '/admin/config/system/draggable_dashboard/delete/{did}'
+  defaults:
+    _form: '\Drupal\draggable_dashboard\Form\DashboardDeleteForm'
+    _title: 'Delete Dashboard'
+  requirements:
+    _permission: 'administer_draggable_dashboard'
+
+draggable_dashboard.delete_block:
+  path: '/admin/config/system/draggable_dashboard/delete_block/{did}/{bid}'
+  defaults:
+    _title: 'Draggable Dashboard'
+    _controller: '\Drupal\draggable_dashboard\Controller\DraggableDashboardController::deleteBlock'
+  requirements:
+    _permission: 'administer_draggable_dashboard'
+
+draggable_dashboard.update_block_positions:
+  path: '/draggable_dashboard/update_block_positions'
+  defaults:
+    _controller: '\Drupal\draggable_dashboard\Controller\DraggableDashboardController::updateBlockPositions'
+  requirements:
+    _permission: 'administer_draggable_dashboard'

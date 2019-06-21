@@ -1,0 +1,5 @@
+entity.tether_stats_derivative.add_form:
+  route_name: entity.tether_stats_derivative.add_form
+  title: 'Add derivative'
+  appears_on:
+    - entity.tether_stats_derivative.collection

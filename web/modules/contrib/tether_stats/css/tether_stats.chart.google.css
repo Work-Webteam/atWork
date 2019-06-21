@@ -1,0 +1,19 @@
+/**
+ * @file
+ * Styling for Tether Stats charts in the Google Charts API.
+ */
+
+div.tether_stats-chart-google > div.tether_stats-chart {
+  min-height: 400px;
+}
+
+div.tether_stats-chart-google > .tether_stats-chart-iterator {
+  width: 50px;
+  font-size: 200%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.tether_stats-chart-google > .tether_stats-chart-iterator > a.tether_stats-next {
+  float: right;
+}

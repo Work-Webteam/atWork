@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Formats album image pager block.
+ */
+#}
+{% trans %}Uploaded on {{ created }} by {{ image.name }}{% endtrans %}
+<div class="photos-block-pager-title">
+  {% if image.slide_url %}
+    <a href="{{ image.slide_url }}" class="photos-block-pager-slide" title="{{ 'View as slideshow'|t }}"></a>
+  {% endif %}
+  <h3 class="photos-block-pager-name">
+    <a href="{{ user_url }}">{{ image.name }}</a>
+  </h3>
+</div>
+<div class="photos-pager">
+  <div class="photos-block-pager-left photos-pager-image">
+    {% if image.pager.prev_view %}
+      <a href="{{ image.pager.prev_url }}#image-load">{{ image.pager.prev_view }}</a>
+      <div class="photos-pager-link photos-prev">
+        <a href="{{ image.pager.prev_url }}#image-load">{{ 'previous'|t }}</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="photos-block-pager-center photos-pager-image">
+    {% if image.pager.current_view %}
+      {{ image.pager.current_view }}
+      <div>&#9650;</div>
+    {% endif %}
+  </div>
+  <div class="photos-block-pager-right photos-pager-image">
+    {% if image.pager.next_view %}
+      <a href="{{ image.pager.next_url }}#image-load">{{ image.pager.next_view }}</a>
+      <div class="photos-pager-link photos-next">
+        <a href="{{ image.pager.next_url }}#image-load">{{ 'next'|t }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+<div class="photos-block-link">
+  {{ 'In'|t }} <a href="{{ album_url }}">{{ image.title }}</a>
+</div>
+{{ image.links }}

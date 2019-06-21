@@ -1,0 +1,19 @@
+id: d7_photos
+label: Photos
+migration_tags:
+  - Drupal 7
+source:
+  plugin: d7_photos
+  source_module: photos
+process:
+  pid: pid
+  fid: fid
+  wid: wid
+  count: count
+  data: data
+destination:
+  plugin: d7_photos
+  destination_module: photos
+migration_dependencies:
+  required:
+    - d7_node

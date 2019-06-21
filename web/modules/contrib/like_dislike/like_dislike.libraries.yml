@@ -1,0 +1,5 @@
+like_dislike:
+  version: 1.x
+  css:
+    theme:
+      css/like_dislike.css: {}

@@ -1,0 +1,632 @@
+<?php
+
+/**
+ * @file
+ * Contains likeit module helper functions.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
+use Drupal\likeit\Controller\LikeItController;
+use Drupal\user\UserInterface;
+use Drupal\views\Plugin\views\PluginBase;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_help().
+ */
+function likeit_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.likeit':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides link for user to like the entity.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function likeit_entity_extra_field_info() {
+  $extra = [];
+
+  $config = \Drupal::config('likeit.settings');
+  $target_entities = $config->get('target_entities');
+
+  if (!empty($target_entities)) {
+    foreach ($target_entities as $key => $entity) {
+      $target_arr = explode(':', $key);
+      $entity_type = $target_arr[0];
+      $entity_bundle = $target_arr[1];
+      $extra[$entity_type][$entity_bundle]['display']['likeit'] = [
+        'label' => t('Like It!'),
+        'description' => t('Like and Unlike Link.'),
+        'weight' => 0,
+        'visible' => FALSE,
+        'render_class' => 'Drupal\likeit\LikeItExtraRender',
+      ];
+    }
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function likeit_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  // Don't show on previews.
+  if ($entity->isNew()) {
+    return;
+  }
+  $config = \Drupal::config('likeit.settings');
+  $target_entities = $config->get('target_entities');
+
+  if (!empty($target_entities) && $display->getComponent('likeit')) {
+    $target = $entity->getEntityTypeId() . ':' . $entity->bundle();
+    if (in_array($target, $target_entities)) {
+      $build['likeit'] = likeit_get_link($target, $entity->id());
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function likeit_theme($existing, $type, $theme, $path) {
+  return [
+    'likeit' => [
+      'variables' => [
+        'content' => [
+          'link' => NULL,
+          'view' => NULL,
+          'message' => NULL,
+        ],
+        'action' => '',
+        'count' => '',
+        'attributes' => [
+          'class' => ['likeit', 'likeit-wrapper'],
+        ],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Get link to like/unlike or count info.
+ *
+ * @param string $target
+ *   Target entity:bundle.
+ * @param string $id
+ *   Target bundle id.
+ *
+ * @return array
+ *   Render or empty array.
+ */
+function likeit_get_link($target, $id) {
+  $user = \Drupal::currentUser();
+  $action = likeit_get_link_action_type($target, $id);
+
+  if (LikeItController::checkAccess($action, $user)) {
+    return likeit_build_link($target, $id, $action);
+  }
+  elseif (LikeItController::checkAccess('view', $user)) {
+    return likeit_build_view($target, $id);
+  }
+
+  switch ($action) {
+    case 'like':
+      $text = t('You have already unliked it!');
+      break;
+
+    case 'unlike':
+      $text = t('You have already liked it!');
+      break;
+
+    default:
+      return [];
+  }
+
+  $message = [
+    '#type' => 'markup',
+    '#markup' => $text,
+    '#prefix' => '<span class="likeit-message">',
+    '#suffix' => '</span>',
+  ];
+
+  return [
+    '#theme' => 'likeit',
+    '#content' => [
+      'message' => $message,
+    ],
+    '#action' => $action,
+  ];
+}
+
+/**
+ * Get likes count.
+ *
+ * @param object $entity
+ *   Target entity.
+ *
+ * @return int
+ *   Likes count for the entity.
+ */
+function likeit_get_count($entity) {
+  $like_count = 0;
+
+  $storage = \Drupal::entityTypeManager()->getStorage('likeit');
+  $likes = $storage->getQuery()
+    ->condition('target_entity_id', $entity->id())
+    ->execute();
+
+  if (!empty($likes)) {
+    $like_count = count($likes);
+  }
+
+  return $like_count;
+}
+
+/**
+ * Build content likes view.
+ *
+ * @param string $target
+ *   Target entity:bundle.
+ * @param string $id
+ *   Target entity id.
+ *
+ * @return array
+ *   Render or empty array.
+ */
+function likeit_build_view($target, $id) {
+  $entity_arr = explode(':', $target);
+  $entity_type = $entity_arr[0];
+  $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($id);
+
+  if (!$entity) {
+    return [];
+  }
+
+  $count = likeit_get_count($entity);
+
+  $view = [
+    '#type' => 'markup',
+    '#markup' => \Drupal::translation()
+      ->formatPlural($count, '1 like', '@count likes'),
+    '#prefix' => '<span class="likeit-count">',
+    '#suffix' => '</span>',
+  ];
+
+  return [
+    '#theme' => 'likeit',
+    '#content' => [
+      'view' => $view,
+    ],
+    '#action' => 'view',
+    '#count' => $count,
+  ];
+}
+
+/**
+ * Build the link widget.
+ *
+ * @param string $target
+ *   Target entity:bundle.
+ * @param string $id
+ *   Target entity id.
+ * @param string $action
+ *   (optional) Action name.
+ *
+ * @return array
+ *   Like/unlike render array.
+ */
+function likeit_build_link($target, $id, $action = 'like') {
+  $user = \Drupal::currentUser();
+  $entity_arr = explode(':', $target);
+  $entity_type = $entity_arr[0];
+  $count = '';
+
+  $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($id);
+  $html_id = uniqid('likeit-id-' . $id);
+  $html_id = Html::getId($html_id);
+
+  $token = \Drupal::service('likeit_csrf_token')->get($html_id);
+  $parameters = [
+    'entity' => $target,
+    'id' => $entity->id(),
+    'html_id' => $html_id,
+    'token' => $token,
+  ];
+
+  $title = t('Like');
+  $class = '';
+
+  // Check action type to get like/unlike url.
+  if ($action == 'unlike') {
+    $url = Url::fromRoute('likeit.likeit_controller_unlike', $parameters);
+    $title = t('Unlike');
+    $class = 'liked';
+  }
+  else {
+    $url = Url::fromRoute('likeit.likeit_controller_like', $parameters);
+  }
+
+  $link = [
+    '#type' => 'link',
+    '#title' => $title,
+    '#url' => $url,
+  ];
+  $link['#attached']['library'] = 'core/drupal.ajax';
+  $link['#attributes']['title'] = $title;
+  $link['#attributes']['class'] = ['use-ajax', 'likeit-wrapper', $class];
+  $link['#attributes']['id'] = $html_id;
+
+  // Check if user can view likes count and add it to render array.
+  if (LikeItController::checkAccess('view', $user)) {
+    $count = likeit_get_count($entity);
+
+    $markup = [
+      '#type' => 'markup',
+      '#markup' => '<span class="likeit-title">' .
+      $title . '</span><span class="likeit-count"> ' . $count . '</span>',
+    ];
+
+    $link['#title'] = render($markup);
+  }
+
+  return [
+    '#theme' => 'likeit',
+    '#content' => [
+      'link' => $link,
+    ],
+    '#count' => $count,
+    '#action' => $action,
+  ];
+}
+
+/**
+ * Get user session ID.
+ *
+ * @return string
+ *   Session id.
+ */
+function likeit_get_user_session_id() {
+  $session_id = uniqid();
+  $user = \Drupal::currentUser();
+  if ($user->isAnonymous()) {
+    $cookie = likeit_get_cookie();
+    if (!empty($cookie)) {
+      $session_id = $cookie;
+    }
+    else {
+      likeit_set_cookie($session_id);
+    }
+  }
+
+  return $session_id;
+}
+
+/**
+ * Do like.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Target entity.
+ * @param \Drupal\Core\Session\AccountInterface|null $account
+ *   (optional) User account.
+ *
+ * @return string|null
+ *   Session id or null.
+ */
+function likeit_do_like(EntityInterface $entity, AccountInterface $account = NULL) {
+  if (empty($account)) {
+    $account = \Drupal::currentUser();
+  }
+
+  if (likeit_check($entity, $account)) {
+    // Entity was liked.
+    return NULL;
+  }
+
+  $session_id = likeit_get_cookie();
+
+  if (!$session_id) {
+    $session_id = likeit_get_user_session_id();
+  }
+
+  $entity_type = $entity->getEntityType()->id();
+
+  $values = [
+    'user_id' => $account->id(),
+    'target_entity_type' => $entity_type,
+    'target_entity_id' => $entity->id(),
+    'session_id' => $session_id,
+  ];
+
+  // Create new likeit entity.
+  $like = \Drupal::entityTypeManager()
+    ->getStorage('likeit')
+    ->create($values);
+  $like->save();
+
+  // Reset entity cache.
+  \Drupal::entityTypeManager()
+    ->getViewBuilder($entity->getEntityTypeId())
+    ->resetCache([$entity]);
+
+  return $session_id;
+}
+
+/**
+ * Do unlike.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Target entity.
+ * @param \Drupal\Core\Session\AccountInterface|null $account
+ *   (optional) User account.
+ *
+ * @return string|null
+ *   Session id or null.
+ */
+function likeit_do_unlike(EntityInterface $entity, AccountInterface $account = NULL) {
+  if (empty($account)) {
+    $account = \Drupal::currentUser();
+  }
+
+  if (!likeit_check($entity, $account)) {
+    return NULL;
+  }
+
+  $session_id = likeit_get_cookie();
+  if (!$session_id) {
+    $session_id = likeit_get_user_session_id();
+  }
+
+  $entity_type = $entity->getEntityType()->id();
+  $storage = \Drupal::entityTypeManager()->getStorage('likeit');
+  $query = $storage->getQuery()
+    ->condition('target_entity_type', $entity_type)
+    ->condition('target_entity_id', $entity->id())
+    ->condition('user_id', $account->id());
+
+  // Set session id query parameter for anonymous.
+  if ($account->isAnonymous()) {
+    $cookie = likeit_get_cookie();
+    if (!$cookie) {
+      return NULL;
+    }
+    $query = $query->condition('session_id', $cookie);
+  }
+
+  $likes = $query->execute();
+
+  $entities = $storage->loadMultiple($likes);
+  $storage->delete($entities);
+
+  // Reset entity cache.
+  \Drupal::entityTypeManager()
+    ->getViewBuilder($entity->getEntityTypeId())
+    ->resetCache([$entity]);
+
+  return $session_id;
+}
+
+/**
+ * Set cookie.
+ *
+ * @param string $session_id
+ *   User session id.
+ */
+function likeit_set_cookie($session_id) {
+  setcookie('likeit_session', $session_id, time() + (86400 * 7), '/');
+
+  // Likeit uses Ajax and page isn't reloading.
+  // That is why we manually set $_COOKIE
+  // because once the cookies have been set,
+  // they can be accessed only on the next page load.
+  $_COOKIE['likeit_session'] = $session_id;
+}
+
+/**
+ * Get cookie.
+ *
+ * @return string
+ *   Cookie id.
+ */
+function likeit_get_cookie() {
+  $cookie = !empty($_COOKIE['likeit_session']) ? $_COOKIE['likeit_session'] : FALSE;
+
+  return $cookie;
+}
+
+/**
+ * Remove cookie.
+ */
+function likeit_remove_cookie() {
+  setcookie('likeit_session', '', time() - 3600);
+}
+
+/**
+ * Get link action type.
+ *
+ * @param string $target
+ *   Target entity:bundle.
+ * @param string $id
+ *   Target entity id.
+ *
+ * @return string|null
+ *   Action name or null.
+ */
+function likeit_get_link_action_type($target, $id) {
+  $action = 'like';
+  $user = \Drupal::currentUser();
+
+  $entity_arr = explode(':', $target);
+  $entity_type = $entity_arr[0];
+
+  $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($id);
+  if (!$entity) {
+    return NULL;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('likeit');
+  $query = $storage->getQuery()
+    ->condition('target_entity_type', $entity_type)
+    ->condition('target_entity_id', $entity->id())
+    ->condition('user_id', $user->id());
+
+  // Set session id query parameter for anonymous.
+  if ($user->isAnonymous()) {
+    $cookie = likeit_get_cookie();
+    if (!$cookie) {
+      $action = 'like';
+      return $action;
+    }
+    $query = $query->condition('session_id', $cookie);
+  }
+
+  $likes = $query->execute();
+
+  if (!empty($likes)) {
+    // User has liked this content.
+    $action = 'unlike';
+  }
+
+  return $action;
+}
+
+/**
+ * Check like status.
+ *
+ * @param object $entity
+ *   Target entity.
+ * @param \Drupal\Core\Session\AccountInterface|null $user
+ *   (optional) User account.
+ *
+ * @return bool
+ *   User like status. TRUE if entity was already liked.
+ */
+function likeit_check($entity, AccountInterface $user = NULL) {
+  if (empty($user)) {
+    $user = \Drupal::currentUser();
+  }
+
+  if (!$entity) {
+    return FALSE;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('likeit');
+  $query = $storage->getQuery()
+    ->condition('target_entity_type', $entity->getEntityTypeId())
+    ->condition('target_entity_id', $entity->id())
+    ->condition('user_id', $user->id());
+
+  // Set session id query parameter for anonymous.
+  if ($user->isAnonymous()) {
+    $cookie = likeit_get_cookie();
+    if (!$cookie) {
+      return FALSE;
+    }
+    $query = $query->condition('session_id', $cookie);
+  }
+
+  $likes = $query->execute();
+
+  if (!empty($likes)) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function likeit_entity_delete(EntityInterface $entity) {
+  $type = $entity->getEntityTypeId();
+  if ($type !== 'likeit') {
+    $id = $entity->id();
+
+    // Remove Likeit entity content.
+    likeit_remove_from_entity($type, $id);
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function likeit_user_cancel($edit, $account, $method) {
+  likeit_remove_from_user($account);
+}
+
+/**
+ * Implements hook_user_delete().
+ */
+function likeit_user_delete(UserInterface $account) {
+  likeit_remove_from_user($account);
+}
+
+/**
+ * Remove all Likeit entities from user account.
+ *
+ * @param \Drupal\user\UserInterface $account
+ *   User account.
+ */
+function likeit_remove_from_user(UserInterface $account) {
+  $storage = \Drupal::entityTypeManager()->getStorage('likeit');
+  $likes = $storage->getQuery()
+    ->condition('user_id', $account->id())
+    ->execute();
+
+  if (!empty($likes)) {
+    $action = \Drupal::config('likeit.settings')
+      ->get('after_owner_deletion');
+    $entities = $storage->loadMultiple($likes);
+
+    // Set owner to anonymous.
+    if ($action == 'set_to_anonymous') {
+      foreach ($entities as $likeit) {
+        $likeit->setOwnerId(0)
+          ->save();
+      }
+    }
+    else {
+      // Delete Likeit content.
+      $storage->delete($entities);
+    }
+  }
+}
+
+/**
+ * Delete Likeit entities with target entity deletion.
+ *
+ * @param string $type
+ *   Target entity type.
+ * @param string $id
+ *   Target entity id.
+ */
+function likeit_remove_from_entity($type, $id) {
+  $storage = \Drupal::entityTypeManager()->getStorage('likeit');
+  $likes = $storage->getQuery()
+    ->condition('target_entity_type', $type)
+    ->condition('target_entity_id', $id)
+    ->execute();
+
+  $entities = $storage->loadMultiple($likes);
+  $storage->delete($entities);
+}
+
+/**
+ * Implements hook_views_query_substitutions().
+ */
+function likeit_views_query_substitutions(ViewExecutable $view) {
+  $substitutions = [
+    '***CURRENT_SESSION_ID***' => likeit_get_cookie(),
+  ] + PluginBase::queryLanguageSubstitutions();
+
+  return $substitutions;
+}

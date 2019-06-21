@@ -1,0 +1,11 @@
+photos.node.management:
+  route_name: photos.node.management
+  base_route: entity.node.canonical
+  title: Photos
+  weight: 5
+
+photos.node.rearrange:
+  route_name: photos.node.rearrange
+  base_route: entity.node.canonical
+  title: Rearrange
+  weight: 6

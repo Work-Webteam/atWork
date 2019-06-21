@@ -1,0 +1,27 @@
+{
+	"name": "drupal/colorbox_inline",
+	"require": {
+		"drupal/colorbox": "^1.4",
+		"drupal/core": "^8.0"
+	},
+	"authors": [
+		{
+			"name": "NickWilde",
+			"homepage": "https://www.drupal.org/user/3094661"
+		},
+		{
+			"name": "RenatoG",
+			"homepage": "https://www.drupal.org/user/3326031"
+		},
+		{
+			"name": "Sam152",
+			"homepage": "https://www.drupal.org/user/1485048"
+		}
+	],
+	"description": "Enable \"colorbox inline\" functionality for Drupal 8.",
+	"homepage": "https://www.drupal.org/project/colorbox_inline",
+	"support": {
+		"issues": "https://www.drupal.org/project/issues/colorbox_inline",
+		"source": "http://cgit.drupalcode.org/colorbox_inline"
+	}
+}

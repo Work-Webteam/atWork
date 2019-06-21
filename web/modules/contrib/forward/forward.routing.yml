@@ -1,0 +1,20 @@
+forward.settings:
+  path: '/admin/config/user-interface/forward'
+  defaults:
+    _title: 'Forward settings'
+    _form: 'Drupal\forward\Form\SettingsForm'
+  requirements:
+    _permission: 'administer forward'
+
+forward.form:
+  path: '/forward/{entity_type}/{entity}'
+  defaults:
+    _title: 'Forward this page to a friend'
+    _controller: 'Drupal\forward\Controller\ForwardController::buildForm'
+  requirements:
+    _permission: 'access forward'
+    _entity_access: 'entity.view'
+  options:
+    parameters:
+      entity:
+        type: entity:{entity_type}

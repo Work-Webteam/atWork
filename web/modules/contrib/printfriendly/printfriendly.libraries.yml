@@ -1,0 +1,4 @@
+printfriendly-libraries:
+  css:
+    theme:
+      css/printfriendly.css: {}

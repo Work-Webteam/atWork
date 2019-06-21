@@ -1,0 +1,35 @@
+fivestar:
+  version: 1.0
+  css:
+    theme:
+      css/fivestar.css: {}
+  dependencies:
+    - core/drupal.ajax
+number-up-down:
+  version: 1.0
+  css:
+    theme:
+      css/number-up-down.css: {}
+  dependencies:
+    - core/drupal.ajax
+thumbs-up:
+  version: 1.0
+  css:
+    theme:
+      css/thumbs-up.css: {}
+  dependencies:
+    - core/drupal.ajax
+thumbs-up-down:
+  version: 1.0
+  css:
+    theme:
+      css/thumbs-up-down.css: {}
+  dependencies:
+    - core/drupal.ajax
+yesno:
+  version: 1.0
+  css:
+    theme:
+      css/yesno.css: {}
+  dependencies:
+    - core/drupal.ajax

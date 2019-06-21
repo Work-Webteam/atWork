@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Formats album links.
+ */
+#}
+{% if links.link or links.count %}
+  <div class="photos-album-links">
+    <div class="photos-link-info">
+      {% trans %}
+        {{ links.count }} image
+      {% plural links.count %}
+        {{ links.count }} images
+      {% endtrans %}
+
+      {{ links_display }}
+    </div>
+    <div class="photos-link-sort">
+      <span>{{ 'Sort by'|t }}:</span>
+      {{ links_sort }}
+    </div>
+    {% if links.limit %}
+      <div class="photos-link-limit">
+        <span>{{ 'Limit'|t }}:</span>
+        {{ links_limit }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

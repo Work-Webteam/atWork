@@ -1,0 +1,13 @@
+id: d7_photos_comment
+label: Photos
+migration_tags:
+  - Drupal 7
+source:
+  plugin: d7_photos_comment
+  source_module: photos
+process:
+  fid: fid
+  cid: cid
+destination:
+  plugin: d7_photos_comment
+  destination_module: photos

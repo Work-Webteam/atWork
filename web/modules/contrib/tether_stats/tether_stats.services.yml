@@ -1,0 +1,19 @@
+services:
+  logger.channel.tether_stats:
+    parent: logger.channel_base
+    arguments: ['tether_stats']
+  plugin.manager.tether_stats.chart_renderer:
+    class: Drupal\tether_stats\TetherStatsChartRendererPluginManager
+    parent: default_plugin_manager
+  tether_stats.manager:
+    class: Drupal\tether_stats\TetherStatsManager
+    arguments: ['@database', '@logger.channel.tether_stats', '@config.factory', '@link_generator', '@plugin.manager.tether_stats.chart_renderer']
+  tether_stats.request_subscriber:
+    class: Drupal\tether_stats\EventSubscriber\TetherStatsRequestSubscriber
+    arguments: ['@tether_stats.manager', '@current_route_match', '@event_dispatcher']
+    tags:
+      - { name: event_subscriber }
+  tether_stats.request_to_element_subscriber:
+    class: Drupal\tether_stats\EventSubscriber\TetherStatsRequestToElementSubscriber
+    tags:
+      - { name: event_subscriber }

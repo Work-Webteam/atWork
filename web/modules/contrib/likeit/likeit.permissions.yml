@@ -1,0 +1,11 @@
+likeit_like:
+  title: 'Like the content'
+  description: 'Allow user like the content.'
+
+likeit_unlike:
+  title: 'Unlike the content'
+  description: 'Allow user unlike the content.'
+
+likeit_view:
+  title: 'View content likes'
+  description: 'Allow user view content likes.'

@@ -1,0 +1,14 @@
+# Schema for the configuration files of the likeit module.
+likeit.settings:
+  type: config_object
+  label: 'Likeit settings.'
+  mapping:
+    target_entities:
+      type: sequence
+      label: 'Selected entities for like functionality.'
+    after_owner_deletion:
+      type: string
+      label: 'Action after owner account deletion.'
+    token_seed:
+      type: string
+      label: 'The token seed for custom csrf token generation.'

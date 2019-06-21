@@ -1,0 +1,990 @@
+<?php
+
+/**
+ * @file
+ * Implementation of photos_access.module.
+ */
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StreamWrapper\PrivateStream;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\node\NodeInterface;
+use Drupal\photos\PhotosUpload;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_help().
+ */
+function photos_access_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.photos_access':
+      $output = '';
+      $output .= '<p>' . t('Advanced photo access and privacy settings.') . '</p>';
+      $output .= '<p>' . t('The Album Photos module comes with the Photo Access
+      sub-module that provides settings for each album including open, locked,
+      designated users, or password required.') . '</p>';
+      $output .= '<p>' . t('See the <a href="@project_page">project page on Drupal.org</a> for more details.', [
+        '@project_page' => 'https://www.drupal.org/project/photos',
+      ]) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for form_node.
+ */
+function photos_access_form_node_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  // Get form node.
+  $node = $form_state->getFormObject()->getEntity();
+  if ($node && $node_type = $node->getType()) {
+    if (\Drupal::config('photos.settings')->get('photos_access_' . $node_type)) {
+      $nid = $node->id();
+      $form['privacy'] = [
+        '#type' => 'details',
+        '#title' => t('Privacy'),
+        '#open' => TRUE,
+        '#weight' => 1,
+        '#tree' => TRUE,
+      ];
+      // Access record(s) id.
+      $form['privacy']['access_id'] = ['#type' => 'value', '#value' => isset($node->privacy['access_id']) ? $node->privacy['access_id'] : 0];
+      $form['privacy']['vid'] = ['#type' => 'value', '#value' => isset($node->privacy['vid']) ? $node->privacy['vid'] : 0];
+      $form['privacy']['eid'] = ['#type' => 'value', '#value' => isset($node->privacy['eid']) ? $node->privacy['eid'] : 0];
+
+      $old = [];
+      if ($nid) {
+        // Check collaborators and designated users.
+        if (!isset($node->privacy['access_id']) || !$photos_album_access_id = $node->privacy['access_id']) {
+          $db = \Drupal::database();
+          $photos_album_access_id = $db->query("SELECT id FROM {photos_access_album} WHERE nid = :nid", [':nid' => $nid])->fetchField();
+        }
+        if ($photos_album_access_id) {
+          $old['updateuser'] = _photos_access_userlist($photos_album_access_id, TRUE);
+          $old['viewuser'] = _photos_access_userlist($photos_album_access_id, FALSE);
+        }
+      }
+      $default_viewid = isset($node->privacy['viewid']) ? $node->privacy['viewid'] : 0;
+      $form['privacy']['viewid'] = [
+        '#type' => 'radios',
+        '#title' => t('Privacy'),
+        '#default_value' => $default_viewid,
+        '#options' => [
+          t('Open'),
+          t('Locked'),
+          t('Designated users'),
+          t('Password required'),
+        ],
+        '#prefix' => '<div id="photos_access_privacy">',
+        '#suffix' => '</div>',
+        '#ajax' => [
+          'callback' => 'photos_access_privacy_form_ajax',
+          'event' => 'change',
+          'progress' => [
+            'type' => 'throbber',
+            'message' => NULL,
+          ],
+        ],
+      ];
+      // Prep password field.
+      $display_password = ' class="photos_access-hidden-field"';
+      if ($default_viewid == 3) {
+        $display_password = '';
+      }
+      $form['privacy']['pass'] = [
+        '#type' => 'password',
+        '#title' => t('Password'),
+        '#default_value' => isset($node->privacy['pass']) ? $node->privacy['pass'] : '',
+        '#prefix' => '<div id="photos_access_password"' . $display_password . '>',
+        '#suffix' => '</div>',
+      ];
+      // Prep designated users field.
+      $display_user = ' class="photos_access-hidden-field"';
+      if ($default_viewid == 2) {
+        $display_user = '';
+      }
+      $userhelp = t('Separated by commas. eg: username1,username2,username3.');
+      $form['privacy']['viewuser'] = [
+        '#type' => 'entity_autocomplete',
+        '#title' => t('Designated users'),
+        '#description' => t('Add people who will have access to view this node.') . ' ' . (isset($old['viewuser']) ? t('@help The following users have access:', ['@help' => $userhelp]) . ' ' : $userhelp),
+        '#target_type' => 'user',
+        '#tags' => TRUE,
+        '#default_value' => (isset($node->privacy['viewuser']) && !is_array($node->privacy['viewuser'])) ? $node->privacy['viewuser'] : NULL,
+        '#process_default_value' => FALSE,
+        '#prefix' => '<div id="photos_access_viewuser"' . $display_user . '>',
+        '#suffix' => '</div>',
+      ];
+      if (!empty($old['viewuser'])) {
+        foreach ($old['viewuser'] as $u) {
+          $form['privacy']['viewremove'][$u->uid] = [
+            '#type' => 'checkbox',
+            '#default_value' => isset($node->viewremove[$u->uid]) ? $node->viewremove[$u->uid] : '',
+            '#title' => t('Delete: @name', ['@name' => $u->name]),
+            '#prefix' => '<div id="photos_access_remove"' . $display_user . '>',
+            '#suffix' => '</div>',
+          ];
+        }
+      }
+      $form['privacy']['updateuser'] = [
+        '#type' => 'entity_autocomplete',
+        '#title' => t('Add collaborators'),
+        '#target_type' => 'user',
+        '#tags' => TRUE,
+        '#default_value' => (isset($node->privacy['updateuser']) && !is_array($node->privacy['updateuser'])) ? $node->privacy['updateuser'] : NULL,
+        '#description' => t('Add people who will have the authority to edit this node.') . ' ' . (isset($old['updateuser']) ? t('@help collaboration users list:', ['@help' => $userhelp]) . ' ' : $userhelp),
+      ];
+      if (!empty($old['updateuser'])) {
+        // @todo add option to delete all collaborators.
+        foreach ($old['updateuser'] as $u) {
+          $form['privacy']['updateremove'][$u->uid] = [
+            '#type' => 'checkbox',
+            '#default_value' => isset($node->updateremove[$u->uid]) ? $node->updateremove[$u->uid] : '',
+            '#title' => t('Delete: @name', ['@name' => $u->name]),
+            '#prefix' => '<div id="photos_access_updateremove">',
+            '#suffix' => '</div>',
+          ];
+        }
+      }
+      $form['#attached']['library'][] = 'photos_access/photos_access.node.form';
+      // Make sure $node->privacy is available in node_insert and node_update.
+      $form['#entity_builders'][] = 'photos_access_node_builder';
+      // Validate password and users.
+      $form['#validate'][] = 'photos_access_node_validate';
+    }
+    if ($node_type == 'photos') {
+      // Move files if needed.
+      foreach (array_keys($form['actions']) as $action) {
+        if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+          $form['actions'][$action]['#submit'][] = 'photos_access_move_files_form_submit';
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Update privacy form when radio selection changes.
+ */
+function photos_access_privacy_form_ajax(&$form, FormStateInterface $form_state) {
+  $privacy = $form_state->getValue('privacy');
+  $response = new AjaxResponse();
+  $response->addCommand(new CssCommand('#photos_access_viewuser', ['display' => 'none']));
+  $response->addCommand(new CssCommand('#photos_access_remove', ['display' => 'none']));
+  $response->addCommand(new CssCommand('#photos_access_password', ['display' => 'none']));
+  if ($privacy['viewid'] == 2) {
+    // Users.
+    $response->addCommand(new CssCommand('#photos_access_viewuser', ['display' => 'block']));
+    $response->addCommand(new CssCommand('#photos_access_remove', ['display' => 'block']));
+  }
+  elseif ($privacy['viewid'] == 3) {
+    // Password.
+    $response->addCommand(new CssCommand('#photos_access_password', ['display' => 'block']));
+  }
+  return $response;
+}
+
+/**
+ * Form submission handler for private file management.
+ *
+ * @see photos_access_form_node_form_alter()
+ */
+function photos_access_move_files_form_submit(&$form, FormStateInterface $form_state) {
+  $node = $form_state->getFormObject()->getEntity();
+  // Check privacy settings.
+  $privacy = $form_state->getValue('privacy');
+  $public = FALSE;
+  if (isset($privacy['viewid']) && $privacy['viewid'] == 0) {
+    // Gallery is open, move files to public.
+    $public = TRUE;
+  }
+
+  // Check for private file path.
+  if (PrivateStream::basePath()) {
+    // Move files if needed.
+    // @todo Batch API.
+    photos_access_move_files($node, $public);
+  }
+  else {
+    if (!$public) {
+      // Set warning message.
+      drupal_set_message(t('Warning: image files can still be accessed by visiting the direct URL.
+        For better security, ask your website admin to setup a private file path.'), 'warning');
+    }
+  }
+}
+
+/**
+ * Move files from public to private and private to public as needed.
+ */
+function photos_access_move_files($node, $public = TRUE) {
+  $nid = $node->id();
+  $db = \Drupal::database();
+  // Get user account.
+  $album_uid = $db->query("SELECT uid FROM {node_field_data} WHERE nid = :nid", [':nid' => $nid])->fetchField();
+  $account = \Drupal::entityManager()->getStorage('user')->load($album_uid);
+  // Query all files in album.
+  $results = $db->query("SELECT fid FROM {photos_image} WHERE pid = :nid", [':nid' => $nid]);
+  // Check file wrapper.
+  $default_scheme = file_default_scheme();
+  $private_scheme = 'private';
+  $file_wrapper = $private_scheme . '://';
+  $new_scheme = $private_scheme;
+  if ($public) {
+    // Move files to default filesystem.
+    $file_wrapper = $default_scheme . '://';
+    $new_scheme = $default_scheme;
+  }
+  $cache_tags = [];
+  $clear_private_styles = [];
+  foreach ($results as $result) {
+    $fid = $result->fid;
+    $file = File::load($fid);
+    $uri = $file->GetFileUri();
+    if (strstr($uri, $file_wrapper)) {
+      // File is already in correct place.
+      // @note continue (check all) or break (assume the rest are also the same)?
+      // - mixed private and public files could be in the same album if private
+      // - file path is setup after uploading some images.
+      continue;
+    }
+
+    // Prepare file directory.
+    PhotosUpload::path($new_scheme, $file, $account);
+    // Move file.
+    $old_file_wrapper = \Drupal::service('file_system')->uriScheme($uri) . '://';
+    if ($old_file_wrapper <> $file_wrapper) {
+      $new_uri = str_replace($old_file_wrapper, $file_wrapper, $uri);
+      file_move($file, $new_uri);
+      if ($new_scheme == 'public') {
+        $pathinfo = pathinfo($uri);
+        $ext = strtolower($pathinfo['extension']);
+        $clear_private_styles[] = 'image_' . $fid . '.' . $ext;
+      }
+      // Clear image page cache.
+      $cache_tags[] = 'photos:image:' . $fid;
+    }
+  }
+  // Check private image style settings.
+  $private_styles_setting = \Drupal::config('photos.settings')->get('photos_private_file_styles');
+  if (!empty($clear_private_styles) && $private_styles_setting == 'automatic') {
+    // Delete private image styles.
+    $private_image_styles_path = $private_scheme . '://photos/tmp_images';
+    foreach ($clear_private_styles as $basename) {
+      // Find all derivatives for this image.
+      $file_uris = file_scan_directory($private_image_styles_path, '~\b' . $basename . '\b~');
+      foreach ($file_uris as $uri => $data) {
+        // Delete.
+        file_unmanaged_delete($uri);
+      }
+    }
+  }
+  // Clear album page cache.
+  $cache_tags[] = 'photos:album:' . $nid;
+  // Invalidate image page and album page cache as needed.
+  Cache::invalidateTags($cache_tags);
+}
+
+/**
+ * Entity form builder to add the book information to the node.
+ *
+ * @todo: Remove this in favor of an entity field.
+ */
+function photos_access_node_builder($entity_type, NodeInterface $entity, &$form, FormStateInterface $form_state) {
+  if (!$form_state->isValueEmpty('privacy')) {
+    $entity->privacy = $form_state->getValue('privacy');
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_update().
+ */
+function photos_access_node_update(NodeInterface $node) {
+  if (\Drupal::config('photos.settings')->get('photos_access_' . $node->getType())) {
+    photos_access_update_access($node, $node->privacy);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_insert().
+ */
+function photos_access_node_insert(NodeInterface $node) {
+  if (\Drupal::config('photos.settings')->get('photos_access_' . $node->getType())) {
+    photos_access_update_access($node, $node->privacy);
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access().
+ */
+function photos_access_node_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  if (\Drupal::config('photos.settings')->get('photos_access_' . $entity->getType())) {
+    // Check if album password is required.
+    photos_access_request_album_password();
+  }
+
+  // No opinion.
+  return AccessResult::neutral();
+}
+
+/**
+ * Album password check.
+ */
+function photos_access_request_album_password() {
+  $args = \Drupal::moduleHandler()->invokeAll('photos_access');
+  if (is_array($args)) {
+    $current_path = \Drupal::service('path.current')->getPath();
+    $path_args = explode('/', $current_path);
+    foreach ($args as $arg) {
+      if ($arg && isset($path_args[2])) {
+        if ($path_args[2]) {
+          if ($path_args[2] == 'album') {
+            $t = _photos_access_pass_type($path_args[3]);
+          }
+          else {
+            $t = _photos_access_pass_type($path_args[2]);
+          }
+        }
+        if (isset($t['view'])) {
+          if ($t['view']->viewid == 3) {
+            photos_access_pass_validate($t);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * D7 - Implements hook_node_validate().
+ *
+ * @todo: Remove this in favor of entity field API.
+ */
+function photos_access_node_validate(&$form, FormStateInterface $form_state) {
+  // Old values.
+  // $node = $form_state->getFormObject()->getEntity();
+  // Check if users can be added to list.
+  $privacy = $form_state->getValue('privacy');
+  $access_id = $privacy['access_id'];
+  if ($access_id) {
+    // @todo handle all of this on submit.
+    if (isset($privacy['updateuser']) && !empty($privacy['updateuser'])) {
+      if ($collaborators = _photos_access_user_validate($privacy['updateuser'], $access_id, TRUE)) {
+        $form_state->setErrorByName('privacy][updateuser', $collaborators);
+      }
+    }
+    if (isset($privacy['viewid']) && $privacy['viewid'] == 2) {
+      if (isset($privacy['viewuser']) && !empty($privacy['viewuser'])) {
+        if ($designated = _photos_access_user_validate($privacy['viewuser'], $access_id)) {
+          $form_state->setErrorByName('privacy][viewuser', $designated);
+        }
+      }
+    }
+  }
+
+  // Check if password is empty.
+  if (isset($privacy['viewid']) && $privacy['viewid'] == 3) {
+    if (isset($privacy['pass']) && empty($privacy['pass'])) {
+      // Check if current password is set.
+      $db = \Drupal::database();
+      $current_pass = $db->query("SELECT pass FROM {photos_access_album} WHERE id = :id", [':id' => $access_id])->fetchField();
+      if (!$current_pass) {
+        $form_state->setErrorByName('privacy][pass', t('Password required.'));
+      }
+    }
+  }
+}
+
+/**
+ * Validate user access to node.
+ */
+function _photos_access_user_validate($users, $access_id, $collaborate = FALSE) {
+  $user = \Drupal::currentUser();
+
+  // @todo handle all of this on submit.
+  $output = '';
+
+  foreach ($users as $target) {
+    $uid = $target['target_id'];
+    if ($uid <> $user->id()) {
+      $db = \Drupal::database();
+      $access_user = $db->query("SELECT id FROM {photos_access_user} WHERE id = :id AND uid = :uid AND collaborate = :collaborate", [
+        ':id' => $access_id,
+        ':uid' => $uid,
+        ':collaborate' => $collaborate ? 1 : 0,
+      ])->fetchField();
+      if ($access_user) {
+        // @todo get name.
+        $output = t('User is already on the list: @uid.', ['@uid' => $uid]);
+      }
+    }
+    else {
+      $output = t("You do not need to add your self to this list.");
+    }
+  }
+
+  return $output;
+}
+
+/**
+ * Update access to album.
+ */
+function photos_access_update_access(NodeInterface $node, $privacy_settings) {
+  // @todo cleanup and simplify with access_id.
+  if (\Drupal::config('photos.settings')->get('photos_access_' . $node->getType())) {
+    if (!$privacy_settings['eid']) {
+      if ($privacy_settings['updateuser']) {
+        // Check if row already exists for this node.
+        $db = \Drupal::database();
+        $acc['updateid'] = $db->query("SELECT id FROM {photos_access_album} WHERE nid = :nid", [':nid' => $node->id()])->fetchField();
+        $privacy_settings['vid'] = $privacy_settings['eid'] = $acc['updateid'];
+        $db = \Drupal::database();
+        if ($acc['updateid']) {
+          // Update existing record.
+          $db->update('photos_access_album')
+            ->fields([
+              'viewid' => $privacy_settings['viewid'],
+            ])
+            ->condition('id', $acc['updateid'])
+            ->execute();
+        }
+        else {
+          // Enter new record.
+          $acc['updateid'] = $db->insert('photos_access_album')
+            ->fields([
+              'nid' => $node->id(),
+              'viewid' => $privacy_settings['viewid'],
+            ])
+            ->execute();
+        }
+        _photos_access_usersave($privacy_settings['updateuser'], $acc['updateid']);
+      }
+    }
+    else {
+      // Remove collaborators.
+      if (isset($privacy_settings['updateremove']) && !empty($privacy_settings['updateremove'])) {
+        _photos_access_usersdel($privacy_settings['updateremove'], $privacy_settings['eid']);
+      }
+      // Save collaborators.
+      if (isset($privacy_settings['updateuser']) && !empty($privacy_settings['updateuser'])) {
+        _photos_access_usersave($privacy_settings['updateuser'], $privacy_settings['eid']);
+      }
+      $acc['updateid'] = $privacy_settings['eid'];
+    }
+
+    if (!$privacy_settings['vid']) {
+      // Double check for existing photos_access_album record.
+      $db = \Drupal::database();
+      $privacy_settings['vid'] = $privacy_settings['eid'] = $db->query("SELECT id FROM {photos_access_album} WHERE nid = :nid", [':nid' => $node->id()])->fetchField();
+    }
+    if (!$privacy_settings['vid']) {
+      // Insert new record.
+      $db = \Drupal::database();
+      $acc['viewid'] = $db->insert('photos_access_album')
+        ->fields([
+          'nid' => $node->id(),
+          'viewid' => isset($privacy_settings['viewid']) ? $privacy_settings['viewid'] : 0,
+          'pass' => (isset($privacy_settings['pass']) && !empty($privacy_settings['pass'])) ? md5($privacy_settings['pass']) : 0,
+        ])
+        ->execute();
+      if ($privacy_settings['viewid'] && $privacy_settings['viewuser']) {
+        _photos_access_usersave($privacy_settings['viewuser'], $acc['viewid'], FALSE);
+      }
+    }
+    else {
+      // Update existing record.
+      switch ($privacy_settings['viewid']) {
+        case 0:
+        case 1:
+          $db = \Drupal::database();
+          $db->update('photos_access_album')
+            ->fields([
+              ':viewid' => $privacy_settings['viewid'],
+            ])
+            ->condition('id', $privacy_settings['vid'])
+            ->execute();
+          // Delete designated users.
+          _photos_access_usersdel(0, $privacy_settings['vid'], 1);
+          break;
+
+        case 2:
+          $db = \Drupal::database();
+          $db->update('photos_access_album')
+            ->fields([
+              ':viewid' => $privacy_settings['viewid'],
+            ])
+            ->condition('id', $privacy_settings['vid'])
+            ->execute();
+          if ($privacy_settings['viewuser']) {
+            _photos_access_usersave($privacy_settings['viewuser'], $privacy_settings['vid'], FALSE);
+          }
+          if (isset($privacy_settings['viewremove'])) {
+            _photos_access_usersdel($privacy_settings['viewremove'], $privacy_settings['vid']);
+          }
+          break;
+
+        case 3:
+          // @todo add option to integrate aes module and encrypt passwords with that.
+          $db = \Drupal::database();
+          $old_pass = $db->query("SELECT pass FROM {photos_access_album} WHERE id = :id", [':id' => $privacy_settings['vid']])->fetchField();
+          $pass = (isset($privacy_settings['pass']) && !empty($privacy_settings['pass'])) ? md5($privacy_settings['pass']) : $old_pass;
+          // Update password.
+          $db = \Drupal::database();
+          $query = $db->update('photos_access_album');
+          $update_fields = [
+            'viewid' => $privacy_settings['viewid'],
+          ];
+          if (!empty($pass) && $pass <> $old_pass) {
+            $update_fields['pass'] = $pass;
+          }
+          $query->fields($update_fields);
+          $query->condition('id', $privacy_settings['vid']);
+          $query->execute();
+
+          // Delete designated users.
+          _photos_access_usersdel(0, $privacy_settings['vid'], 1);
+      }
+      $acc['viewid'] = $privacy_settings['viewid'];
+      $acc['vid'] = $privacy_settings['vid'];
+    }
+  }
+}
+
+/**
+ * Implements hook_node_load().
+ */
+function photos_access_node_load($nodes) {
+  foreach ($nodes as $nid => $node) {
+    $db = \Drupal::database();
+    $result = $db->query('SELECT * FROM {photos_access_album} WHERE nid = :nid', [':nid' => $nid])->fetchObject();
+    $info = [];
+    // @todo change privacy to photos_access to avoid potential conflict.
+    if ($result) {
+      // Node privacy settings.
+      $info['privacy'] = [];
+      // @todo replace vid and eid with access_id.
+      $info['privacy']['access_id'] = $result->id;
+      $info['privacy']['vid'] = $result->id;
+      $info['privacy']['eid'] = $result->id;
+      $info['privacy']['viewid'] = $result->viewid;
+      if ($result->viewid == 3) {
+        $info['privacy']['pass'] = $result->pass;
+      }
+      // Users who can collaborate.
+      $info['privacy']['updateuser'] = _photos_access_userlist($result->id, TRUE);
+      // Users who can view.
+      $info['privacy']['viewuser'] = _photos_access_userlist($result->id, FALSE);
+      $nodes[$nid]->privacy = $info['privacy'];
+    }
+  }
+}
+
+/**
+ * Implements hook_node_delete().
+ */
+function photos_access_node_delete(NodeInterface $node) {
+  $db = \Drupal::database();
+  $db->delete('photos_access_album')
+    ->condition('nid', $node->id())
+    ->execute();
+  if (isset($node->privacy['vid'])) {
+    $db->delete('photos_access_user')
+      ->condition('id', $node->privacy['vid'])
+      ->execute();
+  }
+  if (isset($node->privacy['eid'])) {
+    $db->delete('photos_access_user')
+      ->condition('id', $node->privacy['eid'])
+      ->execute();
+  }
+}
+
+/**
+ * Delete user from album access list.
+ */
+function _photos_access_usersdel($value, $id, $type = 0) {
+  $db = \Drupal::database();
+  if ($type) {
+    // Delete all designated users.
+    $db->delete('photos_access_user')
+      ->condition('id', $id)
+      ->condition('collaborate', 0)
+      ->execute();
+  }
+  elseif (is_array($value)) {
+    $count = count($value);
+    $i = 0;
+    foreach ($value as $key => $remove) {
+      if ($remove) {
+        ++$i;
+        $db->delete('photos_access_user')
+          ->condition('id', $id)
+          ->condition('uid', $key)
+          ->execute();
+      }
+    }
+    if ($count == $i) {
+      return TRUE;
+    }
+  }
+}
+
+/**
+ * List of users who have access to album.
+ */
+function _photos_access_userlist($id, $collaborate = FALSE) {
+  $db = \Drupal::database();
+  $results = $db->query('SELECT u.uid, u.name FROM {users_field_data} u
+    INNER JOIN {photos_access_user} a ON u.uid = a.uid
+    WHERE a.id = :id AND a.collaborate = :collaborate',
+    [
+      ':id' => $id,
+      ':collaborate' => $collaborate ? 1 : 0,
+    ]
+  );
+  $users = [];
+  foreach ($results as $a) {
+    $u = new stdClass();
+    $u = $a;
+    $u->username = [
+      '#theme' => 'username',
+      '#account' => $a,
+    ];
+    $users[] = $u;
+  }
+  return $users;
+}
+
+/**
+ * Save users to access album list.
+ */
+function _photos_access_usersave($value, $id, $collaborate = TRUE) {
+  $values = [];
+  foreach ($value as $target) {
+    $values[] = [
+      'id' => $id,
+      'uid' => $target['target_id'],
+      'collaborate' => $collaborate ? 1 : 0,
+    ];
+  }
+  if (!empty($values)) {
+    // @todo check for duplicates?
+    // Insert users into photos access table.
+    $db = \Drupal::database();
+    $query = $db->insert('photos_access_user')->fields([
+      'id',
+      'uid',
+      'collaborate',
+    ]);
+    foreach ($values as $record) {
+      $query->values($record);
+    }
+    $query->execute();
+  }
+}
+
+/**
+ * Implements hook_node_access_records().
+ */
+function photos_access_node_access_records(NodeInterface $node) {
+  if (\Drupal::config('photos.settings')->get('photos_access_' . $node->getType())) {
+    if (isset($node->privacy['vid'])) {
+      // @todo cleanup?
+      $acc['updateid'] = isset($node->privacy['eid']) ? $node->privacy['eid'] : 0;
+      $acc['viewid'] = isset($node->privacy['viewid']) ? $node->privacy['viewid'] : '';
+      $acc['vid'] = $node->privacy['vid'];
+    }
+    else {
+      $acc = isset($_SESSION['photos_access_ac_' . $node->id()]) ? $_SESSION['photos_access_ac_' . $node->id()] : '';
+    }
+    if (isset($acc['vid']) || isset($acc['updateid'])) {
+      // Author has full access to all albums they create.
+      $grants[] = [
+        'realm' => 'photos_access_author',
+        'gid' => $node->getOwnerId(),
+        'grant_view' => 1,
+        'grant_update' => 1,
+        'grant_delete' => 1,
+        'priority' => 0,
+      ];
+      // If viewid is 1:locked, only author can view it.
+      if ($acc['viewid'] <> 1) {
+        // Open is 0.
+        $photos_access_gid = 0;
+        if ($acc['viewid'] <> 0) {
+          // If not open use {node}.nid.
+          $photos_access_gid = $node->id();
+        }
+        $grants[] = [
+          'realm' => 'photos_access',
+          'gid' => $photos_access_gid,
+          'grant_view' => 1,
+          'grant_update' => 0,
+          'grant_delete' => 0,
+          'priority' => 0,
+        ];
+      }
+      // Access for collaborators.
+      if (isset($acc['updateid']) && !empty($acc['updateid'])) {
+        $grants[] = [
+          'realm' => 'photos_access_update',
+          'gid' => $node->id(),
+          'grant_view' => 1,
+          'grant_update' => 1,
+          'grant_delete' => 0,
+          'priority' => 0,
+        ];
+      }
+      return $grants;
+    }
+    if (isset($_SESSION['photos_access_ac_' . $node->id()])) {
+      unset($_SESSION['photos_access_ac_' . $node->id()]);
+    }
+  }
+}
+
+/**
+ * Implements hook_photos_access().
+ */
+function photos_access_photos_access() {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  if (isset($path_args[2]) && $path_args[1] == 'node' && is_numeric($path_args[2])) {
+    return [$path_args[2]];
+  }
+}
+
+/**
+ * Implements hook_node_grants().
+ */
+function photos_access_node_grants(AccountInterface $account, $op) {
+  // Always grant access to view open albums.
+  $viewid = [0];
+
+  // Set uid for author realm to access own albums.
+  $grants['photos_access_author'] = [$account->id()];
+
+  // Check for private albums that user has access to.
+  $db = \Drupal::database();
+  $result = $db->query('SELECT a.*, b.* FROM {photos_access_album} a INNER JOIN {photos_access_user} b ON a.id = b.id WHERE b.uid = :uid',
+    [
+      ':uid' => $account->id(),
+    ]
+  );
+  foreach ($result as $a) {
+    if ($a->collaborate) {
+      $updateid[] = $a->nid;
+    }
+    elseif ($a->viewid) {
+      $viewid[] = $a->nid;
+    }
+  }
+
+  // hook_photos_access()
+  // - Return array of nids to check for user access.
+  // - Only album nids that require password.
+  $args = \Drupal::moduleHandler()->invokeAll('photos_access');
+
+  if (is_array($args)) {
+    foreach ($args as $arg) {
+      $result = $db->query('SELECT id, nid, viewid, pass FROM {photos_access_album} WHERE nid = :nid', [':nid' => $arg]);
+      foreach ($result as $a) {
+        // Password is required, check if password is set.
+        if ($a->viewid == 3 && isset($_SESSION[$a->nid . '_' . session_id()]) && $_SESSION[$a->nid . '_' . session_id()] == $a->pass) {
+          $viewid[] = $a->nid;
+        }
+      }
+    }
+  }
+
+  switch ($op) {
+    case 'view':
+      // Array of gid's for realm.
+      $grants['photos_access'] = $viewid;
+      if (isset($updateid[0])) {
+        $grants['photos_access_update'] = $updateid;
+      }
+      break;
+
+    case 'update':
+      if (isset($updateid[0])) {
+        $grants['photos_access_update'] = $updateid;
+      }
+      break;
+  }
+  return $grants;
+}
+
+/**
+ * Check validation type.
+ */
+function _photos_access_pass_type($id, $op = 0) {
+  $db = \Drupal::database();
+  if ($op) {
+    // photos.module.
+    $result = $db->query('SELECT a.*, au.collaborate, n.uid, n.type, n.status FROM {photos_access_album} a
+      INNER JOIN {node_field_data} n ON a.nid = n.nid
+      INNER JOIN {photos_image} p ON a.nid = p.pid
+      LEFT JOIN {photos_access_user} au ON a.id = au.id
+      WHERE p.fid = :id',
+      [':id' => $id]
+    );
+  }
+  else {
+    $result = $db->query('SELECT a.*, au.collaborate, n.uid, n.type, n.status FROM {photos_access_album} a
+      INNER JOIN {node_field_data} n ON a.nid = n.nid
+      LEFT JOIN {photos_access_user} au ON a.id = au.id
+      WHERE a.nid = :id',
+      [':id' => $id]
+    );
+  }
+  $t = [];
+  foreach ($result as $ac) {
+    if ($ac->viewid == 3) {
+      // Password authentication.
+      $t['view'] = $ac;
+    }
+    elseif ($ac->collaborate && $ac->pass) {
+      // Collaborate privileges.
+      $t['update'] = $ac;
+    }
+    else {
+      // Continue to node_access verification.
+      $t['node'] = $ac;
+    }
+  }
+  return $t;
+}
+
+/**
+ * Check password on node page.
+ */
+function photos_access_pass_validate($t) {
+  $user = \Drupal::currentUser();
+  // Check if admin or author.
+  if ($user->id() == 1 || isset($t['view']->uid) && $t['view']->uid == $user->id()) {
+    return TRUE;
+  }
+  if (isset($t['update']->pass)) {
+    // Check if collaborator.
+    $db = \Drupal::database();
+    $result = $db->query('SELECT uid FROM {photos_access_user} WHERE id = :id', [':id' => $t['update']->id]);
+    foreach ($result as $a) {
+      if ($a->uid == $user->id()) {
+        return TRUE;
+      }
+    }
+  }
+  if ($t['view']->nid) {
+    if (isset($_SESSION[$t['view']->nid . '_' . session_id()])) {
+      // Check if password matches node password.
+      if ($_SESSION[$t['view']->nid . '_' . session_id()] == $t['view']->pass) {
+        return TRUE;
+      }
+      // If password is set, but does not match re enter password.
+      drupal_set_message(t('Password has expired.'));
+
+      // Redirect.
+      $current_path = \Drupal::service('path.current')->getPath();
+      $redirect_url = Url::fromUri('base:privacy/pass/' . $t['view']->nid, [
+        'query' => [
+          'destination' => $current_path,
+        ],
+      ])->toString();
+      $response = new RedirectResponse($redirect_url);
+      $response->send();
+      exit();
+    }
+    else {
+      // If password is not set, password is required.
+      drupal_set_message(t('Password required.'));
+
+      // Redirect.
+      $current_path = \Drupal::service('path.current')->getPath();
+      $redirect_url = Url::fromUri('base:privacy/pass/' . $t['view']->nid, [
+        'query' => [
+          'destination' => $current_path,
+        ],
+      ])->toString();
+      $response = new RedirectResponse($redirect_url);
+      $response->send();
+      exit();
+    }
+  }
+}
+
+/**
+ * Check if user account exists.
+ */
+function _photos_access_user($u) {
+  if (isset($u['name'])) {
+    $db = \Drupal::database();
+    $ac = $db->query("SELECT uid, name FROM {users_field_data} WHERE name = :name", [':name' => $u['name']])->fetchObject();
+  }
+  elseif (isset($u['uid'])) {
+    $db = \Drupal::database();
+    $ac = $db->query('SELECT uid, name FROM {users_field_data} WHERE uid = :uid', [':uid' => $u['uid']])->fetchObject();
+  }
+  if (isset($ac->uid)) {
+    return $ac;
+  }
+}
+
+/**
+ * Helper function to return options for views album privacy filter.
+ */
+function _photos_access_album_views_options() {
+  return [
+    0 => t('Open'),
+    1 => t('Locked'),
+    2 => t('Designated users'),
+    3 => t('Password required'),
+  ];
+}
+
+/**
+ * Implements hook_views_data().
+ */
+function photos_access_views_data() {
+  $data = [];
+  $data['photos_access_album'] = [];
+  $data['photos_access_album']['table'] = [];
+  $data['photos_access_album']['table']['group'] = t('Photos');
+  $data['photos_access_album']['table']['provider'] = 'photos_access';
+
+  // Join node_field_data.
+  $data['photos_access_album']['table']['join'] = [
+    'node_field_data' => [
+      'left_field' => 'nid',
+      'field' => 'nid',
+    ],
+  ];
+
+  // Numeric field, exposed as a field, sort, filter, and argument.
+  $data['photos_access_album']['viewid'] = [
+    'title' => t('Privacy'),
+    'help' => t('Album privacy setting.'),
+    'field' => [
+      'id' => 'numeric',
+    ],
+    'sort' => [
+      'id' => 'standard',
+    ],
+    'filter' => [
+      'id' => 'in_operator',
+      'options callback' => '_photos_access_album_views_options',
+    ],
+    'argument' => [
+      'id' => 'numeric',
+    ],
+  ];
+
+  return $data;
+}

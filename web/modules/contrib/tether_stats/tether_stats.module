@@ -1,0 +1,126 @@
+<?php
+
+/**
+ * @file
+ * Drupal Module: Tether Stats.
+ *
+ * This module defines a suite of statistics gathering and managing tools.
+ */
+
+use Drupal\Component\Serialization\Json;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_help().
+ */
+function tether_stats_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+
+  $help = NULL;
+
+  switch ($route_name) {
+
+    case 'tether_stats.settings_form':
+      $help = '<p>' . t('Configure your Tether Stats settings here. Stat collection is not initially turned on.') . '</p>';
+      break;
+
+    case 'tether_stats.element_finder_form':
+      $help = '<p>' . t('Use the form below to find a specific Tether Stats element. Please refer to the README.txt file for more detail on elements and other general concepts related to Tether Stats.') . '</p>' .
+        '<p>' . t('If the Tether Stats Charts module is installed, you will get a link to a chart report page for any found element.') . '</p>';
+      break;
+
+    case 'entity.tether_stats_derivative.collection':
+      $help = '<p>' . t('Derivatives are used to create additional stat elements which relate to other basic elements. Please refer to the README.txt file for more detail on derivatives and other general concepts related to Tether Stats.') . '</p>';
+      break;
+
+  }
+  return $help;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function tether_stats_theme($existing, $type, $theme, $path) {
+
+  return [
+    'tether_stats_overview_page' => [
+      'render element' => 'page',
+    ],
+    'tether_stats_element_overview_page' => [
+      'render element' => 'page',
+    ],
+    'tether_stats_chart_google' => [
+      'render element' => 'element',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for the element overview page.
+ *
+ * Default template: tether-stats-element-overview-page.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing the following key:
+ *   - element: An associative array containing the element identity set as
+ *     well as the id and element type.
+ */
+function template_preprocess_tether_stats_element_overview_page(array &$variables) {
+
+  $variables['element'] = $variables['page']['#element_details'];
+}
+
+/**
+ * Prepares variables for the overview page.
+ *
+ * Default template: tether-stats-overview-page.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing the following keys:
+ *   - chart: The TetherStatsChart object for the chart.
+ *   - empty: The text to display when there is no chart data.
+ *   - iterate: FALSE if chart not iterable or associative array with
+ *     the following keys:
+ *     - start: The start DateTime for the chart period.
+ *     - previous: Boolean to determine if chart can be iterated backwards.
+ *     - next: Boolean to determine if chart can be iterated forwards.
+ *   - iterate_attributes: Attributes for the iterator HTML tag.
+ */
+function template_preprocess_tether_stats_chart_google(array &$variables) {
+
+  $element = $variables['element'];
+  $chart = $element['#chart'];
+
+  $variables['chart'] = $chart;
+  $variables['empty'] = isset($variables['element']['#empty']) ? $variables['element']['#empty'] : NULL;
+
+  $variables['iterate'] = FALSE;
+
+  if (!empty($element['#iterate'])) {
+
+    $variables['iterate'] = $element['#iterate'];
+
+    $variables['iterate_attributes'] = new Attribute(['data-start' => $element['#iterate']['start']->getTimestamp()]);
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Adds the tether_stats javascript library as well as settings data. No actual
+ * stats are collected at this point, but an element entry in the database
+ * should have been created for the current page.
+ *
+ * With the element ID of the current page added to the settings, the javascript
+ * library will be able to track the page "hit" event later using AJAX and
+ * reference it.
+ */
+function tether_stats_page_attachments(array &$attachments) {
+
+  $manager = \Drupal::service('tether_stats.manager');
+
+  if ($manager->isActive() && $manager->hasElement()) {
+
+    $attachments['#attached']['library'][] = 'tether_stats/tether_stats.corescripts';
+    $attachments['#attached']['drupalSettings']['tetherStats']['elid'] = $manager->getElement()->getId();
+  }
+}

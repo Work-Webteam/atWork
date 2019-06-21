@@ -1,0 +1,5 @@
+photos.admin:
+  title: 'Photos'
+  description: 'Configure global Photos module settings.'
+  parent: system.admin_config_media
+  route_name: photos.admin

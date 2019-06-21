@@ -1,0 +1,16 @@
+name: Insert
+# version: 0.1
+type: module
+description: "Assists in inserting files, images, or other media into the body field or other text areas."
+package: Field types
+# core: 8.x
+configure: insert.config
+dependencies:
+  - image
+  - file
+
+# Information added by Drupal.org packaging script on 2018-01-01
+version: '8.x-1.0'
+core: '8.x'
+project: 'insert'
+datestamp: 1514827688

@@ -1,0 +1,13 @@
+create polls:
+  title: 'Create polls'
+edit own polls:
+  title: 'Edit own polls'
+administer polls:
+  title: 'Administer polls'
+  restrict access: true
+access polls:
+  title: 'View polls'
+access poll overview:
+  title: 'Access the Poll overview page'
+cancel own vote:
+  title: 'Cancel own vote'

@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Main module file for hooks related to testing Forward.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_help().
+ */
+function forward_test_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.forward_test':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This is a test help page for the forward_test module for the purpose of testing forward functionality.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_forward_entity().
+ */
+function forward_test_forward_entity(UserInterface $account, EntityInterface $entity, FormStateInterface $form_state) {
+  // Example: redirect to the home page.
+  $form_state->setRedirect('<front>');
+}

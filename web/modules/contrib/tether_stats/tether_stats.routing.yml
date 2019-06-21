@@ -1,0 +1,94 @@
+tether_stats.settings_form:
+  path: '/admin/config/system/tether-stats'
+  defaults:
+    _form: '\Drupal\tether_stats\Form\TetherStatsSettingsForm'
+    _title: 'Tether Stats Settings'
+  requirements:
+    _permission: 'administer tether stats'
+
+tether_stats.overview:
+  path: '/admin/config/system/tether-stats/overview'
+  defaults:
+    _controller: '\Drupal\tether_stats\Controller\TetherStatsOverviewController::overviewPage'
+    _title: 'Tether Stats Overview'
+  requirements:
+    _permission: 'administer tether stats'
+
+tether_stats.overview.element:
+  path: '/admin/config/system/tether-stats/overview/element'
+  defaults:
+    _controller: '\Drupal\tether_stats\Controller\TetherStatsOverviewController::elementOverviewPage'
+    _title: 'Element Overview'
+  requirements:
+    _permission: 'administer tether stats'
+
+tether_stats.element_finder_form:
+  path: '/admin/config/system/tether-stats/elements'
+  defaults:
+    _form: '\Drupal\tether_stats\Form\TetherStatsElementFinderForm'
+    _title: 'Element Finder Form'
+  requirements:
+    _permission: 'administer tether stats'
+
+entity.tether_stats_derivative.collection:
+  path: '/admin/config/system/tether-stats/derivatives'
+  defaults:
+    _entity_list: 'tether_stats_derivative'
+    _title: 'Tether Stats Derivatives'
+  requirements:
+    _permission: 'administer tether stats'
+
+entity.tether_stats_derivative.add_form:
+  path: '/admin/config/system/tether-stats/derivatives/add'
+  defaults:
+    _entity_form: 'tether_stats_derivative.default'
+    _title: 'Add Derivative Form'
+  requirements:
+    _permission: 'administer tether stats'
+
+entity.tether_stats_derivative.delete_form:
+  path: '/admin/config/system/tether-stats/derivatives/{tether_stats_derivative}/delete'
+  defaults:
+    _entity_form: 'tether_stats_derivative.delete'
+    _title: 'Delete Derivative Form'
+  requirements:
+    _permission: 'administer tether stats'
+
+entity.tether_stats_derivative.enable:
+  path: '/admin/config/system/tether-stats/derivatives/{tether_stats_derivative}/enable'
+  defaults:
+    _entity_form: 'tether_stats_derivative.enable'
+    _title: 'Delete Derivative Form'
+  requirements:
+    _permission: 'administer tether stats'
+
+entity.tether_stats_derivative.disable:
+  path: '/admin/config/system/tether-stats/derivatives/{tether_stats_derivative}/disable'
+  defaults:
+    _entity_form: 'tether_stats_derivative.disable'
+    _title: 'Delete Derivative Form'
+  requirements:
+    _permission: 'administer tether stats'
+
+tether_stats.derivative.autocomplete:
+  path: '/tether_stats/autocomplete'
+  defaults:
+    _controller: '\Drupal\tether_stats\Controller\TetherStatsAutocompleteController::derivativeAutocomplete'
+  requirements:
+    _permission: 'administer tether stats'
+
+tether_stats.track:
+  path: '/tether-stats/track'
+  defaults:
+    _controller: '\Drupal\tether_stats\Controller\TetherStatsTrackController::track'
+    _title: 'Track Activity'
+  requirements:
+    _permission: 'access content'
+
+tether_stats.chart.data:
+  path: '/tether-stats/chart-data'
+  defaults:
+    _controller: '\Drupal\tether_stats\Controller\TetherStatsChartController::iterate'
+    _title: 'Chart Data'
+  requirements:
+    _permission: 'view tether stats chart data'

@@ -1,0 +1,12 @@
+.photos_access_remove,
+#photos_access_password,
+#photos_access_viewuser {
+  display: none;
+}
+div.photos_access_updateremove {
+  float: left;
+  padding-right: 3px;
+}
+#edit-privacy-updateuser-wrapper {
+  clear: both;
+}

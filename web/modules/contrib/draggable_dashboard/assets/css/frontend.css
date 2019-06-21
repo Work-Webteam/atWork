@@ -1,0 +1,99 @@
+.draggable-dashboard {
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
+  display:flex;
+  position: relative;
+}
+.draggable-dashboard .draggable-dashboard-column{
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 1%;
+  min-height: 200px;
+}
+.draggable-dashboard .col-3 {
+  width: 25%;
+}
+.draggable-dashboard .col-4 {
+  width: 33%;
+}
+.draggable-dashboard .col-6 {
+  width: 50%;
+}
+.draggable-dashboard .col-12 {
+  width: 100%;
+}
+.draggable-dashboard .draggable-dashboard-block{
+  background-color: #f6f6f2;
+  border: 1px solid #f9f9f9;
+  margin: 0 0 20px;
+}
+.draggable-dashboard-block__header {
+  position: relative;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d6d6d6;
+  min-height: 1.5em;
+  padding: 10px 15px;
+}
+.draggable-dashboard-block__content {
+  padding: 15px;
+}
+.draggable-dashboard .draggable-dashboard-block .draggable-dashboard-block__header h2 {
+  max-width: 90%;
+  margin: 0;
+}
+
+.draggable-dashboard .draggable-dashboard-block h2 {
+  margin: 0 0 0.5em;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 1.071em;
+}
+.draggable-dashboard .draggable-dashboard-block .block > h2:first-child {
+  visibility: hidden;
+  line-height: 0;
+}
+.draggable-dashboard .draggable-dashboard-placeholder {
+  visibility: visible !important;
+  margin: 5px 0;
+  padding: 0;
+  border: 3px dashed #ccc;
+}
+.draggable-dashboard .draggable-dashboard-placeholder * {
+  visibility: hidden;
+}
+.draggable-dashboard-block__controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.draggable-dashboard__icon {
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  padding: 0.4em;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-position: center center;
+  vertical-align: middle;
+}
+.draggable-dashboard__icon--collapse {
+  background-image: url(../minus.gif);
+}
+.draggable-dashboard__icon--expand {
+  background-image: url(../plus.gif);
+}
+.draggable-dashboard__icon--maximize {
+  background-image: url(../maximize.gif);
+}
+.draggable-dashboard__icon--minimize {
+  background-image: url(../minimize.gif);
+}
+.draggable-dashboard-block--maximized {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}

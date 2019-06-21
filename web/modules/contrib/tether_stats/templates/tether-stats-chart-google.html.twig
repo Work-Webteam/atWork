@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Template for a google stats chart.
+ *
+ * This template will generate HTML for a rendering a stats chart using
+ * the Google Charts API.
+ *
+ * Available variables:
+ *   - chart: The TetherStatsChart object for the chart.
+ *   - empty: The text to display when there is no chart data.
+ *   - iterate: FALSE if chart not iterable or associative array with
+ *     the following keys:
+ *     - start: The start DateTime for the chart period.
+ *     - previous: Boolean to determine if chart can be iterated backwards.
+ *     - next: Boolean to determine if chart can be iterated forwards.
+ *   - iterate_attributes: Attributes for the iterator HTML tag.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="tether_stats-chart tether_stats-chart-google {{ chart.getClass() }}">
+  {% if chart.hasData() %}
+    <div id="{{ chart.id() }}" class="tether_stats-chart"></div>
+    {% if iterate %}
+      <div class="tether_stats-chart-iterator"{{ iterate_attributes }}>
+        <a class="tether_stats-previous{% if not iterate.previous %} tether_stats-disabled{% endif %}" href="#">«</a>
+        <a class="tether_stats-next{% if not iterate.next %} tether_stats-disabled{% endif %}" href="#">»</a>
+      </div>
+    {% endif %}
+  {% elseif empty %}
+    <p>{{ empty }}</p>
+  {% endif %}
+</div>

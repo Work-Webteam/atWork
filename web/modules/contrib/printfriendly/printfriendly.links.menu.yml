@@ -1,0 +1,6 @@
+printfriendly.config:
+  title: 'Printfriendly '
+  description: 'Printfriendly Admin Configuration'
+  parent: system.admin_config
+  route_name: printfriendly.config
+  weight: 100

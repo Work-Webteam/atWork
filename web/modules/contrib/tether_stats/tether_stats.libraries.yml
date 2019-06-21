@@ -1,0 +1,45 @@
+tether_stats.corescripts:
+  version: VERSION
+  js:
+    js/tether_stats.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+    - core/drupal.ajax
+
+tether_stats.chart:
+  version: VERSION
+  js:
+    js/tether_stats.chart.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+    - core/drupal.ajax
+
+tether_stats.chart.google:
+  version: VERSION
+  js:
+    js/tether_stats.chart.google.js: {}
+  css:
+    theme:
+      css/tether_stats.chart.google.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once
+    - core/drupal.ajax
+
+tether_stats.chart.google.api:
+  license:
+    name: Terms of Service
+    url: https://developers.google.com/chart/terms
+    gpl-compatible: false
+  version: VERSION
+  js:
+    https://www.google.com/jsapi: { type: external }
+  dependencies:
+    - core/jquery
+    - core/drupal

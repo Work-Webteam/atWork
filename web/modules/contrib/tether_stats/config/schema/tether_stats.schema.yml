@@ -1,0 +1,70 @@
+# Schema for the configuration files of the tether_stats module.
+
+tether_stats.settings:
+  type: config_object
+  label: 'Tether Stats settings'
+  mapping:
+    active:
+      type: boolean
+      label: 'Activate stat tracking'
+    filter:
+      type: mapping
+      label: 'Element Filter'
+      mapping:
+        mode:
+          type: string
+          label: 'Use inclusion or exclusion mode'
+        rules:
+          type: mapping
+          label: 'Rules'
+          mapping:
+            route:
+              type: sequence
+              label: 'Route filter rules'
+              sequence:
+                type: string
+                label: 'Route name'
+            url:
+              type: sequence
+              label: 'Url filter rules'
+              sequence:
+                type: string
+                label: 'Url'
+    allow_query_string_elements:
+      type: boolean
+      label: 'Allow query string to define new elements'
+    chart_plugin:
+      type: string
+      label: 'Chart Renderer Plugin'
+    advanced:
+      type: mapping
+      label: 'Advanced configuration'
+      mapping:
+        element_ttl:
+          type: integer
+          label: 'Element time to live'
+        first_activation_time:
+          type: integer
+          label: 'First activation time'
+
+# Schema for the Tether Stats derivative configuration entity.
+
+tether_stats.derivative.*:
+  type: config_entity
+  label: 'Tether Stats Derivative'
+  mapping:
+    name:
+      type: string
+      label: 'Name'
+    status:
+      type: boolean
+      label: 'Enabled'
+    description:
+      type: string
+      label: 'Description'
+    derivativeEntityType:
+      type: string
+      label: 'Entity Type Constraint'
+    derivativeBundle:
+      type: string
+      label: 'Bundle Constraint'

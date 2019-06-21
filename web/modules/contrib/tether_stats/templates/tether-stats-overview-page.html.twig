@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the Tether Stats overview page.
+ *
+ * This template is used when generating the overview page. This will
+ * show some simple charts from recent stats data.
+ *
+ * Available variables:
+ * - page: The page to be rendered.
+ * - page.top_hit_pie_chart: Pie chart of the top five pages.
+ * - page.top_hit_combo_chart: Combo chart of the top three pages.
+ * - page.top_hit_table: Table of the top ten pages.
+ *
+ * @ingroup themeable
+ */
+#}
+<h2>{{ 'Hit Activity For @date' | t({"@date" : "-1days" | date('M j, Y') }) }}</h2>
+
+<h3>{{ 'Pie Chart Comparing Top Five Pages' | t }}</h3>
+
+{{ page.top_hit_pie_chart }}
+
+<h3>{{ 'Performance Chart of Top Three Pages' | t }}</h3>
+
+{{ page.top_hit_combo_chart }}
+
+<h3>{{ 'Top Ten Page Hits' | t }}</h3>
+
+{{ page.top_hit_table }}

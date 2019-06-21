@@ -1,0 +1,25 @@
+name: printfriendly
+description: Easily print any page through Printfriendly.
+type: module
+# core: 8.x
+configure: admin/config/services/printfriendly
+
+
+
+# Information added by Drupal.org packaging script on 2017-02-14
+# version: '8.x-2.x-dev'
+# core: '8.x'
+# project: 'printfriendly'
+# datestamp: 1487068385
+
+# Information added by Drupal.org packaging script on 2017-07-27
+# version: '8.x-3.2'
+# core: '8.x'
+# project: 'printfriendly'
+# datestamp: 1501169261
+
+# Information added by Drupal.org packaging script on 2019-03-19
+version: '8.x-3.4'
+core: '8.x'
+project: 'printfriendly'
+datestamp: 1552999094

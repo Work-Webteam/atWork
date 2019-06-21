@@ -1,0 +1,44 @@
+photos.dragndrop:
+  version: 1.x
+  css:
+    theme:
+      css/photos.dragndrop.css: {}
+  js:
+    js/photos.dragndrop.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui
+    - core/jquery.ui.draggable
+    - core/jquery.ui.sortable
+    - core/drupal
+    - core/drupalSettings
+
+photos.admin:
+  version: 1.x
+  css:
+    theme:
+      css/photos.admin.css: {}
+
+photos.album-grid:
+  version: 1.x
+  css:
+    theme:
+      css/photos.grid.css: {}
+
+photos.jeditable:
+  title: 'Jeditable'
+  website: http://www.appelsiini.net/projects/jeditable
+  version: 1.7.1
+  js:
+    /libraries/jeditable/jquery.jeditable.mini.js: { minified: true }
+    js/photos.jeditable.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+
+photos.block.information:
+  version: 1.x
+  css:
+    theme:
+      css/block/photos_information.css: {}

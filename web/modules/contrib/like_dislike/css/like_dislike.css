@@ -1,0 +1,33 @@
+.like_dislike {
+    display: inline-block;
+}
+.like_dislike .like, .like_dislike .dislike {
+    border: 1px solid #1d84c3;
+    border-radius: 5px;
+    float: left;
+    margin: 2px 0;
+    padding: 4px;
+    width: 100px;
+}
+.like_dislike .like a, .like_dislike .dislike a {
+    border: medium none;
+    float: left;
+    padding-left: 10px;
+    color: #1d84c3;
+}
+.like_dislike .like, .like_dislike .dislike {
+    text-align: center;
+}
+.like_dislike .like span, .like_dislike .dislike span {
+    float: right;
+    padding-right: 10px;
+}
+.like_dislike .dislike {
+    margin-left: 10px;
+}
+
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front {
+    left: 25% !important;
+    top: 2% !important;
+    width: 50% !important;
+}

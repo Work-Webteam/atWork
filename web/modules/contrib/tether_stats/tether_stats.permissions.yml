@@ -1,0 +1,7 @@
+administer tether stats:
+  title: 'Administer Tether Stats'
+  description: 'Manage stat collection settings.'
+
+view tether stats chart data:
+  title: 'View Tether Stats Data'
+  description: 'Users can view statistical data in charts. A user with this permission may access all data related to an iterative chart. Without this permission, iterative charts will not work. Please see the tether_stats_charts README.txt for security details.'

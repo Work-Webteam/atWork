@@ -1,0 +1,10 @@
+name: Simplify Menu
+description: 'Adds a TwigExtension that grants access to Drupal''s menu render array so it can be used within a twig template.'
+type: module
+# core: '8.x'
+
+# Information added by Drupal.org packaging script on 2017-10-27
+version: '8.x-2.0'
+core: '8.x'
+project: 'simplify_menu'
+datestamp: 1509116288

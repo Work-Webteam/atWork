@@ -1,0 +1,17 @@
+access forward:
+  title: 'Access forward'
+  description: 'Forward pages.'
+
+administer forward:
+  title: 'Administer forward'
+  description: 'Administer forward configuration.'
+  restrict access: TRUE
+
+override email address:
+  title: 'Override email address'
+  description: 'Let the logged in user change their email address on the Forward form.'
+
+override flood control:
+  title: 'Override flood control'
+  description: 'Override limits on how many pages can be Forwarded per hour.'
+  restrict access: TRUE

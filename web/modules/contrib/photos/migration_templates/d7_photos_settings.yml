@@ -1,0 +1,75 @@
+id: d7_photos_settings
+label: Photos admin configuration
+migration_tags:
+  - Drupal 7
+source:
+  plugin: variable
+  source_module: photos
+  variables:
+    - photos_access_photos
+    - photos_additional_sizes
+    - photos_comment
+    - photos_cover_imagesize
+    - photos_display_full_imagesize
+    - photos_display_full_viewnum
+    - photos_display_imageorder
+    - photos_display_list_imagesize
+    - photos_display_page_display
+    - photos_display_page_user
+    - photos_display_teaser_display
+    - photos_display_teaser_imagesize
+    - photos_display_teaser_user
+    - photos_display_teaser_viewnum
+    - photos_display_user
+    - photos_display_view_imagesize
+    - photos_display_viewpager
+    - photos_exif
+    - photos_exif_cache
+    - photos_image_count
+    - photos_num
+    - photos_pager_imagesize
+    - photos_path
+    - photos_plupload_status
+    - photos_rname
+    - photos_size
+    - photos_size_max
+    - photos_upzip
+    - photos_user_count_cron
+    - photos_pnum_2
+    - photos_pnum_3
+process:
+  photos_access_photos: photos_access_photos
+  photos_additional_sizes: photos_additional_sizes
+  photos_comment: photos_comment
+  photos_cover_imagesize: photos_cover_imagesize
+  photos_display_full_imagesize: photos_display_full_imagesize
+  photos_display_full_viewnum: photos_display_full_viewnum
+  photos_display_imageorder: photos_display_imageorder
+  photos_display_list_imagesize: photos_display_list_imagesize
+  photos_display_page_display: photos_display_page_display
+  photos_display_page_user: photos_display_page_user
+  photos_display_teaser_display: photos_display_teaser_display
+  photos_display_teaser_imagesize: photos_display_teaser_imagesize
+  photos_display_teaser_user: photos_display_teaser_user
+  photos_display_teaser_viewnum: photos_display_teaser_viewnum
+  photos_display_user: photos_display_user
+  photos_display_view_imagesize: photos_display_view_imagesize
+  photos_display_viewpager: photos_display_viewpager
+  photos_exif: photos_exif
+  photos_exif_cache: photos_exif_cache
+  photos_image_count: photos_image_count
+  photos_num: photos_num
+  photos_pager_imagesize: photos_pager_imagesize
+  photos_path: photos_path
+  photos_plupload_status: photos_plupload_status
+  photos_rname: photos_rname
+  photos_size: photos_size
+  photos_size_max: photos_size_max
+  photos_upzip: photos_upzip
+  photos_user_count_cron: photos_user_count_cron
+  photos_pnum_authenticated: photos_pnum_2
+  photos_pnum_administrator: photos_pnum_3
+destination:
+  plugin: config
+  config_name: photos.settings
+  destination_module: photos

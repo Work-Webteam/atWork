@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Template file for images inserted via the Insert module.
+ *
+ * Available variables:
+ * - class: A set of classes assigned to this image (if any).
+ * - entity_type: The type of the entity inserted.
+ * - field_type: The field type the rendered template belongs to, i.e. "file" or
+ *   "image".
+ * - height: The height of the image (if known).
+ * - item: The complete item being inserted.
+ * - link_to_original: Whether the image shall link to the original image.
+ * - style_name: The Image style being used.
+ * - url: The URL to the image being inserted visually; May be a styled image or
+ *   the full size image.
+ * - url_original: The URL to the original (full size) image.
+ * - uuid: The file's UUID.
+ * - width: The width of the image (if known).
+ *
+ * Note that ALT and Title fields should not be filled in here, instead they
+ * should use placeholders that will be updated through JavaScript when the
+ * image is inserted. Available placeholders:
+ * - __alt__: The ALT text, intended for use in the <img> tag.
+ * - __title__: The Title text, intended for use in the <img> tag.
+ * - __description__: A description of the image, sometimes used as a caption.
+ * - __filename__: The file name.
+ * - __[token]_or_filename__: Any of the above tokens if available, otherwise
+ *   use the file's name. i.e. __title_or_filename__.
+ */
+#}
+{% spaceless %}
+
+{% set classes = [] %}
+
+{% if style_name != 'image' %}
+  {% set classes = classes|merge(['image-' ~ style_name]) %}
+{% endif %}
+
+{% if class %}
+  {% set classes = classes|merge([class]) %}
+{% endif %}
+
+{% if link_to_original %}
+  <a href="{{ url_original }}"{% if class %} class="{{ class }}"{% endif %} data-insert-type="{{ field_type }}">
+{% endif %}
+
+<img src="{{ url }}" {% if width and height %}width="{{ width }}" height="{{ height }}" {% endif %}alt="__alt__" title="__title__"{% if classes|length %} class="{{ classes|join(' ') }}"{% endif %} data-insert-type="{{ field_type }}" data-entity-type="{{ entity_type }}" data-entity-uuid="{{ uuid }}" />
+
+{% if link_to_original %}
+  </a>
+{% endif %}
+
+{% endspaceless %}

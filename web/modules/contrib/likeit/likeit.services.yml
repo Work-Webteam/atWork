@@ -1,0 +1,4 @@
+services:
+  likeit_csrf_token:
+    class: Drupal\likeit\Access\LikeItCsrfTokenGenerator
+    arguments: ['@private_key', '@config.factory', '@settings']

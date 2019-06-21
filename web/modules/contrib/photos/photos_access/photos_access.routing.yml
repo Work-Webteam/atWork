@@ -1,0 +1,12 @@
+photos_access.page:
+  path: '/privacy/pass/{node}'
+  defaults:
+    _title: 'Please enter password'
+    _controller: '\Drupal\photos_access\Controller\DefaultController::photosAccessPasswordPage'
+  requirements:
+    _permission: 'access content'
+    node: \d+
+  options:
+    parameters:
+      node:
+        type: entity:node

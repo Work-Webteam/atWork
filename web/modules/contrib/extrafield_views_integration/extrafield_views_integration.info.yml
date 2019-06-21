@@ -1,0 +1,10 @@
+name: Extrafield Views Integration
+type: module
+description: 'Integrate Drupal Core extrafields from type display in views.'
+package: Development
+# core: 8.x
+# Information added by Drupal.org packaging script on 2016-04-01
+version: '8.x-1.0'
+core: '8.x'
+project: 'extrafield_views_integration'
+datestamp: 1459547341

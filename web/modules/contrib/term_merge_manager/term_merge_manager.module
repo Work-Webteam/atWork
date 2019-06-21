@@ -1,0 +1,26 @@
+<?php
+
+use Drupal\term_merge_manager\Entity\TermMergeFrom;
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function term_merge_manager_taxonomy_term_presave(Drupal\taxonomy\Entity\Term $entity) {
+  $name = $entity->getName();
+  $vid = $entity->getVocabularyId();
+
+  $from = TermMergeFrom::loadByVidName($vid, $name);
+
+  // no entry
+  if ($from === FALSE) {
+    return true;
+  }
+
+  // there is an entry so we rewrite the name
+  $into = $from->getIntoName();
+  $entity->setName($into);
+
+  if (\Drupal::currentUser()->hasPermission('view term merged manager messages')) {
+    drupal_set_message(t('There is a merge action - so we merged "@name" into "@into"', ['@name' => $name, '@into' => $into]));
+  }
+}

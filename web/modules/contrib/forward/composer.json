@@ -1,0 +1,24 @@
+{
+  "name": "drupal/forward",
+  "description": "Forward pages and other site elements to a friend.",
+  "type": "drupal-module",
+  "homepage": "http://drupal.org/project/forward",
+  "authors": [
+    {
+      "name": "John Oltman",
+      "email": "developer@sitebasin.com",
+      "homepage": "https://www.drupal.org/u/john.oltman",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "http://drupal.org/project/forward",
+    "irc": "irc://irc.freenode.org/drupal-contribute",
+    "source": "http://cgit.drupalcode.org/forward"
+  },
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require": {
+    "drupal/node": "8.*"
+  }
+}

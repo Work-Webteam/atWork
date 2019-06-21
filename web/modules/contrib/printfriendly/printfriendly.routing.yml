@@ -1,0 +1,7 @@
+printfriendly.config:
+  path: '/admin/config/printfriendly/config'
+  defaults:
+    _form: '\Drupal\printfriendly\Form\PrintfriendlyConfigForm'
+    _title: 'Printfriendly Configuration'
+  requirements:
+    _permission: 'administer printfriendly'

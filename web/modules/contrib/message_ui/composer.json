@@ -1,0 +1,10 @@
+{
+  "name": "drupal/message_ui",
+  "description": "Message UI",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "require-dev": {
+    "drupal/coder": "^8.2"
+  }
+}

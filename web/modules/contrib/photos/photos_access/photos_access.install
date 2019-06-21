@@ -1,0 +1,165 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the Photos Access module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function photos_access_schema() {
+  $schema['photos_access_album'] = [
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'viewid' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'length' => 1,
+        'default' => 0,
+        'description' => '0: Open, 1: Locked, 2: User list, 3: Password',
+      ],
+      'pass' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'default' => '',
+      ],
+    ],
+    'indexes' => [
+      'nid' => ['nid'],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['photos_access_user'] = [
+    'fields' => [
+      'id' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'collaborate' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'length' => 1,
+        'default' => 0,
+      ],
+    ],
+    'indexes' => [
+      'uid' => ['uid'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function photos_access_install() {
+  drupal_set_message(t("Photos Access settings are available under admin/config/media/photos Basic settings."));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function photos_access_uninstall() {
+  // Update photos module settings.
+  if (\Drupal::moduleHandler()->moduleExists('photos')) {
+    \Drupal::configFactory()->getEditable('photos.settings')->set('photos_access_photos', 0)->save();
+  }
+}
+
+/**
+ * Add collaborate column to {photos_access_user}.
+ */
+function photos_access_update_8401() {
+  // @todo test update, update code, test migration...
+  // @todo test, how will this affect migration?
+  // - Either update migration or backport this update to 7.x.
+  // Add collaborate column to {'photos_access_user'}.
+  $schema = Database::getConnection()->schema();
+  $spec = [
+    'type' => 'int',
+    'size' => 'tiny',
+    'length' => 1,
+    'default' => 0,
+  ];
+  $schema->addField('photos_access_user', 'collaborate', $spec);
+
+  // Update {'photos_access_user'}.collaborate to match
+  // {'photos_access_album'}.updateid.
+  // Attempt to clean up {photos_access_album} duplicate entries.
+  // Update {photos_access_user}.id to match the correct
+  // {photos_access_album}.id for nid.
+  $new_id = [];
+  $db = \Drupal::database();
+  $results = $db->select('photos_access_album', 'a')
+    ->fields('a')
+    ->execute();
+  foreach ($results as $result) {
+    if (isset($new_id[$result->nid])) {
+      $id = $new_id[$result->nid];
+      // Update {photos_access_user}.id.
+      $db->update('photos_access_user')
+        ->fields([
+          'id' => $id,
+          'collaborate' => $result->updateid,
+        ])
+        ->condition('id', $result->id)
+        ->execute();
+      // Make sure new records are not set to open by default.
+      if ($result->viewid > 0) {
+        $db->update('photos_access_album')
+          ->fields([
+            'viewid' => $result->viewid,
+          ])
+          ->condition('id', $id)
+          ->execute();
+      }
+      // Preserve album passwords.
+      if ($result->pass <> 1) {
+        $db->update('photos_access_album')
+          ->fields([
+            'pass' => $result->pass,
+          ])
+          ->condition('id', $id)
+          ->execute();
+      }
+      // Delete duplicate entries in {photos_access_album}.
+      $db->delete('photos_access_album')
+        ->condition('id', $result->id)
+        ->execute();
+    }
+    else {
+      $new_id[$result->nid] = $result->id;
+      $db->update('photos_access_user')
+        ->fields([
+          'collaborate' => $result->updateid,
+        ])
+        ->condition('id', $result->id)
+        ->execute();
+    }
+  }
+
+  // Remove updateid from {'photos_access_album'}.
+  $schema->dropField('photos_access_album', 'updateid');
+
+  // Rebuild permissions.
+  node_access_rebuild(TRUE);
+}

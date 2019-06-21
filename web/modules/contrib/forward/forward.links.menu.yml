@@ -1,0 +1,5 @@
+forward.settings:
+  title: Forward
+  description: 'Configure Forward settings'
+  route_name: forward.settings
+  parent: system.admin_config_ui

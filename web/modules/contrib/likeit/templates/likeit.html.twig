@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Default theme implementation for likeit extra field.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.element'.
+ * - attributes: HTML attributes for the container element.
+ * - action: Permitted user action. It can be like/unlike/view.
+ * - count: Likes count.
+ *
+ * @see template_preprocess_likeit()
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{ attributes }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</article>

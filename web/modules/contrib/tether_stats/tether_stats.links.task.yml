@@ -1,0 +1,19 @@
+tether_stats.settings_form_tab:
+  route_name: tether_stats.settings_form
+  title: Settings
+  base_route: tether_stats.settings_form
+
+tether_stats.overview_tab:
+  route_name: tether_stats.overview
+  title: Overview
+  base_route: tether_stats.settings_form
+
+tether_stats.element_finder_form_tab:
+  route_name: tether_stats.element_finder_form
+  title: Element Finder
+  base_route: tether_stats.settings_form
+
+tether_stats_derivative.collection_tab:
+  route_name: entity.tether_stats_derivative.collection
+  title: Derivatives
+  base_route: tether_stats.settings_form

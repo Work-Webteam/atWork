@@ -1,0 +1,22 @@
+id: forward_log
+label: Forward log
+migration_tags:
+  - Drupal 6
+  - Drupal 7
+source:
+  plugin: forward_log
+process:
+  type:
+    plugin: default_value
+    default_value: node
+  id:
+    plugin: substr
+    source: path
+    start: 5
+  path: path
+  action: type
+  timestamp: timestamp
+  uid: uid
+  hostname: hostname
+destination:
+  plugin: forward_log

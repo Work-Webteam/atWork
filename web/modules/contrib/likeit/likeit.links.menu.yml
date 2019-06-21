@@ -1,0 +1,6 @@
+likeit.settings_form:
+  title: 'Like It!'
+  route_name: likeit.settings_form
+  description: 'Likeit module configurations.'
+  parent: system.admin_config_ui
+  weight: 99

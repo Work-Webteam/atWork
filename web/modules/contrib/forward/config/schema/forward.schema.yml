@@ -1,0 +1,110 @@
+# Schema for the configuration files of the Forward module.
+forward.settings:
+  type: config_object
+  label: 'Forward settings'
+  mapping:
+    forward_view_modes:
+      type: boolean
+      label: 'View modes'
+    forward_entity_node:
+      type: boolean
+      label: "Add forward to nodes"
+    forward_entity_user:
+      type: boolean
+      label: "Add forward to users"
+    forward_user_user:
+      type: boolean
+      label: "Add forward to users"
+    forward_node_article:
+      type: boolean
+      label: "Add forward to articles"
+    forward_node_page:
+      type: boolean
+      label: "Add forward to basic pages"
+    forward_view_full:
+      type: boolean
+      label: "Add forward to full display"
+    forward_view_teaser:
+      type: boolean
+      label: "Add forward to teaser display"
+    forward_interface_type:
+      label: 'Interface types'
+      type: string
+    forward_interface_title:
+      type: label
+      label: 'Link text or inline form title'
+    forward_interface_weight:
+      type: integer
+      label: 'Weight'
+    forward_link_inline:
+      type: integer
+      label: "Place inline with other node links"
+    forward_link_title:
+      type: label
+      label: 'Page title if interface links to separate page'
+    forward_link_icon:
+      type: string
+      label: 'Path to custom icon'
+    forward_link_style:
+      type: integer
+      label: 'Link style'
+    forward_link_noindex:
+      type: boolean
+      label: 'No-index'
+    forward_link_nofollow:
+      type: boolean
+      label: 'No-follow'
+    forward_max_recipients:
+      type: integer
+      label: 'Maximum recipients'
+    forward_max_recipients_error:
+      type: label
+      label: 'Maximum recipients error message'
+    forward_form_instructions:
+      type: label
+      label: 'Instructions'
+    forward_form_display_page:
+      type: boolean
+      label: 'Display page'
+    forward_form_display_subject:
+      type: boolean
+      label: 'Display message subject'
+    forward_form_display_body:
+      type: boolean
+      label: 'Display message body'
+    forward_personal_message:
+      type: integer
+      label: 'Display personal message'
+    forward_personal_message_filter:
+      type: boolean
+      label: 'Allow HTML'
+    forward_personal_message_tags:
+      type: string
+      label: 'Allowed HTML tags'
+    forward_form_confirmation:
+      type: label
+      label: 'Confirmation message'
+    forward_email_logo:
+      type: string
+      label: 'Path to custom logo'
+    forward_email_from_address:
+      type: string
+      label: 'Email from address'
+    forward_email_subject:
+      type: label
+      label: 'Email subject line'
+    forward_email_message:
+      type: label
+      label: 'Email message header'
+    forward_bypass_access_control:
+      type: integer
+      label: 'Bypass access control'
+    forward_filter_format:
+      type: string
+      label: 'Filter format'
+    forward_flood_control_limit:
+      type: integer
+      label: 'Flood control limit'
+    forward_flood_control_error:
+      type: label
+      label: 'Flood control error message'

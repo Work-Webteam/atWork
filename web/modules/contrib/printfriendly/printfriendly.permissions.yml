@@ -1,0 +1,9 @@
+'administer printfriendly':
+  'title': 'Administer PrintFriendly'
+  'description': 'Configure how PrintFriendly is used on the site.'
+  restrict access: true
+
+'access printfriendly':
+  'title': 'Access PrintFriendly'
+  'description': 'Users with this permission will be able to use and see PrintFriendly.'
+  restrict access: true

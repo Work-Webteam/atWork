@@ -1,0 +1,14 @@
+name: CKEditor Bootstrap Grid
+type: module
+description: Adds Bootstrap Grid to CKEditor
+# core: 8.x
+package: CKEditor
+dependencies:
+  - ckeditor
+  - editor
+
+# Information added by Drupal.org packaging script on 2018-10-02
+version: '8.x-1.2'
+core: '8.x'
+project: 'ckeditor_bootstrap_grid'
+datestamp: 1538514183

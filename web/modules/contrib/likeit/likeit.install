@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Contains install hooks for likeit module.
+ */
+
+use Drupal\Component\Utility\Crypt;
+
+/**
+ * Implements hook_install().
+ */
+function likeit_install() {
+  $config = \Drupal::service('config.factory')
+    ->getEditable('likeit.settings');
+
+  // Set token seed by default.
+  $config
+    ->set('token_seed', Crypt::randomBytesBase64())
+    ->save();
+}
