@@ -1,9 +1,0 @@
-uuid: b4ee22b9-bf3b-457e-9fa5-3efb69c628ba
-langcode: en
-status: true
-dependencies: {  }
-id: explore_links
-label: 'Explore links'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }

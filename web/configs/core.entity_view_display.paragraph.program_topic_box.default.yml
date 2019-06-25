@@ -36,9 +36,10 @@ content:
   field_topic_box:
     weight: 1
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 300
     third_party_settings: {  }
-    type: text_default
+    type: text_trimmed
     region: content
 hidden:
   field_group_menu_link: true
