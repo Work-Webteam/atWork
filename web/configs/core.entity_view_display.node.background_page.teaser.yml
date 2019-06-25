@@ -44,4 +44,5 @@ hidden:
   field_development_tags: true
   field_image: true
   field_program_ad_space: true
+  field_program_topic_boxes: true
   langcode: true

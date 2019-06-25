@@ -12,7 +12,7 @@ field_name: field_topic_box
 entity_type: paragraph
 bundle: program_topic_box
 label: 'Topic box'
-description: ''
+description: 'This is limited to 300 characters including spaces.'
 required: false
 translatable: false
 default_value: {  }

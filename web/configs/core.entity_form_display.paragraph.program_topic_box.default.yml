@@ -22,16 +22,17 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
-      add_mode: dropdown
-      form_display_mode: default
-      default_paragraph_type: ''
+      edit_mode: closed_expand_nested
       closed_mode: summary
       autocollapse: none
       closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: program_menu_links_box
       features:
         duplicate: duplicate
         collapse_edit_all: collapse_edit_all
+        add_above: '0'
     third_party_settings: {  }
     region: content
   field_title:
@@ -46,7 +47,7 @@ content:
     weight: 1
     settings:
       rows: 3
-      placeholder: ''
+      placeholder: 'This is limited to 150 characters including spaces.'
     third_party_settings: {  }
     type: text_textarea
     region: content
