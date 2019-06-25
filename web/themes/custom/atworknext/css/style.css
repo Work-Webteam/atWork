@@ -10930,31 +10930,98 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   padding-right: 15px;
 }
 
-/* line 190, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-.page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .field--name-field-title {
+/* line 187, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes {
+  padding: 10px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+/* line 196, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box {
+  padding: 5px 5px 0px;
+  min-width: 300px;
+  max-width: 550px;
+  min-height: 185px;
+  flex: 0 1 auto;
+  background-color: white;
+  border: solid 1px #CCC;
+  margin-bottom: 5px;
+}
+
+/* line 202, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .field--name-field-title {
   font-size: 1.125rem;
   line-height: 24px;
   font-weight: bold;
   padding: 5px 5px 0 5px;
   margin: 0 0 0 0;
-  background-color: white;
-  border-left: solid 1px #CCC;
-  border-top: solid 1px #CCC;
-  border-right: solid 1px #CCC;
 }
 
-/* line 200, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-.page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box p {
+/* line 208, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box p {
   padding: 0 8px 10px 5px;
-  margin: 0;
-  background-color: white;
-  border-left: solid 1px #CCC;
-  border-right: solid 1px #CCC;
+  margin: 0 0 10px;
 }
 
-/* line 206, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-.page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box p:last-of-type {
-  border-bottom: solid 1px #CCC;
+/* line 212, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .btn {
+  border-radius: 0;
+  border: none;
+  background-color: #266694;
+  color: white;
+  padding: 8px 30px 5px;
+}
+
+/* line 218, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .btn::after {
+  content: " ▴";
+  color: white;
+  font-size: 32px;
+  line-height: 0;
+  vertical-align: inherit;
+}
+
+/* line 226, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup {
+  text-align: center;
+  margin: 0;
+}
+
+/* line 229, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu {
+  padding: 3px 5px;
+  left: 50%;
+  right: auto;
+  text-align: center;
+  transform: translate(-50%, 0);
+}
+
+/* line 235, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu a {
+  margin: 2px;
+  border: solid 1px #CCC;
+}
+
+/* line 239, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu > li a:hover {
+  background-color: #266694;
+  color: white;
+}
+
+/* line 243, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu a[data-target="#"] {
+  display: none;
+}
+
+/* line 255, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+span .paragraph-info {
+  visibility: hidden !important;
 }
 
 /* line 282, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
@@ -11160,7 +11227,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   width: 17px;
 }
 
-/* line 228, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 271, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page-node-type-background-page div#group-ad-space, body.page-node-type-background-page #program-ad-space, body.page-node-type-article div#group-ad-space, body.page-node-type-article #program-ad-space, body.page-node-type-group-post div#group-ad-space, body.page-node-type-group-post #program-ad-space {
   display: flex;
   flex-direction: column;
@@ -11169,25 +11236,25 @@ body.path-group div#group-ad-space, body.path-group #program-ad-space, body.page
   margin-bottom: 10px;
 }
 
-/* line 234, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 277, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space div#ad-box, body.path-group #program-ad-space div#ad-box, body.page-node-type-background-page div#group-ad-space div#ad-box, body.page-node-type-background-page #program-ad-space div#ad-box, body.page-node-type-article div#group-ad-space div#ad-box, body.page-node-type-article #program-ad-space div#ad-box, body.page-node-type-group-post div#group-ad-space div#ad-box, body.page-node-type-group-post #program-ad-space div#ad-box {
   display: flex;
   flex-direction: row;
   border: solid 1px #E0E7E8;
 }
 
-/* line 238, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 281, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space div#ad-box div#ad-content, body.path-group #program-ad-space div#ad-box div#ad-content, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-content, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-content, body.page-node-type-article div#group-ad-space div#ad-box div#ad-content, body.page-node-type-article #program-ad-space div#ad-box div#ad-content, body.page-node-type-group-post div#group-ad-space div#ad-box div#ad-content, body.page-node-type-group-post #program-ad-space div#ad-box div#ad-content {
   padding: 5px 10px;
   flex: 1;
 }
 
-/* line 242, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 285, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space div#ad-box div#ad-image, body.path-group #program-ad-space div#ad-box div#ad-image, body.page-node-type-background-page div#group-ad-space div#ad-box div#ad-image, body.page-node-type-background-page #program-ad-space div#ad-box div#ad-image, body.page-node-type-article div#group-ad-space div#ad-box div#ad-image, body.page-node-type-article #program-ad-space div#ad-box div#ad-image, body.page-node-type-group-post div#group-ad-space div#ad-box div#ad-image, body.page-node-type-group-post #program-ad-space div#ad-box div#ad-image {
   flex: 0 1 auto;
 }
 
-/* line 246, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 289, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space #ad-tab h3, body.page-node-type-background-page div#group-ad-space #ad-tab h3, body.page-node-type-background-page #program-ad-space #ad-tab h3, body.page-node-type-article div#group-ad-space #ad-tab h3, body.page-node-type-article #program-ad-space #ad-tab h3, body.page-node-type-group-post div#group-ad-space #ad-tab h3, body.page-node-type-group-post #program-ad-space #ad-tab h3 {
   background-color: #e6f2f9;
   padding: 8px;
@@ -11197,17 +11264,17 @@ body.path-group div#group-ad-space #ad-tab h3, body.path-group #program-ad-space
   border-right: solid 1px #E0E7E8;
 }
 
-/* line 259, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 302, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.page-node-type-page h1.page-title {
   margin-bottom: 20px;
 }
 
-/* line 262, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 305, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.page-node-type-page .author-byline {
   display: none;
 }
 
-/* line 267, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 310, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.node--type-article .col-md-3.col-sidebar img {
   width: 100%;
 }

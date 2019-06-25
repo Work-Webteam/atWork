@@ -184,33 +184,76 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
         padding-right:15px;
       }
     }
-    #block-programtopicboxes {
-      .field--name-field-program-topic-boxes {
-        .paragraph--type--program-topic-box {
-          .field--name-field-title {
-            @include size2024;
-            font-weight:bold;
-            padding:5px 5px 0 5px;
-            margin:0 0 0 0;
-            background-color: $white;
-            border-left:solid 1px #CCC;
-            border-top:solid 1px #CCC;
-            border-right:solid 1px #CCC;
+    .field--name-field-program-topic-boxes {
+      padding:10px;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row wrap;
+      justify-content: space-evenly;
+      .paragraph--type--program-topic-box {
+        padding:5px 5px 0px;
+        min-width:300px;
+        max-width:550px;
+        min-height:185px;
+        flex:0 1 auto;
+        .field--name-field-title {
+          @include size2024;
+          font-weight:bold;
+          padding:5px 5px 0 5px;
+          margin:0 0 0 0;
+        }
+        p {
+          padding: 0 8px 10px 5px;
+          margin:0 0 10px;
+        }
+        .btn {
+          border-radius: 0;
+          border:none;
+          background-color: $banner-blue;
+          color: $white;
+          padding:8px 30px 5px;
+          &::after {
+            content: " ▴";
+            color: $white;
+            font-size: 32px;
+            line-height: 0;
+            vertical-align: inherit;
           }
-          p {
-            padding: 0 8px 10px 5px;
-            margin:0;
-            background-color:$white;
-            border-left:solid 1px #CCC;
-            border-right:solid 1px #CCC;
-            &:last-of-type {
-              border-bottom:solid 1px #CCC;
+        }
+        .dropup {
+          text-align: center;
+          margin: 0;
+          .dropdown-menu {
+            padding:3px 5px;
+            left: 50%;
+            right: auto;
+            text-align: center;
+            transform: translate(-50%, 0);
+            a {
+              margin:2px;
+              border:solid 1px #CCC;
+            }
+            > li a:hover {
+              background-color: $banner-blue;
+              color:$white;
+            }
+            a[data-target="#"] {
+              display: none;
             }
           }
         }
+        background-color: $white;
+        border: solid 1px #CCC;
+        margin-bottom:5px;
       }
     }
   }
+}
+span .paragraph-info {
+  visibility: hidden!important;
 }
 
 // Related Content Blocks
