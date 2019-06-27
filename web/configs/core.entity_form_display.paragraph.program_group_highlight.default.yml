@@ -1,0 +1,45 @@
+uuid: ffe406c1-8951-418a-b790-fed0d1e70815
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.program_group_highlight.field_highlight_image
+    - field.field.paragraph.program_group_highlight.field_highlight_text
+    - field.field.paragraph.program_group_highlight.field_highlight_title
+    - image.style.max_325x325
+    - paragraphs.paragraphs_type.program_group_highlight
+  module:
+    - image
+    - text
+id: paragraph.program_group_highlight.default
+targetEntityType: paragraph
+bundle: program_group_highlight
+mode: default
+content:
+  field_highlight_image:
+    weight: 1
+    settings:
+      preview_image_style: max_325x325
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_highlight_text:
+    weight: 2
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_highlight_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

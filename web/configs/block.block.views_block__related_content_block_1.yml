@@ -1,11 +1,11 @@
 uuid: 662881f5-52bd-49f9-894b-6050c0ef9ab0
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.related_content
   module:
-    - node
+    - ctools
     - views
   theme:
     - atworknext
@@ -23,8 +23,8 @@ settings:
   views_label: ''
   items_per_page: none
 visibility:
-  node_type:
-    id: node_type
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
     bundles:
       article: article
       background_page: background_page

@@ -209,12 +209,13 @@ body.page-node-type-program-area-content {
     .draggable-dashboard-block__header {
       border-bottom:solid 1px #999;
     }
-    .group-side-menu {
+    .group-side-menu,
+    aside#side-menu {
       border:solid 1px $exec-greyborder;
       margin-top:10px;
       margin-bottom:5px;
       padding:5px;
-      h3.block-title {
+      h3, h3.block-title {
         background-color: $mtTeal;
         color:$white;
         text-align: center;
@@ -233,6 +234,29 @@ body.page-node-type-program-area-content {
         .field--name-field-group-menu-link .panel-body {
           border-bottom:solid 1px $exec-greyborder;
         }
+      }
+    }
+    aside#side-menu {
+      h3 {
+        background-color: $banner-blue;
+      }
+      a {
+        display: block;
+        border:solid 1px #ECECEC;
+        padding:10px;
+        margin-bottom:5px;
+        &:hover {
+          text-decoration: none;
+          background-color: $banner-blue;
+          color:$white;
+        }
+      }
+      #atworkgroups-sidebar-menu {
+        padding:0px;
+        margin:0px;
+         li {
+           list-style-type: none;
+         }
       }
     }
   }

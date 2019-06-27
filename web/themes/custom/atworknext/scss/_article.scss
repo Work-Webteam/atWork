@@ -164,7 +164,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
   }
   section.col-sm-12 {
     .region-content {
-      background-color: $comment-blue;
+      background-color: $white;
     }
     h1.page-title {
       background-color: $banner-blue;
@@ -193,6 +193,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
       display: flex;
       -webkit-flex-flow: row wrap;
       justify-content: space-evenly;
+      background-color: $comment-blue;
       .paragraph--type--program-topic-box {
         padding:5px 5px 0px;
         min-width:300px;
@@ -266,33 +267,41 @@ span .paragraph-info {
 }
 
 
-//Group Ad Space on program pages
+//Group Highlight Space on program and group landing pages
 body.path-group, body.page-node-type-background-page, body.page-node-type-article, body.page-node-type-group-post {
-  div#group-ad-space, #program-ad-space {
-    display:flex;
-    flex-direction: column;
-    flex-wrap:nowrap;
-    margin-top:10px;
-    margin-bottom:10px;
-    div#ad-box {
-      display:flex;
-      flex-direction: row;
-      border:solid 1px $exec-greyborder;
-      div#ad-content {
-        padding: 5px 10px;
-        flex: 1;
-      }
-      div#ad-image {
-        flex:0 1 auto;
-      }
+  #block-programhighlight,
+  .field--name-field-group-highlight {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: $white;
+    h2.block-title,
+    .field--label:first-of-type {
+      background-color: #e6f2f9;
+      padding: 8px;
+      margin: 0px;
+      border-left: solid 1px #E0E7E8;
+      border-top: solid 1px #E0E7E8;
+      border-right: solid 1px #E0E7E8;
     }
-    #ad-tab h3 {
-      background-color: $comment-blue;
-      padding:8px;
-      margin:0px;
-      border-left: solid 1px $exec-greyborder;
-      border-top: solid 1px $exec-greyborder;
-      border-right: solid 1px $exec-greyborder;
+    .field--name-field-program-highlight {
+      display: inline-block;
+      border: solid 1px $exec-greyborder;
+      padding: 5px 10px;
+      .paragraph--type--program-group-highlight {
+        .field--name-field-highlight-title {
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          font-size: 1.125rem;
+          line-height: 24px;
+          color: #333333;
+          font-weight: bold;
+        }
+        .field--name-field-highlight-text {
+          margin:10px 0px;
+        }
+        .field--name-field-highlight-image {
+          float:right;
+        }
+      }
     }
   }
 }

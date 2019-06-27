@@ -12,7 +12,7 @@ field_name: field_image
 entity_type: node
 bundle: background_page
 label: Image
-description: "<p>The top image is mandatory as it will appear on the home page and at the top of the article. Additional images you want to appear in your article may be loaded through the Text Editor using the image icon. Add any photo captions or mouse over text for each of the photos.</p>\r\n\r\n<p>Images must be a minimum of 1140px X 400px and be the png, gif, jpg, jpeg format. After uploading the image you may crop the image to suit your needs.</p>\r\n\r\n<p><strong>Please Note: You must move or resize the blue grid box in order to issue a crop change. Not doing so will result in crop image error.</strong></p>\r\n\r\n<p>The blue outlined grid viewable over the image can be resized or moved around the image. The grid is locked to the allowable proportion. If you select too small an area the blue outline will flash red. Clicking the 'reset crop' button will reset the area and crop settings. Your crop changes are automatically saved. Saving your page will save your image changes.</p>"
+description: "<p><strong>NOTE</strong></p>\r\n<ul>\r\n<li>The top image is mandatory and must be a minimum size of 1140 X 400px (png, gif, jpg or jpeg format). </li>\r\n<li>The blue grid box must be moved or resized. Click \"Save\" at the bottom of the page.</li>\r\n</ul>"
 required: false
 translatable: true
 default_value: {  }

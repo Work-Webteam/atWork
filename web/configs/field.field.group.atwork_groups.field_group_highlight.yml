@@ -1,0 +1,43 @@
+uuid: cf3021ac-d17d-46d8-8e60-c0b8bf5d1db8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_group_highlight
+    - group.type.atwork_groups
+    - paragraphs.paragraphs_type.program_group_highlight
+  module:
+    - entity_reference_revisions
+id: group.atwork_groups.field_group_highlight
+field_name: field_group_highlight
+entity_type: group
+bundle: atwork_groups
+label: 'Group Highlight'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      program_group_highlight: program_group_highlight
+    target_bundles_drag_drop:
+      group_menu_link:
+        weight: 6
+        enabled: false
+      menu_links:
+        weight: 7
+        enabled: false
+      program_group_highlight:
+        enabled: true
+        weight: 8
+      program_menu_links_box:
+        weight: 9
+        enabled: false
+      program_topic_box:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

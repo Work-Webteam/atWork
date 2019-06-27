@@ -1,0 +1,9 @@
+uuid: da5c831c-afc3-44a3-bfb9-27f8bf9d58c2
+langcode: en
+status: true
+dependencies: {  }
+id: program_group_highlight
+label: 'Program-Group Highlight'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

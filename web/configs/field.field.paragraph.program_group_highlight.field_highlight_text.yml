@@ -1,0 +1,21 @@
+uuid: 6764cdf1-0e9b-43a5-b479-ae7582c5d0d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_highlight_text
+    - paragraphs.paragraphs_type.program_group_highlight
+  module:
+    - text
+id: paragraph.program_group_highlight.field_highlight_text
+field_name: field_highlight_text
+entity_type: paragraph
+bundle: program_group_highlight
+label: 'Highlight Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

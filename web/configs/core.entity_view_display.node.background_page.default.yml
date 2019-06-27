@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.background_page.field_development_tags
     - field.field.node.background_page.field_image
     - field.field.node.background_page.field_program_ad_space
+    - field.field.node.background_page.field_program_highlight
     - field.field.node.background_page.field_program_topic_boxes
     - image.style.article_hero_image
     - node.type.background_page
@@ -44,6 +45,15 @@ content:
     third_party_settings: {  }
     type: image
     region: content
+  field_program_highlight:
+    type: entity_reference_revisions_entity_view
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
   field_program_topic_boxes:
     weight: 2
     label: hidden
@@ -54,17 +64,17 @@ content:
     type: entity_reference_revisions_entity_view
     region: content
   flag_email_node:
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
     weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   links:
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
