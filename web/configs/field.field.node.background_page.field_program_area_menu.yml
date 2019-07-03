@@ -1,21 +1,21 @@
-uuid: c4a37f33-e01c-4a38-b612-fc4d0fc7a4d0
+uuid: d69e5f59-be95-4ecb-a148-ebbe31248cc7
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.group.field_group_highlight
-    - group.type.atwork_groups
-    - paragraphs.paragraphs_type.program_group_highlight
+    - field.storage.node.field_program_area_menu
+    - node.type.background_page
+    - paragraphs.paragraphs_type.group_menu_link
   module:
     - entity_reference_revisions
-id: group.atwork_groups.field_group_highlight
-field_name: field_group_highlight
-entity_type: group
-bundle: atwork_groups
-label: 'Group Highlight'
+id: node.background_page.field_program_area_menu
+field_name: field_program_area_menu
+entity_type: node
+bundle: background_page
+label: 'Program Area Menu'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -23,17 +23,17 @@ settings:
   handler_settings:
     negate: 0
     target_bundles:
-      program_group_highlight: program_group_highlight
+      group_menu_link: group_menu_link
     target_bundles_drag_drop:
       group_menu_link:
+        enabled: true
         weight: 6
-        enabled: false
       menu_links:
         weight: 7
         enabled: false
       program_group_highlight:
-        enabled: true
         weight: 8
+        enabled: false
       program_menu_links_box:
         weight: 9
         enabled: false

@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies: {  }
 id: program_group_highlight
-label: 'Program-Group Highlight'
+label: 'Highlight Box'
 icon_uuid: null
 description: ''
 behavior_plugins: {  }

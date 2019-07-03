@@ -270,7 +270,9 @@ span .paragraph-info {
 //Group Highlight Space on program and group landing pages
 body.path-group, body.page-node-type-background-page, body.page-node-type-article, body.page-node-type-group-post {
   #block-programhighlight,
+  #block-grouphighlight,
   .field--name-field-group-highlight {
+    display:inline-block;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: $white;

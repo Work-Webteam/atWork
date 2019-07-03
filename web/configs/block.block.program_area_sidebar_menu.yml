@@ -1,22 +1,25 @@
-uuid: 606826ad-9b31-4727-bd35-920d6f25f6b2
+uuid: 70ea1cdf-801b-4e45-a7a0-6a802ee93830
 langcode: en
 status: true
 dependencies:
+  content:
+    - 'block_content:group_menu:33a21b35-46f4-4701-b63e-e66130b424e1'
   module:
+    - block_content
     - ctools
   theme:
     - atworknext
 id: program_area_sidebar_menu
 theme: atworknext
 region: sidebar_nav
-weight: -11
+weight: 0
 provider: null
-plugin: 'block_content:6f0fae91-2b6f-4afb-bce4-7ba1479ba701'
+plugin: 'block_content:33a21b35-46f4-4701-b63e-e66130b424e1'
 settings:
-  id: 'block_content:6f0fae91-2b6f-4afb-bce4-7ba1479ba701'
+  id: 'block_content:33a21b35-46f4-4701-b63e-e66130b424e1'
   label: 'Program Area Sidebar Menu'
-  provider: core
-  label_display: '0'
+  provider: block_content
+  label_display: visible
   status: true
   info: ''
   view_mode: full
