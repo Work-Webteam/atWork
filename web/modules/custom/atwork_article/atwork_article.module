@@ -52,11 +52,11 @@ function atworknext_preprocess_node__article(&$variables) {
   $variables['related_content'] = $block_content;
 
   // So we can load program Spotlight block independently
-  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_2');
-  $block_content = \Drupal::entityTypeManager()
-    ->getViewBuilder('block')
-    ->view($block);
-  $variables['program_spotlight'] = $block_content;
+  //$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_2');
+  //$block_content = \Drupal::entityTypeManager()
+  //  ->getViewBuilder('block')
+  //  ->view($block);
+  //$variables['program_spotlight'] = $block_content;
 
 	$theme_registry['file_upload_help']['path'] = 'themes/custom/atworknext/templates';
 }

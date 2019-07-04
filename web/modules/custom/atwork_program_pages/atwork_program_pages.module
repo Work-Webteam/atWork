@@ -24,16 +24,23 @@ function atwork_program_pages_help($route_name, RouteMatchInterface $route_match
 }
 
 
-/*
- * /**
- * Implements hook_preprocess_HOOK().
- *
- */
 /**
- * Implements hook_preprocess().
+ * Implements hook_preprocess_hook__Entity
+ * @param $variables
+ *
+ * This function is used to grab the relationship with the content landing page, and pull in the menu that was created there for the resulting content pages.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
  */
-function atwork_program_pages_preprocess(&$variables, $hook) {
-  //ksm($variables);
-  //ksm($hook);
-
+function atworknext_preprocess_node__program_area_content(&$variables){
+  $this_program_type = $variables['node']->get('field_parent_program')->getValue();
+  $program_type_id = isset($this_program_type[0]['target_id'])? $this_program_type[0]['target_id'] : NULL;
+  if($program_type_id != NULL) {
+    $program = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->load($program_type_id);
+    $variables['program_menu'] = $program->get('field_program_area_menu');
+  }
 }
+
