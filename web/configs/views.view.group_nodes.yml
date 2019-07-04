@@ -924,6 +924,8 @@ display:
         - url.query_args
         - user.group_permissions
         - 'user.node_grants:view'
+        - route.group
+        - user.group_permissions
       tags: {  }
   block_1:
     display_plugin: block
@@ -1418,4 +1420,6 @@ display:
         - url.query_args
         - user.group_permissions
         - 'user.node_grants:view'
+        - route.group
+        - user.group_permissions
       tags: {  }

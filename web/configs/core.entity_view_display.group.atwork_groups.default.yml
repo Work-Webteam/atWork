@@ -13,6 +13,7 @@ dependencies:
     - group.type.atwork_groups
     - image.style.article_top_image
   module:
+    - entity_reference_revisions
     - image
     - text
 id: group.atwork_groups.default
@@ -36,6 +37,23 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
+  field_group_highlight:
+    type: entity_reference_revisions_entity_view
+    weight: 6
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_group_tags:
+    type: entity_reference_label
+    weight: 5
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
   flag_email_groups:
     weight: 3
     region: content
@@ -59,8 +77,6 @@ hidden:
   created: true
   field_dev_tag: true
   field_group_ad_space: true
-  field_group_highlight: true
   field_group_menu_link: true
-  field_group_tags: true
   langcode: true
   uid: true
