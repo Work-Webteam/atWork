@@ -67,7 +67,7 @@
     {{ title_suffix }}
 
     <div{{ content_attributes }}>
-      {{ content|without('field_group_tags') }}
+      {{ content|without('field_group_tags', 'field_group_highlight') }}
     </div>
 {#
     <section class="group-landing-info">
@@ -109,7 +109,7 @@
   </div>
 </div>
 <div class="group-highlight">
-  {{ program-group_highlight }}
+  {{ content.field_group_highlight }}
 </div>
 <div class="group-related-content">
   {{ related_content }}
