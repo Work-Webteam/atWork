@@ -4,6 +4,7 @@ namespace Drupal\atwork_program_pages\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 
 /**
  * Provides a 'program_area_menu' block.
@@ -52,7 +53,7 @@ class program_area_menu extends BlockBase {
     $program_type_id = isset($program_type) ? current(current($program_type)) : NULL;
     // If we got an NID, then we can load that node and grab the menu item.
     if ($program_type_id != NULL) {
-      $program = \Drupal\node\Entity\Node::load($program_type_id);
+      $program = Node::load($program_type_id);
       // We don't need the markup anymore - no sense carrying it along.
       unset($build['program_area_menu']['#markup']);
       // Load the view so it is wrapped in a render_array.
@@ -66,7 +67,7 @@ class program_area_menu extends BlockBase {
     return $build;
 
   }
-
+q
 }
 
 
