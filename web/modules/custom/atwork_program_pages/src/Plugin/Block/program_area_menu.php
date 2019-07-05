@@ -67,7 +67,7 @@ class program_area_menu extends BlockBase {
     return $build;
 
   }
-q
+
 }
 
 
