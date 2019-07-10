@@ -210,7 +210,7 @@ body.page-node-type-program-area-content {
       border-bottom:solid 1px #999;
     }
     .group-side-menu,
-    aside#side-menu {
+    section#block-programareamenu {
       border:solid 1px $exec-greyborder;
       margin-top:10px;
       margin-bottom:5px;
@@ -231,9 +231,41 @@ body.page-node-type-program-area-content {
           padding: 5px 10px;
           border-bottom:solid 1px #999;
         }
-        .field--name-field-group-menu-link .panel-body {
-          border-bottom:solid 1px $exec-greyborder;
+        .panel-body {
+          border:solid 1px $exec-greyborder;
+          margin:5px;
+          padding:0px;
+          a {
+            display:block;
+            padding:10px;
+            &:hover {
+              background-color:$banner-blue;
+              color:$white;
+            }
+          }
         }
+      }
+    }
+    section#block-programareamenu {
+      h2 {
+        padding:inherit;
+        margin:0px;
+        color:$white;
+        text-align: center;
+        background-color: $banner-blue;
+      }
+      #accordion.panel-group {
+          margin-bottom:0px;
+          .panel-default {
+            border:none;
+          }
+          .panel-heading {
+            background-color: $comment-blue;
+            margin-top:5px;
+          }
+          h4.panel-title {
+            border-bottom: initial;
+          }
       }
     }
     aside#side-menu {

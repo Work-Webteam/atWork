@@ -2,7 +2,8 @@
 
 // Articles tags used by Comms Team
 article .field--name-field-tags,
-body.path-poll .field--name-field-tags {
+body.path-poll .field--name-field-tags,
+body.path-group .atwork-group-tags {
     margin:10px 0;
     text-transform: uppercase;
     @include size1216;
@@ -19,11 +20,19 @@ body.path-poll .field--name-field-tags {
         padding-right: 5px;
         border-right: solid 1px $link-blue;
     }
+    .field--name-field-group-tags {
+      > div:nth-child(1) {
+        display:none;
+      }
+      .field--item:first-child:before {
+        content:"Tags:";
+        font-weight:bold;
+        padding-right:5px;
+      }
+    }
 }
 // Social Bar icons
 // Printer icon contained in HTML Print button
-
-
 // Subscribe - Forward/Email - Flag - Reads - Comments - Likes
 // Appear at the bottom of each article page
 article .social-bar,

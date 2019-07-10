@@ -12,7 +12,7 @@ id: node.background_page.field_program_area_menu
 field_name: field_program_area_menu
 entity_type: node
 bundle: background_page
-label: 'Program Area Menu'
+label: 'Program Menu'
 description: ''
 required: false
 translatable: true
@@ -28,9 +28,6 @@ settings:
       group_menu_link:
         enabled: true
         weight: 6
-      menu_links:
-        weight: 7
-        enabled: false
       program_group_highlight:
         weight: 8
         enabled: false

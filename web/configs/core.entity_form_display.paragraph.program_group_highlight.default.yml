@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.program_group_highlight.field_highlight_image
     - field.field.paragraph.program_group_highlight.field_highlight_text
     - field.field.paragraph.program_group_highlight.field_highlight_title
-    - image.style.max_325x325
+    - image.style.highlight_image
     - paragraphs.paragraphs_type.program_group_highlight
   module:
     - image
@@ -19,7 +19,7 @@ content:
   field_highlight_image:
     weight: 1
     settings:
-      preview_image_style: max_325x325
+      preview_image_style: highlight_image
       progress_indicator: throbber
     third_party_settings: {  }
     type: image_image

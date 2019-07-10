@@ -36,18 +36,18 @@ content:
     third_party_settings: {  }
     region: content
   field_title:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_topic_box:
     weight: 1
     settings:
       rows: 3
-      placeholder: 'This is limited to 150 characters including spaces.'
+      placeholder: 'This is limited to 300 characters including spaces.'
     third_party_settings: {  }
     type: text_textarea
     region: content

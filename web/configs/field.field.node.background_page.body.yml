@@ -11,7 +11,7 @@ id: node.background_page.body
 field_name: body
 entity_type: node
 bundle: background_page
-label: Body
+label: Teaser
 description: 'Limit is 300 characters including spaces.'
 required: false
 translatable: true

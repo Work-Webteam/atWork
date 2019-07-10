@@ -1,0 +1,28 @@
+uuid: f6bc2334-75f1-459c-ab2e-00a547b2e619
+langcode: en
+status: true
+dependencies:
+  module:
+    - atwork_program_pages
+    - ctools
+  theme:
+    - atworknext
+id: programareamenu
+theme: atworknext
+region: sidebar_nav
+weight: 0
+provider: null
+plugin: program_area_menu
+settings:
+  id: program_area_menu
+  label: 'Program Menu'
+  provider: atwork_program_pages
+  label_display: visible
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      program_area_content: program_area_content
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
