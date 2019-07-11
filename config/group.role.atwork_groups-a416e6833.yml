@@ -1,0 +1,17 @@
+uuid: 21490fe0-d0ad-4b50-8d43-cae4ff7cbf92
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+  enforced:
+    config:
+      - user.role.administrator
+id: atwork_groups-a416e6833
+label: Administrator
+weight: 2
+internal: true
+audience: outsider
+group_type: atwork_groups
+permissions_ui: false
+permissions: {  }

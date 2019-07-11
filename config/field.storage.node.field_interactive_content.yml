@@ -1,0 +1,19 @@
+uuid: 407c6108-3551-4a07-8c6a-ee976914a2ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - h5p
+    - node
+id: node.field_interactive_content
+field_name: field_interactive_content
+entity_type: node
+type: h5p
+settings: {  }
+module: h5p
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

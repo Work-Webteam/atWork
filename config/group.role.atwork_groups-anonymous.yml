@@ -1,0 +1,14 @@
+uuid: ff82cc48-f8a7-49b6-bb0e-ea639e25dd1d
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+id: atwork_groups-anonymous
+label: Anonymous
+weight: -102
+internal: true
+audience: anonymous
+group_type: atwork_groups
+permissions_ui: true
+permissions: {  }

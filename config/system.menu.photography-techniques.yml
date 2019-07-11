@@ -1,0 +1,8 @@
+uuid: f8156bdd-9625-417f-ab8b-cfdd0b5d7142
+langcode: en
+status: true
+dependencies: {  }
+id: photography-techniques
+label: 'Photography Techniques'
+description: ''
+locked: true

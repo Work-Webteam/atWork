@@ -1,0 +1,17 @@
+uuid: 426c793d-cb5e-4e22-9c3d-ce08b16545d0
+langcode: en
+status: true
+dependencies: {  }
+template: subscription_digest
+label: 'Subscription Digest'
+description: ''
+text:
+  -
+    value: "<p>Hi @user_name,</p>\r\n\r\n<p>Here are the latest results from your @Work subscriptions:</p>\r\n\r\n<p><a href=\"javascript:void(0);\" title=\"Insert this token into your form\">[view:title]</a></p>\r\n"
+    format: comment_editor
+settings:
+  'token options':
+    clear: false
+    'token replace': true
+  purge_override: false
+  purge_methods: {  }

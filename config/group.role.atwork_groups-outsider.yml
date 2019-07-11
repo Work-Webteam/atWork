@@ -1,0 +1,17 @@
+uuid: fc6151f1-70bd-47e3-9d14-ecd627aff998
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+id: atwork_groups-outsider
+label: Outsider
+weight: -101
+internal: true
+audience: outsider
+group_type: atwork_groups
+permissions_ui: true
+permissions:
+  - 'view group'
+  - 'join group'
+  - 'view group_membership content'

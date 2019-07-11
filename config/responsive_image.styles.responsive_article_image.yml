@@ -1,0 +1,65 @@
+uuid: a6557549-c8e4-481e-b9e8-b09c05b65eaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.article_hero_image
+    - image.style.article_top_image
+    - image.style.max_325x325
+  theme:
+    - bootstrap
+id: responsive_article_image
+label: 'responsive article image'
+image_style_mappings:
+  -
+    breakpoint_id: bootstrap.screen-md-max
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_hero_image
+  -
+    breakpoint_id: bootstrap.screen-md-max
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: article_hero_image
+  -
+    breakpoint_id: bootstrap.screen-md-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_hero_image
+  -
+    breakpoint_id: bootstrap.screen-md-min
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: article_hero_image
+  -
+    breakpoint_id: bootstrap.screen-sm-max
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+  -
+    breakpoint_id: bootstrap.screen-sm-max
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+  -
+    breakpoint_id: bootstrap.screen-sm-min
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+  -
+    breakpoint_id: bootstrap.screen-sm-min
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+  -
+    breakpoint_id: bootstrap.screen-xs-max
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+  -
+    breakpoint_id: bootstrap.screen-xs-max
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: article_top_image
+breakpoint_group: bootstrap
+fallback_image_style: max_325x325

@@ -1,0 +1,19 @@
+uuid: 86cd58e1-c7e0-4178-b754-f1246d9e05b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - atwork_messages
+_core:
+  default_config_hash: iMPqaT5ak5h0FyNGI7A_h053pdvVvhz80bq82Zj4AgM
+title: 'Sends weekly subscription messages'
+id: atwork_messages_weekly_cron
+weight: 0
+module: atwork_messages
+callback: atwork_messages_weekly_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

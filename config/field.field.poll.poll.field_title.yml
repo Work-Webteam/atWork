@@ -1,0 +1,20 @@
+uuid: 3c29e03b-103a-4054-b269-8e48f1ad9a08
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.poll.field_title
+  module:
+    - poll
+id: poll.poll.field_title
+field_name: field_title
+entity_type: poll
+bundle: poll
+label: Title
+description: 'Enter the title for the poll. This will appear at the top of the poll and on the home page. Note, the maximum character length, including spaces, is <strong>60</strong>.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: 31c2b86d-01ee-4a40-bce1-9fa8b7a570ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_editor_tags
+    - node.type.page
+    - taxonomy.vocabulary.tags_editor
+id: node.page.field_editor_tags
+field_name: field_editor_tags
+entity_type: node
+bundle: page
+label: 'Editor Tags'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags_editor: tags_editor
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
