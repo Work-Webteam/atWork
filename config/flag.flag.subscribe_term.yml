@@ -1,0 +1,42 @@
+uuid: da837abb-a252-4044-a687-3eef5e69974d
+langcode: en
+status: true
+dependencies:
+  module:
+    - message_subscribe_ui
+    - taxonomy
+third_party_settings:
+  message_subscribe_ui:
+    view_name: 'subscribe_taxonomy_term_email:default'
+_core:
+  default_config_hash: TuS5Yr0rC4k-KjN6ioKSFrZ_W1YSltE_dPSXInohEmk
+id: subscribe_term
+label: Tags
+bundles: {  }
+entity_type: taxonomy_term
+global: false
+weight: 0
+flag_short: Subscribe
+flag_long: ''
+flag_message: 'You are now subscribed to this item.'
+unflag_short: 'Manage Subscription'
+unflag_long: ''
+unflag_message: 'You are no longer subscribed to this item.'
+unflag_denied_text: ''
+flag_type: 'entity:taxonomy_term'
+link_type: field_entry
+flagTypeConfig:
+  show_in_links:
+    full: full
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions: {  }
+linkTypeConfig:
+  flag_confirmation: Subscribe
+  unflag_confirmation: 'Manage Subscription'
+  flag_create_button: 'Create Subscription'
+  flag_delete_button: 'Manage Subscription'
+  form_behavior: modal
+  edit_flagging: 'Manage Subscription'
+  flag_update_button: Save

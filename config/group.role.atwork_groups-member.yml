@@ -1,0 +1,19 @@
+uuid: 6e6f4ccb-a273-40fa-93d3-b6e7be82143c
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+id: atwork_groups-member
+label: Member
+weight: -100
+internal: true
+audience: member
+group_type: atwork_groups
+permissions_ui: true
+permissions:
+  0: 'view group'
+  1: 'update own group_membership content'
+  2: 'leave group'
+  3: 'view group_membership content'
+  8: 'view unpublished group_node:group_post entity'

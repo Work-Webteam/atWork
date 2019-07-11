@@ -1,0 +1,21 @@
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: ''
+  url: 'http://localhost/web/themes/custom/atworknext/favicon.ico'
+  use_default: true
+schemas:
+  bootstrap: 8000
+  atworknext: 8000
+breadcrumb_home: 1
+button_size: btn-sm
+cdn_provider: ''
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  path: ''
+  url: ''
+  use_default: true
+cdn_custom: "\n\n\n"

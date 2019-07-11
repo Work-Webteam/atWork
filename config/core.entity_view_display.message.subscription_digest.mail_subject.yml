@@ -1,0 +1,21 @@
+uuid: cbe2c151-5701-4a01-932f-ec606cca0e73
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.message.mail_subject
+    - field.field.message.subscription_digest.field_node_ref
+    - message.template.subscription_digest
+  module:
+    - user
+id: message.subscription_digest.mail_subject
+targetEntityType: message
+bundle: subscription_digest
+mode: mail_subject
+content:
+  partial_0:
+    weight: 0
+    region: content
+hidden:
+  field_node_ref: true
+  partial_1: true

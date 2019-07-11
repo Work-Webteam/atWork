@@ -1,0 +1,23 @@
+uuid: 97241420-76d2-4724-88e2-a2d88f47c822
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_send_notifications
+    - node.type.photos
+id: node.photos.field_send_notifications
+field_name: field_send_notifications
+entity_type: node
+bundle: photos
+label: 'Send subscription notifications'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,12 @@
+uuid: 7641a276-b612-4e76-8272-e13190dad1ab
+langcode: en
+status: true
+dependencies: {  }
+label: 'Gallery Crop'
+id: gallery_crop
+description: 'Crop option for gallery images'
+aspect_ratio: ''
+soft_limit_width: 300
+soft_limit_height: 300
+hard_limit_width: 300
+hard_limit_height: 300

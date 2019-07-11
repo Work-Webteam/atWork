@@ -1,0 +1,14 @@
+uuid: 369dfcf9-7c5f-4460-9666-727be287078b
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Website feedback'
+recipients:
+  - thayne.werdal@gov.bc.ca
+reply: ''
+weight: 0
+message: 'Your message has been sent.'
+redirect: ''

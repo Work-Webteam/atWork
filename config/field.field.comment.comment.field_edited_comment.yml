@@ -1,0 +1,23 @@
+uuid: bf105cf5-bf7f-40f3-903c-d784988faf86
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+    - field.storage.comment.field_edited_comment
+id: comment.comment.field_edited_comment
+field_name: field_edited_comment
+entity_type: comment
+bundle: comment
+label: 'Add: [<em>Editor''s note: This comment has been <strong>edited</strong> to comply with @Work Terms of Use.)</em>] '
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

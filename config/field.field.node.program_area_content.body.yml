@@ -1,0 +1,22 @@
+uuid: cdbecac2-05b3-492e-9144-71f2d25cf32b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.program_area_content
+  module:
+    - text
+id: node.program_area_content.body
+field_name: body
+entity_type: node
+bundle: program_area_content
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

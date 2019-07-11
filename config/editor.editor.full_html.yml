@@ -1,0 +1,108 @@
+uuid: 3638dc31-f7c2-4c84-bd62-d416b8e0b1c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.full_html
+  module:
+    - ckeditor
+_core:
+  default_config_hash: 967ijj7p6i7rwrYl7r08WQFeCY_c23YAh0h8u-w_CXM
+format: full_html
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - '-'
+            - RemoveFormat
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - '-'
+            - BulletedList
+            - NumberedList
+            - '-'
+            - Outdent
+            - Indent
+            - '-'
+            - Maximize
+        -
+          name: Widgets
+          items:
+            - WidgetTemplateMenu
+            - widgetbootstrapLeftCol
+            - widgetbootstrapRightCol
+            - widgetbootstrapTwoCol
+            - widgetbootstrapThreeCol
+            - widgetbootstrapAlert
+            - widgetbootstrapAccordion
+            - widgetcommonBox
+            - widgetcommonQuotebox
+        -
+          name: Copy/Paste/Undo/Redo
+          items:
+            - Cut
+            - Paste
+            - Copy
+            - PasteText
+            - PasteFromWord
+            - Undo
+            - Redo
+        -
+          name: Linking
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Media
+          items:
+            - Blockquote
+            - oembed
+            - DrupalImage
+            - video_embed
+            - Table
+            - HorizontalRule
+            - leaflet
+        -
+          name: 'Block Formatting'
+          items:
+            - Format
+        -
+          name: Custom
+          items:
+            - Styles
+        -
+          name: Tools
+          items:
+            - ShowBlocks
+            - Source
+  plugins:
+    stylescombo:
+      styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
+    language:
+      language_list: un
+    linkit:
+      linkit_profile: ''
+    tokenbrowser:
+      token_types: {  }
+    video_embed:
+      defaults:
+        children:
+          autoplay: false
+          responsive: true
+          width: '854'
+          height: '480'
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: 800
+    height: 800

@@ -1,0 +1,24 @@
+uuid: 7cabcbac-381f-4391-857c-e9764a5618b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_postal_code
+  module:
+    - postal_code
+    - user
+id: user.user.field_user_postal_code
+field_name: field_user_postal_code
+entity_type: user
+bundle: user
+label: 'User Postal Code'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings:
+  country_select: ca
+field_type: postal_code

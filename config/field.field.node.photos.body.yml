@@ -1,0 +1,24 @@
+uuid: d572d11f-5ccf-42ee-8e9a-2c7d65d2fc75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.photos
+  module:
+    - text
+_core:
+  default_config_hash: pEFbQHCzMCLo-McVCAq4B-UnQb1Oz7cMjl7K8SLGnk4
+id: node.photos.body
+field_name: body
+entity_type: node
+bundle: photos
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

@@ -1,0 +1,8 @@
+uuid: ca68a75f-105e-496f-8034-232136da83a2
+langcode: en
+status: true
+dependencies: {  }
+id: atwork_time
+label: 'Atwork Time'
+locked: false
+pattern: 'g:i a'

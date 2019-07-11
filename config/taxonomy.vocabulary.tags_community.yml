@@ -1,0 +1,8 @@
+uuid: 50cc4b3b-adb0-46e5-aca1-1eb6c07c5c40
+langcode: en
+status: true
+dependencies: {  }
+name: Tags-Community
+vid: tags_community
+description: 'Community Tags'
+weight: 0
