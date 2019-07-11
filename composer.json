@@ -131,6 +131,7 @@
         "drupal/reroute_email": "^1.0",
         "drupal/rules": "^3.0@alpha",
         "drupal/scheduler": "^1.0",
+        "drupal/search_api_pantheon": "~1.0",
         "drupal/search_api_sorts": "^1.0@beta",
         "drupal/search_api_stats": "1.x-dev",
         "drupal/search_api_stats_block": "1.x-dev",

@@ -613,6 +613,10 @@ class ComposerStaticInit75a1113bfc601205243e1eb99ba8f352
             array (
                 0 => __DIR__ . '/..' . '/stack/builder/src',
             ),
+            'Solarium\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/solarium/solarium/library',
+            ),
         ),
         'P' => 
         array (
