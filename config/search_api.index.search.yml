@@ -1,0 +1,384 @@
+uuid: b10ba57c-9cc7-4479-bf83-6b7af837964e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_article_type
+    - field.storage.node.field_attachments
+    - field.storage.node.field_author_information
+    - field.storage.node.body
+    - field.storage.node.comment_forum
+    - field.storage.node.comment_photos
+    - field.storage.node.comment
+    - field.storage.node.field_custom_teaser
+    - field.storage.node.field_development_tags
+    - field.storage.node.field_editor_tags
+    - field.storage.node.taxonomy_forums
+    - field.storage.node.field_image
+    - field.storage.node.field_parent_program
+    - field.storage.node.field_program_ad_space
+    - field.storage.node.field_program_topic
+    - field.storage.node.field_send_notifications
+    - field.storage.node.field_tags
+    - field.storage.node.field_video
+    - search_api.server.pantheon
+  module:
+    - node
+    - search_api
+    - search_api_attachments
+    - file
+    - paragraphs
+id: search
+name: Search
+description: ''
+read_only: false
+field_settings:
+  body:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    boost: !!float 3
+    dependencies:
+      config:
+        - field.storage.node.body
+  comment:
+    label: Comments
+    datasource_id: 'entity:node'
+    property_path: comment
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.comment
+  comment_forum:
+    label: Comments
+    datasource_id: 'entity:node'
+    property_path: comment_forum
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.comment_forum
+  comment_photos:
+    label: Comments
+    datasource_id: 'entity:node'
+    property_path: comment_photos
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.comment_photos
+  field_article_type:
+    label: 'Article Type'
+    datasource_id: 'entity:node'
+    property_path: field_article_type
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_article_type
+  field_attachments:
+    label: Attachments
+    datasource_id: 'entity:node'
+    property_path: field_attachments
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_attachments
+  field_author_information:
+    label: 'Author Information'
+    datasource_id: 'entity:node'
+    property_path: field_author_information
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_author_information
+  field_custom_teaser:
+    label: 'Custom Teaser'
+    datasource_id: 'entity:node'
+    property_path: field_custom_teaser
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_custom_teaser
+  field_development_tags:
+    label: 'development Tags'
+    datasource_id: 'entity:node'
+    property_path: field_development_tags
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_development_tags
+  field_editor_tags:
+    label: 'Editor Tags'
+    datasource_id: 'entity:node'
+    property_path: field_editor_tags
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_editor_tags
+  field_image:
+    label: Image
+    datasource_id: 'entity:node'
+    property_path: field_image
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_image
+  field_parent_program:
+    label: 'Parent Program'
+    datasource_id: 'entity:node'
+    property_path: field_parent_program
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_parent_program
+  field_program_ad_space:
+    label: 'Program Ad Space'
+    datasource_id: 'entity:node'
+    property_path: field_program_ad_space
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_program_ad_space
+  field_program_topic:
+    label: 'Program Topic'
+    datasource_id: 'entity:node'
+    property_path: field_program_topic
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_program_topic
+  field_send_notifications:
+    label: 'Send subscription notifications'
+    datasource_id: 'entity:node'
+    property_path: field_send_notifications
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_send_notifications
+  field_tags:
+    label: Tags
+    datasource_id: 'entity:node'
+    property_path: field_tags
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+  field_video:
+    label: Video
+    datasource_id: 'entity:node'
+    property_path: field_video
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_video
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  summary:
+    label: 'Body » Summary'
+    datasource_id: 'entity:node'
+    property_path: 'body:summary'
+    type: text
+    boost: !!float 3
+    dependencies:
+      config:
+        - field.storage.node.body
+  taxonomy_forums:
+    label: Forums
+    datasource_id: 'entity:node'
+    property_path: taxonomy_forums
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.taxonomy_forums
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 5
+    dependencies:
+      module:
+        - node
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:file': {  }
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:paragraph':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  file_attachments:
+    excluded_extensions: 'aif art avi bmp gif ico mov oga ogv png psd ra ram rgb flv'
+    number_indexed: 0
+    number_first_bytes: '0'
+    max_filesize: '0'
+    excluded_private: 1
+    excluded_mimes: 'audio/x-aiff image/x-jg video/x-msvideo image/x-ms-bmp image/gif image/vnd.microsoft.icon video/quicktime audio/ogg video/ogg image/png image/x-photoshop audio/x-realaudio audio/x-pn-realaudio image/x-rgb video/x-flv'
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  html_filter:
+    all_fields: true
+    fields:
+      - body
+      - comment
+      - comment_forum
+      - comment_photos
+      - field_article_type
+      - field_attachments
+      - field_author_information
+      - field_custom_teaser
+      - field_development_tags
+      - field_editor_tags
+      - field_image
+      - field_parent_program
+      - field_program_ad_space
+      - field_program_topic
+      - field_tags
+      - field_video
+      - summary
+      - taxonomy_forums
+      - title
+    title: true
+    alt: true
+    tags:
+      b: 2
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+    weights:
+      preprocess_index: -15
+      preprocess_query: -15
+  ignorecase:
+    all_fields: true
+    fields:
+      - body
+      - comment
+      - comment_forum
+      - comment_photos
+      - field_article_type
+      - field_attachments
+      - field_author_information
+      - field_custom_teaser
+      - field_development_tags
+      - field_editor_tags
+      - field_image
+      - field_parent_program
+      - field_program_ad_space
+      - field_program_topic
+      - field_tags
+      - field_video
+      - summary
+      - taxonomy_forums
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  rendered_item: {  }
+  stemmer:
+    all_fields: true
+    fields:
+      - body
+      - comment
+      - comment_forum
+      - comment_photos
+      - field_article_type
+      - field_attachments
+      - field_author_information
+      - field_custom_teaser
+      - field_development_tags
+      - field_editor_tags
+      - field_image
+      - field_parent_program
+      - field_program_ad_space
+      - field_program_topic
+      - field_tags
+      - field_video
+      - summary
+      - taxonomy_forums
+      - title
+    exceptions:
+      mexican: mexic
+      texan: texa
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+  transliteration:
+    all_fields: true
+    fields:
+      - body
+      - comment
+      - comment_forum
+      - comment_photos
+      - field_article_type
+      - field_attachments
+      - field_author_information
+      - field_custom_teaser
+      - field_development_tags
+      - field_editor_tags
+      - field_image
+      - field_parent_program
+      - field_program_ad_space
+      - field_program_topic
+      - field_tags
+      - field_video
+      - summary
+      - taxonomy_forums
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: pantheon
