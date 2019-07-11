@@ -7186,7 +7186,6 @@
             "drupal/core": "~8.0",
             "drupal/search_api": "*"
         },
-        "time": "2017-05-24T01:39:13+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -7219,7 +7218,7 @@
         "description": "Enabling the recording and presentation of statistics for the Search API module.",
         "homepage": "https://www.drupal.org/project/search_api_stats",
         "support": {
-            "source": "http://cgit.drupalcode.org/search_api_stats"
+            "source": "https://git.drupalcode.org/project/search_api_stats"
         }
     },
     {
