@@ -67,7 +67,6 @@ hidden:
   field_about_me: true
   field_blog_bio: true
   field_company: true
-  field_job_function_code: true
   field_street: true
   field_user_city: true
   field_user_department: true
@@ -82,7 +81,6 @@ hidden:
   field_user_surname: true
   field_user_title: true
   langcode: true
-  mail: true
   member_for: true
   message_digest: true
   message_subscribe_email: true
