@@ -1,0 +1,15 @@
+{#
+/**
+ * @ingroup themeable
+ */
+#}
+
+<ul>
+  {% for keyword, num in stats %}
+    <li>
+      <a href="{{ path }}?{{ param_name }}={{ keyword }}">
+        {{ keyword }} ({{ num }})
+      </a>
+    </li>
+  {% endfor %}
+</ul>
