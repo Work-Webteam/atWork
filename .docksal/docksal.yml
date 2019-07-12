@@ -1,1 +1,10 @@
 version: "2.1"
+
+services:
+  cli:
+    extends:
+      file: ${HOME}/.docksal/stacks/services.yml
+      service: apache
+    environment:
+      - PANTHEON_SITE
+      - PANTHEON_ENV
