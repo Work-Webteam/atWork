@@ -1,5 +1,5 @@
 extraction_method: solr_extractor
-preserve_cache: true
+preserve_cache: false
 solr_extractor_configuration:
   solr_server: pantheon
 pdftotext_extractor_configuration:

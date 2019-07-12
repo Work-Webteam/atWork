@@ -1,4 +1,4 @@
-uuid: d9443e1f-a5fc-4e7e-ab2a-09743086bd7f
+uuid: ddab901e-b18e-43f4-891a-74d6c95957d9
 langcode: en
 status: true
 dependencies:
@@ -13,9 +13,9 @@ backend_config:
   connector: pantheon
   connector_config:
     schema: modules/contrib/search_api_solr/solr-conf/4.x/schema.xml
-  retrieve_data: false
-  highlight_data: false
-  excerpt: false
+  retrieve_data: true
+  highlight_data: true
+  excerpt: true
   skip_schema_check: false
   site_hash: false
   suggest_suffix: true
