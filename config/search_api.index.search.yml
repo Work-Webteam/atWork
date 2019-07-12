@@ -3,17 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
+    - field.storage.node.comment
+    - field.storage.node.comment_forum
+    - field.storage.node.comment_photos
     - field.storage.node.field_article_type
     - field.storage.node.field_attachments
     - field.storage.node.field_author_information
-    - field.storage.node.body
-    - field.storage.node.comment_forum
-    - field.storage.node.comment_photos
-    - field.storage.node.comment
     - field.storage.node.field_custom_teaser
     - field.storage.node.field_development_tags
     - field.storage.node.field_editor_tags
-    - field.storage.node.taxonomy_forums
     - field.storage.node.field_image
     - field.storage.node.field_parent_program
     - field.storage.node.field_program_ad_space
@@ -21,6 +20,7 @@ dependencies:
     - field.storage.node.field_send_notifications
     - field.storage.node.field_tags
     - field.storage.node.field_video
+    - field.storage.node.taxonomy_forums
     - search_api.server.pantheon
   module:
     - node

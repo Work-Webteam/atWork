@@ -1,0 +1,11 @@
+uuid: 8affbb91-a2fc-49e8-b7a2-617113f74ef0
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---site_search__page_1_node_grants
+display_id: views_page---site_search__page_1
+field_identifier: node_grants
+default_sort: false
+default_order: asc
+label: 'Node access information'
+weight: 0
