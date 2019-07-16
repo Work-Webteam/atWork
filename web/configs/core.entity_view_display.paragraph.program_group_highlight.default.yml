@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.program_group_highlight.field_highlight_image
     - field.field.paragraph.program_group_highlight.field_highlight_text
     - field.field.paragraph.program_group_highlight.field_highlight_title
-    - image.style.max_325x325
+    - image.style.highlight_image
     - paragraphs.paragraphs_type.program_group_highlight
   module:
     - image
@@ -20,7 +20,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: max_325x325
+      image_style: highlight_image
       image_link: ''
     third_party_settings: {  }
     type: image
@@ -28,10 +28,9 @@ content:
   field_highlight_text:
     weight: 2
     label: hidden
-    settings:
-      trim_length: 300
+    settings: {  }
     third_party_settings: {  }
-    type: text_trimmed
+    type: text_default
     region: content
   field_highlight_title:
     weight: 1

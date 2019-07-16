@@ -14,21 +14,14 @@ bundle: program_menu_links_box
 mode: default
 content:
   field_group_menu_link:
-    weight: 1
+    weight: 0
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
     region: content
-  field_title:
-    weight: 0
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
+  field_title: true
   status: true
