@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d877657e19aea446daa733e27a270783",
+    "content-hash": "92c08f7363a6a0d24662da299e23ab33",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4209,7 +4209,7 @@
             "description": "Adds a Entity Reference field type with revision support.",
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
-                "source": "http://cgit.drupalcode.org/entity_reference_revisions"
+                "source": "https://git.drupalcode.org/project/entity_reference_revisions"
             }
         },
         {
@@ -4264,7 +4264,7 @@
             "description": "Helper module to authenticate users using an external site / service and storing identification details",
             "homepage": "https://www.drupal.org/project/externalauth",
             "support": {
-                "source": "https://git.drupalcode.org/project/externalauth"
+                "source": "http://cgit.drupalcode.org/externalauth"
             }
         },
         {
@@ -5112,6 +5112,113 @@
             }
         },
         {
+            "name": "drupal/maxlength",
+            "version": "1.0.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/maxlength.git",
+                "reference": "8.x-1.0-beta2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/maxlength-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "27f7374e55ebdcc696d22d98be8cf4cf9bf58204"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1527856384",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Aron Novak",
+                    "homepage": "https://www.drupal.org/user/61864"
+                },
+                {
+                    "name": "Schnitzel",
+                    "homepage": "https://www.drupal.org/user/643820"
+                },
+                {
+                    "name": "a_c_m",
+                    "homepage": "https://www.drupal.org/user/195063"
+                },
+                {
+                    "name": "artur.thiessen",
+                    "homepage": "https://www.drupal.org/user/2390554"
+                },
+                {
+                    "name": "barneytech",
+                    "homepage": "https://www.drupal.org/user/669922"
+                },
+                {
+                    "name": "claudiu_cristea",
+                    "homepage": "https://www.drupal.org/user/2623935"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "derhasi",
+                    "homepage": "https://www.drupal.org/user/83474"
+                },
+                {
+                    "name": "frjo",
+                    "homepage": "https://www.drupal.org/user/5546"
+                },
+                {
+                    "name": "hefox",
+                    "homepage": "https://www.drupal.org/user/426416"
+                },
+                {
+                    "name": "jm.federico",
+                    "homepage": "https://www.drupal.org/user/509892"
+                },
+                {
+                    "name": "k4v",
+                    "homepage": "https://www.drupal.org/user/744246"
+                },
+                {
+                    "name": "mariano73",
+                    "homepage": "https://www.drupal.org/user/1324866"
+                },
+                {
+                    "name": "mariuss",
+                    "homepage": "https://www.drupal.org/user/28539"
+                },
+                {
+                    "name": "sanduhrs",
+                    "homepage": "https://www.drupal.org/user/28074"
+                },
+                {
+                    "name": "vasi1186",
+                    "homepage": "https://www.drupal.org/user/342104"
+                }
+            ],
+            "description": "Limit the number of characters in textfields and textareas and shows the amount of characters left.",
+            "homepage": "https://www.drupal.org/project/maxlength",
+            "support": {
+                "source": "https://git.drupalcode.org/project/maxlength"
+            }
+        },
+        {
             "name": "drupal/menu_block",
             "version": "1.5.0",
             "source": {
@@ -5171,7 +5278,7 @@
             "description": "Provides configurable blocks of menu links.",
             "homepage": "https://www.drupal.org/project/menu_block",
             "support": {
-                "source": "http://cgit.drupalcode.org/menu_block"
+                "source": "https://git.drupalcode.org/project/menu_block"
             }
         },
         {
@@ -5218,7 +5325,7 @@
             "description": "This module exports and imports menus and menu links.",
             "homepage": "https://www.drupal.org/project/menu_export",
             "support": {
-                "source": "http://cgit.drupalcode.org/menu_export"
+                "source": "https://git.drupalcode.org/project/menu_export"
             }
         },
         {
@@ -6017,7 +6124,7 @@
             "description": "Enables the creation of Paragraphs entities.",
             "homepage": "https://www.drupal.org/project/paragraphs",
             "support": {
-                "source": "http://cgit.drupalcode.org/paragraphs"
+                "source": "https://git.drupalcode.org/project/paragraphs"
             }
         },
         {
@@ -6371,7 +6478,7 @@
             "description": "Easily print any page through Printfriendly.",
             "homepage": "https://www.drupal.org/project/printfriendly",
             "support": {
-                "source": "http://cgit.drupalcode.org/printfriendly"
+                "source": "https://git.drupalcode.org/project/printfriendly"
             }
         },
         {
@@ -6977,7 +7084,7 @@
             "description": "Adds a TwigExtension that grants access to Drupal's menu render array so it can be used within a twig template.",
             "homepage": "https://www.drupal.org/project/simplify_menu",
             "support": {
-                "source": "http://cgit.drupalcode.org/simplify_menu"
+                "source": "https://git.drupalcode.org/project/simplify_menu"
             }
         },
         {
@@ -14348,6 +14455,7 @@
         "drupal/h5p": 5,
         "drupal/inline_entity_form": 5,
         "drupal/libraries": 15,
+        "drupal/maxlength": 10,
         "drupal/message_digest": 10,
         "drupal/message_subscribe": 10,
         "drupal/message_ui": 10,
