@@ -234,6 +234,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
    * {@inheritdoc}
    */
   public function postprocessSearchResults(ResultSetInterface $results) {
+    kint($results);
     $query = $results->getQuery();
     if (!$results->getResultCount()
       || $query->getProcessingLevel() != QueryInterface::PROCESSING_FULL
