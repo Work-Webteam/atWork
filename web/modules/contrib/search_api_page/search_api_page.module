@@ -127,7 +127,7 @@ function template_preprocess_search_api_page_result(&$variables) {
 
   $info = [];
   if ($entity instanceof EntityOwnerInterface) {
-    $info['user'] = $entity->getOwner()->label();
+    //$info['user'] = $entity->getOwner()->label();
   }
   if (isset($entity->created)) {
     $info['date'] = \Drupal::service('date.formatter')->format($entity->created->value, 'short');
