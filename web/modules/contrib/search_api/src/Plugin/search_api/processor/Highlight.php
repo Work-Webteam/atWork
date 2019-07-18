@@ -241,17 +241,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       return;
     }
 
-    //kint($query);
-    // Get keys used on the query
-    // In case they changes - i.e. absenteeist -> absente
-    $query_keys = $query->getKeys();
-    $query_keys = explode(' ', $query_keys);
-    $keys = array_merge($keys, $query_keys);
-    $keys = array_unique($keys);
-
-
     $excerpt_fulltext_fields = $this->index->getFulltextFields();
-    //kint($excerpt_fulltext_fields);
     if (!empty($this->configuration['exclude_fields'])) {
       $excerpt_fulltext_fields = array_combine($excerpt_fulltext_fields, $excerpt_fulltext_fields);
       foreach ($this->configuration['exclude_fields'] as $field) {
@@ -298,32 +288,13 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       $highlighted_keys = $results[$item_id]->getExtraData('highlighted_keys');
       if ($highlighted_keys) {
         $item_keys = array_unique(array_merge($keys, $highlighted_keys));
-      } else {
-        // Get already highlithed key from the query,
-        // in case is different from original and highlighted_keys is not available.
-        $query_highlighted_keys = [];
-        foreach($text as $text_result){
-          preg_match_all('#<strong>(.*?)</strong>#', $text_result->getText(), $matches);
-          foreach($matches[1] as $match){
-            $query_highlighted_keys[] = $match;
-          }
-        }
-        if (!empty($query_highlighted_keys)) $item_keys = array_unique($query_highlighted_keys);
       }
 
       // @todo This is pretty poor handling for the borders between different
       //   values/fields. Better would be to pass an array and have proper
       //   handling of this in createExcerpt(), ensuring that no snippet goes
       //   across multiple values/fields.
-      //$results[$item_id]->setExcerpt($this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys));
-      $excerpt = $this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys);
-
-      if(empty($excerpt)){
-        // If for some reason the excerp is empty, then return part of the original text
-        $excerpt_length = $this->configuration['excerpt_length'];
-        $excerpt = mb_strcut(implode($this->getEllipses()[1], $text), 0, $excerpt_length, 'UTF-8');
-      }
-      $results[$item_id]->setExcerpt($excerpt);
+      $results[$item_id]->setExcerpt($this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys));
     }
   }
 
