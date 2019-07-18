@@ -16,7 +16,7 @@ backend_config:
   retrieve_data: true
   highlight_data: true
   excerpt: true
-  skip_schema_check: false
+  skip_schema_check: true
   site_hash: false
   suggest_suffix: true
   suggest_corrections: true

@@ -27,7 +27,6 @@ dependencies:
     - search_api
     - search_api_attachments
     - file
-    - paragraphs
 id: search
 name: Search
 description: ''
@@ -226,13 +225,6 @@ field_settings:
 datasource_settings:
   'entity:file': {  }
   'entity:node':
-    bundles:
-      default: true
-      selected: {  }
-    languages:
-      default: true
-      selected: {  }
-  'entity:paragraph':
     bundles:
       default: true
       selected: {  }
