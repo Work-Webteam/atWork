@@ -230,6 +230,11 @@ body.page-node-type-program-area-content {
         h4.panel-title {
           padding: 5px 10px;
           border-bottom:solid 1px #999;
+          .caret {
+            display:block;
+            float:right;
+            margin-top: 10px;
+          }
         }
         .panel-body {
           border:solid 1px $exec-greyborder;
@@ -255,17 +260,24 @@ body.page-node-type-program-area-content {
         background-color: $banner-blue;
       }
       #accordion.panel-group {
-          margin-bottom:0px;
-          .panel-default {
-            border:none;
-          }
-          .panel-heading {
-            background-color: $comment-blue;
-            margin-top:5px;
-          }
-          h4.panel-title {
-            border-bottom: initial;
-          }
+        margin-bottom:0px;
+        .panel-default {
+          border:none;
+        }
+        .panel-heading {
+          background-color: $comment-blue;
+          margin-top:5px;
+        }
+        h4.panel-title {
+          border-bottom: initial;
+        }
+      }
+      h4.panel-title {
+        .caret {
+          display:block;
+          float:right;
+          margin-top: 10px;
+        }
       }
     }
     aside#side-menu {

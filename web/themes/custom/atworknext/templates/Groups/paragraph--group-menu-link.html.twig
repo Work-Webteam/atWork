@@ -55,7 +55,7 @@
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="heading{{ paragraph.id() }}">
-          <h4 class="panel-title">
+          <h4 class="panel-title"> <span class="caret"></span>
             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ paragraph.id() }}" aria-expanded="true" aria-controls="collapse{{ paragraph.id() }}">
               {% block title %}
                 {{ content['field_title'] }}
