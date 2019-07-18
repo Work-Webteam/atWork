@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Form\TetherStatsDerivativeDeleteForm.
- */
-
 namespace Drupal\tether_stats\Form;
 
 use Drupal\Core\Form\FormStateInterface;

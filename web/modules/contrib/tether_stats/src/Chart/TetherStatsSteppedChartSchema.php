@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Chart\TetherStatsSteppedChartSchema.
- */
-
 namespace Drupal\tether_stats\Chart;
 
 use DateTime;

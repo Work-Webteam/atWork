@@ -80,6 +80,8 @@ class ImportController {
       'taxonomy_term_values',
     ));
     $processed = 0;
+    // TODO Inject.
+    $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
     foreach ($this->data as $row) {
       //remove whitespace
       foreach ($row as $key => $value) {
@@ -118,8 +120,6 @@ class ImportController {
           drupal_set_message(t('The Term ID already exists.'), 'error');
           continue;
         }
-        // TODO Inject.
-        $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
         $db->insert('taxonomy_term_data')
           ->fields([
             'tid' => $row['tid'],
@@ -142,7 +142,7 @@ class ImportController {
         $new_term = Term::load($row['tid']);
       }
       else {
-        $new_term = Term::create(['name' => $row['name'], 'vid' => $this->vocabulary, 'status' => $row['status']]);
+        $new_term = Term::create(['name' => $row['name'], 'vid' => $this->vocabulary, 'status' => $row['status'], 'langcode' => $langcode]);
       }
       // Change the vocabulary if requested.
       if ($new_term->getVocabularyId() != $this->vocabulary && !$preserve_vocabularies) {
@@ -180,6 +180,8 @@ class ImportController {
       }
       $new_term->setDescription($row['description__value'])
         ->setName($row['name'])
+        ->set('status', $row['status'])
+        ->set('langcode', $langcode)
         ->setFormat($row['description__format'])
         ->setWeight($row['weight']);
       // Check for parents.

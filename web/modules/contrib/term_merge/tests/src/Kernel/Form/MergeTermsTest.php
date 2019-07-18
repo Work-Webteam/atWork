@@ -9,13 +9,17 @@ use Drupal\term_merge\Form\MergeTerms;
 use Drupal\Tests\term_merge\Kernel\MergeTermsTestBase;
 
 /**
+ * Tests the term merge form.
+ *
  * @group term_merge
  */
 class MergeTermsTest extends MergeTermsTestBase {
 
   /**
+   * Tests the title callback for the term merge form.
+   *
    * @test
-   **/
+   */
   public function hasTitleCallback() {
     $sut = $this->createSubjectUnderTest();
     $vocabulary = $this->createVocabulary();
@@ -25,8 +29,10 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests a term merge form for a vocabulary without terms.
+   *
    * @test
-   **/
+   */
   public function vocabularyWithoutTermsReturnsEmptyForm() {
     $vocabulary = $this->createVocabulary();
     $sut = $this->createSubjectUnderTest();
@@ -36,8 +42,10 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests a term merge form for a vocabulary with terms.
+   *
    * @test
-   **/
+   */
   public function vocabularyWithTerms() {
     $vocabulary = $this->createVocabulary();
     $term1 = $this->createTerm($vocabulary);
@@ -53,9 +61,13 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
-   * Test data provider for validatesSelectedTerms
+   * Test data provider for validatesSelectedTerms.
    *
    * @return array
+   *   An array of selections. Each selection has contains the following values:
+   *   - selectedTerms: an array of selected source taxonomy term ids.
+   *   - expectingErrors: a boolean indicating the form is expected to generate
+   *     an error.
    */
   public function validatesSelectedTermsTestDataProvider() {
     $testData['No terms selected'] = [
@@ -65,7 +77,7 @@ class MergeTermsTest extends MergeTermsTestBase {
 
     $testData['One term selected'] = [
       'selectedTerms' => [1],
-      'expectingErrors' => TRUE,
+      'expectingErrors' => FALSE,
     ];
 
     $testData['Two terms selected'] = [
@@ -82,14 +94,16 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
-   * @test
-   *
-   * @dataProvider validatesSelectedTermsTestDataProvider
+   * Checks the form validation for the merge terms form.
    *
    * @param array $selectedTerms
    *   The selected term ids.
    * @param bool $expectingErrors
    *   If a validation error is expected.
+   *
+   * @test
+   *
+   * @dataProvider validatesSelectedTermsTestDataProvider
    */
   public function validatesSelectedTerms(array $selectedTerms, $expectingErrors) {
     $vocabulary = $this->createVocabulary();
@@ -108,8 +122,10 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests the form redirects to the confirm form.
+   *
    * @test
-   **/
+   */
   public function redirectsToConfirmationForm() {
     $vocabulary = $this->createVocabulary();
     $sut = $this->createSubjectUnderTest();
@@ -127,8 +143,10 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests merge terms are saved to the temp store.
+   *
    * @test
-   **/
+   */
   public function setsLocalStorage() {
     $vocabulary = $this->createVocabulary();
     $sut = $this->createSubjectUnderTest();
@@ -144,7 +162,10 @@ class MergeTermsTest extends MergeTermsTestBase {
   }
 
   /**
+   * Returns the expected form structure when the form is empty.
+   *
    * @return array
+   *   A renderable array.
    */
   private function getEmptyFormExpectation() {
     return [
@@ -156,15 +177,22 @@ class MergeTermsTest extends MergeTermsTestBase {
         '#multiple' => TRUE,
         '#required' => TRUE,
       ],
-      'submit' => [
-        '#type' => 'submit',
-        '#value' => new TranslatableMarkup('Merge'),
+      'actions' => [
+        '#type' => 'actions',
+        'submit' => [
+          '#button_type' => 'primary',
+          '#type' => 'submit',
+          '#value' => new TranslatableMarkup('Merge'),
+        ],
       ],
     ];
   }
 
   /**
+   * Creates the form class used for rendering the merge terms form.
+   *
    * @return \Drupal\term_merge\Form\MergeTerms
+   *   The form class used for rendering the merge terms form.
    */
   private function createSubjectUnderTest() {
     return new MergeTerms($this->entityTypeManager, $this->privateTempStoreFactory);
@@ -176,4 +204,5 @@ class MergeTermsTest extends MergeTermsTestBase {
   protected function numberOfTermsToSetUp() {
     return 0;
   }
+
 }

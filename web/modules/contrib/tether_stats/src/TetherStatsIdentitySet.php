@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsIdentitySet.
- */
-
 namespace Drupal\tether_stats;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -181,9 +176,9 @@ class TetherStatsIdentitySet extends ParameterBag implements TetherStatsIdentity
 
       if ($this->has('entity_id') && $this->has('entity_type')) {
 
-        $entity_type = \Drupal::entityManager()->getDefinition($this->get('entity_type'), FALSE);
+        $entity_type = \Drupal::entityTypeManager()->getDefinition($this->get('entity_type'), FALSE);
 
-        if (isset($entity_type) && is_numeric($this->get('entity_id'))) {
+        if ($entity_type && !empty($this->get('entity_id'))) {
 
           // We could load the entity to confirm it exists, but that would be
           // too costly, so instead we just confirm that the entity_type is

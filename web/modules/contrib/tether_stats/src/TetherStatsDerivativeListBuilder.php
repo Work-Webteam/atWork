@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsDerivativeListBuilder.
- */
-
 namespace Drupal\tether_stats;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;

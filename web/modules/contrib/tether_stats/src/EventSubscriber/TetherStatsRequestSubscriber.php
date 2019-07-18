@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\EventSubscriber\TetherStatsRequestSubscriber.
- */
-
 namespace Drupal\tether_stats\EventSubscriber;
 
 use Symfony\Component\HttpKernel\HttpKernelInterface;

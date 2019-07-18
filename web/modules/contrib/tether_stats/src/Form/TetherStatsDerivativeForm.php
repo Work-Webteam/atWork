@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Form\TetherStatsDerivativeForm.
- */
-
 namespace Drupal\tether_stats\Form;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -143,7 +138,7 @@ class TetherStatsDerivativeForm extends EntityForm {
 
     if ($this->entity->save()) {
 
-      drupal_set_message(t('Added a new derivative %derivative for the entity type %entity_type. You may now use this derivative to define additional tracking elements.',
+      $this->messenger()->addMessage(t('Added a new derivative %derivative for the entity type %entity_type. You may now use this derivative to define additional tracking elements.',
         ['%derivative' => $form_state->getValue('name'), '%entity_type' => $form_state->getValue('entity_type')]));
     }
 

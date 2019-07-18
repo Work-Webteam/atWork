@@ -5,8 +5,8 @@ namespace Drupal\term_merge\Form;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\taxonomy\VocabularyInterface;
-use Drupal\user\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -38,16 +38,16 @@ class MergeTerms extends FormBase {
   /**
    * The private temporary storage factory.
    *
-   * @var \Drupal\user\PrivateTempStoreFactory
+   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
    */
   private $tempStoreFactory;
 
   /**
-   * Constructs an OverviewTerms object.
+   * Constructs a MergeTerms object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity manager service.
-   * @param \Drupal\user\PrivateTempStoreFactory $tempStoreFactory
+   * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $tempStoreFactory
    *   The private temporary storage factory service.
    */
   public function __construct(EntityTypeManagerInterface $entityTypeManager, PrivateTempStoreFactory $tempStoreFactory) {
@@ -62,7 +62,7 @@ class MergeTerms extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-      $container->get('user.private_tempstore')
+      $container->get('tempstore.private')
     );
   }
 
@@ -93,7 +93,9 @@ class MergeTerms extends FormBase {
       '#required' => TRUE,
     ];
 
-    $form['submit'] = [
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
+      '#button_type' => 'primary',
       '#type' => 'submit',
       '#value' => $this->t('Merge'),
     ];
@@ -111,8 +113,8 @@ class MergeTerms extends FormBase {
 
     $selectedTerms = $form_state->getValue('terms');
 
-    if (count($selectedTerms) < 2) {
-      $form_state->setErrorByName('terms', 'At least two terms must be selected.');
+    if (empty($selectedTerms)) {
+      $form_state->setErrorByName('terms', 'At least one term must be selected.');
     }
   }
 

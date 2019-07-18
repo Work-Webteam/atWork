@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Controller\TetherStatsChartController.
- */
-
 namespace Drupal\tether_stats\Controller;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;

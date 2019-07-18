@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Form\TetherStatsDerivativeDisableForm.
- */
-
 namespace Drupal\tether_stats\Form;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
@@ -46,7 +41,7 @@ class TetherStatsDerivativeDisableForm extends EntityConfirmFormBase {
     $this->entity->set('status', FALSE);
     $this->entity->save();
 
-    drupal_set_message($this->t('The derivative %derivative has been disabled. Future identity sets referencing this derviative will not be tracked.',
+    $this->messenger()->addMessage($this->t('The derivative %derivative has been disabled. Future identity sets referencing this derviative will not be tracked.',
       ['%derivative' => $this->entity->id()]));
 
     $form_state->setRedirect('entity.tether_stats_derivative.collection');

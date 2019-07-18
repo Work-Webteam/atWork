@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Event\TetherStatsRequestToElementEvent.
- */
-
 namespace Drupal\tether_stats\Event;
 
 use Symfony\Component\EventDispatcher\Event;

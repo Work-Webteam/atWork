@@ -6,6 +6,9 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\taxonomy\TermInterface;
 use Drupal\term_merge\TermMergerInterface;
 
+/**
+ * Dummy TermMerger class used for testing purposes.
+ */
 class TermMergerDummy implements TermMergerInterface {
 
   /**
@@ -21,4 +24,5 @@ class TermMergerDummy implements TermMergerInterface {
   public function mergeIntoTerm(array $termsToMerge, TermInterface $targetTerm) {
     // Deliberately left empty because dummies don't do anything.
   }
+
 }

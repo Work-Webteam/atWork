@@ -240,6 +240,10 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       || !($keys = $this->getKeywords($query))) {
       return;
     }
+kint($results);
+kint($keys);
+kint($query->getKeys());
+
     // Get keys used on the query
     // In case they changes - i.e. absenteeist -> absente
     $query_keys = $query->getKeys();
@@ -247,9 +251,11 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
     $keys = array_merge($keys, $query_keys);
     $keys = array_unique($keys);
 
-kint($results);
-kint($keys);
+
+
+
 kint($this->index);
+kint($this->index->getFulltextFields());
 
 
     $excerpt_fulltext_fields = $this->index->getFulltextFields();

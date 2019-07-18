@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Chart\TetherStatsChartIteratorInterface.
- */
-
 namespace Drupal\tether_stats\Chart;
 
 /**

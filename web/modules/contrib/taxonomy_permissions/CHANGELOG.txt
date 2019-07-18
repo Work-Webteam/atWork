@@ -3,6 +3,7 @@ CHANGELOG for Taxonomy Permissions for Drupal 8
 
 
 taxonomy_permissions 8.x-1.x-dev:
+  - Issue #3062917 by Deeksha B: Fix Namespace dependencies in info.yml file.
   - Issue #2606040 by flocondetoile, Rob C, dravenk, salvis: Port Taxonomy Permissions to Drupal 8.
 
 

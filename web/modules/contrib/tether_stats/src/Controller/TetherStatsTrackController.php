@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Controller\TetherStatsTrackController.
- */
-
 namespace Drupal\tether_stats\Controller;
 
 use Symfony\Component\HttpFoundation\RequestStack;

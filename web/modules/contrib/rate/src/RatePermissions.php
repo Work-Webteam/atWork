@@ -2,10 +2,10 @@
 
 namespace Drupal\rate;
 
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -61,35 +61,25 @@ class RatePermissions implements ContainerInjectionInterface {
    */
   public function permissions() {
     $permissions = [];
-    $enabled_types_bundles = $this->config->get('enabled_types_bundles');
-    if (!empty($enabled_types_bundles)) {
-      foreach ($enabled_types_bundles as $entity_type_id => $bundles) {
-        foreach ($bundles as $bundle_id) {
-          if ($bundle_id == $entity_type_id) {
-            $perm_index = 'cast rate vote on ' . $entity_type_id . ' of ' . $bundle_id;
+    $enabled_types_widgets = $this->config->get('enabled_types_widgets');
+    if (!empty($enabled_types_widgets)) {
+      foreach ($enabled_types_widgets as $entity_type_id => $entity_types) {
+        foreach ($entity_types as $bundle => $settings) {
+          if ($bundle == $entity_type_id) {
+            $perm_index = 'cast rate vote on ' . $entity_type_id . ' of ' . $bundle;
             $permissions[$perm_index] = [
-              'title' => $this->t('Can vote on :type',
-                [
-                  ':type' => $entity_type_id,
-                ]
-              ),
+              'title' => $this->t('Can vote on :type', [':type' => $entity_type_id]),
             ];
           }
           else {
-            $perm_index = 'cast rate vote on ' . $entity_type_id . ' of ' . $bundle_id;
+            $perm_index = 'cast rate vote on ' . $entity_type_id . ' of ' . $bundle;
             $permissions[$perm_index] = [
-              'title' => $this->t('Can vote on :type type of :bundle',
-                [
-                  ':bundle' => $bundle_id,
-                  ':type' => $entity_type_id,
-                ]
-              ),
+              'title' => $this->t('Can vote on :type type of :bundle', [':bundle' => $bundle, ':type' => $entity_type_id]),
             ];
           }
         }
       }
     }
-
     return $permissions;
   }
 

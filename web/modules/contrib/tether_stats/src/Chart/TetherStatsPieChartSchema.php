@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Chart\TetherStatsPieChartSchema.
- */
-
 namespace Drupal\tether_stats\Chart;
 
 use Drupal\tether_stats\TetherStatsAnalytics;

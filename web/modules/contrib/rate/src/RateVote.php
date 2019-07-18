@@ -2,18 +2,17 @@
 
 namespace Drupal\rate;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\votingapi\VoteResultFunctionManager;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Returns responses for Rate routes.
  */
-class RateVote implements ContainerInjectionInterface {
+class RateVote {
   use StringTranslationTrait;
 
   /**
@@ -52,6 +51,13 @@ class RateVote implements ContainerInjectionInterface {
   protected $accountProxy;
 
   /**
+   * Messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
    * Constructor for vote service.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
@@ -64,30 +70,21 @@ class RateVote implements ContainerInjectionInterface {
    *   The bot detector service.
    * @param \Drupal\Core\Session\AccountProxyInterface $account_proxy
    *   The current user.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger service.
    */
   public function __construct(EntityTypeManagerInterface $entity_type_manager,
                               VoteResultFunctionManager $result_manager,
                               Connection $database,
                               RateBotDetector $bot_detector,
-                              AccountProxyInterface $account_proxy) {
+                              AccountProxyInterface $account_proxy,
+                              MessengerInterface $messenger) {
     $this->entityTypeManager = $entity_type_manager;
     $this->resultManager = $result_manager;
     $this->database = $database;
     $this->botDetector = $bot_detector;
     $this->accountProxy = $account_proxy;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('entity_type.manager'),
-      $container->get('plugin.manager.votingapi.resultfunction'),
-      $container->get('database'),
-      $container->get('rate.bot_detector'),
-      $container->get('current_user')
-    );
+    $this->messenger = $messenger;
   }
 
   /**
@@ -132,20 +129,20 @@ class RateVote implements ContainerInjectionInterface {
         $this->resultManager->recalculateResults($entity_type_id, $entity_id, $vote_type_id);
 
         if ($show_messages) {
-          \Drupal::messenger()->addStatus($this->t('Your :type vote was added.', [
+          $this->messenger->addStatus($this->t('Your :type vote was added.', [
             ':type' => $vote_type_id,
           ]));
         }
       }
       // Otherwise, inform user of previous vote.
       elseif ($show_messages) {
-        \Drupal::messenger()->addWarning($this->t('You are not allowed to vote the same way multiple times.'));
+        $this->messenger->addWarning($this->t('You are not allowed to vote the same way multiple times.'));
       }
     }
   }
 
   /**
-   * Record a vote.
+   * Undo a vote.
    *
    * @param string $entity_type_id
    *   Entity type ID such as node.
@@ -177,12 +174,12 @@ class RateVote implements ContainerInjectionInterface {
         }
 
         if ($show_messages) {
-          \Drupal::messenger()->addStatus($this->t('Your vote was canceled.'));
+          $this->messenger->addStatus($this->t('Your vote was canceled.'));
         }
       }
       elseif ($show_messages) {
         // Otherwise, inform user of previous vote.
-        \Drupal::messenger()->addWarning($this->t('A previous vote was not found.'));
+        $this->messenger->addWarning($this->t('A previous vote was not found.'));
       }
     }
   }

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsAnalyticsStorageInterface.
- */
-
 namespace Drupal\tether_stats;
 
 /**
@@ -157,7 +152,7 @@ interface TetherStatsAnalyticsStorageInterface {
    * Gets the count for an element impressed on a base URL.
    *
    * Counts how many times a given element was impressed on any element
-   * with a url begining with $base_url.
+   * with a url beginning with $base_url.
    *
    * If $step is provided, an array of counts for each step increment
    * is returned.
@@ -235,7 +230,7 @@ interface TetherStatsAnalyticsStorageInterface {
   public function getAllElementsImpressedOnElementCount($elid_impressed_on, $start, $finish, $step = NULL);
 
   /**
-   * Gets the count for how many hit activities occured from the referrer.
+   * Gets the count for how many hit activities occurred from the referrer.
    *
    * Counts how many times a "hit" activity occurred with the $referrer string
    * somewhere in the referrer field of the activity.
@@ -260,7 +255,7 @@ interface TetherStatsAnalyticsStorageInterface {
   public function getHitActivityWithReferrerCount($referrer, $start, $finish, $step = NULL);
 
   /**
-   * Gets the count for how many hit activities occured from the referrer.
+   * Gets the count for how many hit activities occurred from the referrer.
    *
    * Counts how many times a "hit" activity occurred with the $referrer string
    * somewhere in the referrer field of the activity on a given element.
@@ -287,7 +282,7 @@ interface TetherStatsAnalyticsStorageInterface {
   public function getElementHitActivityWithReferrerCount($elid, $referrer, $start, $finish, $step = NULL);
 
   /**
-   * Gets the count for how many hit activities occured using a browser.
+   * Gets the count for how many hit activities occurred using a browser.
    *
    * Counts how many times a "hit" activity occurred with the $browser string
    * somewhere in the browser field of the activity.
@@ -312,7 +307,7 @@ interface TetherStatsAnalyticsStorageInterface {
   public function getHitActivityWithBrowserCount($browser, $start, $finish, $step = NULL);
 
   /**
-   * Gets the count for how many hit activities occured using a browser.
+   * Gets the count for how many hit activities occurred using a browser.
    *
    * Counts how many times a "hit" activity occurred with the $browser string
    * somewhere in the browser field of the activity on a given element.

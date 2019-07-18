@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Plugin\tether_stats\Chart\TetherStatsChartRendererGoogle.
- */
-
 namespace Drupal\tether_stats\Plugin\tether_stats\Chart;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;

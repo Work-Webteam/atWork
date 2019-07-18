@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Entity\TetherStatsDerivative.
- */
-
 namespace Drupal\tether_stats\Entity;
 
 use Drupal\tether_stats\TetherStatsManagerInterface;

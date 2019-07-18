@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsDerivativeInterface.
- */
-
 namespace Drupal\tether_stats;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
@@ -80,7 +75,7 @@ interface TetherStatsDerivativeInterface extends ConfigEntityInterface {
    * The bundle may be NULL, in which case "{entity_type}:*" will
    * be returned where '*' implies that the derivative applies to
    * all bundles. For example, "node:*" applies to all node pages
-   * regardless of the node type. Similarily, "user:*" will apply
+   * regardless of the node type. Similarly, "user:*" will apply
    * to stat elements corresponding to users.
    *
    * @return string

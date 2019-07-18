@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsIdentitySetInterface.
- */
-
 namespace Drupal\tether_stats;
 
 use Drupal\router_test\Access\DefinedTestAccessCheck;

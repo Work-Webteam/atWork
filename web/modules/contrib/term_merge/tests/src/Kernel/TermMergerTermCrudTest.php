@@ -6,12 +6,19 @@ use Drupal\taxonomy\TermInterface;
 use Drupal\term_merge\TermMerger;
 
 /**
+ * Tests term merging for taxonomy terms.
+ *
  * @group term_merge
  */
 class TermMergerTermCrudTest extends MergeTermsTestBase {
 
   /**
+   * Returns possible merge options that can be selected in the interface.
+   *
    * @return array
+   *   An array of options. Each option has contains the following values:
+   *   - methodName: the selected method for merging to the target term.
+   *   - target: a string representing the target taxonomy term.
    */
   public function mergeTermFunctionsProvider() {
 
@@ -29,13 +36,17 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests only taxonomy terms in the same vocabulary can be merged.
+   *
+   * @param string $methodName
+   *   The merge method being tested.
+   * @param string $target
+   *   The label for the taxonomy term target.
+   *
    * @test
    * @dataProvider mergeTermFunctionsProvider
    * @expectedException \RuntimeException
    * @expectedExceptionMessage Only merges within the same vocabulary are supported
-   *
-   * @param string $methodName
-   * @param string $target
    */
   public function canOnlyMergeTermsInTheSameVocabulary($methodName, $target) {
     $vocab2 = $this->createVocabulary();
@@ -49,13 +60,17 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests the form validation for the minimum required input.
+   *
+   * @param string $methodName
+   *   The merge method being tested.
+   * @param string $target
+   *   The label for the taxonomy term target.
+   *
    * @test
    * @dataProvider mergeTermFunctionsProvider
    * @expectedException \RuntimeException
    * @expectedExceptionMessage You must provide at least 1 term
-   *
-   * @param string $methodName
-   * @param string $target
    */
   public function minimumTermsValidation($methodName, $target) {
     $sut = $this->createSubjectUnderTest();
@@ -64,8 +79,10 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests a newly created term is available when merging to a new term.
+   *
    * @test
-   **/
+   */
   public function mergeIntoNewTermCreatesNewTerm() {
     $sut = $this->createSubjectUnderTest();
 
@@ -79,10 +96,12 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests the validation for the target term being in the same vocabulary.
+   *
    * @test
    * @expectedException \RuntimeException
    * @expectedExceptionMessage The target term must be in the same vocabulary as the terms being merged
-   **/
+   */
   public function existingTermMustBeInSameVocabularyAsMergedTerms() {
     $sut = $this->createSubjectUnderTest();
 
@@ -92,15 +111,17 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests a taxonomy term that is passed to the migration is saved correctly.
+   *
    * @test
-   **/
+   */
   public function mergeIntoTermSavesTermIfNewTermIsPassedIn() {
     $sut = $this->createSubjectUnderTest();
     $values = [
       'name' => 'Unsaved term',
       'vid' => $this->vocabulary->id(),
     ];
-    /** @var TermInterface $term */
+    /** @var \Drupal\taxonomy\TermInterface $term */
     $term = $this->entityTypeManager->getStorage('taxonomy_term')->create($values);
     self::assertEmpty($term->id());
 
@@ -110,11 +131,15 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
-   * @test
-   * @dataProvider mergeTermFunctionsProvider
+   * Tests the merged terms are deleted after the migration.
    *
    * @param string $methodName
+   *   The merge method being tested.
    * @param string $target
+   *   The label for the taxonomy term target.
+   *
+   * @test
+   * @dataProvider mergeTermFunctionsProvider
    */
   public function mergedTermsAreDeleted($methodName, $target) {
     $sut = $this->createSubjectUnderTest();
@@ -127,13 +152,15 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Creates the class used for merging terms.
+   *
    * @return \Drupal\term_merge\TermMerger
+   *   The class used for merging terms
    */
   private function createSubjectUnderTest() {
-    $sut = new TermMerger($this->entityTypeManager, \Drupal::service('entity_type.bundle.info'), \Drupal::service('entity_field.manager'));
+    $sut = new TermMerger($this->entityTypeManager, \Drupal::service('term_reference_change.migrator'));
     return $sut;
   }
-
 
   /**
    * {@inheritdoc}
@@ -141,4 +168,5 @@ class TermMergerTermCrudTest extends MergeTermsTestBase {
   protected function numberOfTermsToSetUp() {
     return 2;
   }
+
 }

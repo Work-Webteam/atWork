@@ -97,6 +97,7 @@
         "drupal/ds": "^3.1",
         "drupal/editor_advanced_link": "1.x-dev",
         "drupal/externalauth": "^1.1",
+        "drupal/facets": "^1.4",
         "drupal/flag": "^4.0@alpha",
         "drupal/focal_point": "^1.0",
         "drupal/forward": "^2.1",

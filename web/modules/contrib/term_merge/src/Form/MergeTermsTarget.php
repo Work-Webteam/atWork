@@ -5,9 +5,8 @@ namespace Drupal\term_merge\Form;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\taxonomy\VocabularyInterface;
-use Drupal\user\PrivateTempStore;
-use Drupal\user\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -32,7 +31,7 @@ class MergeTermsTarget extends FormBase {
   /**
    * The private temporary storage factory.
    *
-   * @var \Drupal\user\PrivateTempStoreFactory
+   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
    */
   private $tempStoreFactory;
 
@@ -48,7 +47,7 @@ class MergeTermsTarget extends FormBase {
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity manager service.
-   * @param \Drupal\user\PrivateTempStoreFactory $tempStoreFactory
+   * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $tempStoreFactory
    *   The private temporary storage factory.
    */
   public function __construct(EntityTypeManagerInterface $entityTypeManager, PrivateTempStoreFactory $tempStoreFactory) {
@@ -63,7 +62,7 @@ class MergeTermsTarget extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('entity_type.manager'),
-      $container->get('user.private_tempstore')
+      $container->get('tempstore.private')
     );
   }
 
@@ -111,7 +110,9 @@ class MergeTermsTarget extends FormBase {
       '#options' => $this->buildExistingTermsOptions(),
     ];
 
-    $form['submit'] = [
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
+      '#button_type' => 'primary',
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
     ];

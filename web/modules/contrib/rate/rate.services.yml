@@ -7,4 +7,4 @@ services:
     arguments: ['@config.factory', '@database', '@http_client', '@request_stack']
   rate.vote:
     class: Drupal\rate\RateVote
-    arguments: ['@entity_type.manager', '@plugin.manager.votingapi.resultfunction', '@database', '@rate.bot_detector', '@current_user']
+    arguments: ['@entity_type.manager', '@plugin.manager.votingapi.resultfunction', '@database', '@rate.bot_detector', '@current_user', '@messenger']

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\tether_stats\Exception\TetherStatsDerivativeNotFoundException.
- */
-
 namespace Drupal\tether_stats\Exception;
 
 /**

@@ -259,9 +259,8 @@ You may use the following snippets in the template:
     print theme('rate_button', [
       'text' => $links[0]['text'],
       'href' => $links[0]['href'],
-      'class' => "extra-class"
-      ]
-    );
+      'class' => "extra-class",
+    ]);
     ?>
 
   '0' is the first option (see §2.1). For a thumbs up / down
@@ -271,15 +270,13 @@ You may use the following snippets in the template:
     print theme('rate_button', [
       'text' => $links[0]['text'],
       'href' => $links[0]['href'],
-      'class' => "extra-class"
-      ]
-    );
+      'class' => "extra-class",
+    ]);
     print theme('rate_button', [
       'text' => $links[1]['text'],
       'href' => $links[1]['href'],
-      'class' => "extra-class"
-      ]
-    );
+      'class' => "extra-class",
+    ]);
     ?>
 
 * Print the rating when using value type 'percentage' or 'points':
@@ -389,7 +386,6 @@ There are two Javascript hooks available; eventBeforeRate and eventAfterRate.
 This hook has an argument 'data'. This is an object which contains the variables
 'content_type', 'content_id', 'widget_id' and 'widget_mode'. Example of use:
 
-$(document).bind('eventAfterRate', function(event, data)
-{
+$(document).bind('eventAfterRate', function(event, data) {
   alert('eventAfterRate called');
 });

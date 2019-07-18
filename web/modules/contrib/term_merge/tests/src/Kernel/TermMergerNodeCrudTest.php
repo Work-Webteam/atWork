@@ -2,13 +2,14 @@
 
 namespace Drupal\Tests\term_merge\Kernel;
 
-use Drupal\field\Tests\EntityReference\EntityReferenceTestTrait;
-use Drupal\node\Entity\Node;
 use Drupal\term_merge\TermMerger;
+use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 /**
+ * Tests term merging for nodes.
+ *
  * @group term_merge
  */
 class TermMergerNodeCrudTest extends MergeTermsTestBase {
@@ -31,6 +32,9 @@ class TermMergerNodeCrudTest extends MergeTermsTestBase {
     'system',
   ];
 
+  /**
+   * {@inheritdoc}
+   */
   public function setUp() {
     parent::setUp();
 
@@ -43,16 +47,18 @@ class TermMergerNodeCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests taxonomy term references are updated in a node after a term merge.
+   *
    * @test
-   **/
+   */
   public function nodeReferencesAreUpdated() {
     $firstTerm = reset($this->terms);
     $node = $this->createNode(['field_terms' => ['target_id' => $firstTerm->id()]]);
 
-    $sut = new TermMerger($this->entityTypeManager, \Drupal::service('entity_type.bundle.info'), \Drupal::service('entity_field.manager'));
+    $sut = new TermMerger($this->entityTypeManager, \Drupal::service('term_reference_change.migrator'));
     $newTerm = $sut->mergeIntoNewTerm($this->terms, 'NewTerm');
 
-    /** @var Node $loadedNode */
+    /** @var \Drupal\node\Entity\Node $loadedNode */
     $loadedNode = $this->entityTypeManager->getStorage('node')->load($node->id());
     $referencedTerms = $loadedNode->field_terms->getValue();
     self::assertCount(1, $referencedTerms);
@@ -61,21 +67,23 @@ class TermMergerNodeCrudTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests a node with both term references has a single value after a merge.
+   *
    * @test
-   **/
-  public function ifNodeReferencesBothTerms_ItWillOnlyReferenceTargetTermOnce() {
+   */
+  public function ifNodeReferencesBothTermsItWillOnlyReferenceTargetTermOnce() {
     $firstTerm = reset($this->terms);
     $lastTerm = end($this->terms);
     $values = [
       'field_terms' => ['target_id' => $firstTerm->id()],
-      ['target_id' => $lastTerm->id()]
+      ['target_id' => $lastTerm->id()],
     ];
     $node = $this->createNode($values);
 
-    $sut = new TermMerger($this->entityTypeManager, \Drupal::service('entity_type.bundle.info'), \Drupal::service('entity_field.manager'));
+    $sut = new TermMerger($this->entityTypeManager, \Drupal::service('term_reference_change.migrator'));
     $newTerm = $sut->mergeIntoNewTerm($this->terms, 'NewTerm');
 
-    /** @var Node $loadedNode */
+    /** @var \Drupal\node\Entity\Node $loadedNode */
     $loadedNode = $this->entityTypeManager->getStorage('node')->load($node->id());
     $referencedTerms = $loadedNode->field_terms->getValue();
     self::assertCount(1, $referencedTerms);
@@ -83,6 +91,9 @@ class TermMergerNodeCrudTest extends MergeTermsTestBase {
     self::assertEquals($newTerm->id(), $firstReference['target_id']);
   }
 
+  /**
+   * Set up a content type for testing purposes.
+   */
   private function setUpContentType() {
     $bundle = 'page';
     $this->createContentType([

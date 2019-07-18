@@ -15,6 +15,9 @@
   display: block;
   float: left;
 }
+.rate-widget-fivestar ul li.hovering a {
+  background: url(../images/fivestar.png) no-repeat 0 -16px;
+}
 .rate-fivestar-btn-filled {
   display: inline-block;
   background: url(../images/fivestar.png) no-repeat 0 -16px;

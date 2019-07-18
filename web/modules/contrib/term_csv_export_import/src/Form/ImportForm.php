@@ -74,7 +74,7 @@ class ImportForm extends FormBase implements FormInterface {
         $form['input'] = [
           '#type' => 'textarea',
           '#title' => $this->t('Input'),
-          '#description' => $this->t('<p><strong>See CSV Export for an example.</strong></p><p>Enter in the form of: <pre>"name,description,format,weight,parent_name,[any_additional_fields];</pre><pre>name,description,format,weight,parent_name[;parent_name1;parent_name2;...],[any_additional_fields]"</pre> or <pre>"tid,uuid,name,description,format,weight,parent_name[;parent_name1;parent_name2;...],parent_tid[;parent_tid1;parent_tid2;...],[any_additional_fields];</pre><pre>tid,uuid,name,description,format,weight,parent_name,parent_tid,[any_additional_fields]"</pre> Note that <em>[any_additional_fields]</em> are optional and are stringified using <a href="http://www.php.net/http_build_query">http_build_query</a>.</p>'),
+          '#description' => $this->t('<p><strong>See CSV Export for an example.</strong></p><p>Enter in the form of: <pre>"name,status,description,format,weight,parent_name,[any_additional_fields];</pre><pre>name,description,format,weight,parent_name[;parent_name1;parent_name2;...],[any_additional_fields]"</pre> or <pre>"tid,uuid,name,status,description,format,weight,parent_name[;parent_name1;parent_name2;...],parent_tid[;parent_tid1;parent_tid2;...],[any_additional_fields];</pre><pre>tid,uuid,name,description,format,weight,parent_name,parent_tid,[any_additional_fields]"</pre> Note that <em>[any_additional_fields]</em> are optional and are stringified using <a href="http://www.php.net/http_build_query">http_build_query</a>.</p>'),
         ];
         $form['preserve_vocabularies'] = [
           '#type' => 'checkbox',

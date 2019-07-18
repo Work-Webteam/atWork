@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Core\StringTranslation\TetherStatsChartableItemCollectionTrait.
- */
-
 namespace Drupal\tether_stats\Chart;
 
 /**
