@@ -241,7 +241,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       return;
     }
 
-    kint($query);
+    //kint($query);
     // Get keys used on the query
     // In case they changes - i.e. absenteeist -> absente
     $query_keys = $query->getKeys();
@@ -251,7 +251,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
 
 
     $excerpt_fulltext_fields = $this->index->getFulltextFields();
-    kint($excerpt_fulltext_fields);
+    //kint($excerpt_fulltext_fields);
     if (!empty($this->configuration['exclude_fields'])) {
       $excerpt_fulltext_fields = array_combine($excerpt_fulltext_fields, $excerpt_fulltext_fields);
       foreach ($this->configuration['exclude_fields'] as $field) {
