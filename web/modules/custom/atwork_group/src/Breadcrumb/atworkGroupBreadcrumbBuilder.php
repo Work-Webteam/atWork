@@ -1,9 +1,7 @@
 <?php
 
-// Define Class Namespace
 namespace Drupal\atwork_group\Breadcrumb;
 
-// Use namespaces for required classes
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -11,39 +9,46 @@ use Drupal\group\Entity\GroupContent;
 use Drupal\group\Entity\Group;
 use Drupal\Core\Link;
 
-// Define class and implement BreadcrumbBuilderInterface
+/**
+ * Define class and implement BreadcrumbBuilderInterface.
+ */
 class atworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function applies(RouteMatchInterface $attributes) {
-	//	// You must return a BOOLEAN TRUE or FALSE.
-		// Get all parameters
-		$parameters = $attributes->getParameters()->all();
-		
-		// Is this a view page for group content?
-		if(isset($parameters['view_id']) && $parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
-			return TRUE;
-		}
-		
-		// Is this a group landing page?
-		if(isset($parameters['group']) && $parameters['group']->getGroupType()->id() == "atwork_groups") {
-			return TRUE;
-		}
-		
-		// Determine if the current page is a Group Photos or Group Post page
-		$is_node = isset($parameters['node']);
-		$node_params_set = !empty ($parameters['node']);
-		$is_photo_gallery = ( $is_node && $node_params_set ? $parameters['node']->get('type')->getValue()[0]['target_id'] == 'photos' : FALSE);
-		$is_group_post = ( $is_node && $node_params_set ?  $parameters['node']->get('type')->getValue()[0]['target_id'] == 'group_post' : FALSE);
-		
-		if ($is_node && $node_params_set && ( ($is_photo_gallery) || ($is_group_post) )) {
-			return TRUE;
-		}
-		
-		// If this doesn't apply to the route, return false.
-		return FALSE;
-	}
+
+  /**
+   * {@inheritdoc}
+   *
+   * @return bool
+   *   Must return a true or False
+   */
+  public function applies(RouteMatchInterface $attributes) {
+    // Get all parameters.
+    $parameters = $attributes->getParameters()->all();
+
+    // Is this a view page for group content?
+    if (isset($parameters['view_id']) && $parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
+      return TRUE;
+    }
+
+    // Is this a group landing page?
+    if (isset($parameters['group']) && $parameters['group']->getGroupType()
+      ->id() == "atwork_groups") {
+      return TRUE;
+    }
+
+    // Determine if the current page is a Group Photos or Group Post page.
+    $is_node = isset($parameters['node']);
+    $node_params_set = !empty($parameters['node']);
+    $is_photo_gallery = ($is_node && $node_params_set ? $parameters['node']->get('type')
+      ->getValue()[0]['target_id'] == 'photos' : FALSE);
+    $is_group_post = ($is_node && $node_params_set ? $parameters['node']->get('type')
+      ->getValue()[0]['target_id'] == 'group_post' : FALSE);
+    if ($is_node && $node_params_set && (($is_photo_gallery) || ($is_group_post))) {
+      return TRUE;
+    }
+
+    // If this doesn't apply to the route, return false.
+    return FALSE;
+  }
 	
 	/**
 	 * {@inheritdoc}

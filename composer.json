@@ -92,6 +92,7 @@
         "drupal/core": "^8.6.0",
         "drupal/crop": "^1.5",
         "drupal/devel": "^2.0",
+        "drupal/devel_entity_updates": "^1.0@RC",
         "drupal/draggable_dashboard": "^1.1",
         "drupal/drush": "^6.0@RC",
         "drupal/ds": "^3.1",
@@ -223,6 +224,9 @@
 	    },
 	    "libraries/superfish": {	
 		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
+	    },
+	    "drupal/core": {
+		"Adding patch for breadcrumbs." : "https://www.drupal.org/files/issues/2019-06-07/breadcrumb_shows_the_8.7.x-2607920-54.patch"
 	    }
 	}
     }
