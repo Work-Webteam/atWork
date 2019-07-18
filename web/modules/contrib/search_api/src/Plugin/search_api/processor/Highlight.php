@@ -247,6 +247,11 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
     $keys = array_merge($keys, $query_keys);
     $keys = array_unique($keys);
 
+kint($results);
+kint($keys);
+kint($this->index);
+
+
     $excerpt_fulltext_fields = $this->index->getFulltextFields();
     if (!empty($this->configuration['exclude_fields'])) {
       $excerpt_fulltext_fields = array_combine($excerpt_fulltext_fields, $excerpt_fulltext_fields);
