@@ -244,7 +244,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
     // In case they changes - i.e. absenteeist -> absente
     $query_keys = $query->getKeys();
     //$query_keys = explode(' ', $query_keys);
-    unset($query_keys['#conjunction']);
+    if (isset($query_keys['#conjunction'])) unset($query_keys['#conjunction']);
     $keys = array_merge($keys, $query_keys);
     $keys = array_unique($keys);
 
@@ -288,11 +288,17 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       }
       $item_keys = $keys;
 
+
+kint($items);
+kint($item_keys);
+
       // If the backend already did highlighting and told us the exact keys it
       // found in the item's text values, we can use those for our own
       // highlighting. This will help us take stemming, transliteration, etc.
       // into account properly.
       $highlighted_keys = $results[$item_id]->getExtraData('highlighted_keys');
+kint($highlighted_keys); 
+kint($text);     
       if ($highlighted_keys) {
         $item_keys = array_unique(array_merge($keys, $highlighted_keys));
       } else {
@@ -300,7 +306,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
         // in case is different from original and highlighted_keys is not available.
         $query_highlighted_keys = [];
         foreach($text as $text_result){
-          preg_match_all('#<strong>(.*?)</strong>#', $text_result->getText(), $matches);
+   ////       preg_match_all('#<strong>(.*?)</strong>#', $text_result->getText(), $matches);
           foreach($matches[1] as $match){
             $query_highlighted_keys[] = $match;
           }
