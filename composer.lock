@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92c08f7363a6a0d24662da299e23ab33",
+    "content-hash": "ccfacc205068d945ce019aa2480750f1",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3241,6 +3241,9 @@
                     "recurse": false,
                     "replace": false,
                     "merge-extra": false
+                },
+                "patches_applied": {
+                    "Adding patch for breadcrumbs.": "https://www.drupal.org/files/issues/2019-06-07/breadcrumb_shows_the_8.7.x-2607920-54.patch"
                 }
             },
             "autoload": {
@@ -3626,6 +3629,58 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/devel_entity_updates",
+            "version": "1.0.0-rc2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/devel_entity_updates.git",
+                "reference": "8.x-1.0-rc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/devel_entity_updates-8.x-1.0-rc2.zip",
+                "reference": "8.x-1.0-rc2",
+                "shasum": "0d932a02ddb67b2f2be27360569cd859020c31f2"
+            },
+            "require": {
+                "drupal/core": "^8.7.0",
+                "drupal/devel": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-rc2",
+                    "datestamp": "1553474885",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "amateescu",
+                    "homepage": "https://www.drupal.org/user/729614"
+                },
+                {
+                    "name": "plach",
+                    "homepage": "https://www.drupal.org/user/183211"
+                }
+            ],
+            "description": "Provides developers an API and drush command to perform automatic entity updates.",
+            "homepage": "https://www.drupal.org/project/devel_entity_updates",
+            "support": {
+                "source": "https://git.drupalcode.org/project/devel_entity_updates"
             }
         },
         {
@@ -14205,6 +14260,7 @@
     "stability-flags": {
         "drupal/activity": 20,
         "drupal/ckeditor_widgets": 20,
+        "drupal/devel_entity_updates": 5,
         "drupal/drush": 5,
         "drupal/editor_advanced_link": 20,
         "drupal/flag": 15,

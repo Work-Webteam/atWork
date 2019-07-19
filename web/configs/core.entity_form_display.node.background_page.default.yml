@@ -14,6 +14,7 @@ dependencies:
     - node.type.background_page
   module:
     - image_widget_crop
+    - maxlength
     - paragraphs
     - path
     - scheduler
@@ -30,7 +31,14 @@ content:
       rows: 3
       placeholder: 'Limit is 300 characters including spaces.'
       summary_rows: 3
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 300
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_summary: 300
+        maxlength_js_label_summary: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: true
+        maxlength_js_truncate_html: true
     region: content
   created:
     type: datetime_timestamp
@@ -157,7 +165,10 @@ content:
     settings:
       size: 60
       placeholder: 'Limit is 75 characters including spaces.'
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 75
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
     weight: 7
