@@ -34,7 +34,7 @@ content:
     type: text_summary_or_trimmed
     weight: 1
     settings:
-      trim_length: 300
+      trim_length: 1000
     third_party_settings: {  }
     region: content
   field_image:
@@ -84,3 +84,4 @@ hidden:
   field_program_ad_space: true
   field_program_area_menu: true
   langcode: true
+  search_api_excerpt: true

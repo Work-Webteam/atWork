@@ -29,14 +29,14 @@ content:
     weight: 2
     settings:
       rows: 3
-      placeholder: 'Limit is 300 characters including spaces.'
+      placeholder: ''
       summary_rows: 3
     third_party_settings:
       maxlength:
         maxlength_js: 300
-        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_label: 'Maximum @limit characters, including spaces. Characters remaining: <strong>@remaining</strong>'
         maxlength_js_summary: 300
-        maxlength_js_label_summary: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_label_summary: 'Maximum @limit characters, including spaces. Characters remaining: <strong>@remaining</strong>'
         maxlength_js_enforce: true
         maxlength_js_truncate_html: true
     region: content
