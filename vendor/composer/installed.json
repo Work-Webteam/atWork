@@ -449,9 +449,7 @@
         "version_normalized": "9.7.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/components/highlightjs/archive/9.7.0.zip",
-            "reference": null,
-            "shasum": null
+            "url": "https://github.com/components/highlightjs/archive/9.7.0.zip"
         },
         "type": "drupal-library",
         "installation-source": "dist"
@@ -1482,9 +1480,7 @@
         "version_normalized": "3.5.17.0",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/d3/d3/archive/v3.5.17.zip",
-            "reference": null,
-            "shasum": null
+            "url": "https://github.com/d3/d3/archive/v3.5.17.zip"
         },
         "type": "drupal-library",
         "installation-source": "dist"
@@ -3950,6 +3946,61 @@
             "GPL-2.0-or-later"
         ],
         "description": "Drupal is an open source content management platform powering millions of websites and applications."
+    },
+    {
+        "name": "drupal/core_views_facets",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/project/core_views_facets.git",
+            "reference": "8.x-1.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/core_views_facets-8.x-1.0.zip",
+            "reference": "8.x-1.0",
+            "shasum": "f73fc66dc550df18f50b2aa30ad76352cbdf3655"
+        },
+        "require": {
+            "drupal/core": "*",
+            "drupal/facets": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.0",
+                "datestamp": "1536691380",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "See all contributors",
+                "homepage": "https://www.drupal.org/node/2666804/committers"
+            },
+            {
+                "name": "slasher13",
+                "homepage": "https://www.drupal.org/user/3054025"
+            }
+        ],
+        "description": "The Core Views Facets module allows site builders to easily create and manage faceted views interfaces.",
+        "homepage": "https://www.drupal.org/project/core_views_facets",
+        "support": {
+            "source": "git://git.drupal.org/project/core_views_facets.git",
+            "issues": "https://www.drupal.org/project/issues/facets"
+        }
     },
     {
         "name": "drupal/crop",
@@ -9883,9 +9934,7 @@
         "version_normalized": "1.8.2.0",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.2/chosen_v1.8.2.zip",
-            "reference": null,
-            "shasum": null
+            "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.2/chosen_v1.8.2.zip"
         },
         "require": {
             "composer/installers": "^1.2.0"
@@ -12528,9 +12577,7 @@
         "version_normalized": "1.8.0.0-RC1",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/SortableJS/Sortable/archive/1.8.0-rc1.zip",
-            "reference": null,
-            "shasum": null
+            "url": "https://github.com/SortableJS/Sortable/archive/1.8.0-rc1.zip"
         },
         "type": "drupal-library",
         "extra": {
