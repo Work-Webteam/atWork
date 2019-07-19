@@ -301,15 +301,15 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       //   values/fields. Better would be to pass an array and have proper
       //   handling of this in createExcerpt(), ensuring that no snippet goes
       //   across multiple values/fields.
-      //$results[$item_id]->setExcerpt($this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys));
-      $excerpt = $this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys);
+      $results[$item_id]->setExcerpt($this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys));
+      //$excerpt = $this->createExcerpt(implode($this->getEllipses()[1], $text), $item_keys);
 
-      if(empty($excerpt)){
+      //if(empty($excerpt)){
         // If for some reason the excerp is empty, then return part of the original text
-        $excerpt_length = $this->configuration['excerpt_length'];
-        $excerpt = mb_strcut(implode($this->getEllipses()[1], $text), 0, $excerpt_length, 'UTF-8');
-      }
-      $results[$item_id]->setExcerpt($excerpt);
+      //  $excerpt_length = $this->configuration['excerpt_length'];
+      //  $excerpt = mb_strcut(implode($this->getEllipses()[1], $text), 0, $excerpt_length, 'UTF-8');
+      //}
+      //$results[$item_id]->setExcerpt($excerpt);
     }
   }
 
