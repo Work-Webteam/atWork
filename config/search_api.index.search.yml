@@ -3,16 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.body
-    - field.storage.node.comment
-    - field.storage.node.comment_forum
-    - field.storage.node.comment_photos
     - field.storage.node.field_article_type
     - field.storage.node.field_attachments
     - field.storage.node.field_author_information
+    - field.storage.node.body
+    - field.storage.node.comment_photos
+    - field.storage.node.comment_forum
+    - field.storage.node.comment
     - field.storage.node.field_custom_teaser
     - field.storage.node.field_development_tags
     - field.storage.node.field_editor_tags
+    - field.storage.node.taxonomy_forums
     - field.storage.node.field_image
     - field.storage.node.field_parent_program
     - field.storage.node.field_program_ad_space
@@ -20,13 +21,11 @@ dependencies:
     - field.storage.node.field_send_notifications
     - field.storage.node.field_tags
     - field.storage.node.field_video
-    - field.storage.node.taxonomy_forums
     - search_api.server.pantheon
   module:
     - node
     - search_api
     - search_api_attachments
-    - file
 id: search
 name: Search
 description: ''
@@ -41,6 +40,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.body
+  changed:
+    label: Changed
+    datasource_id: 'entity:node'
+    property_path: changed
+    type: date
+    dependencies:
+      module:
+        - node
   comment:
     label: Comments
     datasource_id: 'entity:node'
@@ -106,6 +113,14 @@ field_settings:
       config:
         - field.storage.node.field_development_tags
   field_editor_tags:
+    label: 'Editor Tags'
+    datasource_id: 'entity:node'
+    property_path: field_editor_tags
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_editor_tags
+  field_editor_tags_1:
     label: 'Editor Tags'
     datasource_id: 'entity:node'
     property_path: field_editor_tags
@@ -212,6 +227,22 @@ field_settings:
     dependencies:
       module:
         - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - node
+  type_1:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: text
+    dependencies:
+      module:
+        - node
   uid:
     label: uid
     datasource_id: 'entity:node'
@@ -223,7 +254,6 @@ field_settings:
       module:
         - node
 datasource_settings:
-  'entity:file': {  }
   'entity:node':
     bundles:
       default: true
@@ -245,9 +275,14 @@ processor_settings:
     max_filesize: '0'
     excluded_private: 1
     excluded_mimes: 'audio/x-aiff image/x-jg video/x-msvideo image/x-ms-bmp image/gif image/vnd.microsoft.icon video/quicktime audio/ogg video/ogg image/png image/x-photoshop audio/x-realaudio audio/x-pn-realaudio image/x-rgb video/x-flv'
+  hierarchy:
+    fields:
+      field_editor_tags: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
   highlight:
     highlight: always
-    highlight_partial: false
+    highlight_partial: true
     excerpt: true
     excerpt_length: 256
     exclude_fields: {  }
@@ -268,6 +303,7 @@ processor_settings:
       - field_custom_teaser
       - field_development_tags
       - field_editor_tags
+      - field_editor_tags_1
       - field_image
       - field_parent_program
       - field_program_ad_space
@@ -277,6 +313,8 @@ processor_settings:
       - summary
       - taxonomy_forums
       - title
+      - type
+      - type_1
     title: true
     alt: true
     tags:
@@ -286,10 +324,10 @@ processor_settings:
       h3: 2
       strong: 2
     weights:
-      preprocess_index: -15
+      preprocess_index: -47
       preprocess_query: -15
   ignorecase:
-    all_fields: true
+    all_fields: false
     fields:
       - body
       - comment
@@ -300,7 +338,7 @@ processor_settings:
       - field_author_information
       - field_custom_teaser
       - field_development_tags
-      - field_editor_tags
+      - field_editor_tags_1
       - field_image
       - field_parent_program
       - field_program_ad_space
@@ -310,12 +348,13 @@ processor_settings:
       - summary
       - taxonomy_forums
       - title
+      - type_1
     weights:
-      preprocess_index: -20
+      preprocess_index: -49
       preprocess_query: -20
   rendered_item: {  }
   stemmer:
-    all_fields: true
+    all_fields: false
     fields:
       - body
       - comment
@@ -326,7 +365,6 @@ processor_settings:
       - field_author_information
       - field_custom_teaser
       - field_development_tags
-      - field_editor_tags
       - field_image
       - field_parent_program
       - field_program_ad_space
@@ -343,7 +381,7 @@ processor_settings:
       preprocess_index: 0
       preprocess_query: 0
   transliteration:
-    all_fields: true
+    all_fields: false
     fields:
       - body
       - comment
@@ -354,7 +392,7 @@ processor_settings:
       - field_author_information
       - field_custom_teaser
       - field_development_tags
-      - field_editor_tags
+      - field_editor_tags_1
       - field_image
       - field_parent_program
       - field_program_ad_space
@@ -364,8 +402,9 @@ processor_settings:
       - summary
       - taxonomy_forums
       - title
+      - type_1
     weights:
-      preprocess_index: -20
+      preprocess_index: -48
       preprocess_query: -20
 tracker_settings:
   default:

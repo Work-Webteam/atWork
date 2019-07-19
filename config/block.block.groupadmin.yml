@@ -10,7 +10,7 @@ dependencies:
 id: groupadmin
 theme: atworknext
 region: sidebar_nav
-weight: -10
+weight: -13
 provider: null
 plugin: 'draggable_dashboard_block:draggable_dashboard_1549921752'
 settings:

@@ -46,12 +46,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
           items_per_page: 25
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -60,9 +65,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 9
       style:
         type: default
       row:
@@ -76,7 +79,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -139,17 +142,14 @@ display:
             multi_separator: ', '
           plugin_id: search_api_field
         body:
+          id: body
           table: search_api_index_search
           field: body
-          id: body
-          entity_type: null
-          entity_field: null
-          plugin_id: search_api_field
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -181,7 +181,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -209,6 +209,9 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+          entity_type: null
+          entity_field: null
+          plugin_id: search_api_field
         search_api_excerpt:
           id: search_api_excerpt
           table: search_api_index_search
@@ -258,7 +261,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           link_to_item: false
-          use_highlighting: true
+          use_highlighting: false
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api
@@ -341,7 +344,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -411,7 +414,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -453,6 +456,59 @@ display:
           hide_alter_empty: true
           link_to_item: false
           use_highlighting: false
+          multi_type: separator
+          multi_separator: ', '
+          plugin_id: search_api
+        search_api_excerpt_1:
+          id: search_api_excerpt_1
+          table: search_api_index_search
+          field: search_api_excerpt
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          link_to_item: false
+          use_highlighting: true
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api
@@ -520,6 +576,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -538,6 +595,160 @@ display:
       display_extenders: {  }
       path: search
       exposed_block: true
+      cache:
+        type: none
+      defaults:
+        cache: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags:
+        - 'config:field.storage.node.body'
+  page_2:
+    display_plugin: page
+    id: page_2
+    display_title: Page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: search
+      exposed_block: true
+      cache:
+        type: none
+      defaults:
+        cache: false
+        filters: false
+        filter_groups: false
+      filters:
+        changed_1:
+          id: changed_1
+          table: search_api_index_search
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: changed_1_op
+            label: Changed
+            description: null
+            use_operator: false
+            operator: changed_1_op
+            identifier: changed_1
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+            min_placeholder: null
+            max_placeholder: null
+          is_grouped: true
+          group_info:
+            label: Changed
+            description: ''
+            identifier: changed_1
+            optional: true
+            widget: radios
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: Today
+                operator: '>='
+                value:
+                  type: offset
+                  value: '-1 day'
+                  min: ''
+                  max: ''
+              2:
+                title: 'Past 7 Days'
+                operator: '>='
+                value:
+                  type: offset
+                  value: '-7 day'
+                  min: ''
+                  max: ''
+              3:
+                title: 'Past 30 Days'
+                operator: '>='
+                value:
+                  type: offset
+                  value: '-30 day'
+                  min: ''
+                  max: ''
+              4:
+                title: 'Past 90 days'
+                operator: '>='
+                value:
+                  type: offset
+                  value: '-90 day'
+                  min: ''
+                  max: ''
+          plugin_id: search_api_date
+        changed:
+          id: changed
+          table: search_api_index_search
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: between
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: changed_op
+            label: Custom
+            description: ''
+            use_operator: false
+            operator: changed_op
+            identifier: changed
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              program_area_admin: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_date
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:

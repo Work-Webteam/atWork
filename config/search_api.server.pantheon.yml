@@ -13,8 +13,8 @@ backend_config:
   connector: pantheon
   connector_config:
     schema: modules/contrib/search_api_solr/solr-conf/4.x/schema.xml
-  retrieve_data: true
-  highlight_data: true
+  retrieve_data: false
+  highlight_data: false
   excerpt: true
   skip_schema_check: true
   site_hash: false

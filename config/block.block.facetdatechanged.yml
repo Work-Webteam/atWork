@@ -1,0 +1,29 @@
+uuid: 0ad3d7e5-2c3b-4588-9890-2ee37cb9d369
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.facet_date_changed
+  module:
+    - facets
+    - system
+  theme:
+    - atworknext
+id: facetdatechanged
+theme: atworknext
+region: sidebar_nav
+weight: -8
+provider: null
+plugin: 'facet_block:facet_date_changed'
+settings:
+  id: 'facet_block:facet_date_changed'
+  label: 'Facet: Date Changed'
+  provider: facets
+  label_display: visible
+  block_id: facetdatechanged
+visibility:
+  request_path:
+    id: request_path
+    pages: "/search\r\n/search/*"
+    negate: false
+    context_mapping: {  }

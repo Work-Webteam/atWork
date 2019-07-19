@@ -1,0 +1,51 @@
+uuid: 89e1354e-a426-4682-8577-63bd4d8427b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.search
+id: site_search
+label: 'Site Search'
+path: search2
+clean_url: true
+show_all_when_no_keys: true
+index: search
+limit: 10
+searched_fields:
+  body: body
+  comment: comment
+  comment_forum: comment_forum
+  comment_photos: comment_photos
+  field_article_type: field_article_type
+  field_attachments: field_attachments
+  field_author_information: field_author_information
+  field_custom_teaser: field_custom_teaser
+  field_development_tags: field_development_tags
+  field_editor_tags: field_editor_tags
+  field_image: field_image
+  field_parent_program: field_parent_program
+  field_program_ad_space: field_program_ad_space
+  field_program_topic: field_program_topic
+  field_tags: field_tags
+  field_video: field_video
+  summary: summary
+  taxonomy_forums: taxonomy_forums
+  title: title
+style: view_modes
+view_mode_configuration:
+  'entity:file':
+    default: default
+    overrides:
+      file: ''
+  'entity:node':
+    default: search_result
+    overrides:
+      article: ''
+      background_page: ''
+      forum: ''
+      group_post: ''
+      page: ''
+      photos: ''
+      program_area_content: ''
+show_search_form: true
+parse_mode: direct
