@@ -288,7 +288,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
       }
       $item_keys = $keys;
 
-
+kint($this);
 kint($items);
 kint($item_keys);
 
