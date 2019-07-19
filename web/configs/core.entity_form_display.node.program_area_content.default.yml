@@ -16,6 +16,7 @@ dependencies:
     - file
     - h5peditor
     - image_widget_crop
+    - maxlength
     - path
     - scheduler
     - text
@@ -132,7 +133,10 @@ content:
     settings:
       size: 60
       placeholder: 'Limit is 75 characters including spaces.'
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: 75
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
     weight: 9
