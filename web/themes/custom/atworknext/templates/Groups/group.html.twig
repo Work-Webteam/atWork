@@ -39,45 +39,48 @@
  * @ingroup themeable
  */
 #}
+{# We need to set which theme the user has chose for their group here #}
+{% set group_theme = content.field_themes.0["#markup"] | raw %}
+<div{{ attributes.addClass( group_theme ) }}>
 
-<div{{ attributes }}>
-  <div class="group-page-content">
+  <div class="group-page-content {{ group_theme }}">
     {{ title_prefix }}
     {% if page %}
-      <div class="group-title-banner">
-        <h1{{ title_attributes }}>
-         {{ label }}
+      <div class="group-title-banner {{ group_theme }}">
+
+        <h1{{ title_attributes.addClass( group_theme ) }}>
+         {{ label.addClass( group_theme ) }}
         </h1>
         {% if not member %}
-          <div class="group-join">
+          <div class="group-join {{ group_theme }}">
             {{ join_link }}
           </div>
         {% elseif member %}
-          <div class="group-leave">
+          <div class="group-leave {{ group_theme }}">
             {{ leave_link }}
           </div>
         {% endif %}
       </div>
     {% endif %}
     {% if not page %}
-      <h1{{ title_attributes }}>
-        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      <h1{{ title_attributes.addClass( group_theme ) }}>
+        <a href="{{ url }}" rel="bookmark">{{ label.addClass( group_theme ) }}</a>
       </h1>
     {% endif %}
-    {{ title_suffix }}
+    {{ title_suffix.addClass( group_theme ) }}
 
-    <div{{ content_attributes }}>
+    <div{{ content_attributes.addClass( group_theme ) }}>
       {{ content|without('field_group_tags', 'field_group_highlight') }}
     </div>
-    <div class="atwork-group-tags">
+    <div class="atwork-group-tags {{ group_theme }}">
       {{ content.field_group_tags }}
     </div>
   </div>
 </div>
-<div class="group-highlight">
+<div class="group-highlight {{ group_theme }}">
   {{ content.field_group_highlight }}
 </div>
-<div class="group-related-content">
+<div class="group-related-content {{ group_theme }}">
   {{ related_content }}
 </div>
-{{ content.comment }}
+{{ content.comment.addClass( group_theme ) }}
