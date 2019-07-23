@@ -49,7 +49,7 @@
       <div class="group-title-banner {{ group_theme }}">
 
         <h1{{ title_attributes.addClass( group_theme ) }}>
-         {{ label.addClass( group_theme ) }}
+         {{ label }}
         </h1>
         {% if not member %}
           <div class="group-join {{ group_theme }}">
@@ -64,7 +64,7 @@
     {% endif %}
     {% if not page %}
       <h1{{ title_attributes.addClass( group_theme ) }}>
-        <a href="{{ url }}" rel="bookmark">{{ label.addClass( group_theme ) }}</a>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h1>
     {% endif %}
     {{ title_suffix.addClass( group_theme ) }}
@@ -83,4 +83,4 @@
 <div class="group-related-content {{ group_theme }}">
   {{ related_content }}
 </div>
-{{ content.comment.addClass( group_theme ) }}
+{{ content.comment }}
