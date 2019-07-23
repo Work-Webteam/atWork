@@ -1,5 +1,5 @@
 services:
   atwork_group.breadcrumb:
-    class: Drupal\atwork_group\Breadcrumb\atworkGroupBreadcrumbBuilder
+    class: Drupal\atwork_group\Breadcrumb\AtworkGroupBreadcrumbBuilder
     tags:
       - { name: breadcrumb_builder, priority: 100 }
