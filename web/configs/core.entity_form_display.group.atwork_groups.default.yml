@@ -10,6 +10,7 @@ dependencies:
     - field.field.group.atwork_groups.field_group_highlight
     - field.field.group.atwork_groups.field_group_menu_link
     - field.field.group.atwork_groups.field_group_tags
+    - field.field.group.atwork_groups.field_themes
     - group.type.atwork_groups
     - image.style.medium
   module:
@@ -22,7 +23,7 @@ bundle: atwork_groups
 mode: default
 content:
   field_dev_tag:
-    weight: 5
+    weight: 6
     settings:
       match_operator: CONTAINS
       size: 60
@@ -56,7 +57,7 @@ content:
     region: content
   field_group_highlight:
     type: paragraphs
-    weight: 7
+    weight: 8
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -75,7 +76,7 @@ content:
     region: content
   field_group_menu_link:
     type: paragraphs
-    weight: 6
+    weight: 7
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -93,13 +94,19 @@ content:
     third_party_settings: {  }
     region: content
   field_group_tags:
-    weight: 4
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_themes:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   label:
     type: string_textfield
