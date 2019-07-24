@@ -250,7 +250,7 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
     } else {
       // Else we need to fire the controller so we can pull one down, and then we can check again.
       $new_file = new AtworkIdirUpdateController;
-      $generate_csv = $new_file->AtworkIdirInit();
+      $generate_csv = $new_file->atworkIdirInit();
       if( file_exists('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv")){
         // now grab and add it - or throw an error and end.
         $handle = fopen('public://idir/' . $timestamp ."/idir_" . $timestamp . ".tsv", "r");

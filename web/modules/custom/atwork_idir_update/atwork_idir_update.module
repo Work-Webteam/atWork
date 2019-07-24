@@ -7,8 +7,7 @@ use Drupal\Core\Routing\RouteMatchInterface;
  */
 function atwork_idir_update_cron()
 { 
-  //kint("Hook got picked up");
-    // We access our configuration.
+  // We access our configuration.
   //$cron_config = \Drupal::configFactory()->getEditable('atwork_idir_update.settings');
   // Instantiate a new singleton class controller to fire up our idir update.
   $atwork_idir_update = new AtworkIdirUpdateController;
