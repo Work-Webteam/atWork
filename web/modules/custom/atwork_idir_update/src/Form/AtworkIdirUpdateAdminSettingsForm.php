@@ -148,8 +148,8 @@ class AtworkIdirUpdateAdminSettingsForm extends ConfigFormBase {
       else {
         $form[$name] = [
           '#type' => 'select',
-          '#title' => $this->$name,
-          '#description' => $this->t('Choose field mapping'),
+          '#title' => $name,
+          '#description' => t('Choose field mapping'),
           '#options' => $column_names,
           '#default_value' => $config->get($name),
         ];
