@@ -28,7 +28,7 @@ class AtworkIdirUpdateController {
   /**
    * AtworkIdirUpdateController constructor.
    */
-  protected function __construct() {
+  public function __construct() {
     $this->config = \Drupal::config('atwork_idir_update.atworkidirupdateadminsettings');
     // Use timestamp and drupalPath mainly for files
     // (accessing/writing etc) - so setting them here once.
@@ -121,7 +121,7 @@ class AtworkIdirUpdateController {
       $this->sendNotifications();
     }
     // Make dir function.
-    $directory = $idir_ftp->create_idir_dir($this->timestamp);
+    $directory = $idir_ftp->createIdirDir($this->timestamp);
     if ($directory == FALSE) {
       // Generic exception handling if something else gets thrown.
       \Drupal::logger('atwork_idir_update')->error($e->getMessage());
