@@ -4,7 +4,7 @@ services:
   cli:
     extends:
       file: ${HOME}/.docksal/stacks/services.yml
-      service: apache
+      service: cli
     environment:
       - PANTHEON_SITE
       - PANTHEON_ENV
