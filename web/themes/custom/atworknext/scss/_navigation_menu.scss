@@ -2,7 +2,6 @@
 
 // Top Nav Bar on each page
 #navbar {
-  background-color: $banner-blue;
   #block-atworknext-search {
     width:30%;
     float:right;
@@ -21,7 +20,7 @@
     .navbar-nav li a {
       color:$white;
       &.is-active {
-        color:$banner-blue;
+        color:$white;
       }
     }
     .menu.menu--account.nav.navbar-nav.navbar-right {
@@ -36,7 +35,7 @@
   @include size1416;
   padding:0;
     .next-menu-link {
-      color: $white;
+      color: $exec-greyborder;
   }
   section#block-mainnavigation {
     ul.sf-menu.sf-style-none {
@@ -54,7 +53,6 @@
     ul.sf-menu.sf-style-none a,
     ul.sf-menu.sf-style-none a:visited,
     ul.sf-menu.sf-style-none span.nolink {
-      border: 0 none;
       padding: 0.75em 1em;
     }
     ul.sf-menu.sf-style-none a.sf-with-ul,
@@ -80,21 +78,23 @@
     }
     ul.sf-menu.sf-style-none li li,
     ul.sf-menu.sf-style-none.sf-navbar > li > ul {
-      background: #CCCCCC;
+      background: $comment-blue;
+      a {
+        color:$text;
+      }
     }
     ul.sf-menu.sf-style-none li li li {
-      background: $comment-blue;
-      border-bottom:solid 1px $white;
+      background: $white;
     }
     ul.sf-menu.sf-style-none li:hover,
     ul.sf-menu.sf-style-none li.sfHover,
     ul.sf-menu.sf-style-none a:focus,
     ul.sf-menu.sf-style-none a:hover,
     ul.sf-menu.sf-style-none span.nolink:hover {
-      background: $mtBlue1;
+      //background: $black;
       outline: 0;
       text-decoration: none;
-      color: $mtTeal;
+      color:$exec-greyborder;
     }
     div.sf-accordion-toggle.sf-style-none a {
       background: #bdd2ff;
@@ -177,24 +177,45 @@
     ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper span.nolink.menuparent {
       font-weight: bold;
     }
+
 // Superfish Main menu changes
-    .sf-clicked {
-      color:$mtTeal;
-    }
-    a.sf-depth-3.next-menu-link {
-      color:black;
-    }
-    .sf-depth-2 {
-      > ul {
-        border: solid 1px #CCCCCC;
+    ul#superfish-main {
+      .sf-depth-1 {
+        a:hover {
+          background-color: $black;
+          color:$exec-greyborder;
+        }
+      }
+      .sf-depth-2 {
+        a:hover {
+          background-color: $black;
+          color:$exec-greyborder;
+        }
+        > ul {
+          background-color: $white;
+          border: solid 1px #CCCCCC;
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        }
+      }
+      .sf-depth-3 {
+        padding-bottom:5px;
+        a {
+          color:$text;
+          display: block;
+          border: solid 1px #CCCCCC;
+          margin: 3px 5px 0px;
+        }
+        a:hover {
+          background-color: $banner-blue;
+          color:$white;
+        }
       }
     }
-    .is-active.sf-depth-2.next-menu-link,
-    .is-active.sf-depth-3.next-menu-link,
-    .active-trail.sf-depth-2.next-menu-item.menuparent
-     {
-      background-color: #044573;
-      color:$white;
+    .sf-depth-1.next-menu-item.menuparent.sf-breadcrumb.sfHover,
+    .active-trail.sf-depth-2.next-menu-item.sf-no-children > a, 
+    .active-trail.sf-depth-2.next-menu-item.menuparent > a {
+      background-color: $black;
+      color:$exec-greyborder;
     }
   }
 }

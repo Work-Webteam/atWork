@@ -4,7 +4,7 @@
 html, body {
     font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
     font-size: 16px; // Default font size set for REM
-    line-height: 24px;
+    line-height: 1.5;
     p {
         color: $text;
         padding:0;
@@ -15,7 +15,7 @@ html, body {
 // Heading Tags / Sizes
 h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    @include size3236;
+    //@include size3236;
     color: $text;
     font-weight: bold;
     margin:0;

@@ -9,7 +9,9 @@
     padding-top:35px;
   }
 }
-
+.main-container .col-sm-12[role~="heading"] {
+  padding-top:25px;
+}
 
 section.col-sm-12 {
   /*8@include make-sm-column(10);

@@ -355,7 +355,7 @@
         .related-type {
           padding:10px 0 0 10px;
           margin:0;
-          text-transform: uppercase;
+          text-transform: capitalize;
         }
       }
     }
@@ -431,7 +431,7 @@
       }
   }
 }
-
+// Colour identifiers for employee landing page, used for execs.
 @mixin j41 {
   aside {
     background-color: $banner-blue;

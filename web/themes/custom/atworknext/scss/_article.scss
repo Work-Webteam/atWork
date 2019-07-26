@@ -170,8 +170,8 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
       background-color: $banner-blue;
       color: $white;
       padding-top:15px;
-      padding-left:15px;
-      padding-right:15px;
+      padding-left:30px;
+      padding-right:30px;
     }
     .field--name-body.field--type-text-with-summary {
       padding:0 0 25px;
@@ -180,8 +180,9 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
       margin-bottom:5px;
       p {
         color:$white;
-        padding-left:15px;
-        padding-right:15px;
+        font-size: 1.15em;
+        padding-left:30px;
+        padding-right:30px;
       }
     }
     #block-programtopicboxes {
@@ -203,7 +204,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
           flex-direction: column;
           background-color: $white;
           border: solid 1px #CCC;
-          padding:5px 5px 0px;
+          padding:12px 12px 0px;
           position: relative;
           .field--name-field-title {
             @include size2024;
@@ -224,9 +225,10 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
             &::after {
               content: " ▴";
               color: $white;
-              font-size: 32px;
+              font-size: 22px;
               line-height: 0;
               vertical-align: inherit;
+              padding-left:5px;
             }
           }
           .dropup {

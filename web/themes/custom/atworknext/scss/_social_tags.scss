@@ -5,8 +5,8 @@ article .field--name-field-tags,
 body.path-poll .field--name-field-tags,
 body.path-group .atwork-group-tags {
     margin:10px 0;
-    text-transform: uppercase;
-    @include size1216;
+    text-transform: capitalize;
+    @include size1416;
     .field--label {
         display: inline;
         float: left;
@@ -39,8 +39,9 @@ article .social-bar,
 .form-group #comment-links {
   display: inline-block;
   width:100%;
-  padding-left:40px;
-  padding-right:40px;
+  //padding-left:40px;
+  //padding-right:40px;
+  margin-top:40px;
   position: relative;
   @include size1416;
   @include button-text-reset;
@@ -133,7 +134,7 @@ body.path-group { // Adds subscription icon to the Group Subscription link.
   }
 }
 article .field--name-field-tags { // Adjust the spacing for the tags bar to align with the social-bar
-  margin:20px 25px;
+  //margin:20px 25px;
 }
 // Share link modal pop-up
 #dialog-share,
