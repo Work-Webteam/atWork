@@ -153,7 +153,9 @@
         {# Content #}
         {% block content %}
           <a id="main-content"></a>
-          {{ page.content }}
+          <aside class="col-sm-9" role="complementary">
+            {{ page.content }}
+          </aside>
         {% endblock %}
       </section>
 
