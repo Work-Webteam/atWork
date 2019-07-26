@@ -217,6 +217,12 @@
       background-color: $black;
       color:$exec-greyborder;
     }
+    .glyphicon.glyphicon-chevron-down {
+      top:2px;
+      left:6px;
+      color:inherit;
+      font-size:.85em;
+    }
   }
 }
 // Group and Landing Page side menus
