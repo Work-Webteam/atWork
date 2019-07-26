@@ -449,7 +449,9 @@
         "version_normalized": "9.7.0.0",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/components/highlightjs/archive/9.7.0.zip"
+            "url": "https://github.com/components/highlightjs/archive/9.7.0.zip",
+            "reference": null,
+            "shasum": null
         },
         "type": "drupal-library",
         "installation-source": "dist"
@@ -1480,7 +1482,9 @@
         "version_normalized": "3.5.17.0",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/d3/d3/archive/v3.5.17.zip"
+            "url": "https://github.com/d3/d3/archive/v3.5.17.zip",
+            "reference": null,
+            "shasum": null
         },
         "type": "drupal-library",
         "installation-source": "dist"
@@ -4861,6 +4865,9 @@
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
                 }
+            },
+            "patches_applied": {
+                "Transform entity id into label doesn't work with aggregated fields.": "https://www.drupal.org/files/issues/2019-06-17/transform_entity_id-2844895-33.patch"
             }
         },
         "installation-source": "dist",
@@ -8755,26 +8762,27 @@
     },
     {
         "name": "drupal/video_embed_field",
-        "version": "2.1.0",
-        "version_normalized": "2.1.0.0",
+        "version": "2.2.0",
+        "version_normalized": "2.2.0.0",
         "source": {
             "type": "git",
             "url": "https://git.drupalcode.org/project/video_embed_field.git",
-            "reference": "8.x-2.1"
+            "reference": "8.x-2.2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.1.zip",
-            "reference": "8.x-2.1",
-            "shasum": "fa1682741b4a1404df80c709ed8e40b7d8362d67"
+            "url": "https://ftp.drupal.org/files/projects/video_embed_field-8.x-2.2.zip",
+            "reference": "8.x-2.2",
+            "shasum": "1e76eeefb27f4166d3d119e8c27469bbf12c0f06"
         },
         "require": {
-            "drupal/core": "*"
+            "drupal/core": "^8.7.0"
         },
         "require-dev": {
             "drupal/colorbox": "*",
             "drupal/media_entity": "*",
-            "drupal/media_entity_embeddable_video": "*"
+            "drupal/media_entity_embeddable_video": "*",
+            "drupal/video_embed_media": "*"
         },
         "type": "drupal-module",
         "extra": {
@@ -8782,8 +8790,8 @@
                 "dev-2.x": "2.x-dev"
             },
             "drupal": {
-                "version": "8.x-2.1",
-                "datestamp": "1557724385",
+                "version": "8.x-2.2",
+                "datestamp": "1564103585",
                 "security-coverage": {
                     "status": "covered",
                     "message": "Covered by Drupal's security advisory policy"
@@ -9404,17 +9412,17 @@
     },
     {
         "name": "egulias/email-validator",
-        "version": "2.1.9",
-        "version_normalized": "2.1.9.0",
+        "version": "2.1.10",
+        "version_normalized": "2.1.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/egulias/EmailValidator.git",
-            "reference": "128cc721d771ec2c46ce59698f4ca42b73f71b25"
+            "reference": "a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/128cc721d771ec2c46ce59698f4ca42b73f71b25",
-            "reference": "128cc721d771ec2c46ce59698f4ca42b73f71b25",
+            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec",
+            "reference": "a6c8d7101b19a451c1707b1b79bbbc56e4bdb7ec",
             "shasum": ""
         },
         "require": {
@@ -9424,12 +9432,13 @@
         "require-dev": {
             "dominicsayers/isemail": "dev-master",
             "phpunit/phpunit": "^4.8.35||^5.7||^6.0",
-            "satooshi/php-coveralls": "^1.0.1"
+            "satooshi/php-coveralls": "^1.0.1",
+            "symfony/phpunit-bridge": "^4.4@dev"
         },
         "suggest": {
             "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
         },
-        "time": "2019-06-23T10:14:27+00:00",
+        "time": "2019-07-19T20:52:08+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -9934,7 +9943,9 @@
         "version_normalized": "1.8.2.0",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.2/chosen_v1.8.2.zip"
+            "url": "https://github.com/harvesthq/chosen/releases/download/v1.8.2/chosen_v1.8.2.zip",
+            "reference": null,
+            "shasum": null
         },
         "require": {
             "composer/installers": "^1.2.0"
@@ -10410,17 +10421,17 @@
     },
     {
         "name": "masterminds/html5",
-        "version": "2.6.0",
-        "version_normalized": "2.6.0.0",
+        "version": "2.7.0",
+        "version_normalized": "2.7.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Masterminds/html5-php.git",
-            "reference": "c961ca6a0a81dc6b55b6859b3f9ea7f402edf9ad"
+            "reference": "104443ad663d15981225f99532ba73c2f1d6b6f2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/c961ca6a0a81dc6b55b6859b3f9ea7f402edf9ad",
-            "reference": "c961ca6a0a81dc6b55b6859b3f9ea7f402edf9ad",
+            "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/104443ad663d15981225f99532ba73c2f1d6b6f2",
+            "reference": "104443ad663d15981225f99532ba73c2f1d6b6f2",
             "shasum": ""
         },
         "require": {
@@ -10434,11 +10445,11 @@
             "sami/sami": "~2.0",
             "satooshi/php-coveralls": "1.0.*"
         },
-        "time": "2019-03-10T11:41:28+00:00",
+        "time": "2019-07-25T07:03:26+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.6-dev"
+                "dev-master": "2.7-dev"
             }
         },
         "installation-source": "dist",
@@ -10457,12 +10468,12 @@
                 "email": "technosophos@gmail.com"
             },
             {
-                "name": "Asmir Mustafic",
-                "email": "goetas@gmail.com"
-            },
-            {
                 "name": "Matt Farina",
                 "email": "matt@mattfarina.com"
+            },
+            {
+                "name": "Asmir Mustafic",
+                "email": "goetas@gmail.com"
             }
         ],
         "description": "An HTML5 parser and serializer.",
@@ -12577,7 +12588,9 @@
         "version_normalized": "1.8.0.0-RC1",
         "dist": {
             "type": "zip",
-            "url": "https://github.com/SortableJS/Sortable/archive/1.8.0-rc1.zip"
+            "url": "https://github.com/SortableJS/Sortable/archive/1.8.0-rc1.zip",
+            "reference": null,
+            "shasum": null
         },
         "type": "drupal-library",
         "extra": {
