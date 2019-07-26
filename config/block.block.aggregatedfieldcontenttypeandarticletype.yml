@@ -1,0 +1,23 @@
+uuid: 83f27381-c0d5-40ad-af8d-e363ef8f1c4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.aggregated_field_content_type_and_article_type
+  module:
+    - facets
+  theme:
+    - atworknext
+id: aggregatedfieldcontenttypeandarticletype
+theme: atworknext
+region: sidebar_nav
+weight: -9
+provider: null
+plugin: 'facet_block:aggregated_field_content_type_and_article_type'
+settings:
+  id: 'facet_block:aggregated_field_content_type_and_article_type'
+  label: 'Content Type'
+  provider: facets
+  label_display: visible
+  block_id: aggregatedfieldcontenttypeandarticletype
+visibility: {  }

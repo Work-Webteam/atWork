@@ -1,4 +1,4 @@
-uuid: 273ccbd8-4762-4f93-b32a-9ddd8de1767c
+uuid: 6f731ec7-89c2-41da-91dc-dd5675b95a25
 langcode: en
 status: true
 dependencies:
@@ -7,23 +7,23 @@ dependencies:
     - views.view.site_search
   module:
     - search_api
-id: facet_date_changed
-name: 'Facet: Date Changed'
-url_alias: facet_date_changed
-weight: 0
+id: aggregated_field_content_type_and_article_type
+name: 'Aggregated field - Content Type and Article Type'
+url_alias: type
+weight: -2
 min_count: 1
-show_only_one_result: true
-field_identifier: changed
+show_only_one_result: false
+field_identifier: aggregated_field_ct_at
 facet_source_id: 'search_api:views_page__site_search__page_1'
 widget:
   type: checkbox
   config:
-    show_numbers: false
+    show_numbers: true
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
-    show_reset_link: false
+    show_reset_link: true
     reset_text: 'Show all'
     hide_reset_when_no_selection: false
 query_operator: or
@@ -34,14 +34,24 @@ hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
-  date_item:
-    processor_id: date_item
+  display_value_widget_order:
+    processor_id: display_value_widget_order
     weights:
-      build: 35
+      sort: 40
     settings:
-      date_display: relative_date
-      granularity: 4
-      date_format: ''
+      sort: ASC
+  exclude_specified_items:
+    processor_id: exclude_specified_items
+    weights:
+      build: 50
+    settings:
+      exclude: article
+      regex: false
+  translate_entity_aggregated_fields:
+    processor_id: translate_entity_aggregated_fields
+    weights:
+      build: 5
+    settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler
     weights:

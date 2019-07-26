@@ -1,0 +1,23 @@
+uuid: 427dd60a-d95c-4d46-a864-fa1d3627dd07
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.tags
+  module:
+    - facets
+  theme:
+    - atworknext
+id: facet_tags
+theme: atworknext
+region: sidebar_nav
+weight: 0
+provider: null
+plugin: 'facet_block:tags'
+settings:
+  id: 'facet_block:tags'
+  label: Tags
+  provider: facets
+  label_display: visible
+  block_id: facet_tags
+visibility: {  }

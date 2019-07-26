@@ -1,4 +1,4 @@
-uuid: 16290fc9-5a22-40dc-a449-292b7ff3af3c
+uuid: 10ceff3d-e5e4-40e5-a293-be3e4af0f709
 langcode: en
 status: true
 dependencies:
@@ -7,27 +7,27 @@ dependencies:
     - views.view.site_search
   module:
     - search_api
-id: facet_content_type
-name: 'Content type'
-url_alias: facet_content_type
+id: tags
+name: Tags
+url_alias: tags
 weight: 0
 min_count: 1
 show_only_one_result: false
-field_identifier: type
+field_identifier: field_tags
 facet_source_id: 'search_api:views_page__site_search__page_1'
 widget:
   type: checkbox
   config:
     show_numbers: true
-    soft_limit: 0
+    soft_limit: 10
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
     show_reset_link: true
     reset_text: 'Show all'
-    hide_reset_when_no_selection: true
+    hide_reset_when_no_selection: false
 query_operator: or
-use_hierarchy: false
+use_hierarchy: true
 expand_hierarchy: false
 enable_parent_when_child_gets_disabled: true
 hard_limit: 0

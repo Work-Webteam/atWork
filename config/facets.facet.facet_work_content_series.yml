@@ -9,8 +9,8 @@ dependencies:
     - search_api
 id: facet_work_content_series
 name: 'Facet: @Work Content Series'
-url_alias: facet_work_content_series
-weight: 0
+url_alias: work
+weight: -1
 min_count: 1
 show_only_one_result: false
 field_identifier: field_editor_tags

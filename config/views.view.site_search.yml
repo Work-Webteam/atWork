@@ -269,7 +269,7 @@ display:
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
-            identifier: search_api_fulltext
+            identifier: key
             required: false
             remember: false
             multiple: false
@@ -315,7 +315,7 @@ display:
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      use_ajax: true
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -337,155 +337,6 @@ display:
         type: none
       defaults:
         cache: false
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-      tags: {  }
-  page_2:
-    display_plugin: page
-    id: page_2
-    display_title: Page
-    position: 1
-    display_options:
-      display_extenders: {  }
-      path: search
-      exposed_block: true
-      cache:
-        type: none
-      defaults:
-        cache: false
-        filters: false
-        filter_groups: false
-      filters:
-        changed_1:
-          id: changed_1
-          table: search_api_index_search
-          field: changed
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: changed_1_op
-            label: Changed
-            description: null
-            use_operator: false
-            operator: changed_1_op
-            identifier: changed_1
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: null
-            min_placeholder: null
-            max_placeholder: null
-          is_grouped: true
-          group_info:
-            label: Changed
-            description: ''
-            identifier: changed_1
-            optional: true
-            widget: radios
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: Today
-                operator: '>='
-                value:
-                  type: offset
-                  value: '-1 day'
-                  min: ''
-                  max: ''
-              2:
-                title: 'Past 7 Days'
-                operator: '>='
-                value:
-                  type: offset
-                  value: '-7 day'
-                  min: ''
-                  max: ''
-              3:
-                title: 'Past 30 Days'
-                operator: '>='
-                value:
-                  type: offset
-                  value: '-30 day'
-                  min: ''
-                  max: ''
-              4:
-                title: 'Past 90 days'
-                operator: '>='
-                value:
-                  type: offset
-                  value: '-90 day'
-                  min: ''
-                  max: ''
-          plugin_id: search_api_date
-        changed:
-          id: changed
-          table: search_api_index_search
-          field: changed
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: between
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: changed_op
-            label: Custom
-            description: ''
-            use_operator: false
-            operator: changed_op
-            identifier: changed
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              program_area_admin: '0'
-            placeholder: ''
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_date
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
     cache_metadata:
       max-age: -1
       contexts:
