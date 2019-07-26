@@ -230,7 +230,10 @@
 	    },
 	    "libraries/superfish": {	
 		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
-	    }
+        },
+        "drupal/facets": {
+        "Transform entity id into label doesn't work with aggregated fields." : "https://www.drupal.org/files/issues/2019-06-17/transform_entity_id-2844895-33.patch"
+        }
 	}
     }
 }
