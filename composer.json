@@ -234,6 +234,9 @@
         },
         "drupal/facets": {
         "Transform entity id into label doesn't work with aggregated fields." : "https://www.drupal.org/files/issues/2019-06-17/transform_entity_id-2844895-33.patch"
+        },
+        "drupal/better_exposed_filters": {
+        "Update CSS to hide advanced options and only display on search page." : "web/patches/bef_advanced_options_css.patch"
         }
 	}
     }

@@ -32,3 +32,10 @@ fieldset.bef-select-as-checkboxes-fieldset.collapsed legend
   margin-top: 12px;
 }
 */
+
+#edit-secondary {
+  display: none;
+}
+.path-search #edit-secondary {
+  display: block;
+}
