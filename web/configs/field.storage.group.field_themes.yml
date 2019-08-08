@@ -1,0 +1,33 @@
+uuid: 0fac2493-50fe-4555-9c34-882773164615
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - options
+id: group.field_themes
+field_name: field_themes
+entity_type: group
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: theme_default
+      label: Default
+    -
+      value: theme_bright
+      label: Bright
+    -
+      value: theme_dark
+      label: Dark
+    -
+      value: theme_muted
+      label: Muted
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
