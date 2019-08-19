@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_development_tags
     - field.field.node.article.field_editor_tags
+    - field.field.node.article.field_header_image
     - field.field.node.article.field_image
     - field.field.node.article.field_interactive_content
     - field.field.node.article.field_send_notifications
@@ -349,6 +350,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+  field_header_image:
+    type: entity_reference_entity_view
+    weight: 17
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
   field_image:
     type: image
     weight: 0
@@ -424,3 +434,4 @@ hidden:
   langcode: true
   panelizer: true
   rate_vote_widget: true
+  search_api_excerpt: true

@@ -1,0 +1,46 @@
+uuid: ab09b7fb-c1a0-4c9b-a39f-8f606deab9d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.media.media_library
+    - field.field.media.image_header.field_media_image_1
+    - image.style.thumbnail
+    - media.type.image_header
+  module:
+    - image_widget_crop
+id: media.image_header.media_library
+targetEntityType: media
+bundle: image_header
+mode: media_library
+content:
+  field_media_image_1:
+    weight: 5
+    settings:
+      show_crop_area: true
+      show_default_crop: true
+      preview_image_style: thumbnail
+      crop_preview_image_style: crop_thumbnail
+      crop_list:
+        - article_hero
+      crop_types_required:
+        - article_hero
+      progress_indicator: throbber
+      warn_multiple_usages: false
+    third_party_settings: {  }
+    type: image_widget_crop
+    region: content
+  name:
+    type: string_textfield
+    settings:
+      size: 60
+      placeholder: ''
+    weight: 0
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  langcode: true
+  path: true
+  status: true
+  uid: true

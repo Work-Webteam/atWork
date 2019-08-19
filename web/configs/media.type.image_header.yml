@@ -1,0 +1,13 @@
+uuid: 02ade045-b775-4bd9-b0df-c5911132f1b0
+langcode: en
+status: true
+dependencies: {  }
+id: image_header
+label: 'Image (Header)'
+description: 'Full width image(s) for use at the top of '
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image_1
+field_map: {  }
