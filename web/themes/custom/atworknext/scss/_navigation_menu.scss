@@ -187,27 +187,34 @@
         }
       }
       .sf-depth-2 {
-        a:hover {
-          background-color: $black;
-          color:$exec-greyborder;
-        }
+        a.sf-depth-2 {
+          &:hover {
+            background-color: $black;
+            color:$exec-greyborder;
+          }
+        } 
         > ul {
           background-color: $white;
           border: solid 1px #CCCCCC;
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+          padding:5px 5px 2px;
         }
       }
+      .sf-depth-2.next-menu-item.sf-no-children > a.sf-depth-2.next-menu-link {
+        padding-top:13px;
+      }
       .sf-depth-3 {
-        padding-bottom:5px;
-        a {
+        a.sf-depth-3 {
           color:$text;
           display: block;
           border: solid 1px #CCCCCC;
-          margin: 3px 5px 0px;
-        }
-        a:hover {
-          background-color: $banner-blue;
-          color:$white;
+          margin-bottom:3px;
+          padding-top:8px;
+          padding-bottom:4px;
+          &:hover {
+            color:$white;
+            background-color: $banner-blue;
+          }
         }
       }
     }

@@ -636,8 +636,9 @@ display:
             value: '<h2 style="font-style:oblique; font-weight:bold; text-align:center; color:#999999;">Development Landing Page - Sample Content</h2>'
             format: full_html
           plugin_id: text
+      display_description: ''
     display_plugin: page
-    display_title: Page
+    display_title: 'Dev Front Page'
     id: page_1
     position: 1
     cache_metadata:

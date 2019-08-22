@@ -21,7 +21,7 @@ third_party_settings:
     unpublish_enable: false
     unpublish_required: false
     unpublish_revision: false
-name: 'Program Landing Page'
+name: 'Corporate Programs'
 type: background_page
 description: 'Program landing pages such as Premiers Awards'
 help: ''
