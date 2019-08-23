@@ -161,3 +161,46 @@ footer.footer.container {
     }
   }
 }
+// Filter values at the top of the news page
+body.path-news {
+  .views-exposed-form {
+    border: solid 1px $exec-greyborder;
+    padding: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+    @include size1216;
+    .form-item {
+      //max-width:210px;
+      //width: -moz-available;
+      min-width:130px;
+      margin-bottom:3px;
+      margin-right:8px;
+    }
+    label.control-label {
+      font-weight: normal;
+      padding-right: 5px;
+    }
+    input.form-control, .form-select.form-control {
+      padding:0px 5px;
+      height: inherit;
+      color: $banner-blue;
+      @include size1216;
+      &:focus {
+        background-color: $comment-blue;
+      }
+    }
+    .form-item-sort-by, .form-item-sort-order{
+      max-width:min-content;
+      margin-right: 10px;
+      .form-select.form-control {
+        padding:0 20px 0 0;
+      }
+    }
+    #edit-actions {
+      .btn-info {
+        height: 25px;
+        padding:0 10px;
+      }
+    }
+  }
+}

@@ -10456,6 +10456,60 @@ footer.footer.container .region.region-footer #footer-left, footer.footer.contai
   bottom: 10px;
 }
 
+/* line 166, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form {
+  border: solid 1px #E0E7E8;
+  padding: 5px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: .75rem;
+  line-height: 16px;
+}
+
+/* line 172, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form .form-item {
+  min-width: 130px;
+  margin-bottom: 3px;
+  margin-right: 8px;
+}
+
+/* line 179, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form label.control-label {
+  font-weight: normal;
+  padding-right: 5px;
+}
+
+/* line 183, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form input.form-control, body.path-news .views-exposed-form .form-select.form-control {
+  padding: 0px 5px;
+  height: inherit;
+  color: rgba(0, 51, 102, 0.8);
+  font-size: .75rem;
+  line-height: 16px;
+}
+
+/* line 188, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form input.form-control:focus, body.path-news .views-exposed-form .form-select.form-control:focus {
+  background-color: #e6f2f9;
+}
+
+/* line 192, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form .form-item-sort-by, body.path-news .views-exposed-form .form-item-sort-order {
+  max-width: min-content;
+  margin-right: 10px;
+}
+
+/* line 195, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form .form-item-sort-by .form-select.form-control, body.path-news .views-exposed-form .form-item-sort-order .form-select.form-control {
+  padding: 0 20px 0 0;
+}
+
+/* line 200, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
+body.path-news .views-exposed-form #edit-actions .btn-info {
+  height: 25px;
+  padding: 0 10px;
+}
+
 /* System wide navigation - menu CSS */
 /* line 5, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 #navbar #block-atworknext-search {
