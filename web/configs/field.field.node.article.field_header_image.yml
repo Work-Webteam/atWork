@@ -1,0 +1,28 @@
+uuid: fe4b1c1a-9787-4f6f-be27-a4a62605af26
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_header_image
+    - media.type.image_header
+    - node.type.article
+id: node.article.field_header_image
+field_name: field_header_image
+entity_type: node
+bundle: article
+label: 'Header Image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image_header: image_header
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
