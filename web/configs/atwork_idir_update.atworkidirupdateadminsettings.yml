@@ -1,9 +1,9 @@
 idir_ftp_location: ftp.dir.gov.bc.ca
 idir_login_name: psa
 idir_login_password: Men@W0rk
-idir_filename: idir_test.tsv
-form_build_id: form-sPQJuPHHfaocSS51-O0gQAPbQex-sxP0Cxl8G7riMiw
-form_token: sEyAjZ-8V9H6CqaUmbiRRIGoOInZfH2gEYR8rZr-M4U
+idir_filename: idir.tsv
+form_build_id: form-o0PlAce1OeAwXjcm8aPCssB5LpBGhbNAtZFUTojU2-M
+form_token: eDr8moaqE88l2so9rfyHJfZHVZC7cgHRFiBqUNlfZCc
 form_id: atwork_idir_update_admin_settings_form
 op: 'Save configuration'
 action: TransactionType
@@ -29,4 +29,4 @@ field_company: Company
 field_user_guid: GUID
 field_blog_bio: None
 field_about_me: None
-field_job_function_code: HrJobFunctionCode
+field_job_function_code: None

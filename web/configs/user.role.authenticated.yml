@@ -36,6 +36,7 @@ permissions:
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
+  - 'subscribe to newsletters'
   - 'unflag email_node'
   - 'unflag email_term'
   - 'unflag inappropriate'

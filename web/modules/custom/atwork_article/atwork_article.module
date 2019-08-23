@@ -63,10 +63,13 @@ function atworknext_preprocess_node__article(&$variables) {
 
 function atwork_article_node_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display){
 	//kint($build['links']['#lazy_builder']);
-	$ent_id = $build['links']['#lazy_builder'][1][0];
-	$view_m = $build['links']['#lazy_builder'][1][1];
-	$lang = $build['links']['#lazy_builder'][1][2];
-	$preview = $build['links']['#lazy_builder'][1][3];
-	$links = Drupal\node\NodeViewBuilder::renderLinks($ent_id, $view_m, $lang, $preview);
-	$build['rendered_links'] = $links;
+  ksm($entity->getType());
+  if ($entity->getType() == "article") {
+    $ent_id = $build['links']['#lazy_builder'][1][0];
+    $view_m = $build['links']['#lazy_builder'][1][1];
+    $lang = $build['links']['#lazy_builder'][1][2];
+    $preview = $build['links']['#lazy_builder'][1][3];
+    $links = Drupal\node\NodeViewBuilder::renderLinks($ent_id, $view_m, $lang, $preview);
+    $build['rendered_links'] = $links;
+  }
 }

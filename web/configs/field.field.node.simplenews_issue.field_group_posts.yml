@@ -1,0 +1,29 @@
+uuid: fe4c04e7-6181-4499-bc5f-1ac2d14c18c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_group_posts
+    - node.type.group_post
+    - node.type.simplenews_issue
+id: node.simplenews_issue.field_group_posts
+field_name: field_group_posts
+entity_type: node
+bundle: simplenews_issue
+label: 'Group Posts'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      group_post: group_post
+    sort:
+      field: publish_on
+      direction: DESC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
