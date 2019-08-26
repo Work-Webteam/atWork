@@ -28,12 +28,12 @@
 **/
 
 #}
-{{ drupal_dump() }}
-{# May have more than one #}
-{% for key, item in items %}
-  {% set current_item = item.content['#node'].getFields %}
-  {%  set nid = current_item.nid.value %}
-  {% set author = item.content['#node'].getOwner.name.value %}
-  <h3><!--TODO: need the group name here: --> {{ current_item.title.value }}</h3>
-  {{ kint(item.content['#node'].getOwner.field_user_display_name.value) }}
-{% endfor %}
+{#{ drupal_dump() }#}
+<span {{ content_attributes }}>
+  {# May have more than one #}
+  {% for key, item in items %}
+    <h3><!--TODO: need the group name here: --> {{ item.content['#node'].getTitle }}</h3>
+    <p>{{ current_item.body[0].summary }}</p>
+    <p>Posted by: {{ item.content['#node'].getOwner.field_user_display_name.value }}</p>
+  {% endfor %}
+</span>

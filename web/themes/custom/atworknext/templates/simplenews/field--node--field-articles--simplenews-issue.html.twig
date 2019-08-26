@@ -1,0 +1,57 @@
+{#
+/**
+From drupal_dump
+  "element" => array:24 [▶]
+  "theme_hook_original" => "field"
+  "attributes" => Attribute {#4486 ▶}
+  "title_attributes" => Attribute {#4394 ▶}
+  "content_attributes" => Attribute {#4483 ▶}
+  "title_prefix" => []
+  "title_suffix" => []
+  "db_is_active" => true
+  "is_admin" => true
+  "logged_in" => true
+  "directory" => "themes/custom/atworknext"
+  "entity_type" => "node"
+  "field_name" => "field_articles"
+  "field_type" => "entity_reference"
+  "label_display" => "hidden"
+  "label_hidden" => true
+  "label" => "Articles"
+  "multiple" => true
+  "items" => array:2 [▶]
+  "#cache" => array:1 [▶]
+  "is_front" => false
+  "theme" => array:26 [▶]
+  "theme_hook_suggestions" => array:5 [▶]
+  "theme_hook_suggestion" => "field"
+
+*/
+#}
+<div {{ attributes }} >
+  {#{ drupal_dump() }#}
+  {% for item in items %}
+    {# We always need a title  TODO: link this? #}
+    <h2> {{ item.content['#node'].title.value }} </h2>
+    <div {{ item.attributes }}>
+      {% if loop.first %}
+        {# We only want an image on the first newsarticle #}
+        {# Need to base_URL for this because we will be sending it out #}
+        {% set base_url = render_var(url('<front>')) %}
+        {# Set the image url TODO: Change image style once we know what is required#}
+        {%  set img_location = item.content['#node'].field_image.entity.fileuri|image_style('medium') %}
+        {# concatenate this to get the default url, need to remove redundant url pieces #}
+        {% set img_url = base_url|trim('/', 'right')~ img_location %}
+        <img {{ item.attributes }} src="{{ img_url }}" alt="{{ item.content['#node'].field_image[0].value.alt }}"  title="{{ item.content['#node'].field_image[0].value.title }}"/>
+      {% endif %}
+      {# Print out the related custom teaser (if available) #}
+      <p>{{ drupal_field('field_custom_teaser', 'node', item.content['#node'].nid.value) }}</p>
+      {% if(item.content['#node'].getOwner.field_user_display_name.value) %}
+        <p>Posted by: {{ item.content['#node'].getOwner.field_user_display_name.value }} </p>
+      {% else %}
+        <p>posted by: {{ item.content['#node'].getOwner.name.value }} </p>
+      {% endif %}
+    </div>
+    <hr>
+  {% endfor %}
+</div>

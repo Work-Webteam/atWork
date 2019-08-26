@@ -27,10 +27,11 @@
   "theme_hook_suggestion" => "field"
 **/
 #}
-
-{% for item in items %}
-  <h3>Join the Conversation</h3>
-  <p>{{ drupal_field('comment_body', 'comment', item.content['#comment'].cid.value) }}</p>
-  {# TODO: Seems like I need to add the attributes here or else I get an error. #}
-  <p> Posted by: {{ item.content['#comment'].getAuthorName }}</p>
-{% endfor %}
+<span {{ content_attributes }}>
+  {% for item in items %}
+    <h3>Join the Conversation</h3>
+    <p>{{ drupal_field('comment_body', 'comment', item.content['#comment'].cid.value) }}</p>
+    {# TODO: Seems like I need to add the attributes here or else I get an error. #}
+    <p> Posted by: {{ item.content['#comment'].getAuthorName }}</p>
+  {% endfor %}
+</span>

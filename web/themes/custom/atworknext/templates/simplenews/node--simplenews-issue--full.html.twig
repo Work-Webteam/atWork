@@ -41,37 +41,27 @@
  * Tied to suggestions here: https://www.drupal.org/node/1492498
  */
 #}
-<H1>{{ node.getTitle }}</H1>
-{# We could print out default teasers with node.field_articles #}
-{# but we want more control over output. #}
-{# Any entity node value is accessible here #}
+<div {{ attributes }}>
+  <H1 {{ title_attributes }}>{{ node.getTitle }}</H1>
+  {# We could print out default teasers with node.field_articles #}
+  {# but we want more control over output. #}
+  {# This is taken care of in field-node-field-articles--simplenews-issue.html.twig#}
+  {{ content.field_articles }}
 
-{% for key, ivalue in node.field_articles %}
-  {# We always need a title  TODO: link this? #}
-  <h2> {{ node.field_articles[key].entity.title.value }} </h2>
-  {% if key == 0 %}
-    {# We only want an image on the first newsarticle #}
-    {# Need to base_URL for this because we will be sending it out #}
-    {% set base_url = render_var(url('<front>')) %}
-    {# Set the image url TODO: Change image style once we know what is required#}
-    {%  set img_location = node.field_articles[key].entity.field_image.entity.fileuri|image_style('medium') %}
-    {# concatenate this to get the default url, need to remove redundant url pieces #}
-    {% set img_url = base_url|trim('/', 'right')~ img_location %}
-    <img src="{{ img_url }}" alt="{{ node.field_articles[key].entity.field_image[key].value.alt }}"  title="{{ node.field_articles[key].entity.field_image[key].value.title }}"/>
+  {# Take note and did you know can just get printed out as is. #}
+  {{ content.field_take_note }}
+  <hr>
+  {{ content.field_did_you_know }}
+  <hr>
+  {# One or more group posts should show teaser content #}
+  {# This is taken care of in template field--node--field-group-posts--simplenews-issue.html.twig #}
+  {{ content.field_group_posts }}
+  <hr>
+  {# This is taken care of in field--node--field-comments--simplenews-issue.html.twig #}
+  {{ content.field_comments }}
+
+  <hr />
+  {% if key == 'test' %}
+    - - - {{ test_message }} - - -
   {% endif %}
-  {# Print out the related custom teaser (if available) #}
-  <p>{{ drupal_field('field_custom_teaser', 'node', node.field_articles[key].entity.id) }}</p>
-{% endfor %}
-{# Take note and did you know can just get printed out as is. #}
-{{ content.field_take_note }}
-{{ content.field_did_you_know }}
-{# One or more group posts should show teaser content #}
-{# This is taken care of in template field--node--field-group-posts--simplenews-issue.html.twig #}
-{{ content.field_group_posts }}
-{# This is taken care of in field--node--field-comments--simplenews-issue.html.twig #}
-{{ content.field_comments }}
-
-<hr />
-{% if key == 'test' %}
-  - - - {{ test_message }} - - -
-{% endif %}
+</div>
