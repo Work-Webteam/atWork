@@ -1,4 +1,4 @@
-uuid: 05a114f0-2c67-4ffa-8999-27968d4b3a0c
+uuid: 9a92f2d5-e2bb-4cd5-8228-8d01e02ab451
 langcode: en
 status: true
 dependencies:
@@ -8,9 +8,8 @@ dependencies:
 id: node.field_take_note
 field_name: field_take_note
 entity_type: node
-type: text
-settings:
-  max_length: 510
+type: text_long
+settings: {  }
 module: text
 locked: false
 cardinality: 1

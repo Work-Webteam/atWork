@@ -29,7 +29,7 @@ bundle: simplenews_issue
 mode: default
 content:
   field_articles:
-    weight: 3
+    weight: 0
     label: hidden
     settings:
       view_mode: teaser
@@ -38,7 +38,7 @@ content:
     type: entity_reference_entity_view
     region: content
   field_comments:
-    weight: 7
+    weight: 4
     label: hidden
     settings:
       view_mode: full
@@ -47,14 +47,14 @@ content:
     type: entity_reference_entity_view
     region: content
   field_did_you_know:
-    weight: 5
+    weight: 1
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   field_group_posts:
-    weight: 6
+    weight: 3
     label: hidden
     settings:
       view_mode: teaser
@@ -63,24 +63,24 @@ content:
     type: entity_reference_entity_view
     region: content
   field_take_note:
-    weight: 4
+    weight: 2
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: content
   flag_email_node:
-    weight: 1
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_node:
-    weight: 2
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 0
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
