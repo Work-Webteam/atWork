@@ -10,7 +10,7 @@ dependencies:
 id: programtopicboxes
 theme: atworknext
 region: content
-weight: -8
+weight: -7
 provider: null
 plugin: 'entity_field:node:field_program_topic_boxes'
 settings:

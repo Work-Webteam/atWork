@@ -25,7 +25,7 @@ settings:
   display_default: false
 module: image
 locked: false
-cardinality: 3
+cardinality: 1
 translatable: true
 indexes:
   target_id:

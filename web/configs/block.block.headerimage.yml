@@ -1,4 +1,4 @@
-uuid: 911d04cb-e773-4339-a041-e0aa990f4827
+uuid: c169a121-fa72-40fb-b18a-c18b03f104f1
 langcode: en
 status: true
 dependencies:
@@ -7,22 +7,23 @@ dependencies:
     - ctools_block
   theme:
     - atworknext
-id: programhighlight
+id: headerimage
 theme: atworknext
 region: content
-weight: -6
+weight: -9
 provider: null
-plugin: 'entity_field:node:field_program_highlight'
+plugin: 'entity_field:node:field_header_image'
 settings:
-  id: 'entity_field:node:field_program_highlight'
-  label: 'Program Highlight'
+  id: 'entity_field:node:field_header_image'
+  label: 'Header Image'
   provider: ctools_block
-  label_display: visible
+  label_display: '0'
   formatter:
-    label: hidden
-    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    type: media_thumbnail
     settings:
-      view_mode: default
+      image_style: article_hero_image
+      image_link: ''
     third_party_settings: {  }
     weight: 0
   context_mapping:
@@ -31,6 +32,7 @@ visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
+      article: article
       background_page: background_page
     negate: false
     context_mapping:

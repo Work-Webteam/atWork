@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.media.image_header.field_media_image_1
-    - image.style.thumbnail
+    - image.style.medium
     - media.type.image_header
   module:
     - image_widget_crop
@@ -24,15 +24,15 @@ content:
     weight: 0
     settings:
       show_default_crop: true
-      warn_multiple_usages: true
-      preview_image_style: thumbnail
+      preview_image_style: medium
       crop_preview_image_style: crop_thumbnail
       crop_list:
-        - article_hero
-      crop_types_required:
+        - article_730_330
         - article_hero
       progress_indicator: throbber
+      crop_types_required: {  }
       show_crop_area: false
+      warn_multiple_usages: false
     third_party_settings: {  }
     type: image_widget_crop
     region: content
