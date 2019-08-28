@@ -1,0 +1,33 @@
+uuid: d7156f07-6d2d-49d8-b048-b54a379dd547
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+    - comment.type.comment_forum
+    - comment.type.comment_photos
+    - field.storage.node.field_comments
+    - node.type.simplenews_issue
+id: node.simplenews_issue.field_comments
+field_name: field_comments
+entity_type: node
+bundle: simplenews_issue
+label: Comments
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:comment'
+  handler_settings:
+    target_bundles:
+      comment_forum: comment_forum
+      comment_photos: comment_photos
+      comment: comment
+    sort:
+      field: created
+      direction: DESC
+    auto_create: false
+    auto_create_bundle: comment_forum
+field_type: entity_reference

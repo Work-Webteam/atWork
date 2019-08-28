@@ -1,0 +1,21 @@
+uuid: a0d49ca1-0105-40a9-8823-d96eb1bc5db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_take_note
+    - node.type.simplenews_issue
+  module:
+    - text
+id: node.simplenews_issue.field_take_note
+field_name: field_take_note
+entity_type: node
+bundle: simplenews_issue
+label: 'Take Note'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

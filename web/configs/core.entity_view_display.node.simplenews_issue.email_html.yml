@@ -1,0 +1,55 @@
+uuid: 595d84b8-78d5-46b1-855d-93f466a736b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.email_html
+    - field.field.node.simplenews_issue.body
+    - field.field.node.simplenews_issue.field_articles
+    - field.field.node.simplenews_issue.simplenews_issue
+    - node.type.simplenews_issue
+  module:
+    - panelizer
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+_core:
+  default_config_hash: k7huXut68pdao0qGHWeETfwtQudI0SZ260TyVyGTOFg
+id: node.simplenews_issue.email_html
+targetEntityType: node
+bundle: simplenews_issue
+mode: email_html
+content:
+  field_articles:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+  flag_email_node:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_comments: true
+  field_did_you_know: true
+  field_group_posts: true
+  field_take_note: true
+  langcode: true
+  links: true
+  search_api_excerpt: true
+  simplenews_issue: true

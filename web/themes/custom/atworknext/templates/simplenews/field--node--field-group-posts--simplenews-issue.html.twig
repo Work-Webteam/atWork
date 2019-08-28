@@ -1,0 +1,39 @@
+{#
+/**
+  "element" => array:23 [▶]
+  "theme_hook_original" => "field"
+  "attributes" => Attribute {#4629 ▶}
+  "title_attributes" => Attribute {#5253 ▶}
+  "content_attributes" => Attribute {#5254 ▶}
+  "title_prefix" => []
+  "title_suffix" => []
+  "db_is_active" => true
+  "is_admin" => true
+  "logged_in" => true
+  "user" => AccountProxy {#4010 ▶}
+  "directory" => "themes/custom/atworknext"
+  "entity_type" => "node"
+  "field_name" => "field_group_posts"
+  "field_type" => "entity_reference"
+  "label_display" => "hidden"
+  "label_hidden" => true
+  "label" => "Group Posts"
+  "multiple" => true
+  "items" => array:1 [▶]
+  "#cache" => array:1 [▶]
+  "is_front" => false
+  "theme" => array:26 [▶]
+  "theme_hook_suggestions" => array:5 [▶]
+  "theme_hook_suggestion" => "field"
+**/
+
+#}
+{#{ drupal_dump() }#}
+<span {{ content_attributes }}>
+  {# May have more than one #}
+  {% for key, item in items %}
+    <h3><!--TODO: need the group name here: --> {{ item.content['#node'].getTitle }}</h3>
+    <p>{{ current_item.body[0].summary }}</p>
+    <p>Posted by: {{ item.content['#node'].getOwner.field_user_display_name.value }}</p>
+  {% endfor %}
+</span>
