@@ -35,6 +35,11 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_articles: true
+  field_comments: true
+  field_did_you_know: true
+  field_group_posts: true
+  field_take_note: true
   langcode: true
   links: true
   search_api_excerpt: true
