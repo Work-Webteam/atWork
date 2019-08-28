@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - atwork_mail_send_update
+    - ultimate_cron
+    - simplenews
+    - messages
+title: 'Update newsletters and subscriptions'
+id: atwork_mail_send_update
+weight: 0
+module: atwork_mail_send_update
+callback: atwork_mail_send_update_callback
+scheduler:
+  id: simple
+  configuration:
+    rules:
+      - '* 1 * * *'
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000

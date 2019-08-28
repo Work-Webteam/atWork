@@ -1,0 +1,8 @@
+name: 'Atwork Mail Send Update'
+type: module
+description: 'A cron hook that allows us to keep our newsletter and subscription lists current.'
+core: 8.x
+package: 'Atwork'
+dependencies:
+  - drupal:simplenews
+  - drupal:ultimate_cron
