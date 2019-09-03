@@ -10,7 +10,7 @@ dependencies:
 id: grouphighlight
 theme: atworknext
 region: content
-weight: 0
+weight: -2
 provider: null
 plugin: 'entity_field:group:field_group_highlight'
 settings:

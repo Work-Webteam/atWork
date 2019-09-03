@@ -1,6 +1,6 @@
 uuid: 662881f5-52bd-49f9-894b-6050c0ef9ab0
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.related_content
@@ -11,8 +11,8 @@ dependencies:
     - atworknext
 id: views_block__related_content_block_1
 theme: atworknext
-region: content
-weight: -1
+region: footer
+weight: -12
 provider: null
 plugin: 'views_block:related_content-block_1'
 settings:

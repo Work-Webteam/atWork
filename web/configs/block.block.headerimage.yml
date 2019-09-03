@@ -10,7 +10,7 @@ dependencies:
 id: headerimage
 theme: atworknext
 region: content
-weight: -9
+weight: -10
 provider: null
 plugin: 'entity_field:node:field_header_image'
 settings:

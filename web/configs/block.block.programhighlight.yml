@@ -10,7 +10,7 @@ dependencies:
 id: programhighlight
 theme: atworknext
 region: content
-weight: -6
+weight: -7
 provider: null
 plugin: 'entity_field:node:field_program_highlight'
 settings:

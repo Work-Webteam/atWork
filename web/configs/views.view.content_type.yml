@@ -25,6 +25,7 @@ dependencies:
     - text
     - user
     - video_embed_field
+    - views_infinite_scroll
 id: content_type
 label: 'Content Type'
 module: views
@@ -1989,6 +1990,7 @@ display:
       defaults:
         fields: false
         sorts: false
+        pager: false
       menu:
         type: none
         title: News
@@ -2043,12 +2045,34 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: standard
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 8
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: false
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
         - 'user.node_grants:view'
