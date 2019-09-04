@@ -13,7 +13,7 @@ use Drupal\Core\Field\FieldDefinitionInterface;
  * We deal with updating users and checking users here,
  * but this class won't be invoked on its own.
  */
-class AtworkMailSendUpdateDbGetSubscriptsions {
+class AtworkMailSendUpdateDbGetSubscriptions {
 
   /**
    * @var array
@@ -55,17 +55,39 @@ class AtworkMailSendUpdateDbGetSubscriptsions {
   }
 
   /**
-   *
+   * Get and return an array of subscriptions that are assigned to a
+   * user that is no longer active.
    */
   protected function setSubscriptionIds() {
-
+    $this->userIds = oldSubscriptions();
   }
 
   /**
-   * Get and return array of newsletter sub ent_ids.
+   * Get and return array of newsletter sub ent_ids that are assigned to
+   * a user that is no longer active
    */
   protected function setNewsletterIds() {
+    $this->userIds = oldNewsSubscriptions();
+  }
 
+  /**
+   * @return mixed
+   */
+  protected function oldSubscriptions() {
+    // Create a Database connection to get all subscriptions
+    // belonging to blocked users.
+    $connection = \Drupal::database();
+    $query = $connection->query("select ufd.uid from {users_field_data} ufd inner join {user__message_subscribe_email} sub on ufd.uid = sub.entity_id where ufd.status = 0 && sub.message_subscribe_email_value = 1");
+    $subs = $query->fetchAll();
+    return $subs;
+  }
+  protected function oldNewsSubscriptions() {
+    // Create Database connection to get all newsletter subscriptions
+    // bleongin to blocked users.
+    $connection = \Drupal::database();
+    $query = $connection->query("select ss.uid from {users_field_data} ufd inner join {simplenews_subscriber} ss on ufd.uid = ss.uid where ufd.status = 0");
+    $subs = $query->fetchAll();
+    return $subs;
   }
 
 }
