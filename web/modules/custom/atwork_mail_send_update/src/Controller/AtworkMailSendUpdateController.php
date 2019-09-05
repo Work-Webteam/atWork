@@ -102,7 +102,7 @@ class AtworkMailSendUpdateController extends ControllerBase {
     // get userSubData.
     $data = $this->getSubData();
 
-    if (!$data) {
+    if (!$data || empty($data)) {
       return [
         '#type' => 'markup',
         '#markup' => $this->t('No users require subscription updates'),
@@ -122,7 +122,7 @@ class AtworkMailSendUpdateController extends ControllerBase {
     $totalItemsAfter = $queue->numberOfItems();
     // 5. Get what's in the queue now.
     $tableVariables = $this->getItemList($queue);
-    $finalMessage = $this->t('The Newsletter Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
+    $finalMessage = $this->t('The Subscriptions Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
       [
         '@count' => count($data),
         '@totalAfter' => $totalItemsAfter,
@@ -146,15 +146,14 @@ class AtworkMailSendUpdateController extends ControllerBase {
    *   Return string.
    */
   public function getNewsletterSubscriptionData() {
-    // 1. Get data into an array of objects
+    // 1. Get data into an array of uids
     // 2. Get the queue and the total of items before the operations
     // 3. For each element of the array, create a new queue item
-    // 1. Get data into an array of objects
     // This works in concert with getNewsletterSubData and
-    // get userSubData.
+    // getUserSubData.
     $data = $this->getNewsletterSubData();
 
-    if (!$data) {
+    if (!$data || empty($data)) {
       return [
         '#type' => 'markup',
         '#markup' => $this->t('No users require newsletter subscriptions updates'),
@@ -199,14 +198,30 @@ class AtworkMailSendUpdateController extends ControllerBase {
    */
   protected function getSubData() {
     // Create a new DB user object.
-    $users = new AtworkMailSendUpdateDbGetSubscriptions();
+    $users = new AtworkMailSendUpdateDbGetSubscriptions("subscriptions");
     // Set up a DB call and get a list of user ID's.
-    if (!$users) {
+    $user_array = $users->getUserIds();
+    if (empty($user_array)) {
       return FALSE;
     }
-    return $users;
+    return $user_array;
   }
 
-
+  /**
+   * Generate an array of objects from DB.
+   *
+   * @return array|bool
+   *   Return an array or false.
+   */
+  protected function getNewsletterSubData() {
+    // Create a new DB user object.
+    $users = new AtworkMailSendUpdateDbGetSubscriptions("newsletter");
+    // Set up a DB call and get a list of user ID's.
+    $user_array = $users->getUserIds();
+    if (empty($user_array)) {
+      return FALSE;
+    }
+    return $user_array;
+  }
 
 }
