@@ -10,7 +10,7 @@ dependencies:
     - field.field.node.program_area_content.field_parent_program
     - field.field.node.program_area_content.field_tags
     - field.field.node.program_area_content.field_video
-    - image.style.medium
+    - image.style.thumbnail
     - node.type.program_area_content
   module:
     - file
@@ -37,23 +37,25 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   field_attachments:
-    weight: 7
+    weight: 6
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
   field_image:
+    type: image_widget_crop
     weight: 1
+    region: content
     settings:
       show_default_crop: true
-      preview_image_style: medium
-      crop_preview_image_style: medium
+      preview_image_style: thumbnail
+      crop_preview_image_style: crop_thumbnail
       crop_list:
         - article_730_330
       progress_indicator: throbber
@@ -61,8 +63,6 @@ content:
       show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
-    type: image_widget_crop
-    region: content
   field_interactive_content:
     weight: 4
     settings: {  }
@@ -71,7 +71,7 @@ content:
     region: content
   field_parent_program:
     type: entity_reference_autocomplete
-    weight: 6
+    weight: 5
     region: content
     settings:
       match_operator: CONTAINS
@@ -79,7 +79,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   field_tags:
-    weight: 8
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -95,7 +95,7 @@ content:
     region: content
   path:
     type: path
-    weight: 15
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -103,12 +103,12 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 11
+    weight: 10
     region: content
     third_party_settings: {  }
   publish_on:
     type: datetime_timestamp_no_default
-    weight: 13
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -116,14 +116,14 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 17
+    weight: 16
     region: content
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 12
+    weight: 11
     region: content
     third_party_settings: {  }
   title:
@@ -139,7 +139,7 @@ content:
         maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
-    weight: 9
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
@@ -148,12 +148,12 @@ content:
     third_party_settings: {  }
   unpublish_on:
     type: datetime_timestamp_no_default
-    weight: 14
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 16
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
