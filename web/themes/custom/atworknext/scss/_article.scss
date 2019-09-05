@@ -196,9 +196,11 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
         justify-content: space-around;
         padding:10px;
         background-color: $comment-blue;
-        .paragraph--type--program-topic-box {
-          min-width:450px;
+        .field--item {
+          width:100%;
           max-width:550px;
+        }
+        .paragraph--type--program-topic-box {
           min-height:190px;
           margin-bottom:10px;
           display: flex;
@@ -333,4 +335,3 @@ article.node--type-article .col-md-3.col-sidebar {
     width:100%;
   }
 }
-

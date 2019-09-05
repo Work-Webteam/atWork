@@ -11297,9 +11297,13 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 }
 
 /* line 199, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
-.page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box {
-  min-width: 450px;
+.page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .field--item {
+  width: 100%;
   max-width: 550px;
+}
+
+/* line 203, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+.page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box {
   min-height: 190px;
   margin-bottom: 10px;
   display: flex;
@@ -11310,7 +11314,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   position: relative;
 }
 
-/* line 210, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 212, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .field--name-field-title {
   font-size: 1.125rem;
   line-height: 24px;
@@ -11319,13 +11323,13 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   margin: 0 0 0 0;
 }
 
-/* line 216, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 218, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box p {
   padding: 0 8px 10px 5px;
   margin: 0 0 10px;
 }
 
-/* line 220, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 222, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .btn {
   border-radius: 0;
   border: none;
@@ -11334,7 +11338,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   padding: 8px 30px 5px;
 }
 
-/* line 226, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 228, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .btn::after {
   content: " ▴";
   color: white;
@@ -11344,7 +11348,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   padding-left: 5px;
 }
 
-/* line 235, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 237, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup {
   text-align: center;
   margin: 0;
@@ -11353,7 +11357,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   width: 100%;
 }
 
-/* line 241, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 243, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu {
   padding: 3px 5px;
   left: 50%;
@@ -11362,24 +11366,24 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
   transform: translate(-50%, 0);
 }
 
-/* line 247, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 249, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu a {
   margin: 2px;
   border: solid 1px #CCC;
 }
 
-/* line 251, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 253, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu > li a:hover {
   background-color: rgba(0, 51, 102, 0.8);
   color: white;
 }
 
-/* line 255, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 257, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box .dropup .dropdown-menu a[data-target="#"] {
   display: none;
 }
 
-/* line 265, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 267, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 span .paragraph-info {
   visibility: hidden !important;
 }
@@ -11587,7 +11591,7 @@ span .paragraph-info {
   width: 17px;
 }
 
-/* line 281, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 283, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group #block-programhighlight,
 body.path-group .group-highlight,
 body.path-group .field--name-field-group-highlight, body.page-node-type-background-page #block-programhighlight,
@@ -11604,7 +11608,7 @@ body.page-node-type-group-post .field--name-field-group-highlight {
   background-color: white;
 }
 
-/* line 289, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 291, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group #block-programhighlight h2.block-title,
 body.path-group #block-programhighlight .field--label:first-of-type,
 body.path-group .group-highlight h2.block-title,
@@ -11636,7 +11640,7 @@ body.page-node-type-group-post .field--name-field-group-highlight .field--label:
   border-right: solid 1px #E0E7E8;
 }
 
-/* line 300, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 302, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group #block-programhighlight .paragraph--type--program-group-highlight,
 body.path-group .group-highlight .paragraph--type--program-group-highlight,
 body.path-group .field--name-field-group-highlight .paragraph--type--program-group-highlight, body.page-node-type-background-page #block-programhighlight .paragraph--type--program-group-highlight,
@@ -11652,7 +11656,7 @@ body.page-node-type-group-post .field--name-field-group-highlight .paragraph--ty
   padding: 5px 10px;
 }
 
-/* line 305, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 307, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group #block-programhighlight .paragraph--type--program-group-highlight .field--name-field-highlight-title,
 body.path-group .group-highlight .paragraph--type--program-group-highlight .field--name-field-highlight-title,
 body.path-group .field--name-field-group-highlight .paragraph--type--program-group-highlight .field--name-field-highlight-title, body.page-node-type-background-page #block-programhighlight .paragraph--type--program-group-highlight .field--name-field-highlight-title,
@@ -11669,7 +11673,7 @@ body.page-node-type-group-post .field--name-field-group-highlight .paragraph--ty
   font-weight: bold;
 }
 
-/* line 312, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 314, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group #block-programhighlight .paragraph--type--program-group-highlight .field--name-field-highlight-text,
 body.path-group .group-highlight .paragraph--type--program-group-highlight .field--name-field-highlight-text,
 body.path-group .field--name-field-group-highlight .paragraph--type--program-group-highlight .field--name-field-highlight-text, body.page-node-type-background-page #block-programhighlight .paragraph--type--program-group-highlight .field--name-field-highlight-text,
@@ -11682,7 +11686,7 @@ body.page-node-type-group-post .field--name-field-group-highlight .paragraph--ty
   margin: 10px 0px;
 }
 
-/* line 315, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 317, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.path-group #block-programhighlight .paragraph--type--program-group-highlight .field--name-field-highlight-image,
 body.path-group .group-highlight .paragraph--type--program-group-highlight .field--name-field-highlight-image,
 body.path-group .field--name-field-group-highlight .paragraph--type--program-group-highlight .field--name-field-highlight-image, body.page-node-type-background-page #block-programhighlight .paragraph--type--program-group-highlight .field--name-field-highlight-image,
@@ -11695,17 +11699,17 @@ body.page-node-type-group-post .field--name-field-group-highlight .paragraph--ty
   float: right;
 }
 
-/* line 324, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 326, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.page-node-type-page h1.page-title {
   margin-bottom: 20px;
 }
 
-/* line 327, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 329, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 body.page-node-type-page .author-byline {
   display: none;
 }
 
-/* line 332, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
+/* line 334, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_article.scss */
 article.node--type-article .col-md-3.col-sidebar img {
   width: 100%;
 }
