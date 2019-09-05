@@ -1054,34 +1054,30 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       filters:
-        uid:
-          id: uid
+        name:
+          id: name
           table: users_field_data
-          field: uid
+          field: name
           relationship: none
           group_type: group
           admin_label: ''
-          operator: in
-          value:
-            - '22502'
+          operator: '='
+          value: djwright
           group: 1
-          exposed: true
+          exposed: false
           expose:
-            operator_id: uid_op
-            label: 'Name (autocomplete)'
+            operator_id: ''
+            label: ''
             description: ''
             use_operator: false
-            operator: uid_op
-            identifier: uid
+            operator: ''
+            identifier: ''
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              program_area_admin: '0'
-            reduce: false
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -1095,8 +1091,8 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           entity_type: user
-          entity_field: uid
-          plugin_id: user_name
+          entity_field: name
+          plugin_id: string
       filter_groups:
         operator: AND
         groups:

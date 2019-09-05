@@ -12,16 +12,14 @@ dependencies:
     - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_development_tags
     - field.field.node.article.field_editor_tags
-    - field.field.node.article.field_image
+    - field.field.node.article.field_header_image
     - field.field.node.article.field_interactive_content
     - field.field.node.article.field_send_notifications
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
-    - image.style.medium
     - node.type.article
   module:
-    - image
     - panelizer
     - text
     - user
@@ -45,15 +43,6 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-  field_image:
-    type: image
-    weight: 0
-    region: content
-    settings:
-      image_style: medium
-      image_link: content
-    third_party_settings: {  }
-    label: hidden
 hidden:
   body: true
   comment: true
