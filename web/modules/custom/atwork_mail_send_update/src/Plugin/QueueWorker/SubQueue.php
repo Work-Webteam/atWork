@@ -19,10 +19,10 @@ use Drupal\user\Entity\User;
  * @QueueWorker(
  *   id = "subscription_queue",
  *   title = @Translation("Clean up subscriptions for old users"),
- *   cron = {"time" = 20}
+ *   cron = {"time" = 10}
  * )
  */
-class ExQueue01 extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+class SubQueue extends QueueWorkerBase implements ContainerFactoryPluginInterface {
   /**
    * Drupal\Core\Entity\EntityTypeManagerInterface definition.
    *
@@ -73,6 +73,7 @@ class ExQueue01 extends QueueWorkerBase implements ContainerFactoryPluginInterfa
       if ($user_sub) {
         $user_sub->set('message_subscribe_email', 0);
         // Check if user is valid.
+        $violations = $user_sub->validate();
         if (count($violations) === 0) {
           // If they are valid, then save the user.
           $user_sub->save();

@@ -74,7 +74,7 @@ class AtworkMailSendUpdateController extends ControllerBase {
   }
 
   /**
-   * Delete the queue 'SubQueue_import'.
+   * Delete the queue 'subscription_queue'.
    *
    * Remember that the command drupal dq checks first for a queue worker
    * and if it exists, DC supposes that a queue exists.
@@ -109,8 +109,8 @@ class AtworkMailSendUpdateController extends ControllerBase {
       ];
     }
     // 2. Get the queue and the total of items before the operations
-    // Get the queue implementation for 'exqueue_import' queue.
-    $queue = $this->queueFactory->get('SubQueue_import');
+    // Get the queue implementation for 'subscription_queue' queue.
+    $queue = $this->queueFactory->get('subscription_queue');
     // Get the total of items in the queue before adding new items.
     $totalItemsBefore = $queue->numberOfItems();
     // 3. For each element of the array, create a new queue item.
