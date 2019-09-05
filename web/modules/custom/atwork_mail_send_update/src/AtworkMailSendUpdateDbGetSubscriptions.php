@@ -3,8 +3,6 @@
 namespace Drupal\atwork_mail_send_update;
 
 use Drupal\Database\Core\Database\Database;
-use Drupal\user\Entity\User;
-use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
  * Class AtworkMailSendUpdateDbGetSubscriptions.
@@ -16,17 +14,22 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 class AtworkMailSendUpdateDbGetSubscriptions {
 
   /**
+   * Returnable array of users ids.
+   *
    * @var array
-   *  returnable array of users ids.
    *  We will return FALSE if this is empty.
    */
   protected $userIds = [];
 
   /**
    * AtworkMailSendUpdateDbGetSubscriptions constructor.
+   *
+   * @param string $type
+   *   String that lets us know if we want a newsletter or subscription
+   *   array.
    */
   public function __construct($type) {
-    $userIds = setUserIds($type);
+    $this->setUserIds($type);
   }
 
   /**
@@ -37,10 +40,10 @@ class AtworkMailSendUpdateDbGetSubscriptions {
    */
   protected function setUserIds($type) {
     if ($type == "subscriptions") {
-      $this->userIds = setSubscriptionIds();
+      $this->setSubscriptionIds();
     }
     if ($type == "newsletter") {
-      $this->userIds = setNewsletterIds();
+      $this->setNewsletterIds();
     }
   }
 
@@ -55,41 +58,38 @@ class AtworkMailSendUpdateDbGetSubscriptions {
   }
 
   /**
-   * Get and return an array of subscriptions that are assigned to a
-   * user that is no longer active.
+   * Array of subscriptions that are no longer active.
    */
   protected function setSubscriptionIds() {
-    $this->userIds = oldSubscriptions();
-  }
-
-  /**
-   * Get and return array of newsletter sub ent_ids that are assigned to
-   * a user that is no longer active
-   */
-  protected function setNewsletterIds() {
-    $this->userIds = oldNewsSubscriptions();
-  }
-
-  /**
-   * @return mixed
-   */
-  protected function oldSubscriptions() {
     // Create a Database connection to get all subscriptions
     // belonging to blocked users.
     $connection = \Drupal::database();
-    $query = $connection->query("select ufd.uid from {users_field_data} ufd inner join {user__message_subscribe_email} sub on ufd.uid = sub.entity_id where ufd.status = 0 && sub.message_subscribe_email_value = 1");
-    $subs = $query->fetchAll();
-    return $subs;
+    $query = $connection->query(
+        "SELECT ufd.uid 
+        FROM {users_field_data} ufd 
+        INNER JOIN {user__message_subscribe_email} sub 
+        ON ufd.uid = sub.entity_id 
+        WHERE ufd.status = 0 && 
+        sub.message_subscribe_email_value = 1"
+    );
+    $this->userIds = $query->fetchAll();
   }
-  protected function oldNewsSubscriptions() {
+
+  /**
+   * Array of newsletter sub uids that are no longer active.
+   */
+  protected function setNewsletterIds() {
     // Create Database connection to get all newsletter subscriptions
-    // bleongin to blocked users.
+    // belonging to blocked users.
     $connection = \Drupal::database();
-    $query = $connection->query("select ss.uid from {users_field_data} ufd inner join {simplenews_subscriber} ss on ufd.uid = ss.uid where ufd.status = 0");
-    $subs = $query->fetchAll();
-    return $subs;
+    $query = $connection->query(
+      "SELECT ss.uid 
+        FROM {users_field_data} ufd 
+        LEFT JOIN {simplenews_subscriber} ss 
+        ON ufd.uid = ss.uid 
+        WHERE ufd.status = 0"
+    );
+    $this->userIds = $query->fetchAll();
   }
 
 }
-
-
