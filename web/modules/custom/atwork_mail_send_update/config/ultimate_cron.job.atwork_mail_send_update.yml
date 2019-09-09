@@ -5,7 +5,6 @@ dependencies:
     - atwork_mail_send_update
     - ultimate_cron
     - simplenews
-    - messages
 title: 'Update newsletters and subscriptions'
 id: atwork_mail_send_update
 weight: 0
