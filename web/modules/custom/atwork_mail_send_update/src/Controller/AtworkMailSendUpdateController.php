@@ -80,10 +80,24 @@ class AtworkMailSendUpdateController extends ControllerBase {
    * and if it exists, DC supposes that a queue exists.
    */
   public function deleteTheSubQueue() {
-    $this->queueFactory->get('SubQueue_import')->deleteQueue();
+    $this->queueFactory->get('SubQueue')->deleteQueue();
     return [
       '#type' => 'markup',
-      '#markup' => $this->t('The queue "SubQueue_import" has been deleted'),
+      '#markup' => $this->t('The queue "SubQueue" has been deleted'),
+    ];
+  }
+
+  /**
+   * Deletes Newsletter subqueue.
+   *
+   * @return array
+   *   Returns log of removed queue
+   */
+  public function deleteNewsletterSubQueue() {
+    $this->queueFactory->get('NewsletterSubQueue')->deleteQueue();
+    return [
+      '#type' => 'markup',
+      '#markup' => $this->t('the queue "NewsletterSubQueue" has been deleted'),
     ];
   }
 

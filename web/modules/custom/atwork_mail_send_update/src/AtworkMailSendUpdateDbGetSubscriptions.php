@@ -76,18 +76,18 @@ class AtworkMailSendUpdateDbGetSubscriptions {
   }
 
   /**
-   * Array of newsletter sub uids that are no longer active.
+   * Array of subscription entity_ids that are no longer active.
    */
   protected function setNewsletterIds() {
     // Create Database connection to get all newsletter subscriptions
     // belonging to blocked users.
     $connection = \Drupal::database();
     $query = $connection->query(
-      "SELECT ss.uid 
-        FROM {users_field_data} ufd 
-        LEFT JOIN {simplenews_subscriber} ss 
-        ON ufd.uid = ss.uid 
-        WHERE ufd.status = 0"
+      "SELECT ss.id
+        FROM {simplenews_subscriber} ss
+        LEFT JOIN {simplenews_subscriber__subscriptions} sss
+        ON sss.entity_id = ss.id
+        WHERE ss.status = 0"
     );
     $this->userIds = $query->fetchAll();
   }
