@@ -20,7 +20,7 @@ third_party_settings:
     unpublish_enable: false
     unpublish_required: false
     unpublish_revision: false
-name: 'Program Content Page'
+name: 'Program Content'
 type: program_area_content
 description: ''
 help: ''

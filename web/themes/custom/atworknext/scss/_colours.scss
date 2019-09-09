@@ -58,3 +58,20 @@ $dpBlue2:#034f77; // Dk Blue 3, 79, 119 / 034f77
 $dpGreen:#80a741; // Green 128, 167, 65 / 80a741
 $dpOrange:#eeb140; // Orange 238, 177, 64 / eeb140
 $dpWhite:#eff2f3; // Off White 239, 242, 243 / eff2f3
+
+
+// Web Accessibility Colour Overrides
+
+// Web Accessibility Colour Overrides
+
+// Darkens breadcrumb text.
+$gray-light: lighten($gray-base, 35.0%) !default; // #595959
+.breadcrumb > .active {
+    color: $gray-light;
+}
+.btn-success {
+    background-color: darken(#5cb85c, 20%);
+}
+.btn-info {
+    background-color: darken(#31b0d5, 15%);
+}

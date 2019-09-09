@@ -11,19 +11,18 @@ dependencies:
     - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_development_tags
     - field.field.node.article.field_editor_tags
-    - field.field.node.article.field_image
+    - field.field.node.article.field_header_image
     - field.field.node.article.field_interactive_content
     - field.field.node.article.field_send_notifications
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
-    - image.style.medium
     - node.type.article
   module:
     - comment
     - file
     - h5peditor
-    - image_widget_crop
+    - media_library
     - path
     - scheduler
     - text
@@ -104,21 +103,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_image:
-    type: image_widget_crop
+  field_header_image:
+    type: media_library_widget
     weight: 6
-    region: content
     settings:
-      show_crop_area: true
-      show_default_crop: true
-      preview_image_style: medium
-      crop_preview_image_style: medium
-      crop_list:
-        - article_hero
-      progress_indicator: throbber
-      crop_types_required: {  }
-      warn_multiple_usages: false
+      media_types: {  }
     third_party_settings: {  }
+    region: content
   field_interactive_content:
     weight: 20
     settings: {  }
@@ -126,7 +117,7 @@ content:
     type: h5p_editor
     region: content
   field_send_notifications:
-    weight: 26
+    weight: 23
     settings:
       display_label: true
     third_party_settings: {  }
@@ -216,7 +207,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 50
+    weight: 24
     region: content
     settings: {  }
     third_party_settings: {  }

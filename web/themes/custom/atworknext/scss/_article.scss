@@ -196,8 +196,11 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
         justify-content: space-around;
         padding:10px;
         background-color: $comment-blue;
-        .paragraph--type--program-topic-box {
+        .field--item {
+          width:100%;
           max-width:550px;
+        }
+        .paragraph--type--program-topic-box {
           min-height:190px;
           margin-bottom:10px;
           display: flex;
@@ -281,6 +284,7 @@ body.path-group, body.page-node-type-background-page, body.page-node-type-articl
   .group-highlight,
   .field--name-field-group-highlight {
     display:inline-block;
+    width: 100%;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: $white;
@@ -297,6 +301,7 @@ body.path-group, body.page-node-type-background-page, body.page-node-type-articl
     }
     .paragraph--type--program-group-highlight {
       display: inline-block;
+      width:100%;
       border: solid 1px $exec-greyborder;
       padding: 5px 10px;
         .field--name-field-highlight-title {

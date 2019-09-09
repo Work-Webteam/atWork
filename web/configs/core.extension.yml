@@ -1,28 +1,25 @@
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  animated_scroll_to_top: 0
   atwork_article: 0
   atwork_comments: 0
   atwork_group: 0
   atwork_h5p: 0
   atwork_idir_update: 0
-  atwork_menu: 0
   atwork_messages: 0
   atwork_poll: 0
-  atwork_profiles: 0
   atwork_program_pages: 0
   background_image: 0
   background_image_formatter: 0
   big_pipe: 0
   block: 0
   block_content: 0
+  bootstrap_datetime: 0
   bootstrap_layouts: 0
   breakpoint: 0
-  chosen: 0
-  chosen_field: 0
-  chosen_lib: 0
   ckeditor: 0
+  ckeditor_bootstrap_grid: 0
+  ckeditor_widgets: 0
   color: 0
   colorbox: 0
   colorbox_inline: 0
@@ -37,13 +34,15 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
+  datetime_range: 0
   dblog: 0
   devel: 0
-  devel_entity_updates: 0
   devel_generate: 0
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  embed: 0
+  entity_embed: 0
   entity_reference_revisions: 0
   externalauth: 0
   extrafield_views_integration: 0
@@ -80,6 +79,7 @@ module:
   media_library: 0
   menu_block: 0
   menu_export: 0
+  menu_item_extras: 0
   menu_link_attributes: 0
   menu_ui: 0
   message: 0
@@ -123,7 +123,6 @@ module:
   shortcut: 0
   simplenews: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0

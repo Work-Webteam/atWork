@@ -68,6 +68,10 @@ AddEncoding gzip svgz
 # Various rewrite rules.
 <IfModule mod_rewrite.c>
   RewriteEngine on
+  
+  # Looking for a cleaner way to clear up double // H5P URI issu
+  RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+  RewriteRule . %1/%2 [R=301,L]  
 
   # Set "protossl" to "s" if we were accessed via https://.  This is used later
   # if you enable "www." stripping or enforcement, in order to ensure that

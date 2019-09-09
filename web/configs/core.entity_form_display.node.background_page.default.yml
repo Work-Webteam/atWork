@@ -5,16 +5,15 @@ dependencies:
   config:
     - field.field.node.background_page.body
     - field.field.node.background_page.field_development_tags
-    - field.field.node.background_page.field_image
+    - field.field.node.background_page.field_header_image
     - field.field.node.background_page.field_program_ad_space
     - field.field.node.background_page.field_program_area_menu
     - field.field.node.background_page.field_program_highlight
     - field.field.node.background_page.field_program_topic_boxes
-    - image.style.medium
     - node.type.background_page
   module:
-    - image_widget_crop
     - maxlength
+    - media_library
     - paragraphs
     - path
     - scheduler
@@ -46,21 +45,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_image:
-    weight: 1
-    settings:
-      show_crop_area: true
-      show_default_crop: true
-      preview_image_style: medium
-      crop_preview_image_style: medium
-      crop_list:
-        - article_hero
-      progress_indicator: throbber
-      crop_types_required: {  }
-      warn_multiple_usages: false
-    third_party_settings: {  }
-    type: image_widget_crop
+  field_header_image:
+    type: media_library_widget
+    weight: 0
     region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
   field_program_area_menu:
     weight: 5
     settings:
@@ -160,7 +151,7 @@ content:
     third_party_settings: {  }
   title:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60

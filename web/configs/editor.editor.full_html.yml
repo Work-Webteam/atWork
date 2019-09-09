@@ -57,6 +57,7 @@ settings:
         -
           name: Linking
           items:
+            - Linkit
             - DrupalLink
             - DrupalUnlink
         -
@@ -83,12 +84,12 @@ settings:
             - ShowBlocks
             - Source
   plugins:
-    stylescombo:
-      styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
     language:
       language_list: un
+    stylescombo:
+      styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
     linkit:
-      linkit_profile: ''
+      linkit_profile: atwork_links
     tokenbrowser:
       token_types: {  }
     video_embed:

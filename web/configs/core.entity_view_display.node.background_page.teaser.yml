@@ -6,8 +6,11 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.background_page.body
     - field.field.node.background_page.field_development_tags
-    - field.field.node.background_page.field_image
+    - field.field.node.background_page.field_header_image
     - field.field.node.background_page.field_program_ad_space
+    - field.field.node.background_page.field_program_area_menu
+    - field.field.node.background_page.field_program_highlight
+    - field.field.node.background_page.field_program_topic_boxes
     - node.type.background_page
   module:
     - text
@@ -42,7 +45,10 @@ content:
     region: content
 hidden:
   field_development_tags: true
-  field_image: true
+  field_header_image: true
   field_program_ad_space: true
+  field_program_area_menu: true
+  field_program_highlight: true
   field_program_topic_boxes: true
   langcode: true
+  search_api_excerpt: true
