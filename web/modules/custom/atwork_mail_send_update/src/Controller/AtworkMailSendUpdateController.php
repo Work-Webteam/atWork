@@ -60,26 +60,12 @@ class AtworkMailSendUpdateController extends ControllerBase {
   }
 
   /**
-   * Delete the queue 'SubQueueNewsletter_import'.
-   *
-   * Remember that the command drupal dq checks first for a queue worker
-   * and if it exists, DC supposes that a queue exists.
-   */
-  public function deleteTheNewsletterSubQueue() {
-    $this->queueFactory->get('SubQueueNewsletter_import')->deleteQueue();
-    return [
-      '#type' => 'markup',
-      '#markup' => $this->t('The queue "SubQueueNewsletter_import" has been deleted'),
-    ];
-  }
-
-  /**
    * Delete the queue 'subscription_queue'.
    *
    * Remember that the command drupal dq checks first for a queue worker
    * and if it exists, DC supposes that a queue exists.
    */
-  public function deleteTheSubQueue() {
+  public function deleteSubQueue() {
     $this->queueFactory->get('SubQueue')->deleteQueue();
     return [
       '#type' => 'markup',
@@ -99,6 +85,16 @@ class AtworkMailSendUpdateController extends ControllerBase {
       '#type' => 'markup',
       '#markup' => $this->t('the queue "NewsletterSubQueue" has been deleted'),
     ];
+  }
+
+  /**
+   * Main function that kicks off sub work.
+   */
+  public function main() {
+    // Gets data for subs, and sets up queue.
+    $this->getSubscriptionData();
+    // Gets data for News subs and sets up queue.
+    $this->getNewsletterSubscriptionData();
   }
 
   /**
