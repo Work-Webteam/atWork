@@ -1,15 +1,12 @@
 <?php
 
-namespace Drupal\AtworkMailSendUpdate\Plugin\QueueWorker;
+namespace Drupal\atwork_mail_send_update\Plugin\QueueWorker;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
-use Drupal\user\Entity\User;
-use Drupal\simplenews\Entity\Subscriber;
-
 
 /**
  * Save queue item in a node.
@@ -19,12 +16,12 @@ use Drupal\simplenews\Entity\Subscriber;
  * to which queue it applied.
  *
  * @QueueWorker(
- *   id = "subscription_queue",
- *   title = @Translation("Clean up subscriptions for old users"),
+ *   id = "NewsletterSubQueue",
+ *   title = @Translation("Clean up newsletter subscriptions for old users"),
  *   cron = {"time" = 10}
  * )
  */
-class SubQueue extends QueueWorkerBase implements ContainerFactoryPluginInterface {
+class NewsletterSubQueue extends QueueWorkerBase implements ContainerFactoryPluginInterface {
   /**
    * Drupal\Core\Entity\EntityTypeManagerInterface definition.
    *

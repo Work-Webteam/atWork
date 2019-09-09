@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\AtworkMailSendUpdate\Plugin\QueueWorker;
+namespace Drupal\atwork_mail_send_update\Plugin\QueueWorker;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
@@ -17,7 +17,7 @@ use Drupal\user\Entity\User;
  * to which queue it applied.
  *
  * @QueueWorker(
- *   id = "subscription_queue",
+ *   id = "SubQueue",
  *   title = @Translation("Clean up subscriptions for old users"),
  *   cron = {"time" = 10}
  * )

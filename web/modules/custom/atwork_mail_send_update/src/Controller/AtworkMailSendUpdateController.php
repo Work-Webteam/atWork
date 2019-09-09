@@ -120,7 +120,7 @@ class AtworkMailSendUpdateController extends ControllerBase {
     }
     // 2. Get the queue and the total of items before the operations
     // Get the queue implementation for 'subscription_queue' queue.
-    $queue = $this->queueFactory->get('subscription_queue');
+    $queue = $this->queueFactory->get('SubQueue');
     // Get the total of items in the queue before adding new items.
     $totalItemsBefore = $queue->numberOfItems();
     // 3. For each element of the array, create a new queue item.
@@ -171,7 +171,7 @@ class AtworkMailSendUpdateController extends ControllerBase {
     }
     // 2. Get the queue and the total of items before the operations
     // Get the queue implementation for 'exqueue_import' queue.
-    $queue = $this->queueFactory->get('SubQueueNewsletter_import');
+    $queue = $this->queueFactory->get('NewsletterSubQueue');
     // Get the total of items in the queue before adding new items.
     $totalItemsBefore = $queue->numberOfItems();
     // 3. For each element of the array, create a new queue item.

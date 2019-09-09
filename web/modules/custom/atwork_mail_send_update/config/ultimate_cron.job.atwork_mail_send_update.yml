@@ -12,10 +12,10 @@ weight: 0
 module: atwork_mail_send_update
 callback: atwork_mail_send_update_callback
 scheduler:
-  id: simple
+  id: crontab
   configuration:
     rules:
-      - '* 1 * * *'
+      - '0 8 * * *'
 launcher:
   id: serial
   configuration:
