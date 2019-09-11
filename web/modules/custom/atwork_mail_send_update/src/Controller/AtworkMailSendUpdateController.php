@@ -257,14 +257,42 @@ class AtworkMailSendUpdateController extends ControllerBase {
 
   // TODO: combine this with getSubRenewal.
   private function renewNewsletterSubscriptions() {
-    // Create a new DB user object.
-    $users = new AtworkMailSendUpdateDbGetRenewals("newsletter");
-    // Set up a DB call and get a list of user ID's.
-    $user_array = $users->getUserIds();
-    if (empty($user_array)) {
-      return FALSE;
+    // Check if we have any subs to renew.
+    $data = $this->getNewsletterRenewals();
+    // If not, we are done, can send a message stating this.
+    if (!$data || empty($data)) {
+      \Drupal::logger('atwork_mail_send_update')
+        ->info('No Newsletter subs require renewal.');
     }
-    return $user_array;
+    else {
+      // 2. Get the queue and the total of items before the operations
+      // Get the queue implementation for 'subscription_queue' queue.
+      $queue = $this->queueFactory->get('RenewNewsSubQueue');
+      // Get the total of items in the queue before adding new items.
+      $totalItemsBefore = $queue->numberOfItems();
+      // Clear out duplicates if we already have items in the queue.
+      if ($totalItemsBefore > 0) {
+        $no_dup_array = array_diff_assoc($data, $queue);
+        // Now fix the data array to only have unique items.
+        $data = NULL;
+        $data = $no_dup_array;
+      }
+      // 3. For each element of the array, create a new queue item.
+      foreach ($data as $element) {
+        // Create new queue item.
+        $queue->createItem($element);
+      }
+      // 4. Get the total of item in the Queue.
+      $totalItemsAfter = $queue->numberOfItems();
+
+      \Drupal::logger('atwork_mail_send_update')
+        ->notice('The Newsletter Subscriptions Renew Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
+          [
+            '@count' => count($data),
+            '@totalAfter' => $totalItemsAfter,
+            '@totalBefore' => $totalItemsBefore,
+          ]);
+    }
   }
 
   private function getSubRenewals() {
@@ -277,5 +305,21 @@ class AtworkMailSendUpdateController extends ControllerBase {
     }
     return $user_array;
   }
+
+  private function getNewsletterRenewals() {
+    // Create a new DB user object.
+    $users = new AtworkMailSendUpdateDbGetRenewals("newsletter");
+    // Set up a DB call and get a list of user ID's.
+    $user_array = $users->getUserIds();
+    if (empty($user_array)) {
+      return FALSE;
+    }
+    return $user_array;
+  }
+
+  // TODO: We want to make sure all active users are subscribed to Newsletter.
+  // This can likely replace the "Renew" function for newsletters.
+  // Information on subscribing users to simplenews newsletters
+  // can be found here https://www.drupal.org/project/simplenews/issues/2947253.
 
 }
