@@ -9,6 +9,8 @@ use Drupal\Core\Messenger\MessengerInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\atwork_mail_send_update\AtworkMailSendUpdateDbGetSubscriptions;
+use Drupal\atwork_mail_send_update\AtworkMailSendUpdateDbGetRenewals;
+
 
 /**
  * Class AtworkMailSendUpdateController.
@@ -92,9 +94,6 @@ class AtworkMailSendUpdateController extends ControllerBase {
 
   /**
    * Get data from db source and create a item queue to process.
-   *
-   * @return array
-   *   Return string.
    */
   public function getSubscriptionData() {
     // 1. Get data into an array of objects
@@ -111,11 +110,20 @@ class AtworkMailSendUpdateController extends ControllerBase {
         '#markup' => $this->t('No users require subscription updates'),
       ];
     }
+
     // 2. Get the queue and the total of items before the operations
     // Get the queue implementation for 'subscription_queue' queue.
     $queue = $this->queueFactory->get('SubQueue');
     // Get the total of items in the queue before adding new items.
     $totalItemsBefore = $queue->numberOfItems();
+
+    // Clear out duplicates if we already have items in the queue.
+    if ($totalItemsBefore > 0) {
+      $no_dup_array = array_diff_assoc($data, $queue);
+      // Now fix the data array to only have unique items.
+      $data = NULL;
+      $data = $no_dup_array;
+    }
     // 3. For each element of the array, create a new queue item.
     foreach ($data as $element) {
       // Create new queue item.
@@ -209,11 +217,65 @@ class AtworkMailSendUpdateController extends ControllerBase {
   }
 
   protected function renewSubscriptions() {
+    // Check if we have any subs to renew.
+    $data = $this->getSubRenewals();
+    // If not, we are done, can send a message stating this.
+    if (!$data || empty($data)) {
+      \Drupal::logger('atwork_mail_send_update')
+        ->info('No subscriptions require renewal.');
+    }
+    else {
+      // 2. Get the queue and the total of items before the operations
+      // Get the queue implementation for 'subscription_queue' queue.
+      $queue = $this->queueFactory->get('RenewSubQueue');
+      // Get the total of items in the queue before adding new items.
+      $totalItemsBefore = $queue->numberOfItems();
+      // Clear out duplicates if we already have items in the queue.
+      if ($totalItemsBefore > 0) {
+        $no_dup_array = array_diff_assoc($data, $queue);
+        // Now fix the data array to only have unique items.
+        $data = NULL;
+        $data = $no_dup_array;
+      }
+      // 3. For each element of the array, create a new queue item.
+      foreach ($data as $element) {
+        // Create new queue item.
+        $queue->createItem($element);
+      }
+      // 4. Get the total of item in the Queue.
+      $totalItemsAfter = $queue->numberOfItems();
 
+      \Drupal::logger('atwork_mail_send_update')
+        ->notice('The Subscriptions Renew Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
+          [
+            '@count' => count($data),
+            '@totalAfter' => $totalItemsAfter,
+            '@totalBefore' => $totalItemsBefore,
+          ]);
+    }
   }
 
-  protected function renewNewsletterSubscriptions() {
+  // TODO: combine this with getSubRenewal.
+  private function renewNewsletterSubscriptions() {
+    // Create a new DB user object.
+    $users = new AtworkMailSendUpdateDbGetRenewals("newsletter");
+    // Set up a DB call and get a list of user ID's.
+    $user_array = $users->getUserIds();
+    if (empty($user_array)) {
+      return FALSE;
+    }
+    return $user_array;
+  }
 
+  private function getSubRenewals() {
+    // Create a new DB user object.
+    $users = new AtworkMailSendUpdateDbGetRenewals("subscriptions");
+    // Set up a DB call and get a list of user ID's.
+    $user_array = $users->getUserIds();
+    if (empty($user_array)) {
+      return FALSE;
+    }
+    return $user_array;
   }
 
 }
