@@ -10,3 +10,12 @@ function atworknext_preprocess_links(&$variables){
 }
 
 
+/**
+ * Implements hook_preprocess_html().
+ */
+function atworknext_preprocess_html(&$variables) {
+
+  if ($node = \Drupal::routeMatch()->getParameter('node_preview')) {
+    $variables['attributes']['class'][] = 'atwork-node-preview';
+  }
+}

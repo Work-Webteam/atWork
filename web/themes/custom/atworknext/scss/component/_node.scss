@@ -13,3 +13,7 @@
 .node-preview-form-select {
   padding: ($grid-gutter-width / 2);
 }
+
+.atwork-node-preview #toolbar-administration {
+  display: none;
+}
