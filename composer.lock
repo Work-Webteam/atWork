@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38d7e8e8cbcc399a81b11ea20fe71383",
+    "content-hash": "bf40d771fd1def24d632494fac02a9ef",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1437,11 +1437,11 @@
             },
             "require": {
                 "doctrine/lexer": "1.*",
-                "php": "^7.1"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/cache": "1.*",
-                "phpunit/phpunit": "^7.5@dev"
+                "phpunit/phpunit": "^5.7"
             },
             "type": "library",
             "extra": {
@@ -1487,7 +1487,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2019-08-08T18:11:40+00:00"
+            "time": "2017-02-24T16:22:25+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -4472,7 +4472,7 @@
             "description": "Adds a Entity Reference field type with revision support.",
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
-                "source": "http://cgit.drupalcode.org/entity_reference_revisions"
+                "source": "https://git.drupalcode.org/project/entity_reference_revisions"
             }
         },
         {
@@ -4527,7 +4527,7 @@
             "description": "Helper module to authenticate users using an external site / service and storing identification details",
             "homepage": "https://www.drupal.org/project/externalauth",
             "support": {
-                "source": "https://git.drupalcode.org/project/externalauth"
+                "source": "http://cgit.drupalcode.org/externalauth"
             }
         },
         {
@@ -5541,7 +5541,7 @@
             "description": "Provides configurable blocks of menu links.",
             "homepage": "https://www.drupal.org/project/menu_block",
             "support": {
-                "source": "http://cgit.drupalcode.org/menu_block"
+                "source": "https://git.drupalcode.org/project/menu_block"
             }
         },
         {
@@ -5588,7 +5588,7 @@
             "description": "This module exports and imports menus and menu links.",
             "homepage": "https://www.drupal.org/project/menu_export",
             "support": {
-                "source": "http://cgit.drupalcode.org/menu_export"
+                "source": "https://git.drupalcode.org/project/menu_export"
             }
         },
         {
@@ -6809,7 +6809,70 @@
             "description": "Easily print any page through Printfriendly.",
             "homepage": "https://www.drupal.org/project/printfriendly",
             "support": {
-                "source": "http://cgit.drupalcode.org/printfriendly"
+                "source": "https://git.drupalcode.org/project/printfriendly"
+            }
+        },
+        {
+            "name": "drupal/queue_ui",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/queue_ui.git",
+                "reference": "8.x-2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/queue_ui-8.x-2.0.zip",
+                "reference": "8.x-2.0",
+                "shasum": "7edf7715d7ca5d255fc3ea86aff27997617af8ea"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0",
+                    "datestamp": "1530874421",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bceyssens",
+                    "homepage": "https://www.drupal.org/user/2743951"
+                },
+                {
+                    "name": "coltrane",
+                    "homepage": "https://www.drupal.org/user/91990"
+                },
+                {
+                    "name": "floretan",
+                    "homepage": "https://www.drupal.org/user/66163"
+                },
+                {
+                    "name": "jochemh",
+                    "homepage": "https://www.drupal.org/user/2811585"
+                },
+                {
+                    "name": "tsphethean",
+                    "homepage": "https://www.drupal.org/user/881620"
+                }
+            ],
+            "description": "Interface and manager for Drupal queues.",
+            "homepage": "https://www.drupal.org/project/queue_ui",
+            "support": {
+                "source": "https://git.drupalcode.org/project/queue_ui"
             }
         },
         {
@@ -7494,7 +7557,7 @@
             "description": "Adds a TwigExtension that grants access to Drupal's menu render array so it can be used within a twig template.",
             "homepage": "https://www.drupal.org/project/simplify_menu",
             "support": {
-                "source": "http://cgit.drupalcode.org/simplify_menu"
+                "source": "https://git.drupalcode.org/project/simplify_menu"
             }
         },
         {

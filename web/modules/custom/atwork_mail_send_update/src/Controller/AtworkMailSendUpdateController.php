@@ -17,7 +17,7 @@ class AtworkMailSendUpdateController extends ControllerBase {
   /**
    * Drupal\Core\Messenger\MessengerInterface definition.
    * This is from scaffolding provided at
-   * http://karimboudjema.com/en/drupal/20180807/create-queue-controller-drupal8
+   * http://karimboudjema.com/en/drupal/20180807/create-queue-controller-drupal8.
    *
    * @var \Drupal\Core\Messenger\MessengerInterface
    */
@@ -42,21 +42,8 @@ class AtworkMailSendUpdateController extends ControllerBase {
    * @var \Symfony\Component\DependencyInjection\ContainerAwareInterface
    * @var \GuzzleHttp\ClientInterface
    */
-  public function __construct(MessengerInterface $messenger, QueueFactory $queue, ClientInterface $client) {
-    $this->messenger = $messenger;
-    $this->queueFactory = $queue;
-    $this->client = $client;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('messenger'),
-      $container->get('queue'),
-      $container->get('http_client')
-    );
+  public function __construct() {
+    $this->queueFactory = \Drupal::service('queue');
   }
 
   /**
@@ -95,6 +82,12 @@ class AtworkMailSendUpdateController extends ControllerBase {
     $this->getSubscriptionData();
     // Gets data for News subs and sets up queue.
     $this->getNewsletterSubscriptionData();
+    // Renew any subscriptions that have been removed
+    // but the user is now active again.
+    $this->renewSubscriptions();
+    // Renew any Newsletter subscriptions for users
+    // who have been deactivated and reactivated.
+    $this->renewNewsletterSubscriptions();
   }
 
   /**
@@ -130,30 +123,17 @@ class AtworkMailSendUpdateController extends ControllerBase {
     }
     // 4. Get the total of item in the Queue.
     $totalItemsAfter = $queue->numberOfItems();
-    // 5. Get what's in the queue now.
-    $tableVariables = $this->getItemList($queue);
-    $finalMessage = $this->t('The Subscriptions Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
+
+    \Drupal::logger('atwork_mail_send_update')->notice('The Subscriptions Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
       [
         '@count' => count($data),
         '@totalAfter' => $totalItemsAfter,
         '@totalBefore' => $totalItemsBefore,
       ]);
-    return [
-      '#type' => 'table',
-      '#caption' => $finalMessage,
-      '#header' => $tableVariables['header'],
-      '#rows' => $tableVariables['rows'],
-      '#attributes' => $tableVariables['attributes'],
-      '#sticky' => $tableVariables['sticky'],
-      'empty' => $this->t('No items.'),
-    ];
   }
 
   /**
    * Get data from db source and create a item queue to process.
-   *
-   * @return array
-   *   Return string.
    */
   public function getNewsletterSubscriptionData() {
     // 1. Get data into an array of uids
@@ -174,6 +154,13 @@ class AtworkMailSendUpdateController extends ControllerBase {
     $queue = $this->queueFactory->get('NewsletterSubQueue');
     // Get the total of items in the queue before adding new items.
     $totalItemsBefore = $queue->numberOfItems();
+    // Clear out duplicates if we already have items in the queue.
+    if ($totalItemsBefore > 0) {
+      $no_dup_array = array_diff_assoc($data, $queue);
+      // Now fix the data array to only have unique items.
+      $data = NULL;
+      $data = $no_dup_array;
+    }
     // 3. For each element of the array, create a new queue item.
     foreach ($data as $element) {
       // Create new queue item.
@@ -182,29 +169,16 @@ class AtworkMailSendUpdateController extends ControllerBase {
     // 4. Get the total of item in the Queue.
     $totalItemsAfter = $queue->numberOfItems();
     // 5. Get what's in the queue now.
-    $tableVariables = $this->getItemList($queue);
-    $finalMessage = $this->t('The Newsletter Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
+    \Drupal::logger('atwork_mail_send_update')->notice('The Subscriptions Queue had @totalBefore items. We should have added @count items in the Queue. Now the Queue has @totalAfter items.',
       [
         '@count' => count($data),
         '@totalAfter' => $totalItemsAfter,
         '@totalBefore' => $totalItemsBefore,
       ]);
-    return [
-      '#type' => 'table',
-      '#caption' => $finalMessage,
-      '#header' => $tableVariables['header'],
-      '#rows' => $tableVariables['rows'],
-      '#attributes' => $tableVariables['attributes'],
-      '#sticky' => $tableVariables['sticky'],
-      'empty' => $this->t('No items.'),
-    ];
   }
 
   /**
    * Generate an array of objects from DB.
-   *
-   * @return array|bool
-   *   Return an array or false.
    */
   protected function getSubData() {
     // Create a new DB user object.
@@ -232,6 +206,14 @@ class AtworkMailSendUpdateController extends ControllerBase {
       return FALSE;
     }
     return $user_array;
+  }
+
+  protected function renewSubscriptions() {
+
+  }
+
+  protected function renewNewsletterSubscriptions() {
+
   }
 
 }

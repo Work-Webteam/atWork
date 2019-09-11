@@ -2,10 +2,6 @@
 
 namespace Drupal\atwork_mail_send_update\Plugin\QueueWorker;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 
 /**
@@ -18,48 +14,10 @@ use Drupal\Core\Queue\QueueWorkerBase;
  * @QueueWorker(
  *   id = "NewsletterSubQueue",
  *   title = @Translation("Clean up newsletter subscriptions for old users"),
- *   cron = {"time" = 10}
+ *   cron = {"time" = 60}
  * )
  */
-class NewsletterSubQueue extends QueueWorkerBase implements ContainerFactoryPluginInterface {
-  /**
-   * Drupal\Core\Entity\EntityTypeManagerInterface definition.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  private $entityTypeManager;
-  /**
-   * Drupal\Core\Logger\LoggerChannelFactoryInterface definition.
-   *
-   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
-   */
-  private $loggerChannelFactory;
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __construct(array $configuration,
-                              $plugin_id,
-                              $plugin_definition,
-                              EntityTypeManagerInterface $entityTypeManager,
-                              LoggerChannelFactoryInterface $loggerChannelFactory) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->entityTypeManager = $entityTypeManager;
-    $this->loggerChannelFactory = $loggerChannelFactory;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('logger.factory')
-    );
-  }
+class NewsletterSubQueue extends QueueWorkerBase {
 
   /**
    * {@inheritdoc}
@@ -68,28 +26,28 @@ class NewsletterSubQueue extends QueueWorkerBase implements ContainerFactoryPlug
    *   We can then turn off subscriptions for each entity id we have.
    */
   public function processItem($item) {
+    print_r($item->id);
+    \Drupal::logger('atwork_mail_send_update')->debug($item->id);
     // Take each uid and turn off the email option.
     try {
       // Update subscription status by entity id.
       $connection = \Drupal::database();
       $query = $connection->update('simplenews_subscriber__subscriptions')
         ->fields([
-          'subscription_status' => 0,
+          'subscriptions_status' => 0,
         ])
-        ->condition('entity_id', $item, '=')
+        ->condition('entity_id', $item->id, '=')
         ->execute();
       if ($query) {
         // Logging to aid in debugging.
-        $this->loggerChannelFactory->get('debug')
-          ->debug('Subscription for entity @item has been updated, this subscription will no longer be sent.',
-            [
-              '@item' => $item,
-            ]);
+        \Drupal::logger('atwork_mail_send_update')->notice('Subscription for entity @item has been updated, this subscription will no longer be sent.',
+          [
+            '@item' => $item->id,
+          ]);
       }
     }
     catch (\Exception $e) {
-      $this->loggerChannelFactory->get('Warning')
-        ->warning('Exception for newsletter queue @error',
+      \Drupal::logger('atwork_mail_send_update')->error('Exception for newsletter queue @error',
           ['@error' => $e->getMessage()]);
     }
   }
