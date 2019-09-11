@@ -9,7 +9,6 @@ function atworknext_preprocess_links(&$variables){
   $variables['links_new'] = $variables['links'];
 }
 
-
 /**
  * Implements hook_preprocess_html().
  */
