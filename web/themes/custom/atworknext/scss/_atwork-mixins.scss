@@ -71,7 +71,7 @@
   }
 }
 @mixin comment-h6 {
-    font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+    font-family:'Myriad Pro', 'Segoe UI', sans-serif;
     font-weight: bold;
     @include size1824;
     letter-spacing: .025rem;
@@ -82,7 +82,7 @@
     margin:0;
 }
 @mixin comment-byline {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: bold;
   @include size1416;
   padding-top:8px;
