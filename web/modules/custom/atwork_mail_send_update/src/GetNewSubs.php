@@ -97,7 +97,7 @@ class GetNewSubs {
             FROM {simplenews_subscriber} s
             LEFT JOIN {simplenews_subscriber__subscriptions} ss 
             ON s.id = ss.entity_id
-            WHERE ss.subscriptions_target_id = $newsletter;
+            WHERE ss.subscriptions_target_id = '$newsletter'
          ) 
          AND u.status = 1"
     );

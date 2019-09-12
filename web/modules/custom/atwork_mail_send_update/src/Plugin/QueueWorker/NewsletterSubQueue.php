@@ -26,8 +26,6 @@ class NewsletterSubQueue extends QueueWorkerBase {
    *   We can then turn off subscriptions for each entity id we have.
    */
   public function processItem($item) {
-    print_r($item->id);
-    \Drupal::logger('atwork_mail_send_update')->debug($item->id);
     // Take each uid and turn off the email option.
     try {
       // Update subscription status by entity id.
