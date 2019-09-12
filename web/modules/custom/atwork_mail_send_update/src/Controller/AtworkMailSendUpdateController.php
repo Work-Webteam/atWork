@@ -187,7 +187,9 @@ class AtworkMailSendUpdateController extends ControllerBase {
   // can be found here https://www.drupal.org/project/simplenews/issues/2947253.
   protected function subNewUsers($newsletter) {
     $gen_user_list = new GetNewSubs($newsletter);
-    $subs_to_add = $gen_user_list->getUids;
+    $subs_to_add = $gen_user_list->getUserUids();
+    // Generate Queue.
+
 
   }
 
