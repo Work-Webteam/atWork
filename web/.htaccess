@@ -154,6 +154,9 @@ AddEncoding gzip svgz
   # Specifically, disallow autoload.php from being served directly.
   RewriteRule "^(.+/.*|autoload)\.php($|/)" - [F]
 
+  # Looking for a cleaner way to clear up double // H5P URI issu
+  RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+  RewriteRule . %1/%2 [R=301,L]
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
   <IfModule mod_headers.c>

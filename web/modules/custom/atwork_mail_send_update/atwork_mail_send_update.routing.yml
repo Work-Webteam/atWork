@@ -1,0 +1,7 @@
+atwork_mail_send_update.content:
+  path: '/admin/atwork_mail_send_update'
+  defaults:
+    _controller: '\Drupal\atwork_mail_send_update\Controller\AtworkMailSendUpdateController::main'
+    _title: 'Atwork Mail Send Updater'
+  requirements:
+    _permission: 'administrator'
