@@ -6,6 +6,7 @@ module:
   atwork_group: 0
   atwork_h5p: 0
   atwork_idir_update: 0
+  atwork_menu: 0
   atwork_messages: 0
   atwork_poll: 0
   atwork_program_pages: 0
@@ -41,6 +42,7 @@ module:
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  editor_advanced_link: 0
   embed: 0
   entity_embed: 0
   entity_reference_revisions: 0
