@@ -28,8 +28,8 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
   /**
    * {@inheritdoc}
    *
-   *   $item here will be an entity id for the subscription.
-   *   We can then turn off subscriptions for each entity id we have.
+   *   $item here will be an user id (uid) number.
+   *   We can then add subscriptions for each uid we have.
    */
   public function processItem($item) {
     // Take each user uid and sign them up.
@@ -37,7 +37,7 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
       // Update subscription status by uid.
       $current_sub = User::load($item->uid);
       // Make sure this user has an actual email.
-      if ($current_sub->hasField('mail')) {
+      if ($current_sub->hasField('mail') && !empty($current_sub->getEmail)) {
         $mail = $current_sub->getEmail();
         $subscription_manager = \Drupal::service('simplenews.subscription_manager');
         // For now I am hard-coding this. In the future, we may want to
@@ -46,6 +46,10 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
         $newsletter_id = 'atwork_newsletter';
 
         $subscription_manager->subscribe($mail, $newsletter_id, NULL, 'website');
+        Drupal::logger('atwork_mail_send_update')->notice('User @username has been subscribed to newsletter',
+          [
+            '@username' => $current_sub->getUsername(),
+          ]);
       }
       else {
         \Drupal::logger('atwork_mail_send_update')->notice('User @username does not have an email, not adding subscription.',
