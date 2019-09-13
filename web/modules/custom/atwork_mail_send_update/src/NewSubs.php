@@ -9,7 +9,7 @@ use Drupal\Database\Core\Database\Database;
  *
  * @package Drupal\atwork_mail_send_update
  */
-class GetNewSubs {
+class NewSubs {
 
   /**
    * String that will let us know the id of the newsletter we want subbed.

@@ -10,7 +10,7 @@ use Drupal\Database\Core\Database\Database;
  * We need to override two functions so that we can get renewals
  * instead of unsubs.
  */
-class AtworkMailSendUpdateDbGetRenewals extends AtworkMailSendUpdateDbGetSubscriptions {
+class Renewals extends Subscriptions {
 
   /**
    * Override setter for subscription renewals.

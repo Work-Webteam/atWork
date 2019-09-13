@@ -11,7 +11,7 @@ use Drupal\Database\Core\Database\Database;
  * We deal with updating users and checking users here,
  * but this class won't be invoked on its own.
  */
-class AtworkMailSendUpdateDbGetSubscriptions {
+class Subscriptions {
 
   /**
    * Returnable array of users ids.
