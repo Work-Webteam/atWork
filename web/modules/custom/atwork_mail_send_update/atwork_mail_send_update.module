@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\atwork_mail_send_update\Controller\AtworkMailSendUpdateController;
+
 /**
  * @file
  * Contains atwork_mail_send_update.module.
@@ -25,8 +27,11 @@ function atwork_mail_send_update_help($route_name, RouteMatchInterface $route_ma
 
 
 /**
- *
+ * Cron callback, kick-starting the queue.
  */
 function atwork_mail_send_update_callback(){
-  \Drupal::logger('atwork_mail_send_update')->notice('beginning email and newsletter subscription updates.');
+  \Drupal::logger('atwork_mail_send_update')->notice('Beginning email and newsletter subscription updates.');
+  $update = new AtworkMailSendUpdateController();
+  $update->main();
+  \Drupal::logger('atwork_mail_send_update')->notice('Finished email and newsletter subscription updates.');
 }

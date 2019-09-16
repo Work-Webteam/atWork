@@ -11,7 +11,7 @@ use Drupal\Database\Core\Database\Database;
  * We deal with updating users and checking users here,
  * but this class won't be invoked on its own.
  */
-class AtworkMailSendUpdateDbGetSubscriptions {
+class Subscriptions {
 
   /**
    * Returnable array of users ids.
@@ -87,7 +87,7 @@ class AtworkMailSendUpdateDbGetSubscriptions {
         FROM {simplenews_subscriber} ss
         LEFT JOIN {simplenews_subscriber__subscriptions} sss
         ON sss.entity_id = ss.id
-        WHERE ss.status = 0"
+        WHERE ss.status = 0 AND sss.subscriptions_status = 1"
     );
     $this->userIds = $query->fetchAll();
   }
