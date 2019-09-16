@@ -34,11 +34,10 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
   public function processItem($item) {
     // Take each user uid and sign them up.
     try {
-      \Drupal::logger('atwork_mail_send_update')->debug($item);
       // Update subscription status by uid.
       $current_sub = User::load($item->uid);
       // Make sure this user has an actual email.
-      if ($current_sub->hasField('mail') && !empty($current_sub->getEmail)) {
+      if ($current_sub->hasField('mail') && !empty($current_sub->getEmail())) {
         $mail = $current_sub->getEmail();
         $subscription_manager = \Drupal::service('simplenews.subscription_manager');
         // For now I am hard-coding this. In the future, we may want to
@@ -53,10 +52,11 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
           ]);
       }
       else {
-        \Drupal::logger('atwork_mail_send_update')->notice('User @username does not have an email, not adding subscription. Subscription item is @item',
+        \Drupal::logger('atwork_mail_send_update')->notice('User @username does not have an email, not adding subscription. Subscription item is @item, with email @email',
           [
             '@username' => $current_sub->getUsername(),
-            '@item' => $item,
+            '@item' => print_r($item),
+            '@username' => $current_sub->getEmail(),
           ]);
       }
 
