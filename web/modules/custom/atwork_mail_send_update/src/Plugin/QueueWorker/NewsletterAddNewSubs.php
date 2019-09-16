@@ -46,7 +46,7 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
         $newsletter_id = 'atwork_newsletter';
 
         $subscription_manager->subscribe($mail, $newsletter_id, NULL, 'website');
-        Drupal::logger('atwork_mail_send_update')->notice('User @username has been subscribed to newsletter',
+        \Drupal::logger('atwork_mail_send_update')->notice('User @username has been subscribed to newsletter',
           [
             '@username' => $current_sub->getUsername(),
           ]);
@@ -55,8 +55,8 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
         \Drupal::logger('atwork_mail_send_update')->notice('User @username does not have an email, not adding subscription. Subscription item is @item, with email @email',
           [
             '@username' => $current_sub->getUsername(),
-            '@item' => print_r($item),
-            '@username' => $current_sub->getEmail(),
+            '@item' => $item->uid,
+            '@email' => $current_sub->getEmail(),
           ]);
       }
 
