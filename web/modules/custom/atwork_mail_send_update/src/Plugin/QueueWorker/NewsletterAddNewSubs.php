@@ -34,6 +34,7 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
   public function processItem($item) {
     // Take each user uid and sign them up.
     try {
+      \Drupal::logger('atwork_mail_send_update')->debug($item);
       // Update subscription status by uid.
       $current_sub = User::load($item->uid);
       // Make sure this user has an actual email.
@@ -52,9 +53,10 @@ class NewsletterAddNewSubs extends QueueWorkerBase {
           ]);
       }
       else {
-        \Drupal::logger('atwork_mail_send_update')->notice('User @username does not have an email, not adding subscription.',
+        \Drupal::logger('atwork_mail_send_update')->notice('User @username does not have an email, not adding subscription. Subscription item is @item',
           [
             '@username' => $current_sub->getUsername(),
+            '@item' => $item,
           ]);
       }
 
