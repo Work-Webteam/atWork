@@ -48,10 +48,6 @@ class SubscriptionData {
     // This works in concert with getNewsletterSubData and
     // get userSubData.
     $data = $this->getSubData($sub_type, $action_type);
-    if ($queue_type == NULL) {
-      \Drupal::logger('atwork_mail_send_update')->debug($queue_type . ' ' . $sub_type . '' . $action_type);
-      return;
-    }
     // Log if there is nothing to update and exit.
     if (!$data || empty($data)) {
       \Drupal::logger('atwork_mail_send_update')->notice('No users require @sub_type @action_type updates, nothing added to the @queue_type queue', [
