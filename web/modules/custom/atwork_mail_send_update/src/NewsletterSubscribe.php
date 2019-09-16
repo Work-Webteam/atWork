@@ -34,6 +34,7 @@ class NewsletterSubscribe {
    *   The machine name of the newsletter issue we want to sub users to.
    */
   public function __construct($id) {
+    $this->queueFactory = \Drupal::service('queue');
     $this->newsletterId = $id;
     $this->subNewUsers();
   }

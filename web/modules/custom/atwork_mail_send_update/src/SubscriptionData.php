@@ -26,8 +26,8 @@ class SubscriptionData {
    * @param $action_type
    */
   public function __construct($sub_type, $queue_type, $action_type) {
-    $this->getSubscriptionData($sub_type, $queue_type, $action_type);
     $this->queueFactory = \Drupal::service('queue');
+    $this->getSubscriptionData($sub_type, $queue_type, $action_type);
   }
 
   /**
@@ -48,8 +48,11 @@ class SubscriptionData {
     // This works in concert with getNewsletterSubData and
     // get userSubData.
     $data = $this->getSubData($sub_type, $action_type);
-    $queue = $this->queueFactory->get($queue_type);
-
+    if ($queue_type == NULL) {
+      \Drupal::logger('atwork_mail_send_update')->debug($queue_type . ' ' . $sub_type . '' . $action_type);
+      return;
+    }
+    // Log if there is nothing to update and exit.
     if (!$data || empty($data)) {
       \Drupal::logger('atwork_mail_send_update')->notice('No users require @sub_type @action_type updates, nothing added to the @queue_type queue', [
         '@sub_type' => $sub_type,
