@@ -2,8 +2,8 @@
 /* Updated October 2018 */
 
 html, body {
-    font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
-    font-size: 16px; // Default font size set for REM
+    font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
+    font-size: 1rem;
     line-height: 1.5;
     p {
         color: $text;
@@ -23,7 +23,7 @@ h1 {
     padding-bottom:6px;
 }
 h2, h3, h4 {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight:600;
   color: $text;
   padding-top:20px;
@@ -48,7 +48,7 @@ h5 {
 
 // H6 tags are mainly used in Comment titles and headings. See _atwork-mixins.scss for H6 style
 h6 {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: bold;
   @include size1824;
   letter-spacing: .025rem;

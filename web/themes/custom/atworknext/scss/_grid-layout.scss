@@ -141,6 +141,7 @@ footer.footer.container {
     .content-info {
       position:relative;
       width:330px;
+      padding-right:12px;
       .content-info-date {
         @include size1216;
         margin-bottom: 5px;

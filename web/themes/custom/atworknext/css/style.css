@@ -10139,8 +10139,8 @@ p:last-child,
 /* Updated October 2018 */
 /* line 4, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_typography.scss */
 html, body {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -10163,7 +10163,7 @@ h1 {
 
 /* line 25, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_typography.scss */
 h2, h3, h4 {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: 600;
   color: #333333;
   padding-top: 20px;
@@ -10200,7 +10200,7 @@ h5 {
 
 /* line 50, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_typography.scss */
 h6 {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 24px;
@@ -10431,28 +10431,29 @@ footer.footer.container .region.region-footer #footer-left, footer.footer.contai
 .all-content-row .content-piece .content-info {
   position: relative;
   width: 330px;
+  padding-right: 12px;
 }
 
-/* line 144, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 145, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 .all-content-row .content-piece .content-info .content-info-date {
   font-size: .75rem;
   line-height: 16px;
   margin-bottom: 5px;
 }
 
-/* line 148, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 149, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 .all-content-row .content-piece .content-info h3 {
   margin: 10px 10px 0 0;
 }
 
-/* line 151, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 152, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 .all-content-row .content-piece .content-info .content-info-text {
   font-size: .875rem;
   line-height: 16px;
   margin-top: 15px;
 }
 
-/* line 155, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 156, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 .all-content-row .content-piece .content-info .parent-program, .all-content-row .content-piece .content-info .parent-group {
   font-size: .75rem;
   line-height: 16px;
@@ -10461,7 +10462,7 @@ footer.footer.container .region.region-footer #footer-left, footer.footer.contai
   bottom: 10px;
 }
 
-/* line 166, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 167, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form {
   border: solid 1px #E0E7E8;
   padding: 5px;
@@ -10471,20 +10472,20 @@ body.path-news .views-exposed-form {
   line-height: 16px;
 }
 
-/* line 172, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 173, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form .form-item {
   min-width: 130px;
   margin-bottom: 3px;
   margin-right: 8px;
 }
 
-/* line 179, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 180, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form label.control-label {
   font-weight: normal;
   padding-right: 5px;
 }
 
-/* line 183, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 184, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form input.form-control, body.path-news .views-exposed-form .form-select.form-control {
   padding: 0px 5px;
   height: inherit;
@@ -10493,23 +10494,23 @@ body.path-news .views-exposed-form input.form-control, body.path-news .views-exp
   line-height: 16px;
 }
 
-/* line 188, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 189, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form input.form-control:focus, body.path-news .views-exposed-form .form-select.form-control:focus {
   background-color: #e6f2f9;
 }
 
-/* line 192, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 193, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form .form-item-sort-by, body.path-news .views-exposed-form .form-item-sort-order {
   max-width: min-content;
   margin-right: 10px;
 }
 
-/* line 195, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 196, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form .form-item-sort-by .form-select.form-control, body.path-news .views-exposed-form .form-item-sort-order .form-select.form-control {
   padding: 0 20px 0 0;
 }
 
-/* line 200, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_grid-layout.scss */
+/* line 201, /Applications/MAMP/htdocs/web/themes/custom/atworknext/scss/_grid-layout.scss */
 body.path-news .views-exposed-form #edit-actions .btn-info {
   height: 25px;
   padding: 0 10px;
@@ -11728,7 +11729,7 @@ form#comment-form {
 /* line 6, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_comments.scss */
 section > h2 {
   display: inline-block;
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 24px;
@@ -11777,7 +11778,7 @@ section#block-views-block-comments-new-block-1 .view-content {
 
 /* line 39, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-header h4 {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 24px;
@@ -11864,7 +11865,7 @@ section#block-views-block-comments-new-block-1 .view-content .views-row #comment
 
 /* line 96, ../../../Sites/atwork-next/web/themes/custom/atworknext/scss/_comments.scss */
 section#block-views-block-comments-new-block-1 .view-content .views-row #comment-block #comment-byline {
-  font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
+  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
   font-weight: bold;
   font-size: .875rem;
   line-height: 16px;

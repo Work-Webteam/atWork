@@ -8,6 +8,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\group\Entity\Group;
 use Drupal\group\Entity\GroupContent;
+use Drupal\user\Entity\User;
+
 
 const ARTICLE = 1;
 const COMMENT = 2;
@@ -106,24 +108,24 @@ function atwork_messages_comment_delete(Comment $comment) {
  * Implements message creation for subscriptions.
  */
 function atwork_messages_create_message(NodeInterface $node, $type_info) {
-	
+
 	// Build subscription message
 	$message = Message::create(['template' => 'subscription_digest', 'uid' => $node->getOwnerId()]);
 	$message->set('field_node_ref', $node);
-	
+
 	// Must save message to get mid (message ID)
 	$message->save();
-	
+
 	$presave_query = '';
 	$gid = '';
 	$groupcontent_immediate_subs = '';
 	$groupcontent_daily_subs = '';
 	$groupcontent_weekly_subs = '';
-	
+
 	// Check if there are parent-group subscriptions
 	if($type_info['content_type'] == ('group_post' || 'photos') && array_key_exists('group', \Drupal::routeMatch()->getParameters()->all())) {
-		
-		// Get group ID 
+
+		// Get group ID
 		$gid = \Drupal::routeMatch()->getParameters()->all()['group']->get('id');
 		$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
 			. " FROM flagging f, flagging__message_digest fmd"
@@ -132,18 +134,18 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 	  $groupcontent_immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
 	  $groupcontent_daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
 	  $groupcontent_weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
-	} else { 
+	} else {
 		$presave_query = "Select f.uid, f.entity_id as subscribed_content, fmd.entity_id"
 			. " FROM flagging f, flagging__message_digest fmd"
 			. " WHERE f.id = fmd.entity_id and fmd.message_digest_value = '";
 	}
-	
+
 	// Save messages to database on article creation or update.
 	$immediate_subs = array('notifier' => 'immediate', 'subscribers' => atwork_messages_get_subscribers('0', $presave_query));
 	$daily_subs = array('notifier' => 'daily', 'subscribers' => atwork_messages_get_subscribers('message_digest:daily', $presave_query));
 	$weekly_subs = array('notifier' => 'weekly', 'subscribers' => atwork_messages_get_subscribers('message_digest:weekly', $presave_query));
-			
-	
+
+
 	// So this looks dumb, but i have to check if there group subscriptions separately from regular content. Then because im using a merge into
 
 	// the atwork_messages table, if there are users subscribed to both the group and a piece of its content, the subscription message should only go out once.
@@ -154,7 +156,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 			foreach($list['subscribers'] as $sub) {
 					// TODO Figure out why this doesnt add an entry to atwork_messages
 
-		if(($sub->subscribed_content == $node->id()) || (($type_info['content_type'] == POSTS || $type_info['content_type'] == PHOTOS) && ($sub->subscribed_content == $gid->getValue()[0]['value']))) { 
+		if(($sub->subscribed_content == $node->id()) || (($type_info['content_type'] == POSTS || $type_info['content_type'] == PHOTOS) && ($sub->subscribed_content == $gid->getValue()[0]['value']))) {
 					// Insert message data into atwork_message table
 					try{
 						$connection = \Drupal::database();
@@ -176,7 +178,7 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 					} catch(Exception $e) {
 						\Drupal::logger('type')->error($e->getMessage());
 					}
-					
+
 					if($type_info['content_type'] == COMMENT) {
 						// Now save CID's so we can send them out later
 						try{
@@ -196,14 +198,14 @@ function atwork_messages_create_message(NodeInterface $node, $type_info) {
 						} catch(Exception $e) {
 							\Drupal::logger('type')->error($e->getMessage());
 						}
-						
+
 					}
-					
+
 				}
 			}
 		}
 	}
-					
+
 	// Automatically subscribe employee news to everything
 	try{
 		$connection = \Drupal::database();
@@ -272,7 +274,7 @@ function atwork_messages_send_notification($subscription, $msg_key) {
 	$params['username'] = $user->get('name');
 	$send = true;
 	$result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-	
+
 	if ($result['result'] != true) {
 		\Drupal::logger('mail-log')->error('Unable to send notification to ' . $recipient . ' at ' . $to . '. ');
 		return;
@@ -298,9 +300,9 @@ function atwork_messages_mail($key, &$message, $params) {
 			$body_data = array (
 					'#theme' => $key,
 			);
-			// Mimemail wants something in body and misbehaves without it. 
+			// Mimemail wants something in body and misbehaves without it.
 			// This way, it gets overwritten with the proper template and inserts variables.
-			$message['body'][] = "<body>foo</body>"; 
+			$message['body'][] = "<body>foo</body>";
 			break;
 		case 'daily_notifications':
 			$message['subject'] = t('@Work Daily Subscriptions');
@@ -409,7 +411,7 @@ function atwork_messages_mark_as_sent($sub, $notifier) {
 	}catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
-	
+
 }
 
 /**
@@ -455,12 +457,12 @@ function atwork_messages_format_message($variables, $notifier) {
 	} catch(Exception $e) {
 		\Drupal::logger('type')->error($e->getMessage());
 	}
-	
+
 	// Load node and add to variables.
 	$variables['date'] = date('F j, Y');
 	$variables['username'] = $user->get('name')->getValue()[0]['value'];
 	$variables['user_uid'] = $user->get('uid')->getValue()[0]['value'];
-	
+
 	foreach($result as $item) {
 		if($item->type == COMMENT) {
 			// Grab comment ID's from db
@@ -473,7 +475,7 @@ function atwork_messages_format_message($variables, $notifier) {
 			} catch(Exception $e) {
 				\Drupal::logger('type')->error($e->getMessage());
 			}
-			
+
 			$comments = array();
 			// Load comments by cid
 			foreach($cids as $cid) {
@@ -488,7 +490,7 @@ function atwork_messages_format_message($variables, $notifier) {
 					];
 				}
 			}
-			
+
 			if(sizeof($comments) > 0) {
 				$node = $node_storage->load($item->entity_id);
 				$variables['comments'][] =  [
@@ -500,12 +502,12 @@ function atwork_messages_format_message($variables, $notifier) {
 						'comments' 		=> $comments,
 				];
 			}
-			
+
 		} else {
 			$node = $node_storage->load($item->entity_id);
-			
+
 			if($node != NULL) {
-				
+
 			  // Retrieve teaser or create summary from content body.
 			  if(!empty($node->get('body')->getValue()[0]['summary'])) {
 			  	$summary = $node->get('body')->getValue()[0]['summary'];
@@ -516,7 +518,7 @@ function atwork_messages_format_message($variables, $notifier) {
 			  	$pos = strpos($summary, ' ', 200);
 			  	$summary = substr($summary,0,$pos);
 			  }
-			  
+
 			  $url = '';
 			  // Get node and/or comment url
 			  if(isset($node->get('nid')->getValue()[0]['value'])) {
@@ -524,7 +526,7 @@ function atwork_messages_format_message($variables, $notifier) {
 			  } else if(isset($item->get('cid')->getValue()[0]['value'])) {
 			  	$url = \Drupal::service('path.alias_manager')->getAliasByPath('/comment/'.$node->get('cid')->getValue()[0]['value']);
 			  }
-			  
+
 			  $variables[$node->get('type')->getValue()[0]['target_id']][] =  [
 			  		'title' 			=> $node->get('title')->getValue()[0]['value'],
 			  		'author' 			=> \Drupal\user\Entity\User::load($node->get('uid')
@@ -538,6 +540,6 @@ function atwork_messages_format_message($variables, $notifier) {
 			}
 		}
 	}
-	
+
 	return $variables;
 }
