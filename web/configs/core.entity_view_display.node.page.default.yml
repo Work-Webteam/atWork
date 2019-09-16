@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_display_title
     - field.field.node.page.field_editor_tags
     - field.field.node.page.field_tags
     - node.type.page
@@ -63,4 +64,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  extra_field_article_only: true
+  extra_field_node_print: true
+  extra_field_node_share: true
+  field_display_title: true
   langcode: true
+  search_api_excerpt: true

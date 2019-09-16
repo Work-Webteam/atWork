@@ -51,6 +51,10 @@ content:
 hidden:
   body: true
   comment: true
+  extra_field_article_only: true
+  extra_field_article_related_content: true
+  extra_field_node_print: true
+  extra_field_node_share: true
   field_article_type: true
   field_attachments: true
   field_author_information: true

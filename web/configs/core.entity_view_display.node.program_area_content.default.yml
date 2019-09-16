@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.program_area_content.body
     - field.field.node.program_area_content.field_attachments
+    - field.field.node.program_area_content.field_display_title
     - field.field.node.program_area_content.field_image
     - field.field.node.program_area_content.field_interactive_content
     - field.field.node.program_area_content.field_parent_program
@@ -97,6 +98,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  extra_field_node_print: true
+  extra_field_node_share: true
+  field_display_title: true
   field_parent_program: true
   langcode: true
   search_api_excerpt: true

@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.article.field_author_information
     - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_development_tags
+    - field.field.node.article.field_display_title
     - field.field.node.article.field_editor_tags
     - field.field.node.article.field_header_image
     - field.field.node.article.field_interactive_content
@@ -18,15 +19,17 @@ dependencies:
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
+    - image.style.article_hero_image
     - node.type.article
   module:
     - comment
+    - field_group
     - file
     - h5p
     - media
-    - options
     - panelizer
     - text
+    - title_field_for_manage_display
     - user
     - video_embed_field
 third_party_settings:
@@ -287,6 +290,30 @@ third_party_settings:
         builder: ipe
         pattern: panelizer
         static_context: {  }
+  field_group:
+    group_social_bar:
+      children:
+        - flag_subscribe_node
+        - extra_field_node_print
+        - extra_field_node_share
+        - likeit
+        - flag_inappropriate
+      parent_name: ''
+      weight: 5
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        effect: none
+        speed: fast
+        attributes: ''
+      label: 'Social Bar'
+      region: content
 _core:
   default_config_hash: ChmU3AVqDKU32A_fyChG0W9dTRKmVBR58B6OClCLvZI
 id: node.article.default
@@ -296,60 +323,76 @@ mode: default
 content:
   body:
     type: text_default
-    weight: 1
+    weight: 3
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   comment:
     type: comment_default
-    weight: 13
+    weight: 10
     region: content
     label: hidden
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-  field_article_type:
-    type: list_default
+  extra_field_article_only:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_article_related_content:
     weight: 9
     region: content
-    label: above
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_node_print:
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_node_share:
+    weight: 13
+    region: content
     settings: {  }
     third_party_settings: {  }
   field_attachments:
     type: file_default
-    weight: 7
+    weight: 6
     region: content
     label: above
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
-  field_author_information:
-    type: author
-    weight: 6
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   field_custom_teaser:
     type: text_default
-    weight: 16
+    weight: 13
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_development_tags:
     type: entity_reference_label
-    weight: 15
+    weight: 12
     region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
+  field_display_title:
+    type: title_value_field_formatter
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      tag: h1
+      classes: page-title
+      linked: 0
+    third_party_settings: {  }
   field_editor_tags:
     type: entity_reference_label
-    weight: 14
+    weight: 11
     region: content
     label: above
     settings:
@@ -360,30 +403,20 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: article_hero_image
       image_link: ''
     third_party_settings: {  }
     region: content
   field_interactive_content:
     type: h5p_default
-    weight: 10
+    weight: 8
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  field_send_notifications:
-    weight: 17
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
   field_tags:
     type: entity_reference_label
-    weight: 2
+    weight: 4
     region: content
     label: above
     settings:
@@ -391,7 +424,7 @@ content:
     third_party_settings: {  }
   field_video:
     type: video_embed_field_video
-    weight: 8
+    weight: 7
     region: content
     label: hidden
     settings:
@@ -400,34 +433,29 @@ content:
       height: 480
       autoplay: false
     third_party_settings: {  }
-  flag_email_node:
-    weight: 11
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   flag_inappropriate:
-    weight: 3
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_node:
-    weight: 12
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   likeit:
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  links:
-    weight: 5
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_article_type: true
+  field_author_information: true
   field_image: true
+  field_send_notifications: true
+  flag_email_node: true
   langcode: true
+  links: true
   panelizer: true
   rate_vote_widget: true
   search_api_excerpt: true

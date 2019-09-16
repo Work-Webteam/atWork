@@ -3,18 +3,20 @@ module:
   admin_toolbar_tools: 0
   atwork_article: 0
   atwork_comments: 0
+  atwork_extra_fields: 0
   atwork_group: 0
   atwork_h5p: 0
   atwork_idir_update: 0
+  atwork_menu: 0
   atwork_messages: 0
   atwork_poll: 0
   atwork_program_pages: 0
+  atwork_tokens: 0
   background_image: 0
   background_image_formatter: 0
   big_pipe: 0
   block: 0
   block_content: 0
-  bootstrap_datetime: 0
   bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
@@ -34,19 +36,20 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
-  datetime_range: 0
   dblog: 0
   devel: 0
-  devel_generate: 0
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  editor_advanced_link: 0
   embed: 0
   entity_embed: 0
   entity_reference_revisions: 0
   externalauth: 0
+  extra_field: 0
   extrafield_views_integration: 0
   field: 0
+  field_group: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -74,6 +77,7 @@ module:
   link: 0
   linkit: 0
   mailsystem: 0
+  matomo: 0
   maxlength: 0
   media: 0
   media_library: 0
@@ -123,6 +127,7 @@ module:
   shortcut: 0
   simplenews: 0
   simplify_menu: 0
+  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -134,6 +139,7 @@ module:
   term_csv_export_import: 0
   tether_stats: 0
   text: 0
+  title_field_for_manage_display: 0
   token: 0
   token_filter: 0
   toolbar: 0
@@ -148,7 +154,6 @@ module:
   views_data_export: 0
   views_infinite_scroll: 0
   views_ui: 0
-  viewsreference: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1
