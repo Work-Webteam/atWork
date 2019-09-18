@@ -172,21 +172,21 @@ function shortcut_current_displayed_set($account = NULL) {
     $account = $user;
   }
   // Try to return a shortcut set from the static cache.
-//  if (isset($shortcut_sets[$account->id()])) {
-//    return $shortcut_sets[$account->id()];
- // }
+  if (isset($shortcut_sets[$account->id()])) {
+    return $shortcut_sets[$account->id()];
+  }
   // If none was found, try to find a shortcut set that is explicitly assigned
   // to this user.
-//  $shortcut_set_name = \Drupal::entityManager()
-//    ->getStorage('shortcut_set')
-//    ->getAssignedToUser($account);
-//  if ($shortcut_set_name) {
-//    $shortcut_set = ShortcutSet::load($shortcut_set_name);
-//  }
+  $shortcut_set_name = \Drupal::entityManager()
+    ->getStorage('shortcut_set')
+    ->getAssignedToUser($account);
+  if ($shortcut_set_name) {
+    $shortcut_set = ShortcutSet::load($shortcut_set_name);
+  }
   // Otherwise, use the default set.
-//  else {
+  else {
     $shortcut_set = shortcut_default_set($account);
-//  }
+  }
 
   $shortcut_sets[$account->id()] = $shortcut_set;
   return $shortcut_set;
@@ -214,8 +214,7 @@ function shortcut_default_set($account = NULL) {
   // precedence. If no module returns a valid set, fall back on the site-wide
   // default, which is the lowest-numbered shortcut set.
   $suggestions = array_reverse(\Drupal::moduleHandler()->invokeAll('shortcut_default_set', [$account]));
-  //$suggestions[] = 'default';
-  $suggestions[] = 'user-shortcut';
+  $suggestions[] = 'default';
   foreach ($suggestions as $name) {
     if ($shortcut_set = ShortcutSet::load($name)) {
       break;
@@ -277,16 +276,6 @@ function shortcut_renderable_links($shortcut_set = NULL) {
     }
   }
 
-  //if (shortcut_set_edit_access($shortcut_set)->isAllowed()) {
-    $links['edit-shortcuts'] = [
-      'type' => 'link',
-      'title' => t('Edit shortcuts'),
-      'url' => Url::fromRoute('entity.shortcut_set.customize_form', ['shortcut_set' => $shortcut_set->id()]),
-      'options' => ['attributes' => ['class' => ['edit-shortcuts']]],
-    ];
-  //}
-//kint($links);
-//exit;
   if (!empty($links)) {
     $shortcut_links = [
       '#theme' => 'links__toolbar_shortcuts',
