@@ -1,0 +1,8 @@
+uuid: 849cff7f-3aa3-4ff3-a848-47eaf616abdf
+langcode: en
+status: true
+dependencies: {  }
+id: vacation-destinations
+label: 'Vacation Destinations'
+description: ''
+locked: true

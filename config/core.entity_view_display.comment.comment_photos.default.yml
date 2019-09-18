@@ -1,0 +1,33 @@
+uuid: 0ea0134d-62df-4cee-b683-20af5c2406fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment_photos
+    - field.field.comment.comment_photos.comment_body
+  module:
+    - text
+_core:
+  default_config_hash: PSX3y-3HLvxeV33WAV7US_Ynjaw3-1K39yLKJi6fyW4
+id: comment.comment_photos.default
+targetEntityType: comment
+bundle: comment_photos
+mode: default
+content:
+  comment_body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_inappropriate_comment_flag:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true

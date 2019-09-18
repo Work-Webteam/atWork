@@ -1,0 +1,14 @@
+uuid: 6bcc41f3-dbb9-4c37-b9e5-6eb6d9f5e8f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.program_area_admin
+  module:
+    - user
+id: user_add_role_action.program_area_admin
+label: 'Add the Program Area Admin role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: program_area_admin

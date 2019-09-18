@@ -1,0 +1,11 @@
+uuid: 88082d95-a0b1-477d-9ecc-b0539329e5c0
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'file:file:193b3f89-242a-4ea8-aaa3-81aa84896e27'
+id: group_menu_link
+label: 'Group Menu Link'
+icon_uuid: 193b3f89-242a-4ea8-aaa3-81aa84896e27
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,29 @@
+uuid: 713c1841-15b0-45ae-9d8d-afb7cd6781f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tags
+    - node.type.program_area_content
+    - taxonomy.vocabulary.tags_community
+id: node.program_area_content.field_tags
+field_name: field_tags
+entity_type: node
+bundle: program_area_content
+label: Tags
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags_community: tags_community
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

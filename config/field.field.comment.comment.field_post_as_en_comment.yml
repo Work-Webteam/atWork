@@ -1,0 +1,21 @@
+uuid: f1e152ba-3841-4364-880b-ff1c541f4c02
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.comment
+    - field.storage.comment.field_post_as_en_comment
+id: comment.comment.field_post_as_en_comment
+field_name: field_post_as_en_comment
+entity_type: comment
+bundle: comment
+label: 'Post as Employee News'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

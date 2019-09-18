@@ -1,0 +1,30 @@
+uuid: 606826ad-9b31-4727-bd35-920d6f25f6b2
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+  theme:
+    - atworknext
+id: program_area_sidebar_menu
+theme: atworknext
+region: sidebar_nav
+weight: -11
+provider: null
+plugin: 'block_content:6f0fae91-2b6f-4afb-bce4-7ba1479ba701'
+settings:
+  id: 'block_content:6f0fae91-2b6f-4afb-bce4-7ba1479ba701'
+  label: 'Program Area Sidebar Menu'
+  provider: core
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      program_area_content: program_area_content
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

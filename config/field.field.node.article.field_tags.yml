@@ -1,0 +1,32 @@
+uuid: 0f0743d8-abe7-4e7e-8bfd-bf851dc014ae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tags
+    - node.type.article
+    - taxonomy.vocabulary.tags
+    - taxonomy.vocabulary.tags_community
+_core:
+  default_config_hash: QdUgf_beeoaPiyKorFv0q1fcJpWH_uZTqe_xoVJacrw
+id: node.article.field_tags
+field_name: field_tags
+entity_type: node
+bundle: article
+label: Tags
+description: 'Select 1-5 tags for your article from the list (below or linked not sure??). Tags are keywords that reflect your article’s content. They help employees find information they’re looking for. And they will help determine what goes in to the Related Content section.'
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags_community: tags_community
+      tags: tags
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: tags
+field_type: entity_reference

@@ -1,0 +1,27 @@
+uuid: af30e553-0c55-41d6-bff2-2da2e9b509e7
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.corporate_news
+  module:
+    - views
+  theme:
+    - seven
+id: views_block__corporate_news_block_1
+theme: seven
+region: draggable_dashboard_region
+weight: null
+provider: null
+plugin: 'views_block:corporate_news-block_1'
+settings:
+  id: 'views_block:corporate_news-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  override:
+    items_per_page: none
+  views_label_checkbox: 0
+visibility: {  }

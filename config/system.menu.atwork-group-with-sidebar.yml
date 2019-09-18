@@ -1,0 +1,8 @@
+uuid: f0fecc4a-8891-466a-aec7-8e431174ce9e
+langcode: en
+status: true
+dependencies: {  }
+id: atwork-group-with-sidebar
+label: 'Atwork Group with Sidebar'
+description: ''
+locked: true

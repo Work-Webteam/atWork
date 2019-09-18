@@ -1,0 +1,14 @@
+purge_methods:
+  days:
+    id: days
+    weight: 0
+    data:
+      days: 30
+delete_on_entity_delete:
+  comment: comment
+  node: node
+  taxonomy_term: taxonomy_term
+  user: user
+_core:
+  default_config_hash: _QhkR_LYNacHU4oQybqcZgNge_q1SbQghAjqVBoognE
+purge_enable: true

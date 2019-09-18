@@ -1,0 +1,13 @@
+uuid: 76ee318b-2ff5-477f-a307-b11a97a6f8d1
+langcode: en
+status: true
+dependencies:
+  module:
+    - flag
+id: flag_action.inappropriate_comment_flag.flag
+label: Flag
+type: comment
+plugin: 'flag_action:inappropriate_comment_flag.flag'
+configuration:
+  flag_id: inappropriate_comment_flag
+  flag_action: flag

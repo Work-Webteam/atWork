@@ -1,0 +1,21 @@
+uuid: b5f99052-459f-40cd-9b45-0290a3399ada
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_custom_teaser
+    - node.type.article
+  module:
+    - text
+id: node.article.field_custom_teaser
+field_name: field_custom_teaser
+entity_type: node
+bundle: article
+label: 'Custom Teaser'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

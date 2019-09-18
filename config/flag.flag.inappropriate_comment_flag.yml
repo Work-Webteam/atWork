@@ -1,0 +1,37 @@
+uuid: 0884fc0a-99f0-4b6e-bfc1-e52f1523aacf
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+id: inappropriate_comment_flag
+label: 'Inappropriate Comment Flag'
+bundles: {  }
+entity_type: comment
+global: false
+weight: 0
+flag_short: Flag
+flag_long: ''
+flag_message: Flagged
+unflag_short: Unflag
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:comment'
+link_type: field_entry
+flagTypeConfig:
+  show_in_links: {  }
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+    parent_owner: '0'
+linkTypeConfig:
+  flag_confirmation: 'Please provide a reason this content is inappropriate.'
+  unflag_confirmation: 'Are you sure you want to unflag this content?'
+  flag_create_button: 'Create flagging'
+  flag_delete_button: 'Delete flagging'
+  form_behavior: default
+  edit_flagging: 'Edit flagging details'
+  flag_update_button: 'Update flagging'

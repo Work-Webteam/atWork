@@ -1,0 +1,28 @@
+uuid: 8275724c-78c4-4158-b4ef-0796c46e92d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_parent_program
+    - node.type.background_page
+    - node.type.program_area_content
+id: node.program_area_content.field_parent_program
+field_name: field_parent_program
+entity_type: node
+bundle: program_area_content
+label: 'Parent Program'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      background_page: background_page
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
