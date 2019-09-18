@@ -15,10 +15,6 @@
   }
   // Hide / turn off these css-elements
   header,
-  a[property~="schema:name"]::after,
-  a[href]:after {
-    content: " ";
-  },
   article .field--type-image,
   article #player,
   .field--name-field-tags,
@@ -28,6 +24,14 @@
   #printBtn,
   footer {
     display: none!important;
+  }
+  a[property~="schema:name"]::after {
+    display:none;
+  }
+  a[href]:after {
+    content: " " {
+      display:none;
+    }
   }
   // Specific hide for YouTube videos
   .video-embed-field-provider-youtube,
