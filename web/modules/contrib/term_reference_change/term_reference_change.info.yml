@@ -1,0 +1,13 @@
+name: Term Reference Change
+description: Allows term references to be changed in bulk.
+# core: 8.x
+type: module
+
+dependencies:
+  - drupal:taxonomy
+
+# Information added by Drupal.org packaging script on 2019-06-06
+version: '8.x-1.0-alpha2'
+core: '8.x'
+project: 'term_reference_change'
+datestamp: 1559830692

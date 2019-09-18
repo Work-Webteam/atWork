@@ -61,14 +61,14 @@ function focal_point_entity_update(EntityInterface $entity) {
     // Loop all the fields and save focal point values for images.
     foreach ($entity->getFieldDefinitions() as $key => $field) {
       if ($field->getType() == 'image' && $entity->hasField($field->getName())) {
+        $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
         // Loop through all values for this field. Its cardinality might be > 1.
         foreach ($entity->{$field->getName()} as $item) {
-          if (isset($item->focal_point)) {
-            list($x, $y) = explode(',', $item->focal_point);
-            $crop_type = \Drupal::config('focal_point.settings')->get('crop_type');
-            $crop = \Drupal::service('focal_point.manager')->getCropEntity($item->entity, $crop_type);
-            \Drupal::service('focal_point.manager')->saveCropEntity($x, $y, $item->width, $item->height, $crop);
-          }
+          $crop = \Drupal::service('focal_point.manager')->getCropEntity($item->entity, $crop_type);
+          // Use the default focal point if it is not available on the item.
+          $focal_point = $item->focal_point ?: \Drupal::config('focal_point.settings')->get('default_value');
+          list($x, $y) = explode(',', $focal_point);
+          \Drupal::service('focal_point.manager')->saveCropEntity($x, $y, $item->width, $item->height, $crop);
         }
       }
     }

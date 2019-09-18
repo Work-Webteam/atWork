@@ -1,15 +1,11 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Form\TetherStatsAdminSettingsForm.
- */
-
 namespace Drupal\tether_stats\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Database\Database;
+use Drupal\Core\Database\SchemaObjectExistsException;
 
 /**
  * Configure Tether Stats settings.
@@ -105,6 +101,34 @@ class TetherStatsSettingsForm extends ConfigFormBase {
       '#title' => 'Advanced Configuration',
     ];
 
+    $database_keys = array_keys(Database::getAllConnectionInfo());
+    $database_options = array_combine($database_keys, $database_keys);
+
+    unset($database_options['default']);
+
+    $form['advanced']['use_alternate_database'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Use an alternative database for Tether Stats data?'),
+      '#description' => $this->t('The database must first be registered within the Drupal settings file.'),
+      '#default_value' => $config->get('database') != 'default',
+      '#disabled' => empty($database_options),
+    ];
+
+    $database_ids = array_keys(Database::getAllConnectionInfo());
+
+    $form['advanced']['database'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Database'),
+      '#description' => $this->t('This is the database to be used for stat data collection. If selected, the Tether Stats table schema will be automatically installed on the selected, alternative database when submitting this form.'),
+      '#options' => $database_options,
+      '#states' => [
+        'visible' => [
+          ':input[name="use_alternate_database"]' => ['checked' => TRUE],
+        ],
+      ],
+      '#default_value' => $config->get('database'),
+    ];
+
     $form['advanced']['element_ttl'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Element TTL'),
@@ -131,17 +155,49 @@ class TetherStatsSettingsForm extends ConfigFormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
 
-    $database_id = $form_state->getValue('database', 'default');
+    if ($form_state->getValue('use_alternate_database')) {
 
-    // Test to ensure the database identifier is valid.
-    $old_key = Database::setActiveConnection($database_id);
+      $database_id = $form_state->getValue('database', 'default');
 
-    if (!isset($old_key)) {
+      // Test to ensure the database identifier is valid.
+      $connection = Database::getConnection('default', $database_id);
 
-      $form_state->setErrorByName('database', $this->t('Database identifier not found.'));
-    }
-    else {
-      Database::setActiveConnection($old_key);
+      if (!isset($connection)) {
+
+        $form_state->setErrorByName('database', $this->t('Database identifier not found.'));
+      }
+      else {
+
+        $tables_exist = TRUE;
+        $schema = drupal_get_module_schema('tether_stats');
+
+        foreach ($schema as $name => $table) {
+
+          if (!$connection->schema()->tableExists($name)) {
+            $tables_exist = FALSE;
+            break;
+          }
+        }
+
+        if (!$tables_exist) {
+
+          _drupal_schema_initialize($schema, 'tether_stats', FALSE);
+
+          try {
+            foreach ($schema as $name => $table) {
+
+              $connection->schema()->createTable($name, $table);
+            }
+
+            $this->messenger()->addWarning($this->t('Tether Stats tables were not found in the selected database and have been created.'));
+
+          } catch (SchemaObjectExistsException $exception) {
+
+            $form_state->setErrorByName('database', $this->t('Some, but not all, Tether Stats tables already exist in the alternate database. You may need to remove existing tables or create the missing tables manually.'));
+          }
+
+        }
+      }
     }
 
     // Expand and trim the filter rules.
@@ -192,6 +248,15 @@ class TetherStatsSettingsForm extends ConfigFormBase {
     if ($form_state->getValue('active') && $config->get('advanced.first_activation_time') == 0 && $form_state->getValue('first_activation_time') == 0) {
 
       $form_state->setValue('first_activation_time', REQUEST_TIME);
+    }
+
+    if ($form_state->getValue('use_alternate_database')) {
+
+      $config->set('database', $form_state->getValue('database'));
+    }
+    else {
+
+      $config->set('database', 'default');
     }
 
     $config

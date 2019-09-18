@@ -204,3 +204,58 @@ function rate_update_8001(&$sandbox) {
     return t('Finished unifying vote types.');
   }
 }
+
+/**
+ * Updates the config to work with multiple entities and widgets.
+ */
+function rate_update_8002(&$sandbox) {
+  // First check, if we have the enabled_types_widgets_key.
+  // If it exists, then we already have settings, which we do not overwrite.
+  // In case the enabled_types_bundles key exists, then we transfer
+  // its settings to the new multiple widgets logic.
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('rate.settings');
+
+  if ($config->get('enabled_types_widgets')) {
+    if (function_exists('drush_print')) {
+      drush_print(t('Settings for multiple entities and widgets exist - nothing to update.'));
+    }
+    return t('Settings for multiple entities and widgets exist - nothing to update.');
+  }
+  elseif ($config->get('enabled_types_bundles') && count($config->get('enabled_types_bundles')) > 0) {
+    $widget_type = $config->get('widget_type');
+    $use_ajax = $config->get('use_ajax');
+    $enabled_types_bundles = $config->get('enabled_types_bundles');
+    $enabled_types_widgets = [];
+    $entity_count = 0;
+    foreach ($enabled_types_bundles as $bundle => $entities) {
+      foreach ($entities as $key => $entity) {
+        $enabled_types_widgets[$bundle][$entity]['widget_type'] = $widget_type;
+        $enabled_types_widgets[$bundle][$entity]['use_ajax'] = $use_ajax;
+        $entity_count++;
+      }
+    }
+    $config->set('enabled_types_widgets', $enabled_types_widgets)
+      ->save(TRUE);
+    if (function_exists('drush_print')) {
+      drush_print(t('@entities entities have been updated.', ['@entities' => $entity_count]));
+    }
+    return t('@entities entities have been updated.', ['@entities' => $entity_count]);
+  }
+  else {
+    if (function_exists('drush_print')) {
+      drush_print(t('Nothing to update in rate settings.'));
+    }
+    return t('Nothing to update in rate settings.');
+  }
+  // Delete the old config key enabled_types_bundles.
+  if ($config->get('enabled_types_bundles')) {
+    $config->clear('enabled_types_bundles')
+      ->save(TRUE);
+  }
+  if ($config->get('excluded_entities')) {
+    $config->clear('excluded_entities')
+      ->save(TRUE);
+  }
+
+}

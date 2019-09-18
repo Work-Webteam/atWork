@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Tests\TetherStatsAnalyticsStorageTest.
- */
-
 namespace Drupal\tether_stats\Tests;
 
 use Drupal\Component\Utility\SafeMarkup;

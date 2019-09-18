@@ -6,6 +6,7 @@ use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\rate\RateEntityVoteWidget;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -44,7 +45,7 @@ class RateSettingsForm extends ConfigFormBase implements ContainerInjectionInter
   protected $httpClient;
 
   /**
-   * Constructs a Vote Controller.
+   * RateSettingsForm constructor.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
@@ -72,25 +73,16 @@ class RateSettingsForm extends ConfigFormBase implements ContainerInjectionInter
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('rate.settings');
 
-    $widget_type_options = [
-      "fivestar" => "Fivestar",
-      "number_up_down" => "Number Up / Down",
-      "thumbs_up" => "Thumbs Up",
-      "thumbs_up_down" => "Thumbs Up / Down",
-      "yesno" => "Yes / No",
+    $form['widget_settings'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Widget settings'),
+      '#open' => TRUE,
     ];
 
-    $form['widget_type'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Widget Type'),
-      '#options' => $widget_type_options,
-      '#default_value' => $config->get('widget_type'),
-    ];
-
-    $form['use_ajax'] = [
+    $form['widget_settings']['use_ajax'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Use AJAX'),
-      '#default_value' => $config->get('use_ajax'),
+      '#default_value' => $config->get('use_ajax', FALSE),
       '#description' => $this->t('Record vote via AJAX.'),
     ];
 
@@ -135,16 +127,33 @@ class RateSettingsForm extends ConfigFormBase implements ContainerInjectionInter
       '#description' => $this->t('Rate will check the voters IP against the BotScout database if it has an API key. You can request a key at %url.', ['%url' => 'http://botscout.com/getkey.htm']),
     ];
 
+    // Start new table form to select the widget for each content type.
     $form['rate_types_enabled'] = [
       '#type' => 'details',
+      '#title' => $this->t('Content types with enabled rate widgets'),
+      '#description' => $this->t('If you set any type here to - None -, already existing data will remain untouched.'),
       '#open' => TRUE,
-      '#title' => $this->t('Entity types with Rate widgets enabled:'),
-      '#description' => $this->t('If you disable any type here, already existing data will remain untouched.'),
+    ];
+
+    // Create a table to store the entities and their widgets.
+    $header = [
+      $this->t('Entity'),
+      $this->t('Entity Type'),
+      $this->t('Status'),
+      $this->t('Rate Widget'),
+    ];
+    $form['enabled_rate_widgets'] = [
+      '#type' => 'table',
+      '#weight' => 100,
+      '#header' => $header,
     ];
 
     $entity_types = $this->entityTypeManager->getDefinitions();
     $entity_type_ids = array_keys($entity_types);
-    $enabled_types_bundles = $config->get('enabled_types_bundles');
+    $enabled_types_widgets = $config->get('enabled_types_widgets') ? $config->get('enabled_types_widgets') : [];
+
+    // Get the widget types for the widget select table field.
+    $widget_type_options = RateEntityVoteWidget::getRateWidgets();
 
     foreach ($entity_types as $entity_type_id => $entity_type) {
       // Only allow voting on content entities.
@@ -153,36 +162,44 @@ class RateSettingsForm extends ConfigFormBase implements ContainerInjectionInter
         $bundles = $this->entityTypeManager->getStorage($entity_type_id)->loadMultiple();
         $content_entitites_with_bundles[] = $entity_type->getBundleOf();
         if (!empty($bundles)) {
-          $form['rate_types_enabled'][$entity_type_id . '_enabled'] = [
-            '#type' => 'details',
-            '#open' => FALSE,
-            '#title' => $entity_type->getBundleOf(),
-          ];
           foreach ($bundles as $bundle) {
-            $default_value = 0;
-            if (isset($enabled_types_bundles[$entity_type->getBundleOf()]) && in_array($bundle->id(), $enabled_types_bundles[$entity_type->getBundleOf()])) {
-              $default_value = 1;
-            }
-            $form['rate_types_enabled'][$entity_type_id . '_enabled']['enabled|' . $entity_type->getBundleOf() . '|' . $bundle->id()] = [
-              '#type' => 'checkbox',
-              '#title' => $bundle->label(),
+            $default_value = (isset($enabled_types_widgets[$entity_type->getBundleOf()][$bundle->id()])) ? $enabled_types_widgets[$entity_type->getBundleOf()][$bundle->id()]['widget_type'] : '';
+            $widget_status = ($default_value != '') ? 'ACTIVE' : '';
+            $entity_full = 'enabled|' . $entity_type->getBundleOf() . '|' . $bundle->id();
+
+            $form['enabled_rate_widgets'][$entity_full]['entity_type'] = ['#plain_text' => $bundle->label()];
+            $form['enabled_rate_widgets'][$entity_full]['entity_type_id'] = ['#plain_text' => $entity_type->getBundleOf()];
+            $form['enabled_rate_widgets'][$entity_full]['status'] = ['#plain_text' => $widget_status];
+            $form['enabled_rate_widgets'][$entity_full]['widget_type'] = [
+              '#type' => 'select',
+              '#empty_value' => '',
+              '#required' => FALSE,
+              '#options' => $widget_type_options,
               '#default_value' => $default_value,
             ];
           }
         }
       }
-      elseif ($entity_type->getGroup() == 'content' &&
-        !in_array($entity_type->getBundleEntityType(), $entity_type_ids) &&
-        $entity_type_id != 'vote_result') {
-        $default_value = (isset($enabled_types_bundles[$entity_type_id])) ? 1 : 0;
-        $form['rate_types_enabled']['enabled|' . $entity_type_id . '|' . $entity_type_id] = [
-          '#type' => 'checkbox',
-          '#title' => $entity_type_id,
+      elseif ($entity_type->getGroup() == 'content' && !in_array($entity_type->getBundleEntityType(), $entity_type_ids) && $entity_type_id != 'vote_result') {
+
+        $default_value = (isset($enabled_types_widgets[$entity_type_id][$entity_type_id])) ? $enabled_types_widgets[$entity_type_id][$entity_type_id]['widget_type'] : '';
+        $widget_status = ($default_value != '') ? 'ACTIVE' : '';
+        $entity_full = 'enabled|' . $entity_type_id . '|' . $entity_type_id;
+
+        $form['enabled_rate_widgets'][$entity_full]['entity_type'] = ['#plain_text' => $entity_type->getLabel()->__toString()];
+        $form['enabled_rate_widgets'][$entity_full]['entity_type_id'] = ['#plain_text' => $entity_type_id];
+        $form['enabled_rate_widgets'][$entity_full]['status'] = ['#plain_text' => $widget_status];
+        $form['enabled_rate_widgets'][$entity_full]['widget_type'] = [
+          '#type' => 'select',
+          '#empty_value' => '',
+          '#required' => FALSE,
+          '#options' => $widget_type_options,
           '#default_value' => $default_value,
         ];
       }
     }
-
+    $form['rate_types_enabled']['enabled_rate_widgets'] = $form['enabled_rate_widgets'];
+    unset($form['enabled_rate_widgets']);
     return parent::buildForm($form, $form_state);
   }
 
@@ -190,7 +207,7 @@ class RateSettingsForm extends ConfigFormBase implements ContainerInjectionInter
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $messenger = \Drupal::messenger();
+    $messenger = $this->messenger();
     if ($form_state->getValue(['botscout_key'])) {
       $uri = "http://botscout.com/test/?ip=84.16.230.111&key=" . $form_state->getValue(['botscout_key']);
       try {
@@ -225,25 +242,36 @@ class RateSettingsForm extends ConfigFormBase implements ContainerInjectionInter
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('rate.settings');
 
-    $enabled_types_bundles = [];
+    $enabled_rate_widgets = [];
+    $enabled_types_widgets = [];
     $values = $form_state->getValues();
-    foreach ($values as $index => $value) {
-      if (stripos($index, 'enabled|') !== FALSE && $value) {
-        // Retrieve the entity and bundle values (entity first).
-        $entity_bundle = explode('|', str_ireplace('enabled|', '', $index));
-        // Key on entity and create an child array of bundles.
-        if (isset($enabled_types_bundles[$entity_bundle[0]])) {
-          $enabled_types_bundles[$entity_bundle[0]][] = $entity_bundle[1];
-        }
-        else {
-          $enabled_types_bundles[$entity_bundle[0]] = [];
-          $enabled_types_bundles[$entity_bundle[0]][] = $entity_bundle[1];
+    $enabled_rate_widgets = $form_state->getValue('enabled_rate_widgets');
+
+    foreach ($enabled_rate_widgets as $index => $value) {
+      if (!empty($value['widget_type'])) {
+        if (stripos($index, 'enabled|') !== FALSE && $value) {
+          $entity_bundle = explode('|', str_ireplace('enabled|', '', $index));
+          if (isset($enabled_types_widgets[$entity_bundle[0]])) {
+            $enabled_types_widgets[$entity_bundle[0]][$entity_bundle[1]] = [
+              'widget_type' => $value['widget_type'],
+              'use_ajax' => $form_state->getValue('use_ajax'),
+            ];
+          }
+          else {
+            $enabled_types_widgets[$entity_bundle[0]] = [];
+            $enabled_types_widgets[$entity_bundle[0]][$entity_bundle[1]] = [
+              'widget_type' => $value['widget_type'],
+              'use_ajax' => $form_state->getValue('use_ajax'),
+            ];
+          }
         }
       }
+      else {
+        unset($enabled_types_widgets[$index]);
+      }
     }
-    $config->set('enabled_types_bundles', $enabled_types_bundles);
 
-    $config->set('widget_type', $form_state->getValue('widget_type'))
+    $config->set('enabled_types_widgets', $enabled_types_widgets)
       ->set('bot_minute_threshold', $form_state->getValue('bot_minute_threshold'))
       ->set('bot_hour_threshold', $form_state->getValue('bot_hour_threshold'))
       ->set('botscout_key', $form_state->getValue('botscout_key'))

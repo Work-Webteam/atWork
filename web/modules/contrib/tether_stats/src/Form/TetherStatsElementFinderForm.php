@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Form\TetherStatsElementFinderForm.
- */
-
 namespace Drupal\tether_stats\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -377,7 +372,7 @@ class TetherStatsElementFinderForm extends FormBase {
     if (isset($element)) {
 
       $this->privateTempStore->set('found_element', $element);
-      drupal_set_message($this->t('The element id %elid has been found and added to the %fieldset fieldset below.',
+      $this->messenger()->addMessage($this->t('The element id %elid has been found and added to the %fieldset fieldset below.',
         [
           '%elid' => $element->getId(),
           '%fieldset' => 'Element',
@@ -386,7 +381,7 @@ class TetherStatsElementFinderForm extends FormBase {
     else {
 
       $this->privateTempStore->delete('found_element');
-      drupal_set_message($this->t('No matching element found.'), 'warning');
+      $this->messenger()->addWarning($this->t('No matching element found.'));
     }
   }
 

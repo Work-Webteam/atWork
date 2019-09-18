@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\Tests\tether_stats\Unit\TetherStatsRequestFilterTest.
- */
-
 namespace Drupal\Tests\tether_stats\Unit;
 
 use Drupal\Tests\UnitTestCase;

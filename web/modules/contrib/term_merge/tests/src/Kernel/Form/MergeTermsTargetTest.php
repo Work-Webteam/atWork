@@ -8,13 +8,17 @@ use Drupal\term_merge\Form\MergeTermsTarget;
 use Drupal\Tests\term_merge\Kernel\MergeTermsTestBase;
 
 /**
+ * Tests the merge terms target terms form.
+ *
  * @group term_merge
  */
 class MergeTermsTargetTest extends MergeTermsTestBase {
 
   /**
+   * Tests the title for the target taxonomy term field.
+   *
    * @test
-   **/
+   */
   public function hasTitle() {
     $sut = new MergeTermsTarget($this->entityTypeManager, $this->privateTempStoreFactory);
 
@@ -24,13 +28,15 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests the form structure of the merge terms target terms form.
+   *
    * @test
-   **/
+   */
   public function buildsForm() {
     $sut = new MergeTermsTarget($this->entityTypeManager, $this->privateTempStoreFactory);
 
     $knownTermIds = array_keys($this->terms);
-    $selectedTermIds = array_slice($knownTermIds, 0,2);
+    $selectedTermIds = array_slice($knownTermIds, 0, 2);
     $this->privateTempStoreFactory->get('term_merge')->set('terms', $selectedTermIds);
 
     $options = [];
@@ -55,9 +61,13 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
         '#empty_option' => new TranslatableMarkup('Select an existing term'),
         '#options' => $options,
       ],
-      'submit' => [
-        '#type' => 'submit',
-        '#value' => new TranslatableMarkup('Submit'),
+      'actions' => [
+        '#type' => 'actions',
+        'submit' => [
+          '#button_type' => 'primary',
+          '#type' => 'submit',
+          '#value' => new TranslatableMarkup('Submit'),
+        ],
       ],
     ];
 
@@ -66,6 +76,8 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
   }
 
   /**
+   * Returns options for the merge term target.
+   *
    * @return string[]
    *   Options that allow the invoking test to know which targets to select.
    */
@@ -77,14 +89,16 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests validation of the target term.
+   *
    * @test
    * @dataProvider selectedTargetsProvider
-   **/
+   */
   public function newOrExistingTermMustBeSelected($selectedTerms) {
     $sut = new MergeTermsTarget($this->entityTypeManager, $this->privateTempStoreFactory);
 
     $knownTermIds = array_keys($this->terms);
-    $selectedTermIds = array_slice($knownTermIds, 0,2);
+    $selectedTermIds = array_slice($knownTermIds, 0, 2);
     $this->privateTempStoreFactory->get('term_merge')->set('terms', $selectedTermIds);
 
     $formState = new FormState();
@@ -102,13 +116,15 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests term merging to a new term.
+   *
    * @test
-   **/
+   */
   public function newTermFormSubmission() {
     $sut = new MergeTermsTarget($this->entityTypeManager, $this->privateTempStoreFactory);
 
     $knownTermIds = array_keys($this->terms);
-    $selectedTermIds = array_slice($knownTermIds, 0,2);
+    $selectedTermIds = array_slice($knownTermIds, 0, 2);
     $termMergeCollection = $this->privateTempStoreFactory->get('term_merge');
     $termMergeCollection->set('terms', $selectedTermIds);
 
@@ -125,13 +141,15 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
   }
 
   /**
+   * Tests term merging to an existing term.
+   *
    * @test
-   **/
+   */
   public function existingTermSubmission() {
     $sut = new MergeTermsTarget($this->entityTypeManager, $this->privateTempStoreFactory);
 
     $knownTermIds = array_keys($this->terms);
-    $selectedTermIds = array_slice($knownTermIds, 0,2);
+    $selectedTermIds = array_slice($knownTermIds, 0, 2);
     $termMergeCollection = $this->privateTempStoreFactory->get('term_merge');
     $termMergeCollection->set('terms', $selectedTermIds);
 
@@ -154,4 +172,5 @@ class MergeTermsTargetTest extends MergeTermsTestBase {
   protected function numberOfTermsToSetUp() {
     return 4;
   }
+
 }

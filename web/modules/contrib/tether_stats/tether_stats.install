@@ -13,6 +13,7 @@
  */
 
 use Drupal\Core\Url;
+use Drupal\Core\Database\Database;
 
 function tether_stats_requirements($phase) {
 
@@ -27,14 +28,21 @@ function tether_stats_requirements($phase) {
 
     $database_id = $config->get('database');
 
-    $old_db = db_set_active($database_id);
+    if ($database_id && $database_id != 'default') {
+
+      $connection = Database::getConnection('default', $database_id);
+    }
+    else {
+
+      $connection = \Drupal::database();
+    }
+
     foreach ($schema as $name => $table) {
-      if (!db_table_exists($name)) {
+      if (!$connection->schema()->tableExists($name)) {
         $tables_exist = FALSE;
         break;
       }
     }
-    db_set_active($old_db);
 
     $requirements['tether_stats'] = [
       'title' => t('Tether Stats requirements'),
@@ -59,7 +67,7 @@ function tether_stats_requirements($phase) {
     }
     else {
       $requirements['tether_stats'] += [
-        'value' => t('Your stat tables need to be generated manually before any data can be recorded.'),
+        'value' => t('Your stat tables are missing and may need to be generated manually before any data can be recorded.'),
         'severity' => REQUIREMENT_ERROR,
       ];
     }
@@ -90,8 +98,8 @@ function tether_stats_schema() {
         'default' => NULL,
       ],
       'entity_id' => [
-        'type' => 'int',
-        'unsigned' => TRUE,
+        'type' => 'varchar',
+        'length' => 1024,
         'not null' => FALSE,
       ],
       'entity_type' => [
@@ -141,7 +149,7 @@ function tether_stats_schema() {
       ],
     ],
     'indexes' => [
-      'entity' => ['entity_type', 'entity_id'],
+      'entity' => ['entity_type', ['entity_id', 128]],
       'name' => [['name', 32]],
       'url' => [['url', 32]],
       'derivative' => ['derivative'],
@@ -239,7 +247,7 @@ function tether_stats_schema() {
       'day' => ['day'],
       'month' => ['month'],
       'year' => ['year'],
-      'sid'  => ['sid'],
+      'sid' => ['sid'],
     ],
     'foreign keys' => [
       'elid' => [
@@ -362,4 +370,161 @@ function tether_stats_schema() {
   ];
 
   return $schema;
+}
+
+/**
+ * Implements hook_update_N.
+ *
+ * Support entities with string id.
+ */
+function tether_stats_update_8100(&$sandbox) {
+  // A website, before this update, might already have an huge amount of
+  // elements in the 'tether_stats_element' table. In order to ensure data
+  // integrity, the data must be loaded from the database before applying the
+  // changes and in order to ensure that the memory is not overloaded, they will
+  // be stored in a temporary table first.
+  // Furthermore, when \Drupal\Core\Database\Schema::changeField is invoked, and
+  // a database column is altered, it is moved in the end of the column list, so
+  // in order to maintain the order of the columns, the 'tether_stats_element'
+  // table will be dropped and recreated.
+  // The update hook will have the following procedure split in batches, just
+  // like running a wizard:
+  // * Create the temporary table.
+  // * In batches, load all entries from the original table and store them into
+  // the temporary one.
+  // * When all entries are transferred, drop the original table and re-create
+  // it according to the new schema.
+  // * In batches, repeat the second step to transfer the records back into the
+  // new table.
+  // * Delete the temporary table.
+  $database = \Drupal::database();
+  $batch_size = 100;
+  if (!isset($sandbox['progress'])) {
+    $sandbox['progress'] = 0;
+    $sandbox['current_elid'] = 0;
+    $count = $database->query('SELECT COUNT(1) FROM {tether_stats_element}')->fetchField();
+
+    // The total number of iterations is (the number of iterations needed to
+    // transfer all elements from the table) / (the number of elements per
+    // batch iteration) * 2 (move the elements back and forth) + 5 iterations
+    // for creating and dropping the tables and checking that no more records
+    // exist in the table for transferring (3 for table operations and 2 for the
+    // checks).
+    $iterations = ceil($count / $batch_size) * 2 + 5;
+    $sandbox['max'] = $iterations;
+    $sandbox['table'] = 'tether_stats_element';
+    $sandbox['temp_table'] = 'tether_stats_element_tmp';
+    $schema = tether_stats_schema()['tether_stats_element'];
+    $schema['fields']['entity_id'] = [
+      'type' => 'varchar',
+      'length' => '1024',
+      'not null' => FALSE,
+      'default' => 'NULL',
+    ];
+    $sandbox['schema'] = $schema;
+    // There are 5 steps in this process.
+    // 0: The temp table is created.
+    // 1: Batched groups of elements are transferred to the tmp table.
+    // 2: The original table is dropped and re-created.
+    // 3: Batched groups of elements are transferred to the original table.
+    // 4: The temp table is dropped.
+    $sandbox['step'] = 0;
+  }
+
+  $db_schema = $database->schema();
+  switch ($sandbox['step']) {
+    case 0:
+      $db_schema->createTable($sandbox['temp_table'], $sandbox['schema']);
+      $sandbox['step'] = 1;
+      break;
+
+    case 1:
+      $query = $database->select($sandbox['table'], 't');
+      $query->fields('t')
+        ->condition('elid', $sandbox['current_elid'], '>');
+      $query->orderBy('elid')
+        ->range(0, $batch_size);
+      $rows = $query->execute()->fetchAll();
+      // Step escape condition.
+      if (empty($rows)) {
+        $sandbox['step'] = 2;
+        $sandbox['current_elid'] = 0;
+      }
+      else {
+        foreach ($rows as $row) {
+          $row = (array) $row;
+          $database->insert($sandbox['temp_table'])->fields($row)->execute();
+        }
+        $sandbox['current_elid'] = array_values(array_slice($rows, -1))[0]->elid;
+      }
+      break;
+
+    case 2:
+      $db_schema->dropTable($sandbox['table']);
+      $db_schema->createTable($sandbox['table'], $sandbox['schema']);
+      $sandbox['step'] = 3;
+      break;
+
+    case 3:
+      $query = $database->select($sandbox['temp_table'], 't');
+      $query->fields('t')
+        ->condition('elid', $sandbox['current_elid'], '>');
+      $query->orderBy('elid')
+        ->range(0, $batch_size);
+      $rows = $query->execute()->fetchAll();
+      // Step escape condition.
+      if (empty($rows)) {
+        $sandbox['step'] = 4;
+      }
+      else {
+        foreach ($rows as $row) {
+          $row = (array) $row;
+          $database->insert($sandbox['table'])->fields($row)->execute();
+        }
+        $sandbox['current_elid'] = array_values(array_slice($rows, -1))[0]->elid;
+      }
+      break;
+
+    case 4:
+      $db_schema->dropTable($sandbox['temp_table']);
+      $sandbox['step'] = 5;
+      break;
+
+    default:
+      break;
+  }
+
+  $sandbox['progress']++;
+  $sandbox['#finished'] = $sandbox['progress'] / $sandbox['max'];
+}
+
+/**
+ * Increases the ip_address field length on the tether_stats_activity_log table.
+ *
+ * The field length is increased to support the recording of IPv6 addresses.
+ */
+function tether_stats_update_8101(&$sandbox) {
+
+  $spec = [
+    'type' => 'varchar',
+    'length' => 40,
+    'not null' => FALSE,
+    'default' => NULL,
+  ];
+
+  $config = \Drupal::config('tether_stats.settings');
+
+  $database_id = $config->get('database');
+
+  if ($database_id && $database_id != 'default') {
+
+    $connection = Database::getConnection('default', $database_id);
+  }
+  else {
+
+    $connection = \Drupal::database();
+  }
+
+  $schema = $connection->schema();
+  $schema->changeField('tether_stats_activity_log', 'ip_address', 'ip_address', $spec);
 }

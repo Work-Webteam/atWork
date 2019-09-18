@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\tether_stats\Exception\TetherStatsInvalidDateIntervalException.
- */
-
 namespace Drupal\tether_stats\Exception;
 
 /**

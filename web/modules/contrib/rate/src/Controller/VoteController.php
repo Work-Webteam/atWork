@@ -5,16 +5,16 @@ namespace Drupal\rate\Controller;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
-use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\rate\RateEntityVoteWidget;
 use Drupal\rate\RateVote;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Returns responses for Rate routes.
@@ -134,19 +134,21 @@ class VoteController extends ControllerBase implements ContainerInjectionInterfa
    *   The entity id.
    * @param string $bundle
    *   The bundle name.
+   * @param string $widget_type
+   *   Widget type.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request object.
    *
    * @return \Symfony\Component\HttpFoundation\Response
    *   The response object.
    */
-  protected function prepareResponse($entity_type_id, $entity_id, $bundle, Request $request) {
+  protected function prepareResponse($entity_type_id, $entity_id, $bundle, $widget_type, Request $request) {
     $use_ajax = $this->config->get('use_ajax');
     // If Request was AJAX and voting on a node, send AJAX response.
     if ($use_ajax) {
       $response = new AjaxResponse();
-      $vote_widget = $this->voteWidget->buildRateVotingWidget($entity_id, $entity_type_id, $bundle);
-      $widget_id = '#rate-' . $entity_type_id . '-' . $entity_id;
+      $vote_widget = $this->voteWidget->buildRateVotingWidget($entity_id, $entity_type_id, $bundle, $widget_type);
+      $widget_id = '[data-drupal-selector=rate-' . $entity_type_id . '-' . $entity_id . ']';
       $html = $this->renderer->render($vote_widget);
       $response->addCommand(new ReplaceCommand($widget_id, $html));
       return $response;
@@ -169,14 +171,19 @@ class VoteController extends ControllerBase implements ContainerInjectionInterfa
    *   Vote type id.
    * @param int $value
    *   The vote.
+   * @param string $widget_type
+   *   Widget type.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   Request object that contains redirect path.
+   *
+   * @return \Symfony\Component\HttpFoundation\Response
+   *   The response object.
    */
-  public function vote($entity_type_id, $entity_id, $vote_type_id, $value, Request $request) {
+  public function vote($entity_type_id, $entity_id, $vote_type_id, $value, $widget_type, Request $request) {
     $entity = $this->entityTypeManager->getStorage($entity_type_id)->load($entity_id);
     $this->rateVote->vote($entity_type_id, $entity_id, $vote_type_id, $value, !$this->config->get('use_ajax'));
     $this->invalidateCacheTags($entity_type_id, $entity_id, $entity->bundle());
-    return $this->prepareResponse($entity_type_id, $entity_id, $entity->bundle(), $request);
+    return $this->prepareResponse($entity_type_id, $entity_id, $entity->bundle(), $widget_type, $request);
   }
 
   /**
@@ -186,17 +193,19 @@ class VoteController extends ControllerBase implements ContainerInjectionInterfa
    *   Entity type ID such as node.
    * @param int $entity_id
    *   Entity id of the entity type.
+   * @param string $widget_type
+   *   Widget type.
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   Request object that contains redirect path.
    *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse
-   *   Redirect to path provided in request.
+   * @return \Symfony\Component\HttpFoundation\Response
+   *   The response object.
    */
-  public function undoVote($entity_type_id, $entity_id, Request $request) {
+  public function undoVote($entity_type_id, $entity_id, $widget_type, Request $request) {
     $entity = $this->entityTypeManager->getStorage($entity_type_id)->load($entity_id);
     $this->rateVote->undoVote($entity_type_id, $entity_id, !$this->config->get('use_ajax'));
     $this->invalidateCacheTags($entity_type_id, $entity_id, $entity->bundle());
-    return $this->prepareResponse($entity_type_id, $entity_id, $entity->bundle(), $request);
+    return $this->prepareResponse($entity_type_id, $entity_id, $entity->bundle(), $widget_type, $request);
   }
 
 }

@@ -3,8 +3,11 @@ fivestar:
   css:
     theme:
       css/fivestar.css: {}
+  js:
+    js/fivestar.js: {}
   dependencies:
     - core/drupal.ajax
+    - core/jquery.once
 number-up-down:
   version: 1.0
   css:

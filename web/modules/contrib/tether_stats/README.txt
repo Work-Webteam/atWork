@@ -67,7 +67,7 @@ that subscribes to this event.
 
 The event passed down is a TetherStatsRequestToElementEvent which has the
 method setIdentitySet(). Once a subscriber sets the identity set to the event,
-propogation stops and that identity set gets mapped to the current request.
+propagation stops and that identity set gets mapped to the current request.
 
 In the TetherStatsRequestToElementSubscriber class, for example, all node pages
 are mapped to their respective entity bound identity sets That is,

@@ -21,7 +21,7 @@ use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
 use Drupal\webform\Plugin\WebformElementManagerInterface;
 use Drupal\webform\Plugin\WebformHandlerBase;
 use Drupal\webform\Plugin\WebformHandlerMessageInterface;
-use Drupal\webform\Twig\TwigExtension;
+use Drupal\webform\Twig\WebformTwigExtension;
 use Drupal\webform\Utility\Mail;
 use Drupal\webform\Utility\WebformElementHelper;
 use Drupal\webform\Utility\WebformOptionsHelper;
@@ -188,7 +188,8 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
 
     // Set state.
     $states = [
-      WebformSubmissionInterface::STATE_DRAFT => $this->t('Draft Saved'),
+      WebformSubmissionInterface::STATE_DRAFT_CREATED => $this->t('Draft created'),
+      WebformSubmissionInterface::STATE_DRAFT_UPDATED => $this->t('Draft updated'),
       WebformSubmissionInterface::STATE_CONVERTED => $this->t('Converted'),
       WebformSubmissionInterface::STATE_COMPLETED => $this->t('Completed'),
       WebformSubmissionInterface::STATE_UPDATED => $this->t('Updated'),
@@ -499,7 +500,7 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
     ];
     $form['message'] += $this->buildElement('subject', $this->t('Subject'), $this->t('subject'), FALSE, $text_element_options_raw);
 
-    $has_edit_twig_access = (TwigExtension::hasEditTwigAccess() || $this->configuration['twig']);
+    $has_edit_twig_access = (WebformTwigExtension::hasEditTwigAccess() || $this->configuration['twig']);
 
     // Message: Body.
     // Building a custom select other element that toggles between
@@ -524,7 +525,7 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
 
     // Set up default Twig body and convert tokens to use the
     // webform_token() Twig function.
-    // @see \Drupal\webform\Twig\TwigExtension
+    // @see \Drupal\webform\Twig\WebformTwigExtension
     $twig_default_body = $body_custom_default_values[$body_default_format];
     $twig_default_body = preg_replace('/(\[[^]]+\])/', '{{ webform_token(\'\1\', webform_submission) }}', $twig_default_body);
     $body_custom_default_values['twig'] = $twig_default_body;
@@ -619,7 +620,7 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
       // @see \Drupal\webform\Plugin\WebformHandler\EmailWebformHandler::validateConfigurationForm
       '#parents' => ['settings', 'body_custom_twig'],
     ];
-    $form['message']['body_custom_twig_help'] = TwigExtension::buildTwigHelp() + [
+    $form['message']['body_custom_twig_help'] = WebformTwigExtension::buildTwigHelp() + [
       '#access' => $has_edit_twig_access,
       '#states' => [
         'visible' => [
@@ -699,7 +700,7 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
     $form['attachments']['attachments'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Include files as attachments'),
-      '#description' => $this->t('If checked, only elements selected in the above email values will be attached the email.'),
+      '#description' => $this->t('If checked, only file upload elements selected in the above included email values will be attached to the email.'),
       '#return_value' => TRUE,
       '#disabled' => !$this->supportsAttachments(),
       '#default_value' => $this->configuration['attachments'],
@@ -716,12 +717,13 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
       '#type' => 'checkboxes',
       '#title' => $this->t('Send email'),
       '#options' => [
-        WebformSubmissionInterface::STATE_DRAFT => $this->t('…when <b>draft</b> is saved.'),
-        WebformSubmissionInterface::STATE_CONVERTED => $this->t('…when anonymous submission is <b>converted</b> to authenticated.'),
-        WebformSubmissionInterface::STATE_COMPLETED => $this->t('…when submission is <b>completed</b>.'),
-        WebformSubmissionInterface::STATE_UPDATED => $this->t('…when submission is <b>updated</b>.'),
-        WebformSubmissionInterface::STATE_DELETED => $this->t('…when submission is <b>deleted</b>.'),
-        WebformSubmissionInterface::STATE_LOCKED => $this->t('…when submission is <b>locked</b>.'),
+        WebformSubmissionInterface::STATE_DRAFT_CREATED => $this->t('…when <b>draft is created</b>.'),
+        WebformSubmissionInterface::STATE_DRAFT_UPDATED => $this->t('…when <b>draft is updated</b>.'),
+        WebformSubmissionInterface::STATE_CONVERTED => $this->t('…when anonymous <b>submission is converted</b> to authenticated.'),
+        WebformSubmissionInterface::STATE_COMPLETED => $this->t('…when <b>submission is completed</b>.'),
+        WebformSubmissionInterface::STATE_UPDATED => $this->t('…when <b>submission is updated</b>.'),
+        WebformSubmissionInterface::STATE_DELETED => $this->t('…when <b>submission is deleted</b>.'),
+        WebformSubmissionInterface::STATE_LOCKED => $this->t('…when <b>submission is locked</b>.'),
       ],
       '#access' => $results_disabled ? FALSE : TRUE,
       '#default_value' => $results_disabled ? [WebformSubmissionInterface::STATE_COMPLETED] : $this->configuration['states'],
@@ -910,7 +912,7 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
 
       // If Twig enabled render and body, render the Twig template.
       if ($configuration_key == 'body' && $this->configuration['twig']) {
-        $message[$configuration_key] = TwigExtension::renderTwigTemplate($webform_submission, $configuration_value, $token_options);
+        $message[$configuration_key] = WebformTwigExtension::renderTwigTemplate($webform_submission, $configuration_value, $token_options);
       }
       else {
         // Clear tokens from email values.
@@ -1306,7 +1308,10 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
 
     // The Mail System module, which supports a variety of mail handlers,
     // and the SMTP module support attachments.
-    return $this->moduleHandler->moduleExists('mailsystem') || $this->moduleHandler->moduleExists('smtp');
+    $mailsystem_installed = $this->moduleHandler->moduleExists('mailsystem');
+    $smtp_enabled = $this->moduleHandler->moduleExists('smtp')
+      && $this->configFactory->get('smtp.settings')->get('smtp_on');
+    return $mailsystem_installed || $smtp_enabled;
   }
 
   /**
@@ -1684,7 +1689,7 @@ class EmailWebformHandler extends WebformHandlerBase implements WebformHandlerMe
   /**
    * {@inheritdoc}
    */
-  protected function buildTokenTreeElement(array $token_types = [], $description = NULL) {
+  protected function buildTokenTreeElement(array $token_types = ['webform', 'webform_submission'], $description = NULL) {
     $description = $description ?: $this->t('Use [webform_submission:values:ELEMENT_KEY:raw] to get plain text values.');
     return parent::buildTokenTreeElement($token_types, $description);
   }

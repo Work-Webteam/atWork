@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsChartRendererInterface.
- */
-
 namespace Drupal\tether_stats;
 
 use Drupal\tether_stats\Chart\TetherStatsChart;

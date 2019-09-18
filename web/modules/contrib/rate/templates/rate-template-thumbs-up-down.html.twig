@@ -33,7 +33,7 @@
       <div{{ percent_attributes }}>{{ up_percent }}%</div>
     </li>
     <li{{ down_li_attributes }}>
-      {% if has_voted %}
+      {% if has_voted or not can_vote %}
         <div{{ down_attributes }}>{{ 'Down'|t }}</div>
       {% else %}
         <a {{ down_attributes }} href="{{ down_url }}">{{ 'Down'|t }}</a>

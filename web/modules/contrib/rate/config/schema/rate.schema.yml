@@ -8,13 +8,31 @@ rate.settings:
     widget_type:
       type: string
       label: 'Widget type'
-    # @todo Move this to 3rd party settings on the entity itself.
-    enabled_types_bundles:
+    enabled_types_widgets:
       type: sequence
-      label: 'Enabled entity types and bundles'
+      label: 'Enabled entity types and widgets'
       sequence:
         type: sequence
-        label: 'Entity type'
+        label: 'Bundle'
         sequence:
-          type: string
-          label: 'Bundle'
+          type: mapping
+          label: 'Entity'
+          mapping:
+            widget_type:
+              type: string
+              label: 'Widget type'
+            entity_type_id:
+              type: string
+              label: 'Entity Type'
+            use_ajax:
+              type: boolean
+              label: 'Use AJAX'
+    bot_minute_threshold:
+      type: string
+      label: 'Bot minute threshold'
+    bot_hour_threshold:
+      type: string
+      label: 'Bot hour threshold'
+    botscout_key:
+      type: string
+      label: 'BotScout.com API key'

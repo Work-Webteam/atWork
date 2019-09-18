@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsChartRendererPluginManager.
- */
-
 namespace Drupal\tether_stats;
 
 use Drupal\Core\Cache\CacheBackendInterface;

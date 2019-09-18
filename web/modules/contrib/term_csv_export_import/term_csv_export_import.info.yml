@@ -8,8 +8,8 @@ dependencies:
   - taxonomy
   - drupal:system (>= 8.6)
 
-# Information added by Drupal.org packaging script on 2018-09-20
-version: '8.x-2.0-alpha1'
+# Information added by Drupal.org packaging script on 2019-06-09
+version: '8.x-2.0-alpha3'
 core: '8.x'
 project: 'term_csv_export_import'
-datestamp: 1537456997
+datestamp: 1560098587

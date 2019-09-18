@@ -84,8 +84,7 @@ class RateTypeAccessTest extends KernelTestBase {
     $this->loggedInUser = $this->drupalCreateUser([
       'view rate results page',
     ]);
-    $this->anonymousUser = $this->drupalCreateUser([
-    ]);
+    $this->anonymousUser = $this->drupalCreateUser([]);
 
   }
 
@@ -118,13 +117,13 @@ class RateTypeAccessTest extends KernelTestBase {
       // Confirm that the logged_user can access the vote type info.
       $this->assertTrue(
         $this->accessHandler->access($vote_type, 'view', $this->loggedInUser),
-        $this->t('Logged in user can see vote of type @rate_type', ['@rate_type' => $rate_type])
+        'Logged in user can see vote of type ' . $rate_type
       );
 
       // Confirm that the anonymous_user cannot access the vote type info.
       $this->assertFalse(
         $this->accessHandler->access($vote_type, 'view', $this->anonymousUser),
-        $this->t('Anonymous user cannot see vote of type @rate_type', ['@rate_type' => $rate_type])
+        'Anonymous user cannot see vote of type ' . $rate_type
       );
     }
 
@@ -134,12 +133,12 @@ class RateTypeAccessTest extends KernelTestBase {
 
     $this->assertFalse(
       $this->accessHandler->access($fake_vote_type, 'view', $this->loggedInUser),
-      $this->t('Logged in user cannot see vote of type @rate_type', ['@rate_type' => $fake_vote_type->id()])
+      'Logged in user cannot see vote of type ' . $fake_vote_type->id()
     );
 
     $this->assertFalse(
       $this->accessHandler->access($fake_vote_type, 'view', $this->anonymousUser),
-      $this->t('Anonymous user cannot see vote of type @rate_type', ['@rate_type' => $fake_vote_type->id()])
+      'Anonymous user cannot see vote of type ' . $fake_vote_type->id()
     );
   }
 

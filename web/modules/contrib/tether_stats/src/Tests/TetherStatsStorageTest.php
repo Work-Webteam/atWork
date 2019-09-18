@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Tests\TetherStatsStorageTest.
- */
-
 namespace Drupal\tether_stats\Tests;
 
 use Drupal\tether_stats\TetherStatsIdentitySetInterface;

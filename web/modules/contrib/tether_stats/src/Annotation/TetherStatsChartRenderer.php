@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Annotation\TetherStatsChartRenderer.
- */
-
 namespace Drupal\tether_stats\Annotation;
 
 use Drupal\Component\Annotation\Plugin;

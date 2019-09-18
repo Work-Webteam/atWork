@@ -1,12 +1,8 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsManager.
- */
-
 namespace Drupal\tether_stats;
 
+use Drupal\Core\Database\Database;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Config\ImmutableConfig;
@@ -106,11 +102,21 @@ class TetherStatsManager implements TetherStatsManagerInterface {
   public function __construct(Connection $database, LoggerInterface $logger, ConfigFactoryInterface $config_factory, LinkGeneratorInterface $link_generator, TetherStatsChartRendererPluginManager $chart_plugin_manager) {
 
     $this->database = $database;
-    $this->storage = new TetherStatsStorage($database);
     $this->settings = $config_factory->get('tether_stats.settings');
     $this->logger = $logger;
     $this->linkGenerator = $link_generator;
     $this->chartPluginManager = $chart_plugin_manager;
+
+    // If an alternative database is supplied in the settings, then override the
+    // default database connection.
+    $settings_database = $this->settings->get('database');
+
+    if ($settings_database && $settings_database != 'default') {
+
+      $this->database = Database::getConnection('default', $settings_database);
+    }
+
+    $this->storage = new TetherStatsStorage($this->database);
   }
 
   /**

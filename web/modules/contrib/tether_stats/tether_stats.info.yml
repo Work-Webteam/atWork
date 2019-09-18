@@ -8,8 +8,8 @@ configure: tether_stats.admin_settings_form
 test_dependencies:
   - php:php
 
-# Information added by Drupal.org packaging script on 2016-03-24
-version: '8.x-1.01'
+# Information added by Drupal.org packaging script on 2019-07-09
+version: '8.x-1.02'
 core: '8.x'
 project: 'tether_stats'
-datestamp: 1458857341
+datestamp: 1562706485

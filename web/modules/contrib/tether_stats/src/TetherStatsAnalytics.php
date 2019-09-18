@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\TetherStatsAnalytics.
- */
-
 namespace Drupal\tether_stats;
 
 /**

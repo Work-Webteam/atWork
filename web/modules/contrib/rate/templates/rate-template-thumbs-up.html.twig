@@ -23,9 +23,7 @@
   {% else %}
     <a {{ up_attributes }} href="{{ up_url }}">{{ 'Up'|t }}</a>
   {% endif %}
-  <div{{ score_attributes }}>
-    {{ up_votes }}
-  </div>
+  <div{{ score_attributes }}>{{ up_votes }}</div>
   {% if undo %}
     <div{{ undo_attributes }}>{{ undo }}</div>
   {% endif %}

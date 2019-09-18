@@ -840,6 +840,8 @@ class PropertyAccessor implements PropertyAccessorInterface
                 return [$addMethod, $removeMethod];
             }
         }
+
+        return null;
     }
 
     /**
@@ -903,10 +905,9 @@ class PropertyAccessor implements PropertyAccessorInterface
     /**
      * Creates the APCu adapter if applicable.
      *
-     * @param string               $namespace
-     * @param int                  $defaultLifetime
-     * @param string               $version
-     * @param LoggerInterface|null $logger
+     * @param string $namespace
+     * @param int    $defaultLifetime
+     * @param string $version
      *
      * @return AdapterInterface
      *

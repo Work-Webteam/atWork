@@ -45,7 +45,7 @@ class RateWidgetTest extends BrowserTestBase {
 
     // Enable voting on test entities.
     $this->config('rate.settings')
-      ->set('enabled_types_bundles.entity_test', ['entity_test'])
+      ->set('enabled_types_widgets.entity_test', ['entity_test' => ['widget_type' => 'number_up_down', 'use_ajax' => FALSE]])
       ->set('use_ajax', FALSE)
       ->save();
     $display = entity_get_display('entity_test', 'entity_test', 'default');
@@ -81,17 +81,17 @@ class RateWidgetTest extends BrowserTestBase {
     $this->drupalGet($this->testEntity->toUrl());
 
     // Vote on the item.
-    $this->clickLink(t('Up'));
+    $this->clickLink('Up');
     $this->drupalGet($this->testEntity->toUrl());
     $this->assertSession()->pageTextContains('+1');
-    $this->assertSession()->linkExists(t('Undo'));
+    $this->assertSession()->linkExists('Undo');
 
     // Log in as different user, verify widget has a +1 vote, but should still
     // let the user vote on their own.
     $this->drupalLogin($this->webUsers[2]);
     $this->drupalGet($this->testEntity->toUrl());
     $this->assertSession()->pageTextContains('+1');
-    $this->assertSession()->linkNotExists(t('Undo'));
+    $this->assertSession()->linkNotExists('Undo');
   }
 
 }

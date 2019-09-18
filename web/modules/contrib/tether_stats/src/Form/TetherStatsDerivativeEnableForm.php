@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\tether_stats\Form\TetherStatsDerivativeEnableForm.
- */
-
 namespace Drupal\tether_stats\Form;
 
 use Drupal\Core\Entity\EntityConfirmFormBase;
@@ -46,7 +41,7 @@ class TetherStatsDerivativeEnableForm extends EntityConfirmFormBase {
     $this->entity->set('status', TRUE);
     $this->entity->save();
 
-    drupal_set_message($this->t('The derivative %derivative has been enabled. You may now use this derivative to define additional tracking elements.',
+    $this->messenger()->addMessage($this->t('The derivative %derivative has been enabled. You may now use this derivative to define additional tracking elements.',
       ['%derivative' => $this->entity->id()]));
 
     $form_state->setRedirect('entity.tether_stats_derivative.collection');

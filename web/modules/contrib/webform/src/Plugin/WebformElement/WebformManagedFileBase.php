@@ -174,6 +174,13 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
   /**
    * {@inheritdoc}
    */
+  public function getTranslatableProperties() {
+    return array_merge(parent::getTranslatableProperties(), ['file_placeholder']);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function supportsMultipleValues() {
     return TRUE;
   }
@@ -364,11 +371,15 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
 
     $format = $this->getItemFormat($element);
     switch ($format) {
+      case 'extension':
+      case 'data':
       case 'id':
+      case 'mime':
       case 'name':
+      case 'raw':
+      case 'size':
       case 'url':
       case 'value':
-      case 'raw':
         return $this->formatTextItem($element, $webform_submission, $options);
 
       case 'link':
@@ -405,11 +416,23 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
 
     $format = $this->getItemFormat($element);
     switch ($format) {
+      case 'data':
+        return base64_encode(file_get_contents($file->getFileUri()));
+
       case 'id':
         return $file->id();
 
+      case 'mime':
+        return $file->getMimeType();
+
       case 'name':
         return $file->getFilename();
+
+      case 'size':
+        return $file->getSize();
+
+      case 'extension':
+        return pathinfo($file->getFileUri(), PATHINFO_EXTENSION);
 
       case 'url':
       case 'value':
@@ -436,6 +459,10 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
       'url' => $this->t('URL'),
       'name' => $this->t('File name'),
       'id' => $this->t('File ID'),
+      'mime' => $this->t('File mime type'),
+      'size' => $this->t('File size (Bytes)'),
+      'data' => $this->t('File content (Base64)'),
+      'extension' => $this->t('File extension'),
     ];
   }
 
@@ -563,7 +590,7 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
 
     // Look for an existing temp files that have not been uploaded.
     $fids = $this->entityTypeManager->getStorage('file')->getQuery()
-      ->condition('status', FALSE)
+      ->condition('status', 0)
       ->condition('uid', $this->currentUser->id())
       ->condition('uri', $upload_location . '/' . $key . '.%', 'LIKE')
       ->execute();
@@ -700,6 +727,51 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
           $element[$key]['selected']['#error_no_message'] = TRUE;
         }
       }
+    }
+
+    // Truncate multiple files.
+    // Checks if user has uploaded more files than allowed.
+    // @see \Drupal\file\Plugin\Field\FieldWidget\FileWidget::validateMultipleCount
+    // @see \Drupal\file\Element\ManagedFile::processManagedFile.
+    if (!empty($element['#multiple'])
+      && ($element['#multiple'] > 1)
+      && !empty($element['#files'])
+      && (count($element['#files']) > $element['#multiple'])) {
+
+      $total_files = count($element['#files']);
+      $multiple = $element['#multiple'];
+
+      $fids = [];
+      $removed_names = [];
+      $count = 0;
+      foreach ($element['#files'] as $delta => $file) {
+        if ($count >= $multiple) {
+          unset($element['file_' . $delta]);
+          unset($element['#files'][$delta]);
+          $removed_names[] = $file->getFilename();
+          $file->delete();
+        }
+        else {
+          $fids[] = $delta;
+        }
+        $count++;
+      }
+      $element['fids']['#value'] = $fids;
+      $element['#value']['fids'] = $fids;
+
+      $args = [
+        '%title' => $element['#title'],
+        '@max' => $element['#multiple'],
+        '@count' => $total_files,
+        '%list' => implode(', ', $removed_names),
+      ];
+      $message = t('%title can only hold @max values but there were @count uploaded. The following files have been omitted as a result: %list.', $args);
+      \Drupal::messenger()->addWarning($message);
+    }
+    if (!empty($element['#multiple'] && !empty($element['#files']))
+      && (count($element['#files']) === $element['#multiple'])) {
+      $element['upload']['#access'] = FALSE;
+      $element['upload_button']['#access'] = FALSE;
     }
 
     // Preview uploaded file.
@@ -882,21 +954,11 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
   /**
    * {@inheritdoc}
    */
-  public static function validateMultiple(array &$element, FormStateInterface $form_state) {
-    // Don't validate #multiple when a file is being removed.
-    $trigger_element = $form_state->getTriggeringElement();
-    if (end($trigger_element['#parents']) == 'remove_button') {
-      return;
-    }
-
-    parent::validateMultiple($element, $form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
+
+    // Remove unsupported inline title display.
+    unset($form['form']['display_container']['title_display']['#options']['inline']);
 
     $form['file'] = [
       '#type' => 'fieldset',
@@ -1360,7 +1422,7 @@ abstract class WebformManagedFileBase extends WebformElementBase implements Webf
    */
   public function getAttachments(array $element, WebformSubmissionInterface $webform_submission, array $options = []) {
     $attachments = [];
-    $files = $this->getTargetEntities($element, $webform_submission, $options);
+    $files = $this->getTargetEntities($element, $webform_submission, $options) ?: [];
     foreach ($files as $file) {
       $attachments[] = [
         'filecontent' => file_get_contents($file->getFileUri()),
