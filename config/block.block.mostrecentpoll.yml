@@ -1,20 +1,20 @@
-uuid: 7c1e0432-179a-4850-ab67-1c095b884b81
+uuid: 9fac06ac-4082-4bbf-8298-81d98bd8e7b1
 langcode: en
 status: false
 dependencies:
   module:
-    - shortcut
+    - poll
   theme:
     - seven
-id: shortcuts
+id: mostrecentpoll
 theme: seven
 region: draggable_dashboard_region
 weight: null
 provider: null
-plugin: shortcuts
+plugin: poll_recent_block
 settings:
-  id: shortcuts
-  label: 'Top Links'
-  provider: shortcut
+  id: poll_recent_block
+  label: 'Most recent poll'
+  provider: poll
   label_display: visible
 visibility: {  }

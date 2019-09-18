@@ -1,0 +1,26 @@
+uuid: 03e88493-86fd-453d-8c2f-db97c29611ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - shortcut
+    - system
+  theme:
+    - atworknext
+id: top_links_shortcuts
+theme: atworknext
+region: content
+weight: -9
+provider: null
+plugin: shortcuts
+settings:
+  id: shortcuts
+  label: 'Top Links'
+  provider: shortcut
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

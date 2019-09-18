@@ -12,7 +12,7 @@ dependencies:
 id: views_block__related_content_block_2
 theme: atworknext
 region: content
-weight: -2
+weight: -1
 provider: null
 plugin: 'views_block:related_content-block_2'
 settings:

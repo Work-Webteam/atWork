@@ -1,17 +1,18 @@
-uuid: af30e553-0c55-41d6-bff2-2da2e9b509e7
+uuid: 7f499153-42ca-4c72-9c38-b8a8278ec005
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.corporate_news
   module:
+    - system
     - views
   theme:
-    - seven
-id: views_block__corporate_news_block_1
-theme: seven
-region: draggable_dashboard_region
-weight: null
+    - atworknext
+id: views_block__corporate_news_block_1_2
+theme: atworknext
+region: content
+weight: -8
 provider: null
 plugin: 'views_block:corporate_news-block_1'
 settings:
@@ -21,7 +22,9 @@ settings:
   label_display: visible
   views_label: ''
   items_per_page: none
-  override:
-    items_per_page: none
-  views_label_checkbox: 0
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
