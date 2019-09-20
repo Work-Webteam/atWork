@@ -1,0 +1,29 @@
+uuid: 75baba43-28d6-4d73-a2b7-d94421923ee4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_forum_containers
+    - group.type.atwork_groups
+    - taxonomy.vocabulary.forums
+id: group.atwork_groups.field_forum_containers
+field_name: field_forum_containers
+entity_type: group
+bundle: atwork_groups
+label: 'Forum Container'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      forums: forums
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

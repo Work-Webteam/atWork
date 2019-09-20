@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_display.comment.comment_photos.default
     - field.field.node.photos.body
     - field.field.node.photos.comment_photos
+    - field.field.node.photos.field_display_title
     - field.field.node.photos.field_send_notifications
     - field.field.node.photos.field_tags
     - node.type.photos
@@ -77,4 +78,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_display_title: true
   langcode: true
+  search_api_excerpt: true
