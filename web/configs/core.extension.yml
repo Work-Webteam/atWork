@@ -41,6 +41,7 @@ module:
   editor: 0
   editor_advanced_link: 0
   embed: 0
+  entity: 0
   entity_embed: 0
   entity_reference_revisions: 0
   externalauth: 0
@@ -54,6 +55,7 @@ module:
   flag: 0
   focal_point: 0
   forward: 0
+  gforum: 0
   gnode: 0
   group: 0
   h5p: 0

@@ -102,6 +102,7 @@
         "drupal/focal_point": "^1.0",
         "drupal/forward": "^2.1",
         "drupal/group": "^1.0",
+        "drupal/gforum": "^1.0@beta",
         "drupal/h5p": "^1.0@RC",
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^1.0@RC",
@@ -222,7 +223,7 @@
 	    "drupal/group": {
 	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
 	    },
-	    "libraries/superfish": {	
+	    "libraries/superfish": {
 		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
 	    },
 	    "drupal/core": {
