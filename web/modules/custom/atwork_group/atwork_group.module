@@ -19,7 +19,7 @@ function atworknext_preprocess_node__group_post(&$variables) {
 	// NOTE: This will only work if the cardinality in the Group node (Group Post) plugin is set to 1.
 	if ($variables['node']->getType() == 'group_post' && $variables['view_mode'] == 'full') {
 		foreach (GroupContent::loadByEntity($variables['node']) as $group_content) {
-			if($variables['node']->id() == $group_content->getEntity()->id()) $variables['label'] = $group_content->getGroup()->label();
+			if($variables['node']->id() == $group_content->getEntity()->id()) $variables['group_label'] = $group_content->getGroup()->label();
 		}
 	}
 
