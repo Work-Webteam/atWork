@@ -44,16 +44,13 @@ module:
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
-  editor_advanced_link: 0
   embed: 0
   entity: 0
   entity_embed: 0
   entity_reference_revisions: 0
   externalauth: 0
-  extra_field: 0
   extrafield_views_integration: 0
   field: 0
-  field_group: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -82,7 +79,6 @@ module:
   link: 0
   linkit: 0
   mailsystem: 0
-  matomo: 0
   maxlength: 0
   media: 0
   media_library: 0
@@ -145,7 +141,6 @@ module:
   term_csv_export_import: 0
   tether_stats: 0
   text: 0
-  title_field_for_manage_display: 0
   token: 0
   token_filter: 0
   toolbar: 0
