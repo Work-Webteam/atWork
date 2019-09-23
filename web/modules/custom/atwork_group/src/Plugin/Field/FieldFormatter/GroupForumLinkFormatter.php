@@ -6,6 +6,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Plugin implementation of the 'group forum link' formatter.
@@ -29,7 +30,21 @@ class GroupForumLinkFormatter extends EntityReferenceFormatterBase {
 
     foreach ($items as $delta => $item) {
       // Render each element as markup.
-      $element[$delta] = ['#markup' => '<a href="/forum/' . $item->entity->id() . '"> Forum </a>'];
+
+      // get forums in container
+      $forum_manager = \Drupal::service('forum_manager');
+      $item->entity->forums = $forum_manager->getChildren(\Drupal::config('forum.settings')->get('vocabulary'), $item->entity->id());
+
+      // if only one forum then link directly to forum, otherwise link to container
+      if (count($item->entity->forums) == 1) {
+        reset($item->entity->forums);
+        $forum_id = key($item->entity->forums);
+      }
+      else {
+        $forum_id = $item->entity->id();
+      }
+
+      $element[$delta] = ['#markup' => '<a href="/forum/' . $forum_id . '"> Forum </a>'];
     }
 
     return $element;
