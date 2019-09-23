@@ -70,7 +70,7 @@
     {{ title_suffix.addClass( group_theme ) }}
 
     <div{{ content_attributes.addClass( group_theme ) }}>
-      {{ content|without('field_group_tags', 'field_group_highlight') }}
+      {{ content|without('field_group_tags', 'field_group_highlight', 'field_themes') }}
     </div>
     <div class="atwork-group-tags {{ group_theme }}">
       {{ content.field_group_tags }}
