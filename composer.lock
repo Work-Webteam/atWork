@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf40d771fd1def24d632494fac02a9ef",
+    "content-hash": "1dbadc44e5821d2e8fc1e7567a6b2d35",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1871,68 +1871,6 @@
             "time": "2019-03-30T10:41:38+00:00"
         },
         {
-            "name": "drupal/activity",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/activity.git",
-                "reference": "168775d462e61a0bd0e3bac6cdce87b015a45247"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1518600484",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Scott Reynolds",
-                    "homepage": "https://www.drupal.org/user/60009"
-                },
-                {
-                    "name": "cvangysel",
-                    "homepage": "https://www.drupal.org/user/868104"
-                },
-                {
-                    "name": "jaydub",
-                    "homepage": "https://www.drupal.org/user/46257"
-                },
-                {
-                    "name": "robertDouglass",
-                    "homepage": "https://www.drupal.org/user/5449"
-                },
-                {
-                    "name": "sirkitree",
-                    "homepage": "https://www.drupal.org/user/59025"
-                },
-                {
-                    "name": "sorina.hriban",
-                    "homepage": "https://www.drupal.org/user/3531578"
-                }
-            ],
-            "description": "Log Activity across the site.",
-            "homepage": "https://www.drupal.org/project/activity",
-            "support": {
-                "source": "http://cgit.drupalcode.org/activity"
-            },
-            "time": "2018-02-14T09:22:07+00:00"
-        },
-        {
             "name": "drupal/admin_toolbar",
             "version": "1.27.0",
             "source": {
@@ -2186,7 +2124,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.20",
-                    "datestamp": "1561055630",
+                    "datestamp": "1561051685",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2538,48 +2476,6 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/ckeditor_bootstrap_grid"
             }
-        },
-        {
-            "name": "drupal/ckeditor_widgets",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ckeditor_widgets.git",
-                "reference": "2d462637f8804b6d0b530604d0376e97a23a3b7f"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1472798939",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Project has not opted into security advisory coverage!"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "jlyon",
-                    "homepage": "https://www.drupal.org/user/256444"
-                }
-            ],
-            "description": "Adds widgets and an Insert Template menu to CKEditor",
-            "homepage": "https://www.drupal.org/project/ckeditor_widgets",
-            "support": {
-                "source": "https://git.drupalcode.org/project/ckeditor_widgets"
-            },
-            "time": "2016-09-02T06:39:25+00:00"
         },
         {
             "name": "drupal/colorbox",
@@ -3848,121 +3744,6 @@
             }
         },
         {
-            "name": "drupal/ds",
-            "version": "3.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/ds.git",
-                "reference": "8.x-3.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.4.zip",
-                "reference": "8.x-3.4",
-                "shasum": "ebf070ba2f7cf78a62cf74678a9948546a93e773"
-            },
-            "require": {
-                "drupal/core": "^8.6"
-            },
-            "require-dev": {
-                "drupal/devel": "*",
-                "drupal/field_group": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.4",
-                    "datestamp": "1567165687",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Bram Goffings",
-                    "homepage": "https://www.drupal.org/user/172527",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Kristof De Jaeger",
-                    "homepage": "http://realize.be/",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Brecht Ceyssens",
-                    "homepage": "https://www.drupal.org/user/591438",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "swentel",
-                    "homepage": "https://www.drupal.org/user/107403"
-                }
-            ],
-            "description": "Extend the display options for every entity type.",
-            "homepage": "https://www.drupal.org/project/ds",
-            "keywords": [
-                "drupal",
-                "layout",
-                "php"
-            ],
-            "support": {
-                "source": "http://git.drupal.org/project/ds.git",
-                "issues": "https://www.drupal.org/project/issues/ds",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
-        },
-        {
-            "name": "drupal/editor_advanced_link",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/editor_advanced_link.git",
-                "reference": "8de7df228d13d515a7bfbe75e7d530e4c5ac95dd"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.5+0-dev",
-                    "datestamp": "1522240985",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "DuaelFr",
-                    "homepage": "https://www.drupal.org/user/931394"
-                }
-            ],
-            "description": "Add title, target etc. attributes to Text Editor's link dialog if the text format allows them.",
-            "homepage": "https://www.drupal.org/project/editor_advanced_link",
-            "support": {
-                "source": "https://git.drupalcode.org/project/editor_advanced_link"
-            },
-            "time": "2019-04-05T15:55:38+00:00"
-        },
-        {
             "name": "drupal/embed",
             "version": "1.0.0",
             "source": {
@@ -4281,7 +4062,7 @@
             "description": "Helper module to authenticate users using an external site / service and storing identification details",
             "homepage": "https://www.drupal.org/project/externalauth",
             "support": {
-                "source": "https://git.drupalcode.org/project/externalauth"
+                "source": "http://cgit.drupalcode.org/externalauth"
             }
         },
         {
@@ -6325,84 +6106,6 @@
             }
         },
         {
-            "name": "drupal/plupload",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/plupload.git",
-                "reference": "e2ce1c607c05c0e892316c28354ef1117b8add89"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-beta1+8-dev",
-                    "datestamp": "1544385481",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "David_Rothstein",
-                    "homepage": "https://www.drupal.org/user/124982"
-                },
-                {
-                    "name": "JacobSingh",
-                    "homepage": "https://www.drupal.org/user/68912"
-                },
-                {
-                    "name": "budalokko",
-                    "homepage": "https://www.drupal.org/user/788636"
-                },
-                {
-                    "name": "effulgentsia",
-                    "homepage": "https://www.drupal.org/user/78040"
-                },
-                {
-                    "name": "greggles",
-                    "homepage": "https://www.drupal.org/user/36762"
-                },
-                {
-                    "name": "justintime",
-                    "homepage": "https://www.drupal.org/user/99149"
-                },
-                {
-                    "name": "muri",
-                    "homepage": "https://www.drupal.org/user/1358960"
-                },
-                {
-                    "name": "paranojik",
-                    "homepage": "https://www.drupal.org/user/19501"
-                },
-                {
-                    "name": "slashrsm",
-                    "homepage": "https://www.drupal.org/user/744628"
-                },
-                {
-                    "name": "vingborg",
-                    "homepage": "https://www.drupal.org/user/259657"
-                }
-            ],
-            "description": "Provides a plupload Form API element.",
-            "homepage": "https://www.drupal.org/project/plupload",
-            "support": {
-                "source": "http://cgit.drupalcode.org/plupload"
-            },
-            "time": "2018-12-09T19:54:33+00:00"
-        },
-        {
             "name": "drupal/poll",
             "version": "1.2.0",
             "source": {
@@ -6627,75 +6330,6 @@
             "homepage": "https://www.drupal.org/project/queue_ui",
             "support": {
                 "source": "https://git.drupalcode.org/project/queue_ui"
-            }
-        },
-        {
-            "name": "drupal/rate",
-            "version": "1.0.0-alpha5",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/rate.git",
-                "reference": "8.x-1.0-alpha5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/rate-8.x-1.0-alpha5.zip",
-                "reference": "8.x-1.0-alpha5",
-                "shasum": "3d56906077d57344df10ec1cd8157d3e18540599"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/votingapi": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha5",
-                    "datestamp": "1563467285",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "JordiK",
-                    "homepage": "https://www.drupal.org/user/3472907"
-                },
-                {
-                    "name": "Krzysztof Domański",
-                    "homepage": "https://www.drupal.org/user/3572982"
-                },
-                {
-                    "name": "brenk28",
-                    "homepage": "https://www.drupal.org/user/65985"
-                },
-                {
-                    "name": "kevin.dutra",
-                    "homepage": "https://www.drupal.org/user/1312744"
-                },
-                {
-                    "name": "mauritsl",
-                    "homepage": "https://www.drupal.org/user/243897"
-                },
-                {
-                    "name": "michaelmol",
-                    "homepage": "https://www.drupal.org/user/919186"
-                }
-            ],
-            "description": "Flexible voting options for content entity types.",
-            "homepage": "https://www.drupal.org/project/rate",
-            "support": {
-                "source": "https://git.drupalcode.org/project/rate",
-                "issues": "https://www.drupal.org/project/issues/rate"
             }
         },
         {
@@ -7362,61 +6996,6 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/superfish",
                 "issues": "https://www.drupal.org/project/superfish"
-            }
-        },
-        {
-            "name": "drupal/synonyms",
-            "version": "1.0.0-alpha1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/synonyms.git",
-                "reference": "8.x-1.0-alpha1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/synonyms-8.x-1.0-alpha1.zip",
-                "reference": "8.x-1.0-alpha1",
-                "shasum": "98d39b5b0a26c7b5f9e6dfc4f72285ad014d14f4"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-alpha1",
-                    "datestamp": "1477604941",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Zen",
-                    "homepage": "https://www.drupal.org/user/21209"
-                },
-                {
-                    "name": "bojanz",
-                    "homepage": "https://www.drupal.org/user/86106"
-                },
-                {
-                    "name": "bucefal91",
-                    "homepage": "https://www.drupal.org/user/504128"
-                }
-            ],
-            "description": "Provides synonyms feature for content entities.",
-            "homepage": "https://www.drupal.org/project/synonyms",
-            "support": {
-                "source": "http://cgit.drupalcode.org/synonyms"
             }
         },
         {
@@ -8385,69 +7964,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/viewsreference",
                 "issues": "http://drupal.org/project/issues/viewsreference"
-            }
-        },
-        {
-            "name": "drupal/votingapi",
-            "version": "3.0.0-beta1",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/votingapi.git",
-                "reference": "8.x-3.0-beta1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/votingapi-8.x-3.0-beta1.zip",
-                "reference": "8.x-3.0-beta1",
-                "shasum": "db3672346a25d6107d27a27f40abc03a38e3637f"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.0-beta1",
-                    "datestamp": "1540711680",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "eaton",
-                    "homepage": "https://www.drupal.org/user/16496"
-                },
-                {
-                    "name": "pedrorocha",
-                    "homepage": "https://www.drupal.org/user/218937"
-                },
-                {
-                    "name": "pifagor",
-                    "homepage": "https://www.drupal.org/user/2375692"
-                },
-                {
-                    "name": "torotil",
-                    "homepage": "https://www.drupal.org/user/865256"
-                }
-            ],
-            "description": "Voting API",
-            "homepage": "http://drupal.org/project/votingapi",
-            "keywords": [
-                "Drupal"
-            ],
-            "support": {
-                "source": "http://cgit.drupalcode.org/votingapi",
-                "issues": "http://drupal.org/project/issues/votingapi"
             }
         },
         {
@@ -14671,11 +14187,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/activity": 20,
-        "drupal/ckeditor_widgets": 20,
         "drupal/devel_entity_updates": 5,
         "drupal/drush": 5,
-        "drupal/editor_advanced_link": 20,
         "drupal/flag": 15,
         "drupal/h5p": 5,
         "drupal/inline_entity_form": 5,
@@ -14685,14 +14198,12 @@
         "drupal/message_subscribe": 10,
         "drupal/message_ui": 10,
         "drupal/mimemail": 15,
-        "drupal/plupload": 20,
         "drupal/postal_code": 20,
         "drupal/rules": 15,
         "drupal/search_api_sorts": 10,
         "drupal/search_api_stats": 20,
         "drupal/search_api_stats_block": 20,
         "drupal/simplenews": 10,
-        "drupal/synonyms": 15,
         "drupal/taxonomy_manager": 15,
         "drupal/taxonomy_permissions": 20,
         "drupal/term_merge_manager": 10,
