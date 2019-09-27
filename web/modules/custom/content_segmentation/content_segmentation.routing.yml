@@ -1,0 +1,7 @@
+#content_segmentation.default_controller_content:
+#  path: '/admin/structure/corporate_news_emp'
+#  defaults:
+#    _controller: '\Drupal\content_segmentation\Controller\CorporateNewsEmpController::content'
+#    _title: 'Content'
+#  requirements:
+#    _permission: 'access content'
