@@ -27,6 +27,7 @@ module:
   config_filter: 0
   config_ignore: 0
   contact: 0
+  content_segmentation: 0
   contextual: 0
   crop: 0
   csv_serialization: 0
@@ -37,10 +38,10 @@ module:
   devel: 0
   devel_generate: 0
   draggable_dashboard: 0
+  draggableviews: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
-  entityqueue: 0
   externalauth: 0
   extrafield_views_integration: 0
   field: 0
@@ -88,7 +89,6 @@ module:
   message_ui: 0
   mimemail: 0
   module_filter: 0
-  module_missing_message_fixer: 0
   node: 0
   options: 0
   page_cache: 0
@@ -117,6 +117,7 @@ module:
   serialization: 0
   settings_tray: 0
   shortcut: 0
+  shs: 0
   simplify_menu: 0
   statistics: 0
   superfish: 0

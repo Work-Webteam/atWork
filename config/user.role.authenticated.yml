@@ -50,6 +50,7 @@ permissions:
   - 'view background image'
   - 'view media'
   - 'view post access counter'
+  - 'view terms in emp'
   - 'view terms in forums'
   - 'view terms in tags'
   - 'view terms in tags_community'

@@ -1,0 +1,9 @@
+uuid: 5c0a1fd8-b799-4865-9ecd-fd2bb282caea
+langcode: en
+status: true
+dependencies: {  }
+id: corporate_news_emp
+label: 'Corporate News - EMP'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

@@ -6,6 +6,7 @@ dependencies:
     - field.field.user.user.field_about_me
     - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
+    - field.field.user.user.field_emp
     - field.field.user.user.field_job_function_code
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
@@ -66,6 +67,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_emp:
+    weight: 15
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_user_city:
     type: string
     weight: 7
@@ -169,3 +178,4 @@ hidden:
   message_subscribe_email: true
   photos_album_count: true
   photos_image_count: true
+  search_api_excerpt: true
