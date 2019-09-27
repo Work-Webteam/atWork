@@ -1,0 +1,8 @@
+name: 'Simple hierarchical select: Chosen'
+type: module
+description: 'Integrates Chosen with Simple hierarchical select.'
+dependencies:
+  - chosen:chosen
+  - shs:shs
+core: 8.x
+package: User interface
