@@ -4,7 +4,17 @@ services:
   cli:
     extends:
       file: ${HOME}/.docksal/stacks/services.yml
-      service: apache
+      service: cli
     environment:
       - PANTHEON_SITE
       - PANTHEON_ENV
+# PHPMyAdmin
+  pma:
+    hostname: pma
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
+    labels:
+      - io.docksal.virtual-host=pma.${VIRTUAL_HOST}
