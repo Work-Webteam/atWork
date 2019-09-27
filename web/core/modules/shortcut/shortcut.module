@@ -214,8 +214,8 @@ function shortcut_default_set($account = NULL) {
   // precedence. If no module returns a valid set, fall back on the site-wide
   // default, which is the lowest-numbered shortcut set.
   $suggestions = array_reverse(\Drupal::moduleHandler()->invokeAll('shortcut_default_set', [$account]));
-  //$suggestions[] = 'default';
-  $suggestions[] = 'user-shortcut';
+  $suggestions[] = 'default';
+  //$suggestions[] = 'user-shortcut';
   foreach ($suggestions as $name) {
     if ($shortcut_set = ShortcutSet::load($name)) {
       break;
