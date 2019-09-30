@@ -28,6 +28,8 @@ class GroupForumLinkFormatter extends EntityReferenceFormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $element = [];
 
+    $group = \Drupal::routeMatch()->getParameter('group');
+
     foreach ($items as $delta => $item) {
       // Render each element as markup.
 
@@ -43,8 +45,12 @@ class GroupForumLinkFormatter extends EntityReferenceFormatterBase {
       else {
         $forum_id = $item->entity->id();
       }
-
-      $element[$delta] = ['#markup' => '<a href="/forum/' . $forum_id . '"> Forum </a>'];
+      if ($group) {
+        $element[$delta] = ['#markup' => '<a href="/group/' . $group->id() . '/forum/' . $forum_id . '"> Forum </a>'];
+      }
+      else {
+        $element[$delta] = ['#markup' => '<a href="/forum/' . $forum_id . '"> Forum </a>'];
+      }
     }
 
     return $element;

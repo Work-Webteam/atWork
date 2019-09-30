@@ -1,0 +1,22 @@
+uuid: 01ba0387-c417-4580-850d-f6ff547d6460
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: atwork_forum_topic
+label: 'Atwork Forum Topic'
+type: 'canonical_entities:node'
+pattern: 'topic/[node:nid]'
+selection_criteria:
+  40926f60-4c41-4873-a34b-527471d0e5f8:
+    id: node_type
+    bundles:
+      forum: forum
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 40926f60-4c41-4873-a34b-527471d0e5f8
+selection_logic: and
+weight: -5
+relationships: {  }
