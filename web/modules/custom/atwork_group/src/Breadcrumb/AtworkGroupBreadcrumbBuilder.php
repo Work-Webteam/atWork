@@ -185,9 +185,21 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       // Add link to group.
       $breadcrumb->addLink(Link::createFromRoute($group->label(), 'entity.group.canonical', ['group' => $group->id()]));
 
-      // add link to forum container breadcrumb
       $forum_id = $topic->get('taxonomy_forums')->target_id;
       $term = Term::load($forum_id);
+
+      // Add link to Forum Container if container has multiple forums
+      if (empty($term->forum_container->value)) {
+        $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
+        $parent = reset($parent);
+        $forum_manager = \Drupal::service('forum_manager');
+        $forums = $forum_manager->getChildren(\Drupal::config('forum.settings')->get('vocabulary'), $parent->id());
+        if (count($forums) > 1) {
+          $breadcrumb->addLink(Link::createFromRoute($parent->label(), 'group.forum', ['group' => $group->id(), 'taxonomy_term' => $parent->id()]));
+        }
+      }
+
+      // Add link to forum breadcrumb
       $breadcrumb->addLink(Link::createFromRoute($term->getName(), 'group.forum', ['group' => $group->id(), 'taxonomy_term' => $forum_id]));
     }
 
