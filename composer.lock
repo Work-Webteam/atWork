@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1dbadc44e5821d2e8fc1e7567a6b2d35",
+    "content-hash": "19259f03aee5c120e44310eb50d0da69",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2478,6 +2478,48 @@
             }
         },
         {
+            "name": "drupal/ckeditor_widgets",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_widgets.git",
+                "reference": "2d462637f8804b6d0b530604d0376e97a23a3b7f"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1472798939",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "jlyon",
+                    "homepage": "https://www.drupal.org/user/256444"
+                }
+            ],
+            "description": "Adds widgets and an Insert Template menu to CKEditor",
+            "homepage": "https://www.drupal.org/project/ckeditor_widgets",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_widgets"
+            },
+            "time": "2016-09-02T06:39:25+00:00"
+        },
+        {
             "name": "drupal/colorbox",
             "version": "1.4.0",
             "source": {
@@ -4307,6 +4349,53 @@
                 "source": "http://cgit.drupalcode.org/forward",
                 "issues": "http://drupal.org/project/forward",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/fullcalendar_view",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/fullcalendar_view.git",
+                "reference": "8.x-2.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/fullcalendar_view-8.x-2.3.zip",
+                "reference": "8.x-2.3",
+                "shasum": "f3df9f9bf0a7f117be70aa125c8d9666961330c5"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.3",
+                    "datestamp": "1568683088",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Mingsong",
+                    "homepage": "https://www.drupal.org/user/2986445"
+                }
+            ],
+            "description": "A view plugin to present contents in FullCalendar view",
+            "homepage": "https://www.drupal.org/project/fullcalendar_view",
+            "support": {
+                "source": "https://git.drupalcode.org/project/fullcalendar_view"
             }
         },
         {
@@ -14187,6 +14276,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/ckeditor_widgets": 20,
         "drupal/devel_entity_updates": 5,
         "drupal/drush": 5,
         "drupal/flag": 15,
