@@ -16,5 +16,14 @@ This can be fixed by making changes outlined in the h5p.patch file in this direc
 Applied by bjenning
 date: 03-20-2019
 
-Superfish_no_hover sets disableHover to true when sftouchscreen sub-plugin for superfish is enabled in block menu options. For some reason, known only to god, this effectively 
+Superfish_no_hover sets disableHover to true when sftouchscreen sub-plugin for superfish is enabled in block menu options. For some reason, known only to god, this effectively
 changes the default on hover menu expansion to on click for browsers.
+
+/**
+* Taxonomy Permissions bug
+**/
+Applied by twerdal
+date: 10-03-2019
+
+Can't subscribe to taxonomy terms, because of some strangeness between vews and taxonomy permissions module. Patch taken from here: https://www.drupal.org/project/taxonomy_permissions/issues/3020846.
+Added this with composer.

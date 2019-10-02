@@ -229,6 +229,9 @@
 	    },
 	    "drupal/core": {
 		"Adding patch for breadcrumbs." : "https://www.drupal.org/files/issues/2019-06-07/breadcrumb_shows_the_8.7.x-2607920-54.patch"
+	    },
+	   "drupal/taxonomy_permissions": {
+		"Fixing error with views/taxonomy permissions." : "https://www.drupal.org/files/issues/2019-01-30/taxonomy_permissions-Problem_when_using_an_ER_view_as_target_bundles-3009193-4-8.x.patch"
 	    }
 	}
     }
