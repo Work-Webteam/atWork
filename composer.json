@@ -85,6 +85,7 @@
         "drupal/bootstrap_layouts": "^5.1",
         "drupal/chosen": "^2.6",
         "drupal/ckeditor_bootstrap_grid": "^1.2",
+        "drupal/ckeditor_widgets": "1.x-dev",
         "drupal/colorbox": "^1.4",
         "drupal/colorbox_inline": "^1.0",
         "drupal/config_ignore": "^2.1",
@@ -101,6 +102,7 @@
         "drupal/flag": "^4.0@alpha",
         "drupal/focal_point": "^1.0",
         "drupal/forward": "^2.1",
+        "drupal/fullcalendar_view": "^2.3",
         "drupal/group": "^1.0",
         "drupal/gforum": "^1.0@beta",
         "drupal/h5p": "^1.0@RC",
@@ -228,6 +230,9 @@
 	    },
 	    "drupal/core": {
 		"Adding patch for breadcrumbs." : "https://www.drupal.org/files/issues/2019-06-07/breadcrumb_shows_the_8.7.x-2607920-54.patch"
+	    },
+	   "drupal/taxonomy_permissions": {
+		"Fixing error with views/taxonomy permissions." : "https://www.drupal.org/files/issues/2019-01-30/taxonomy_permissions-Problem_when_using_an_ER_view_as_target_bundles-3009193-4-8.x.patch"
 	    }
 	}
     }
