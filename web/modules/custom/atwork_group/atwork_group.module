@@ -119,6 +119,7 @@ function atworknext_preprocess_container__atwork(&$variables) {
  *
  */
 function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
   if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
 	}
@@ -268,37 +269,40 @@ function atwork_group_preprocess_forums(&$variables) {
 
 function atwork_group_forum_topic_submit($form, FormStateInterface $form_state) {
 
+  $node_id = $form_state->getValue("nid");
+
   // redirect if this is a group forum topic
   $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
-  $parts = explode("/", $previousUrl);
-  if ($parts[3] == "group") {
-    $group_id = $parts[4];
-    $node_id = $form_state->getValue("nid");
-    $form_state->setRedirect(
-      'group.forum.topic',
-      ['group' => $group_id, 'node' => $node_id]
-    );
+	$group_id = _atwork_group_extract_group($previousUrl);
+	if ($group_id > 0) {
+    $form_state->setRedirect('group.forum.topic',	['group' => $group_id, 'node' => $node_id]);
   }
 }
 
 
 function atwork_group_forum_comment_submit($form, FormStateInterface $form_state) {
 
+	$route_params = $form_state->getRedirect()->getRouteParameters();
+	$node_id = $route_params['node'];
+
   // redirect if this is a group forum reply (comment)
   $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
-  $parts = explode("/", $previousUrl);
-  if ($parts[3] == "group") {
-    $group_id = $parts[4];
-		if ($parts[5] == "topic") {
-			$node_id = $parts[6];
-    	$form_state->setRedirect(
-      	'group.forum.topic',
-      	['group' => $group_id, 'node' => $node_id]
-    	);
-		}
+	$group_id = _atwork_group_extract_group($previousUrl);
+	if ($group_id > 0) {
+    $form_state->setRedirect('group.forum.topic',	['group' => $group_id, 'node' => $node_id]);
   }
 }
 
+function _atwork_group_extract_group($url) {
+	$parts = explode("/", $url);
+	$group_id = 0;
+	foreach ($parts as $key => $value) {
+		if ($value == "group") {
+			$group_id = $parts[$key+1];
+		}
+	}
+	return $group_id;
+}
 
 /**
  * Implements hook_module_implements_alter().
