@@ -33,6 +33,10 @@ function content_segmentation_preprocess_views_view(&$variables) {
   	$form = \Drupal::formBuilder()->getForm('\Drupal\content_segmentation\Form\CorporateNewsEmp');
   	$variables['attachment_after'][] = $form;
   }
+  if ($variables['id'] == 'content_emp' && $variables['display_id'] == 'page_2' ) {
+    $form = \Drupal::formBuilder()->getForm('\Drupal\content_segmentation\Form\MessagesEmp');
+    $variables['attachment_after'][] = $form;
+  }
 }
 
 /**

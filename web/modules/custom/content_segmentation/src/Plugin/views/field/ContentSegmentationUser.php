@@ -71,7 +71,7 @@ class ContentSegmentationUser extends FieldPluginBase {
     $query = $connection->query("SELECT weight FROM `draggableviews_structure` 
                                  WHERE entity_id = (SELECT entity_id 
                                  FROM `paragraph__field_corporate_news` 
-                                 WHERE field_corporate_news_target_id = :id )", 
+                                 WHERE field_corporate_news_target_id = :id LIMIT 1)", 
                                 [':id' => $nid]);
     //$result = $query->fetchAll();
     $result = $query->fetchAssoc();
@@ -85,7 +85,7 @@ class ContentSegmentationUser extends FieldPluginBase {
                                                               FROM `paragraph__field_corporate_news` as cn
                                                               INNER JOIN `paragraph__field_emp` as emp 
                                                               ON (cn.entity_id = emp.entity_id and cn.bundle = emp.bundle)
-                                                              WHERE cn.field_corporate_news_target_id = :id )", 
+                                                              WHERE cn.field_corporate_news_target_id = :id LIMIT 1)", 
                                                               [':id' => $nid]);
     $result = $query->fetchAssoc();
     if($result['entity_id'] != $user){

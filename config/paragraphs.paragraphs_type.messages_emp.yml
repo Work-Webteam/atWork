@@ -1,9 +1,9 @@
-uuid: 5c0a1fd8-b799-4865-9ecd-fd2bb282caea
+uuid: 90b5cb15-c0ce-4812-be74-8daddbc307e4
 langcode: en
 status: true
 dependencies: {  }
-id: corporate_news_emp
-label: 'EMP - Corporate News'
+id: messages_emp
+label: 'EMP - Messages'
 icon_uuid: null
 description: ''
 behavior_plugins: {  }
