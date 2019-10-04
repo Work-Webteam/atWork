@@ -1,0 +1,19 @@
+uuid: 43ccb07b-791c-43b3-9318-f0bd1a3a1f7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+    - node.type.forum
+  module:
+    - gnode
+    - node
+id: atwork_groups-group_node-forum
+label: 'Atwork Groups: Group node (Forum topic)'
+description: 'Adds <em class="placeholder">Forum topic</em> content to groups both publicly and privately.'
+group_type: atwork_groups
+content_plugin: 'group_node:forum'
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1
+  use_creation_wizard: false

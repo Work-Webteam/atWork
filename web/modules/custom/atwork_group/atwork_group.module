@@ -132,6 +132,14 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 	  $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_create_submit';
 	}
+
+	if ($form_id == 'node_forum_form') {
+		foreach (array_keys($form['actions']) as $action) {
+			if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+				$form['actions'][$action]['#submit'][] = 'atwork_group_forum_topic_submit';
+			}
+		}
+	}
 }
 
 /**
@@ -139,6 +147,7 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
  */
 function atwork_group_group_create_submit(array $form, FormStateInterface $form_state) {
 	// Get gid from route parameters and redirect to group page.
+	drupal_set_message("atwork_group_group_create_submit");
 	$route_params = $form_state->getRedirect()->getRouteParameters();
 	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
 }
@@ -148,6 +157,7 @@ function atwork_group_group_create_submit(array $form, FormStateInterface $form_
  */
 function atwork_group_group_content_submit(array $form, FormStateInterface $form_state){
 	// Set redirect back to the oiginal content node page.
+	drupal_set_message("atwork_group_group_content_submit");
 	$nid = $form_state->getRedirect()->getOptions("entity_id")['entity']->get('entity_id')->getValue()[0]['target_id'];
 	$form_state->setRedirect('entity.node.canonical', ['node' => $nid]);
 }
@@ -246,4 +256,42 @@ function atwork_group_preprocess_forums(&$variables) {
     	$variables['topics']['#rows'] = $rows;
 		}
   }
+}
+
+function atwork_group_entity_type_alter(array &$entity_types) {
+  $comment_form_handlers = $entity_types['comment']->getHandlerClass('form');
+  $comment_form_handlers['default'] = 'Drupal\atwork_group\Form\GroupForumCommentForm';
+  $comment_form_handlers['edit'] = 'Drupal\atwork_group\Form\GroupForumCommentForm';
+  $comment_form_handlers['add'] = 'Drupal\atwork_group\Form\GroupForumCommentForm';
+  $entity_types['comment']->setHandlerClass('form', $comment_form_handlers);
+}
+
+function atwork_group_forum_topic_submit($form, FormStateInterface $form_state) {
+
+  // redirect if this is a group forum topic
+  $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
+  $parts = explode("/", $previousUrl);
+  if ($parts[3] == "group") {
+    $group_id = $parts[4];
+    $node_id = $form_state->getValue("nid");
+    $form_state->setRedirect(
+      'group.forum.topic',
+      ['group' => $group_id, 'node' => $node_id]
+    );
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * atwork_group is moved to last in the hook order to ensure this module's forum topic redirect
+ * overrides the group module redirect.
+ *
+ */
+function atwork_group_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['atwork_group'];
+    unset($implementations['atwork_group']);
+    $implementations['atwork_group'] = $group;
+	}
 }
