@@ -1,0 +1,19 @@
+diff --git a/taxonomy_permissions.module b/taxonomy_permissions.module
+index 3b8e142..5f15c4a 100644
+--- a/taxonomy_permissions.module
++++ b/taxonomy_permissions.module
+@@ -51,6 +51,14 @@ function taxonomy_permissions_entity_field_access($operation, FieldDefinitionInt
+     $operation == 'edit') {
+
+     $handler_settings = $field_definition->getSetting('handler_settings');
++    if (!isset($handler_settings['target_bundles'])){
++        // If the handler is not set, this means that an
++        // "Entity Reference View" is used to select the
++        // Entity reference that this field must store
++        // In this case, I assume we have no way to
++        // check the access (must be done by the view)
++        return AccessResult::neutral();
++    }
+     $target_bundles = $handler_settings['target_bundles'];
+     // We grant access to the taxonomy reference field if the user has the
+     // permissions to view at least one vocabulary from the target bundles.

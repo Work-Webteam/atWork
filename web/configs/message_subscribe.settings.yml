@@ -1,7 +1,7 @@
 use_queue: false
 notify_own_actions: false
 flag_prefix: subscribe
-debug_mode: false
+debug_mode: true
 default_notifiers: {  }
 _core:
   default_config_hash: O8wr7pbAthwHawL1un_SvviJ5fyTHsvchz-0JW6Myh4
