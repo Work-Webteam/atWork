@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\Entity\BaseFieldOverride;
 use Drupal\redirect\Entity\Redirect;
 use Drupal\group\Entity\Group;
+use Drupal\Core\Entity\ContentEntityInterface;
 
 
 /**
@@ -179,4 +180,29 @@ function atworknext_theme_suggestions_container_alter(array &$suggestions, array
 	$suggestions[] = 'container__' . 'atwork';
 }
 
-
+/**
+ * Implements hook_theme_suggestions_alter
+ *
+ * @param array $suggestions
+ * @param array $variables
+ * @param $hook
+ */
+function atworknext_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
+  // Check that we are in the right region.
+  if($hook == 'region' && in_array('region__sidebar_nav', $suggestions)) {
+    // If there is a groupadmin variable, we know we are in a group.
+    if(in_array('groupadmin', $variables['elements'])) {
+      // grab parameters from the URI.
+      $request = \Drupal::routeMatch();
+      $param = $request->getParameters();
+      // Again, check that we have an actual group.
+      if($param->has('group')) {
+        // Load the group field value for the themes select field.
+        $theme = $param->get('group')->get('field_themes')->getValue();
+        // Add the users theme choice to the variables array so we can
+        // use it in our template.
+        $variables['group_theme'] = $theme[0]['value'];
+      }
+    }
+  }
+}
