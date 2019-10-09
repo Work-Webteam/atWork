@@ -87,7 +87,8 @@
 
   {% if display_submitted %}
     <footer>
-      {{ author_picture }}
+    <div id="comment-avatar" class="img-circle">{{ author_picture }}</div>
+      
       <div{{ author_attributes.addClass('author') }}>
         {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
         {{ metadata }}

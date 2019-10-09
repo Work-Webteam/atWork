@@ -43,7 +43,7 @@ section#block-views-block-comments-new-block-1 {
     > #comment-count { // Comment count SVG graphic bubble
       display: inline-block;
       width:auto;
-      padding:15px;
+      padding:10px 10px 15px;
       margin-left: 15px;
       color:$white;
       background-image:url("../images/text-bubble.svg");
@@ -108,5 +108,22 @@ section#block-views-block-comments-new-block-1 {
         display:none;
       }
     }
+  }
+}
+
+// Comments, replies specific to forums and group forums
+
+article.forum {
+  .field--name-user-picture {
+    display:block;
+    border: solid 3px $link-blue;
+    background-image:url("../images/blue-avatar.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    width:60px;
+    height:60px;
+    overflow: hidden;
+    border-radius: 50%;
   }
 }

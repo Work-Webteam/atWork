@@ -180,3 +180,13 @@ body.path-group section.col-sm-12 {
 .all-group-posts {
   @include blue-grid-box;
 }
+
+// Group specific forum, topics and comments on group page only
+
+body.path-group.page-node-type-forum {
+  .region-content {
+    position: relative;
+    display:flex;
+    padding-left:10px;
+  }
+}

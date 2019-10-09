@@ -57,7 +57,7 @@ body.path-employees, body.path-executives {
         width:365px;
         height: 160px;
         margin:5px;
-        @include size1416;
+        @include size1216;
         .no-results {
           color: lighten($black, 70%);
         }
