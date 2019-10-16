@@ -11,7 +11,7 @@
     <div id="center" style="margin-left:40px;margin-right:40px;margin-top:25px;">
       <div id="main">
   Hi {{ username }}, <br><br>
-      
+
   Here are the latest updates from your @Work subscriptions.
         <div id="subscription-comments">
         {% if comments is defined %}
@@ -36,7 +36,7 @@
             {% if loop.last == false %}
               <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
             {% endif %}
-              
+
           {% endfor %}
         {% endif %}
         </div>
@@ -61,7 +61,29 @@
           {% endfor %}
         {% endif %}
         </div>
-        
+
+        <div id="subscription-content">
+        {% if group_post is defined %}
+          <div class="subscription-section-title" style="margin-top: 25px;margin-bottom: 15px;text-transform: uppercase;font-weight:bold;color:#333333;">New Content</div>
+          {% for item in group_post %}
+            <div class="subscription-content">
+              <div class="item-title" style="color:#0080c7;font-weight:bold;">
+                {{ item['title'] }}
+              </div>
+              <div class="item-byline" style="font-size:14px;margin-bottom:15px;">
+              {% trans %}{{ item['author'] }} posted on {{ item['createdDate'] }} | {{ item['createdTime'] }}{% endtrans %}
+              </div>
+              <div class="item-body" style="margin-right:45px;">
+                {{ item['summary']|striptags }}...<a href="{{ item.url }}">Read More >></a>
+              </div>
+            </div>
+            {% if loop.last == false %}
+              <hr style="border-color:#EEEEEE;margin-top:15px;margin-bottom:10px;">
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        </div>
+
       </div>
     </div>
     <div id="subscription-footer" style="background-color: #266694;color:#FFFFFF;text-align: center;margin-top: 10px;padding-top:15px;padding-bottom:10px;">
