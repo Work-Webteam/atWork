@@ -699,6 +699,22 @@ display:
     display_options:
       display_extenders: {  }
       path: groups
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: "<style>\r\n  #group-add {\r\n    display: inline-block;\r\n    float: right;\r\n    padding: 3px 8px;\r\n    margin: 0 30px 0 0;\r\n    font-size: 12px;\r\n  }\r\n</style>\r\n<button id=\"group-add\" onclick=\"window.location.href = 'group/add';\">Create a Group</button>\r\n"
+            format: full_html
+          plugin_id: text
+      defaults:
+        header: false
     cache_metadata:
       max-age: -1
       contexts:

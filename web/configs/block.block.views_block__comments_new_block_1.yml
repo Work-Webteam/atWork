@@ -36,7 +36,6 @@ visibility:
     id: 'entity_bundle:node'
     bundles:
       article: article
-      forum: forum
       group_post: group_post
     negate: false
     context_mapping:

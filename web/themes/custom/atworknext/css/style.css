@@ -10120,17 +10120,20 @@ p:last-child,
 /* Functions */
 /* Site Colours - include primary, panels, text, links and special */
 /* Updated October 2018 */
-/* line 69, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_colours.scss */
+/* Color Theme Swatches in RGBA */
+/* Color Theme Swatches in RGBA */
+/* Color Theme Swatches in RGBA */
+/* line 65, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_colours.scss */
 .breadcrumb > .active {
   color: #595959;
 }
 
-/* line 72, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_colours.scss */
+/* line 68, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_colours.scss */
 .btn-success {
   background-color: #357935;
 }
 
-/* line 75, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_colours.scss */
+/* line 71, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_colours.scss */
 .btn-info {
   background-color: #1f7e9a;
 }
@@ -10842,7 +10845,7 @@ body.page-node-type-program-area-content .region-sidebar-nav {
 /* line 240, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav .draggable-dashboard-block__header,
 body.page-node-type-program-area-content .region-sidebar-nav .draggable-dashboard-block__header {
-  border-bottom: solid 1px #999;
+  border-bottom: solid 1px #c4c4c4;
 }
 
 /* line 243, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
@@ -10864,14 +10867,15 @@ body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu h3
 body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu h3.block-title,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu h3,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu h3.block-title {
-  background-color: #8acccf;
   color: white;
   text-align: center;
-  padding: 7px 0;
+  padding: 9px 0;
   margin: 0 0 10px 0;
   font-weight: normal;
   text-transform: uppercase;
   border-bottom: solid 2px #999;
+  font-size: .875rem;
+  line-height: 16px;
 }
 
 /* line 259, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
@@ -10883,15 +10887,25 @@ body.page-node-type-program-area-content .region-sidebar-nav section#block-progr
 }
 
 /* line 261, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+body.path-group .region-sidebar-nav .group-side-menu #accordion.panel-group .panel,
+body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel,
+body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu #accordion.panel-group .panel,
+body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel {
+  background-color: #E0E7E8;
+}
+
+/* line 264, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav .group-side-menu #accordion.panel-group h4.panel-title,
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group h4.panel-title,
 body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu #accordion.panel-group h4.panel-title,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group h4.panel-title {
   padding: 5px 10px;
   border-bottom: solid 1px #999;
+  font-size: .875rem;
+  line-height: 16px;
 }
 
-/* line 264, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 268, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav .group-side-menu #accordion.panel-group h4.panel-title .caret,
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group h4.panel-title .caret,
 body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu #accordion.panel-group h4.panel-title .caret,
@@ -10901,26 +10915,30 @@ body.page-node-type-program-area-content .region-sidebar-nav section#block-progr
   margin-top: 10px;
 }
 
-/* line 270, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 274, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav .group-side-menu #accordion.panel-group .panel-body,
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-body,
 body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu #accordion.panel-group .panel-body,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-body {
-  border: solid 1px #E0E7E8;
+  border-left: solid 1px #E0E7E8;
+  border-top: solid 1px #E0E7E8;
+  border-bottom: solid 1px #999;
+  border-right: solid 1px #999;
+  background-color: white;
   margin: 5px;
   padding: 0px;
 }
 
-/* line 274, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 282, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav .group-side-menu #accordion.panel-group .panel-body a,
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-body a,
 body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu #accordion.panel-group .panel-body a,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-body a {
   display: block;
-  padding: 10px;
+  padding: 5px;
 }
 
-/* line 277, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 285, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav .group-side-menu #accordion.panel-group .panel-body a:hover,
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-body a:hover,
 body.page-node-type-program-area-content .region-sidebar-nav .group-side-menu #accordion.panel-group .panel-body a:hover,
@@ -10929,7 +10947,7 @@ body.page-node-type-program-area-content .region-sidebar-nav section#block-progr
   color: white;
 }
 
-/* line 286, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 294, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav section#block-programareamenu h2,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu h2 {
   padding: inherit;
@@ -10939,32 +10957,32 @@ body.page-node-type-program-area-content .region-sidebar-nav section#block-progr
   background-color: rgba(0, 51, 102, 0.8);
 }
 
-/* line 293, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 301, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group {
   margin-bottom: 0px;
 }
 
-/* line 295, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 303, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-default,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-default {
   border: none;
 }
 
-/* line 298, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 306, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-heading,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group .panel-heading {
   background-color: #e6f2f9;
   margin-top: 5px;
 }
 
-/* line 302, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 310, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav section#block-programareamenu #accordion.panel-group h4.panel-title,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu #accordion.panel-group h4.panel-title {
   border-bottom: initial;
 }
 
-/* line 307, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 315, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav section#block-programareamenu h4.panel-title .caret,
 body.page-node-type-program-area-content .region-sidebar-nav section#block-programareamenu h4.panel-title .caret {
   display: block;
@@ -10972,13 +10990,13 @@ body.page-node-type-program-area-content .region-sidebar-nav section#block-progr
   margin-top: 10px;
 }
 
-/* line 315, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 323, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu h3,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu h3 {
   background-color: rgba(0, 51, 102, 0.8);
 }
 
-/* line 318, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 326, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu a,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu a {
   display: block;
@@ -10987,7 +11005,7 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu a {
   margin-bottom: 5px;
 }
 
-/* line 323, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 331, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu a:hover,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu a:hover {
   text-decoration: none;
@@ -10995,20 +11013,20 @@ body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu a:h
   color: white;
 }
 
-/* line 329, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 337, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu #atworkgroups-sidebar-menu,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu #atworkgroups-sidebar-menu {
   padding: 0px;
   margin: 0px;
 }
 
-/* line 332, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 340, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group .region-sidebar-nav aside#side-menu #atworkgroups-sidebar-menu li,
 body.page-node-type-program-area-content .region-sidebar-nav aside#side-menu #atworkgroups-sidebar-menu li {
   list-style-type: none;
 }
 
-/* line 338, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 346, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group nav.tabs, body.path-group .group-page-content, body.path-group .node--type-program-area-content,
 body.page-node-type-program-area-content nav.tabs,
 body.page-node-type-program-area-content .group-page-content,
@@ -11021,7 +11039,7 @@ body.page-node-type-program-area-content .node--type-program-area-content {
 }
 
 @media (min-width: 768px) {
-  /* line 338, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+  /* line 346, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
   body.path-group nav.tabs, body.path-group .group-page-content, body.path-group .node--type-program-area-content,
   body.page-node-type-program-area-content nav.tabs,
   body.page-node-type-program-area-content .group-page-content,
@@ -11032,7 +11050,7 @@ body.page-node-type-program-area-content .node--type-program-area-content {
 }
 
 @media (min-width: 768px) {
-  /* line 338, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+  /* line 346, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
   body.path-group nav.tabs, body.path-group .group-page-content, body.path-group .node--type-program-area-content,
   body.page-node-type-program-area-content nav.tabs,
   body.page-node-type-program-area-content .group-page-content,
@@ -11041,7 +11059,7 @@ body.page-node-type-program-area-content .node--type-program-area-content {
   }
 }
 
-/* line 343, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
+/* line 351, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_navigation_menu.scss */
 body.path-group nav.tabs,
 body.page-node-type-program-area-content nav.tabs {
   font-size: .875rem;
@@ -11610,7 +11628,6 @@ body.page-node-type-group-post .field--name-field-group-highlight {
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: white;
 }
 
 /* line 291, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_article.scss */
@@ -11903,6 +11920,23 @@ article.forum .field--name-user-picture {
   border-radius: 50%;
 }
 
+/* line 129, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_comments.scss */
+article.forum .indented {
+  display: flexbox;
+  margin-left: 35px;
+}
+
+/* line 132, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_comments.scss */
+article.forum .indented > .indented {
+  margin-left: initial;
+}
+
+/* line 135, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_comments.scss */
+article.forum .indented > article {
+  border-bottom: solid 4px #E0E7E8;
+  margin-bottom: 10px;
+}
+
 /* Primary CSS for site wide fields and lists */
 /* line 4, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_fields_lists.scss */
 article ul, ol {
@@ -12088,22 +12122,24 @@ body.path-group section.col-sm-12 .region-sidebar-nav section#block-views-block-
 
 /* line 25, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group section.col-sm-12 .region-sidebar-nav section#block-views-block-group-menu-block-3 h2.block-title {
-  background-color: #8acccf;
-  color: white;
-  padding: 10px;
+  padding: 9px 10px;
   margin: inherit;
   font-weight: normal;
   text-align: center;
   border-bottom: solid 2px #999;
+  font-size: .875rem;
+  line-height: 16px;
 }
 
-/* line 34, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 33, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group section.col-sm-12 .region-sidebar-nav section#block-views-block-group-menu-block-3 h3 {
   border-top: solid 1px #E0E7E8;
   border-bottom: solid 1px #E0E7E8;
   padding: 0;
   margin: 10px 0;
   text-align: center;
+  font-size: .875rem;
+  line-height: 16px;
 }
 
 /* line 41, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
@@ -12123,15 +12159,13 @@ body.path-group section.col-sm-12 .group-page-content .group-title-banner {
 
 /* line 54, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group section.col-sm-12 .group-page-content .group-title-banner h1, body.path-group section.col-sm-12 .group-page-content .group-title-banner h2 {
-  font-size: 1.312rem;
-  line-height: 36px;
+  font-size: 1.125rem;
+  line-height: 24px;
   font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
   font-weight: normal;
-  padding: 3px 0 0 15px;
+  padding: 8px 0 7px 15px;
   margin: 0;
   text-transform: uppercase;
-  background-color: #8acccf;
-  color: white;
   display: block;
 }
 
@@ -12155,38 +12189,27 @@ body.path-group section.col-sm-12 .group-page-content aside.author-avatar {
 /* line 79, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group section.col-sm-12 .group-page-content .group-join, body.path-group section.col-sm-12 .group-page-content .group-leave {
   display: inline-block;
-  background-color: rgba(0, 51, 102, 0.8);
   position: absolute;
   right: 0;
   top: 0;
   width: 180px;
-  padding: 8px 0;
+  padding: 8px 0px 7px;
   text-align: center;
+  text-transform: uppercase;
 }
 
-/* line 88, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
-body.path-group section.col-sm-12 .group-page-content .group-join > a, body.path-group section.col-sm-12 .group-page-content .group-leave > a {
-  color: white;
-}
-
-/* line 90, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 89, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group section.col-sm-12 .group-page-content .group-join > a:hover, body.path-group section.col-sm-12 .group-page-content .group-leave > a:hover {
   text-decoration: none;
-  color: #edb141;
 }
 
-/* line 96, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
-body.path-group section.col-sm-12 .group-page-content .field--name-field-group.field--type-image img {
-  border-bottom: solid 8px #8acccf;
-}
-
-/* line 99, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 94, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group section.col-sm-12 .group-page-content .field--name-field-group-description {
   padding-top: 12px;
   padding-bottom: 12px;
 }
 
-/* line 106, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 101, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 #no-ad-space {
   display: flex;
   flex-direction: row;
@@ -12194,21 +12217,20 @@ body.path-group section.col-sm-12 .group-page-content .field--name-field-group-d
   height: 35px;
 }
 
-/* line 115, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 110, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 .group-related-content section#block-views-block-related-content-block-3 {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-/* line 118, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 113, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 .group-related-content section#block-views-block-related-content-block-3 > h2.block-title {
-  background-color: #8acccf;
   margin-bottom: 10px;
   color: white;
   padding: 8px 0 5px 10px;
 }
 
-/* line 128, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 122, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin {
   border: solid 1px #E0E7E8;
   padding: 5px;
@@ -12216,22 +12238,21 @@ section#block-groupadmin {
   width: 100%;
 }
 
-/* line 133, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 127, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin > h2 {
   padding: 0;
   margin: 0;
   width: 100%;
-  background-color: #8acccf;
   border-bottom: solid 2px #999;
 }
 
-/* line 139, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 133, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin > h2 .btn-primary {
   border-radius: 0px;
   border-color: transparent;
 }
 
-/* line 145, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 139, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .view-content a {
   display: block;
   border: solid 1px #E0E7E8;
@@ -12239,38 +12260,35 @@ section#block-groupadmin .view-content a {
   margin-bottom: 5px;
 }
 
-/* line 150, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 144, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .view-content a:hover {
   text-decoration: none;
-  color: #044573;
-  background-color: #c5d5da;
 }
 
-/* line 157, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 149, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .well {
-  border-color: #c5d5da;
-  background-color: rgba(197, 213, 218, 0.5);
+  background-color: lightgray;
   padding: 10px 10px 0;
   margin-bottom: initial;
 }
 
-/* line 163, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 155, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard .draggable-dashboard-column {
   min-height: inherit;
 }
 
-/* line 166, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 158, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block {
-  border-color: #c5d5da;
+  border-color: #c4c4c4;
 }
 
-/* line 168, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 160, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block h2 {
   padding: 0;
   margin: 0;
 }
 
-/* line 173, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 165, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 section#block-groupadmin .draggable-dashboard-block__content {
   display: flex;
 }
@@ -12304,7 +12322,7 @@ section#block-groupadmin .draggable-dashboard-block__content {
   width: 215px;
   margin-bottom: 10px;
   background-color: #e6f2f9;
-  border: solid 1px #c5d5da;
+  border: solid 1px #c4c4c4;
 }
 
 /* line 247, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
@@ -12360,11 +12378,228 @@ section#block-groupadmin .draggable-dashboard-block__content {
   justify-content: flex-end;
 }
 
-/* line 187, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+/* line 179, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
 body.path-group.page-node-type-forum .region-content {
   position: relative;
   display: flex;
   padding-left: 10px;
+}
+
+/* line 465, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default body.path-group .main-container a:hover {
+  color: rgba(0, 51, 102, 0.8) !important;
+}
+
+/* line 469, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default .group-title-banner h1 {
+  background-color: #8acccf;
+  color: #4e4e4e;
+}
+
+/* line 473, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default .field--name-field-group.field--type-image img {
+  border-bottom: solid 8px #8acccf;
+}
+
+/* line 476, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default .field--name-field-group-highlight > div:nth-child(1) {
+  background-color: #8acccf !important;
+  color: #4e4e4e;
+}
+
+/* line 480, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default section#block-groupadmin > h2,
+.theme_default section#block-views-block-group-menu-block-1 h3.block-title,
+.theme_default section#block-views-block-group-menu-block-3 h2.block-title {
+  background-color: #8acccf;
+  color: #4e4e4e;
+}
+
+/* line 486, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default section#block-groupadmin > h2 a.btn-primary {
+  background-color: #337ab7;
+  border-right: solid 1px #4e4e4e;
+  color: white;
+}
+
+/* line 491, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default .group-join, .theme_default .group-leave {
+  background-color: #337ab7;
+  border-left: solid 1px #4e4e4e;
+}
+
+/* line 494, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_default .group-join a, .theme_default .group-leave a {
+  color: white;
+}
+
+/* line 502, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark body.path-group .main-container a:hover {
+  color: #f2b749 !important;
+}
+
+/* line 506, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark .group-title-banner h1 {
+  background-color: #18375f;
+  color: white;
+}
+
+/* line 510, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark .field--name-field-group.field--type-image img {
+  border-bottom: solid 8px #18375f;
+}
+
+/* line 514, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark .field--name-field-group-highlight > div:nth-child(1) {
+  background-color: #18375f !important;
+  color: white;
+}
+
+/* line 518, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark .field--name-field-group-highlight .field--label {
+  font-weight: normal;
+}
+
+/* line 522, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark section#block-groupadmin > h2,
+.theme_dark section#block-views-block-group-menu-block-1 h3.block-title,
+.theme_dark section#block-views-block-group-menu-block-3 h2.block-title {
+  background-color: #18375f;
+  color: white;
+}
+
+/* line 528, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark section#block-groupadmin > h2 a.btn-primary {
+  background-color: #4d7fae;
+  border-right: solid 1px lightsteelblue;
+  color: white;
+}
+
+/* line 533, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark .group-join, .theme_dark .group-leave {
+  background-color: #4d7fae;
+  border-left: solid 1px lightsteelblue;
+}
+
+/* line 536, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_dark .group-join a, .theme_dark .group-leave a {
+  color: white;
+}
+
+/* line 544, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright body.path-group .main-container a:hover {
+  color: #f2b749 !important;
+}
+
+/* line 548, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright .group-title-banner h1 {
+  background-color: #cbddea;
+  color: #333333;
+}
+
+/* line 552, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright .field--name-field-group.field--type-image img {
+  border-bottom: solid 8px #cbddea;
+}
+
+/* line 556, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright .field--name-field-group-highlight > div:nth-child(1) {
+  background-color: #cbddea !important;
+  color: #333333;
+}
+
+/* line 560, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright .field--name-field-group-highlight .field--label {
+  font-weight: normal;
+}
+
+/* line 564, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright section#block-groupadmin > h2,
+.theme_bright section#block-views-block-group-menu-block-1 h3.block-title,
+.theme_bright section#block-views-block-group-menu-block-3 h2.block-title {
+  background-color: #cbddea;
+  color: #333333;
+}
+
+/* line 570, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright section#block-groupadmin > h2 a.btn-primary {
+  background-color: #6c93b9;
+  border-right: solid 1px black;
+  color: white;
+}
+
+/* line 575, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright .group-join, .theme_bright .group-leave {
+  background-color: #6c93b9;
+  border-left: solid 1px black;
+}
+
+/* line 578, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_bright .group-join a, .theme_bright .group-leave a {
+  color: white;
+}
+
+/* line 586, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted body.path-group .main-container a:hover {
+  color: #f2b749 !important;
+}
+
+/* line 590, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted .group-title-banner h1 {
+  background-color: #dfebf2;
+  color: #333333;
+}
+
+/* line 594, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted .field--name-field-group.field--type-image img {
+  border-bottom: solid 8px #dfebf2;
+}
+
+/* line 598, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted .field--name-field-group-highlight > div:nth-child(1) {
+  background-color: #dfebf2 !important;
+  color: #333333;
+}
+
+/* line 602, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted .field--name-field-group-highlight .field--label {
+  font-weight: normal;
+}
+
+/* line 606, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted section#block-groupadmin > h2,
+.theme_muted section#block-views-block-group-menu-block-1 h3.block-title,
+.theme_muted section#block-views-block-group-menu-block-3 h2.block-title {
+  background-color: #dfebf2;
+  color: #333333;
+}
+
+/* line 612, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted section#block-groupadmin > h2 a.btn-primary {
+  background-color: #edf2f5;
+  border-right: solid 1px black;
+  color: #333333;
+}
+
+/* line 617, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted .group-join, .theme_muted .group-leave {
+  background-color: #edf2f5;
+  border-left: solid 1px black;
+}
+
+/* line 620, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
+.theme_muted .group-join a, .theme_muted .group-leave a {
+  color: #333333;
+}
+
+/* line 203, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+input#edit-field-themes-theme-default {
+  display: inline;
+}
+
+/* line 205, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_groups.scss */
+input#edit-field-themes-theme-default :after {
+  content: "Stuff goes here";
 }
 
 /* Site Wide Social Tags CSS */
@@ -12710,7 +12945,7 @@ body.path-my-profile #profile-card.j41 aside .profile-img, .employee-profile-pag
 
 /* line 445, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-my-profile #profile-card.j42 aside, .employee-profile-page #profile-card.j42 aside {
-  background-color: #c5d5da;
+  background-color: rgba(102, 179, 255, 0.8);
 }
 
 /* line 447, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
@@ -12836,7 +13071,7 @@ body.path-employees .all-employee-page .views-row #profile-card.j41 aside .profi
 
 /* line 445, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */
 body.path-employees .all-employee-page .views-row #profile-card.j42 aside, body.path-executives .all-employee-page .views-row #profile-card.j42 aside {
-  background-color: #c5d5da;
+  background-color: rgba(102, 179, 255, 0.8);
 }
 
 /* line 447, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_atwork-mixins.scss */

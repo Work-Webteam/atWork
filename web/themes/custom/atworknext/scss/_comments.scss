@@ -126,4 +126,15 @@ article.forum {
     overflow: hidden;
     border-radius: 50%;
   }
+  .indented {
+    display: flexbox;
+    margin-left:35px;
+    > .indented {
+      margin-left:initial;
+    }
+    > article {
+      border-bottom:solid 4px $exec-greyborder;
+      margin-bottom:10px;
+    }
+  }
 }

@@ -15,7 +15,7 @@ type: image
 settings:
   uri_scheme: public
   default_image:
-    uuid: 8fe558eb-450a-448c-9d85-8861d6ced820
+    uuid: 0747e6f0-4a5b-4958-8366-368b1e169264
     alt: 'Profile Image'
     title: 'Profile Image'
     width: 1200

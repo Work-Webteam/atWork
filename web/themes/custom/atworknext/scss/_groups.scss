@@ -23,13 +23,12 @@ body.path-group section.col-sm-12 {
       padding:5px 5px 10px;
       margin-bottom: 5px;
       h2.block-title {
-        background-color: $mtTeal;
-        color:$white;
-        padding:10px;
+        padding:9px 10px;
         margin:inherit;
         font-weight: normal;
         text-align: center;
         border-bottom:solid 2px #999;
+        @include size1416;
       }
       h3 {
         border-top:solid 1px $exec-greyborder;
@@ -37,6 +36,7 @@ body.path-group section.col-sm-12 {
         padding:0;
         margin:10px 0;
         text-align: center;
+        @include size1416;
       }
       p {
         padding:0;
@@ -55,14 +55,14 @@ body.path-group section.col-sm-12 {
           &:before {
             content:"Group: ";
           }
-          @include size2136;
+          @include size1824;
           font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
           font-weight: normal;
-          padding:3px 0 0 15px;
+          padding:8px 0 7px 15px;
           margin:0;
           text-transform: uppercase;
-          background-color:$mtTeal;
-          color:$white;
+          //background-color:$mtTeal;
+          //color:$white;
           display: block;
         }
       }
@@ -78,23 +78,18 @@ body.path-group section.col-sm-12 {
       }
       .group-join, .group-leave {
         display:inline-block;
-        background-color:$banner-blue;
         position: absolute;
         right:0;
         top:0;
         width:180px;
-        padding: 8px 0;
+        padding: 8px 0px 7px;
         text-align: center;
+        text-transform: uppercase;
         > a {
-          color:$white;
           &:hover {
             text-decoration: none;
-            color:$mtOrange;
           }
         }
-      }
-      .field--name-field-group.field--type-image img {
-        border-bottom:solid 8px $mtTeal;
       }
       .field--name-field-group-description {
         padding-top:12px;
@@ -116,7 +111,6 @@ body.path-group section.col-sm-12 {
       padding-left:0px;
       padding-right:0px;
         > h2.block-title {
-          background-color: $mtTeal;
           margin-bottom: 10px;
           color:$white;
           padding:8px 0 5px 10px;
@@ -134,7 +128,7 @@ body.path-group section.col-sm-12 {
       padding:0;
       margin:0;
       width:100%;
-      background-color:$mtTeal;
+      //background-color:$mtTeal;
       border-bottom:solid 2px #999;
       .btn-primary {
         border-radius: 0px;
@@ -149,14 +143,12 @@ body.path-group section.col-sm-12 {
         margin-bottom:5px;
         &:hover {
           text-decoration: none;
-          color:$mtBlue1;
-          background-color: $mtBlue2;
         }
       }
     }
     .well {
-      border-color:$mtBlue2;
-      background-color:rgba($mtBlue2, .5);
+      //border-color:lightseagreen;
+      background-color:lightgray;
       padding: 10px 10px 0;
       margin-bottom: initial;
     }
@@ -164,7 +156,7 @@ body.path-group section.col-sm-12 {
       min-height:inherit;
     }
     .draggable-dashboard-block {
-      border-color:$mtBlue2;
+      border-color:lighten($button-hover, 35%);
       h2 {
         padding:0;
         margin:0;
@@ -189,4 +181,37 @@ body.path-group.page-node-type-forum {
     display:flex;
     padding-left:10px;
   }
+}
+
+// Group Theme Switch Colours
+
+.theme_default {
+  @include theme_default_set;
+}
+.theme_dark {
+  @include theme_deep_set;
+}
+.theme_bright {
+  @include theme_bright_set;
+}
+.theme_muted {
+  @include theme_muted_set;
+}
+
+// Group Theme preview swatch visible in admin edit screens
+
+input#edit-field-themes-theme-default {
+  display: inline;
+  :after {
+    content: "Stuff goes here";
+  }
+}
+input#edit-field-themes-theme-bright {
+
+}
+input#edit-field-themes-theme-dark {
+
+}
+input#edit-field-themes-theme-muted {
+
 }

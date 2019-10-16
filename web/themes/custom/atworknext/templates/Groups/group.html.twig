@@ -41,38 +41,38 @@
 #}
 {# We need to set which theme the user has chose for their group here #}
 {% set group_theme = content.field_themes.0["#markup"] | raw %}
-<div{{ attributes.addClass( group_theme ) }}>
+<div>
 
   <div class="group-page-content {{ group_theme }}">
     {{ title_prefix }}
     {% if page %}
-      <div class="group-title-banner {{ group_theme }}">
+      <div class="group-title-banner">
 
-        <h1{{ title_attributes.addClass( group_theme ) }}>
+        <h1>
          {{ label }}
         </h1>
         {% if not member %}
-          <div class="group-join {{ group_theme }}">
+          <div class="group-join">
             {{ join_link }}
           </div>
         {% elseif member %}
-          <div class="group-leave {{ group_theme }}">
+          <div class="group-leave">
             {{ leave_link }}
           </div>
         {% endif %}
       </div>
     {% endif %}
     {% if not page %}
-      <h1{{ title_attributes.addClass( group_theme ) }}>
+      <h1>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h1>
     {% endif %}
     {{ title_suffix.addClass( group_theme ) }}
 
-    <div{{ content_attributes.addClass( group_theme ) }}>
+    <div>
       {{ content|without('field_group_tags', 'field_group_highlight', 'field_themes') }}
     </div>
-    <div class="atwork-group-tags {{ group_theme }}">
+    <div class="atwork-group-tags">
       {{ content.field_group_tags }}
     </div>
   </div>
@@ -80,7 +80,7 @@
 <div class="group-highlight {{ group_theme }}">
   {{ content.field_group_highlight }}
 </div>
-<div class="group-related-content {{ group_theme }}">
+<div class="group-related-content">
   {{ related_content }}
 </div>
 {{ content.comment }}
