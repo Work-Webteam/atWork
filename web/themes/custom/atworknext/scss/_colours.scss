@@ -30,17 +30,18 @@ $button-hover: #6b6b6b; // Roll over button colour
 // Group Default
 
 $grp-default-banner: #8acccf;
-$grp-default-btn: #337ab7;
-$grp-default-hover: rgba(0,51,102,0.8);
+$grp-default-btn: rgba(51, 122, 183, 1);
+$grp-default-hover: rgba(37, 126, 130, 1);
+$grp-default-link: rgba(58, 85, 193, 1);
 
 
 // WiW Bright
 
 /* Color Theme Swatches in RGBA */
-$grp-bright-banner: rgba(203,221,234, 1);
-$grp-bright-btn: rgba(108,147,185, 1);
-$grp-bright-hover: rgba(242,183,73, 1);
-$grp-bright-grey: rgba(242,242,242, 1);
+$grp-bright-banner: rgba(217,156,43, 1);
+$grp-bright-btn: rgba(242,192,99, 1);
+$grp-bright-hover: #768ba6;
+$grp-bright-blue: rgba(34,69,115, 1);
 
 // WiW Deep
 
@@ -48,6 +49,7 @@ $grp-bright-grey: rgba(242,242,242, 1);
 $grp-deep-banner: rgba(24,55,95, 1);
 $grp-deep-btn: rgba(77,127,174, 1);
 $grp-deep-hover: rgba(242,183,73, 1);
+$grp-deep-link:rgba(77, 127, 174, 1);
 
 // WiW Muted
 

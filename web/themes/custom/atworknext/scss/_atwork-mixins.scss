@@ -460,11 +460,12 @@
   }
 }
 
+
+// Group Theme Colours
+
 @mixin theme_default_set {
-  body.path-group .main-container {
-    a:hover {
-      color:$grp-default-hover!important;
-    }
+  p a {
+    color: $grp-default-link;
   }
   .group-title-banner h1 {
     background-color: $grp-default-banner;
@@ -498,10 +499,8 @@
 }
 
 @mixin theme_deep_set {
-  body.path-group .main-container {
-    a:hover {
-      color:$grp-deep-hover!important;
-    }
+  p a {
+    color: $grp-deep-link;
   }
   .group-title-banner h1 {
     background-color: $grp-deep-banner;
@@ -540,13 +539,11 @@
 }
 
 @mixin theme_bright_set {
-  body.path-group .main-container {
-    a:hover {
-      color:$grp-bright-hover!important;
-    }
+  p a {
+    color: $grp-deep-link;
   }
   .group-title-banner h1 {
-    background-color: $grp-bright-banner;
+    background-color: $grp-bright-btn;
     color: $text;
   }
   .field--name-field-group.field--type-image img {
@@ -554,7 +551,7 @@
   }
   .field--name-field-group-highlight {
     > div:nth-child(1) {
-      background-color: $grp-bright-banner!important;
+      background-color: $grp-bright-btn!important;
       color: $text;
     }
     .field--label {
@@ -564,28 +561,26 @@
   section#block-groupadmin > h2,
   section#block-views-block-group-menu-block-1 h3.block-title,
   section#block-views-block-group-menu-block-3 h2.block-title {
-     background-color: $grp-bright-banner;
+     background-color: $grp-bright-btn;
      color: $text;
   }
   section#block-groupadmin > h2 a.btn-primary {
-    background-color: $grp-bright-btn;
+    background-color: $grp-bright-banner;
     border-right: solid 1px black;
-    color: $white;
+    color: $grp-bright-blue;
   }
   .group-join, .group-leave {
-    background-color: $grp-bright-btn;
+    background-color: $grp-bright-banner;
     border-left: solid 1px black;
     a {
-      color: $white;
+      color: $grp-bright-blue;
     }
   }
 }
 
 @mixin theme_muted_set {
-  body.path-group .main-container {
-    a:hover {
-      color:$grp-muted-hover!important;
-    }
+  p a {
+    color: $grp-deep-link;
   }
   .group-title-banner h1 {
     background-color: $grp-muted-banner;

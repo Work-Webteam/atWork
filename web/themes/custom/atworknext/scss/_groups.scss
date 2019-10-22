@@ -183,6 +183,62 @@ body.path-group.page-node-type-forum {
   }
 }
 
+// Forums pages including forum, topic and landing page
+article.forum.full {
+  position: relative;
+  h2 {
+    background-color:#F5F5F5;
+    padding: 5px 10px;
+    a:before {
+      content:"Topic: ";
+    }
+    margin-top:10px;
+  }
+  .content {
+    footer {
+      /*a[property~="schema:name"] {
+        margin-left: 3px;
+        margin-right: 3px;
+      }*/
+      max-width: 120px;
+      margin-right:10px;
+      @include size1216;
+      article {
+        border-bottom: solid 1px $exec-greyborder;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+    }
+    h3 {
+      background-color: $grp-muted-btn;
+      padding:3px 5px;
+      margin:0px 0px 10px;
+    }
+    .field--name-body,
+    article.js-comment {
+      display: flex;
+      border: solid 1px $exec-greyborder;
+      padding:10px;
+      margin:10px 0px;
+    }
+    article.js-comment {
+      > div {
+        border-left: solid 1px $exec-greyborder;
+        border-right: solid 1px $exec-greyborder;
+        border-bottom: solid 1px $exec-greyborder;
+        flex:auto;
+        > div, ul {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+      } 
+    }
+    .indented:first-child {
+      margin-left:25px;
+    }
+  }
+}
+
 // Group Theme Switch Colours
 
 .theme_default {
@@ -196,22 +252,4 @@ body.path-group.page-node-type-forum {
 }
 .theme_muted {
   @include theme_muted_set;
-}
-
-// Group Theme preview swatch visible in admin edit screens
-
-input#edit-field-themes-theme-default {
-  display: inline;
-  :after {
-    content: "Stuff goes here";
-  }
-}
-input#edit-field-themes-theme-bright {
-
-}
-input#edit-field-themes-theme-dark {
-
-}
-input#edit-field-themes-theme-muted {
-
 }
