@@ -3,10 +3,6 @@
 use Drupal\group\Entity\GroupContent;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
-use Drupal\Core\Url;
-use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\Core\Field\Entity\BaseFieldOverride;
-use Drupal\redirect\Entity\Redirect;
 use Drupal\group\Entity\Group;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -14,6 +10,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * @inheritDoc
  */
 function atworknext_preprocess_node__group_post(&$variables) {
 	// Get the group info for the group content (post)
@@ -36,6 +33,7 @@ function atworknext_preprocess_node__group_post(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * @inheritDoc
  */
 function atworknext_preprocess_group(&$variables) {
 	// Is the user a member of this group? Admin?
@@ -96,6 +94,7 @@ function atworknext_preprocess_group(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  *
+ * @inheritDoc
  */
 function atworknext_preprocess_container__atwork(&$variables) {
 	global $base_url;
@@ -118,6 +117,7 @@ function atworknext_preprocess_container__atwork(&$variables) {
 /**
  * Implements hook_form_alter().
  *
+ * @inheritDoc
  */
 function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 
@@ -150,10 +150,16 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 			}
 		}
 	}
+	if ($form_id == 'group_atwork_groups_edit_form') {
+    $form['#attached']['library'][] = 'atwork_group/atwork-groups-form';
+  }
 }
 
 /**
  * Implements custom submit handler for group create form
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function atwork_group_group_create_submit(array $form, FormStateInterface $form_state) {
 	// Get gid from route parameters and redirect to group page.
@@ -162,19 +168,25 @@ function atwork_group_group_create_submit(array $form, FormStateInterface $form_
 }
 
 /**
- * Implements custom submit handler for group content add form
+ * Implements custom submit handler for group content add form.
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function atwork_group_group_content_submit(array $form, FormStateInterface $form_state){
-	// Set redirect back to the oiginal content node page.
+	// Set redirect back to the original content node page.
 	$nid = $form_state->getRedirect()->getOptions("entity_id")['entity']->get('entity_id')->getValue()[0]['target_id'];
 	$form_state->setRedirect('entity.node.canonical', ['node' => $nid]);
 }
 
 /**
- * Implements custom submit handler for group join form
+ * Implements custom submit handler for group join form.1
+ *
+ * @param array $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function atwork_group_join_group_submit(array $form, FormStateInterface $form_state){
-	// Set redirect back to the oiginal group page.
+	// Set redirect back to the original group page.
 	$route_params = $form_state->getRedirect()->getRouteParameters();
 	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
 }
@@ -213,6 +225,7 @@ function atwork_group_group_presave(Drupal\Core\Entity\EntityInterface $entity) 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
+ * @inheritDoc
  */
 function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, array $variables) {
 	if ($node = \Drupal::routeMatch()->getParameter('node')) {
@@ -222,7 +235,9 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
+ * Implements hook_theme_suggestions_container_alter.
+ *
+ * @inheritDoc
  */
 function atworknext_theme_suggestions_container_alter(array &$suggestions, array $variables) {
 	$suggestions[] = 'container__' . 'atwork';
@@ -343,3 +358,4 @@ function atworknext_theme_suggestions_alter(array &$suggestions, array &$variabl
     }
   }
 }
+

@@ -25,7 +25,10 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
   public function applies(RouteMatchInterface $attributes) {
     // Get all parameters.
     $parameters = $attributes->getParameters()->all();
-
+    // This is only for groups - so leave if this is not a group.
+    if (!isset($parameters['group'])) {
+      return FALSE;
+    }
     // Is this a view page for group content?
     if (isset($parameters['view_id']) && $parameters['view_id'] == 'related_content' && ($parameters['display_id'] == 'page_2' || $parameters['display_id'] == 'page_1')) {
       return TRUE;
@@ -37,7 +40,7 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
     }
 
     // Is this a group landing page?
-    if (isset($parameters['group']) && $parameters['group']->getGroupType()
+    if (isset($parameters['group']) &&  !is_string($parameters['group']) && $parameters['group']->getGroupType()
       ->id() == "atwork_groups") {
       return TRUE;
     }
