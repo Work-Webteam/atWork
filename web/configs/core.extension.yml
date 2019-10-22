@@ -37,7 +37,6 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
-  devel_entity_updates: 0
   devel_generate: 0
   draggable_dashboard: 0
   dynamic_page_cache: 0
@@ -45,7 +44,6 @@ module:
   embed: 0
   entity_embed: 0
   entity_reference_revisions: 0
-  externalauth: 0
   extrafield_views_integration: 0
   field: 0
   field_ui: 0
@@ -75,6 +73,7 @@ module:
   likeit: 0
   link: 0
   linkit: 0
+  maillog: 0
   mailsystem: 0
   maxlength: 0
   media: 0
@@ -152,10 +151,10 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
-  webprofiler: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1
+  externalauth: 10
   views: 10
   paragraphs: 11
   standard: 1000
