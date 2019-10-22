@@ -181,38 +181,3 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
 function atworknext_theme_suggestions_container_alter(array &$suggestions, array $variables) {
 	$suggestions[] = 'container__' . 'atwork';
 }
-
-/**
- * Implements hook_theme_suggestions_alter().
- */
-function atworknext_theme_suggestions_input__radio_alter(array &$suggestions, array $variables, $hook){
-  ///ksm($variables);
-  //ksm($hook);
-  //ksm($suggestions);
-}
-
-/**
- * Implements hook_theme_suggestions_alter().
- */
-function atworknext_theme_suggestions_input_alter(array &$suggestions, array $variables, $hook){
-  //ksm($variables);
-  //ksm($hook);
-  //ksm($suggestions);
-}
-
-/**
- * Implements hook_field_widget_multivalue_WIDGET_TYPE_form_alter().
- */
-function atwork_group_field_widget_multivalue_options_buttons_form_alter(array &$elements, \Drupal\Core\Form\FormStateInterface $form_state, array $context) {
-
-}
-
-function atwork_group_element_info_alter(array &$types) {
-  if (isset($types['radios'])) {
-    $types['radios']['#attached']['library'][] = 'atwork_group/atwork_group.js';
-    //ksm($types);
-  }
-}
-
-
-
