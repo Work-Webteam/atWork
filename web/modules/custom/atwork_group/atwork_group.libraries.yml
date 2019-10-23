@@ -1,5 +1,10 @@
 atwork-groups-form:
   version: 1.x
+  css:
+    layout:
+      css/atwork_group.css: {}
+    theme:
+      css/atwork_group.css: {}
   js:
     js/atwork_group.js: {}
   dependencies:

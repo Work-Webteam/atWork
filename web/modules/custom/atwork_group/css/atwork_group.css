@@ -1,0 +1,6 @@
+/* Group Admin screen - theme color swatch */
+#edit-field-themes--wrapper {
+  .group-swatch {
+    border: solid 1px red;
+  }
+}
