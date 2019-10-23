@@ -60,6 +60,9 @@ function atworknext_preprocess_group(&$variables) {
 	$linkObject = Link ::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
 	$variables['photos_link'] = $linkObject->toRenderable();
 
+  $linkObject = Link ::createFromRoute(t('Create Event'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_event']);
+  $variables['event_link'] = $linkObject->toRenderable();
+
 	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
 	$variables['join_link'] = $linkObject->toRenderable();
 
