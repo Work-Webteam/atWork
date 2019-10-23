@@ -10,7 +10,6 @@ use Drupal\group\Entity\GroupContent;
 use Drupal\group\Entity\Group;
 use Drupal\taxonomy\Entity\Term;
 
-
 /**
  * Define class and implement BreadcrumbBuilderInterface.
  */
@@ -166,7 +165,7 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       $forum = $route_match->getParameter('taxonomy_term');
       $breadcrumb->addLink(Link::createFromRoute($group->label(), 'entity.group.canonical', ['group' => $group->id()]));
 
-      // Add link to Forum Container if container has multiple forums
+      // Add link to Forum Container if container has multiple forums.
       if (empty($forum->forum_container->value)) {
         $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($forum->id());
         $parent = reset($parent);
@@ -191,7 +190,7 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       $forum_id = $topic->get('taxonomy_forums')->target_id;
       $term = Term::load($forum_id);
 
-      // Add link to Forum Container if container has multiple forums
+      // Add link to Forum Container if container has multiple forums.
       if (empty($term->forum_container->value)) {
         $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
         $parent = reset($parent);
@@ -202,7 +201,7 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
         }
       }
 
-      // Add link to forum breadcrumb
+      // Add link to forum breadcrumb.
       $breadcrumb->addLink(Link::createFromRoute($term->getName(), 'group.forum', ['group' => $group->id(), 'taxonomy_term' => $forum_id]));
     }
 

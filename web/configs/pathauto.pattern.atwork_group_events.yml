@@ -1,0 +1,22 @@
+uuid: 836a0e4c-212f-4dd6-98ee-2de2951f0056
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: atwork_group_events
+label: 'Atwork Group Events'
+type: 'canonical_entities:node'
+pattern: 'groups/[node:group:title]/events/[node:title]'
+selection_criteria:
+  6a348cc4-4b75-41fe-a062-32467c05b8dd:
+    id: node_type
+    bundles:
+      group_event: group_event
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 6a348cc4-4b75-41fe-a062-32467c05b8dd
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.group_post.body
     - field.field.node.group_post.comment
-    - field.field.node.group_post.field_display_title
     - field.field.node.group_post.field_image
     - field.field.node.group_post.field_interactive_content
     - field.field.node.group_post.field_send_notifications
@@ -111,7 +110,6 @@ content:
     third_party_settings: {  }
 hidden:
   comment: true
-  field_display_title: true
   path: true
   promote: true
   publish_on: true

@@ -75,11 +75,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  poll:
-    weight: 0
-    settings: {  }
-    third_party_settings: {  }
-    region: content
   poll_votes:
     weight: 4
     region: content
@@ -90,4 +85,3 @@ hidden:
   field_author_image: true
   field_author_information: true
   field_poll_publishing_date: true
-  search_api_excerpt: true

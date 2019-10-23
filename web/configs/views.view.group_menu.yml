@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.group.field_forum_containers
     - field.storage.group.field_group_menu_link
     - field.storage.group_content.group_roles
     - field.storage.user.field_company
@@ -11,7 +10,6 @@ dependencies:
     - field.storage.user.field_user_surname
     - user.role.administrator
   module:
-    - atwork_group
     - entity_reference_revisions
     - group
     - node
@@ -218,68 +216,6 @@ display:
           entity_type: group
           entity_field: label
           plugin_id: field
-        field_forum_containers:
-          id: field_forum_containers
-          table: group__field_forum_containers
-          field: field_forum_containers
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: group_forum_link
-          settings: {  }
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
       filters: {  }
       sorts: {  }
       title: 'Group Menu'
@@ -315,7 +251,7 @@ display:
           admin_label: 'View Content'
           empty: false
           tokenize: true
-          content: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n\t<div class=\"panel-heading\" role=\"tab\" id=\"heading-view-content\">\r\n\t<h4 class=\"panel-title\">\r\n\t  <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-view-content\" aria-expanded=\"false\" aria-controls=\"collapse-view-content\">\r\n\t    <div>View Group Content</div>\r\n\t  </a>\r\n\t</h4>\r\n\t</div>\r\n\t<div id=\"collapse-view-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-view-content\">\r\n\t    <div class=\"panel-body\">\r\n\t      <div><a href=\"/groups/{{ arguments.id }}/posts\"> Posts </a></div>\r\n\t    </div>\r\n\t    <div class=\"panel-body\">\r\n\t      <div><a href=\"/groups/{{ arguments.id }}/photos\"> Photo Galleries </a></div>\r\n\t    </div>\r\n\t    <div class=\"panel-body\">\r\n\t      <div>{{ field_forum_containers }}</div>\r\n\t    </div>\r\n\t</div>\r\n  </div>\r\n</div>"
+          content: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n\t<div class=\"panel-heading\" role=\"tab\" id=\"heading-view-content\">\r\n\t<h4 class=\"panel-title\">\r\n\t  <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-view-content\" aria-expanded=\"false\" aria-controls=\"collapse-view-content\">\r\n\t    <div>View Group Content</div>\r\n\t  </a>\r\n\t</h4>\r\n\t</div>\r\n\t<div id=\"collapse-view-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-view-content\">\r\n\t    <div class=\"panel-body\">\r\n\t      <div><a href=\"/groups/{{ arguments.id }}/posts\"> Posts </a></div>\r\n\t    </div>\r\n\t    <div class=\"panel-body\">\r\n\t      <div><a href=\"/groups/{{ arguments.id }}/photos\"> Photo Galleries </a></div>\r\n\t    </div>\r\n\t</div>\r\n  </div>\r\n</div>"
           plugin_id: text_custom
       footer: {  }
       empty: {  }
@@ -371,7 +307,6 @@ display:
         - url
         - url.query_args
       tags:
-        - 'config:field.storage.group.field_forum_containers'
         - 'config:field.storage.group.field_group_menu_link'
   attachment_1:
     display_plugin: attachment
@@ -1536,7 +1471,6 @@ display:
         - route
         - url
       tags:
-        - 'config:field.storage.group.field_forum_containers'
         - 'config:field.storage.group.field_group_menu_link'
   block_2:
     display_plugin: block

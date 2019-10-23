@@ -353,7 +353,13 @@ function atworknext_theme_suggestions_alter(array &$suggestions, array &$variabl
         $theme = $param->get('group')->get('field_themes')->getValue();
         // Add the users theme choice to the variables array so we can
         // use it in our template.
-        $variables['group_theme'] = $theme[0]['value'];
+        if (isset($theme[0]['value'])) {
+          $variables['group_theme'] = $theme[0]['value'];
+        } else {
+          // Use default if the user has not chosen anything yet - this
+          // should be the default choice.
+          $variables['group_theme'] = 'theme_default';
+        }
       }
     }
   }
