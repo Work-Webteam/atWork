@@ -16,7 +16,7 @@ mode: media_library
 content:
   thumbnail:
     type: image
-    label: above
+    label: hidden
     settings:
       image_style: article_hero_image
       image_link: ''

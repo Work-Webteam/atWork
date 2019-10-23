@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.background_page.body
     - field.field.node.background_page.field_development_tags
+    - field.field.node.background_page.field_display_title
     - field.field.node.background_page.field_header_image
     - field.field.node.background_page.field_program_ad_space
     - field.field.node.background_page.field_program_area_menu
@@ -182,4 +183,5 @@ content:
     third_party_settings: {  }
 hidden:
   field_development_tags: true
+  field_display_title: true
   field_program_ad_space: true

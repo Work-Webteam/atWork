@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.program_area_content.body
     - field.field.node.program_area_content.field_attachments
+    - field.field.node.program_area_content.field_display_title
     - field.field.node.program_area_content.field_image
     - field.field.node.program_area_content.field_interactive_content
     - field.field.node.program_area_content.field_parent_program
@@ -158,4 +159,5 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_display_title: true
   langcode: true

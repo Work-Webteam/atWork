@@ -1,0 +1,19 @@
+uuid: a98e8d1b-8134-4761-a3d3-b44e7beae9ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_title
+    - node.type.program_area_content
+id: node.program_area_content.field_display_title
+field_name: field_display_title
+entity_type: node
+bundle: program_area_content
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

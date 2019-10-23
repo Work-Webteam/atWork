@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.background_page.body
     - field.field.node.background_page.field_development_tags
+    - field.field.node.background_page.field_display_title
     - field.field.node.background_page.field_header_image
     - field.field.node.background_page.field_program_ad_space
     - field.field.node.background_page.field_program_area_menu
@@ -15,6 +16,7 @@ dependencies:
     - entity_reference_revisions
     - panelizer
     - text
+    - title_field_for_manage_display
     - user
 third_party_settings:
   panelizer:
@@ -30,23 +32,33 @@ content:
   body:
     label: hidden
     type: text_trimmed
-    weight: 1
+    weight: 2
     settings:
       trim_length: 300
     third_party_settings: {  }
     region: content
+  field_display_title:
+    type: title_value_field_formatter
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      tag: h1
+      linked: '1'
+      classes: ''
+    third_party_settings: {  }
   field_header_image:
     weight: 0
     label: hidden
     settings:
-      link: true
-      view_mode: default
+      view_mode: media_library
+      link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
   field_program_highlight:
     type: entity_reference_revisions_entity_view
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       view_mode: default
@@ -54,7 +66,7 @@ content:
     third_party_settings: {  }
     region: content
   field_program_topic_boxes:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       view_mode: default
@@ -62,24 +74,12 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
-  flag_email_node:
-    weight: 5
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
-    weight: 6
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  links:
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   field_development_tags: true
   field_program_ad_space: true
   field_program_area_menu: true
+  flag_email_node: true
+  flag_subscribe_node: true
   langcode: true
+  links: true
   search_api_excerpt: true

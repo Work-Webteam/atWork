@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.forum.body
     - field.field.node.forum.comment_forum
+    - field.field.node.forum.field_display_title
     - field.field.node.forum.taxonomy_forums
     - node.type.forum
   module:
@@ -114,4 +115,5 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_display_title: true
