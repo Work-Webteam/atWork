@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.group.field_forum_containers
     - field.storage.group.field_group_menu_link
+    - field.storage.group.field_themes
     - field.storage.group_content.group_roles
     - field.storage.user.field_company
     - field.storage.user.field_user_given_name
@@ -15,6 +16,7 @@ dependencies:
     - entity_reference_revisions
     - group
     - node
+    - options
     - user
 id: group_menu
 label: 'Group Menu'
@@ -2408,3 +2410,91 @@ display:
         - route
         - url
       tags: {  }
+  block_4:
+    display_plugin: block
+    id: block_4
+    display_title: 'Swatch Block'
+    position: 6
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      block_description: 'Grp Theme Swatch'
+      fields:
+        field_themes:
+          id: field_themes
+          table: group__field_themes
+          field: field_themes
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: 'Current theme: {{ field_themes }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      defaults:
+        fields: false
+        header: false
+        title: false
+      header: {  }
+      title: 'Group Theme'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - route
+        - url
+        - url.query_args
+      tags:
+        - 'config:field.storage.group.field_themes'

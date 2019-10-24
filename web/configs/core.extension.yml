@@ -152,7 +152,6 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
-  webprofiler: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1

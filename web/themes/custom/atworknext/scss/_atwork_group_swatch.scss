@@ -1,0 +1,83 @@
+form#group-atwork-groups-edit-form {
+  #edit-field-themes {
+    display: inline-flex;
+    flex-direction: row;
+    .form-item-field-themes:first-of-type {
+      display:none;
+    }
+    .form-item-field-themes {
+      flex-direction: column;
+      margin-right:10px;
+      width:120px;
+      background-color: #ECECEC;
+      border: solid 1px #999;
+      padding: 3px;
+    }
+    .group-swatch {
+      background-color:white;
+      display: flex;
+      flex-direction: column;
+      padding: 5px 3px 3px;
+      border: solid 1px #999;
+      .primary-col,
+      .secondary-col,
+      .link-col {
+        border-left: solid 25px;
+        margin-bottom: 5px;
+        padding-left: 5px;
+      }
+    }
+    .form-item-field-themes:nth-of-type(2) { // Default colour
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(138, 204, 207, 1);
+        }
+        .secondary-col {
+          border-color:rgba(51, 122, 183, 1);
+        }
+        .link-col {
+          border-color:rgba(58, 85, 193, 1);
+        }
+      }
+    }
+    .form-item-field-themes:nth-of-type(3) { // Bright colour
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(217,156,43, 1);
+        }
+        .secondary-col {
+          border-color:rgba(242,192,99, 1);
+        }
+        .link-col {
+          border-color:rgba(58, 85, 193, 1);
+        }
+      }
+    }
+    .form-item-field-themes:nth-of-type(4) { // Dark colour
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(24,55,95, 1);
+        }
+        .secondary-col {
+          border-color:rgba(77,127,174, 1);
+        }
+        .link-col {
+          border-color:rgba(58, 85, 193, 1);
+        }
+      }
+    }
+    .form-item-field-themes:nth-of-type(5) { // Muted
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(223,235,242, 1);
+        }
+        .secondary-col {
+          border-color:rgba(237,242,245, 1);
+        }
+        .link-col {
+          border-color:rgba(58, 85, 193, 1);
+        }
+      }
+    }
+  }
+}
