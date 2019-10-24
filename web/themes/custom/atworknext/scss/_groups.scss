@@ -253,3 +253,65 @@ article.forum.full {
 .theme_muted {
   @include theme_muted_set;
 }
+
+// Group Admin Front panel theme info
+#theme_dark,
+#theme_muted,
+#theme_bright,
+#theme_default {
+  text-align: center;
+  #sw-main,
+  #sw-second,
+  #sw-link {
+    display: inline-block;
+    width: 30%;
+    height:20px;
+  }
+}
+#theme_dark {
+  #sw-main {
+    background-color: $grp-deep-banner;
+  }
+  #sw-second {
+    background-color: $grp-deep-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_default {
+  #sw-main {
+    background-color: $grp-default-banner;
+  }
+  #sw-second {
+    background-color: $grp-default-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_bright {
+  #sw-main {
+    background-color: $grp-bright-banner;
+  }
+  #sw-second {
+    background-color: $grp-bright-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_muted {
+  #sw-main {
+    background-color: $grp-muted-banner;
+  }
+  #sw-second {
+    background-color: $grp-muted-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}

@@ -10740,6 +10740,78 @@ article.forum.full .content .indented:first-child {
   color: #333333;
 }
 
+#theme_dark,
+#theme_muted,
+#theme_bright,
+#theme_default {
+  text-align: center;
+}
+
+#theme_dark #sw-main,
+#theme_dark #sw-second,
+#theme_dark #sw-link,
+#theme_muted #sw-main,
+#theme_muted #sw-second,
+#theme_muted #sw-link,
+#theme_bright #sw-main,
+#theme_bright #sw-second,
+#theme_bright #sw-link,
+#theme_default #sw-main,
+#theme_default #sw-second,
+#theme_default #sw-link {
+  display: inline-block;
+  width: 30%;
+  height: 20px;
+}
+
+#theme_dark #sw-main {
+  background-color: #18375f;
+}
+
+#theme_dark #sw-second {
+  background-color: #4d7fae;
+}
+
+#theme_dark #sw-link {
+  background-color: #3a55c1;
+}
+
+#theme_default #sw-main {
+  background-color: #8acccf;
+}
+
+#theme_default #sw-second {
+  background-color: #337ab7;
+}
+
+#theme_default #sw-link {
+  background-color: #3a55c1;
+}
+
+#theme_bright #sw-main {
+  background-color: #d99c2b;
+}
+
+#theme_bright #sw-second {
+  background-color: #f2c063;
+}
+
+#theme_bright #sw-link {
+  background-color: #3a55c1;
+}
+
+#theme_muted #sw-main {
+  background-color: #dfebf2;
+}
+
+#theme_muted #sw-second {
+  background-color: #edf2f5;
+}
+
+#theme_muted #sw-link {
+  background-color: #3a55c1;
+}
+
 /* Site Wide Social Tags CSS */
 article .field--name-field-tags,
 body.path-poll .field--name-field-tags,
