@@ -1,13 +1,24 @@
 /**
  * @file
  * Fullcalendar View plugin JavaScript file.
+ *
+ * Originally from contrib fullcalendar_view/js/fullcalendar_view.js
+ * overriden in theme file atworknext.info.yml. Changes only
+ * take place in the dbl_click function.
  */
 
 (function($, Drupal) {
   Drupal.behaviors.fullcalendarView = {
-    attach: function(context, settings) {
-      console.log(settings);
-      console.log(drupalSettings);
+    attach: function (context, settings) {
+      // Fix the Add event link if this is a group.
+      if (drupalSettings.group_id) {
+        const group_url = drupalSettings.path.baseUrl +
+          "group/" +
+          drupalSettings.group_id +
+          "/content/create/group_node%3Agroup_event";
+        $("#calendar-add-event").attr("href", "/fullcalendar-view-event-add?entity=node&bundle=group_event&start_field=field_start&end_field=field_end&destination=" + group_url + "/groups/Vacations/calendar");
+      }
+      // Continue with original functionality.
       $('.js-drupal-fullcalendar', context)
         .once("absCustomBehavior")
         .each(function() {
@@ -93,9 +104,9 @@
                 drupalSettings.updateConfirm === 1 &&
                 !confirm(
                   title +
-                    " end is now " +
-                    event.end.format() +
-                    ". Do you want to save the change?"
+                  " end is now " +
+                  event.end.format() +
+                  ". Do you want to save the change?"
                 )
               ) {
                 revertFunc();
@@ -106,7 +117,7 @@
                 jQuery
                   .post(
                     drupalSettings.path.baseUrl +
-                      "fullcalendar-view-event-update",
+                    "fullcalendar-view-event-update",
                     {
                       eid: event.id,
                       entity_type: drupalSettings.entityType,
@@ -149,7 +160,7 @@
                 jQuery
                   .post(
                     drupalSettings.path.baseUrl +
-                      "fullcalendar-view-event-update",
+                    "fullcalendar-view-event-update",
                     {
                       eid: event.id,
                       entity_type: drupalSettings.entityType,
@@ -172,11 +183,11 @@
                 if (calEvent.url) {
                   if (drupalSettings.openEntityInNewTab) {
                     // Open a new window to show the details of the event.
-                   window.open(calEvent.url);
-                   return false;
+                    window.open(calEvent.url);
+                    return false;
                   }
                   else {
-                    // Open in same window
+                    // Open in same window.
                     return true;
                   }
                 }
@@ -214,16 +225,34 @@
               drupalSettings.addForm !== ""
             ) {
               const date = slotDate.format();
-              // Open a new window to create a new event (content).
-              window.open(
-                drupalSettings.path.baseUrl +
+              // If we are in a group, then we need a different url.
+              if(drupalSettings.group_id) {
+                const groupId = drupalSettings.group_id;
+                // Open a new window to create a new event (content).
+                window.open(
+                  drupalSettings.path.baseUrl +
+                  //drupalSettings.addForm +
+                  "group/" +
+                  groupId +
+                  "/content/create/group_node%3Agroup_event" +
+                  "?start=" +
+                  date +
+                  "&start_field=" +
+                  drupalSettings.startField,
+                  "_blank"
+                );
+                // Else regular functionality.
+              } else {
+                window.open(
+                  drupalSettings.path.baseUrl +
                   drupalSettings.addForm +
                   "?start=" +
                   date +
                   "&start_field=" +
                   drupalSettings.startField,
-                "_blank"
-              );
+                  "_blank"
+                );
+              }
             }
           });
         });

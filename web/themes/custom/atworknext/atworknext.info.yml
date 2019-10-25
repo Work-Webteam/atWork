@@ -22,5 +22,10 @@ libraries-extend:
   bootstrap/framework:
     - atworknext/framework
 
+libraries-override:
+  fullcalendar_view/fullcalendar:
+    js:
+      js/fullcalendar_view.js: js/atwork_group_fullcalendar_view.js
+
 ckeditor_stylesheets:
  - css/style.css
