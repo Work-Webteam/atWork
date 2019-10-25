@@ -94,7 +94,7 @@
   </div>
   <div{{ content_attributes.addClass('node_content', 'clearfix') }}>
     {{ content.body }}
-    <div>
+    <div {{ content_attributes.addClass('event_dates', 'clearfix') }}>
       <p>{{ content.field_start }}{{ content.field_end }}</p>
     </div>
     {{ content.field_tags }}

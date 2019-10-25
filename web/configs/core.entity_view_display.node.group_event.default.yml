@@ -32,7 +32,7 @@ content:
     region: content
   field_end:
     weight: 1
-    label: above
+    label: inline
     settings:
       format_type: medium
       timezone_override: ''
@@ -41,7 +41,7 @@ content:
     region: content
   field_start:
     weight: 0
-    label: above
+    label: inline
     settings:
       format_type: medium
       timezone_override: ''
