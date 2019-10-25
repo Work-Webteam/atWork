@@ -400,7 +400,6 @@ function atwork_group_views_post_render($view, &$output, $cache) {
     if (isset($view->field['id']->last_render_text) && $view->field['id']->getField() == '.id') {
       $group_id = $view->field['id']->last_render_text->__toString();
       $output['#attached']['drupalSettings']['group_id'] = $group_id;
-      $output['#attached']['library'][] = 'atwork_group/atwork-groups-form';
     }
   }
 }
