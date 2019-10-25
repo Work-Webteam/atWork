@@ -63,6 +63,11 @@ content:
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
+  flag_email_group:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   flag_email_groups:
     weight: 3
     region: content
