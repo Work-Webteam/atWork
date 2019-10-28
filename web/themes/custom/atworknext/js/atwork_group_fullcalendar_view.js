@@ -16,7 +16,7 @@
           "group/" +
           drupalSettings.group_id +
           "/content/create/group_node%3Agroup_event";
-        $("#calendar-add-event").attr("href", "/fullcalendar-view-event-add?entity=node&bundle=group_event&start_field=field_start&end_field=field_end&destination=" + group_url + "/groups/Vacations/calendar");
+        $("#calendar-add-event").attr("href", "/fullcalendar-view-event-add?entity=node&bundle=group_event&start_field=field_start&end_field=field_end&destination=" + group_url);
       }
       // Continue with original functionality.
       $('.js-drupal-fullcalendar', context)
