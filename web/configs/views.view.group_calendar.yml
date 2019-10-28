@@ -89,11 +89,13 @@ display:
           default_view: month
           firstDay: '0'
           nav_links: 1
+          timeFormat: 'H(:mm)'
           alloweventOverlap: 1
+          updateAllowed: 1
           updateConfirm: 1
           defaultLanguage: en
           languageSelector: 0
-          createEventLink: 1
+          createEventLink: 0
           openEntityInNewTab: 1
           tax_field: ''
           vocabularies: ''
@@ -108,8 +110,9 @@ display:
             photos: '#3a87ad'
             program_area_content: '#3a87ad'
             simplenews_issue: '#3a87ad'
-          business_start: '2019-10-23T08:00:00'
-          business_end: '2019-10-23T18:00:00'
+          business_start: '2019-10-28T08:00:00'
+          business_end: '2019-10-28T18:00:00'
+          excluding_dates: title
           bundle_type: group_event
           classes: ''
       row:

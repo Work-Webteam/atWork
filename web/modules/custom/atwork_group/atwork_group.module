@@ -369,29 +369,6 @@ function atworknext_theme_suggestions_alter(array &$suggestions, array &$variabl
   }
 }
 
-
-/**
- * Implements hook_views_data_alter().
- */
-function atwork_group_views_data_alter(array &$data) {
-  dsm($data);
-}
-
-/**
- * Implements hook_views_post_render().
- */
-function atwork_group_preprocess_views_view_field(&$variables) {
-  // We need to attach our own drupalSetting here for group Calendars.
-  //if(($view->id() !== null) && $view->id() == 'group_calendar'){
-
-  //}
-  if (isset($variables['view']) && $variables['view']->id() !== NULL && $variables['view']->id() == 'group_calendar') {
-    if (isset($variables['field']) && $variables['field']->getField() == ".id") {
-      $group_id = $variables['field']->getValue($variables['row']);
-    }
-  }
-}
-
 /**
  * Implements hook_views_post_render().
  */
