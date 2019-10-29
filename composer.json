@@ -103,6 +103,7 @@
         "drupal/focal_point": "^1.0",
         "drupal/forward": "^2.1",
         "drupal/fullcalendar_view": "^2.3",
+        "drupal/gforum": "^1.0@beta",
         "drupal/group": "^1.0",
         "drupal/h5p": "^1.0@RC",
         "drupal/image_widget_crop": "^2.2",
@@ -223,6 +224,9 @@
 	    "drupal/mimemail": {
 	        "Implements send mail function for mimemail plugin": "https://www.drupal.org/files/issues/2018-07-25/2938963-10.patch"
 	    },
+      "drupal/poll": {
+        "Resolves Vote form/Results field ordering issue": "https://www.drupal.org/files/issues/2019-09-18/poll-manage-display-fix.patch"
+      },
 	    "drupal/group": {
 	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
 	    },

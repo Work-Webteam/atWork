@@ -4,7 +4,9 @@ use Drupal\group\Entity\GroupContent;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\group\Entity\Group;
-
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Entity\ContentEntityInterface;
+use \Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -58,6 +60,9 @@ function atworknext_preprocess_group(&$variables) {
 
 	$linkObject = Link ::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
 	$variables['photos_link'] = $linkObject->toRenderable();
+
+  $linkObject = Link ::createFromRoute(t('Create Event'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_event']);
+  $variables['event_link'] = $linkObject->toRenderable();
 
 	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
 	$variables['join_link'] = $linkObject->toRenderable();
@@ -119,6 +124,7 @@ function atworknext_preprocess_container__atwork(&$variables) {
  * @inheritDoc
  */
 function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
   if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
 	}
@@ -131,6 +137,22 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
 	  $form['path']['#access'] = FALSE;
 	  $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
 	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_create_submit';
+	}
+
+	if ($form_id == 'node_forum_form') {
+		foreach (array_keys($form['actions']) as $action) {
+			if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+				$form['actions'][$action]['#submit'][] = 'atwork_group_forum_topic_submit';
+			}
+		}
+	}
+
+	if ($form_id == 'comment_comment_forum_form') {
+		foreach (array_keys($form['actions']) as $action) {
+			if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+				$form['actions'][$action]['#submit'][] = 'atwork_group_forum_comment_submit';
+			}
+		}
 	}
 	if ($form_id == 'group_atwork_groups_edit_form') {
     $form['#attached']['library'][] = 'atwork_group/atwork-groups-form';
@@ -174,6 +196,37 @@ function atwork_group_join_group_submit(array $form, FormStateInterface $form_st
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_presave
+ *
+ * creates container and forum for group and attaches container to new group
+ */
+function atwork_group_group_presave(Drupal\Core\Entity\EntityInterface $entity) {
+
+  if ($entity->isNew()) {
+    // Add a container.
+    $container = Term::create([
+      'name' => $entity->label->value . " Forum",
+      'vid' => 'forums',
+      'forum_container' => 1,
+    ]);
+    $container->enforceIsNew();
+    $container->save();
+
+    // Add a forum.
+    $forum = Term::create([
+      'name' => 'General Discussion',
+      'vid' => 'forums',
+      'forum_container' => 0,
+      'parent' => $container->tid->value,
+    ]);
+    $forum->enforceIsNew();
+    $forum->save();
+
+    $entity->set('field_forum_containers', [$container->tid->value]);
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
  * @inheritDoc
@@ -193,3 +246,138 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
 function atworknext_theme_suggestions_container_alter(array &$suggestions, array $variables) {
 	$suggestions[] = 'container__' . 'atwork';
 }
+
+
+/*
+ * Implements hook_preprocess_forum_list()
+ *
+ * replaces forum link if we are in a group.
+ *
+ */
+function atwork_group_preprocess_forum_list(&$variables) {
+
+  $group = \Drupal::routeMatch()->getParameter('group');
+  if ($group) {
+    foreach($variables['forums'] as $id => $forum) {
+      $variables['forums'][$id]->link = \Drupal\Core\Url::fromRoute('group.forum', ['group' => $group->id(), 'taxonomy_term' => $id]);
+    }
+  }
+}
+
+/*
+ * Implements hook_preprocess_forums()
+ *
+ * replaces topic link if we are in a group.
+ *
+ */
+function atwork_group_preprocess_forums(&$variables) {
+
+  $group = \Drupal::routeMatch()->getParameter('group');
+  if ($group) {
+		if (isset($variables['topics']['#rows'])) {
+    	$rows = $variables['topics']['#rows'];
+    	foreach ($rows as $id => $row) {
+      	$html = $row[0]['data'][1]['#markup'];
+      	$rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/topic/', '<a href="/group/'.$group->id().'/topic/', $html);
+    	}
+    	$variables['topics']['#rows'] = $rows;
+		}
+  }
+}
+
+function atwork_group_forum_topic_submit($form, FormStateInterface $form_state) {
+
+  $node_id = $form_state->getValue("nid");
+
+  // redirect if this is a group forum topic
+  $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
+	$group_id = _atwork_group_extract_group($previousUrl);
+	if ($group_id > 0) {
+    $form_state->setRedirect('group.forum.topic',	['group' => $group_id, 'node' => $node_id]);
+  }
+}
+
+
+function atwork_group_forum_comment_submit($form, FormStateInterface $form_state) {
+
+	$route_params = $form_state->getRedirect()->getRouteParameters();
+	$node_id = $route_params['node'];
+
+  // redirect if this is a group forum reply (comment)
+  $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
+	$group_id = _atwork_group_extract_group($previousUrl);
+	if ($group_id > 0) {
+    $form_state->setRedirect('group.forum.topic',	['group' => $group_id, 'node' => $node_id]);
+  }
+}
+
+function _atwork_group_extract_group($url) {
+	$parts = explode("/", $url);
+	$group_id = 0;
+	foreach ($parts as $key => $value) {
+		if ($value == "group") {
+			$group_id = $parts[$key+1];
+		}
+	}
+	return $group_id;
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * atwork_group is moved to last in the hook order to ensure this module's forum topic redirect
+ * overrides the group module redirect.
+ *
+ */
+function atwork_group_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['atwork_group'];
+    unset($implementations['atwork_group']);
+    $implementations['atwork_group'] = $group;
+	}
+}
+/**
+ * Implements hook_theme_suggestions_alter
+ *
+ * @param array $suggestions
+ * @param array $variables
+ * @param $hook
+ */
+function atworknext_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
+  // Check that we are in the right region.
+  if($hook == 'region' && in_array('region__sidebar_nav', $suggestions)) {
+    // If there is a groupadmin variable, we know we are in a group.
+    if(in_array('groupadmin', $variables['elements'])) {
+      // grab parameters from the URI.
+      $request = \Drupal::routeMatch();
+      $param = $request->getParameters();
+      // Again, check that we have an actual group.
+      if($param->has('group')) {
+        // Load the group field value for the themes select field.
+        $theme = $param->get('group')->get('field_themes')->getValue();
+        // Add the users theme choice to the variables array so we can
+        // use it in our template.
+        if (isset($theme[0]['value'])) {
+          $variables['group_theme'] = $theme[0]['value'];
+        } else {
+          // Use default if the user has not chosen anything yet - this
+          // should be the default choice.
+          $variables['group_theme'] = 'theme_default';
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_post_render().
+ */
+function atwork_group_views_post_render($view, &$output, $cache) {
+  if($view->id() == 'group_calendar'){
+    if (isset($view->field['id']->last_render_text) && $view->field['id']->getField() == '.id') {
+      $group_id = $view->field['id']->last_render_text->__toString();
+      $output['#attached']['drupalSettings']['group_id'] = $group_id;
+    }
+  }
+}
+

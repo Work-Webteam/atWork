@@ -243,7 +243,7 @@
         width:215px;
         margin-bottom:10px;
         background-color: $comment-blue;
-        border:solid 1px $mtBlue2;
+        border:solid 1px lighten($button-hover, 35%);
         .all-post-title {
           h5 {
             margin:5px 10px 0px;
@@ -295,7 +295,7 @@
       padding-left:0px;
       padding-right:0px;
       h2.block-title {
-        background-color: $mtTeal;
+        background-color: $grp-default-banner;
         color:$white;
         padding:8px 10px 5px;
         margin:10px 0 0;
@@ -443,7 +443,7 @@
 }
 @mixin j42 {
   aside {
-    background-color: $mtBlue2;
+    background-color: lighten($banner-blue, 50%);
     .profile-img {
       border: solid 2px $exec-greyborder;
       background-color: $white;
@@ -456,6 +456,164 @@
     .profile-img {
       border: solid 2px $exec-greyborder;
       background-color: $white;
+    }
+  }
+}
+
+
+// Group Theme Colours
+
+@mixin theme_default_set {
+  p a {
+    color: $grp-default-link;
+  }
+  .group-title-banner h1 {
+    background-color: $grp-default-banner;
+    color: #4e4e4e;
+  }
+  .field--name-field-group.field--type-image img {
+    border-bottom:solid 8px $grp-default-banner;
+  }
+  .field--name-field-group-highlight > div:nth-child(1) {
+    background-color: $grp-default-banner!important;
+    color: #4e4e4e;
+  }
+  section#block-groupadmin > h2,
+  section#block-views-block-group-menu-block-1 h3.block-title,
+  section#block-views-block-group-menu-block-3 h2.block-title {
+     background-color: $grp-default-banner;
+     color: #4e4e4e;
+  }
+  section#block-groupadmin > h2 a.btn-primary {
+    background-color: $grp-default-btn;
+    border-right: solid 1px #4e4e4e;
+    color: $white;
+  }
+  .group-join, .group-leave {
+    background-color: $grp-default-btn;
+    border-left: solid 1px #4e4e4e;
+    a {
+      color: $white;
+    }
+  }
+}
+
+@mixin theme_deep_set {
+  p a {
+    color: $grp-deep-link;
+  }
+  .group-title-banner h1 {
+    background-color: $grp-deep-banner;
+    color: $white;
+  }
+  .field--name-field-group.field--type-image img {
+    border-bottom:solid 8px $grp-deep-banner;
+  }
+  .field--name-field-group-highlight {
+    > div:nth-child(1) {
+      background-color: $grp-deep-banner!important;
+      color: $white;
+    }
+    .field--label {
+      font-weight: normal;
+    }
+  }
+  section#block-groupadmin > h2,
+  section#block-views-block-group-menu-block-1 h3.block-title,
+  section#block-views-block-group-menu-block-3 h2.block-title {
+     background-color: $grp-deep-banner;
+     color: $white;
+  }
+  section#block-groupadmin > h2 a.btn-primary {
+    background-color: $grp-deep-btn;
+    border-right: solid 1px lightsteelblue;
+    color: $white;
+  }
+  .group-join, .group-leave {
+    background-color: $grp-deep-btn;
+    border-left: solid 1px lightsteelblue;
+    a {
+      color: $white;
+    }
+  }
+}
+
+@mixin theme_bright_set {
+  p a {
+    color: $grp-deep-link;
+  }
+  .group-title-banner h1 {
+    background-color: $grp-bright-btn;
+    color: $text;
+  }
+  .field--name-field-group.field--type-image img {
+    border-bottom:solid 8px $grp-bright-banner;
+  }
+  .field--name-field-group-highlight {
+    > div:nth-child(1) {
+      background-color: $grp-bright-btn!important;
+      color: $text;
+    }
+    .field--label {
+      font-weight: normal;
+    }
+  }
+  section#block-groupadmin > h2,
+  section#block-views-block-group-menu-block-1 h3.block-title,
+  section#block-views-block-group-menu-block-3 h2.block-title {
+     background-color: $grp-bright-btn;
+     color: $text;
+  }
+  section#block-groupadmin > h2 a.btn-primary {
+    background-color: $grp-bright-banner;
+    border-right: solid 1px black;
+    color: $grp-bright-blue;
+  }
+  .group-join, .group-leave {
+    background-color: $grp-bright-banner;
+    border-left: solid 1px black;
+    a {
+      color: $grp-bright-blue;
+    }
+  }
+}
+
+@mixin theme_muted_set {
+  p a {
+    color: $grp-deep-link;
+  }
+  .group-title-banner h1 {
+    background-color: $grp-muted-banner;
+    color: $text;
+  }
+  .field--name-field-group.field--type-image img {
+    border-bottom:solid 8px $grp-muted-banner;
+  }
+  .field--name-field-group-highlight {
+    > div:nth-child(1) {
+      background-color: $grp-muted-banner!important;
+      color: $text;
+    }
+    .field--label {
+      font-weight: normal;
+    }
+  }
+  section#block-groupadmin > h2,
+  section#block-views-block-group-menu-block-1 h3.block-title,
+  section#block-views-block-group-menu-block-3 h2.block-title {
+     background-color: $grp-muted-banner;
+     color: $text;
+  }
+  section#block-groupadmin > h2 a.btn-primary {
+    background-color: $grp-muted-btn;
+    border-right: solid 1px black;
+    color: $text;
+  }
+  .group-join, .group-leave {
+    background-color: $grp-muted-btn;
+    border-left: solid 1px black;
+    a {
+      color: $text;
     }
   }
 }

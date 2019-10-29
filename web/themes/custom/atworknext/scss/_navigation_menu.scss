@@ -238,7 +238,7 @@ body.page-node-type-program-area-content {
     padding-right:0px;
     @include size1416;
     .draggable-dashboard-block__header {
-      border-bottom:solid 1px #999;
+      border-bottom:solid 1px lighten($button-hover, 35%);
     }
     .group-side-menu,
     section#block-programareamenu {
@@ -247,20 +247,24 @@ body.page-node-type-program-area-content {
       margin-bottom:5px;
       padding:5px;
       h3, h3.block-title {
-        background-color: $mtTeal;
         color:$white;
         text-align: center;
-        padding:7px 0;
+        padding:9px 0;
         margin:0 0 10px 0;
         font-weight: normal;
         text-transform: uppercase;
         border-bottom:solid 2px #999;
+        @include size1416;
       }
       #accordion.panel-group {
         margin-bottom: 5px;
+        .panel {
+          background-color:$exec-greyborder;
+        }
         h4.panel-title {
           padding: 5px 10px;
           border-bottom:solid 1px #999;
+          @include size1416;
           .caret {
             display:block;
             float:right;
@@ -268,12 +272,16 @@ body.page-node-type-program-area-content {
           }
         }
         .panel-body {
-          border:solid 1px $exec-greyborder;
+          border-left:solid 1px $exec-greyborder;
+          border-top:solid 1px $exec-greyborder;
+          border-bottom: solid 1px #999;
+          border-right:solid 1px #999;
+          background-color: $white;
           margin:5px;
           padding:0px;
           a {
             display:block;
-            padding:10px;
+            padding:5px;
             &:hover {
               background-color:$banner-blue;
               color:$white;
