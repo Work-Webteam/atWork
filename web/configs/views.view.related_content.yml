@@ -16,6 +16,7 @@ dependencies:
     - node.type.page
     - node.type.photos
   module:
+    - comment
     - group
     - image
     - media
@@ -2294,6 +2295,16 @@ display:
             'group_node:page': '0'
           entity_type: node
           plugin_id: group_content_to_entity_reverse
+        comment_forum_cid:
+          id: comment_forum_cid
+          table: node_field_data
+          field: comment_forum_cid
+          relationship: none
+          group_type: group
+          admin_label: Comments
+          required: false
+          entity_type: node
+          plugin_id: standard
       filters: {  }
       filter_groups:
         operator: AND

@@ -43,7 +43,7 @@ section#block-views-block-comments-new-block-1 {
     > #comment-count { // Comment count SVG graphic bubble
       display: inline-block;
       width:auto;
-      padding:10px 10px 15px;
+      padding:15px;
       margin-left: 15px;
       color:$white;
       background-image:url("../images/text-bubble.svg");
@@ -125,6 +125,7 @@ article.forum {
     height:60px;
     overflow: hidden;
     border-radius: 50%;
+    margin: 0 auto;
   }
   .indented {
     display: flexbox;

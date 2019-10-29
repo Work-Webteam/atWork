@@ -107,9 +107,10 @@ article .social-bar,
           margin-right: 10px;
         }
       }
-    }
+    } 
   }
 }
+
 body.path-group { // Adds subscription icon to the Group Subscription link.
   .flag-subscribe-group:before {
     display: block;
@@ -120,7 +121,7 @@ body.path-group { // Adds subscription icon to the Group Subscription link.
     margin-top: 2px;
   }
 }
-.form-group #comment-links {
+.form-group #comment-links, .forum.full .list-inline {
   padding-left: 75px;
   padding-top:12px;
   margin-right: 0px;
