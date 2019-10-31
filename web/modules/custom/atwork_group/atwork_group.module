@@ -6,6 +6,7 @@ use Drupal\Core\Link;
 use Drupal\group\Entity\Group;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Entity\ContentEntityInterface;
+use \Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -59,6 +60,9 @@ function atworknext_preprocess_group(&$variables) {
 
 	$linkObject = Link ::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
 	$variables['photos_link'] = $linkObject->toRenderable();
+
+  $linkObject = Link ::createFromRoute(t('Create Event'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_event']);
+  $variables['event_link'] = $linkObject->toRenderable();
 
 	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
 	$variables['join_link'] = $linkObject->toRenderable();
@@ -353,8 +357,26 @@ function atworknext_theme_suggestions_alter(array &$suggestions, array &$variabl
         $theme = $param->get('group')->get('field_themes')->getValue();
         // Add the users theme choice to the variables array so we can
         // use it in our template.
-        $variables['group_theme'] = $theme[0]['value'];
+        if (isset($theme[0]['value'])) {
+          $variables['group_theme'] = $theme[0]['value'];
+        } else {
+          // Use default if the user has not chosen anything yet - this
+          // should be the default choice.
+          $variables['group_theme'] = 'theme_default';
+        }
       }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_post_render().
+ */
+function atwork_group_views_post_render($view, &$output, $cache) {
+  if($view->id() == 'group_calendar'){
+    if (isset($view->field['id']->last_render_text) && $view->field['id']->getField() == '.id') {
+      $group_id = $view->field['id']->last_render_text->__toString();
+      $output['#attached']['drupalSettings']['group_id'] = $group_id;
     }
   }
 }

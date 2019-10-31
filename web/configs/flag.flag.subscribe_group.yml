@@ -7,7 +7,7 @@ dependencies:
     - message_subscribe_ui
 third_party_settings:
   message_subscribe_ui:
-    view_name: 'subscribe_node_email:default'
+    view_name: 'subscribe_group_email:default'
 id: subscribe_group
 label: Group
 bundles: {  }

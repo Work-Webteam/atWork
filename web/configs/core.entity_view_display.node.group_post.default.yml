@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_display.comment.comment.default
     - field.field.node.group_post.body
     - field.field.node.group_post.comment
-    - field.field.node.group_post.field_display_title
     - field.field.node.group_post.field_image
     - field.field.node.group_post.field_interactive_content
     - field.field.node.group_post.field_send_notifications
@@ -107,6 +106,4 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_display_title: true
   langcode: true
-  search_api_excerpt: true

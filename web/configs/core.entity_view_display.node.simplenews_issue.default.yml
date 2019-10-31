@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.simplenews_issue.field_articles
     - field.field.node.simplenews_issue.field_comments
     - field.field.node.simplenews_issue.field_did_you_know
-    - field.field.node.simplenews_issue.field_display_title
     - field.field.node.simplenews_issue.field_group_posts
     - field.field.node.simplenews_issue.field_take_note
     - field.field.node.simplenews_issue.simplenews_issue
@@ -87,7 +86,6 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
-  field_display_title: true
   langcode: true
   search_api_excerpt: true
   simplenews_issue: true

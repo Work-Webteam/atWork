@@ -2,10 +2,12 @@ core: 8.x
 type: theme
 base theme: bootstrap
 
+#Define theme.
 name: 'atworknext'
 description: 'Uses the Bootstrap framework Sass source files and must be compiled (not for beginners).'
 package: 'Bootstrap'
 
+#Define regions#
 regions:
   navigation: 'Navigation'
   navigation_collapsible: 'Navigation (Collapsible)'
@@ -22,5 +24,12 @@ libraries-extend:
   bootstrap/framework:
     - atworknext/framework
 
+# we need to override the js from fullcalendar_view to make it work with groups.
+libraries-override:
+  fullcalendar_view/fullcalendar:
+    js:
+      js/fullcalendar_view.js: js/atwork_group_fullcalendar_view.js
+
+#Custom styling for ckeditor.
 ckeditor_stylesheets:
  - css/style.css
