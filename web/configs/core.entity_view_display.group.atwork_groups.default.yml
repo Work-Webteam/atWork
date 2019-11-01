@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.group.atwork_groups.field_dev_tag
+    - field.field.group.atwork_groups.field_forum_containers
     - field.field.group.atwork_groups.field_group
     - field.field.group.atwork_groups.field_group_ad_space
     - field.field.group.atwork_groups.field_group_description
@@ -64,10 +65,10 @@ content:
     settings: {  }
     third_party_settings: {  }
   flag_email_group:
-    weight: 10
+    weight: 8
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   flag_email_groups:
     weight: 3
     region: content
@@ -90,6 +91,7 @@ hidden:
   changed: true
   created: true
   field_dev_tag: true
+  field_forum_containers: true
   field_group_ad_space: true
   field_group_menu_link: true
   langcode: true

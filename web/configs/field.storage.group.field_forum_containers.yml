@@ -1,0 +1,20 @@
+uuid: 7733a783-6a7a-469e-988e-b8e6b2103f50
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+    - taxonomy
+id: group.field_forum_containers
+field_name: field_forum_containers
+entity_type: group
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
