@@ -1,0 +1,5 @@
+name: Atwork Photos
+type: module
+description: Customizations to extend the Photos module to work with Groups.
+package: Custom
+core: 8.x

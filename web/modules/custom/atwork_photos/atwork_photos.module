@@ -1,0 +1,10 @@
+<?php
+
+function atwork_photos_photos_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  drupal_set_message("atwork_photos_photos_presave");
+  if ($entity->isNew()) {
+		drupal_set_message("we are here");
+		// determine what group we are in
+		// add group id to group reference field
+	}
+}
