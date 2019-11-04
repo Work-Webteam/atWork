@@ -22,6 +22,7 @@ permissions:
   - 'cast rate vote on poll of poll'
   - 'create article content'
   - 'create atwork_groups group'
+  - 'create forum content'
   - 'edit own comments'
   - 'flag email_node'
   - 'flag email_term'
