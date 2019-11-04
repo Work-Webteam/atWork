@@ -279,6 +279,8 @@ function atwork_group_preprocess_forums(&$variables) {
     	foreach ($rows as $id => $row) {
       	$html = $row[0]['data'][1]['#markup'];
       	$rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/topic/', '<a href="/group/'.$group->id().'/topic/', $html);
+				// add search and replace on url containing /node. originally the url was /topic but was changed to /node. keeping the orginal in the event it is changed back.
+        $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/node/', '<a href="/group/'.$group->id().'/topic/', $html);
     	}
     	$variables['topics']['#rows'] = $rows;
 		}
@@ -380,4 +382,3 @@ function atwork_group_views_post_render($view, &$output, $cache) {
     }
   }
 }
-
