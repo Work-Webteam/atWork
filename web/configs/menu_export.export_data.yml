@@ -116,12 +116,12 @@
   rediscover:
     value: '1'
   weight:
-    value: '-69'
+    value: '-70'
   expanded:
     value: '1'
   parent: false
   changed:
-    value: '1566497930'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -159,13 +159,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-70'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -203,12 +203,12 @@
   rediscover:
     value: '1'
   weight:
-    value: '-66'
+    value: '-69'
   expanded:
     value: '1'
   parent: false
   changed:
-    value: '1566497930'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -289,12 +289,12 @@
   rediscover:
     value: '1'
   weight:
-    value: '-69'
+    value: '-66'
   expanded:
     value: '1'
   parent: false
   changed:
-    value: '1566497930'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -464,13 +464,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-69'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -508,13 +508,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-68'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -552,13 +552,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-67'
+    value: '-68'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -596,13 +596,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-67'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -640,13 +640,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-65'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -684,13 +684,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-64'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:80448cac-4611-4f8b-b792-819e5923fbfc'
   changed:
-    value: '1566497787'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -728,13 +728,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-49'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -772,13 +772,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-71'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -816,13 +816,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-47'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -860,13 +860,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-46'
+    value: '-68'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -904,13 +904,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-66'
+    value: '-67'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -940,7 +940,7 @@
   menu_name:
     value: main
   link:
-    uri: 'internal:#'
+    uri: 'internal:/forum'
     title: ''
     options: {  }
   external:
@@ -954,14 +954,15 @@
   parent:
     value: 'menu_link_content:d97f0c6b-1245-4eef-9f95-99b58ea7d6e3'
   changed:
-    value: '1566497787'
+    value: '1570560937'
   default_langcode:
     value: '1'
   revision_default:
     value: '1'
   revision_translation_affected:
     value: '1'
-  view_mode: false
+  view_mode:
+    value: default
 24:
   id:
     value: '24'
@@ -1212,13 +1213,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-69'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:e201a5a4-553d-474c-a983-7a800167b089'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -1256,13 +1257,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:e201a5a4-553d-474c-a983-7a800167b089'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -1300,13 +1301,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-71'
+    value: '-68'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:e201a5a4-553d-474c-a983-7a800167b089'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -1344,13 +1345,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-67'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:e201a5a4-553d-474c-a983-7a800167b089'
   changed:
-    value: '1566497787'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -1388,13 +1389,12 @@
   rediscover:
     value: '1'
   weight:
-    value: '-66'
+    value: '-65'
   expanded:
     value: '1'
-  parent:
-    value: 'menu_link_content:e201a5a4-553d-474c-a983-7a800167b089'
+  parent: false
   changed:
-    value: '1565820938'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -1829,13 +1829,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:68181139-1e49-483f-a996-b6485cc99f82'
   changed:
-    value: '1565820938'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -1873,13 +1873,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:68181139-1e49-483f-a996-b6485cc99f82'
   changed:
-    value: '1565820938'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -1917,13 +1917,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:68181139-1e49-483f-a996-b6485cc99f82'
   changed:
-    value: '1565820938'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -1961,13 +1961,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-65'
+    value: '-68'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:68181139-1e49-483f-a996-b6485cc99f82'
   changed:
-    value: '1566497787'
+    value: '1567029063'
   default_langcode:
     value: '1'
   revision_default:
@@ -2005,13 +2005,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:8b6be798-ca21-44b4-b835-902613825137'
   changed:
-    value: '1565820938'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2049,13 +2049,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-64'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:8b6be798-ca21-44b4-b835-902613825137'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2445,13 +2445,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-70'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2489,13 +2489,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-69'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2533,13 +2533,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-68'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2577,13 +2577,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:a1eae552-295d-4e0f-b17e-6d92331f4983'
   changed:
-    value: '1565820938'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2621,13 +2621,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:a1eae552-295d-4e0f-b17e-6d92331f4983'
   changed:
-    value: '1565820938'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2665,13 +2665,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-68'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:a1eae552-295d-4e0f-b17e-6d92331f4983'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2841,13 +2841,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:9f4342fb-e573-4a28-ab23-638e47cf8645'
   changed:
-    value: '1565820938'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2885,13 +2885,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '0'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:9f4342fb-e573-4a28-ab23-638e47cf8645'
   changed:
-    value: '1565820938'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2929,13 +2929,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-66'
+    value: '-69'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:9f4342fb-e573-4a28-ab23-638e47cf8645'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -2973,12 +2973,12 @@
   rediscover:
     value: '1'
   weight:
-    value: '-70'
+    value: '-71'
   expanded:
     value: '1'
   parent: false
   changed:
-    value: '1566497930'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:
@@ -3016,13 +3016,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-70'
+    value: '-68'
   expanded:
     value: '0'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566497787'
+    value: '1566512795'
   default_langcode:
     value: '1'
   revision_default:

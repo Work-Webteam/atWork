@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.group.field_group
+    - image.style.highlight_image
     - image.style.medium
   module:
     - group
@@ -536,8 +537,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
-            image_link: content
+            image_style: highlight_image
+            image_link: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
@@ -768,8 +769,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
-            image_link: content
+            image_style: highlight_image
+            image_link: ''
           group_column: ''
           group_columns: {  }
           group_rows: true
