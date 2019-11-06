@@ -1,0 +1,11 @@
+uuid: 2721b0db-1176-4466-825f-757213180afe
+langcode: en
+status: false
+dependencies: {  }
+id: views_page---site_search__page_1_uid
+display_id: views_page---site_search__page_1
+field_identifier: uid
+default_sort: false
+default_order: asc
+label: uid
+weight: 0

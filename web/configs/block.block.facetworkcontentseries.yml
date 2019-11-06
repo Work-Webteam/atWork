@@ -1,0 +1,29 @@
+uuid: 6e4ec08a-5a23-4b3a-b63a-24a00e0d35ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.facet_work_content_series
+  module:
+    - facets
+    - system
+  theme:
+    - atworknext
+id: facetworkcontentseries
+theme: atworknext
+region: sidebar_nav
+weight: -8
+provider: null
+plugin: 'facet_block:facet_work_content_series'
+settings:
+  id: 'facet_block:facet_work_content_series'
+  label: '@Work Series'
+  provider: facets
+  label_display: visible
+  block_id: facetworkcontentseries
+visibility:
+  request_path:
+    id: request_path
+    pages: "/search\r\n/search/*"
+    negate: false
+    context_mapping: {  }
