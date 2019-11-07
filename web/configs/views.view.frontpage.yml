@@ -9,7 +9,6 @@ dependencies:
     - field.storage.node.field_image
     - field.storage.node.field_video
     - image.style.highlight_image
-    - image.style.medium
     - node.type.article
     - node.type.background_page
     - node.type.forum
@@ -544,8 +543,8 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: medium
-            image_link: content
+            image_style: highlight_image
+            image_link: ''
           group_column: ''
           group_columns: {  }
           group_rows: true

@@ -1,6 +1,6 @@
 uuid: 16229818-47f4-42d6-868b-b8375ab0df86
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.comments_new
