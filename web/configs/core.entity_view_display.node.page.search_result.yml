@@ -1,26 +1,30 @@
-uuid: 1304b4e6-afc6-48c8-967e-58eea7f59880
+uuid: a5a3a676-6ffa-4383-b7fc-ac52415c748a
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
-    - field.field.node.event.body
-    - node.type.event
+    - core.entity_view_mode.node.search_result
+    - field.field.node.page.body
+    - field.field.node.page.field_editor_tags
+    - field.field.node.page.field_tags
+    - node.type.page
   module:
     - text
     - user
-id: node.event.teaser
+_core:
+  default_config_hash: gTB0Aw9yfUPvjMd_Pznb33eEqIGHqNQb5JtR3jZ18TE
+id: node.page.search_result
 targetEntityType: node
-bundle: event
-mode: teaser
+bundle: page
+mode: search_result
 content:
   body:
-    label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 100
     settings:
-      trim_length: 600
+      trim_length: 300
     third_party_settings: {  }
+    label: hidden
     region: content
   flag_email_node:
     weight: 10
@@ -33,12 +37,12 @@ content:
     third_party_settings: {  }
     region: content
   links:
-    weight: 100
+    weight: 101
     settings: {  }
     third_party_settings: {  }
     region: content
 hidden:
-  field_end: true
-  field_start: true
+  field_editor_tags: true
+  field_tags: true
   langcode: true
   search_api_excerpt: true

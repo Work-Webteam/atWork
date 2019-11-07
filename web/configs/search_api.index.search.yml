@@ -2,18 +2,26 @@ uuid: b10ba57c-9cc7-4479-bf83-6b7af837964e
 langcode: en
 status: true
 dependencies:
+  module:
+    - search_api_solr
+    - node
+    - comment
+    - search_api
+    - search_api_attachments
+    - file
+    - group
+    - taxonomy
   config:
-    - field.storage.node.field_article_type
-    - field.storage.node.field_attachments
-    - field.storage.node.field_author_information
     - field.storage.node.body
     - field.storage.node.comment
     - field.storage.node.comment_forum
     - field.storage.node.comment_photos
+    - field.storage.node.field_article_type
+    - field.storage.node.field_attachments
+    - field.storage.node.field_author_information
     - field.storage.node.field_custom_teaser
     - field.storage.node.field_development_tags
     - field.storage.node.field_editor_tags
-    - field.storage.node.taxonomy_forums
     - field.storage.node.field_image
     - field.storage.node.field_parent_program
     - field.storage.node.field_program_ad_space
@@ -21,11 +29,46 @@ dependencies:
     - field.storage.node.field_send_notifications
     - field.storage.node.field_tags
     - field.storage.node.field_video
-    - search_api.server.pantheon
-  module:
-    - node
-    - search_api
-    - search_api_attachments
+    - field.storage.node.taxonomy_forums
+    - search_api.server.atwork
+third_party_settings:
+  search_api_solr:
+    finalize: false
+    commit_before_finalize: false
+    commit_after_finalize: false
+    multilingual:
+      limit_to_content_language: true
+      include_language_independent: false
+    highlighter:
+      maxAnalyzedChars: 51200
+      fragmenter: gap
+      regex:
+        slop: 0.5
+        pattern: blank
+        maxAnalyzedChars: 10000
+      usePhraseHighlighter: true
+      highlightMultiTerm: true
+      preserveMulti: false
+      highlight:
+        mergeContiguous: false
+        requireFieldMatch: false
+        snippets: 3
+        fragsize: 0
+    mlt:
+      mintf: 1
+      mindf: 1
+      maxdf: 0
+      maxdfpct: 0
+      minwl: 0
+      maxwl: 0
+      maxqt: 100
+      maxntp: 2000
+      boost: false
+      interestingTerms: none
+    advanced:
+      index_prefix: ''
+      collection: ''
+      timezone: ''
 id: search
 name: Search
 description: ''
@@ -247,6 +290,16 @@ field_settings:
     dependencies:
       module:
         - node
+  status_1:
+    label: null
+    datasource_id: 'entity:comment'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - comment
   summary:
     label: 'Body » Summary'
     datasource_id: 'entity:node'
@@ -300,10 +353,37 @@ field_settings:
       module:
         - node
 datasource_settings:
+  'entity:comment':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: false
+      selected:
+        - en
+  'entity:file': {  }
+  'entity:group':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: false
+      selected:
+        - en
   'entity:node':
     bundles:
       default: true
       selected: {  }
+    languages:
+      default: false
+      selected:
+        - en
+  'entity:taxonomy_term':
+    bundles:
+      default: false
+      selected:
+        - forums
+        - tags_community
     languages:
       default: true
       selected: {  }
@@ -404,6 +484,7 @@ processor_settings:
       preprocess_index: -49
       preprocess_query: -20
   rendered_item: {  }
+  solr_date_range: {  }
   stemmer:
     all_fields: false
     fields:
@@ -462,4 +543,4 @@ tracker_settings:
 options:
   index_directly: true
   cron_limit: 50
-server: pantheon
+server: atwork

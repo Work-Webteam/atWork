@@ -1,6 +1,7 @@
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
+  animated_scroll_to_top: 0
   atwork_article: 0
   atwork_comments: 0
   atwork_group: 0
@@ -12,12 +13,12 @@ module:
   atwork_program_pages: 0
   background_image: 0
   background_image_formatter: 0
+  better_exposed_filters: 0
   big_pipe: 0
   block: 0
   block_content: 0
   bootstrap_layouts: 0
   breakpoint: 0
-  calendar_recurring_event: 0
   ckeditor: 0
   ckeditor_bootstrap_grid: 0
   ckeditor_widgets: 0
@@ -37,6 +38,7 @@ module:
   datetime: 0
   dblog: 0
   devel: 0
+  devel_entity_updates: 0
   devel_generate: 0
   draggable_dashboard: 0
   dynamic_page_cache: 0
@@ -46,6 +48,7 @@ module:
   entity_embed: 0
   entity_reference_revisions: 0
   extrafield_views_integration: 0
+  facets: 0
   field: 0
   field_ui: 0
   file: 0
@@ -54,6 +57,7 @@ module:
   focal_point: 0
   forward: 0
   fullcalendar_view: 0
+  gforum: 0
   gnode: 0
   group: 0
   h5p: 0
@@ -117,6 +121,10 @@ module:
   rules: 0
   scheduler: 0
   search_api: 0
+  search_api_attachments: 0
+  search_api_page: 0
+  search_api_solr: 0
+  search_api_solr_admin: 0
   search_api_sorts: 0
   search_api_stats: 0
   search_api_stats_block: 0
