@@ -55,14 +55,12 @@ body.path-group section.col-sm-12 {
           &:before {
             content:"Group: ";
           }
-          @include size2160;
-          font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
-          font-weight: normal;
+          @include size1824;
+          font-family: 'BCSans';
+          font-weight: 600;
           padding:8px 0 7px 15px;
           margin:0;
           text-transform: uppercase;
-          //background-color:$mtTeal;
-          //color:$white;
           display: block;
         }
       }
@@ -82,7 +80,7 @@ body.path-group section.col-sm-12 {
         right:0;
         top:0;
         width:180px;
-        padding: 8px 0px 7px;
+        padding: 8px 0px 5px;
         text-align: center;
         text-transform: uppercase;
         > a {
@@ -248,5 +246,51 @@ body.path-group section.col-sm-12 {
   }
   #sw-link {
     background-color: $grp-default-link;
+  }
+}
+
+// Group Calendar and Events
+
+.js-drupal-fullcalendar {
+  .fc-header-toolbar {
+    font-size: .85em;
+  }
+  .fc-content-skeleton {
+    table {
+      td.fc-event-container {
+        > a.fc-day-grid-event {
+          background-color: rgb(178, 213, 230)!important;
+        }
+        .fc-content {
+          padding: 3px 5px;
+          a {
+            color: $black;
+          }
+          .fc-time {
+            padding-right: 3px;
+            color: rgb(0, 0, 0);
+          }
+        }
+      }
+    }
+  }
+}
+article.group-event.full {
+  .author-byline {
+    padding: 3px 5px;
+  }
+  .node_content {
+    .field--type-text-with-summary {
+      margin:10px 45px;
+      padding: 10px;
+      background-color: #B2D5E6;
+      color: $black;
+    }
+    > p {
+      display: none;
+    }
+    .group_event_dates {
+      margin-top: 25px;
+    }
   }
 }

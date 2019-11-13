@@ -21,6 +21,11 @@
   font-size: 1rem;
   line-height: 24px;
 }
+// Group Name Title Heading Size
+@mixin size1824 {
+  font-size: 1.125em;
+  line-height: 24px;
+}
 @mixin size2136 {
   font-size: 1.312rem;
   line-height: 36px;
@@ -520,7 +525,7 @@
       color: $white;
     }
     .field--label {
-      font-weight: normal;
+      font-weight: 600;
     }
   }
   section#block-groupadmin > h2,
@@ -560,7 +565,7 @@
       color: $text;
     }
     .field--label {
-      font-weight: normal;
+      font-weight: 600;
     }
   }
   section#block-groupadmin > h2,
@@ -600,7 +605,7 @@
       color: $text;
     }
     .field--label {
-      font-weight: normal;
+      font-weight: 600;
     }
   }
   section#block-groupadmin > h2,
