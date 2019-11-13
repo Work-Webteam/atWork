@@ -205,7 +205,8 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       }
 
       // Add link to forum breadcrumb.
-      $breadcrumb->addLink(Link::createFromRoute($term->getName(), 'group.forum', ['group' => $group->id(), 'taxonomy_term' => $forum_id]));
+      $group_title = strtolower(str_replace(' ', '-', $group->label()));
+      $breadcrumb->addLink(Link::createFromRoute($term->getName(), 'group.forum', ['group' => $group_title, 'taxonomy_term' => $forum_id]));
     }
 
     // Don't forget to add cache control by a route.
