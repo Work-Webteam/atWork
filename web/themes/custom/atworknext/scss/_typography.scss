@@ -1,21 +1,49 @@
 /* Site wide font settings */
 /* Updated October 2018 */
+// BC Sans Fonts
+
+
+@font-face {
+    src: url('../fonts/BCSans-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'BCSans';
+}
+@font-face {
+    src: url('../fonts/BCSans-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-family: 'BCSans';
+}
+@font-face {
+    src: url('../fonts/BCSans-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-family: 'BCSans';
+}
+@font-face {
+    src: url('../fonts/BCSans-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'BCSans';
+}
+
 
 html, body {
-    font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
+    font-family: 'BCSans';
     font-size: 1rem;
-    line-height: 1.5;
+    line-height: 1.6;
     p {
         color: $text;
         padding:0;
-        margin: 0 0 10px 0;
+        margin: 0 0 36px 0;
     }
 }
 
 // Heading Tags / Sizes
 h1 {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    //@include size3236;
+    font-family: 'BCSans';
+    @include size3732;
     color: $text;
     font-weight: bold;
     margin:0;
@@ -23,34 +51,33 @@ h1 {
     padding-bottom:6px;
 }
 h2, h3, h4 {
-  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
+  font-family: 'BCSans';
   font-weight:600;
   color: $text;
-  padding-top:20px;
   padding-bottom:20px;
   margin:0;
 }
 h2 {
-  @include size2224;
+  @include size3110;
 }
 h3 {
-  @include size2024;
+  @include size2592;
 }
 h4 {
-  @include size1824;
+  @include size2160;
 }
 h5 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  @include size1824;
+  font-family: 'BCSans';
+  @include size2160;
   color: $text;
   font-weight: bold;
 }
 
 // H6 tags are mainly used in Comment titles and headings. See _atwork-mixins.scss for H6 style
 h6 {
-  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
+  font-family: 'BCSans';
   font-weight: bold;
-  @include size1824;
+  @include size2160;
   letter-spacing: .025rem;
   text-transform: uppercase;
   color:$text;
