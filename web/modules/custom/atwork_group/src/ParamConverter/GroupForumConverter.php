@@ -3,7 +3,7 @@
 namespace Drupal\atwork_group\ParamConverter;
 
 use Drupal\Core\ParamConverter\ParamConverterInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\ParamConverter\EntityConverter;
 use Symfony\Component\Routing\Route;
 use Drupal\group\Entity\Group;
@@ -23,10 +23,10 @@ class GroupForumConverter extends EntityConverter  implements ParamConverterInte
   /**
    * Constructs a new GroupForumConverter.
    *
-   * @param \Drupal\group\Entity\GroupInterface group
+   * @param \Drupal\group\Entity\EntityTypeManagerInterface group
    *   The group.
    */
-  public function __construct(EntityManagerInterface $group) {
+  public function __construct(EntityTypeManagerInterface $group) {
     $this->group = $group;
   }
 
