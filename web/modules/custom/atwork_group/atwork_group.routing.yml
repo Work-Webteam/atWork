@@ -1,5 +1,5 @@
 group.forum:
-  path: '/group/{group}/forum/{taxonomy_term}'
+  path: '/groups/{group}/forum/{taxonomy_term}'
   defaults:
     _controller: 'Drupal\atwork_group\Controller\GroupForumController::groupForumPage'
     _title_callback: 'Drupal\atwork_group\Controller\GroupForumController::groupForumTitle'
@@ -7,7 +7,7 @@ group.forum:
     _permission: 'access content'
 
 group.forum.topic:
-  path: '/group/{group}/topic/{node}'
+  path: '/groups/{group}/topic/{node}'
   defaults:
     _controller: 'Drupal\atwork_group\Controller\GroupForumTopicController::groupForumTopicView'
   requirements:

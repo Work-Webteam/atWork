@@ -278,9 +278,10 @@ function atwork_group_preprocess_forums(&$variables) {
     	$rows = $variables['topics']['#rows'];
     	foreach ($rows as $id => $row) {
       	$html = $row[0]['data'][1]['#markup'];
-      	$rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/topic/', '<a href="/group/'.$group->id().'/topic/', $html);
+      	// $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/topic/', '<a href="/group/'.$group->id().'/topic/', $html);
+				$group_title = strtolower(str_replace(' ', '-', $group->label()));
 				// add search and replace on url containing /node. originally the url was /topic but was changed to /node. keeping the orginal in the event it is changed back.
-        $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/node/', '<a href="/group/'.$group->id().'/topic/', $html);
+        $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/node/', '<a href="/groups/' . $group_title . '/topic/', $html);
     	}
     	$variables['topics']['#rows'] = $rows;
 		}
