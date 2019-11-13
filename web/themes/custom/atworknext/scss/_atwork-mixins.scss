@@ -21,24 +21,29 @@
   font-size: 1rem;
   line-height: 24px;
 }
-@mixin size1824 {
-  font-size: 1.125rem;
-  line-height: 24px;
-}
-@mixin size2024 {
-  font-size: 1.125rem;
-  line-height: 24px;
-}
 @mixin size2136 {
   font-size: 1.312rem;
   line-height: 36px;
 }
-@mixin size2224 {
-  font-size:1.375rem;
+
+// Heading 4 - previously size1824
+@mixin size2160 { // Updated to match BC Digital
+  font-size: 1.2em;
   line-height: 24px;
 }
-@mixin size3236 {
-  font-size: 2rem;
+// Heading 3 - previously size2024
+@mixin size2592 { // Updated to match BC Digital
+  font-size: 1.44em;
+  line-height: 24px;
+}
+// Heading 2 - previously size2224
+@mixin size3110 { // Updated to match BC Digital
+  font-size:1.728em;
+  line-height: 24px;
+}
+// Heading 1 - previously size3236
+@mixin size3732 { // Updated to match BC Digital
+  font-size: 2.074em;
   line-height: 36px;
 }
 
@@ -59,7 +64,7 @@
 }
 
 @mixin atwork-button { // Text links altered to look more like a button.
-  @include size1824;
+  @include size2160;
   font-weight: 300;
   display: inline-block;
   background-color:$button-up;
@@ -71,9 +76,9 @@
   }
 }
 @mixin comment-h6 {
-    font-family:'Myriad Pro', 'Segoe UI', sans-serif;
+    font-family: 'BCSans';
     font-weight: bold;
-    @include size1824;
+    @include size2160;
     letter-spacing: .025rem;
     text-transform: uppercase;
     color:$text;
@@ -95,7 +100,7 @@
       background-color: $banner-blue;
       margin-top:24px;
       padding: 12px 0 6px;
-      @include size2024;
+      @include size2592;
       color: $white;
       text-align: center;
       text-transform: uppercase;
@@ -123,7 +128,7 @@
     th {
       background: $horz-ad;
       text-align: center;
-      @include size1824;
+      @include size2160;
       padding:8px 0;
     }
     td {
@@ -283,7 +288,7 @@
       padding-left:0px;
       padding-right:0px;
       h2.block-title {
-        @include size1824;
+        @include size2160;
         text-transform: uppercase;
         background-color:$banner-blue;
         color:$white;

@@ -65,7 +65,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
   }
   .field--name-field-title { // Poll article title
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      @include size3236;
+      @include size3732;
       color: $text;
       font-weight: bold;
       margin:0;
@@ -210,7 +210,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
           padding:12px 12px 0px;
           position: relative;
           .field--name-field-title {
-            @include size2024;
+            @include size2592;
               font-weight:bold;
               padding:5px 5px 0 5px;
               margin:0 0 0 0;

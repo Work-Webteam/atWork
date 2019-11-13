@@ -1,21 +1,22 @@
 
 // Forums pages including forum, topic and landing page
+article.by-viewer,
 article.forum.full {
-    display:flow-root;
-    padding-left:10px;
-    h2 {
-      background-color:$grp-muted-banner;
-      padding: 10px 10px 5px;
-      a:before {
-        content:"Topic: ";
-      }
+  display:flow-root;
+  padding-left:10px;
+  h2 {
+    background-color:$grp-muted-banner;
+    padding: 10px 10px 5px;
+    a:before {
+       content:"Topic: ";
     }
-    footer {
-      min-width: 120px;
-      max-width: 120px;
-      margin-right:10px;
-      margin-top:10px;
-      @include size1216;
+  }
+  footer {
+    min-width: 120px;
+    max-width: 120px;
+    margin-top:10px;
+    @include size1216;
+      float:left;
       article {
         border-bottom: solid 1px $exec-greyborder;
         padding-bottom: 10px;
@@ -27,116 +28,126 @@ article.forum.full {
         position: absolute;
         bottom:10px;
       }
-    }
-    .content {
-      .field--name-taxonomy-forums {
-        display:none;
-      }
-      h3 {
-        background-color: darken($grp-muted-btn, 10%);
-        padding:3px 5px;
-        margin:0px 0px 10px;
-      }
-      .field--name-body,
-      article.js-comment {
-        border: solid 1px $exec-greyborder;
-        padding:10px;
-        margin:10px 0px;
-      }
-      article.js-comment {
-        display: flex;
-        min-height:180px;
-        > div {
-          border-left: solid 1px $exec-greyborder;
-          border-right: solid 1px $exec-greyborder;
-          border-bottom: solid 1px $exec-greyborder;
-          flex:auto;
-          > div, ul {
-            padding-left: 10px;
-            padding-right: 10px;
-          }
-        } 
-      }
-      .indented {
-        article > div > h3 {
-          background-color: $grp-muted-banner;
-        }
-      }
-      ul.list-inline {
-        @include size1216;
-        margin: 10px 0px 0px;
-        li {
-          margin-left:0;
-          margin-right: 10px;
-          padding-left:0;
-          &:before {
-            content:none;
-          }
-        }
-        border-top: solid 1px $exec-greyborder;
-        padding-top:7px;
-      }
-      .flag-inappropriate-comment-flag {
-        @include size1216;
-        position: absolute;
-        right: 5px;
-        bottom: 10px;
-        &::before {
-          display: block;
-          float:left;
-          content:url("../images/flag-icon.svg");
-          width: 14px;
-          margin-right: 4px;
-          margin-top:-1px;
-        }
-      }
-      .flag-subscribe-node {
-        padding-top:10px;
-        :before {
-          display: block;
-          float:left;
-          content:url("../images/subscribe-icon.svg");
-          width: 16px;
-          margin-right: 3px;
-          margin-top:-2px;
-        }
-        a {
-          @include size1416;
-          display: block;
-          margin-top:-10px;
-        }
-      }
+  }
+  .content > section {
+    margin-top:45px;
+    footer {
+      margin-top: 0px;
     }
   }
+  h3 {
+    background-color: darken($grp-muted-btn, 10%);
+    padding:5px;
+    margin:0px 0px 10px;
+  }
+  .field--name-body,
+  article.js-comment {
+    border: solid 1px $exec-greyborder;
+    padding:10px;
+    margin:10px 0px;
+  }
+  .field--type-text-with-summary {
+    margin-left:120px;
+  }
+  .indented {
+    article > div > h3 {
+      background-color: $grp-muted-banner!important;
+    }
+  }
+  ul.list-inline {
+    @include size1216;
+    margin: 10px 0px 0px;
+    li {
+      margin-left:0;
+      margin-right: 10px;
+      padding-left:0px;
+      &:before {
+        content:none;
+      }
+    }
+    border-top: solid 1px $exec-greyborder;
+    padding-top:7px;
+    padding-left:10px;
+  }
+  .flag-inappropriate-comment-flag {
+    @include size1216;
+    position: absolute;
+      right: 15px;
+      bottom: 10px;
+      &::before {
+        display: block;
+        float:left;
+        content:url("../images/flag-icon.svg");
+        width: 14px;
+        margin-right: 4px;
+        margin-top:-1px;
+      }
+    }
+  .flag-subscribe-node {
+    position: absolute;
+    right: 10px;
+    :before {
+      display: block;
+      float:left;
+      content:url("../images/subscribe-icon.svg");
+      width: 16px;
+      margin-right: 3px;
+      margin-top:3px;
+    }
+    a {
+      @include size1416;
+      margin-top:-10px;
+    }
+  }
+  .content {
+    .field--name-taxonomy-forums {
+      display:none;
+    }
+  }
+}
+article.js-comment {
+  display: flex;
+  min-height:180px;
+  > div {
+    border-left: solid 1px $exec-greyborder;
+    border-right: solid 1px $exec-greyborder;
+    border-bottom: solid 1px $exec-greyborder;
+    flex:auto;
+    > div, ul {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  } 
+}
 
 // Forum spacific styles for landing page within groups and /forum page
 
 body.path-forum,
 body.path-group {
-    li.action-links {
-      display:inline-block;
-      list-style-type: none;
-      margin-bottom:5px;
-    }
-    table {
-      margin-bottom: 15px;
-      thead {
-        background-color:$banner-blue;
+  li.action-links {
+    display:inline-block;
+    list-style-type: none;
+    margin-bottom:5px;
+  }
+  table {
+    margin-bottom: 15px;
+    thead {
+      background-color:$banner-blue;
+      color: $white;
+      a {
         color: $white;
-        a {
-          color: $white;
-          span.glyphicon-chevron-down {
-            top: 5px;
-            left: 5px;
-          }
+        span.glyphicon-chevron-down {
+          top: 5px;
+          left: 5px;
         }
-        th {
-           padding: 3px 10px;
-           border-right: solid 1px #ddd;
-        }
+      }
+    th {
+       padding: 3px 10px;
+       border-right: solid 1px #ddd;
       }
     }
   }
+} 
 body.path-group {
   .region-content {
     li.action-links {
@@ -181,5 +192,3 @@ body.path-forum {
       }
     }
 }
-
- 
