@@ -23,7 +23,7 @@ class GroupForumConverter extends EntityConverter  implements ParamConverterInte
   /**
    * Constructs a new GroupForumConverter.
    *
-   * @param \Drupal\group\Entity\EntityTypeManagerInterface group
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface group
    *   The group.
    */
   public function __construct(EntityTypeManagerInterface $group) {
