@@ -461,7 +461,7 @@ display:
           limit: 0
           case: none
           path_case: lower
-          transform_dash: false
+          transform_dash: true
           break_phrase: false
           entity_type: group
           entity_field: label

@@ -46,7 +46,8 @@ class GroupForumLinkFormatter extends EntityReferenceFormatterBase {
         $forum_id = $item->entity->id();
       }
       if ($group) {
-        $element[$delta] = ['#markup' => '<a href="/group/' . $group->id() . '/forum/' . $forum_id . '"> Forum </a>'];
+        $group_title = strtolower(str_replace(' ', '-', $group->label()));
+        $element[$delta] = ['#markup' => '<a href="/groups/' . $group_title . '/forum/' . $forum_id . '"> Forum </a>'];
       }
       else {
         $element[$delta] = ['#markup' => '<a href="/forum/' . $forum_id . '"> Forum </a>'];
