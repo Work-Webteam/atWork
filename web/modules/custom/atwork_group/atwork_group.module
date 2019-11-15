@@ -3,10 +3,10 @@
 use Drupal\group\Entity\GroupContent;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\group\Entity\Group;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Entity\ContentEntityInterface;
-use \Drupal\views\ViewExecutable;
+use Drupal\comment\CommentInterface;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -302,27 +302,44 @@ function atwork_group_forum_topic_submit($form, FormStateInterface $form_state) 
 
 
 function atwork_group_forum_comment_submit($form, FormStateInterface $form_state) {
-
-	$route_params = $form_state->getRedirect()->getRouteParameters();
-	$node_id = $route_params['node'];
+  $route_params = $form_state->getRedirect()->getRouteParameters();
+  $node_id = $route_params['node'];
 
   // redirect if this is a group forum reply (comment)
   $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
-	$group_id = _atwork_group_extract_group($previousUrl);
-	if ($group_id > 0) {
-    $form_state->setRedirect('group.forum.topic',	['group' => $group_id, 'node' => $node_id]);
+
+  $group_id = _atwork_group_extract_group($previousUrl);
+  if ($group_id > 0) {
+    $group = Group::load($group_id);
+    $group_title = strtolower(str_replace(' ', '-', $group->label()));
+    $form_state->setRedirect('group.forum.topic',	['group' => $group_title, 'node' => $node_id]);
   }
 }
 
+
 function _atwork_group_extract_group($url) {
-	$parts = explode("/", $url);
-	$group_id = 0;
-	foreach ($parts as $key => $value) {
-		if ($value == "group") {
-			$group_id = $parts[$key+1];
-		}
-	}
-	return $group_id;
+  $parts = explode("/", $url);
+  $group_id = 0;
+  foreach ($parts as $key => $value) {
+    if ($value == "groups") {
+      $group_id = $parts[$key+1];
+    }
+  }
+
+  // need to convert group clean-name to group id
+  if (!is_numeric($group_id)) {
+    $dst = "/groups/".$group_id;
+
+    $database = \Drupal::database();
+    $query = $database->select('url_alias', 'u');
+
+    $query->condition('u.alias', $dst, '=');
+    $query->fields('u', ['source']);
+    $result = $query->execute()->fetchField();
+    $group_id = str_replace('/group/', '', $result);
+
+  }
+  return $group_id;
 }
 
 /**
@@ -381,5 +398,22 @@ function atwork_group_views_post_render($view, &$output, $cache) {
       $group_id = $view->field['id']->last_render_text->__toString();
       $output['#attached']['drupalSettings']['group_id'] = $group_id;
     }
+  }
+}
+
+
+/**
+ * Implements hook_comment_links_alter().
+ */
+function atwork_group_comment_links_alter(array &$links, CommentInterface $entity, array &$context) {
+  $group = \Drupal::routeMatch()->getParameter('group');
+  if ($group) {
+    $links['comment']['#links']['comment-reply']['url'] = Url::fromRoute('group.forum.topic.reply', [
+      'group' => strtolower(str_replace(' ', '-', $group->label())), // $group->id(),
+      'entity_type' => 'node',
+      'entity' => $context['commented_entity']->id(),
+      'field_name' => 'comment_forum',
+      'pid' => $entity->id(),
+    ]);
   }
 }
