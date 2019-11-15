@@ -11,3 +11,4 @@ is_admin: false
 permissions:
   - 'view terms in emp'
   - 'view terms in forums'
+  - 'view user alert entities'

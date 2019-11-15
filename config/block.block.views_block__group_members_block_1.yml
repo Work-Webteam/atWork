@@ -1,0 +1,27 @@
+uuid: ca63c48d-275f-4018-9648-388471908806
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.group_members
+  module:
+    - views
+  theme:
+    - seven
+id: views_block__group_members_block_1
+theme: seven
+region: draggable_dashboard_region
+weight: null
+provider: null
+plugin: 'views_block:group_members-block_1'
+settings:
+  id: 'views_block:group_members-block_1'
+  label: 'Group Member Content'
+  provider: views
+  label_display: visible
+  views_label: 'Group Member Content'
+  items_per_page: none
+  override:
+    items_per_page: none
+  views_label_checkbox: 0
+visibility: {  }

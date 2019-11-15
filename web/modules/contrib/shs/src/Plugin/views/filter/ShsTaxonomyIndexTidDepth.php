@@ -66,12 +66,12 @@ class ShsTaxonomyIndexTidDepth extends ShsTaxonomyIndexTid {
       $operator = '=';
     }
     else {
-      $operator = 'IN';
+      $operator = 'IN'; # " IN (" . implode(', ', array_fill(0, sizeof($this->value), '%d')) . ")";
     }
 
     // The normal use of ensureMyTable() here breaks Views.
     // So instead we trick the filter into using the alias of the base table.
-    // See https://www.drupal.org/node/271833.
+    //   See https://www.drupal.org/node/271833.
     // If a relationship is set, we must use the alias it provides.
     if (!empty($this->relationship)) {
       $this->tableAlias = $this->relationship;

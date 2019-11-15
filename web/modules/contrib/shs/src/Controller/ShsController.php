@@ -6,33 +6,11 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\shs\Cache\ShsCacheableJsonResponse;
 use Drupal\shs\Cache\ShsTermCacheDependency;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Controller for getting taxonomy terms.
  */
 class ShsController extends ControllerBase {
-
-  /**
-   * The dependency injection container.
-   *
-   * @var \Symfony\Component\DependencyInjection\ContainerInterface
-   */
-  protected $container;
-
-  /**
-   * Construct a new ShsController object.
-   */
-  public function __construct(ContainerInterface $container) {
-    $this->container = $container;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static($container);
-  }
 
   /**
    * Load term data.
@@ -42,7 +20,7 @@ class ShsController extends ControllerBase {
    * @param string $bundle
    *   Bundle (vocabulary) identifier to limit the return list to a specific
    *   bundle.
-   * @param int $entity_id
+   * @param integer $entity_id
    *   Id of parent term to load all children for. Defaults to 0.
    *
    * @return CacheableJsonResponse
@@ -59,13 +37,14 @@ class ShsController extends ControllerBase {
     $cache_tags = [];
     $result = [];
 
-    $langcode_current = $this->languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
-    $storage = $this->entityTypeManager()->getStorage('taxonomy_term');
+    $langcode_current = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
+    $entity_manager = \Drupal::getContainer()->get('entity.manager');
+    $storage = $entity_manager->getStorage('taxonomy_term');
 
     $translation_enabled = FALSE;
-    if ($this->moduleHandler()->moduleExists('content_translation')) {
+    if (\Drupal::moduleHandler()->moduleExists('content_translation')) {
       /** @var \Drupal\content_translation\ContentTranslationManagerInterface $translation_manager */
-      $translation_manager = $this->container->get('content_translation.manager');
+      $translation_manager = \Drupal::service('content_translation.manager');
       // If translation is enabled for the vocabulary, we need to load the full
       // term objects to get the translation for the current language.
       $translation_enabled = $translation_manager->isEnabled('taxonomy_term', $bundle);

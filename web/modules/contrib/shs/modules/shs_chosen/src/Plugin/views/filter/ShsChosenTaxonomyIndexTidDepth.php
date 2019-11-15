@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Contains \Drupal\shs_chosen\Plugin\views\filter\ShsChosenTaxonomyIndexTidDepth.
+ */
+
 namespace Drupal\shs_chosen\Plugin\views\filter;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -20,9 +25,9 @@ class ShsChosenTaxonomyIndexTidDepth extends ShsChosenTaxonomyIndexTid {
    * {@inheritdoc}
    */
   public function operatorOptions($which = 'title') {
-    return [
+    return array(
       'or' => $this->t('Is one of'),
-    ];
+    );
   }
 
   /**
@@ -31,7 +36,7 @@ class ShsChosenTaxonomyIndexTidDepth extends ShsChosenTaxonomyIndexTid {
   protected function defineOptions() {
     $options = parent::defineOptions();
 
-    $options['depth'] = ['default' => 0];
+    $options['depth'] = array('default' => 0);
 
     return $options;
   }
@@ -42,12 +47,12 @@ class ShsChosenTaxonomyIndexTidDepth extends ShsChosenTaxonomyIndexTid {
   public function buildExtraOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildExtraOptionsForm($form, $form_state);
 
-    $form['depth'] = [
+    $form['depth'] = array(
       '#type' => 'weight',
       '#title' => $this->t('Depth'),
       '#default_value' => $this->options['depth'],
       '#description' => $this->t('The depth will match nodes tagged with terms in the hierarchy. For example, if you have the term "fruit" and a child term "apple", with a depth of 1 (or higher) then filtering for the term "fruit" will get nodes that are tagged with "apple" as well as "fruit". If negative, the reverse is true; searching for "apple" will also pick up nodes tagged with "fruit" if depth is -1 (or lower).'),
-    ];
+    );
   }
 
   /**
@@ -71,7 +76,7 @@ class ShsChosenTaxonomyIndexTidDepth extends ShsChosenTaxonomyIndexTid {
 
     // The normal use of ensureMyTable() here breaks Views.
     // So instead we trick the filter into using the alias of the base table.
-    // See https://www.drupal.org/node/271833.
+    //   See https://www.drupal.org/node/271833.
     // If a relationship is set, we must use the alias it provides.
     if (!empty($this->relationship)) {
       $this->tableAlias = $this->relationship;

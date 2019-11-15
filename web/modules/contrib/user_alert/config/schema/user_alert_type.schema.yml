@@ -1,0 +1,15 @@
+user_alert.user_alert_type.*:
+  type: config_entity
+  label: 'User Alert type'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    description:
+      type: text
+      label: 'Description'
+    uuid:
+      type: string

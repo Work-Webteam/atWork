@@ -60,8 +60,8 @@ class ShsTaxonomyIndexTid extends TaxonomyIndexTid {
         [
           'parent' => 0,
           'defaultValue' => $settings_additional['anyValue'],
-        ],
-      ],
+        ]
+      ]
     ];
     $identifier = $this->options['expose']['identifier'];
     $default_value = (array) $this->value;
@@ -88,8 +88,8 @@ class ShsTaxonomyIndexTid extends TaxonomyIndexTid {
         $keys = array_keys($options);
         $default_value = array_shift($keys);
       }
-      // Due to #1464174 there is a chance that array('') was saved in the admin
-      // ui. Let's choose a safe default value.
+      // Due to #1464174 there is a chance that array('') was saved in the admin ui.
+      // Let's choose a safe default value.
       elseif ($default_value == ['']) {
         $default_value = 'All';
       }
@@ -104,9 +104,8 @@ class ShsTaxonomyIndexTid extends TaxonomyIndexTid {
       $widget_defaults = \Drupal::service('shs.widget_defaults');
       $parents = $widget_defaults->getParentDefaults($default_value, $settings_additional, 'taxonomy_term');
     }
-    // @todo: allow individual settings per filter.
     $settings_shs = [
-      'settings' => $settings_additional,
+      'settings' => $settings_additional, // @todo: allow individual settings per filter
       'bundle' => $bundle,
       'baseUrl' => 'shs-term-data',
       'cardinality' => $this->options['expose']['multiple'] ? -1 : 1,

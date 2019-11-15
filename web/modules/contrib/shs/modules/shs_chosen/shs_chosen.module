@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Main functions for the "Simple hierarchical select: Chosen" module.
+ * Main functions and methods for the "Simple hierarchical select: Chosen" module.
  */
 
 /**
@@ -27,7 +27,7 @@ function shs_chosen_shs_class_definitions_alter(&$definitions, $context) {
  * @param string $field_name
  *   Name of field the provided settings are used for.
  */
-function shs_chosen_shs_js_settings_alter(array &$settings_shs, $bundle, $field_name) {
+function shs_chosen_shs_js_settings_alter(&$settings_shs, $bundle, $field_name) {
   if (!isset($settings_shs['settings']['chosen_override']) || empty($settings_shs['settings']['chosen_settings'])) {
     return;
   }

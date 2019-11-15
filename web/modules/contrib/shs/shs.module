@@ -4,7 +4,6 @@
  * @file
  * Main functions and methods for the "Simple hierarchical select" module.
  */
-
 use Drupal\Core\Database\Database;
 
 /**
@@ -65,7 +64,7 @@ function shs_get_class_definitions($field_name, array $context = []) {
  *   This function has been replaced by service 'shs.widget_defaults' and will
  *   be removed in version 8.x-1.1.
  */
-function shs_term_get_parents(array $default_values, array $settings, $target_type) {
+function shs_term_get_parents($default_values, $settings, $target_type) {
   /** @var Drupal\shs\WidgetDefaultsInterface $widget_defaults */
   $widget_defaults = \Drupal::service('shs.widget_defaults');
   return $widget_defaults->getParentDefaults($default_values, $settings['any_value'], $target_type);
@@ -77,13 +76,12 @@ function shs_term_get_parents(array $default_values, array $settings, $target_ty
  * A single ancestry is needed because for terms with multiple parents, the
  * hierarchy cannot be determined.
  *
- * @param int $tid
+ * @param integer $tid
  *   The taxonomy term ID.
  * @param string $target_type
  *   The entity type. Defaults to 'taxonomy_term'.
- *
- * @return array
- *   An array of term parents.
+ * @return array An array of term parents.
+ * An array of term parents.
  *
  * @see \Drupal\taxonomy\TermStorage::loadAllParents
  *
@@ -92,7 +90,7 @@ function shs_term_get_parents(array $default_values, array $settings, $target_ty
 function shs_term_load_all_parents($tid, $target_type = 'taxonomy_term') {
   $parents_all = &drupal_static(__FUNCTION__, []);
   if (!isset($parents_all[$tid])) {
-    $parents = [];
+    $parents = array();
     /** @var \Drupal\taxonomy\TermStorageInterface $storage */
     $storage = \Drupal::entityTypeManager()->getStorage($target_type);
     if ($term = $storage->load($tid)) {
@@ -123,8 +121,7 @@ function shs_term_load_all_parents($tid, $target_type = 'taxonomy_term') {
  * @param int $tid
  *   Term ID to check existence of children for.
  *
- * @return bool
- *   TRUE if the term has any children, FALSE otherwise.
+ * @return boolean
  */
 function shs_term_has_children($tid) {
   $query = Database::getConnection()->select('taxonomy_term_field_data', 't');

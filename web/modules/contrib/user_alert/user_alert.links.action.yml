@@ -1,0 +1,13 @@
+entity.user_alert_type.add_form:
+  route_name: 'entity.user_alert_type.add_form'
+  title: 'Add User Alert type'
+  appears_on:
+    - entity.user_alert_type.collection
+
+entity.user_alert.add_page:
+  route_name: entity.user_alert.add_page
+  title: 'Add User Alert'
+  appears_on:
+    - entity.user_alert.collection
+    - entity.user_alert.canonical
+

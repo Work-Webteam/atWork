@@ -7,3 +7,4 @@ views.filter.shs_taxonomy_index_tid:
 views.filter.shs_taxonomy_index_tid_depth:
   type: views.filter.taxonomy_index_tid_depth
   label: 'SHS Taxonomy term ID with depth'
+

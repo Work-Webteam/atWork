@@ -1,0 +1,99 @@
+# UserAlertType routing definition
+entity.user_alert_type.collection:
+  path: '/admin/structure/user-alert'
+  defaults:
+    _entity_list: 'user_alert_type'
+    _title: 'User Alert types'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.user_alert_type.add_form:
+  path: '/admin/structure/user-alert/add'
+  defaults:
+    _entity_form: 'user_alert_type.add'
+    _title: 'Add User alert type'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.user_alert_type.edit_form:
+  path: '/admin/structure/user-alert/{user_alert_type}'
+  defaults:
+    _entity_form: 'user_alert_type.edit'
+    _title: 'Edit User alert type'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.user_alert_type.delete_form:
+  path: '/admin/structure/user-alert/{user_alert_type}/delete'
+  defaults:
+    _entity_form: 'user_alert_type.delete'
+    _title: 'Delete User alert type'
+  requirements:
+    _permission: 'administer site configuration'
+
+
+# UserAlert routing definition
+entity.user_alert.canonical:
+  path: '/admin/content/user-alert/{user_alert}'
+  defaults:
+    _entity_view: 'user_alert'
+    _title: 'User Alert'
+  requirements:
+    _entity_access: 'user_alert.view'
+
+entity.user_alert.collection:
+  path: '/admin/content/user-alert'
+  defaults:
+    _entity_list: 'user_alert'
+    _title: 'User Alerts'
+  requirements:
+    _permission: 'view user alert entities'
+
+entity.user_alert.add_page:
+  path: '/admin/content/user-alert/add'
+  defaults:
+    _controller: '\Drupal\user_alert\Controller\UserAlertController::addPage'
+    _title: 'Add User Alert'
+  requirements:
+    _permission: 'add user alert entities'
+
+entity.user_alert.add:
+  path: '/admin/content/user-alert/add/{user_alert_type}'
+  defaults:
+    _controller: '\Drupal\user_alert\Controller\UserAlertController::add'
+    _title_callback: '\Drupal\user_alert\Controller\UserAlertController::addPageTitle'
+  requirements:
+    _permission: 'add user alert entities'
+
+entity.user_alert.edit_form:
+  path: '/admin/content/user-alert/{user_alert}/edit'
+  defaults:
+    _entity_form: user_alert.edit
+    _title: 'Edit User Alert'
+  requirements:
+    _permission: 'edit user alert entities'
+
+entity.user_alert.delete_form:
+  path: '/admin/content/user-alert/{user_alert}/delete'
+  defaults:
+    _entity_form: user_alert.delete
+    _title: 'Delete User Alert'
+  requirements:
+    _permission: 'delete user alert entities'
+
+# UserAlert ajax endpoints
+entity.user_alert.get_message:
+  path: '/js/user-alert/get-message'
+  defaults:
+    _controller: '\Drupal\user_alert\Controller\UserAlertController::displayAlert'
+  requirements:
+    _permission: 'access content'
+
+entity.user_alert.close_message:
+  path: '/js/user-alert/close-message'
+  defaults:
+    _controller: '\Drupal\user_alert\Controller\UserAlertController::closeAlert'
+  requirements:
+    _permission: 'access content'
+
+    

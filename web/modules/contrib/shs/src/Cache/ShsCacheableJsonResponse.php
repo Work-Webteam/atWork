@@ -5,7 +5,8 @@ namespace Drupal\shs\Cache;
 use Drupal\Core\Cache\CacheableJsonResponse;
 
 /**
- * A cacheable JsonResponse that returns alterable data for SHS.
+ * A cacheable JsonResponse that returns alterable data for Simple hierarchical
+ * select.
  */
 class ShsCacheableJsonResponse extends CacheableJsonResponse {
 
@@ -17,10 +18,7 @@ class ShsCacheableJsonResponse extends CacheableJsonResponse {
    */
   protected $context;
 
-  /**
-   * {@inheritdoc}
-   */
-  public function __construct($context, $data = NULL, $status = 200, $headers = []) {
+  public function __construct($context, $data = null, $status = 200, $headers = array()) {
     parent::__construct($data, $status, $headers);
     $this->context = $context;
     $this->context['encodingOptions'] = $this->encodingOptions;
@@ -31,7 +29,7 @@ class ShsCacheableJsonResponse extends CacheableJsonResponse {
    *
    * @param mixed $data
    *   Data to send as JsonResponse.
-   * @param bool $alterable
+   * @param boolean $alterable
    *   TRUE if the data should be alterable by other modules.
    */
   public function setData($data = [], $alterable = FALSE) {

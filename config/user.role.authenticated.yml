@@ -54,3 +54,4 @@ permissions:
   - 'view terms in forums'
   - 'view terms in tags'
   - 'view terms in tags_community'
+  - 'view user alert entities'

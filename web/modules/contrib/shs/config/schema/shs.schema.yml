@@ -16,3 +16,4 @@ field.widget.settings.options_shs:
     force_deepest:
       type: boolean
       label: 'Force selection of deepest level'
+

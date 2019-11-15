@@ -31,7 +31,7 @@ class WidgetDefaults implements WidgetDefaultsInterface {
    *
    * @param string $default_value
    *   The default value.
-   * @param int $cardinality
+   * @param $cardinality
    *   (optional) The field's cardinality. Defaults to 1.
    *
    * @return array
@@ -66,7 +66,7 @@ class WidgetDefaults implements WidgetDefaultsInterface {
    *   The value to assign to "any value".
    * @param string $entity_type
    *   The entity type the select is displaying.
-   * @param int $cardinality
+   * @param $cardinality
    *   The field's cardinality.
    *
    * @return array
@@ -88,6 +88,7 @@ class WidgetDefaults implements WidgetDefaultsInterface {
         continue;
       }
       try {
+        $storage = $this->entityTypeManager->getStorage($entity_type);
         $parent_terms = array_reverse(array_keys(shs_term_load_all_parents($value)));
         $keys = array_merge([0], $parent_terms);
         $values = array_merge($parent_terms, [$value]);

@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user_alert
+_core:
+  default_config_hash: qOhTHkJajSZ4AGJqb9jy_liBM83tZpBFCtsEOI75cD0
+id: user_alert.teaser
+label: Teaser
+targetEntityType: user_alert
+cache: true

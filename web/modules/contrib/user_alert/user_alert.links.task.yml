@@ -1,0 +1,17 @@
+# User alert routing definition
+entity.user_alert.canonical:
+  route_name: entity.user_alert.canonical
+  base_route: entity.user_alert.canonical
+  title: 'View'
+
+entity.user_alert.edit_form:
+  route_name: entity.user_alert.edit_form
+  base_route: entity.user_alert.canonical
+  title: Edit
+
+entity.user_alert.delete_form:
+  route_name:  entity.user_alert.delete_form
+  base_route:  entity.user_alert.canonical
+  title: Delete
+  weight: 10
+

@@ -10,7 +10,7 @@ dependencies:
 id: top_links_shortcuts
 theme: atworknext
 region: content
-weight: -9
+weight: -8
 provider: null
 plugin: shortcuts
 settings:

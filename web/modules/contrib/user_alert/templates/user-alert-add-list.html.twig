@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Default theme implementation to list node types available for adding content.
+ *
+ * This list is displayed on the Add content admin page.
+ *
+ * Available variables:
+ * - types: A list of content types, each with the following properties:
+ *   - add_link: Link to create a piece of content of this type.
+ *   - description: Description of this type of content.
+ *
+ * @see template_preprocess_node_add_list()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if types is not empty %}
+  <dl>
+    {% for type in types %}
+      <dt>{{ type.add_link }}</dt>
+      <dd>{{ type.description }}</dd>
+    {% endfor %}
+  </dl>
+{% else %}
+  <p>
+    {% set create_content = path('entity.user_alert_type.add_form') %}
+    {% trans %}
+      You have not created any user alert types yet. Go to the <a href="{{ create_content }}">user alert type creation page</a> to add a new user alert type.
+    {% endtrans %}
+  </p>
+{% endif %}

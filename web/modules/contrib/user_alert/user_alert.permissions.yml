@@ -1,0 +1,15 @@
+add user alert entities:
+  title: 'Create new User alert entities'
+
+administer user alert entities:
+  title: 'Administer User alert entities'
+  description: 'Allow to access the administration form to configure User alert entities.'
+
+delete user alert entities:
+  title: 'Delete User alert entities'
+
+edit user alert entities:
+  title: 'Edit User alert entities'
+
+view user alert entities:
+  title: 'View User alert entities'

@@ -1,0 +1,11 @@
+user-alert:
+  version: 1.x
+  css:
+    theme:
+      css/user-alert.css: {}
+  js:
+    js/user-alert.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    
