@@ -209,6 +209,36 @@ class AtworkGroupBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       $breadcrumb->addLink(Link::createFromRoute($term->getName(), 'group.forum', ['group' => $group_title, 'taxonomy_term' => $forum_id]));
     }
 
+    if($route_match->getRouteName() == 'group.forum.topic.reply') {
+      $group = $route_match->getParameter('group');
+      $topic = $route_match->getParameter('entity');
+
+      // Add link to group.
+      $breadcrumb->addLink(Link::createFromRoute($group->label(), 'entity.group.canonical', ['group' => $group->id()]));
+
+      $forum_id = $topic->get('taxonomy_forums')->target_id;
+      $term = Term::load($forum_id);
+
+      // Add link to Forum Container if container has multiple forums
+      if (empty($term->forum_container->value)) {
+        $parent = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadParents($term->id());
+        $parent = reset($parent);
+        $forum_manager = \Drupal::service('forum_manager');
+        $forums = $forum_manager->getChildren(\Drupal::config('forum.settings')->get('vocabulary'), $parent->id());
+        if (count($forums) > 1) {
+          $breadcrumb->addLink(Link::createFromRoute($parent->label(), 'group.forum', ['group' => $group->id(), 'taxonomy_term' => $parent->id()]));
+        }
+      }
+
+      // Add link to forum breadcrumb.
+      $group_title = strtolower(str_replace(' ', '-', $group->label()));
+      $breadcrumb->addLink(Link::createFromRoute($term->getName(), 'group.forum', ['group' => $group_title, 'taxonomy_term' => $forum_id]));
+
+      // Add link to topic breadcrumb.
+      $breadcrumb->addLink(Link::createFromRoute($topic->label(), 'group.forum.topic', ['group' => $group_title, 'node' => $topic->id()]));
+
+    }
+
     // Don't forget to add cache control by a route.
     // Otherwise all pages will have the same breadcrumb.
     $breadcrumb->addCacheContexts(['route']);

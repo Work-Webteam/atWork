@@ -12,3 +12,18 @@ group.forum.topic:
     _controller: 'Drupal\atwork_group\Controller\GroupForumTopicController::groupForumTopicView'
   requirements:
     _permission: 'access content'
+
+group.forum.topic.reply:
+  path: '/groups/{group}/comment/reply/{entity_type}/{entity}/{field_name}/{pid}'
+  defaults:
+    _controller: 'Drupal\atwork_group\Controller\GroupForumReplyController::getGroupForumReplyForm'
+    _title: 'Add new comment'
+    pid: ~
+  requirements:
+    _custom_access: 'Drupal\atwork_group\Controller\GroupForumReplyController::groupForumReplyFormAccess'
+  options:
+    parameters:
+      group:
+        type: entity:group
+      entity:
+        type: entity:{entity_type}

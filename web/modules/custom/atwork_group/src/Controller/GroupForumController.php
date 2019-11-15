@@ -60,6 +60,7 @@ class GroupForumController extends ForumController {
     foreach ($this->fieldMap['node']['taxonomy_forums']['bundles'] as $type) {
       if ($this->nodeAccess->createAccess($type)) {
         $node_type = $this->nodeTypeStorage->load($type);
+        $group_title = strtolower(str_replace(' ', '-', $this->currentGroup->label()));
         $links[$type] = [
           '#attributes' => ['class' => ['action-links']],
           '#theme' => 'menu_local_action',
@@ -67,8 +68,7 @@ class GroupForumController extends ForumController {
             'title' => $this->t('Add Forum topic', [
               '@node_type' => $this->nodeTypeStorage->load($type)->label(),
             ]),
-            'url' => \Drupal\Core\Url::fromUri('internal:/group/' . $this->currentGroup->id() .'/content/create/group_node:forum'),
-            // 'url' => \Drupal\Core\Url::fromRoute('node.add', ['node_type' => $type]),
+            'url' => \Drupal\Core\Url::fromUri('internal:/group/' . $group_title .'/content/create/group_node:forum'),
           ],
           '#cache' => [
             'tags' => $node_type->getCacheTags(),
