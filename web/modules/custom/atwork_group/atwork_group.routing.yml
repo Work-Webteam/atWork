@@ -23,5 +23,7 @@ group.forum.topic.reply:
     _custom_access: 'Drupal\atwork_group\Controller\GroupForumReplyController::groupForumReplyFormAccess'
   options:
     parameters:
+      group:
+        type: entity:group
       entity:
         type: entity:{entity_type}

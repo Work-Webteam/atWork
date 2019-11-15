@@ -57,7 +57,7 @@ class GroupForumReplyController extends CommentController {
    * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
    */
   public function getGroupForumReplyForm(\Symfony\Component\HttpFoundation\Request $request, \Drupal\Core\Entity\EntityInterface $entity, $field_name, $pid = NULL)  {
-    return $this->getReplyForm($request, $entity, $field_name, $pid = NULL) ;
+    return $this->getReplyForm($request, $entity, $field_name, $pid) ;
   }
 
 
