@@ -11,7 +11,8 @@ body.path-group .region-content nav.tabs ul.tabs--primary {
   display: none; // hides the edit links which were moved to the group admin menu
 }
 // Group content
-body.path-group section.col-sm-12 {
+body.path-group, body.path-groups {
+  section.col-sm-12 {
   .region-content {
     .group-page-content{
       margin-top:-10px;
@@ -95,6 +96,7 @@ body.path-group section.col-sm-12 {
       }
     }
   }
+}
 // Empty spacer box if no Group Ad Space specified
   #no-ad-space {
     display: flex;
@@ -274,6 +276,9 @@ body.path-group section.col-sm-12 {
       }
     }
   }
+}
+.fc-unthemed td.fc-today {
+  background-color: $exec-greyborder;
 }
 article.group-event.full {
   .author-byline {

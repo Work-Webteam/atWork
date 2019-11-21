@@ -305,7 +305,7 @@ body.path-group, body.page-node-type-background-page, body.page-node-type-articl
       border: solid 1px $exec-greyborder;
       padding: 5px 10px;
         .field--name-field-highlight-title {
-          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          font-family: 'BCSans';
           font-size: 1.125rem;
           line-height: 24px;
           color: #333333;
@@ -316,6 +316,7 @@ body.path-group, body.page-node-type-background-page, body.page-node-type-articl
         }
         .field--name-field-highlight-image {
           float:right;
+          margin-left: 10px;
         }
     }
   }
