@@ -96,7 +96,9 @@
     {{ content.body }}
     <div {{ content_attributes.addClass('event_dates', 'clearfix') }}>
       <p>{{ content.field_start }}{{ content.field_end }}</p>
+      <p>{{ content.field_ical }}</p>
     </div>
+    {{  kint(content) }}
     {{ content.field_tags }}
     {# Social bar is our default link block #}
     <div class="social-bar">

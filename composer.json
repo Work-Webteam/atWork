@@ -108,6 +108,7 @@
         "drupal/gforum": "^1.0@beta",
         "drupal/group": "^1.0",
         "drupal/h5p": "^1.0@RC",
+        "drupal/ics_field": "^1.0",
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/insert": "^1.0",
