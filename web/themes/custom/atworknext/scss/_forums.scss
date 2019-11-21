@@ -5,6 +5,7 @@ article.forum.full {
   display:flow-root;
   padding-left:10px;
   h2 {
+    @include size1824;
     background-color:$grp-muted-banner;
     padding: 10px 10px 5px;
     a:before {
@@ -36,7 +37,8 @@ article.forum.full {
     }
   }
   h3 {
-    background-color: darken($grp-muted-btn, 10%);
+    @include size1824;
+    background-color: $grp-muted-banner;
     padding:5px;
     margin:0px 0px 10px;
   }
@@ -67,13 +69,14 @@ article.forum.full {
     }
     border-top: solid 1px $exec-greyborder;
     padding-top:7px;
+    padding-bottom: 7px;
     padding-left:10px;
   }
   .flag-inappropriate-comment-flag {
     @include size1216;
     position: absolute;
       right: 15px;
-      bottom: 10px;
+      bottom: 15px;
       &::before {
         display: block;
         float:left;

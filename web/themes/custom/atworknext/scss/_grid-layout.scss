@@ -42,33 +42,42 @@ header {
 //Footer
 footer.footer.container {
   border-top:none; // Hides top border from overrides.min.css
-  .region.region-footer {
-    padding-top:15px;
-    padding-bottom:15px;
-    background-color:$banner-blue;
-    p {
-      color:$white;
-      font-size: .9rem;
-      line-height: 14px;
-      text-align: center;
-    }
-    a {
-      color:$white;
-      text-decoration: underline;
-    }
-    #footer-info {
-      display: table;
-      width:100%;
-    }
-    #footer-left, #footer-middle, #footer-right {
-        display: table-cell;
-        vertical-align: top;
-    }
-    #footer-left, #footer-right {
-      width:25%;
+  background-color: $banner-blue;
+  padding-top:15px;
+  padding-bottom:15px;
+  .region-footer {
+    .field--type-text-with-summary {
+      .footer-box {
+        p {
+          color: $exec-greyborder;
+          padding:initial;
+          margin:initial;
+          font-size: .9em;
+          a {
+            color: $exec-greyborder;
+            text-decoration: underline;
+          }
+        }
+      }
+      .fb1, .fb2, .fb3 {;
+        float:left;
+        text-align: center;
+      }
+      .fb1, .fb3 {
+        width:25%;
+      }
+      .fb2 {
+        width:50%;
+        img {
+          margin-top:20px;
+        }
+        border-left: 1px solid darken($color: $exec-greyborder, $amount: 90);
+        border-right: solid 1px darken($color: $exec-greyborder, $amount: 90);
+      }
     }
   }
 }
+
 
 // Styling for All Content Page. Using a flex-grid layout. This code may move to another file
 // August 20,2019

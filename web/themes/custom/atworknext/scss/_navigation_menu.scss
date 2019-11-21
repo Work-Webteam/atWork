@@ -226,7 +226,7 @@
   }
 }
 // Group and Landing Page side menus
-body.path-group,
+body.path-group, body.path-groups,
 body.page-node-type-program-area-content {
   .region-sidebar-nav {
     @include make-sm-column(3);
@@ -261,6 +261,7 @@ body.page-node-type-program-area-content {
           padding: 5px 10px;
           border-bottom:solid 1px #999;
           @include size1416;
+          font-weight: normal;
           .caret {
             display:block;
             float:right;

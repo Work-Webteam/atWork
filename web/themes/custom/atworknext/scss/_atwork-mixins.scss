@@ -21,6 +21,11 @@
   font-size: 1rem;
   line-height: 24px;
 }
+// Group Name Title Heading Size
+@mixin size1824 {
+  font-size: 1.125em;
+  line-height: 24px;
+}
 @mixin size2136 {
   font-size: 1.312rem;
   line-height: 36px;
@@ -496,7 +501,7 @@
   }
   .group-join, .group-leave {
     background-color: $grp-default-btn;
-    border-left: solid 1px #4e4e4e;
+    border-left: solid 1px $white;
     a {
       color: $white;
     }
@@ -520,7 +525,7 @@
       color: $white;
     }
     .field--label {
-      font-weight: normal;
+      font-weight: 600;
     }
   }
   section#block-groupadmin > h2,
@@ -549,7 +554,7 @@
   }
   .group-title-banner h1 {
     background-color: $grp-bright-btn;
-    color: $text;
+    color: $white;
   }
   .field--name-field-group.field--type-image img {
     border-bottom:solid 8px $grp-bright-banner;
@@ -557,28 +562,28 @@
   .field--name-field-group-highlight {
     > div:nth-child(1) {
       background-color: $grp-bright-btn!important;
-      color: $text;
+      color: $white;
     }
     .field--label {
-      font-weight: normal;
+      font-weight: 600;
     }
   }
   section#block-groupadmin > h2,
   section#block-views-block-group-menu-block-1 h3.block-title,
   section#block-views-block-group-menu-block-3 h2.block-title {
      background-color: $grp-bright-btn;
-     color: $text;
+     color: $white;
   }
   section#block-groupadmin > h2 a.btn-primary {
     background-color: $grp-bright-banner;
-    border-right: solid 1px black;
-    color: $grp-bright-blue;
+    //border-right: solid 1px black;
+    color: $white;
   }
   .group-join, .group-leave {
     background-color: $grp-bright-banner;
-    border-left: solid 1px black;
+    //border-left: solid 1px black;
     a {
-      color: $grp-bright-blue;
+      color: $white;
     }
   }
 }
@@ -600,7 +605,7 @@
       color: $text;
     }
     .field--label {
-      font-weight: normal;
+      font-weight: 600;
     }
   }
   section#block-groupadmin > h2,
