@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8960d923772a5c739dd6afe0a0206cd7",
+    "content-hash": "82c0306cce65b018f28942112953dca6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1163,6 +1163,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -2042,7 +2043,7 @@
             "description": "Animated scroll to top module.",
             "homepage": "https://www.drupal.org/project/animated_scroll_to_top",
             "support": {
-                "source": "http://cgit.drupalcode.org/animated_scroll_to_top"
+                "source": "https://git.drupalcode.org/project/animated_scroll_to_top"
             }
         },
         {
@@ -2089,7 +2090,7 @@
             "description": "Provides an integrated UI for displaying background images on a site.",
             "homepage": "https://www.drupal.org/project/background_image",
             "support": {
-                "source": "http://cgit.drupalcode.org/background_image"
+                "source": "https://git.drupalcode.org/project/background_image"
             }
         },
         {
@@ -2378,7 +2379,7 @@
             "description": "This module is going to generate layouts with Bootstrap grid system.",
             "homepage": "https://www.drupal.org/project/bootstrap_layouts",
             "support": {
-                "source": "http://cgit.drupalcode.org/bootstrap_layouts"
+                "source": "https://git.drupalcode.org/project/bootstrap_layouts"
             }
         },
         {
@@ -3423,6 +3424,10 @@
                     "homepage": "https://www.drupal.org/user/3260690"
                 },
                 {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
                     "name": "slashrsm",
                     "homepage": "https://www.drupal.org/user/744628"
                 },
@@ -3434,7 +3439,7 @@
             "description": "Provides storage and API for image crops.",
             "homepage": "https://www.drupal.org/project/crop",
             "support": {
-                "source": "http://cgit.drupalcode.org/crop",
+                "source": "https://git.drupalcode.org/project/crop",
                 "issues": "https://www.drupal.org/project/issues/crop"
             }
         },
@@ -3483,7 +3488,7 @@
             "description": "Provides CSV as a serialization format.",
             "homepage": "https://www.drupal.org/project/csv_serialization",
             "support": {
-                "source": "http://cgit.drupalcode.org/csv_serialization"
+                "source": "https://git.drupalcode.org/project/csv_serialization"
             }
         },
         {
@@ -3653,7 +3658,7 @@
             "description": "Provides improvements to blocks that will one day be added to Drupal core.",
             "homepage": "https://www.drupal.org/project/ctools",
             "support": {
-                "source": "http://cgit.drupalcode.org/ctools"
+                "source": "https://git.drupalcode.org/project/ctools"
             }
         },
         {
@@ -3726,6 +3731,10 @@
                 {
                     "name": "See contributors",
                     "homepage": "https://www.drupal.org/node/3236/committers"
+                },
+                {
+                    "name": "pcambra",
+                    "homepage": "https://www.drupal.org/user/122101"
                 },
                 {
                     "name": "salvis",
@@ -3848,7 +3857,7 @@
             "description": "Individual and configurable dashboard, so user can see own favourite functions immediately",
             "homepage": "https://www.drupal.org/project/draggable_dashboard",
             "support": {
-                "source": "http://cgit.drupalcode.org/draggable_dashboard"
+                "source": "https://git.drupalcode.org/project/draggable_dashboard"
             }
         },
         {
@@ -3894,7 +3903,7 @@
             ],
             "homepage": "https://www.drupal.org/project/drush",
             "support": {
-                "source": "http://cgit.drupalcode.org/drush"
+                "source": "https://git.drupalcode.org/project/drush"
             }
         },
         {
@@ -4267,7 +4276,7 @@
             "description": "Integrate Drupal Core extrafields from type display in views.",
             "homepage": "https://www.drupal.org/project/extrafield_views_integration",
             "support": {
-                "source": "http://cgit.drupalcode.org/extrafield_views_integration"
+                "source": "https://git.drupalcode.org/project/extrafield_views_integration"
             }
         },
         {
@@ -4887,7 +4896,7 @@
             "description": "Assists in inserting files, images, or other media into the body field or other text areas.",
             "homepage": "https://www.drupal.org/project/insert",
             "support": {
-                "source": "http://cgit.drupalcode.org/insert"
+                "source": "https://git.drupalcode.org/project/insert"
             }
         },
         {
@@ -4929,6 +4938,10 @@
                 {
                     "name": "Pol",
                     "homepage": "https://www.drupal.org/user/47194"
+                },
+                {
+                    "name": "joseph.olstad",
+                    "homepage": "https://www.drupal.org/user/1321830"
                 },
                 {
                     "name": "rjacobs",
@@ -5002,7 +5015,7 @@
             "description": "Add a Like and Dislike field on every entity (like content, comments etc) and Get instant statistics.",
             "homepage": "https://www.drupal.org/project/like_dislike",
             "support": {
-                "source": "http://cgit.drupalcode.org/like_dislike"
+                "source": "https://git.drupalcode.org/project/like_dislike"
             }
         },
         {
@@ -5050,7 +5063,7 @@
             "description": "Provides functionality to like the entity.",
             "homepage": "https://www.drupal.org/project/likeit",
             "support": {
-                "source": "http://cgit.drupalcode.org/likeit"
+                "source": "https://git.drupalcode.org/project/likeit"
             }
         },
         {
@@ -5202,6 +5215,10 @@
                     "homepage": "https://www.drupal.org/user/84263"
                 },
                 {
+                    "name": "Manuel Garcia",
+                    "homepage": "https://www.drupal.org/user/213194"
+                },
+                {
                     "name": "Nafes",
                     "homepage": "https://www.drupal.org/user/2489926"
                 },
@@ -5217,7 +5234,63 @@
             "description": "Mail System",
             "homepage": "https://www.drupal.org/project/mailsystem",
             "support": {
-                "source": "http://cgit.drupalcode.org/mailsystem"
+                "source": "https://git.drupalcode.org/project/mailsystem"
+            }
+        },
+        {
+            "name": "drupal/matomo",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/matomo.git",
+                "reference": "8.x-1.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/matomo-8.x-1.9.zip",
+                "reference": "8.x-1.9",
+                "shasum": "2c818af730f834d3aef3f6b7aa29f05e6fa9246d"
+            },
+            "require": {
+                "drupal/core": "~8.5"
+            },
+            "require-dev": {
+                "drupal/php": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.9",
+                    "datestamp": "1549615080",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/u/hass"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/247808/committers"
+                }
+            ],
+            "description": "Adds Matomo javascript tracking code to all your site's pages",
+            "homepage": "https://www.drupal.org/project/matomo",
+            "support": {
+                "source": "https://git.drupal.org/project/matomo.git",
+                "issues": "https://www.drupal.org/project/issues/matomo"
             }
         },
         {
@@ -5856,12 +5929,12 @@
             ],
             "authors": [
                 {
-                    "name": "New Zeal",
-                    "homepage": "https://www.drupal.org/user/93571"
-                },
-                {
                     "name": "RoySegall",
                     "homepage": "https://www.drupal.org/user/1812910"
+                },
+                {
+                    "name": "kent@passingphase.nz",
+                    "homepage": "https://www.drupal.org/user/93571"
                 },
                 {
                     "name": "mccrodp",
@@ -5871,7 +5944,7 @@
             "description": "Message UI",
             "homepage": "https://www.drupal.org/project/message_ui",
             "support": {
-                "source": "http://cgit.drupalcode.org/message_ui"
+                "source": "https://git.drupalcode.org/project/message_ui"
             }
         },
         {
@@ -5934,7 +6007,7 @@
             "description": "Sends MIME-encoded emails with embedded images and attachments.",
             "homepage": "https://www.drupal.org/project/mimemail",
             "support": {
-                "source": "http://cgit.drupalcode.org/mimemail"
+                "source": "https://git.drupalcode.org/project/mimemail"
             }
         },
         {
@@ -5989,7 +6062,7 @@
             "description": "Filter the modules list.",
             "homepage": "https://www.drupal.org/project/module_filter",
             "support": {
-                "source": "http://cgit.drupalcode.org/module_filter"
+                "source": "https://git.drupalcode.org/project/module_filter"
             }
         },
         {
@@ -6055,6 +6128,10 @@
                 {
                     "name": "See other contributors",
                     "homepage": "https://www.drupal.org/node/1072922/committers"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "tim.plunkett",
@@ -6416,7 +6493,7 @@
             "description": "Picture management module. Photo albums.",
             "homepage": "https://www.drupal.org/project/photos",
             "support": {
-                "source": "http://cgit.drupalcode.org/photos"
+                "source": "https://git.drupalcode.org/project/photos"
             }
         },
         {
@@ -6474,7 +6551,7 @@
             "description": "Allows your site to capture votes on different topics in the form of multiple choice questions.",
             "homepage": "https://www.drupal.org/project/poll",
             "support": {
-                "source": "http://cgit.drupalcode.org/poll"
+                "source": "https://git.drupalcode.org/project/poll"
             }
         },
         {
@@ -6527,7 +6604,7 @@
             "description": "Postal Code Field Module.",
             "homepage": "https://www.drupal.org/project/postal_code",
             "support": {
-                "source": "http://cgit.drupalcode.org/postal_code"
+                "source": "https://git.drupalcode.org/project/postal_code"
             },
             "time": "2016-05-30T08:04:15+00:00"
         },
@@ -6776,7 +6853,7 @@
             "description": "Reroutes emails send from the site to a predefined email. Useful for test sites.",
             "homepage": "https://www.drupal.org/project/reroute_email",
             "support": {
-                "source": "http://cgit.drupalcode.org/reroute_email"
+                "source": "https://git.drupalcode.org/project/reroute_email"
             }
         },
         {
@@ -6864,7 +6941,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.1",
-                    "datestamp": "1566566888",
+                    "datestamp": "1566578555",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -7022,10 +7099,6 @@
             ],
             "authors": [
                 {
-                    "name": "Anonymous",
-                    "homepage": "https://www.drupal.org/user/0"
-                },
-                {
                     "name": "JeroenT",
                     "homepage": "https://www.drupal.org/user/2228934"
                 },
@@ -7041,7 +7114,7 @@
             "description": "Create sort options for search queries executed via the Search API.",
             "homepage": "https://www.drupal.org/project/search_api_sorts",
             "support": {
-                "source": "http://cgit.drupalcode.org/search_api_sorts"
+                "source": "https://git.drupalcode.org/project/search_api_sorts"
             }
         },
         {
@@ -7087,7 +7160,7 @@
             "description": "Enabling the recording and presentation of statistics for the Search API module.",
             "homepage": "https://www.drupal.org/project/search_api_stats",
             "support": {
-                "source": "http://cgit.drupalcode.org/search_api_stats"
+                "source": "https://git.drupalcode.org/project/search_api_stats"
             },
             "time": "2017-05-24T01:39:13+00:00"
         },
@@ -7129,7 +7202,7 @@
             "description": "Display Drupal blocks for top search terms.",
             "homepage": "https://www.drupal.org/project/search_api_stats",
             "support": {
-                "source": "http://cgit.drupalcode.org/search_api_stats"
+                "source": "https://git.drupalcode.org/project/search_api_stats"
             }
         },
         {
@@ -7353,7 +7426,7 @@
             ],
             "authors": [
                 {
-                    "name": "Aswathy Ajish",
+                    "name": "AswathyAjish",
                     "homepage": "https://www.drupal.org/user/2584696"
                 },
                 {
@@ -7368,7 +7441,7 @@
             "description": "A module to import taxonomy using CSV or XML file to a user defined vocabulary",
             "homepage": "https://www.drupal.org/project/taxonomy_import",
             "support": {
-                "source": "http://cgit.drupalcode.org/taxonomy_import"
+                "source": "https://git.drupalcode.org/project/taxonomy_import"
             }
         },
         {
@@ -7633,7 +7706,7 @@
             "description": "This module saves term merge actions and reuse the rules for new terms. Also you can manage the rules",
             "homepage": "https://www.drupal.org/project/term_merge_manager",
             "support": {
-                "source": "http://cgit.drupalcode.org/term_merge_manager"
+                "source": "https://git.drupalcode.org/project/term_merge_manager"
             }
         },
         {
@@ -7797,7 +7870,7 @@
             "description": "Provides a user interface for the Token API and some missing core tokens.",
             "homepage": "https://www.drupal.org/project/token",
             "support": {
-                "source": "http://cgit.drupalcode.org/token"
+                "source": "https://git.drupalcode.org/project/token"
             }
         },
         {
@@ -7869,7 +7942,7 @@
             "description": "This is a very simple module to make global token values available as an input filter.",
             "homepage": "https://www.drupal.org/project/token_filter",
             "support": {
-                "source": "http://cgit.drupalcode.org/token_filter"
+                "source": "https://git.drupalcode.org/project/token_filter"
             }
         },
         {
@@ -7899,7 +7972,7 @@
                 },
                 "drupal": {
                     "version": "8.x-2.4",
-                    "datestamp": "1563096785",
+                    "datestamp": "1563099329",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -8038,7 +8111,7 @@
             "description": "Cron",
             "homepage": "https://www.drupal.org/project/ultimate_cron",
             "support": {
-                "source": "http://cgit.drupalcode.org/ultimate_cron"
+                "source": "https://git.drupalcode.org/project/ultimate_cron"
             }
         },
         {
@@ -8265,12 +8338,12 @@
             ],
             "authors": [
                 {
-                    "name": "New Zeal",
-                    "homepage": "https://www.drupal.org/user/93571"
-                },
-                {
                     "name": "joekers",
                     "homepage": "https://www.drupal.org/user/2229066"
+                },
+                {
+                    "name": "kent@passingphase.nz",
+                    "homepage": "https://www.drupal.org/user/93571"
                 },
                 {
                     "name": "seanB",
