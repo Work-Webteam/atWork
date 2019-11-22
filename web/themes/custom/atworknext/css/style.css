@@ -11370,7 +11370,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 a[href="#"] {
 
 /* line 203, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_article.scss */
 .page-node-type-background-page section.col-sm-12 #block-programtopicboxes .field--name-field-program-topic-boxes .paragraph--type--program-topic-box {
-  min-height: 190px;
+  min-height: 210px;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -13563,19 +13563,26 @@ body.path-employees .all-employee-page > .form-group, body.path-executives .all-
 
 /* line 94, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group .form-item, body.path-executives .all-employee-page > .form-group .form-item {
-  max-width: 210px;
+  max-width: 200px;
   width: -moz-available;
   margin-bottom: 3px;
 }
 
-/* line 99, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 98, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+body.path-employees .all-employee-page > .form-group .form-item .select-wrapper, body.path-executives .all-employee-page > .form-group .form-item .select-wrapper {
+  display: inline;
+}
+
+/* line 102, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group label.control-label, body.path-executives .all-employee-page > .form-group label.control-label {
+  display: block;
   font-weight: normal;
   padding-right: 5px;
 }
 
-/* line 103, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 107, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group input.form-control, body.path-employees .all-employee-page > .form-group .form-select.form-control, body.path-executives .all-employee-page > .form-group input.form-control, body.path-executives .all-employee-page > .form-group .form-select.form-control {
+  max-width: 200px;
   padding: 0px 5px;
   height: inherit;
   color: #10233c;
@@ -13583,40 +13590,40 @@ body.path-employees .all-employee-page > .form-group input.form-control, body.pa
   line-height: 16px;
 }
 
-/* line 108, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 113, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group input.form-control:focus, body.path-employees .all-employee-page > .form-group .form-select.form-control:focus, body.path-executives .all-employee-page > .form-group input.form-control:focus, body.path-executives .all-employee-page > .form-group .form-select.form-control:focus {
   background-color: beige;
 }
 
-/* line 112, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 117, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group .form-item-sort-by, body.path-employees .all-employee-page > .form-group .form-item-sort-order, body.path-executives .all-employee-page > .form-group .form-item-sort-by, body.path-executives .all-employee-page > .form-group .form-item-sort-order {
   max-width: min-content;
   margin-right: 10px;
 }
 
-/* line 115, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 120, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-employees .all-employee-page > .form-group .form-item-sort-order .form-select.form-control, body.path-executives .all-employee-page > .form-group .form-item-sort-by .form-select.form-control, body.path-executives .all-employee-page > .form-group .form-item-sort-order .form-select.form-control {
   padding: 0 20px 0 0;
 }
 
-/* line 122, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 127, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees section.profile-detail .employee, body.path-executives section.profile-detail .employee {
   font-weight: bold;
   text-transform: uppercase;
 }
 
-/* line 126, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 131, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees section.profile-detail .email, body.path-executives section.profile-detail .email {
   margin-top: 10px;
 }
 
-/* line 130, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 135, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-employees nav.pager-nav, body.path-executives nav.pager-nav {
   font-size: .75rem;
   line-height: 16px;
 }
 
-/* line 135, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
+/* line 140, ../../Users/cdeakin/Sites/devdesktop/atwork-local/web/themes/custom/atworknext/scss/_profile.scss */
 body.path-executives .view-filters.form-group {
   border: solid 1px transparent;
 }
