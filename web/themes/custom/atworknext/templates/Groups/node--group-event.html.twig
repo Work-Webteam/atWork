@@ -77,13 +77,13 @@
 %}
 <article{{ attributes.addClass(classes) }}>
 
-  {{ title_prefix }}
-  {% if label and not page %}
+  {% if label %}
+    {{ title_prefix }}
     <h2{{ title_attributes.addClass('node__title') }}>
       <a href="{{ url }}" rel="bookmark">{{ label }}</a>
     </h2>
+    {{ title_suffix }}
   {% endif %}
-  {{ title_suffix }}
 
   {% if display_submitted %}
     <div class="node__meta"> <span{{ author_attributes }}> </span> {{ metadata }} </div>
@@ -96,6 +96,7 @@
     {{ content.body }}
     <div {{ content_attributes.addClass('group_event_dates', 'clearfix') }}>
       <p>{{ content.field_start }}{{ content.field_end }}</p>
+      <p>{{ content.field_download_event }}</p>
     </div>
     {{ content.field_tags }}
     {# Social bar is our default link block #}

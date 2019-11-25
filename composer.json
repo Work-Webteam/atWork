@@ -223,13 +223,13 @@
 	    },
 	    "drupal/devel": {
 	        "Fixing kint issue": "https://www.drupal.org/files/issues/devel.ksm_.2857361.18.patch"
-      },
+      	    },
 	    "drupal/mimemail": {
 	        "Implements send mail function for mimemail plugin": "https://www.drupal.org/files/issues/2018-07-25/2938963-10.patch"
 	    },
-      "drupal/poll": {
-        "Resolves Vote form/Results field ordering issue": "https://www.drupal.org/files/issues/2019-09-18/poll-manage-display-fix.patch"
-      },
+      	    "drupal/poll": {
+                "Resolves Vote form/Results field ordering issue": "https://www.drupal.org/files/issues/2019-09-18/poll-manage-display-fix.patch"
+            },
 	    "drupal/group": {
 	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
 	    },
@@ -241,6 +241,9 @@
 	    },
 	   "drupal/taxonomy_permissions": {
 		"Fixing error with views/taxonomy permissions." : "https://www.drupal.org/files/issues/2019-01-30/taxonomy_permissions-Problem_when_using_an_ER_view_as_target_bundles-3009193-4-8.x.patch"
+	    },
+	    "drupal/ics_field": {
+	        "Update to allow daterange in ics." : "https://www.drupal.org/files/issues/2019-10-30/ics_field-2852239-15.patch"
 	    }
 	}
     }

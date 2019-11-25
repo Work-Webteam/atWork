@@ -44,31 +44,21 @@ function atwork_calendar_entity_presave(Drupal\Core\Entity\EntityInterface $enti
 }
 
 /**
- * Implements hook_form_FORM_ID_alter
+ * Implements hook_form_alter().
  *
- * @param $form
- * @param $form_state
- * @param $form_id
- *
- * We want to make sure that users only fill out the date range field, we take care of start
- * and end dates.
+ * There are some fields we need to hide when an event is being created
+ * or edited.
  */
-function atwork_calendar_form_node_event_form_alter(&$form, $form_state, $form_id){
-  $form['field_start']['#access'] = FALSE;
-  $form['field_end']['#access'] = FALSE;
-}
-
-/**
- * Implements hook_form_FORM_ID_alter
- *
- * @param $form
- * @param $form_state
- * @param $form_id
- *
- * We want to make sure that users only fill out the date range field, we take care of start
- * and end dates.
- */
-function atwork_calendar_form_node_group_event_form_alter(&$form, $form_state, $form_id) {
-  $form['field_start']['#access'] = FALSE;
-  $form['field_end']['#access'] = FALSE;
+function atwork_calendar_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  switch (TRUE) {
+    case $form_id == 'node_group_event_form' :
+    case $form_id == 'node_group_event_edit_form' :
+    case $form_id == 'node_event_form' :
+    case $form_id == 'node_event_edit_form' :
+      $form['field_start']['#access'] = FALSE;
+      $form['field_end']['#access'] = FALSE;
+      $form['field_download_event']['#access'] =  FALSE;
+      break;
+  }
 }

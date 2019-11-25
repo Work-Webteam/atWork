@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.event.body
+    - field.field.node.event.field_download_event
     - field.field.node.event.field_end
     - field.field.node.event.field_range
     - field.field.node.event.field_start
@@ -11,6 +12,7 @@ dependencies:
   module:
     - datetime
     - datetime_range
+    - ics_field
     - panelizer
     - text
     - user
@@ -31,6 +33,13 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
+  field_download_event:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: calendar_download_default_formatter
     region: content
   field_end:
     weight: 1
