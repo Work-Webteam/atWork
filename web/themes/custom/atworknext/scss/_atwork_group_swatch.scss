@@ -27,52 +27,53 @@ form#group-atwork-groups-edit-form {
         padding-left: 5px;
       }
     }
-    .form-item-field-themes:nth-of-type(2) { // Default colour
+    .form-item-field-themes:nth-of-type(2) { // Teal
+
       .group-swatch {
         .primary-col {
-          border-color:rgba(138, 204, 207, 1);
+          border-color: rgba(138, 204, 207, 1);
         }
         .secondary-col {
-          border-color:rgba(51, 122, 183, 1);
+          border-color: rgba(47, 114, 116, 1);
         }
         .link-col {
-          border-color:rgba(58, 85, 193, 1);
+          border-color: rgba(64, 107, 147, 1);
         }
       }
     }
-    .form-item-field-themes:nth-of-type(3) { // Bright colour
+    .form-item-field-themes:nth-of-type(3) { // Green
       .group-swatch {
         .primary-col {
-          border-color:rgba(217,156,43, 1);
+          border-color:rgba(22, 117, 22, 1);
         }
         .secondary-col {
-          border-color:rgba(242,192,99, 1);
+          border-color:rgba(20, 83, 20, 1);
         }
         .link-col {
-          border-color:rgba(58, 85, 193, 1);
+          border-color: rgb(64, 107, 147);
         }
       }
     }
-    .form-item-field-themes:nth-of-type(4) { // Dark colour
+    .form-item-field-themes:nth-of-type(4) { // Blue
       .group-swatch {
         .primary-col {
           border-color:rgba(24,55,95, 1);
         }
         .secondary-col {
-          border-color:rgba(77,127,174, 1);
+          border-color:rgba(16, 35, 60, 1);
         }
         .link-col {
-          border-color:rgba(58, 85, 193, 1);
+          border-color:rgba(64, 107, 147, 1);
         }
       }
     }
-    .form-item-field-themes:nth-of-type(5) { // Muted
+    .form-item-field-themes:nth-of-type(5) { // Light Blue
       .group-swatch {
         .primary-col {
           border-color:rgba(223,235,242, 1);
         }
         .secondary-col {
-          border-color:rgba(237,242,245, 1);
+          border-color:rgba(174, 208, 227, 1);
         }
         .link-col {
           border-color:rgba(58, 85, 193, 1);

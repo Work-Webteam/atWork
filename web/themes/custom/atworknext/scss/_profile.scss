@@ -92,15 +92,20 @@ body.path-employees, body.path-executives {
       text-align: left;
       @include size1216;
       .form-item {
-        max-width:210px;
+        max-width:200px;
         width: -moz-available;
         margin-bottom:3px;
+        .select-wrapper {
+          display:inline;
+        }
       }
       label.control-label {
+        display: block;
         font-weight: normal;
         padding-right: 5px;
       }
       input.form-control, .form-select.form-control {
+        max-width: 200px;
         padding:0px 5px;
         height: inherit;
         color: $banner-blue;

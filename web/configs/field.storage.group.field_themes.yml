@@ -13,16 +13,16 @@ settings:
   allowed_values:
     -
       value: theme_default
-      label: Default
+      label: Teal
     -
       value: theme_bright
-      label: Bright
+      label: Green
     -
       value: theme_dark
-      label: Dark
+      label: 'Dark Blue'
     -
       value: theme_muted
-      label: Muted
+      label: 'Light Blue'
   allowed_values_function: ''
 module: options
 locked: false

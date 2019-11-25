@@ -88,7 +88,8 @@
   {{ title_suffix }}
   {% if display_submitted %}
     <div class="node__meta"> <span{{ author_attributes }}> </span> {{ metadata }} </div>
-  {% endif %} </header>
+  {% endif %} 
+  </header>
 <div{{ content_attributes.addClass('node__content', 'clearfix') }}> {% if content.field_video['#object'] is defined %}
     {{ content.field_video }}
   {% else %}

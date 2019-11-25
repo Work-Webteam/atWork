@@ -1,9 +1,9 @@
 /* Site Colours - include primary, panels, text, links and special */
 /* Updated October 2018 */
 
-$banner-blue: #266694; // Top banner and footer
+$banner-blue: #10233c; // Top banner and footer
 
-$link-blue:#23527c; // Links (Revised from #0080c7 suggested from WAVE
+$link-blue:rgb(64, 107, 147); // Links (Revised from #0080c7 suggested from WAVE
 $text:#333333; // Default colour for text
 $black:#000000; // Black
 $white:rgb(255,255,255); // White
@@ -24,38 +24,33 @@ $button-up: $link-blue; // Default button up colour
 $button-hover: #6b6b6b; // Roll over button colour
 
 // Group colour Options
-// Colours based of the WiW Corporate Plan Cover 2016
-// Three colour groups and the default
 
-// Group Default
+// Teal
 
 $grp-default-banner: rgba(138, 204, 207, 1);
-$grp-default-btn: rgba(51, 122, 183, 1);
+$grp-default-btn: rgba(47, 114, 116, 1);
 $grp-default-hover: rgba(37, 126, 130, 1);
-$grp-default-link: rgba(58, 85, 193, 1);
+$grp-default-link: rgba(64, 107, 147, 1);
 
 
-// WiW Bright
+// Green
 
-/* Color Theme Swatches in RGBA */
-$grp-bright-banner: rgba(217,156,43, 1);
-$grp-bright-btn: rgba(242,192,99, 1);
-$grp-bright-hover: #768ba6;
-$grp-bright-blue: rgba(34,69,115, 1);
+$grp-bright-banner: rgba(20, 83, 20, 1);
+$grp-bright-btn: rgba(22, 117, 22, 1);
+$grp-bright-hover: rgba(118, 139, 166, 1);
+$grp-bright-blue: rgba(64, 107, 147, 1);
 
-// WiW Deep
+// Blue
 
-/* Color Theme Swatches in RGBA */
 $grp-deep-banner: rgba(24,55,95, 1);
-$grp-deep-btn: rgba(77,127,174, 1);
+$grp-deep-btn: rgba(16, 35, 60, 1);
 $grp-deep-hover: rgba(242,183,73, 1);
-$grp-deep-link:rgba(77, 127, 174, 1);
+$grp-deep-link:rgba(64, 107, 147, 1);
 
-// WiW Muted
+// Light Blue
 
-/* Color Theme Swatches in RGBA */
 $grp-muted-banner: rgba(223,235,242, 1);
-$grp-muted-btn: rgba(237,242,245, 1);
+$grp-muted-btn: rgba(174, 208, 227, 1);
 $grp-muted-hover: rgba(242,183,73, 1);
 
 // Web Accessibility Colour Overrides
