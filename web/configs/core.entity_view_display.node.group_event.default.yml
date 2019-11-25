@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.group_event.body
     - field.field.node.group_event.field_end
+    - field.field.node.group_event.field_range
     - field.field.node.group_event.field_start
     - node.type.group_event
   module:
     - datetime
+    - datetime_range
     - panelizer
     - text
     - user
@@ -38,6 +40,16 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_range:
+    weight: 6
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
     region: content
   field_start:
     weight: 0

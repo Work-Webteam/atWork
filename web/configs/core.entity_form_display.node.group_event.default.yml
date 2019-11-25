@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.node.group_event.body
     - field.field.node.group_event.field_end
+    - field.field.node.group_event.field_range
     - field.field.node.group_event.field_start
     - node.type.group_event
   module:
     - datetime
+    - datetime_range
     - path
     - scheduler
     - text
@@ -37,6 +39,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_range:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
     region: content
   field_start:
     weight: 12

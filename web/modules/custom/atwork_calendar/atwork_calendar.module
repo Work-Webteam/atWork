@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Contains atwork_calendar.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function atwork_calendar_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the atwork_calendar module.
+    case 'help.page.atwork_calendar':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Module to implement calendar actions.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * We want to populate start and  end date fields with user entered date range field.+
+ */
+function atwork_calendar_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  // Only act if this is an event
+  if ($entity->bundle() == 'event' || $entity->bundle() == 'group_event') {
+    // Get the date range start and end.
+    $range_start = $entity->get('field_range')->value;
+    $range_end = $entity->get('field_range')->end_value;
+    // Set the start date.
+    $entity->set('field_start', $range_start);
+    // Set the end date.
+    $entity->set('field_end', $range_end);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ *
+ * We want to make sure that users only fill out the date range field, we take care of start
+ * and end dates.
+ */
+function atwork_calendar_form_node_event_form_alter(&$form, $form_state, $form_id){
+  $form['field_start']['#access'] = FALSE;
+  $form['field_end']['#access'] = FALSE;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ *
+ * We want to make sure that users only fill out the date range field, we take care of start
+ * and end dates.
+ */
+function atwork_calendar_form_node_group_event_form_alter(&$form, $form_state, $form_id) {
+  $form['field_start']['#access'] = FALSE;
+  $form['field_end']['#access'] = FALSE;
+}
