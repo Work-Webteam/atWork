@@ -1,0 +1,33 @@
+uuid: c138231d-b97b-45d2-af88-a704f7a1b654
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.group_menu
+  module:
+    - group
+    - views
+  theme:
+    - bootstrap_barrio
+id: bootstrap_barrio_views_block__group_menu_block_3
+theme: bootstrap_barrio
+region: background_image
+weight: -9
+provider: null
+plugin: 'views_block:group_menu-block_3'
+settings:
+  id: 'views_block:group_menu-block_3'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  group_type:
+    id: group_type
+    group_types:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'

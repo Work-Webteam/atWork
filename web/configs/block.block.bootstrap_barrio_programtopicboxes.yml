@@ -1,0 +1,37 @@
+uuid: 20ee3b66-4e61-4f0d-abdb-a916a31c10a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - ctools_block
+  theme:
+    - bootstrap_barrio
+id: bootstrap_barrio_programtopicboxes
+theme: bootstrap_barrio
+region: content
+weight: -8
+provider: null
+plugin: 'entity_field:node:field_program_topic_boxes'
+settings:
+  id: 'entity_field:node:field_program_topic_boxes'
+  label: 'Program Topic Boxes'
+  provider: ctools_block
+  label_display: '0'
+  formatter:
+    label: hidden
+    type: entity_reference_revisions_entity_view
+    settings:
+      view_mode: default
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@node.node_route_context:node'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      background_page: background_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

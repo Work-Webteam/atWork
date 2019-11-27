@@ -1,0 +1,43 @@
+uuid: bed93be2-9a10-42a8-9adb-dd9495a9ae81
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.comments_new
+  module:
+    - ctools
+    - user
+    - views
+  theme:
+    - bootstrap_barrio
+id: bootstrap_barrio_views_block__comments_new_block_1
+theme: bootstrap_barrio
+region: content
+weight: -3
+provider: null
+plugin: 'views_block:comments_new-block_1'
+settings:
+  id: 'views_block:comments_new-block_1'
+  label: Comments
+  provider: views
+  label_display: '0'
+  views_label: Comments
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      article: article
+      forum: forum
+      group_post: group_post
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

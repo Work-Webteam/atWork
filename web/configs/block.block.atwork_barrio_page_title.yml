@@ -1,0 +1,27 @@
+uuid: a24cd866-510d-417e-89b9-7719cfeacdd5
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: atwork_barrio_page_title
+theme: atwork_barrio
+region: content
+weight: -3
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: ''
+    negate: true
+    context_mapping: {  }

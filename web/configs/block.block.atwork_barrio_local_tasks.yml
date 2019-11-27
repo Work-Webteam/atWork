@@ -1,0 +1,22 @@
+uuid: 47454ac8-be9e-40ea-b40e-25a06e119bb3
+langcode: en
+status: true
+dependencies:
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: atwork_barrio_local_tasks
+theme: atwork_barrio
+region: content
+weight: -12
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

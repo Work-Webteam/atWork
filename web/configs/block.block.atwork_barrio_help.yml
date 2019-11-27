@@ -1,0 +1,22 @@
+uuid: f51d406c-e754-4537-b81d-5fc95b2ce541
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: atwork_barrio_help
+theme: atwork_barrio
+region: highlighted
+weight: -11
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

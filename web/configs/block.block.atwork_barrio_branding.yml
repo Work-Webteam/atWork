@@ -1,0 +1,25 @@
+uuid: 6c485c16-1f26-4bfa-bc05-30c0bd4cf88f
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: atwork_barrio_branding
+theme: atwork_barrio
+region: header
+weight: -12
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: true
+visibility: {  }

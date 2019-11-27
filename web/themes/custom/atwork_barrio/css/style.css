@@ -1,0 +1,144 @@
+/* Mixins specific to AtWork CSS. See the Bootstrap mixins for others */
+/* line 375, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+.group-related-content .related-wrapper li.related-content {
+  margin-left: initial;
+}
+
+/* line 377, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+.group-related-content .related-wrapper li.related-content:before {
+  content: none;
+}
+
+/* Site Colours - include primary, panels, text, links and special */
+/* Updated October 2018 */
+/*
+// Darkens breadcrumb text.
+$gray-light: lighten($gray-base, 35.0%) !default; // #595959
+.breadcrumb > .active {
+    color: $gray-light;
+}
+.btn-success {
+    background-color: darken(#5cb85c, 20%);
+}
+.btn-info {
+    background-color: darken(#31b0d5, 15%);
+}
+*/
+/* Site wide font settings */
+/* Updated October 2018 */
+@font-face {
+  src: url("../fonts/BCSans-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-family: 'BCSans';
+}
+
+@font-face {
+  src: url("../fonts/BCSans-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-family: 'BCSans';
+}
+
+@font-face {
+  src: url("../fonts/BCSans-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-family: 'BCSans';
+}
+
+@font-face {
+  src: url("../fonts/BCSans-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-family: 'BCSans';
+}
+
+/* line 32, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+html, body {
+  font-family: 'BCSans';
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* line 36, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+html p, body p {
+  color: #333333;
+  padding: 0;
+  margin: 0 0 36px 0;
+}
+
+/* line 44, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h1 {
+  font-family: 'BCSans';
+  font-size: 1.312rem;
+  line-height: 36px;
+  color: #333333;
+  font-weight: bold;
+  margin: 0;
+  padding-top: 24px;
+  padding-bottom: 6px;
+}
+
+/* line 53, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h2, h3, h4 {
+  font-family: 'BCSans';
+  font-weight: 600;
+  color: #333333;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+/* line 60, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h2 {
+  font-size: 1.728em;
+  line-height: 24px;
+}
+
+/* line 63, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h3 {
+  font-size: 1.44em;
+  line-height: 24px;
+}
+
+/* line 66, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h4 {
+  font-size: 1.2em;
+  line-height: 24px;
+}
+
+/* line 69, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h5 {
+  font-family: 'BCSans';
+  font-size: 1.2em;
+  line-height: 24px;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* line 77, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+h6 {
+  font-family: 'BCSans';
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 24px;
+  letter-spacing: .025rem;
+  text-transform: uppercase;
+  color: #333333;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 0;
+}
+
+/* line 89, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+a {
+  color: #406b93;
+  text-decoration: none;
+}
+
+/* line 92, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_typography.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=style.css.map */

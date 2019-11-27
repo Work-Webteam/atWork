@@ -1,0 +1,33 @@
+uuid: 7dbca814-3f40-4c29-a9e0-a10e145195d7
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.related_content
+  module:
+    - ctools
+    - views
+  theme:
+    - atwork_barrio
+id: atwork_barrio_views_block__related_content_block_1
+theme: atwork_barrio
+region: content
+weight: 1
+provider: null
+plugin: 'views_block:related_content-block_1'
+settings:
+  id: 'views_block:related_content-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      article: article
+      background_page: background_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

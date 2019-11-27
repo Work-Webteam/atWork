@@ -1,0 +1,22 @@
+uuid: 2442f767-8c48-4787-b70a-9e1d4fa7ba48
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: oXUb3JZR2WW5VOdw4HrhRicCsq51mCgLfRyvheG68ck
+id: atwork_barrio_breadcrumbs
+theme: atwork_barrio
+region: breadcrumb
+weight: -12
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  provider: system
+  label_display: '0'
+visibility: {  }

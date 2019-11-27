@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.article.field_author_information
     - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_development_tags
+    - field.field.node.article.field_display_title
     - field.field.node.article.field_editor_tags
     - field.field.node.article.field_header_image
     - field.field.node.article.field_interactive_content
@@ -27,6 +28,7 @@ dependencies:
     - options
     - panelizer
     - text
+    - title_field_for_manage_display
     - user
     - video_embed_field
 third_party_settings:
@@ -296,14 +298,14 @@ mode: default
 content:
   body:
     type: text_default
-    weight: 1
+    weight: 2
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   comment:
     type: comment_default
-    weight: 13
+    weight: 14
     region: content
     label: hidden
     settings:
@@ -312,14 +314,14 @@ content:
     third_party_settings: {  }
   field_article_type:
     type: list_default
-    weight: 9
+    weight: 10
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_attachments:
     type: file_default
-    weight: 7
+    weight: 8
     region: content
     label: above
     settings:
@@ -327,29 +329,39 @@ content:
     third_party_settings: {  }
   field_author_information:
     type: author
-    weight: 6
+    weight: 7
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_custom_teaser:
     type: text_default
-    weight: 16
+    weight: 17
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_development_tags:
     type: entity_reference_label
-    weight: 15
+    weight: 16
     region: content
     label: above
     settings:
       link: true
     third_party_settings: {  }
+  field_display_title:
+    type: title_value_field_formatter
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      tag: h1
+      linked: '1'
+      classes: ''
+    third_party_settings: {  }
   field_editor_tags:
     type: entity_reference_label
-    weight: 14
+    weight: 15
     region: content
     label: above
     settings:
@@ -358,21 +370,21 @@ content:
   field_header_image:
     type: media_thumbnail
     weight: 0
+    region: content
     label: hidden
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
-    region: content
   field_interactive_content:
     type: h5p_default
-    weight: 10
+    weight: 11
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_send_notifications:
-    weight: 17
+    weight: 18
     label: above
     settings:
       format: default
@@ -383,7 +395,7 @@ content:
     region: content
   field_tags:
     type: entity_reference_label
-    weight: 2
+    weight: 3
     region: content
     label: above
     settings:
@@ -391,7 +403,7 @@ content:
     third_party_settings: {  }
   field_video:
     type: video_embed_field_video
-    weight: 8
+    weight: 9
     region: content
     label: hidden
     settings:
@@ -401,27 +413,27 @@ content:
       autoplay: false
     third_party_settings: {  }
   flag_email_node:
-    weight: 11
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_inappropriate:
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
     weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
-  likeit:
+  flag_inappropriate:
     weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
-  links:
+  flag_subscribe_node:
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  likeit:
     weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }

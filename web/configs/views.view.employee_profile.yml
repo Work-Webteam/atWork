@@ -1,6 +1,6 @@
 uuid: e112b5e2-c8da-42f5-ae36-cdd01cac2e70
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.user.field_about_me
@@ -12,11 +12,8 @@ dependencies:
     - field.storage.user.field_user_phone
     - field.storage.user.field_user_surname
     - field.storage.user.field_user_title
-    - field.storage.user.user_picture
-    - responsive_image.styles.responsive_article_image
     - user.role.authenticated
   module:
-    - responsive_image
     - telephone
     - text
     - user
@@ -425,70 +422,6 @@ display:
             thousand_separator: ''
             prefix_suffix: true
           group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        user_picture:
-          id: user_picture
-          table: user__user_picture
-          field: user_picture
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
-            path: 'employees/{{ name_1 }}'
-            absolute: false
-            external: false
-            replace_spaces: true
-            path_case: none
-            trim_whitespace: false
-            alt: 'View profile'
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: responsive_image
-          settings:
-            responsive_image_style: responsive_article_image
-            image_link: ''
-          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -1199,7 +1132,6 @@ display:
         - 'config:field.storage.user.field_user_phone'
         - 'config:field.storage.user.field_user_surname'
         - 'config:field.storage.user.field_user_title'
-        - 'config:field.storage.user.user_picture'
   page_1:
     display_plugin: page
     id: page_1
@@ -1325,70 +1257,6 @@ display:
           field_api_classes: false
           entity_type: user
           entity_field: uid
-          plugin_id: field
-        user_picture:
-          id: user_picture
-          table: user__user_picture
-          field: user_picture
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: responsive_image
-          settings:
-            responsive_image_style: responsive_article_image
-            image_link: ''
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
           plugin_id: field
         name:
           id: name
@@ -2347,7 +2215,6 @@ display:
         - 'config:field.storage.user.field_user_phone'
         - 'config:field.storage.user.field_user_surname'
         - 'config:field.storage.user.field_user_title'
-        - 'config:field.storage.user.user_picture'
   page_2:
     display_plugin: page
     id: page_2
@@ -2541,70 +2408,6 @@ display:
           field_api_classes: false
           entity_type: user
           entity_field: name
-          plugin_id: field
-        user_picture:
-          id: user_picture
-          table: user__user_picture
-          field: user_picture
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
-            path: 'employees/{{ name_1 }}'
-            absolute: false
-            external: false
-            replace_spaces: true
-            path_case: none
-            trim_whitespace: false
-            alt: 'View profile'
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: responsive_image
-          settings:
-            responsive_image_style: responsive_article_image
-            image_link: ''
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
           plugin_id: field
         field_user_given_name:
           id: field_user_given_name
@@ -3729,7 +3532,6 @@ display:
         - 'config:field.storage.user.field_user_phone'
         - 'config:field.storage.user.field_user_surname'
         - 'config:field.storage.user.field_user_title'
-        - 'config:field.storage.user.user_picture'
   page_3:
     display_plugin: page
     id: page_3
@@ -3799,70 +3601,6 @@ display:
         css_class: false
         title: false
       fields:
-        user_picture:
-          id: user_picture
-          table: user__user_picture
-          field: user_picture
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: responsive_image
-          settings:
-            responsive_image_style: responsive_article_image
-            image_link: ''
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
         name:
           id: name
           table: users_field_data
@@ -4675,7 +4413,6 @@ display:
         - 'config:field.storage.user.field_user_phone'
         - 'config:field.storage.user.field_user_surname'
         - 'config:field.storage.user.field_user_title'
-        - 'config:field.storage.user.user_picture'
   page_4:
     display_plugin: page
     id: page_4
@@ -4933,70 +4670,6 @@ display:
           field_api_classes: false
           entity_type: user
           entity_field: name
-          plugin_id: field
-        user_picture:
-          id: user_picture
-          table: user__user_picture
-          field: user_picture
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: true
-            path: 'employees/{{ name_1 }}'
-            absolute: false
-            external: false
-            replace_spaces: true
-            path_case: none
-            trim_whitespace: false
-            alt: 'View profile'
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: responsive_image
-          settings:
-            responsive_image_style: responsive_article_image
-            image_link: ''
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
           plugin_id: field
         field_user_given_name:
           id: field_user_given_name
@@ -5710,4 +5383,3 @@ display:
         - 'config:field.storage.user.field_user_phone'
         - 'config:field.storage.user.field_user_surname'
         - 'config:field.storage.user.field_user_title'
-        - 'config:field.storage.user.user_picture'
