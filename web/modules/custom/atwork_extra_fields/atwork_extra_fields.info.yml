@@ -1,0 +1,6 @@
+name: AtWork Extra Fields
+type: module
+description: 'Provides Extra Field plugins for At Work customization.'
+core: 8.x
+dependencies:
+  - extra_field
