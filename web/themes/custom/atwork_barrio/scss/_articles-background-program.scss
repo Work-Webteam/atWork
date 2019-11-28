@@ -1,0 +1,10 @@
+// Article pages - Corporate / Executive / Video
+
+body.node--type-article {
+    main#content {
+        .field--name-field-header-image > img {
+            max-width:100%;
+            height:auto;
+        }
+    }
+}
