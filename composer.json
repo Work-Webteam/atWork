@@ -103,6 +103,7 @@
         "drupal/embed": "^1.0",
         "drupal/entity_embed": "^1.0",
         "drupal/externalauth": "^1.1",
+        "drupal/extra_field" : "^1.1",
         "drupal/flag": "^4.0@alpha",
         "drupal/focal_point": "^1.0",
         "drupal/forward": "^2.1",

@@ -298,30 +298,35 @@ mode: default
 content:
   body:
     type: text_default
-    weight: 2
+    weight: 3
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   comment:
     type: comment_default
-    weight: 14
+    weight: 15
     region: content
     label: hidden
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
+  extra_field_author_publish_date:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_article_type:
     type: list_default
-    weight: 10
+    weight: 11
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   field_attachments:
     type: file_default
-    weight: 8
+    weight: 9
     region: content
     label: above
     settings:
@@ -329,21 +334,21 @@ content:
     third_party_settings: {  }
   field_author_information:
     type: author
-    weight: 7
+    weight: 8
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_custom_teaser:
     type: text_default
-    weight: 17
+    weight: 18
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_development_tags:
     type: entity_reference_label
-    weight: 16
+    weight: 17
     region: content
     label: above
     settings:
@@ -361,7 +366,7 @@ content:
     third_party_settings: {  }
   field_editor_tags:
     type: entity_reference_label
-    weight: 15
+    weight: 16
     region: content
     label: above
     settings:
@@ -378,13 +383,13 @@ content:
     third_party_settings: {  }
   field_interactive_content:
     type: h5p_default
-    weight: 11
+    weight: 12
     region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_send_notifications:
-    weight: 18
+    weight: 19
     label: above
     settings:
       format: default
@@ -395,7 +400,7 @@ content:
     region: content
   field_tags:
     type: entity_reference_label
-    weight: 3
+    weight: 4
     region: content
     label: above
     settings:
@@ -403,7 +408,7 @@ content:
     third_party_settings: {  }
   field_video:
     type: video_embed_field_video
-    weight: 9
+    weight: 10
     region: content
     label: hidden
     settings:
@@ -413,31 +418,32 @@ content:
       autoplay: false
     third_party_settings: {  }
   flag_email_node:
-    weight: 12
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_inappropriate:
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
     weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
-  likeit:
+  flag_inappropriate:
     weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
-  links:
+  flag_subscribe_node:
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  likeit:
     weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
+  links:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  extra_field_article_only: true
   field_image: true
   langcode: true
   panelizer: true
