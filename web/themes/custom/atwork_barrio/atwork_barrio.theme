@@ -37,6 +37,6 @@ function atwork_barrio_form_system_theme_settings_alter(&$form, FormStateInterfa
 
 function atwork_barrio_preprocess_node__article(&$variables) {
 
-  $type = str_replace(" ", "_", strtolower($variables['node']->get(field_article_type)->value));
+  $type = str_replace(" ", "_", strtolower($variables['node']->get('field_article_type')->value));
   $variables['attributes']['class'] = 'node--article-type--'. $type;
 }
