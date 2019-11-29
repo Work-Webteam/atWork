@@ -11,9 +11,9 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_form_system_theme_settings_alter() for settings form.
  *
  * Replace Barrio setting options with subtheme ones.
- * 
+ *
  * Example on how to alter theme settings form
- * 
+ *
  */
 function atwork_barrio_form_system_theme_settings_alter(&$form, FormStateInterface $form_state) {
   $form['components']['navbar']['bootstrap_barrio_navbar_top_background']['#options'] = array(
@@ -32,4 +32,11 @@ function atwork_barrio_form_system_theme_settings_alter(&$form, FormStateInterfa
       'bg-white' => t('White'),
       'bg-transparent' => t('Transparent'),
   );
+}
+
+
+function atwork_barrio_preprocess_node__article(&$variables) {
+
+  $type = str_replace(" ", "_", strtolower($variables['node']->get(field_article_type)->value));
+  $variables['attributes']['class'] = 'node--article-type--'. $type;
 }
