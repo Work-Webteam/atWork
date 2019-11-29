@@ -1,0 +1,12 @@
+table.treetable tr span.indenter {
+    margin-left: 0;
+    margin-right: -19px;
+    a [title='Collapse'] {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    a [title='Expand'] {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}

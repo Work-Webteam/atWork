@@ -1,0 +1,55 @@
+body.seeds-root,
+body {
+  &.advanced-sidebar-tray-toggled {
+    margin-left: 400px;
+    margin-right: 0;
+
+    .content-form__advanced {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  .content-form__advanced {
+    right: 100%;
+    left: 0;
+  }
+
+  .form-actions {
+    .button {
+      margin-right: 0;
+      margin-left: 1em;
+    }
+  }
+
+  &:not(.seeds-root) {
+    // Fix rtl CKEditor combo forms when fullscreen
+    .cke_combopanel {
+      right: 100% !important;
+      left: auto !important;
+    }
+  }
+
+  
+
+  // select list
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select {
+      background: url(../images/caret-down.svg) no-repeat 2% 64% $white;
+    }
+
+    select:focus,
+    select:hover {
+      background: url(../images/caret-down.svg) no-repeat 2% 64% $white;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+  body.seeds-root,
+  body {
+    &.advanced-sidebar-tray-toggled {
+      margin-left: 0px;
+    }
+  }
+}

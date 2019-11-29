@@ -1,0 +1,33 @@
+body.seeds-root,
+body {
+  .horizontal-tabs {
+    border-color: $border-color;
+
+    .horizontal-tab-button {
+      border: 0;
+
+      &.selected {
+        a {
+          padding: 0.8em 1.2em 0.5em 1.2em;
+        }
+      }
+
+      a {
+        text-transform: uppercase;
+        padding: 0.8em 1.2em 0.5em 1.2em;
+
+        &:hover {
+          background: transparent;
+          color: #333;
+        }
+      }
+    }
+
+    .horizontal-tabs-list {
+      display: block;
+      overflow: hidden;
+      background-color: #eee;
+      border: 0;
+    }
+  }
+}

@@ -9,7 +9,7 @@ bootstrap_barrio_fluid_container: 0
 bootstrap_barrio_button: 1
 bootstrap_barrio_button_size: ''
 bootstrap_barrio_button_outline: 0
-bootstrap_barrio_navbar_toggle: navbar-toggleable-lg
+bootstrap_barrio_navbar_toggle: navbar-toggleable-md
 bootstrap_barrio_navbar_container: 0
 bootstrap_barrio_navbar_top_position: ''
 bootstrap_barrio_navbar_top_color: null
@@ -25,7 +25,7 @@ features:
   favicon: true
 logo:
   use_default: false
-  path: 'public://atwork-logo_0.png'
+  path: themes/custom/atwork_barrio/images/logo.svg
 favicon:
   use_default: true
 bootstrap_barrio_region_clean_background_image: 0
@@ -40,8 +40,8 @@ bootstrap_barrio_region_clean_header_form: 0
 bootstrap_barrio_region_class_header_form: row
 bootstrap_barrio_region_clean_primary_menu: 1
 bootstrap_barrio_region_class_primary_menu: ''
-bootstrap_barrio_region_clean_secondary_menu: 0
-bootstrap_barrio_region_class_secondary_menu: row
+bootstrap_barrio_region_clean_secondary_menu: 1
+bootstrap_barrio_region_class_secondary_menu: ''
 bootstrap_barrio_region_clean_page_top: 1
 bootstrap_barrio_region_class_page_top: row
 bootstrap_barrio_region_clean_page_bottom: 1

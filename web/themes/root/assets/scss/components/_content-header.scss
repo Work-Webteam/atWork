@@ -1,0 +1,20 @@
+body.seeds-root,
+body {
+  .content-header {
+    overflow: hidden;
+    background-color: #f9f9f9;
+    padding: 0;
+    margin-bottom: 20px;
+
+    .page-title {
+      font-size: 22px;
+      padding: 10px 0;
+    }
+
+    #block-root-title {
+      padding: 0 2.5em;
+      margin: 0 -2.5em;
+      background: $white;
+    }
+  }
+}

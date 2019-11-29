@@ -1,0 +1,38 @@
+body.seeds-root,
+body {
+  .entity-meta {
+    border-radius: 0;
+    background-color: $white;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    margin: 0.625rem 0 0.625rem 1.25rem;
+
+    .entity-meta__header {
+      border-radius: 0;
+      background: transparent;
+      border-top: 0;
+      border-bottom: 0;
+      box-shadow: none;
+    }
+
+    .seven-details,
+    .details {
+      padding: 0px;
+      background: transparent;
+      border-left: 0;
+      border-right: 0;
+      margin: 0;
+      border-radius: 0;
+
+      +details {
+        border-top: 0;
+      }
+
+      &[open] {
+        background-image: none;
+        border-top-width: 1px;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+body.seeds-root,
+body {
+  .vertical-tabs__menu-item {
+    &.is-selected {
+      border-left-color: #f9f9f9;
+    }
+  }
+
+  .vertical-tabs__panes {
+    border-color: $border-color;
+  }
+
+  .is-collapse-enabled .tabs__trigger {
+    border-color: $border-color;
+    border-radius: 0;
+  }
+
+  .tabs.primary .tabs__tab.is-active {
+    border-radius: 0;
+  }
+}

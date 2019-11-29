@@ -1,0 +1,14 @@
+{
+  "name": "drupal/root",
+  "type": "drupal-theme",
+  "description": "Drupal admin theme for Seeds distribution",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Mohammad Abdul-Qader",
+      "email": "mohd@sprintive.cpm"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {}
+}

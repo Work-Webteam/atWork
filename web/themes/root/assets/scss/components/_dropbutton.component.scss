@@ -1,0 +1,59 @@
+//drop down button
+.js {
+  .seeds-root {
+
+    .dropbutton-wrapper {
+      .dropbutton-widget {
+        border-radius: 0 !important;
+
+        .dropbutton-action {
+
+          a,
+          input,
+          button {
+            border-radius: 0 !important;
+          }
+        }
+
+        .dropbutton-toggle {
+          button {
+            border-radius: 0 !important;
+          }
+        }
+      }
+    }
+
+    .dropbutton-single {
+      .dropbutton-action {
+        a {
+          border-radius: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+body.seeds-root,
+body {
+  .form-actions {
+    .dropbutton-wrapper .dropbutton-widget .dropbutton-action .button {
+      border: 1px solid $blue;
+      background: $blue;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $blue;
+        box-shadow: none;
+        border: 1px solid $blue;
+        background-image: none;
+      }
+    }
+
+    .dropbutton {
+      .secondary-action {
+        border-color: #ffffff;
+      }
+    }
+  }
+}

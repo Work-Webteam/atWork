@@ -1,0 +1,9 @@
+body.seeds-root,
+body {
+  .ui-dialog .ui-dialog-titlebar {
+    border-radius: 0;
+  }
+  .ui-dialog-content {
+    -webkit-overflow-scrolling: touch;
+  }
+}

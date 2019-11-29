@@ -1,0 +1,31 @@
+body.seeds-root,
+body {
+  .content-form__advanced-toggle {
+    right: auto;
+    left: 0;
+  }
+
+  // Seeds Toolbar
+  &.seeds-toolbar {
+    .content-form__actions {
+      right: 55px;
+      left: 0;
+    }
+  }
+
+  &.seeds-toolbar-open {
+    .content-form__actions {
+      right: 245px;
+      left: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &.seeds-toolbar-open {
+      .content-form__actions {
+        right: 55px;
+        left: 0;
+      }
+    }
+  }
+}

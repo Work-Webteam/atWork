@@ -1,12 +1,40 @@
 // Header, main content width
 
+// #Page wrapper on all pages
+#page {
+  #header.header {
+    max-width:1140px;
+    margin:0 auto;
+    #navbar-main.navbar {
+      display:none;
+    }
+  }
+  #main-wrapper {
+    margin-top:25px; // drops the main content 25px to allow room for the drop menu bar
+  }
+  footer.site-footer {
+    .site-footer__top .region {
+      width:33%;
+      #block-footer1stblock,
+      #block-footer2ndblock,
+      #block-footer3rdblock {
+        width:100%;
+      }
+    }
+  }
+}
+
 // Superfish CSS placed locally to override default CSS
-nav#navbar-main {
+nav#navbar-top {
+  &.navbar {
+    border-radius:0px;
+    justify-content: initial;
+  }
     .navbar-brand {
-        height:130px;
+        height:80px;
         .img-fluid {
             max-height:inherit;
-            height:100px;
+            height:80px;
         }
     }
         padding-left:0;
@@ -15,12 +43,6 @@ nav#navbar-main {
         padding:0;
           .next-menu-link {
             color: $exec-greyborder;
-        }
-        #CollapsingNavbar {
-            position: absolute;
-            width:100%;
-            left:0px;
-            bottom:0px;
         }
           ul.sf-menu.sf-style-none {
             float: left;
@@ -208,3 +230,4 @@ nav#navbar-main {
           margin-left:8px;
         }
 }
+

@@ -142,8 +142,36 @@ a:hover {
   text-decoration: underline;
 }
 
-/* line 4, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main {
+/* line 5, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+#page #header.header {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* line 8, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+#page #header.header #navbar-main.navbar {
+  display: none;
+}
+
+/* line 12, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+#page #main-wrapper {
+  margin-top: 25px;
+}
+
+/* line 16, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+#page footer.site-footer .site-footer__top .region {
+  width: 33%;
+}
+
+/* line 18, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+#page footer.site-footer .site-footer__top .region #block-footer1stblock,
+#page footer.site-footer .site-footer__top .region #block-footer2ndblock,
+#page footer.site-footer .site-footer__top .region #block-footer3rdblock {
+  width: 100%;
+}
+
+/* line 28, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top {
   padding-left: 0;
   padding-right: 0;
   font-size: .875rem;
@@ -151,64 +179,62 @@ nav#navbar-main {
   padding: 0;
 }
 
-/* line 5, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main .navbar-brand {
-  height: 130px;
+/* line 29, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top.navbar {
+  border-radius: 0px;
+  justify-content: initial;
 }
 
-/* line 7, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main .navbar-brand .img-fluid {
+/* line 33, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top .navbar-brand {
+  height: 80px;
+}
+
+/* line 35, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top .navbar-brand .img-fluid {
   max-height: inherit;
-  height: 100px;
+  height: 80px;
 }
 
-/* line 16, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main .next-menu-link {
+/* line 44, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top .next-menu-link {
   color: #E0E7E8;
 }
 
-/* line 19, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main #CollapsingNavbar {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  bottom: 0px;
-}
-
-/* line 25, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none {
+/* line 47, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none {
   float: left;
   margin-bottom: 0px;
   padding: 0;
 }
 
-/* line 30, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.sf-navbar {
+/* line 52, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.sf-navbar {
   width: 100%;
 }
 
-/* line 33, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none ul {
+/* line 55, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none ul {
   margin: 0;
   padding: 0;
 }
 
-/* line 37, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none a,
-nav#navbar-main ul.sf-menu.sf-style-none a:visited,
-nav#navbar-main ul.sf-menu.sf-style-none span.nolink {
+/* line 59, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none a,
+nav#navbar-top ul.sf-menu.sf-style-none a:visited,
+nav#navbar-top ul.sf-menu.sf-style-none span.nolink {
   padding: 0.75em 1em;
 }
 
-/* line 42, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.rtl a.sf-with-ul,
-nav#navbar-main ul.sf-menu.sf-style-none.rtl span.nolink.sf-with-ul {
+/* line 64, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.rtl a.sf-with-ul,
+nav#navbar-top ul.sf-menu.sf-style-none.rtl span.nolink.sf-with-ul {
   padding-left: 2.25em;
   padding-right: 1em;
 }
 
-/* line 47, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none span.sf-description {
+/* line 69, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none span.sf-description {
   color: #13a;
   display: block;
   font-size: smaller;
@@ -217,42 +243,42 @@ nav#navbar-main ul.sf-menu.sf-style-none span.sf-description {
   padding: 0;
 }
 
-/* line 55, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-navbar {
+/* line 77, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-navbar {
   background: transparent;
 }
 
-/* line 59, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li li,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-navbar > li > ul {
+/* line 81, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li li,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-navbar > li > ul {
   background: #e6f2f9;
 }
 
-/* line 62, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-navbar > li > ul a {
+/* line 84, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-navbar > li > ul a {
   color: #333333;
 }
 
-/* line 66, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li li li {
+/* line 88, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li li li {
   background: white;
 }
 
-/* line 69, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li:hover,
-nav#navbar-main ul.sf-menu.sf-style-none li.sfHover,
-nav#navbar-main ul.sf-menu.sf-style-none a:focus,
-nav#navbar-main ul.sf-menu.sf-style-none a:hover,
-nav#navbar-main ul.sf-menu.sf-style-none span.nolink:hover {
+/* line 91, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li:hover,
+nav#navbar-top ul.sf-menu.sf-style-none li.sfHover,
+nav#navbar-top ul.sf-menu.sf-style-none a:focus,
+nav#navbar-top ul.sf-menu.sf-style-none a:hover,
+nav#navbar-top ul.sf-menu.sf-style-none span.nolink:hover {
   outline: 0;
   text-decoration: none;
   color: #E0E7E8;
 }
 
-/* line 79, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main div.sf-accordion-toggle.sf-style-none a {
+/* line 101, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top div.sf-accordion-toggle.sf-style-none a {
   background: #bdd2ff;
   color: #13a;
   display: inline-block;
@@ -261,8 +287,8 @@ nav#navbar-main div.sf-accordion-toggle.sf-style-none a {
   position: relative;
 }
 
-/* line 87, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main div.sf-accordion-toggle.sf-style-none > a:after {
+/* line 109, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top div.sf-accordion-toggle.sf-style-none > a:after {
   content: "≡";
   font-size: 2em;
   position: absolute;
@@ -275,21 +301,21 @@ nav#navbar-main div.sf-accordion-toggle.sf-style-none > a:after {
   speak: none;
 }
 
-/* line 99, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main div.sf-accordion-toggle.sf-style-none a.sf-expanded,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded {
+/* line 121, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top div.sf-accordion-toggle.sf-style-none a.sf-expanded,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded {
   background: #cfdeff;
 }
 
-/* line 103, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main div.sf-accordion-toggle.sf-style-none a.sf-expanded,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded > a,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded > span.nolink {
+/* line 125, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top div.sf-accordion-toggle.sf-style-none a.sf-expanded,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded > a,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li.sf-expanded > span.nolink {
   font-weight: bold;
 }
 
-/* line 108, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li a.sf-accordion-button {
+/* line 130, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li a.sf-accordion-button {
   font-weight: bold;
   position: absolute;
   right: 0;
@@ -297,98 +323,98 @@ nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li a.sf-accordion-button {
   z-index: 499;
 }
 
-/* line 115, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li span.nolink {
+/* line 137, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li span.nolink {
   padding-left: 2em;
 }
 
-/* line 119, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li li span.nolink {
+/* line 141, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li li span.nolink {
   padding-left: 3em;
 }
 
-/* line 123, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li li li span.nolink {
+/* line 145, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li li li span.nolink {
   padding-left: 4em;
 }
 
-/* line 127, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li li li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.sf-accordion li li li li li span.nolink {
+/* line 149, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li li li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.sf-accordion li li li li li span.nolink {
   padding-left: 5em;
 }
 
-/* line 131, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li span.nolink {
+/* line 153, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li span.nolink {
   padding-left: auto;
   padding-right: 2em;
 }
 
-/* line 136, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li li span.nolink {
+/* line 158, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li li span.nolink {
   padding-left: auto;
   padding-right: 3em;
 }
 
-/* line 141, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li span.nolink {
+/* line 163, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li span.nolink {
   padding-left: auto;
   padding-right: 4em;
 }
 
-/* line 146, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li li a,
-nav#navbar-main ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li li span.nolink {
+/* line 168, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li li a,
+nav#navbar-top ul.sf-menu.sf-style-none.rtl.sf-accordion li li li li li span.nolink {
   padding-left: auto;
   padding-right: 5em;
 }
 
-/* line 151, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper ol,
-nav#navbar-main ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper ol li {
+/* line 173, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper ol,
+nav#navbar-top ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper ol li {
   margin: 0;
   padding: 0;
 }
 
-/* line 156, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper a.menuparent,
-nav#navbar-main ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper span.nolink.menuparent {
+/* line 178, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper a.menuparent,
+nav#navbar-top ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper span.nolink.menuparent {
   font-weight: bold;
 }
 
-/* line 164, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul#superfish-main .sf-depth-1 a:hover {
+/* line 186, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul#superfish-main .sf-depth-1 a:hover {
   background-color: #000000;
   color: #E0E7E8;
 }
 
-/* line 171, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul#superfish-main .sf-depth-2 a.sf-depth-2:hover {
+/* line 193, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul#superfish-main .sf-depth-2 a.sf-depth-2:hover {
   background-color: #000000;
   color: #E0E7E8;
 }
 
-/* line 176, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul#superfish-main .sf-depth-2 > ul {
+/* line 198, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul#superfish-main .sf-depth-2 > ul {
   background-color: white;
   border: solid 1px #CCCCCC;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   padding: 5px 5px 2px;
 }
 
-/* line 183, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul#superfish-main .sf-depth-2.next-menu-item.sf-no-children > a.sf-depth-2.next-menu-link {
+/* line 205, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul#superfish-main .sf-depth-2.next-menu-item.sf-no-children > a.sf-depth-2.next-menu-link {
   padding-top: 13px;
 }
 
-/* line 187, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul#superfish-main .sf-depth-3 a.sf-depth-3 {
+/* line 209, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul#superfish-main .sf-depth-3 a.sf-depth-3 {
   color: #333333;
   display: block;
   border: solid 1px #CCCCCC;
@@ -397,22 +423,22 @@ nav#navbar-main ul#superfish-main .sf-depth-3 a.sf-depth-3 {
   padding-bottom: 4px;
 }
 
-/* line 194, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main ul#superfish-main .sf-depth-3 a.sf-depth-3:hover {
+/* line 216, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top ul#superfish-main .sf-depth-3 a.sf-depth-3:hover {
   color: white;
   background-color: #10233c;
 }
 
-/* line 201, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main .sf-depth-1.next-menu-item.menuparent.sf-breadcrumb.sfHover,
-nav#navbar-main .active-trail.sf-depth-2.next-menu-item.sf-no-children > a,
-nav#navbar-main .active-trail.sf-depth-2.next-menu-item.menuparent > a {
+/* line 223, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top .sf-depth-1.next-menu-item.menuparent.sf-breadcrumb.sfHover,
+nav#navbar-top .active-trail.sf-depth-2.next-menu-item.sf-no-children > a,
+nav#navbar-top .active-trail.sf-depth-2.next-menu-item.menuparent > a {
   background-color: #000000;
   color: #E0E7E8;
 }
 
-/* line 207, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
-nav#navbar-main .next-menu-link.menuparent.sf-with-ul span.glyphicon.glyphicon-menu-down {
+/* line 229, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_grid-nav.scss */
+nav#navbar-top .next-menu-link.menuparent.sf-with-ul span.glyphicon.glyphicon-menu-down {
   margin-left: 8px;
 }
 

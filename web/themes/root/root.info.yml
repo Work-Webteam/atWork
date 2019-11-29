@@ -1,0 +1,27 @@
+name: Root
+type: theme
+core: 8.x
+base theme: seven
+description: 'Administration theme for the Seeds Distribution'
+
+libraries:
+  - root/global-styling
+
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first
+
+# Information added by Drupal.org packaging script on 2019-10-14
+version: '8.x-1.3'
+project: 'root'
+datestamp: 1571074093

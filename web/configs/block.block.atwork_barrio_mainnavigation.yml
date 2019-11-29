@@ -10,8 +10,8 @@ dependencies:
     - atwork_barrio
 id: atwork_barrio_mainnavigation
 theme: atwork_barrio
-region: primary_menu
-weight: -12
+region: secondary_menu
+weight: -11
 provider: null
 plugin: 'superfish:main'
 settings:

@@ -1,0 +1,55 @@
+body.seeds-root,
+body {
+
+  .button,
+  .button--primary {
+    border: 1px solid $blue;
+    border-radius: 0;
+    background: $blue;
+    background-image: none;
+    color: $white;
+    text-shadow: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $blue;
+      color: $white;
+      text-decoration: none;
+      outline: none;
+      box-shadow: none;
+      border: 1px solid $blue;
+      z-index: 10;
+      background-image: none;
+    }
+
+    &:disabled,
+    &:disabled:active,
+    &.is-disabled,
+    &.is-disabled:active {
+      border-color: #4d4d4f;
+      background: #4d4d4f;
+      box-shadow: none;
+      color: #e7e7df;
+    }
+  }
+
+  .button--small {
+    font-size: 14px !important;
+    padding: 0.4rem 1.33rem !important;
+  }
+
+  /* Link actions. */
+
+  .link {
+    border: 0;
+    color: $blue;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: $blue;
+      text-decoration: underline;
+    }
+  }
+}

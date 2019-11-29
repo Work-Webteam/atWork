@@ -1,6 +1,6 @@
-uuid: 12e9026a-e03e-4fd8-88e0-c4bf1aff6197
+uuid: 24257570-b214-42ce-8240-9c7d626d2476
 langcode: en
-status: false
+status: true
 dependencies:
   content:
     - 'block_content:basic:b9432938-b110-41b7-a208-bbf7d81f5918'
@@ -8,15 +8,15 @@ dependencies:
     - block_content
   theme:
     - atwork_barrio
-id: atwork_barrio_footerinformation
+id: footer1stblock
 theme: atwork_barrio
 region: footer_first
-weight: -12
+weight: 0
 provider: null
 plugin: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
 settings:
   id: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
-  label: 'Footer Information'
+  label: 'Footer 1st Block'
   provider: block_content
   label_display: '0'
   status: true

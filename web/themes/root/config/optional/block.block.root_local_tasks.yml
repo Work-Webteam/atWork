@@ -1,0 +1,20 @@
+uuid: 5cec0be1-751b-44ba-9546-5d15fadf5efd
+langcode: en
+status: true
+dependencies:
+  theme:
+    - root
+id: root_local_tasks
+theme: root
+region: header
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: false
+visibility: {  }

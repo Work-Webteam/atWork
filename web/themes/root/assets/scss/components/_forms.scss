@@ -1,0 +1,413 @@
+body.seeds-root,
+body {
+  &.advanced-sidebar-tray-toggled {
+    margin-right: 400px;
+
+    .content-form__advanced {
+      transform: translate3d(-100%, 0, 0);
+      width: 400px;
+    }
+  }
+
+  //ckeditor
+  .cke_chrome,
+  .cke_bottom,
+  .cke_top {
+    border-color: $border-color;
+  }
+
+    // Sticky CKEditor toolbar
+    .cke_top {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 49px;
+    }
+  
+    &:not(.seeds-root) {
+      // Sticky toolbar on fullscreen
+      .cke_top {
+        top: 0;
+      }
+    }
+
+  fieldset:not(.fieldgroup) {
+    background-color: transparent;
+    border-radius: 0px;
+    border-color: $border-color;
+  }
+
+  // select list
+  select {
+    text-shadow: none;
+    min-height: 35px;
+    border-color: $border-color;
+    border-radius: 0px;
+  }
+
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select {
+      border-radius: 0;
+      background: url(../images/caret-down.svg) no-repeat 98% 64% $white;
+    }
+
+    select:focus,
+    select:hover {
+      background: url(../images/caret-down.svg) no-repeat 98% 64% $white;
+    }
+
+    select:focus {
+      border-color: $green;
+      color: #000;
+      outline: none;
+      outline-offset: 0;
+    }
+  }
+
+  .content-form__main {
+    width: 100%;
+    padding: 0;
+  }
+
+  .content-form__advanced {
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    width: 0;
+    left: 100%;
+    overflow: auto;
+    transform: translate3d(0, 0, 0);
+    background-color: $white;
+    z-index: 1000;
+  }
+
+  .filter-wrapper {
+    border: 0;
+  }
+
+  label {
+    text-transform: uppercase;
+  }
+
+  input.form-autocomplete,
+  input.form-text,
+  input.form-tel,
+  input.form-email,
+  input.form-url,
+  input.form-search,
+  input.form-number,
+  input.form-color,
+  input.form-file,
+  input.form-date,
+  input.form-time,
+  textarea.form-textarea {
+    border-color: $border-color;
+    background-color: $white;
+    min-height: 35px;
+    color: $black;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #edit-title-wrapper,
+  #edit-field-seo-title-wrapper,
+  #edit-field-tags-wrapper,
+  #edit-field-teaser-text-wrapper {
+    max-width: 100%;
+
+    input {
+      height: 50px;
+      width: 100%;
+      line-height: 50px;
+      font-size: 28px;
+      box-shadow: none;
+      border-color: $border-color;
+      color: $black;
+      border-radius: 0;
+
+      &.button {
+        width: auto;
+        height: auto;
+        line-height: initial;
+        font-size: initial;
+        color: $white;
+      }
+    }
+  }
+
+  /* Style checkbox and radio buttons */
+  input[type=checkbox],
+  input[type=radio],
+  input[type=checkbox]#edit-delete {
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    margin-right: 0.25em;
+    padding: 0;
+    background: $white;
+    border: 1px solid $border-color;
+    width: 16px !important;
+    height: 16px !important;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: background 0.5s ease;
+    outline: none;
+  }
+
+  .location .form-item input.form-checkbox {
+    display: inline-block;
+    width: 16px;
+  }
+
+  input[type=checkbox]#edit-delete {
+    margin-bottom: 0;
+  }
+
+  input[type=radio] {
+    border-radius: 50%;
+  }
+
+  input[type=checkbox]:hover,
+  input[type=checkbox]:focus,
+  input[type=radio]:hover,
+  input[type=radio]:focus {
+    border-color: $blue;
+    cursor: pointer;
+  }
+
+  input[type=checkbox]:checked,
+  input[type=checkbox]:disabled:checked,
+  input[type=checkbox].error:checked,
+  input[type=checkbox].error:focus:checked,
+  input[type=radio]:checked,
+  input[type=radio]:disabled:checked,
+  input[type=radio].error:checked,
+  input[type=radio].error:focus:checked {
+    border-color: $blue;
+    background: $blue;
+    box-shadow: inset 0 0 0 3px $white;
+  }
+
+  input[type=checkbox]:disabled,
+  input[type=radio]:disabled {
+    opacity: .5;
+    background: $dark-gray;
+  }
+
+  input[type=checkbox]:disabled:hover {
+    border-color: $dark-gray;
+    cursor: default;
+  }
+
+  input[type=checkbox]:disabled:hover,
+  input[type=radio]:disabled:hover {
+    border-color: $dark-gray;
+    cursor: default;
+  }
+
+  /* in Chrome + Safari + Opera + Mozilla */
+  @supports (-webkit-appearance:none) {
+
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="checkbox"]#edit-delete {
+      -webkit-appearance: none;
+    }
+  }
+
+  /* in Mozilla */
+  @supports (-moz-appearance:none) {
+
+    input[type="checkbox"],
+    input[type="radio"],
+    input[type="checkbox"]#edit-delete {
+      -moz-appearance: none;
+    }
+  }
+
+  //select2
+  .select2-container--default {
+
+    &.select2-container--focus .select2-selection--multiple,
+    .select2-selection--multiple {
+      border-radius: 0;
+      border-color: $border-color;
+
+      .select2-selection__choice {
+        border-radius: 0;
+      }
+    }
+  }
+
+  .select2-dropdown {
+    border-color: $border-color;
+  }
+
+  .select2-container--open .select2-dropdown--below {
+    border-radius: 0;
+  }
+
+  .field-multiple-table {
+    >thead {
+      .field-label {
+        border: 0;
+        background: transparent;
+      }
+
+      tr {
+        border-color: $border-color;
+      }
+    }
+
+    >tbody {
+      >tr {
+        background: #f9f9f9;
+        border-bottom: 1px solid $border-color;
+      }
+    }
+  }
+
+  //ِAutocomplete deluxe
+  .autocomplete-deluxe-item {
+    border-radius: 0;
+  }
+
+  .ui-autocomplete .ui-menu-item a:hover {
+    color: black;
+    text-decoration: underline;
+  }
+
+  div.autocomplete-deluxe-container {
+    border-color: $border-color;
+    border-radius: 0px;
+    padding: 0;
+    background: transparent;
+
+    &.autocomplete-deluxe-multiple {
+      #autocomplete-deluxe-input.autocomplete-deluxe-multiple {
+        width: 25px;
+      }
+    }
+
+    input {
+      margin: 0;
+      background: none;
+    }
+  }
+
+  .form-actions {
+    .button {
+      margin-left: 0;
+      margin-right: 1em;
+
+      &#edit-submit,
+      &#edit-actions-submit {
+        background-color: $green;
+        border-color: $green;
+        color: $white;
+
+        &:hover,
+        &:focus {
+          background-color: $green;
+        }
+      }
+
+      &.button--danger {
+        padding: 4px 1.5em;
+        background-color: $red;
+        border-color: $red;
+        color: $white;
+        text-decoration: none;
+        font-weight: bold;
+
+        &:hover,
+        &:focus {
+          border: 1px solid $red;
+          background-color: $red;
+        }
+      }
+    }
+  }
+
+  //Drag icon
+  form .field-multiple-table .field-multiple-drag .tabledrag-handle {
+    margin: 0;
+  }
+
+  //paragraph
+  .field--widget-entity-reference-paragraphs {
+    td {
+      padding: 10px;
+    }
+
+    .form-text,
+    .form-url {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+  body.seeds-root,
+  body {
+    &.advanced-sidebar-tray-toggled {
+      margin-right: 0px;
+
+      .content-form__advanced {
+        width: 300px;
+      }
+    }
+
+    .form-actions {
+      .button {
+
+        &#edit-submit,
+        &#edit-actions-submit,
+        &#edit-preview,
+        &.button--danger {
+          font-size: 0;
+          width: 50px;
+          height: 30px;
+          background-size: 80% 80%;
+          background-repeat: no-repeat;
+          background-position: center;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        &#edit-submit,
+        &#edit-actions-submit {
+          background-image: url(../images/save-icon.svg);
+        }
+
+        &#edit-preview {
+          background-image: url(../images/preview-icon.svg);
+        }
+
+        &.button--danger {
+          background-image: url(../images/delete-icon.svg);
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+
+  body.seeds-root,
+  body {
+
+    .form-actions input,
+    .form-wrapper input[type="submit"] {
+      width: auto;
+      margin-top: 0;
+    }
+
+    #edit-cancel {
+      display: inline-block;
+      margin: 0;
+      vertical-align: middle;
+      height: 30px;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+body.seeds-root,
+body {
+  .breadcrumb {
+
+    li {
+      &:first-child {
+        padding: 5px;
+        padding-right: 0;
+      }
+    }
+  }
+}

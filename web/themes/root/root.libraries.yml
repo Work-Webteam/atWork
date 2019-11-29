@@ -1,0 +1,18 @@
+global-styling:
+  version: VERSION
+  css:
+    base:
+      assets/css/root.css: {}
+  js:
+    assets/js/root.js: {}
+  dependencies:
+    - seven/global-styling
+    - core/jquery
+content-form:
+  css:
+    base:
+      assets/css/content-form.css: {}
+rtl:
+  css:
+    theme:
+      assets/css/root-rtl.css: {}

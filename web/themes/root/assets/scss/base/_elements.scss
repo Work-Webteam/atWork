@@ -1,0 +1,52 @@
+body.seeds-root,
+body {
+  background: #f9f9f9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+
+  a,
+  .link {
+    color: $blue;
+  }
+
+  //entity browser
+  .eb-tabs ul li.active {
+    border-bottom: 3px solid $blue;
+  }
+
+  .view-media-browser {
+    .views-col {
+      border: 10px solid #FFF;
+      cursor: pointer;
+      background: #F2F2F2;
+      box-sizing: border-box;
+      padding: 10px;
+
+      &.checked {
+        border-color: $blue;
+      }
+    }
+
+    .views-field-entity-browser-select {
+      display: none;
+    }
+  }
+}
+
+body {
+  &.install-page {
+    background-image: url(../images/bg.png);
+    -webkit-animation: slide 17s linear infinite;
+    animation: slide 17s linear infinite;
+  }
+}
+
+@-webkit-keyframes slide {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -400px 300px;
+  }
+}

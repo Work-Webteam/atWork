@@ -1,0 +1,97 @@
+body.seeds-root,
+body {
+  .content-form__actions {
+    position: fixed;
+    height: 50px;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: $dark-gray;
+    width: auto;
+    padding: 0 2.5em;
+    z-index: 100;
+
+    .form-actions {
+      margin: 10px 0;
+    }
+
+    .layout-region-node-footer__content {
+      border: 0;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .content-form__advanced-toggle {
+    background-image: url(../images/settings-icon.svg);
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .content-form__advanced {
+    transition: 0.2s;
+  }
+
+  &.seeds-toolbar {
+    .content-form__actions {
+      left: 55px;
+    }
+  }
+
+  &.toolbar-horizontal {
+
+    .content-form__actions,
+    .content-form__advanced-toggle {
+      top: 39px;
+    }
+
+    .content-form__advanced {
+      top: 89px;
+    }
+
+    // Horizontal Toolbar
+    &.toolbar-tray-open {
+      .content-form__actions,
+      .content-form__advanced-toggle {
+        top: 79px;
+      }
+      .content-form__advanced {
+        top: 129px;
+      }
+    }
+  }
+  &.toolbar-vertical {
+
+    .content-form__actions,
+    .content-form__advanced-toggle {
+      top: auto;
+      bottom: 0;
+    }
+  }
+  // Seeds Toolbar
+  &.seeds-toolbar-open {
+    .content-form__actions {
+      left: 245px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &.seeds-toolbar-open {
+      .content-form__actions {
+        left: 55px;
+      }
+    }
+  }
+
+}

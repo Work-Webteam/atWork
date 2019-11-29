@@ -1,0 +1,121 @@
+body.seeds-root,
+body {
+  .tabs__tab {
+    background: transparent;
+    border-color: $border-color;
+    border-radius: 0;
+    color: $blue;
+  }
+
+  .tabs.primary {
+    a {
+      background: none !important;
+    }
+
+    .tabs__tab.is-active {
+      border-color: $border-color;
+      border-radius: 0;
+    }
+  }
+
+  .is-horizontal {
+    .tabs.primary {
+      margin-top: 0;
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .tabs__tab {
+        border: none;
+      }
+    }
+
+    .tabs.secondary {
+      .tabs__tab {
+
+        &.is-active,
+        &:hover,
+        &:focus {
+          border-bottom-color: $blue;
+        }
+      }
+    }
+  }
+
+  .is-collapse-enabled {
+    .tabs__trigger {
+      background: $white;
+      border-radius: 0;
+    }
+  }
+
+  .is-collapse-enabled,
+  .is-horizontal {
+    .tabs {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .tabs.secondary {
+    .is-active a {
+      color: $blue;
+    }
+
+    a {
+      color: $black;
+    }
+  }
+
+  //Vertical tabs
+  .vertical-tabs {
+    border-radius: 0;
+    background: $white;
+    border: 1px solid $border-color;
+  }
+
+  [data-vertical-tabs-panes] {
+    background-color: $white;
+    border-color: $border-color;
+  }
+
+  .vertical-tabs__menu-item {
+    &.is-selected {
+      border-right: 1px solid $white;
+    }
+  }
+
+  .vertical-tabs__menu {
+    border-bottom: none;
+
+    .vertical-tabs__menu-item {
+      a {
+        transition: all, 0.2s;
+        background: #f2f2f0;
+        border-color: $border-color;
+
+        &:focus,
+        &:hover {
+          background: $white;
+        }
+      }
+
+      &.is-selected {
+        a {
+          background: $white;
+          border: none;
+          color: $black;
+          transition: all, 0.2s;
+          border-color: $border-color;
+
+          &:focus,
+          &:hover {
+            background: $white;
+          }
+        }
+      }
+    }
+  }
+}
