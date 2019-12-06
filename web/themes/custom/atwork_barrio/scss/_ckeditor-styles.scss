@@ -1,0 +1,34 @@
+// Custom styles for CKEditor
+
+
+article { // Updates box used on articles / background pages.
+  @include update;
+  @include title-table;
+  @include related-inset;
+  div.CallOut {
+    @include call-out;
+  }
+  //div.BigQuotes {
+    //@include call-out;
+    //@include quotes;
+  //}
+  a.text-button {
+    @include atwork-button;
+  }
+  div.bluebox {
+    @include size2160;
+    display: block;
+    background-color: $horz-ad;
+    padding: 24px;
+  }
+  div.row.quotebox {
+    text-align: center;
+    @include call-out;
+    div.row.quote {
+      @include quotes;
+    }
+    div.row.byline {
+      @include QuoteAuthor;
+    }
+  }
+}
