@@ -41,4 +41,29 @@ body.node--type-article {
     }
       @include related-content; // Related content thumbs at bottom of article
     }
+<<<<<<< HEAD
   }
+=======
+    article.node--article-type--executive_message {
+        .field--type-entity-reference {
+            margin-bottom:0;
+        }
+        .field--name-field-display-title {
+            border-top:solid 20px darken($exec-greyborder,20);
+            h1 {
+                background-color:$exec-greyborder;
+                padding:10px 0 0 10px;
+                margin:0;
+                color: $black;
+            }
+        }
+        .field--name-extra-field-author-publish-date {
+            @include size1424;
+            padding: 6px 0 18px;
+            background-color: $exec-greyborder;
+            padding-left:10px;
+            margin-bottom:20px;
+        }
+    }
+}
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f

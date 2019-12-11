@@ -11277,6 +11277,7 @@ body.node--type-article main#content .field--name-field-header-image > img {
   height: auto;
 }
 
+<<<<<<< HEAD
 /* line 7, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.node--type-article main#content .field--name-extra-field-author-publish-date {
   font-size: .875rem;
@@ -11302,14 +11303,33 @@ body.node--type-article main#content article.node--article-type--executive_messa
 
 /* line 22, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.node--type-article main#content article.node--article-type--executive_message .field--name-field-display-title h1 {
+=======
+/* line 11, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+body.node--type-article article.node--article-type--executive_message .field--type-entity-reference {
+  margin-bottom: 0;
+}
+
+/* line 14, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+body.node--type-article article.node--article-type--executive_message .field--name-field-display-title {
+  border-top: solid 20px #a5babd;
+}
+
+/* line 16, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+body.node--type-article article.node--article-type--executive_message .field--name-field-display-title h1 {
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
   background-color: #E0E7E8;
   padding: 10px 0 0 10px;
   margin: 0;
   color: #000000;
 }
 
+<<<<<<< HEAD
 /* line 29, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.node--type-article main#content article.node--article-type--executive_message .field--name-extra-field-author-publish-date {
+=======
+/* line 23, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+body.node--type-article article.node--article-type--executive_message .field--name-extra-field-author-publish-date {
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
   font-size: .875rem;
   line-height: 24px;
   padding: 6px 0 18px;
@@ -11318,6 +11338,7 @@ body.node--type-article main#content article.node--article-type--executive_messa
   margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 /* line 38, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.node--type-article main#content p.videobyline, body.node--type-article main#content figcaption {
   font-size: .875rem;
@@ -11421,28 +11442,130 @@ body.node--type-article main#content #block-atwork-barrio-views-block-related-co
 
 /* line 5, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
 article table.update {
+=======
+/* line 103, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table {
   background-color: #e6f2f9;
   margin-bottom: 12px;
 }
 
-/* line 6, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
-article table.update caption {
+/* line 104, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table caption {
   background-color: #10233c;
-  padding: 3px 0 6px;
+  margin-top: 24px;
+  padding: 12px 0 6px;
   font-size: 1.44em;
   line-height: 24px;
   color: white;
   text-align: center;
   text-transform: uppercase;
+}
+
+/* line 114, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table h4 {
+  padding: 0;
+  font-weight: 600;
+}
+
+/* line 123, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.update {
+  border-bottom: solid 6px #10233c;
+}
+
+/* line 125, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.update tbody tr td {
+  padding: 16px 16px 24px;
+}
+
+/* line 103, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table {
+  background-color: #e6f2f9;
+  margin-bottom: 12px;
+}
+
+/* line 104, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table caption {
+  background-color: #10233c;
+  margin-top: 24px;
+  padding: 12px 0 6px;
+  font-size: 1.44em;
+  line-height: 24px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* line 114, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table h4 {
+  padding: 0;
+  font-weight: 600;
+}
+
+/* line 133, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.title-table th {
+  background: #bfdff0;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 24px;
+  padding: 8px 0;
+}
+
+/* line 139, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.title-table td {
+  padding: 16px 16px 24px;
+}
+
+/* line 142, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.title-table tr:nth-child(even) {
+  background: white;
+}
+
+/* line 145, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.title-table tr:nth-child(odd) {
+  background: #e6f2f9;
+}
+
+/* line 103, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table {
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
+  background-color: #e6f2f9;
+  margin-bottom: 12px;
+}
+
+<<<<<<< HEAD
+/* line 6, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
+article table.update caption {
+  background-color: #10233c;
+  padding: 3px 0 6px;
+=======
+/* line 104, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table caption {
+  background-color: #10233c;
+  margin-top: 24px;
+  padding: 12px 0 6px;
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
+  font-size: 1.44em;
+  line-height: 24px;
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+<<<<<<< HEAD
   caption-side: top;
 }
 
 /* line 16, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
 article table.update h4 {
+=======
+}
+
+/* line 114, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table h4 {
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
   padding: 0;
   font-weight: 600;
 }
 
+<<<<<<< HEAD
 /* line 22, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
 article figure.caption-img {
   display: block;
@@ -11533,6 +11656,133 @@ article p.videobyline {
   line-height: 16px;
   color: #6B6C6C;
   background-color: #e6f2f9;
+=======
+/* line 152, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset {
+  border-top: solid 6px #10233c;
+  border-bottom: solid 6px #10233c;
+}
+
+/* line 155, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset tr td img {
+  width: 100%;
+  border-left: solid 1px #6b6b6b;
+  border-right: solid 1px #6b6b6b;
+  border-bottom: solid 1px #6b6b6b;
+}
+
+/* line 161, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset td li {
+  margin-left: 17px;
+}
+
+/* line 163, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset td li::before {
+  padding-right: 10px;
+}
+
+/* line 167, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset h5 {
+  margin-bottom: 0;
+}
+
+/* line 170, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset h5, article table.related-inset p {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* line 174, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article table.related-inset p:last-child {
+  padding-bottom: 24px;
+}
+
+/* line 8, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
+article div.CallOut {
+  border-top: solid 9px #10233c;
+  border-bottom: solid 9px #10233c;
+  padding: 24px 100px;
+  font-size: 1.312rem;
+  line-height: 36px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+/* line 15, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
+article a.text-button {
+  font-size: 1.2em;
+  line-height: 24px;
+  font-weight: 300;
+  display: inline-block;
+  background-color: #406b93;
+  color: white;
+  padding: 6px 25px;
+}
+
+/* line 78, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article a.text-button:hover {
+  background-color: #6b6b6b;
+  text-decoration: none;
+}
+
+/* line 18, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
+article div.bluebox {
+  font-size: 1.2em;
+  line-height: 24px;
+  display: block;
+  background-color: #bfdff0;
+  padding: 24px;
+}
+
+/* line 24, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
+article div.row.quotebox {
+  text-align: center;
+  border-top: solid 9px #10233c;
+  border-bottom: solid 9px #10233c;
+  padding: 24px 100px;
+  font-size: 1.312rem;
+  line-height: 36px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+/* line 190, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article div.row.quotebox div.row.quote :before {
+  float: left;
+  content: url("../images/left-quote.svg");
+  width: 30px;
+  position: absolute;
+  margin-left: -45px;
+}
+
+/* line 197, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article div.row.quotebox div.row.quote :after {
+  content: url("../images/right-quote.svg");
+  width: 30px;
+  position: absolute;
+  margin-left: 10px;
+}
+
+/* line 30, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
+article div.row.quotebox div.row.byline {
+  display: block;
+  font-size: .875rem;
+  line-height: 36px;
+  line-height: normal;
+  padding-top: 12px;
+  text-align: right;
+  font-weight: normal;
+}
+
+/* line 211, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+article div.row.quotebox div.row.byline a {
+  font-weight: bold;
+  text-transform: uppercase;
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
 }
 
 /* Site Wide Social Tags CSS */
@@ -11599,7 +11849,11 @@ article .social-bar,
   line-height: 16px;
 }
 
+<<<<<<< HEAD
 /* line 173, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+=======
+/* line 218, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
 article .social-bar input[type=button],
 .form-group #comment-links input[type=button] {
   border: none;
@@ -11609,7 +11863,11 @@ article .social-bar input[type=button],
   color: #406b93;
 }
 
+<<<<<<< HEAD
 /* line 179, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+=======
+/* line 224, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork-mixins.scss */
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
 article .social-bar input[type=button]:hover,
 .form-group #comment-links input[type=button]:hover {
   color: #000000;
