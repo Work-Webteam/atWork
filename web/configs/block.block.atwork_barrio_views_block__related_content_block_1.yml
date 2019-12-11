@@ -1,6 +1,6 @@
-uuid: 7dbca814-3f40-4c29-a9e0-a10e145195d7
+uuid: 51edddd7-cf84-4b4a-a735-fe9f84c38486
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.related_content
@@ -22,6 +22,7 @@ settings:
   label_display: visible
   views_label: ''
   items_per_page: none
+  context_mapping: {  }
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'

@@ -13,7 +13,9 @@ url:
     - 'system/ajax/*'
 theme:
   visibility: '1'
-  themes: {  }
+  themes:
+    bootstrap_barrio: bootstrap_barrio
+    atwork_barrio: atwork_barrio
 minimized:
   options: '0'
 cdn:

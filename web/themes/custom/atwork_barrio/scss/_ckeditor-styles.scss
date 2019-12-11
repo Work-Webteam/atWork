@@ -1,0 +1,77 @@
+// Custom styles for CKEditor
+
+
+article { // Updates box used on articles / background pages.
+  table.update {
+    caption {
+        background-color: $banner-blue;
+        padding: 3px 0 6px;
+        @include size2592;
+        color: $white;
+        text-align: center;
+        text-transform: uppercase;
+        caption-side:top;
+      }
+      background-color: $comment-blue;
+      h4 {
+        padding:0;
+        font-weight: 600;
+      }
+      margin-bottom: 12px;
+    }
+    figure.caption-img {
+        display: block;
+        width:265px;
+        border-top:solid 6px $banner-blue;
+        border-bottom:solid 6px $banner-blue;
+        background-color: $comment-blue;
+        figcaption {
+            width:100%;
+        }
+        &.align-left {
+            margin: 8px 10px 8px 0;
+        }
+        &.align-right {
+            margin: 8px 0 8px 10px;
+        }
+    }
+    div.inset-text-left {
+        @include side-text;
+        float:left;
+        margin: 8px 10px 8px 0;
+    }
+    div.inset-text-right {
+        @include side-text;
+        float:right;
+        margin: 8px 0 8px 8px;
+    }
+    table.faq {
+        caption {
+           background-color: $banner-blue;
+           padding: 3px 0 6px;
+           @include size2592;
+           color: $white;
+           text-align: center;
+           text-transform: uppercase;
+           caption-side:top;
+        }
+        td {
+            padding:16px 16px 24px;
+        }
+        tr:nth-child(odd) {
+            background:$comment-blue;
+        }
+        tr:nth-child(even) {
+            background:$white;
+        }
+        h4 {
+          padding:0;
+          font-weight: 600;
+        }
+        margin-bottom: 24px;
+    }
+    p.videobyline {
+        @include caption-text;
+        background-color: $comment-blue;
+    }
+}

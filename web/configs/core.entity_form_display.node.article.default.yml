@@ -20,7 +20,6 @@ dependencies:
     - field.field.node.article.panelizer
     - node.type.article
   module:
-    - comment
     - file
     - h5peditor
     - media_library
@@ -44,12 +43,6 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-  comment:
-    type: comment_default
-    weight: 14
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   created:
     type: datetime_timestamp
     weight: 10
@@ -70,7 +63,7 @@ content:
     type: file_generic
     region: content
   field_author_information:
-    weight: 19
+    weight: 18
     settings:
       match_operator: CONTAINS
       size: 60
@@ -86,17 +79,8 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_development_tags:
-    weight: 22
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_editor_tags:
-    weight: 21
+    weight: 20
     settings:
       match_operator: CONTAINS
       size: 60
@@ -112,13 +96,13 @@ content:
     third_party_settings: {  }
     region: content
   field_interactive_content:
-    weight: 20
+    weight: 19
     settings: {  }
     third_party_settings: {  }
     type: h5p_editor
     region: content
   field_send_notifications:
-    weight: 23
+    weight: 21
     settings:
       display_label: true
     third_party_settings: {  }
@@ -148,7 +132,7 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 17
+    weight: 16
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -161,7 +145,7 @@ content:
     third_party_settings: {  }
   publish_on:
     type: datetime_timestamp_no_default
-    weight: 15
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -174,7 +158,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 18
+    weight: 17
     region: content
     third_party_settings: {  }
   sticky:
@@ -203,15 +187,17 @@ content:
     third_party_settings: {  }
   unpublish_on:
     type: datetime_timestamp_no_default
-    weight: 16
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 24
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  comment: true
+  field_development_tags: true
   field_display_title: true
   panelizer: true

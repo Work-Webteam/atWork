@@ -1,10 +1,44 @@
-// Article pages - Corporate / Executive / Video
-
 body.node--type-article {
     main#content {
-        .field--name-field-header-image > img {
-            max-width:100%;
-            height:auto;
+      .field--name-field-header-image > img {
+        max-width: 100%;
+        height: auto;
+      }
+      .field--name-extra-field-author-publish-date {
+        font-size: .875rem;
+        line-height: 24px;
+        padding: 0 0 18px;
+        a {
+          font-weight: 700;
+          text-transform: uppercase;
         }
+      }
+      article.node--article-type--executive_message {
+        .field--type-entity-reference {
+          margin-bottom: 0;
+        }
+        .field--name-field-display-title {
+          border-top: solid 20px darken($exec-greyborder, 20);
+          h1 {
+            background-color: $exec-greyborder;
+            padding: 10px 0 0 10px;
+            margin: 0;
+            color: $black;
+          }
+        }
+        .field--name-extra-field-author-publish-date {
+          @include size1424;
+          padding: 6px 0 18px;
+          background-color: $exec-greyborder;
+          padding-left: 10px;
+          margin-bottom: 20px;
+        }
+      }
+      // Video and Image captions
+      p.videobyline, figcaption { // text below videos and images
+        @include caption-text;
+        padding: 24px 16px;
     }
-}
+      @include related-content; // Related content thumbs at bottom of article
+    }
+  }

@@ -12,10 +12,10 @@ bootstrap_barrio_button_outline: 0
 bootstrap_barrio_navbar_toggle: 0
 bootstrap_barrio_navbar_container: '0'
 bootstrap_barrio_navbar_top_position: ''
-bootstrap_barrio_navbar_top_color: 0
+bootstrap_barrio_navbar_top_color: null
 bootstrap_barrio_navbar_top_background: ''
 bootstrap_barrio_navbar_position: ''
-bootstrap_barrio_navbar_color: 0
+bootstrap_barrio_navbar_color: null
 bootstrap_barrio_navbar_background: bg-primary
 bootstrap_barrio_messages_widget: toasts
 bootstrap_barrio_radio: custom

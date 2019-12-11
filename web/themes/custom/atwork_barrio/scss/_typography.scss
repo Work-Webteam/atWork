@@ -36,7 +36,6 @@ html, body {
     p {
         color: $text;
         padding:0;
-        margin: 0 0 36px 0;
     }
 }
 
@@ -47,7 +46,7 @@ h1 {
     color: $text;
     font-weight: bold;
     margin:0;
-    padding-top:24px;
+    padding-top:initial;
     padding-bottom:6px;
 }
 h2, h3, h4 {

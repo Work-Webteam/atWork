@@ -18,32 +18,32 @@ bundle: comment
 mode: default
 content:
   comment_body:
-    label: hidden
     type: text_default
     weight: 0
     region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
   field_edited_comment:
+    type: boolean
     weight: 3
+    region: content
     label: hidden
     settings:
       format: default
-      format_custom_true: ''
       format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
-    region: content
   field_remove_comment:
+    type: boolean
     weight: 4
+    region: content
     label: hidden
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
-    region: content
   flag_inappropriate_comment_flag:
     weight: 1
     region: content
