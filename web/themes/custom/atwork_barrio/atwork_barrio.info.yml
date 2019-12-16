@@ -6,7 +6,6 @@ core: 8.x
 base theme: bootstrap_barrio
 
 libraries:
-  - atwork_barrio/bootstrap_cdn
   - atwork_barrio/global-styling
 
 regions:

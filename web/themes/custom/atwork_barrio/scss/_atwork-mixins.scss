@@ -91,26 +91,39 @@
     padding-bottom:12px;
     margin:0;
 }
-@mixin comment-byline {
-  font-family: 'Myriad Pro', 'Segoe UI', sans-serif;
-  font-weight: bold;
-  @include size1416;
-  padding-top:8px;
-  padding-bottom:8px;
+
+// Article image inset
+@mixin articleImage {
+  figure[role="group"] { // sidebox for small article images
+    display: block;
+    @include inset-top-bottom;
+    background-color:$comment-blue;
+    figcaption {
+        width:100%;
+    }
+  }
+}
+// Inset text boxes on articles and posts
+@mixin side-text {
+  border-top:solid 6px $banner-blue;
+  border-bottom:solid 6px $banner-blue;
+  background-color: $comment-blue;
+  padding: 12px;
+  width:265px;
 }
 
-@mixin update-box {
+// Update and Call Out boxes on article, background and group posts
+@mixin callout {
   table {
     caption {
       background-color: $banner-blue;
-      margin-top:24px;
-      padding: 12px 0 6px;
+      padding: 3px 0 6px;
       @include size2592;
       color: $white;
       text-align: center;
       text-transform: uppercase;
+      caption-side:top;
     }
-    background-color: $comment-blue;
     h4 {
       padding:0;
       font-weight: 600;
@@ -119,72 +132,13 @@
   }
 }
 @mixin update {
-  @include update-box;
+  @include callout;
   table.update {
     border-bottom: solid 6px $banner-blue;
     tbody tr td {
       padding: 16px 16px 24px;
     }
   }
-}
-@mixin title-table {
-  @include update-box;
-  table.title-table {
-    th {
-      background: $horz-ad;
-      text-align: center;
-      @include size2160;
-      padding:8px 0;
-    }
-    td {
-      padding: 16px 16px 24px;
-    }
-    tr:nth-child(even) {
-      background:$white;
-    }
-    tr:nth-child(odd) {
-      background:$comment-blue;
-    }
-  }
-}
-@mixin related-inset {
-  @include update-box;
-  table.related-inset {
-    border-top:solid 6px $banner-blue;
-    border-bottom:solid 6px $banner-blue;
-    tr td img {
-      width:100%;
-      border-left: solid 1px $button-hover;
-      border-right: solid 1px $button-hover;
-      border-bottom: solid 1px $button-hover;
-    }
-    td li {
-      margin-left:17px;
-      &::before {
-        padding-right:10px;
-      }
-    }
-    h5 {
-      margin-bottom:0;
-    }
-    h5, p {
-      padding-left: 16px;
-      padding-right:16px;
-    }
-    p:last-child {
-      padding-bottom: 24px;
-    }
-  }
-}
-@mixin call-out { // Basic Call-out box on article pages. Creates a div tag.
-  border-top: solid 9px $banner-blue;
-  border-bottom: solid 9px $banner-blue;
-  padding: 24px 100px;
-  @include size2136;
-  font-weight:bold;
-  color: $text;
-  margin-bottom:24px;
-  margin-top: 24px;
 }
 @mixin quotes {
   :before { // Large left quote graphic. Uses SVG graphic.
@@ -203,6 +157,7 @@
 }
 @mixin QuoteAuthor { // Big Quotes Author. Applies the style to the author of the quote. Names must be bold in article text.
     display: block;
+    width:100%;
     @include size1436;
     line-height: normal;
     padding-top:12px;
@@ -213,6 +168,28 @@
       text-transform: uppercase;
     }
 }
+// Article Quote Box
+@mixin bigquotes {
+  article div.row.quotebox {
+    text-align: center;
+    border-top: solid 9px $banner-blue;
+    border-bottom: solid 9px $banner-blue;
+    padding: 24px 100px;
+    font-size: 1.312rem;
+    line-height: 36px;
+    font-weight: bold;
+    color:#333333;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    .row.quote {
+      @include quotes;
+    }
+    .row.byline {
+      @include QuoteAuthor;
+    }
+  }
+}
+
 // Social Bar icons
 @mixin button-text-reset {
   input[type=button] { // Cleans up default input button and add styling
@@ -228,120 +205,56 @@
   }
 }
 
-// Grid Landing Page Specific Mixins. Used on Group Landing, All Post, All Galleries
-@mixin blue-grid-box {
-  .view-filters {
-    display: flex;
-    flex-direction: column;
-    flex:1;
-  }
-  .post-list {
-    .post-list-content {
-      padding:0;
-      margin:10px;
+// Load more button used on landing pages and related content
+@mixin load-more {
+  .js-pager__items.pager {
+    margin-top:10px;
+    padding-left:0px;
+    li {
+      text-align: center;
       list-style: none;
-
-      display: -webkit-box;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: -webkit-flex;
-      display: flex;
-
-      -webkit-flex-flow: row wrap;
-      justify-content: space-evenly;
-      > .all-posts-row {
-        width:215px;
-        margin-bottom:10px;
-        background-color: $comment-blue;
-        border:solid 1px lighten($button-hover, 35%);
-        .all-post-title {
-          h5 {
-            margin:5px 10px 0px;
-          }
-          display: flex;
-          min-height:55px;
-        }
-        .all-post-date {
-          @include size1216;
-          margin:0 10px;
-        }
-        .all-post-teaser, .all-post-comments, .all-post-likes {
-          @include size1216;
-          padding: 5px 10px;
-          margin:5px 0;
-        }
-        .all-post-comments-likes {
-          display: flex;
-          flex-direction: row;
-          .all-post-comments {
-            display: inline-flex;
-            flex:1;
-          }
-          .all-post-likes {
-            display: inline-flex;
-            justify-content: flex-end;
-          }
-        }
+      a.button {
+        @extend .btn;
+        @extend .btn-secondary;
       }
     }
   }
 }
+
 // Related content boxes on Article / Program / Group pages
 @mixin related-content {
-  @at-root {// Sets syle for H2 tag title
-    #block-views-block-related-content-block-1 {
-      padding-left:0px;
-      padding-right:0px;
-      h2.block-title {
-        @include size2160;
-        text-transform: uppercase;
-        background-color:$banner-blue;
-        color:$white;
-        padding:8px 10px 5px;
-        margin:10px 0 0;
-      }
-    }
-    #block-views-block-related-content-block-3 {
-      padding-left:0px;
-      padding-right:0px;
-      h2.block-title {
-        background-color: $grp-default-banner;
-        color:$white;
-        padding:8px 10px 5px;
-        margin:10px 0 0;
-      }
-    }
+#block-atwork-barrio-views-block-related-content-block-1 {
+  h2 {
+    @include size2160;
+    text-transform: uppercase;
+    background-color:$banner-blue;
+    color:$white;
+    padding:8px 10px 5px;
+    margin:10px 0 0;
   }
-  .related-wrapper {
-    padding:0;
-    margin:0;
-
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-flow: row wrap;
-    -webkit-flex-flow: row wrap;
-    .view-content {
-      display: flex;
-      margin:0 auto;
-      flex-flow: wrap;
+   .related-wrapper {
+     padding:0;
+     margin:0;
+     .views-infinite-scroll-content-wrapper {
+       width:100%;
+       @extend .d-flex;
+       @extend .flex-row;
+       @extend .flex-wrap;
+       @extend .justify-content-center;
       .related-content {
-        width:265px;
-        justify-content: space-between;
-        margin:10px;
+        width:204px;
+        margin:5px;
         border: solid 1px $exec-greyborder;
         .no-article-image {
           background-color: $exec-greyborder;
-          max-width:200px;
+          width:204px;
           height:112px;
         }
         .related-box {
           min-height: 215px;
           padding-bottom: 5px;
           .related-image {
-            width:100%;
+            width:204px;
             height:111px;
             overflow: hidden;
             background-color: $exec-greyborder;
@@ -368,9 +281,12 @@
           text-transform: capitalize;
         }
       }
-    }
-  }
+     }
+     @include load-more;
+   }
+ }
 }
+
 // Removes the bullet values used on news article page lists.
 .group-related-content .related-wrapper li.related-content {
   margin-left:initial;
@@ -408,37 +324,47 @@
 }
 // Employee profile and Employeee Landing page card look
 @mixin profile-look {
-  border: solid 2px $exec-greyborder;
-  padding: 0px;
-  text-align: left;
-  width:100%;
+  border: solid 1px $exec-greyborder;
+  ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+  }
   aside {
-    padding:15px;
+    height: 160px;
+    width: 100px;
+    float: left;
+    //padding: 10px 0 0;
+    margin-right:10px;
     border-right: solid 1px $exec-greyborder;
     background-color:$exec-greyborder;
     span.profile-img {
       display: block;
-      width: 125px;
-      height: 125px;
+      width: 75px;
+      height: 75px;
+      margin:0 auto;
       border-radius: 50%;
       overflow: hidden;
       border:solid 2px darken($exec-greyborder, 20);
       background-color: $white;
+      img {
+        width:100%;
+        height:100%;
       }
     }
+  }
   section.profile-detail {
-    width: 100%;
-    padding: 15px;
-    ul {
-      list-style-type: none;
-      margin:0;
-      padding:0;
-      }
-    h3 {
-      border-bottom: solid 10px $exec-greyborder;
-      padding: 0;
-      margin:20px 0 20px 0;
-      }
+    padding:10px 0px 10px;
+    width:100%;
+    @include size1216;
+    li.employee {
+      @include size1416;
+      text-transform: uppercase;
+      margin-bottom:5px;
+    }
+    li.email {
+      padding-top:10px;
+    }
   }
 }
 // Colour identifiers for employee landing page, used for execs.

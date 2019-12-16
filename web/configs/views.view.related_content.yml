@@ -7,7 +7,6 @@ dependencies:
     - field.storage.node.field_header_image
     - field.storage.node.field_image
     - image.style.article_top_image
-    - image.style.max_2600x2600
     - image.style.max_325x325
     - image.style.medium
     - image.style.thumbnail
@@ -489,6 +488,7 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+        pager: false
       fields:
         field_image:
           id: field_image
@@ -541,7 +541,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_style: max_2600x2600
+            image_style: max_325x325
             image_link: ''
           group_column: ''
           group_columns: {  }
@@ -991,6 +991,27 @@ display:
         operator: AND
         groups:
           1: AND
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 5
+          offset: 0
+          id: 0
+          total_pages: 4
+          tags:
+            previous: «
+            next: »
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load @next_page_count More'
+            automatically_load_content: false
     cache_metadata:
       max-age: -1
       contexts:

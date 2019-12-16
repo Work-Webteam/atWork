@@ -1,4 +1,4 @@
-uuid: 8c24b394-1ef7-40e6-b671-17327c7088ec
+uuid: db6e3a27-6335-4dc9-a9ef-b06014d31f75
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ _core:
 id: atwork_barrio_messages
 theme: atwork_barrio
 region: highlighted
-weight: -12
+weight: -13
 provider: null
 plugin: system_messages_block
 settings:

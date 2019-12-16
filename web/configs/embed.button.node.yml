@@ -2,6 +2,18 @@ uuid: c43c839c-05e7-4a1b-a5eb-8e0d6e2ee6f3
 langcode: en
 status: true
 dependencies:
+  config:
+    - core.entity_view_mode.node.email_html
+    - core.entity_view_mode.node.full
+    - core.entity_view_mode.node.teaser
+    - node.type.article
+    - node.type.background_page
+    - node.type.group_event
+    - node.type.group_post
+    - node.type.page
+    - node.type.photos
+    - node.type.program_area_content
+    - node.type.simplenews_issue
   module:
     - entity_embed
     - node
@@ -12,6 +24,20 @@ id: node
 type_id: entity
 type_settings:
   entity_type: node
-  bundles: {  }
-  display_plugins: {  }
+  bundles:
+    - article
+    - page
+    - background_page
+    - group_event
+    - group_post
+    - simplenews_issue
+    - photos
+    - program_area_content
+  display_plugins:
+    - 'entity_reference:entity_reference_label'
+    - 'view_mode:node.email_html'
+    - 'view_mode:node.full'
+    - 'view_mode:node.teaser'
+  entity_browser: ''
+  entity_browser_settings: {  }
 icon_uuid: null

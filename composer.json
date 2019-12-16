@@ -100,6 +100,7 @@
         "drupal/devel_entity_updates": "^1.0@RC",
         "drupal/draggable_dashboard": "^1.1",
         "drupal/drush": "^6.0@RC",
+        "drupal/easy_breadcrumb": "1.12",
         "drupal/embed": "^1.0",
         "drupal/entity_embed": "^1.0",
         "drupal/externalauth": "^1.1",

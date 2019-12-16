@@ -9,7 +9,6 @@ module:
   atwork_idir_update: 0
   atwork_menu: 0
   atwork_messages: 0
-  atwork_poll: 0
   atwork_program_pages: 0
   background_image: 0
   background_image_formatter: 0
@@ -44,6 +43,7 @@ module:
   devel_generate: 0
   draggable_dashboard: 0
   dynamic_page_cache: 0
+  easy_breadcrumb: 0
   editor: 0
   editor_advanced_link: 0
   embed: 0
@@ -113,7 +113,6 @@ module:
   path: 0
   photos: 0
   photos_access: 0
-  poll: 0
   postal_code: 0
   quickedit: 0
   rdf: 0
@@ -172,8 +171,8 @@ theme:
   bartik: 0
   seven: 0
   bootstrap_barrio: 0
+  root: 0
   atwork_barrio: 0
-  adminimal_theme: 0
 profile: standard
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

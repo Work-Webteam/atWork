@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - entity_embed
     - token_filter
     - video_embed_wysiwyg
 _core:
@@ -58,3 +59,9 @@ filters:
     weight: 0
     settings:
       replace_empty: '0'
+  entity_embed:
+    id: entity_embed
+    provider: entity_embed
+    status: true
+    weight: 100
+    settings: {  }

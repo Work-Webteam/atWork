@@ -80,12 +80,12 @@ display:
             items_per_page: false
             items_per_page_label: 'Items per page'
             items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: true
+            items_per_page_options_all: false
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'Load More'
+            button_text: 'Load @next_page_count More'
             automatically_load_content: false
       style:
         type: default
@@ -1537,14 +1537,14 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
+            max_length: 100
             word_boundary: true
             ellipsis: true
             more_link: false
             more_link_text: ''
             more_link_path: ''
             strip_tags: true
-            trim: false
+            trim: true
             preserve_tags: ''
             html: false
           element_type: ''
@@ -1562,7 +1562,7 @@ display:
           click_sort_column: summary
           type: text_trimmed
           settings:
-            trim_length: 150
+            trim_length: 100
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -2066,7 +2066,7 @@ display:
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 8
+          items_per_page: 6
           offset: 0
           id: 0
           total_pages: null
@@ -2082,7 +2082,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'Load More'
+            button_text: 'Load @next_page_count More'
             automatically_load_content: false
     cache_metadata:
       max-age: -1

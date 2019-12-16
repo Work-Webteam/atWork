@@ -1,0 +1,167 @@
+/* Site Wide profile CSS */
+// Profile styling
+body.path-my-profile,
+body.path-employees {
+  .employee-profile-page {
+    .views-row {
+      width:100%;
+    }
+  }
+  #profile-card {
+    border: solid 1px $exec-greyborder;
+    width:100%;
+    @extend .d-flex;
+    @extend .flex-row;
+    aside {
+      text-align: center;;
+      float: left;
+      padding: 10px;
+      margin-right:10px;
+      border-right: solid 1px $exec-greyborder;
+      background-color:$exec-greyborder;
+      span.profile-img {
+        display: block;
+        width:130px;
+        height:130px;
+        margin:0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border:solid 2px darken($exec-greyborder, 20);
+        img {
+          width:100%;
+          height:auto;
+        }
+      }
+      #profile-edit, #subscribe {
+        @extend .btn;
+        @extend .btn-sm;
+        @extend .btn-outline-secondary;
+        font-size: .8rem;
+        margin: 10px 0 0;
+        a {
+          color:$link-blue;
+        }
+        :hover {
+          color:$white;
+        }
+      }
+    }
+    &.j41 {
+      @include j41;
+    }
+    &.j42 {
+      @include j42;
+    }
+    &.j43 {
+      @include j43;
+    }
+    section.profile{
+      padding:8px;
+      ul {
+        padding:8px;
+        list-style-type: none;
+        margin:0;
+        padding:0;
+        li i {
+          color: $icon-grey;
+          vertical-align: middle;
+          margin-right: 5px;;
+        }
+        li .employee {
+          font-weight:bold;
+        }
+        li:nth-child(2) {
+          margin-bottom:10px;
+        }
+      }
+    }
+  }
+  .profile-detail {
+    h3 {
+      border-bottom: solid 10px $exec-greyborder;
+      padding: 0;
+      margin: 20px 0 20px 0;
+    }
+  }
+}
+
+
+// All Employees Landing page and Executive Landing Page
+body.path-employees, body.path-executives {
+  .attachment-before {
+    @extend .d-flex;
+    @extend .justify-content-center;
+    #profile-card {
+      @include profile-look;
+      width:380px;
+      height:160px;
+      margin-bottom: 25px;
+      &.j41 {
+        @include j41;
+      }
+    }
+  }
+  .all-employee-page {
+    .view-content.row {
+      padding:0;
+      margin:0;
+      .views-infinite-scroll-content-wrapper {
+        width:100%;
+        @extend .d-flex;
+        @extend .flex-row;
+        @extend .flex-wrap;
+        @extend .justify-content-center;
+        .views-row {
+          #profile-card {
+            @include profile-look;
+            width:340px;
+            height:160px;
+            margin: 0 5px 8px 5px;
+            &.j41 {
+              @include j41;
+            }
+            &.j42 {
+              @include j42;
+            }
+            &.j43 {
+              @include j43;
+            }
+          }
+        }
+      }
+    }
+    .view-filters {
+      label {
+        margin-bottom:0;
+      }
+      fieldset {
+        margin-bottom: 5px;
+        max-width:250px;
+      }
+      border:solid 1px $exec-greyborder;
+      width:100%;
+      margin: 0 auto 10px;
+      padding:5px 10px;
+      .views-exposed-form {
+        font-size:.8rem;
+        input.form-control,
+        .form-select.form-control {
+          padding: 0px 5px;
+          height: inherit;
+          color: #10233c;
+          font-size: .75rem;
+          line-height: 16px;
+        }
+        #edit-actions {
+          margin-top:15px;
+          &.form-actions {
+            align-self:initial;
+          }
+        }
+      }
+    }
+  }
+  @include load-more;
+}
+
+// My Profile

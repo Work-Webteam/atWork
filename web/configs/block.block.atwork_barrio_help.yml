@@ -1,4 +1,4 @@
-uuid: f51d406c-e754-4537-b81d-5fc95b2ce541
+uuid: f620219e-76f0-4f02-b8d9-f84890984a9b
 langcode: en
 status: false
 dependencies:
@@ -11,7 +11,7 @@ _core:
 id: atwork_barrio_help
 theme: atwork_barrio
 region: highlighted
-weight: -11
+weight: -12
 provider: null
 plugin: help_block
 settings:

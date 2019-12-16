@@ -1,4 +1,4 @@
-uuid: b90ee2b0-2929-4928-83a7-cedd6b79335a
+uuid: 2570f76a-d778-4ffe-baa0-35a2238bfe47
 langcode: en
 status: true
 dependencies:
@@ -24,7 +24,7 @@ settings:
   expand_all_items: false
   menu_type: navbar
   style: none
-  arrow: 1
+  arrow: 0
   shadow: 0
   speed: fast
   delay: '800'

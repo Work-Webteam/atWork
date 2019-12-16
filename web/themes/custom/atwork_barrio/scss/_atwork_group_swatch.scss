@@ -1,0 +1,84 @@
+form#group-atwork-groups-edit-form {
+  #edit-field-themes {
+    display: inline-flex;
+    flex-direction: row;
+    .form-item-field-themes:first-of-type {
+      display:none;
+    }
+    .form-item-field-themes {
+      flex-direction: column;
+      margin-right:10px;
+      width:120px;
+      background-color: #ECECEC;
+      border: solid 1px #999;
+      padding: 3px;
+    }
+    .group-swatch {
+      background-color:white;
+      display: flex;
+      flex-direction: column;
+      padding: 5px 3px 3px;
+      border: solid 1px #999;
+      .primary-col,
+      .secondary-col,
+      .link-col {
+        border-left: solid 25px;
+        margin-bottom: 5px;
+        padding-left: 5px;
+      }
+    }
+    .form-item-field-themes:nth-of-type(2) { // Teal
+
+      .group-swatch {
+        .primary-col {
+          border-color: rgba(138, 204, 207, 1);
+        }
+        .secondary-col {
+          border-color: rgba(47, 114, 116, 1);
+        }
+        .link-col {
+          border-color: rgba(64, 107, 147, 1);
+        }
+      }
+    }
+    .form-item-field-themes:nth-of-type(3) { // Green
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(22, 117, 22, 1);
+        }
+        .secondary-col {
+          border-color:rgba(20, 83, 20, 1);
+        }
+        .link-col {
+          border-color: rgb(64, 107, 147);
+        }
+      }
+    }
+    .form-item-field-themes:nth-of-type(4) { // Blue
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(24,55,95, 1);
+        }
+        .secondary-col {
+          border-color:rgba(16, 35, 60, 1);
+        }
+        .link-col {
+          border-color:rgba(64, 107, 147, 1);
+        }
+      }
+    }
+    .form-item-field-themes:nth-of-type(5) { // Light Blue
+      .group-swatch {
+        .primary-col {
+          border-color:rgba(223,235,242, 1);
+        }
+        .secondary-col {
+          border-color:rgba(174, 208, 227, 1);
+        }
+        .link-col {
+          border-color:rgba(58, 85, 193, 1);
+        }
+      }
+    }
+  }
+}

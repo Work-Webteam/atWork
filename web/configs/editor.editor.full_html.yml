@@ -33,18 +33,6 @@ settings:
             - '-'
             - Maximize
         -
-          name: Widgets
-          items:
-            - WidgetTemplateMenu
-            - widgetbootstrapLeftCol
-            - widgetbootstrapRightCol
-            - widgetbootstrapTwoCol
-            - widgetbootstrapThreeCol
-            - widgetbootstrapAlert
-            - widgetbootstrapAccordion
-            - widgetcommonBox
-            - widgetcommonQuotebox
-        -
           name: Copy/Paste/Undo/Redo
           items:
             - Cut
@@ -54,6 +42,12 @@ settings:
             - PasteFromWord
             - Undo
             - Redo
+        -
+          name: Special
+          items:
+            - WidgetTemplateMenu
+            - widgetbootstrapLeftCol
+            - widgetcommonQuotebox
         -
           name: Linking
           items:
@@ -87,7 +81,7 @@ settings:
     language:
       language_list: un
     stylescombo:
-      styles: "table.update|Update Table\r\ntable.title-table|Title Table\r\ntable.related-inset|Related Inset\r\np.videobyline|Video Byline\r\na.text-button|Text Button\r\ndiv.bluebox|Highlight Box"
+      styles: "table.update|Update Table\r\ntable.faq|FAQTable\r\nfigure.caption-img|Inset Image\r\np.videobyline|Video Caption\r\ndiv.inset-text-left|Inset Text Left\r\ndiv.inset-text-right|Inset Text Right\r\ndiv.callout|Highlight Box"
     linkit:
       linkit_profile: atwork_links
     tokenbrowser:
