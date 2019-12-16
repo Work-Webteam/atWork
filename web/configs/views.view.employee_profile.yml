@@ -384,8 +384,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: true
-            path: 'employees/{{ name_1 }}'
+            make_link: false
+            path: ''
             absolute: false
             external: false
             replace_spaces: true
@@ -1016,7 +1016,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"><a href=\"/web/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li>  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n   <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
+            text: "<div id=\"profile-card\" class=\"j{{ field_job_function_code }}\">\r\n<aside><span class=\"profile-img\"> {{ user_picture }} </span> </aside>\r\n<section class=\"profile-detail\">\r\n<ul class=\"profile\">\r\n  <li class=\"employee\"><a href=\"/employees/{{ name_1 }}\"> {{ field_user_given_name }} {{ field_user_surname }} </a></li>\r\n  <li>  {{ field_user_title }} </li>\r\n  <li> {{ field_company }}  - {{ field_user_offic }} </li>\r\n  <li> {{ field_user_city }} </li>\r\n  <li> {{ mail }} </li>\r\n   <li> {{ field_user_phone }} </li>\r\n </ul>\r\n</section>\r\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -5115,8 +5115,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: true
-            path: 'employees/{{ name_1 }}'
+            make_link: false
+            path: ''
             absolute: false
             external: false
             replace_spaces: true
