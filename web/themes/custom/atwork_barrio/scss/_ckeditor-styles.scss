@@ -2,6 +2,10 @@
 
 
 article { // Updates box used on articles / background pages.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
   table.update {
     caption {
         background-color: $banner-blue;
@@ -55,6 +59,7 @@ article { // Updates box used on articles / background pages.
            text-transform: uppercase;
            caption-side:top;
         }
+<<<<<<< HEAD
         th {
             background-color: darken($color: $comment-blue, $amount: 10);
             color:$black;
@@ -62,6 +67,8 @@ article { // Updates box used on articles / background pages.
                 padding-top:10px;
             }
         }
+=======
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
         td {
             padding:16px 16px 24px;
         }
@@ -81,6 +88,7 @@ article { // Updates box used on articles / background pages.
         @include caption-text;
         background-color: $comment-blue;
     }
+<<<<<<< HEAD
     a.text-button {
         @extend .btn;
         @extend .btn-secondary;
@@ -92,4 +100,37 @@ article { // Updates box used on articles / background pages.
     div.callout {
         background-color:$comment-blue;
     }
+=======
+=======
+  @include update;
+  @include title-table;
+  @include related-inset;
+  div.CallOut {
+    @include call-out;
+  }
+  //div.BigQuotes {
+    //@include call-out;
+    //@include quotes;
+  //}
+  a.text-button {
+    @include atwork-button;
+  }
+  div.bluebox {
+    @include size2160;
+    display: block;
+    background-color: $horz-ad;
+    padding: 24px;
+  }
+  div.row.quotebox {
+    text-align: center;
+    @include call-out;
+    div.row.quote {
+      @include quotes;
+    }
+    div.row.byline {
+      @include QuoteAuthor;
+    }
+  }
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
 }

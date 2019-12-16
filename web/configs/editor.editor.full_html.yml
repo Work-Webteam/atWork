@@ -81,7 +81,11 @@ settings:
     language:
       language_list: un
     stylescombo:
+<<<<<<< HEAD
       styles: "table.update|Update Table\r\ntable.faq|FAQTable\r\nfigure.caption-img|Inset Image\r\np.videobyline|Video Caption\r\ndiv.inset-text-left|Inset Text Left\r\ndiv.inset-text-right|Inset Text Right\r\ndiv.callout|Highlight Box"
+=======
+      styles: "table.update|Update Table\r\ntable.faq|FAQTable\r\nfigure.caption-img|Inset Image\r\np.videobyline|Video Caption\r\ndiv.inset-text-left|Inset Text Left\r\ndiv.inset-text-right|Inset Text Right"
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
     linkit:
       linkit_profile: atwork_links
     tokenbrowser:

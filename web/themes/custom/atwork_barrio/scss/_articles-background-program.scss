@@ -1,10 +1,13 @@
 body.node--type-article {
     main#content {
+<<<<<<< HEAD
       ul, ol {
         li {
           padding-left:10px;
         }
       }
+=======
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
       .field--name-field-header-image > img {
         max-width: 100%;
         height: auto;
@@ -45,6 +48,7 @@ body.node--type-article {
         padding: 24px 16px;
     }
       @include related-content; // Related content thumbs at bottom of article
+<<<<<<< HEAD
       @include bigquotes; // Big quotes used on article pages
     }
   }
@@ -214,9 +218,39 @@ body.layout-no-sidebars.path-groups {
           .all-post-date {
             font-size:.8rem;
           }
+=======
+    }
+<<<<<<< HEAD
+  }
+=======
+    article.node--article-type--executive_message {
+        .field--type-entity-reference {
+            margin-bottom:0;
+        }
+        .field--name-field-display-title {
+            border-top:solid 20px darken($exec-greyborder,20);
+            h1 {
+                background-color:$exec-greyborder;
+                padding:10px 0 0 10px;
+                margin:0;
+                color: $black;
+            }
+        }
+        .field--name-extra-field-author-publish-date {
+            @include size1424;
+            padding: 6px 0 18px;
+            background-color: $exec-greyborder;
+            padding-left:10px;
+            margin-bottom:20px;
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
         }
       }
     }
+<<<<<<< HEAD
   }
   @include load-more;
 }
+=======
+}
+>>>>>>> 9dbecb7a5db3b5b8197b30156f7def947ced330f
+>>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
