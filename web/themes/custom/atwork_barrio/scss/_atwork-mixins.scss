@@ -140,10 +140,6 @@
     }
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
 @mixin quotes {
   :before { // Large left quote graphic. Uses SVG graphic.
     float:left;
@@ -286,22 +282,7 @@
         }
       }
      }
-<<<<<<< HEAD
      @include load-more;
-=======
-   }
-   .js-pager__items.pager {
-     margin-top:10px;
-     padding-left:0px;
-     li {
-       text-align: center;
-       list-style: none;
-       a.button {
-         @extend .btn;
-         @extend .btn-secondary;
-       }
-     }
->>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
    }
  }
 }

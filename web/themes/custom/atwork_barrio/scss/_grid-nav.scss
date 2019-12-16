@@ -15,7 +15,6 @@
   }
   footer.site-footer {
     background-color: $banner-blue;
-<<<<<<< HEAD
     padding: 0px;
     margin-top:15px;
     text-align: center;
@@ -23,13 +22,6 @@
       @extend .d-flex;
       .block {
         border:none;
-=======
-    .site-footer__top .region {
-      width:33%;
-      #block-footer1stblock,
-      #block-footer2ndblock,
-      #block-footer3rdblock {
->>>>>>> 8d848c5f3f135a3914a139cf35724509d75ea5f2
         width:100%;
       }
       .region {

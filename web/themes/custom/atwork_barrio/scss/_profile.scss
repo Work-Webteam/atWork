@@ -1,7 +1,8 @@
 /* Site Wide profile CSS */
 // Profile styling
 body.path-my-profile,
-body.path-employees {
+body.path-employees,
+body.path-executives {
   .employee-profile-page {
     .views-row {
       width:100%;
@@ -92,8 +93,11 @@ body.path-employees, body.path-executives {
     @extend .d-flex;
     @extend .justify-content-center;
     #profile-card {
+      aside {
+        padding:8px;
+      }
       @include profile-look;
-      width:380px;
+      //width:380px;
       height:160px;
       margin-bottom: 25px;
       &.j41 {
