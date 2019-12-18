@@ -1,4 +1,4 @@
-uuid: 3ca500f9-e3f8-4b89-84c5-730368d8c798
+uuid: 4d03b6a2-3e0d-4719-8a65-d000493233f2
 langcode: en
 status: false
 dependencies:
@@ -6,18 +6,18 @@ dependencies:
     - ctools
     - ctools_block
   theme:
-    - atwork_barrio
-id: atwork_barrio_programhighlight
-theme: atwork_barrio
+    - bootstrap_sass
+id: bootstrap_sass_programtopicboxes
+theme: bootstrap_sass
 region: content
-weight: -7
+weight: -8
 provider: null
-plugin: 'entity_field:node:field_program_highlight'
+plugin: 'entity_field:node:field_program_topic_boxes'
 settings:
-  id: 'entity_field:node:field_program_highlight'
-  label: 'Program Highlight'
+  id: 'entity_field:node:field_program_topic_boxes'
+  label: 'Program Topic Boxes'
   provider: ctools_block
-  label_display: visible
+  label_display: '0'
   formatter:
     label: hidden
     type: entity_reference_revisions_entity_view

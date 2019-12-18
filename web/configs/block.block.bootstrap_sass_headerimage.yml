@@ -1,4 +1,4 @@
-uuid: 3ca500f9-e3f8-4b89-84c5-730368d8c798
+uuid: 1574b65b-2635-4292-906d-67eaf3ecf6bc
 langcode: en
 status: false
 dependencies:
@@ -6,23 +6,24 @@ dependencies:
     - ctools
     - ctools_block
   theme:
-    - atwork_barrio
-id: atwork_barrio_programhighlight
-theme: atwork_barrio
+    - bootstrap_sass
+id: bootstrap_sass_headerimage
+theme: bootstrap_sass
 region: content
-weight: -7
+weight: -10
 provider: null
-plugin: 'entity_field:node:field_program_highlight'
+plugin: 'entity_field:node:field_header_image'
 settings:
-  id: 'entity_field:node:field_program_highlight'
-  label: 'Program Highlight'
+  id: 'entity_field:node:field_header_image'
+  label: 'Header Image'
   provider: ctools_block
-  label_display: visible
+  label_display: '0'
   formatter:
-    label: hidden
-    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    type: media_thumbnail
     settings:
-      view_mode: default
+      image_style: article_hero_image
+      image_link: ''
     third_party_settings: {  }
     weight: 0
   context_mapping:
@@ -31,6 +32,7 @@ visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
+      article: article
       background_page: background_page
     negate: false
     context_mapping:

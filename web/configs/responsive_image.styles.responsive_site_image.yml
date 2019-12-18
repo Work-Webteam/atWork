@@ -3,9 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-    - image.style.large
+    - image.style.article_hero_image
+    - image.style.article_top_image
 id: responsive_site_image
 label: 'Responsive Site Image'
-image_style_mappings: {  }
+image_style_mappings:
+  -
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: article_hero_image
 breakpoint_group: responsive_image
-fallback_image_style: large
+fallback_image_style: article_top_image

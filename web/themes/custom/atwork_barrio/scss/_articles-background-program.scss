@@ -48,6 +48,91 @@ body.node--type-article {
     @include bigquotes; // Big quotes used on article pages
   }
 }
+
+// Program landing pages - LSA, Premiers Awaards, etc
+body.node--type-background-page {
+  main#content {
+    .field--name-field-header-image {
+      padding:0;
+      margin:0;
+      img {
+        max-width:100%;
+        height:auto;
+      }
+    }
+    .content {
+      article {
+        h1.page-title {
+          background-color: $banner-blue;
+          color: $white;
+          padding-top:15px;
+          padding-left:15px;
+          padding-right:15px;
+        }
+        .field--name-body {
+          padding:0 0 25px;
+          margin:0;
+          background-color: $banner-blue;
+          margin-bottom:5px;
+          p {
+            color:$white;
+            padding-left:15px;
+            padding-right:15px;
+          }
+        }
+        .field--name-field-program-topic-boxes {
+          padding:10px;
+          width:100%;
+          @extend .d-flex;
+          @extend .flex-row;
+          @extend .flex-wrap;
+          @extend .justify-content-between;
+          background-color: $comment-blue;
+          .paragraph--type--program-topic-box {
+            width:540px;
+            min-height:210px;
+            padding:12px 12px 0;
+            background-color: $white;
+            border:solid 1px $exec-greyborder;
+            .field--name-field-title {
+              @include size1824;
+              font-weight:bold;
+              padding:5px 5px 0 5px;
+              margin:0 0 0 0;
+            }
+            p {
+              padding: 0 8px 10px 5px;
+              margin:0 0 10px;
+            }
+            .btn {
+              border-radius: 0;
+              border:none;
+              background-color: $banner-blue;
+              color: $white;
+              padding:8px 30px 5px;
+            }
+            .dropup {
+              .dropdown-menu {
+                width:100%;
+                li {
+                  border:solid 1px $exec-greyborder;
+                  text-align: center;
+                  padding: 3px 8px;
+                  margin: 0 5px 5px;
+                }
+                :hover {
+                  background-color: $banner-blue;
+                  color:$white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 // Grid landing pages - News
 
 body.layout-no-sidebars.path-news {

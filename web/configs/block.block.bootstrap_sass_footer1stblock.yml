@@ -1,0 +1,25 @@
+uuid: c7a61c19-f7f6-42ba-b6ca-f4a1fd1ef096
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:b9432938-b110-41b7-a208-bbf7d81f5918'
+  module:
+    - block_content
+  theme:
+    - bootstrap_sass
+id: bootstrap_sass_footer1stblock
+theme: bootstrap_sass
+region: footer_first
+weight: 0
+provider: null
+plugin: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
+settings:
+  id: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
+  label: 'Footer 1st Block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

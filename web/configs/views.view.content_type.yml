@@ -997,7 +997,7 @@ display:
           group_type: group
           admin_label: ''
           empty: false
-          content: 'Displaying @start - @end of @total'
+          content: 'Displaying @per_page of @total'
           plugin_id: result
       footer: {  }
       empty: {  }
@@ -2009,6 +2009,7 @@ display:
         fields: false
         sorts: false
         pager: false
+        header: false
       menu:
         type: none
         title: News
@@ -2084,6 +2085,17 @@ display:
           views_infinite_scroll:
             button_text: 'Load @next_page_count More'
             automatically_load_content: false
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'There are @total articles'
+          plugin_id: result
     cache_metadata:
       max-age: -1
       contexts:

@@ -1,0 +1,9 @@
+<div class='btn-group dropup'>
+  {% for item in items %}
+    {# We only want explor withing links if we actually have links. #}
+    {%  set stuff = item.content['#paragraph'].field_group_menu_link[0] %}
+    {% if(stuff != NULL) %}
+      {{ item.content }}
+    {% endif %}
+  {% endfor %}
+</div>

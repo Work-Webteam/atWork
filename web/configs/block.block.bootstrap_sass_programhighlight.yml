@@ -1,4 +1,4 @@
-uuid: 3ca500f9-e3f8-4b89-84c5-730368d8c798
+uuid: 66a62b7a-8e9f-4b85-849f-0492f717151b
 langcode: en
 status: false
 dependencies:
@@ -6,9 +6,9 @@ dependencies:
     - ctools
     - ctools_block
   theme:
-    - atwork_barrio
-id: atwork_barrio_programhighlight
-theme: atwork_barrio
+    - bootstrap_sass
+id: bootstrap_sass_programhighlight
+theme: bootstrap_sass
 region: content
 weight: -7
 provider: null
