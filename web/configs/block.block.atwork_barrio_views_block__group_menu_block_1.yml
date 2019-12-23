@@ -1,6 +1,6 @@
 uuid: 4c1ee5d5-1c85-4705-8a71-546d465b0d3d
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - views.view.group_menu

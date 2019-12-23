@@ -1,0 +1,228 @@
+/* Group pages and related content */
+
+// Uses these colours for Default
+// $mtBlue1:#044573; // Blue 4, 69, 115 / 044573
+// $mtBlue2:#c5d5da; // Pale Blue 197, 213, 218 / c5d5da
+// $mtTeal:#8acccf; // Teal 138, 204, 207 / 8acccf
+// $mtGreen:#82a941; // Grass Green 130, 169, 65 / 82a941
+// $mtOrange:#edb141; // Orange 237, 177, 65 / edb141
+
+body.path-group .region-content nav.tabs ul.tabs--primary {
+  display: none; // hides the edit links which were moved to the group admin menu
+}
+// Group content
+body.path-group {
+  #block-atwork-barrio-content {
+    .field--type-image {
+      width:100%;
+      height:auto;
+      img {
+        width:100%;
+        height:auto;
+      }
+    }
+  }
+}
+
+// Empty spacer box if no Group Ad Space specified
+  #no-ad-space {
+    display: flex;
+    flex-direction: row;
+    flex:1;
+    height:35px;
+  }
+// Group pages - related group Content
+// Inititial stylings for related content is located in the articles.scss file
+  .group-related-content {
+    section#block-views-block-related-content-block-3 {
+      padding-left:0px;
+      padding-right:0px;
+        > h2.block-title {
+          margin-bottom: 10px;
+          color:$white;
+          padding:8px 0 5px 10px;
+        }
+      }
+    }
+
+// Group Admin panels
+  section#block-groupadmin {
+    border:solid 1px $exec-greyborder;
+    padding: 5px;
+    display: inline-block;
+    width: 100%;
+    > h2 {
+      padding:0;
+      margin:0;
+      width:100%;
+      //background-color:$mtTeal;
+      border-bottom:solid 2px #999;
+      .btn-primary {
+        border-radius: 0px;
+        border-color: transparent;
+      }
+    }
+    .view-content {
+      a {
+        display: block;
+        border: solid 1px $exec-greyborder;
+        padding:5px;
+        margin-bottom:5px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .well {
+      //border-color:lightseagreen;
+      background-color:lightgray;
+      padding: 10px 10px 0;
+      margin-bottom: initial;
+    }
+    .draggable-dashboard .draggable-dashboard-column {
+      min-height:inherit;
+    }
+    .draggable-dashboard-block {
+      border-color:lighten($button-hover, 35%);
+      h2 {
+        padding:0;
+        margin:0;
+      }
+    }
+    .draggable-dashboard-block__content {
+      display:flex;
+    }
+  }
+
+// Group all posts page
+//.groups-landing,
+//.all-group-posts {
+//  @include blue-grid-box;
+//}
+
+// Group Theme Switch Colours
+
+.theme_default {
+  @include theme_default_set;
+}
+.theme_dark {
+  @include theme_deep_set;
+}
+.theme_bright {
+  @include theme_bright_set;
+}
+.theme_muted {
+  @include theme_muted_set;
+}
+
+// Group Admin Front panel theme info
+#theme_dark,
+#theme_muted,
+#theme_bright,
+#theme_default {
+  text-align: center;
+  #sw-main,
+  #sw-second,
+  #sw-link {
+    display: inline-block;
+    width: 30%;
+    height:20px;
+    border: solid 1px #999;
+  }
+}
+#theme_dark {
+  #sw-main {
+    background-color: $grp-deep-banner;
+  }
+  #sw-second {
+    background-color: $grp-deep-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_default {
+  #sw-main {
+    background-color: $grp-default-banner;
+  }
+  #sw-second {
+    background-color: $grp-default-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_bright {
+  #sw-main {
+    background-color: $grp-bright-banner;
+  }
+  #sw-second {
+    background-color: $grp-bright-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_muted {
+  #sw-main {
+    background-color: $grp-muted-banner;
+  }
+  #sw-second {
+    background-color: $grp-muted-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+// Group Calendar and Events
+
+.js-drupal-fullcalendar {
+  .fc-header-toolbar {
+    font-size: .85em;
+  }
+  .fc-content-skeleton {
+    table {
+      td.fc-event-container {
+        > a.fc-day-grid-event {
+          background-color: rgb(178, 213, 230)!important;
+        }
+        .fc-content {
+          padding: 3px 5px;
+          a {
+            color: $black;
+          }
+          .fc-time {
+            padding-right: 3px;
+            color: rgb(0, 0, 0);
+          }
+        }
+      }
+    }
+  }
+}
+.fc-unthemed td.fc-today {
+  background-color: $exec-greyborder;
+}
+article.group-event.full {
+  .author-byline {
+    padding: 3px 5px;
+  }
+  .node_content {
+    .field--type-text-with-summary {
+      margin:10px 45px;
+      padding: 10px;
+      background-color: #B2D5E6;
+      color: $black;
+    }
+    > p {
+      display: none;
+    }
+    .group_event_dates {
+      margin-top: 25px;
+    }
+  }
+}

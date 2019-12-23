@@ -1,6 +1,6 @@
 uuid: bcf02941-091a-4d6b-8b2e-f3a45394be53
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - draggable_dashboard

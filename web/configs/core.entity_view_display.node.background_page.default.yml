@@ -61,7 +61,7 @@ content:
   field_program_highlight:
     type: entity_reference_revisions_entity_view
     weight: 4
-    label: hidden
+    label: above
     settings:
       view_mode: default
       link: ''

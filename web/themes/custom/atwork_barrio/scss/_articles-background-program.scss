@@ -83,37 +83,44 @@ body.node--type-background-page {
         .field--name-field-program-topic-boxes {
           padding:10px;
           width:100%;
-          @extend .d-flex;
-          @extend .flex-row;
-          @extend .flex-wrap;
-          @extend .justify-content-between;
           background-color: $comment-blue;
-          .paragraph--type--program-topic-box {
-            width:540px;
-            min-height:210px;
-            padding:12px 12px 0;
-            background-color: $white;
+          @extend .d-flex;
+          @extend .flex-wrap;
+          @extend .justify-content-around;
+          > .field__item {
+            @extend .p-2;
+            @extend .flex-fill;
             border:solid 1px $exec-greyborder;
-            .field--name-field-title {
-              @include size1824;
-              font-weight:bold;
-              padding:5px 5px 0 5px;
-              margin:0 0 0 0;
+            background-color: $white;
+            min-width: 200px;
+            max-width: 500px;
+            text-align: center;
+            margin-bottom:10px;
+            padding:0!important;
+            .paragraph--type--program-topic-box {
+              .field--name-field-title {
+                @include size1824;
+                text-align: left;
+                font-weight:bold;
+                padding:5px 5px 0 5px;
+                margin:0 0 0 0;
+              }
             }
             p {
-              padding: 0 8px 10px 5px;
-              margin:0 0 10px;
+              text-align: left;
+              padding:5px;
             }
-            .btn {
-              border-radius: 0;
-              border:none;
-              background-color: $banner-blue;
-              color: $white;
-              padding:8px 30px 5px;
-            }
-            .dropup {
+            .btn-group {
+              .btn {
+                border-radius: 0;
+                border:none;
+                background-color: $banner-blue;
+                color: $white;
+                font-size: .875rem;
+              }
               .dropdown-menu {
                 width:100%;
+                left: -.75rem!important;
                 li {
                   border:solid 1px $exec-greyborder;
                   text-align: center;
@@ -132,7 +139,42 @@ body.node--type-background-page {
     }
   }
 }
-
+//Group Highlight Space on program and group landing pages
+body.node--type-background-page {
+  .field--name-field-program-highlight {
+    display:inline-block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: solid 1px $exec-greyborder;
+    > .field__label {
+      text-transform: uppercase;
+      font-size: 1.125rem;
+      font-weight: bold;
+      background-color: #e6f2f9;
+      padding: 8px;
+      margin: 0px;
+    }
+    .field--name-field-highlight-title {
+      font-weight: bold;
+      display: inline;
+      padding: 8px;
+    }
+    .text-formatted p {
+      padding:8px;
+      margin-bottom:0;
+    }
+    .field--name-field-highlight-image {
+      float:right;
+      padding:5px;
+      margin: 0 0 0 1em;
+      img {
+        margin:0;
+        padding:0;
+      }
+    }
+  }
+}
 // Grid landing pages - News
 
 body.layout-no-sidebars.path-news {

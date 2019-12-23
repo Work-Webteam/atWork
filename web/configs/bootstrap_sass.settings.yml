@@ -21,14 +21,14 @@ bootstrap_barrio_table_hover: 1
 _core:
   default_config_hash: n7BH2fFu6vYb38Lmo7wHlUvyFlaBOYn2h8Ba-4z_i-0
 features:
-  node_user_picture: true
-  comment_user_picture: true
-  comment_user_verification: true
-  favicon: true
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
 logo:
-  use_default: true
+  use_default: 1
 favicon:
-  use_default: true
+  use_default: 1
 bootstrap_barrio_region_clean_background_image: 0
 bootstrap_barrio_region_class_background_image: row
 bootstrap_barrio_region_clean_top_header: 0
@@ -89,6 +89,6 @@ bootstrap_barrio_sidebar_second_affix: 0
 bootstrap_barrio_scroll_spy: ''
 bootstrap_barrio_google_fonts: ''
 bootstrap_barrio_icons: material_design_icons
-bootstrap_barrio_system_messages: ''
+bootstrap_barrio_system_messages: messages_light
 bootstrap_barrio_table_style: ''
 bootstrap_barrio_table_head: ''
