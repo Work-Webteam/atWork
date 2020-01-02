@@ -10,7 +10,7 @@ dependencies:
 id: atwork_barrio_groupadmin
 theme: atwork_barrio
 region: sidebar_first
-weight: -9
+weight: -11
 provider: null
 plugin: 'draggable_dashboard_block:draggable_dashboard_1549921752'
 settings:

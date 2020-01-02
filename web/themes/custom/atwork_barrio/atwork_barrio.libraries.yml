@@ -8,13 +8,12 @@ global-styling:
       css/style.css: {}
       css/colors.css: {}
 bootstrap:
-bootstrap:
   js:
-    ../../../libraries/popper/popper.min.js: {}
-    ../../../libraries/bootstrap/js/bootstrap.bundle.min.js: {}
-  css:
-    component:
-      ../../../libraries/bootstrap/css/bootstrap.min.css: {}
+    /libraries/popper/popper.min.js: {}
+    /libraries/bootstrap/js/bootstrap.bundle.min.js: {}
+  #css:
+    #component:
+      #/libraries/bootstrap/css/bootstrap.min.css: {}
 bootstrap_cdn:
   js:
     //cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js: {}

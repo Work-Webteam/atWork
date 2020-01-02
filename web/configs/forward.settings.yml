@@ -3,12 +3,12 @@ forward_entity_node: true
 forward_view_full: true
 forward_view_teaser: false
 forward_interface_type: link
-forward_interface_title: 'Email this [forward:entity-type]'
+forward_interface_title: 'Email this'
 forward_interface_weight: 0
 forward_link_inline: 1
-forward_link_title: 'Forward this [forward:entity-type] to a friend'
+forward_link_title: 'Forward this to a friend'
 forward_link_icon: ''
-forward_link_style: 0
+forward_link_style: 2
 forward_link_noindex: true
 forward_link_nofollow: false
 forward_form_instructions: 'Thank you for your interest in spreading the word about <em>[forward:entity-title]</em> on [site:name].'
@@ -28,42 +28,16 @@ forward_flood_control_limit: 10
 forward_flood_control_error: 'You can''t send more than @number messages per hour. Please try again later.'
 _core:
   default_config_hash: LjNmrZEGeLdWqwJcnscz5MMdBFPuS_pFjmJx0AoTFAQ
-forward_email_from_address: thayne.werdal@gov.bc.ca
-forward_entity_block_content: false
-forward_block_content_basic: false
+forward_email_from_address: chris.deakin@gov.bc.ca
 forward_entity_comment: true
 forward_comment_comment: true
-forward_entity_contact_message: false
-forward_contact_message_feedback: false
-forward_contact_message_personal: false
-forward_entity_file: false
-forward_file_file: false
-forward_entity_flagging: false
-forward_flagging_inappropriate: false
-forward_node_article: true
-forward_node_page: false
-forward_entity_shortcut: false
-forward_shortcut_default: false
-forward_entity_taxonomy_term: false
-forward_taxonomy_term_tags: false
-forward_entity_user: false
-forward_user_user: false
-forward_entity_menu_link_content: false
 forward_menu_link_content_menu_link_content: false
-forward_entity_crop: false
-forward_crop_article_730_330: false
-forward_crop_article_hero: false
-forward_flagging_inappropriate_comment_flag: false
-forward_entity_h5p_content: false
-forward_h5p_content_h5p_content: false
-forward_entity_media: false
-forward_media_audio: false
-forward_media_file: false
-forward_media_image: false
-forward_media_video: false
 forward_entity_poll: true
 forward_poll_poll: true
 forward_entity_poll_choice: false
 forward_poll_choice_poll_choice: false
-forward_node_background_page: 0
-forward_node_program_area_content: 0
+forward_form_allow_plain_text: false
+forward_email_footer: ''
+forward_filter_format_html: ''
+forward_filter_format_plain_text: ''
+forward_max_recipients: null

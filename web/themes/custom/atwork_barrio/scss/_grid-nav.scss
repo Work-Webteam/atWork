@@ -201,8 +201,8 @@ nav#navbar-top {
         display: block;
         border: solid 1px #CCCCCC;
         margin-bottom: 3px;
-        padding-top: 8px;
-        padding-bottom: 4px;
+        padding-top: 4px;
+        padding-bottom: 6px;
         &:hover {
           color: $white;
           background-color: $banner-blue;
@@ -223,4 +223,3 @@ nav#navbar-top {
     vertical-align: text-top;
   }
   }
-

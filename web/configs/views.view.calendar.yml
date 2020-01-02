@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_end
     - field.storage.node.field_start
     - node.type.event
+    - node.type.page
   module:
     - datetime
     - fullcalendar_view
@@ -88,7 +89,9 @@ display:
           default_view: month
           firstDay: '0'
           nav_links: 1
+          timeFormat: 'H(:mm)'
           alloweventOverlap: 1
+          updateAllowed: 1
           updateConfirm: 1
           defaultLanguage: en
           languageSelector: 0
@@ -101,13 +104,15 @@ display:
             background_page: '#3a87ad'
             event: '#3a87ad'
             forum: '#3a87ad'
+            group_event: '#3a87ad'
             group_post: '#3a87ad'
             page: '#3a87ad'
             photos: '#3a87ad'
             program_area_content: '#3a87ad'
             simplenews_issue: '#3a87ad'
-          business_start: '2019-10-02T08:00:00'
-          business_end: '2019-10-02T18:00:00'
+          business_start: '2019-12-24T08:00:00'
+          business_end: '2019-12-24T18:00:00'
+          excluding_dates: title
           bundle_type: event
           classes: ''
       row:
@@ -306,14 +311,45 @@ display:
           id: type
           table: node_field_data
           field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
           value:
+            page: page
             event: event
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
           entity_type: node
           entity_field: type
           plugin_id: bundle
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
       sorts:
         created:
           id: created

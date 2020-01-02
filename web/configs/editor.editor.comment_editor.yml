@@ -1,4 +1,4 @@
-uuid: ce1be2cd-5ab4-4c52-be10-ddb754b2dac1
+uuid: 73a4004c-b83f-497f-9957-ff9cfbbdc452
 langcode: en
 status: true
 dependencies:
@@ -27,11 +27,24 @@ settings:
           items:
             - BulletedList
             - NumberedList
+        -
+          name: Media
+          items:
+            - Blockquote
+            - DrupalImage
+        -
+          name: Tools
+          items:
+            - Source
   plugins:
     language:
       language_list: un
     stylescombo:
       styles: ''
+    linkit:
+      linkit_profile: ''
+    tokenbrowser:
+      token_types: {  }
     video_embed:
       defaults:
         children:

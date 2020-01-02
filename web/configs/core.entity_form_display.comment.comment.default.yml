@@ -9,6 +9,7 @@ dependencies:
     - field.field.comment.comment.field_post_as_en_comment
     - field.field.comment.comment.field_remove_comment
   module:
+    - maxlength
     - text
 _core:
   default_config_hash: I0Pa0aQvT_jawlPo9oz4FE3h_ickc55dYKTPl6gILes
@@ -29,34 +30,15 @@ content:
     settings:
       rows: 5
       placeholder: ''
-    third_party_settings: {  }
-  field_edited_comment:
-    weight: 3
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_post_as_en_comment:
-    weight: 5
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_remove_comment:
-    weight: 4
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  langcode:
-    type: language_select
-    weight: 2
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
+    third_party_settings:
+      maxlength:
+        maxlength_js: null
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
+        maxlength_js_truncate_html: false
 hidden:
+  field_edited_comment: true
+  field_post_as_en_comment: true
+  field_remove_comment: true
+  langcode: true
   subject: true

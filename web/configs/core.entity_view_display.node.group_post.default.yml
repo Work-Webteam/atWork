@@ -19,6 +19,7 @@ dependencies:
     - image
     - panelizer
     - text
+    - title_field_for_manage_display
     - user
 third_party_settings:
   panelizer:
@@ -34,23 +35,33 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: content
   comment:
-    weight: 4
-    label: above
+    type: comment_default
+    weight: 5
+    region: content
+    label: hidden
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-    type: comment_default
-    region: content
   extra_field_author_publish_date:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_display_title:
+    type: title_value_field_formatter
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      tag: h1
+      classes: ''
+      linked: 0
     third_party_settings: {  }
   field_image:
     weight: 0
@@ -62,14 +73,14 @@ content:
     type: image
     region: content
   field_interactive_content:
-    weight: 3
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: h5p_default
     region: content
   field_send_notifications:
-    weight: 11
+    weight: 12
     label: above
     settings:
       format: default
@@ -79,7 +90,7 @@ content:
     type: boolean
     region: content
   field_tags:
-    weight: 9
+    weight: 10
     label: above
     settings:
       link: true
@@ -87,31 +98,30 @@ content:
     type: entity_reference_label
     region: content
   flag_email_node:
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_inappropriate:
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
     weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
+  flag_inappropriate:
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   likeit:
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_display_title: true
   langcode: true
   search_api_excerpt: true

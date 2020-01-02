@@ -1,6 +1,6 @@
 uuid: 1b6b946d-fc04-4f53-a2df-a49bae20a46a
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - ctools_block
@@ -10,16 +10,16 @@ dependencies:
 id: atwork_barrio_grouphighlight
 theme: atwork_barrio
 region: content
-weight: -1
+weight: -2
 provider: null
 plugin: 'entity_field:group:field_group_highlight'
 settings:
   id: 'entity_field:group:field_group_highlight'
   label: 'Group Highlight'
   provider: ctools_block
-  label_display: visible
+  label_display: '0'
   formatter:
-    label: hidden
+    label: above
     type: entity_reference_revisions_entity_view
     settings:
       view_mode: default

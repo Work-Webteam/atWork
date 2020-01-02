@@ -1,4 +1,4 @@
-applies_admin_routes: true
+applies_admin_routes: false
 include_invalid_paths: false
 excluded_paths: ''
 replaced_titles: ''
@@ -12,7 +12,7 @@ title_segment_as_link: false
 title_from_page_when_available: true
 language_path_prefix_as_segment: false
 use_menu_title_as_fallback: false
-use_page_title_as_menu_title_fallback: false
+use_page_title_as_menu_title_fallback: true
 remove_repeated_segments: true
 absolute_paths: false
 hide_single_home_item: false

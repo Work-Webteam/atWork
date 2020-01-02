@@ -1,0 +1,125 @@
+// Styling for comments on all node types that show comments
+//section[rel~="schema:comment"] {
+body.node--type-group-post {
+  .group-related-content {
+    background-color: $comment-blue;
+    padding:12px;
+    #edit-comment-body-wrapper, .form-type-textarea {
+      padding-right:0;
+      padding-left:0;
+    }
+    #edit-comment-body-0-format {
+      display: block;
+      width:100%;
+      height:50px;
+      position: relative;
+      background-color: $white;
+      #edit-comment-body-0-format-help {
+        position: absolute;
+        right:0;
+        margin: 10px 0 0;
+      }
+      .js-form-item {
+        position: absolute;
+        margin-top: 5px;
+        left:0;
+        label {
+          display: none;
+        }
+      }
+    }
+  }
+  .new-comments {
+    .view-content {
+      border-top: solid 5px $banner-blue;
+      padding-top:10px;
+    }
+    .view-header {
+      h4 { // Comment title along with count bubble
+        @include comment-h6;
+        display: inline;
+      }
+      > #comment-count { // Comment count SVG graphic bubble
+        display: inline-block;
+        width:auto;
+        padding:15px 15px 19px;
+        margin-left: 15px;
+        color:$white;
+        background-image:url("../images/text-bubble.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        text-align: center;
+      }
+    }
+    .view-filters { // Sorting filters for Comments
+      float:right;
+      margin-top:-50px;
+      fieldset {
+        margin-bottom:0;
+        > label {
+          display: none;
+        }
+      }
+      .form-control {
+        @include size1216;
+        text-transform: uppercase;
+        height:inherit;
+      }
+    }
+    .view-content.row {
+      .views-infinite-scroll-content-wrapper {
+        width:100%;
+        .views-row {
+          width:100%;
+          .indented > article.comment {
+            background-color: lighten($exec-greyborder,5%)
+          }
+          article.comment {
+            border:solid 1px $exec-greyborder;
+            padding:12px;
+            margin-bottom:10px;
+            @extend .d-flex;
+            width:100%;
+            .comment__meta {
+              max-width: 120px;
+              text-align: center;
+              padding:0;
+              .profile {
+                display:block;
+                border: solid 3px $link-blue;
+                border-radius: 50%;
+                background-image:url("../images/blue-avatar.jpg");
+                background-repeat: no-repeat;
+                background-position: bottom;
+                background-size: contain;
+                width:90px;
+                height:90px;
+                overflow: hidden;
+                margin: 0 auto;
+              }
+              .comment__author {
+                display: block;
+                width:100%;
+                text-align: center;;
+              }
+            }
+            .comment__content.col-sm-9 {
+              max-width: none;
+              flex:auto;
+              margin-left:10px;
+              h3.card-title {
+                background-color: lighten($exec-greyborder,5%);
+                padding: 6px 8px;
+              }
+              .inline__links, .likeit, .flag {
+                float:left;
+                @extend .btn-sm;
+              }
+            }
+          }
+        }
+      }
+    }
+    @include load-more;
+  }
+}

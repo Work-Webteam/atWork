@@ -1,3 +1,10 @@
+.author-byline { // Author and date shown for article creation
+  @include size1424;
+  padding: 6px 0 18px;
+  a[property~="schema:name"] {
+    @include author-post;
+  }
+}
 body.node--type-article {
   main#content {
     ul, ol {
@@ -86,7 +93,7 @@ body.node--type-background-page {
           background-color: $comment-blue;
           @extend .d-flex;
           @extend .flex-wrap;
-          @extend .justify-content-around;
+          @extend .justify-content-center;
           > .field__item {
             @extend .p-2;
             @extend .flex-fill;
@@ -95,7 +102,7 @@ body.node--type-background-page {
             min-width: 200px;
             max-width: 500px;
             text-align: center;
-            margin-bottom:10px;
+            margin:10px;
             padding:0!important;
             .paragraph--type--program-topic-box {
               .field--name-field-title {
@@ -140,8 +147,9 @@ body.node--type-background-page {
   }
 }
 //Group Highlight Space on program and group landing pages
-body.node--type-background-page {
-  .field--name-field-program-highlight {
+body.path-group, body.node--type-background-page {
+  .field--name-field-program-highlight,
+  .field--name-field-group-highlight {
     display:inline-block;
     width: 100%;
     margin-top: 10px;

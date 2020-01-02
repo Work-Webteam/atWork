@@ -2,6 +2,8 @@ uuid: eb974b64-003f-4193-a4e5-5262a27a3e6d
 langcode: en
 status: true
 dependencies:
+  module:
+    - node
   theme:
     - atwork_barrio
 _core:
@@ -9,7 +11,7 @@ _core:
 id: atwork_barrio_local_tasks
 theme: atwork_barrio
 region: content
-weight: -12
+weight: -11
 provider: null
 plugin: local_tasks_block
 settings:
@@ -19,4 +21,19 @@ settings:
   label_display: '0'
   primary: true
   secondary: true
-visibility: {  }
+visibility:
+  node_type:
+    id: node_type
+    bundles:
+      article: article
+      background_page: background_page
+      event: event
+      forum: forum
+      group_post: group_post
+      page: page
+      photos: photos
+      program_area_content: program_area_content
+      simplenews_issue: simplenews_issue
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

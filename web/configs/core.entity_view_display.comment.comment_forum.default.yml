@@ -22,13 +22,15 @@ content:
     settings: {  }
     third_party_settings: {  }
   flag_inappropriate_comment_flag:
-    weight: 10
+    weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
-    weight: 100
+    weight: 1
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
   search_api_excerpt: true

@@ -59,7 +59,7 @@ content:
     type: h5p_editor
     region: content
   field_send_notifications:
-    weight: 26
+    weight: 10
     settings:
       display_label: true
     third_party_settings: {  }

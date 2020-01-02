@@ -206,7 +206,7 @@ display:
             offset: false
             offset_label: Offset
           views_infinite_scroll:
-            button_text: 'Show More'
+            button_text: 'Show @next_page_count More'
             automatically_load_content: false
       defaults:
         pager: false
@@ -221,6 +221,7 @@ display:
         header: false
         exposed_form: false
         title: false
+        css_class: false
       block_description: 'comments new'
       arguments:
         nid:
@@ -351,6 +352,7 @@ display:
           sort_asc_label: Oldest
           sort_desc_label: Newest
       title: ''
+      css_class: new-comments
     cache_metadata:
       max-age: -1
       contexts:

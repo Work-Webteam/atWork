@@ -713,7 +713,7 @@
   revision_user: false
   revision_log_message: false
   enabled:
-    value: '1'
+    value: '0'
   title:
     value: eCards
   description: false
@@ -734,7 +734,7 @@
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-    value: '1566512795'
+    value: '1577205688'
   default_langcode:
     value: '1'
   revision_default:
@@ -978,7 +978,7 @@
   revision_user: false
   revision_log_message: false
   enabled:
-    value: '1'
+    value: '0'
   title:
     value: Polls
   description: false
@@ -999,7 +999,7 @@
   parent:
     value: 'menu_link_content:d97f0c6b-1245-4eef-9f95-99b58ea7d6e3'
   changed:
-    value: '1566497787'
+    value: '1577205900'
   default_langcode:
     value: '1'
   revision_default:
@@ -1066,7 +1066,7 @@
   revision_user: false
   revision_log_message: false
   enabled:
-    value: '1'
+    value: '0'
   title:
     value: Classifieds
   description: false
@@ -1087,7 +1087,7 @@
   parent:
     value: 'menu_link_content:d97f0c6b-1245-4eef-9f95-99b58ea7d6e3'
   changed:
-    value: '1566497787'
+    value: '1577205900'
   default_langcode:
     value: '1'
   revision_default:
@@ -2445,13 +2445,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-71'
+    value: '-72'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566512795'
+    value: '1576108873'
   default_langcode:
     value: '1'
   revision_default:
@@ -2489,13 +2489,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-70'
+    value: '-71'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566512795'
+    value: '1576108873'
   default_langcode:
     value: '1'
   revision_default:
@@ -2533,13 +2533,13 @@
   rediscover:
     value: '1'
   weight:
-    value: '-69'
+    value: '-70'
   expanded:
     value: '1'
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-    value: '1566512795'
+    value: '1576108873'
   default_langcode:
     value: '1'
   revision_default:
@@ -3069,6 +3069,52 @@
     value: 'menu_link_content:29520161-cd5e-44d4-a273-b7a70b500bc6'
   changed:
     value: '1566497994'
+  default_langcode:
+    value: '1'
+  revision_default:
+    value: '1'
+  revision_translation_affected:
+    value: '1'
+  view_mode:
+    value: default
+101:
+  id:
+    value: '101'
+  uuid:
+    value: 1672d8c7-3b63-4f4d-bce2-0d8f897e3364
+  revision_id:
+    value: '101'
+  langcode:
+    value: en
+  bundle:
+    target_id: main
+  revision_created:
+    value: '1576108860'
+  revision_user: false
+  revision_log_message: false
+  enabled:
+    value: '1'
+  title:
+    value: 'Log In'
+  description: false
+  menu_name:
+    value: main
+  link:
+    uri: 'internal:/user/login'
+    title: ''
+    options: {  }
+  external:
+    value: '0'
+  rediscover:
+    value: '1'
+  weight:
+    value: '-69'
+  expanded:
+    value: '0'
+  parent:
+    value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
+  changed:
+    value: '1576279407'
   default_langcode:
     value: '1'
   revision_default:
