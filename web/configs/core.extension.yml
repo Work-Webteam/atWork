@@ -1,9 +1,7 @@
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  animated_scroll_to_top: 0
   atwork_article: 0
-  atwork_calendar: 0
   atwork_comments: 0
   atwork_group: 0
   atwork_h5p: 0
@@ -81,6 +79,7 @@ module:
   linkit: 0
   maillog: 0
   mailsystem: 0
+  matomo: 0
   maxlength: 0
   media: 0
   media_library: 0
@@ -109,6 +108,7 @@ module:
   panels_ipe: 0
   paragraphs_type_permissions: 0
   path: 0
+  path_alias: 0
   photos: 0
   photos_access: 0
   poll: 0
@@ -121,11 +121,16 @@ module:
   rest: 0
   rules: 0
   scheduler: 0
+  search_api: 0
+  search_api_sorts: 0
+  search_api_stats: 0
+  search_api_stats_block: 0
   serialization: 0
   settings_tray: 0
   shortcut: 0
   simplenews: 0
   simplify_menu: 0
+  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -153,6 +158,7 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
+  webprofiler: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1
@@ -167,6 +173,7 @@ theme:
   seven: 0
   bootstrap: 0
   atworknext: 0
+  claro: 0
 profile: standard
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

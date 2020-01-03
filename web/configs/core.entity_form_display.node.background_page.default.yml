@@ -30,6 +30,7 @@ content:
       rows: 3
       placeholder: ''
       summary_rows: 3
+      show_summary: false
     third_party_settings:
       maxlength:
         maxlength_js: 300
@@ -167,6 +168,7 @@ content:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
     region: content
     third_party_settings: {  }
   unpublish_on:
