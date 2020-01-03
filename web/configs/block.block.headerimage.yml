@@ -1,16 +1,16 @@
-uuid: cb83710b-2f82-413b-ad60-7e4048380861
+uuid: ee1f4f89-0746-4192-887b-33ec41c328b4
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - ctools
     - ctools_block
   theme:
     - atwork_barrio
-id: atwork_barrio_headerimage
+id: headerimage
 theme: atwork_barrio
 region: content
-weight: -5
+weight: -9
 provider: null
 plugin: 'entity_field:node:field_header_image'
 settings:

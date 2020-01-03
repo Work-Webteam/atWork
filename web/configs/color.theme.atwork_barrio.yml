@@ -10,9 +10,9 @@ palette:
   titleslogan: '#FFFFFF'
   text: '#333333'
   link: '#406b93'
-logo: 'public://color/atwork_barrio-db34826f/logo.svg'
+logo: 'public://color/atwork_barrio-6ca2e4db/logo.svg'
 stylesheets:
-  - 'public://color/atwork_barrio-db34826f/colors.css'
+  - 'public://color/atwork_barrio-6ca2e4db/colors.css'
 files:
-  - 'public://color/atwork_barrio-db34826f/logo.svg'
-  - 'public://color/atwork_barrio-db34826f/colors.css'
+  - 'public://color/atwork_barrio-6ca2e4db/logo.svg'
+  - 'public://color/atwork_barrio-6ca2e4db/colors.css'

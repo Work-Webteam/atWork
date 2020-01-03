@@ -29,7 +29,7 @@
 }
 
 
-html, body, .node__content  {
+html, body  {
     font-family: 'BCSans';
     font-size: 1rem;
     line-height: 1.6;
@@ -37,6 +37,17 @@ html, body, .node__content  {
         color: $text;
         padding:0;
     }
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  margin: 0;
+  font-family: 'BCSans'!important;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 // Heading Tags / Sizes

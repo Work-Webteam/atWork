@@ -33,3 +33,13 @@ regions:
   footer_third: 'Footer third'
  # footer_fourth: 'Footer fourth'
  # footer_fifth: 'Footer fifth'
+
+ # we need to override the js from fullcalendar_view to make it work with groups.
+libraries-override:
+  fullcalendar_view/fullcalendar:
+    js:
+      js/fullcalendar_view.js: js/atwork_group_fullcalendar_view.js
+
+#Custom styling for ckeditor.
+ckeditor_stylesheets:
+ - css/style.css

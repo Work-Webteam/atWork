@@ -7,12 +7,15 @@
 }
 body.node--type-article {
   main#content {
-    ul, ol {
+    /*ul, ol {
       li {
         padding-left:10px;
       }
+    }*/
+    .field--type-entity-reference {
+      margin-bottom: 0;
     }
-    .field--name-field-header-image > img {
+    img.image-style-article-hero-image {
       max-width: 100%;
       height: auto;
     }
@@ -25,20 +28,17 @@ body.node--type-article {
         text-transform: uppercase;
       }
     }
+    .field .field--name-field-header-image .field--type-entity-reference {
+      margin-bottom:0;
+    }
     article.node--article-type--executive_message {
-      .field--type-entity-reference {
-        margin-bottom: 0;
-      }
-      .field--name-field-display-title {
-        border-top: solid 20px darken($exec-greyborder, 20);
-        h1 {
+      h1.page-title {
           background-color: $exec-greyborder;
           padding: 10px 0 0 10px;
           margin: 0;
           color: $black;
-        }
       }
-      .field--name-extra-field-author-publish-date {
+      .author-byline {
         @include size1424;
         padding: 6px 0 18px;
         background-color: $exec-greyborder;
@@ -160,7 +160,7 @@ body.path-group, body.node--type-background-page {
       font-size: 1.125rem;
       font-weight: bold;
       background-color: #e6f2f9;
-      padding: 8px;
+      padding: 3px 10px;
       margin: 0px;
     }
     .field--name-field-highlight-title {
@@ -332,9 +332,10 @@ button#group-add {
       border:solid 1px lighten($button-hover, 35%);
       .all-post-image {
         width:214px;
+        height:120px;
         img {
           width:100%;
-          height:auto;
+          height:100%;
         }
       }
       .all-post-info {

@@ -223,13 +223,13 @@
 
 // Related content boxes on Article / Program / Group pages
 @mixin related-content {
-#block-atwork-barrio-views-block-related-content-block-1 {
+#block-views-block-related-content-block-1 {
   h2 {
     @include size2160;
     text-transform: uppercase;
     background-color:$banner-blue;
     color:$white;
-    padding:8px 10px 5px;
+    padding:3px 10px 5px;
     margin:10px 0 0;
   }
    .related-wrapper {

@@ -1,6 +1,7 @@
 token_seed: A4PprbIegWJvj268Q6BXr6ld2h2FHFlFnaJrrcH3o7A
 target_entities:
   'node:article': 'node:article'
+  'node:forum': 'node:forum'
   'node:group_post': 'node:group_post'
-  'comment:comment': 'comment:comment'
+  'node:photos': 'node:photos'
 after_owner_deletion: set_to_anonymous

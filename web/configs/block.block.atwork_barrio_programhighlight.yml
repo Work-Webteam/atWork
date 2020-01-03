@@ -10,7 +10,7 @@ dependencies:
 id: atwork_barrio_programhighlight
 theme: atwork_barrio
 region: content
-weight: -3
+weight: -2
 provider: null
 plugin: 'entity_field:node:field_program_highlight'
 settings:

@@ -12,7 +12,7 @@ dependencies:
 id: atwork_barrio_views_block__related_content_block_4
 theme: atwork_barrio
 region: content
-weight: -1
+weight: 0
 provider: null
 plugin: 'views_block:related_content-block_4'
 settings:

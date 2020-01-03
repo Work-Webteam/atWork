@@ -6558,24 +6558,24 @@
         },
         {
             "name": "drupal/panelizer",
-            "version": "4.1.0",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/panelizer.git",
-                "reference": "8.x-4.1"
+                "reference": "8.x-4.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/panelizer-8.x-4.1.zip",
-                "reference": "8.x-4.1",
-                "shasum": "056f236f171305c32d5cfecbfb77a5c7398749d8"
+                "url": "https://ftp.drupal.org/files/projects/panelizer-8.x-4.2.zip",
+                "reference": "8.x-4.2",
+                "shasum": "c8e2993111ab54464de714c30a54896d27e8150b"
             },
             "require": {
                 "drupal/core": "*",
-                "drupal/ctools": ">=3.0.0-beta1",
+                "drupal/ctools": ">=3.1.0",
                 "drupal/ctools_block": "*",
-                "drupal/panels": ">=4.0.0-alpha1",
-                "drupal/panels_ipe": ">=4.0.0-alpha1"
+                "drupal/panels": ">=4.4.0",
+                "drupal/panels_ipe": ">=4.4.0"
             },
             "type": "drupal-module",
             "extra": {
@@ -6583,8 +6583,8 @@
                     "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-4.1",
-                    "datestamp": "1525714313",
+                    "version": "8.x-4.2",
+                    "datestamp": "1578071889",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6619,6 +6619,10 @@
                 {
                     "name": "See other contributors",
                     "homepage": "https://www.drupal.org/node/1072922/committers"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "tim.plunkett",
