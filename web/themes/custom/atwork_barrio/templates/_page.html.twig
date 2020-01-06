@@ -75,8 +75,8 @@
           {% if container_navbar %}
           <div class="container">
           {% endif %}
-              {{ page.top_header }}
               {{ page.secondary_menu }}
+              {{ page.top_header }}
               {% if page.top_header_form %}
                 <div class="form-inline navbar-form float-right">
                   {{ page.top_header_form }}
@@ -129,17 +129,30 @@
                 </aside>
               </div>
             {% endif %}
+            {% if page.sidebar_second %}
+              <div{{ sidebar_second_attributes }}>
+                <aside class="section" role="complementary">
+                  {{ page.sidebar_second }}
+                </aside>
+              </div>
+            {% endif %}
           </div>
         </div>
 {% endblock %}
 
 {% block footer %}
         <div class="{{ container }}">
-          {% if page.footer_first or page.footer_second or page.footer_third %}
+          {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
             <div class="site-footer__top clearfix">
               {{ page.footer_first }}
               {{ page.footer_second }}
               {{ page.footer_third }}
+              {{ page.footer_fourth }}
+            </div>
+          {% endif %}
+          {% if page.footer_fifth %}
+            <div class="site-footer__bottom">
+              {{ page.footer_fifth }}
             </div>
           {% endif %}
         </div>

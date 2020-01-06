@@ -1,6 +1,6 @@
 uuid: 1b6b946d-fc04-4f53-a2df-a49bae20a46a
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - ctools_block
@@ -9,8 +9,8 @@ dependencies:
     - atwork_barrio
 id: atwork_barrio_grouphighlight
 theme: atwork_barrio
-region: content
-weight: -1
+region: featured_bottom_first
+weight: -11
 provider: null
 plugin: 'entity_field:group:field_group_highlight'
 settings:
