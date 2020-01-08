@@ -13,7 +13,7 @@ use Drupal\comment\CommentInterface;
  *
  * @inheritDoc
  */
-function atworknext_preprocess_node__group_post(&$variables) {
+function atwork_barrio_preprocess_node__group_post(&$variables) {
 	// Get the group info for the group content (post)
 	// NOTE: This will only work if the cardinality in the Group node (Group Post) plugin is set to 1.
 	if ($variables['node']->getType() == 'group_post' && $variables['view_mode'] == 'full') {
@@ -36,56 +36,70 @@ function atworknext_preprocess_node__group_post(&$variables) {
  *
  * @inheritDoc
  */
-function atworknext_preprocess_group(&$variables) {
-	// Is the user a member of this group? Admin?
-	if($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
-		$variables['member'] = TRUE;
-		// Check for group admin role
-		if(array_key_exists('atwork_groups-admin', $variables['group']->getMember(\Drupal::currentUser()->getAccount())->getRoles())) {
-		  $variables['admin'] = TRUE;
-		}
-	} else {
-		$variables['member'] = FALSE;
-		$variables['admin'] = FALSE;
-	}
+function atwork_barrio_preprocess_group(&$variables) {
+  // Is the user a member of this group? Admin?
+  if ($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
+    $variables['member'] = TRUE;
+    // Check for group admin role
+    if (array_key_exists('atwork_groups-admin', $variables['group']->getMember(\Drupal::currentUser()
+      ->getAccount())->getRoles())) {
+      $variables['admin'] = TRUE;
+    }
+  }
+  else {
+    $variables['member'] = FALSE;
+    $variables['admin'] = FALSE;
+  }
 
-	// Get group info
-	$group = Group::load($variables['group']->id());
-	$group_id = $group->id();
-	$group_label = $group->get('label')->getValue()[0]['value'];
+  // Get group info
+  $group = Group::load($variables['group']->id());
+  $group_id = $group->id();
+  $group_label = $group->get('label')->getValue()[0]['value'];
 
-	// Add links to group content forms and view pages
-	$linkObject = Link ::createFromRoute(t('Create Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
-	$variables['post_link'] = $linkObject->toRenderable();
+  // Add links to group content forms and view pages
+  $linkObject = Link::createFromRoute(t('Create Post'), 'entity.group_content.create_form', [
+    "group" => $group_id,
+    'plugin_id' => 'group_node:group_post'
+  ]);
+  $variables['post_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
-	$variables['photos_link'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', [
+    "group" => $group_id,
+    'plugin_id' => 'group_node:photos'
+  ]);
+  $variables['photos_link'] = $linkObject->toRenderable();
 
-  $linkObject = Link ::createFromRoute(t('Create Event'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_event']);
+  $linkObject = Link::createFromRoute(t('Create Event'), 'entity.group_content.create_form', [
+    "group" => $group_id,
+    'plugin_id' => 'group_node:group_event'
+  ]);
   $variables['event_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
-	$variables['join_link'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
+  $variables['join_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
-	$variables['leave_link'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
+  $variables['leave_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('View Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
-	$variables['photo_galleries'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('View Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
+  $variables['photo_galleries'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('View Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
-	$variables['group_posts'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('View Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
+  $variables['group_posts'] = $linkObject->toRenderable();
 
-	// Note: Group label has been used as menu id
-	$linkObject = Link ::createFromRoute(t('Administer Group Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
-	$variables['administer_sidebar'] = $linkObject->toRenderable();
-
-	// Load Related Content Block
-	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
-	$block_content = \Drupal::entityTypeManager()
-	->getViewBuilder('block')
-	->view($block);
+  // Note: Group label has been used as menu id
+  $linkObject = Link::createFromRoute(t('Administer Group Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
+  $variables['administer_sidebar'] = $linkObject->toRenderable();
+  // Load Related Content Block
+  // This is causing problems and I feel like we are not using it, so commenting out for now.
+  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
+  if ($block->value !== NULL) {
+    $block_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
  	$variables['related_content'] = $block_content;
+
 
 	// Load Group Spotlight
 	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_4');
@@ -93,6 +107,7 @@ function atworknext_preprocess_group(&$variables) {
 	->getViewBuilder('block')
 	->view($block);
 	$variables['group_spotlight'] = $block_content;
+
 }
 
 /**
@@ -100,7 +115,7 @@ function atworknext_preprocess_group(&$variables) {
  *
  * @inheritDoc
  */
-function atworknext_preprocess_container__atwork(&$variables) {
+function atwork_barrio_preprocess_container__atwork(&$variables) {
 	global $base_url;
 	$current_path = \Drupal::service('path.current')->getPath();
 	// Check if this is a group join page
@@ -231,7 +246,7 @@ function atwork_group_group_presave(Drupal\Core\Entity\EntityInterface $entity) 
  *
  * @inheritDoc
  */
-function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, array $variables) {
+function atwork_barrio_theme_suggestions_breadcrumb_alter(array &$suggestions, array $variables) {
 	if ($node = \Drupal::routeMatch()->getParameter('node')) {
 		$content_type = $node->bundle();
 		$suggestions[] = 'breadcrumb__'.$content_type;
@@ -243,7 +258,7 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
  *
  * @inheritDoc
  */
-function atworknext_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+function atwork_barrio_theme_suggestions_container_alter(array &$suggestions, array $variables) {
 	$suggestions[] = 'container__' . 'atwork';
 }
 
@@ -363,9 +378,9 @@ function atwork_group_module_implements_alter(&$implementations, $hook) {
  * @param array $variables
  * @param $hook
  */
-function atworknext_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
+function atwork_barrio_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
   // Check that we are in the right region.
-  if($hook == 'region' && in_array('region__sidebar_nav', $suggestions)) {
+  if($hook == 'region' && in_array('region__sidebar_first', $suggestions)) {
     // If there is a groupadmin variable, we know we are in a group.
     if(in_array('groupadmin', $variables['elements'])) {
       // grab parameters from the URI.
