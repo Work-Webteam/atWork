@@ -41,8 +41,8 @@
 #}
 {# We need to set which theme the user has chose for their group here #}
 {% set group_theme = content.field_themes.0["#markup"] | raw %}
-<div>
 
+<div>
   <div class="group-page-content {{ group_theme }}">
     {{ title_prefix }}
     {% if page %}

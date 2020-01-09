@@ -34,11 +34,6 @@ class GroupForumConverter extends EntityConverter  implements ParamConverterInte
    * {@inheritdoc}
    */
   public function convert($value, $definition, $name, array $defaults) {
-    // drupal_set_message("convert");
-    // ksm($value);
-    // ksm($definition);
-
-
     $group = \Drupal::service('paramconverter.group.forum');
     if (NULL === $group) {
       return NULL;
@@ -53,9 +48,9 @@ class GroupForumConverter extends EntityConverter  implements ParamConverterInte
       $dst = "/groups/".$value;
 
       $database = \Drupal::database();
-      $query = $database->select('url_alias', 'u');
+      $query = $database->select('path_alias', 'u');
       $query->condition('u.alias', $dst, '=');
-      $query->fields('u', ['source']);
+      $query->fields('u', ['path']);
       $result = $query->execute()->fetchField();
 
       $group_id = str_replace('/group/', '', $result);

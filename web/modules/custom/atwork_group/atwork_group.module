@@ -13,21 +13,21 @@ use Drupal\comment\CommentInterface;
  *
  * @inheritDoc
  */
-function atworknext_preprocess_node__group_post(&$variables) {
-	// Get the group info for the group content (post)
-	// NOTE: This will only work if the cardinality in the Group node (Group Post) plugin is set to 1.
-	if ($variables['node']->getType() == 'group_post' && $variables['view_mode'] == 'full') {
-		foreach (GroupContent::loadByEntity($variables['node']) as $group_content) {
-			if($variables['node']->id() == $group_content->getEntity()->id()) $variables['group_label'] = $group_content->getGroup()->label();
-		}
-	}
+function atwork_barrio_preprocess_node__group_post(&$variables) {
+  // Get the group info for the group content (post)
+  // NOTE: This will only work if the cardinality in the Group node (Group Post) plugin is set to 1.
+  if ($variables['node']->getType() == 'group_post' && $variables['view_mode'] == 'full') {
+    foreach (GroupContent::loadByEntity($variables['node']) as $group_content) {
+      if($variables['node']->id() == $group_content->getEntity()->id()) $variables['group_label'] = $group_content->getGroup()->label();
+    }
+  }
 
-	// Load Related Content Block
-	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
-	$block_content = \Drupal::entityTypeManager()
-	->getViewBuilder('block')
-	->view($block);
-	$variables['related_content'] = $block_content;
+  // Load Related Content Block
+  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
+  $block_content = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+  $variables['related_content'] = $block_content;
   $variables['node_title'] = $variables['elements']['#node']->getTitle();
 }
 
@@ -36,63 +36,78 @@ function atworknext_preprocess_node__group_post(&$variables) {
  *
  * @inheritDoc
  */
-function atworknext_preprocess_group(&$variables) {
-	// Is the user a member of this group? Admin?
-	if($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
-		$variables['member'] = TRUE;
-		// Check for group admin role
-		if(array_key_exists('atwork_groups-admin', $variables['group']->getMember(\Drupal::currentUser()->getAccount())->getRoles())) {
-		  $variables['admin'] = TRUE;
-		}
-	} else {
-		$variables['member'] = FALSE;
-		$variables['admin'] = FALSE;
-	}
+function atwork_barrio_preprocess_group(&$variables) {
+  // Is the user a member of this group? Admin?
+  if ($variables['group']->getMember(\Drupal::currentUser()->getAccount())) {
+    $variables['member'] = TRUE;
+    // Check for group admin role
+    if (array_key_exists('atwork_groups-admin', $variables['group']->getMember(\Drupal::currentUser()
+      ->getAccount())->getRoles())) {
+      $variables['admin'] = TRUE;
+    }
+  }
+  else {
+    $variables['member'] = FALSE;
+    $variables['admin'] = FALSE;
+  }
 
-	// Get group info
-	$group = Group::load($variables['group']->id());
-	$group_id = $group->id();
-	$group_label = $group->get('label')->getValue()[0]['value'];
+  // Get group info
+  $group = Group::load($variables['group']->id());
+  $group_id = $group->id();
+  $group_label = $group->get('label')->getValue()[0]['value'];
 
-	// Add links to group content forms and view pages
-	$linkObject = Link ::createFromRoute(t('Create Post'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_post']);
-	$variables['post_link'] = $linkObject->toRenderable();
+  // Add links to group content forms and view pages
+  $linkObject = Link::createFromRoute(t('Create Post'), 'entity.group_content.create_form', [
+    "group" => $group_id,
+    'plugin_id' => 'group_node:group_post'
+  ]);
+  $variables['post_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:photos']);
-	$variables['photos_link'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('Create Photo Gallery'), 'entity.group_content.create_form', [
+    "group" => $group_id,
+    'plugin_id' => 'group_node:photos'
+  ]);
+  $variables['photos_link'] = $linkObject->toRenderable();
 
-  $linkObject = Link ::createFromRoute(t('Create Event'), 'entity.group_content.create_form', ["group" => $group_id,'plugin_id' => 'group_node:group_event']);
+  $linkObject = Link::createFromRoute(t('Create Event'), 'entity.group_content.create_form', [
+    "group" => $group_id,
+    'plugin_id' => 'group_node:group_event'
+  ]);
   $variables['event_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
-	$variables['join_link'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('Join Group'), 'entity.group.join', ["group" => $group_id]);
+  $variables['join_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
-	$variables['leave_link'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('Leave Group'), 'entity.group.leave', ["group" => $group_id]);
+  $variables['leave_link'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('View Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
-	$variables['photo_galleries'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('View Photo Galleries'), 'view.related_content.page_2', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
+  $variables['photo_galleries'] = $linkObject->toRenderable();
 
-	$linkObject = Link ::createFromRoute(t('View Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
-	$variables['group_posts'] = $linkObject->toRenderable();
+  $linkObject = Link::createFromRoute(t('View Posts'), 'view.related_content.page_1', ["arg_0" => strtolower(str_replace(' ', '-', $group_label))]);
+  $variables['group_posts'] = $linkObject->toRenderable();
 
-	// Note: Group label has been used as menu id
-	$linkObject = Link ::createFromRoute(t('Administer Group Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
-	$variables['administer_sidebar'] = $linkObject->toRenderable();
+  // Note: Group label has been used as menu id
+  $linkObject = Link::createFromRoute(t('Administer Group Menu'), 'entity.menu.edit_form', ["menu" => strtolower(str_replace(' ', '-', $group_label))]);
+  $variables['administer_sidebar'] = $linkObject->toRenderable();
+  // Load Related Content Block
+  // This is causing problems and I feel like we are not using it, so commenting out for now.
+  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
+  if ($block->value !== NULL) {
+    $block_content = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+  $variables['related_content'] = $block_content;
 
-	// Load Related Content Block
-	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
-	$block_content = \Drupal::entityTypeManager()
-	->getViewBuilder('block')
-	->view($block);
- 	$variables['related_content'] = $block_content;
 
-	// Load Group Spotlight
-	$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_4');
-	$block_content = \Drupal::entityTypeManager()
-	->getViewBuilder('block')
-	->view($block);
-	$variables['group_spotlight'] = $block_content;
+  // Load Group Spotlight
+  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_4');
+  $block_content = \Drupal::entityTypeManager()
+    ->getViewBuilder('block')
+    ->view($block);
+  $variables['group_spotlight'] = $block_content;
+
 }
 
 /**
@@ -100,22 +115,22 @@ function atworknext_preprocess_group(&$variables) {
  *
  * @inheritDoc
  */
-function atworknext_preprocess_container__atwork(&$variables) {
-	global $base_url;
-	$current_path = \Drupal::service('path.current')->getPath();
-	// Check if this is a group join page
-	if(preg_match("$\/(group)\/[0-9]+\/(join)$", $current_path, $test)){
-		if(isset($variables['element']) && $variables['element']['#id'] = "edit-path-wrapper" && $variables['element']['#type'] != 'actions') {
-			// This is a input field that the group module is adding. This was the only way i could figure out to get rid of it.
-			$variables['children'] = NULL;
-			$variables['join_group'] = TRUE;
-			$variables['group_link'] = $base_url . substr($current_path , 0,-5);
-		}
-	}
-	if(preg_match("$\/(group)\/[0-9]+\/(leave)$", $current_path, $test)){
-		$variables['leave_group'] = TRUE;
-		$variables['group_link'] = $base_url . substr($current_path , 0,-6);
-	}
+function atwork_barrio_preprocess_container__atwork(&$variables) {
+  global $base_url;
+  $current_path = \Drupal::service('path.current')->getPath();
+  // Check if this is a group join page
+  if(preg_match("$\/(group)\/[0-9]+\/(join)$", $current_path, $test)){
+    if(isset($variables['element']) && $variables['element']['#id'] = "edit-path-wrapper" && $variables['element']['#type'] != 'actions') {
+      // This is a input field that the group module is adding. This was the only way i could figure out to get rid of it.
+      $variables['children'] = NULL;
+      $variables['join_group'] = TRUE;
+      $variables['group_link'] = $base_url . substr($current_path , 0,-5);
+    }
+  }
+  if(preg_match("$\/(group)\/[0-9]+\/(leave)$", $current_path, $test)){
+    $variables['leave_group'] = TRUE;
+    $variables['group_link'] = $base_url . substr($current_path , 0,-6);
+  }
 }
 
 /**
@@ -126,35 +141,35 @@ function atworknext_preprocess_container__atwork(&$variables) {
 function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
 
   if($form_id == "group_content_atwork_groups-group_membership_group-join_form") {
-	  $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
-	}
+    $form['actions']['submit']['#submit'][] = 'atwork_group_join_group_submit';
+  }
 
-	if($form_id == "group_content_group_content_type_d7657d2029e9e_add_form" || $form_id == "group_content_atwork_groups-group_node-photos_add_form") {
-	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_content_submit';
-	}
+  if($form_id == "group_content_group_content_type_d7657d2029e9e_add_form" || $form_id == "group_content_atwork_groups-group_node-photos_add_form") {
+    $form['actions']['submit']['#submit'][] = 'atwork_group_group_content_submit';
+  }
 
-	if($form_id == "group_content_atwork_groups-group_membership_add_form") {
-	  $form['path']['#access'] = FALSE;
-	  $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
-	  $form['actions']['submit']['#submit'][] = 'atwork_group_group_create_submit';
-	}
+  if($form_id == "group_content_atwork_groups-group_membership_add_form") {
+    $form['path']['#access'] = FALSE;
+    $form['actions']['submit']['#prefix'] = '<p>Please confirm group creation.</p>';
+    $form['actions']['submit']['#submit'][] = 'atwork_group_group_create_submit';
+  }
 
-	if ($form_id == 'node_forum_form') {
-		foreach (array_keys($form['actions']) as $action) {
-			if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-				$form['actions'][$action]['#submit'][] = 'atwork_group_forum_topic_submit';
-			}
-		}
-	}
+  if ($form_id == 'node_forum_form') {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'atwork_group_forum_topic_submit';
+      }
+    }
+  }
 
-	if ($form_id == 'comment_comment_forum_form') {
-		foreach (array_keys($form['actions']) as $action) {
-			if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-				$form['actions'][$action]['#submit'][] = 'atwork_group_forum_comment_submit';
-			}
-		}
-	}
-	if ($form_id == 'group_atwork_groups_edit_form') {
+  if ($form_id == 'comment_comment_forum_form') {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'atwork_group_forum_comment_submit';
+      }
+    }
+  }
+  if ($form_id == 'group_atwork_groups_edit_form') {
     $form['#attached']['library'][] = 'atwork_group/atwork-groups-form';
   }
 }
@@ -166,9 +181,9 @@ function atwork_group_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $f
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function atwork_group_group_create_submit(array $form, FormStateInterface $form_state) {
-	// Get gid from route parameters and redirect to group page.
-	$route_params = $form_state->getRedirect()->getRouteParameters();
-	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
+  // Get gid from route parameters and redirect to group page.
+  $route_params = $form_state->getRedirect()->getRouteParameters();
+  $form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
 }
 
 /**
@@ -178,9 +193,9 @@ function atwork_group_group_create_submit(array $form, FormStateInterface $form_
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function atwork_group_group_content_submit(array $form, FormStateInterface $form_state){
-	// Set redirect back to the original content node page.
-	$nid = $form_state->getRedirect()->getOptions("entity_id")['entity']->get('entity_id')->getValue()[0]['target_id'];
-	$form_state->setRedirect('entity.node.canonical', ['node' => $nid]);
+  // Set redirect back to the original content node page.
+  $nid = $form_state->getRedirect()->getOptions("entity_id")['entity']->get('entity_id')->getValue()[0]['target_id'];
+  $form_state->setRedirect('entity.node.canonical', ['node' => $nid]);
 }
 
 /**
@@ -190,9 +205,9 @@ function atwork_group_group_content_submit(array $form, FormStateInterface $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function atwork_group_join_group_submit(array $form, FormStateInterface $form_state){
-	// Set redirect back to the original group page.
-	$route_params = $form_state->getRedirect()->getRouteParameters();
-	$form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
+  // Set redirect back to the original group page.
+  $route_params = $form_state->getRedirect()->getRouteParameters();
+  $form_state->setRedirect('entity.group.canonical', ['group' => $route_params['group']]);
 }
 
 /**
@@ -231,11 +246,11 @@ function atwork_group_group_presave(Drupal\Core\Entity\EntityInterface $entity) 
  *
  * @inheritDoc
  */
-function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, array $variables) {
-	if ($node = \Drupal::routeMatch()->getParameter('node')) {
-		$content_type = $node->bundle();
-		$suggestions[] = 'breadcrumb__'.$content_type;
-	}
+function atwork_barrio_theme_suggestions_breadcrumb_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'breadcrumb__'.$content_type;
+  }
 }
 
 /**
@@ -243,8 +258,8 @@ function atworknext_theme_suggestions_breadcrumb_alter(array &$suggestions, arra
  *
  * @inheritDoc
  */
-function atworknext_theme_suggestions_container_alter(array &$suggestions, array $variables) {
-	$suggestions[] = 'container__' . 'atwork';
+function atwork_barrio_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  $suggestions[] = 'container__' . 'atwork';
 }
 
 
@@ -274,17 +289,17 @@ function atwork_group_preprocess_forums(&$variables) {
 
   $group = \Drupal::routeMatch()->getParameter('group');
   if ($group) {
-		if (isset($variables['topics']['#rows'])) {
-    	$rows = $variables['topics']['#rows'];
-    	foreach ($rows as $id => $row) {
-      	$html = $row[0]['data'][1]['#markup'];
-      	// $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/topic/', '<a href="/group/'.$group->id().'/topic/', $html);
-				$group_title = strtolower(str_replace(' ', '-', $group->label()));
-				// add search and replace on url containing /node. originally the url was /topic but was changed to /node. keeping the orginal in the event it is changed back.
+    if (isset($variables['topics']['#rows'])) {
+      $rows = $variables['topics']['#rows'];
+      foreach ($rows as $id => $row) {
+        $html = $row[0]['data'][1]['#markup'];
+        // $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/topic/', '<a href="/group/'.$group->id().'/topic/', $html);
+        $group_title = strtolower(str_replace(' ', '-', $group->label()));
+        // add search and replace on url containing /node. originally the url was /topic but was changed to /node. keeping the orginal in the event it is changed back.
         $rows[$id][0]['data'][1]['#markup'] = str_replace('<a href="/node/', '<a href="/groups/' . $group_title . '/topic/', $html);
-    	}
-    	$variables['topics']['#rows'] = $rows;
-		}
+      }
+      $variables['topics']['#rows'] = $rows;
+    }
   }
 }
 
@@ -294,8 +309,8 @@ function atwork_group_forum_topic_submit($form, FormStateInterface $form_state) 
 
   // redirect if this is a group forum topic
   $previousUrl = \Drupal::request()->server->get('HTTP_REFERER');
-	$group_id = _atwork_group_extract_group($previousUrl);
-	if ($group_id > 0) {
+  $group_id = _atwork_group_extract_group($previousUrl);
+  if ($group_id > 0) {
     $form_state->setRedirect('group.forum.topic',	['group' => $group_id, 'node' => $node_id]);
   }
 }
@@ -354,7 +369,7 @@ function atwork_group_module_implements_alter(&$implementations, $hook) {
     $group = $implementations['atwork_group'];
     unset($implementations['atwork_group']);
     $implementations['atwork_group'] = $group;
-	}
+  }
 }
 /**
  * Implements hook_theme_suggestions_alter
@@ -363,9 +378,9 @@ function atwork_group_module_implements_alter(&$implementations, $hook) {
  * @param array $variables
  * @param $hook
  */
-function atworknext_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
+function atwork_barrio_theme_suggestions_alter(array &$suggestions, array &$variables, $hook) {
   // Check that we are in the right region.
-  if($hook == 'region' && in_array('region__sidebar_nav', $suggestions)) {
+  if($hook == 'region' && in_array('region__sidebar_first', $suggestions)) {
     // If there is a groupadmin variable, we know we are in a group.
     if(in_array('groupadmin', $variables['elements'])) {
       // grab parameters from the URI.
@@ -417,3 +432,8 @@ function atwork_group_comment_links_alter(array &$links, CommentInterface $entit
     ]);
   }
 }
+
+
+
+
+

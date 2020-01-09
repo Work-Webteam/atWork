@@ -87,6 +87,7 @@
         "drupal/bootstrap_datetime_picker": "^1.2",
         "drupal/bootstrap_layouts": "^5.1",
         "drupal/bootstrap_library": "1.11",
+        "drupal/bootstrap_sass": "^1.9",
         "drupal/chosen": "^2.6",
         "drupal/ckeditor_bootstrap_grid": "^1.2",
         "drupal/ckeditor_widgets": "1.x-dev",
@@ -236,7 +237,9 @@
                 "Resolves Vote form/Results field ordering issue": "https://www.drupal.org/files/issues/2019-09-18/poll-manage-display-fix.patch"
             },
 	    "drupal/group": {
-	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch"
+	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
+		"Uninstall validator patch": "https://www.drupal.org/files/issues/2019-12-31/group.entity-type-manager-interface-3103884-2.patch",
+		"WebProfiler": "https://www.drupal.org/project/group/issues/3103716"
 	    },
 	    "libraries/superfish": {
 		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
