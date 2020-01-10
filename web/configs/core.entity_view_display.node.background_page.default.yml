@@ -50,51 +50,31 @@ content:
       linked: 0
     third_party_settings: {  }
   field_header_image:
+    type: media_thumbnail
     weight: 0
+    region: content
     label: hidden
     settings:
       image_style: article_hero_image
       image_link: ''
     third_party_settings: {  }
-    type: media_thumbnail
-    region: content
-  field_program_highlight:
-    type: entity_reference_revisions_entity_view
-    weight: 4
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: content
   field_program_topic_boxes:
+    type: entity_reference_revisions_entity_view
     weight: 3
+    region: content
     label: hidden
     settings:
       view_mode: default
       link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
-    region: content
-  flag_email_node:
-    weight: 6
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  links:
-    weight: 5
-    region: content
-    settings: {  }
     third_party_settings: {  }
 hidden:
   extra_field_author_publish_date: true
   field_development_tags: true
   field_program_ad_space: true
   field_program_area_menu: true
+  field_program_highlight: true
+  flag_email_node: true
+  flag_subscribe_node: true
   langcode: true
+  links: true
   search_api_excerpt: true

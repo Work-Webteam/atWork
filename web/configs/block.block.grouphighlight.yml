@@ -1,13 +1,13 @@
-uuid: 1b6b946d-fc04-4f53-a2df-a49bae20a46a
+uuid: c561b625-2d4e-4c9e-9e7d-cf9854ae4faa
 langcode: en
 status: true
 dependencies:
   module:
+    - ctools
     - ctools_block
-    - group
   theme:
     - atwork_barrio
-id: atwork_barrio_grouphighlight
+id: grouphighlight
 theme: atwork_barrio
 region: featured_bottom_first
 weight: -11
@@ -28,9 +28,9 @@ settings:
   context_mapping:
     entity: '@group.group_route_context:group'
 visibility:
-  group_type:
-    id: group_type
-    group_types:
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
       atwork_groups: atwork_groups
     negate: false
     context_mapping:

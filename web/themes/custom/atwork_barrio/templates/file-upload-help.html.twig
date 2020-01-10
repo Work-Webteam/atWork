@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to display help text for file fields.
+ *
+ * Available variables:
+ * - descriptions: Lines of help text for uploading a file.
+ *
+ * @see template_preprocess_file_upload_help()
+ */
+#}
+{% set extensions = descriptions.2.getArguments() %}
+{% if 'txt' in extensions['@extensions'] %}
+  {% trans %}This field allows you to upload supporting files (e.g. PPT, Word, Excel, PDF). 
+    To upload, click on the button marked "Browse files" then search for the specific file. 
+    Once you've selected it, click "ok" then hit the "Upload" button. 
+    To add more attachments, repeat this process.<br><br>
+  {% endtrans %}
+{% endif %}
+
+{{ descriptions|safe_join('<br />') }}

@@ -5,6 +5,7 @@ dependencies:
   config:
     - views.view.group_menu
   module:
+    - ctools
     - group
     - views
   theme:
@@ -24,6 +25,13 @@ settings:
   items_per_page: none
   context_mapping: {  }
 visibility:
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'
   group_type:
     id: group_type
     group_types:

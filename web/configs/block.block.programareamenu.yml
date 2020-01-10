@@ -1,4 +1,4 @@
-uuid: 17ad8f8a-a1e6-49a4-aabe-671d5b0c8b42
+uuid: 05e1f4a4-0f61-44db-bbe0-e0a824c21dbd
 langcode: en
 status: true
 dependencies:
@@ -7,10 +7,10 @@ dependencies:
     - ctools
   theme:
     - atwork_barrio
-id: atwork_barrio_programareamenu
+id: programareamenu
 theme: atwork_barrio
 region: sidebar_first
-weight: -12
+weight: 0
 provider: null
 plugin: program_area_menu
 settings:

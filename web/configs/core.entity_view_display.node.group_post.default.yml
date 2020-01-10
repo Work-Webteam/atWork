@@ -90,7 +90,7 @@ content:
     type: boolean
     region: content
   field_tags:
-    weight: 10
+    weight: 6
     label: above
     settings:
       link: true
@@ -98,7 +98,7 @@ content:
     type: entity_reference_label
     region: content
   flag_email_node:
-    weight: 8
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -108,17 +108,17 @@ content:
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_node:
-    weight: 9
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   likeit:
-    weight: 7
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
   links:
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }

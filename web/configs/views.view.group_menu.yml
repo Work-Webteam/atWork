@@ -1475,6 +1475,7 @@ display:
         header: false
         fields: false
         arguments: false
+        relationships: false
       header:
         area_text_custom:
           id: area_text_custom
@@ -1487,29 +1488,105 @@ display:
           tokenize: true
           content: '<h3 class="block-title">Menu</h3>'
           plugin_id: text_custom
-        area_text_custom_1:
-          id: area_text_custom_1
+      fields:
+        nothing:
+          id: nothing
           table: views
-          field: area_text_custom
+          field: nothing
           relationship: none
           group_type: group
           admin_label: 'Add Content'
-          empty: true
-          tokenize: true
-          content: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\" role=\"tab\" id=\"heading-create-content\">\r\n  <h4 class=\"panel-title\">\r\n    <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-create-content\" aria-expanded=\"false\" aria-controls=\"collapse-create-content\">\r\n      <div>Create Group Content</div>\r\n    </a>\r\n  </h4>\r\n  </div>\r\n  <div id=\"collapse-create-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-create-content\">\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ raw_arguments.id}}/content/create/group_node:group_post\"> Create Post </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ raw_arguments.id}}/content/create/group_node:photos\"> Create Photo Gallery </a></div>\r\n      </div>\r\n            <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ raw_arguments.id}}/content/create/group_node:group_event\"> Create Event </a></div>\r\n      </div>\r\n  </div>\r\n  </div>\r\n</div>"
-          plugin_id: text_custom
-        area_text_custom_2:
-          id: area_text_custom_2
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\" role=\"tab\" id=\"heading-create-content\">\r\n  <h4 class=\"panel-title\">\r\n    <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-create-content\" aria-expanded=\"false\" aria-controls=\"collapse-create-content\">\r\n      <div>Create Group Content<i class=\"material-icons\">\r\nkeyboard_arrow_down\r\n</i></div>\r\n    </a>\r\n  </h4>\r\n  </div>\r\n  <div id=\"collapse-create-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-create-content\">\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ arguments.null }}/content/create/group_node:group_post\"> Create Post </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ arguments.null }}/content/create/group_node:photos\"> Create Photo Gallery </a></div>\r\n      </div>\r\n            <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ arguments.null }}/content/create/group_node:group_event\"> Create Event </a></div>\r\n      </div>\r\n  </div>\r\n  </div>\r\n</div>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+        nothing_1:
+          id: nothing_1
           table: views
-          field: area_text_custom
+          field: nothing
           relationship: none
           group_type: group
           admin_label: 'View Content'
-          empty: false
-          tokenize: true
-          content: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\" role=\"tab\" id=\"heading-view-content\">\r\n  <h4 class=\"panel-title\">\r\n    <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-view-content\" aria-expanded=\"false\" aria-controls=\"collapse-view-content\">\r\n      <div>View Group Content</div>\r\n    </a>\r\n  </h4>\r\n  </div>\r\n  <div id=\"collapse-view-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-view-content\">\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/posts\"> Posts </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/photo-galleries\"> Photo Galleries </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div>{{ field_forum_containers }}</div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/calendar\"> Calendar </a></div>\r\n      </div>\r\n  </div>\r\n  </div>\r\n</div>"
-          plugin_id: text_custom
-      fields:
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\" role=\"tab\" id=\"heading-view-content\">\r\n  <h4 class=\"panel-title\">\r\n    <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-view-content\" aria-expanded=\"false\" aria-controls=\"collapse-view-content\">\r\n      <div>View Group Content<i class=\"material-icons\">\r\nkeyboard_arrow_down\r\n</i></div>\r\n    </a>\r\n  </h4>\r\n  </div>\r\n  <div id=\"collapse-view-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-view-content\">\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/posts\"> Posts </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/photo-galleries\"> Photo Galleries </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div>{{ field_forum_containers }}</div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/calendar\"> Calendar </a></div>\r\n      </div>\r\n  </div>\r\n  </div>\r\n</div>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: true
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
         field_group_menu_link:
           id: field_group_menu_link
           table: group__field_group_menu_link
@@ -1523,7 +1600,7 @@ display:
             alter_text: false
             text: ''
             make_link: true
-            path: '{{ arguments.id }} '
+            path: '{{ arguments.id }}'
             absolute: false
             external: false
             replace_spaces: true
@@ -1564,69 +1641,6 @@ display:
             view_mode: default
           group_column: ''
           group_columns: {  }
-          group_rows: false
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        label:
-          id: label
-          table: groups_field_data
-          field: label
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -1635,8 +1649,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: group
-          entity_field: label
           plugin_id: field
         field_forum_containers:
           id: field_forum_containers
@@ -1701,6 +1713,39 @@ display:
           field_api_classes: false
           plugin_id: field
       arguments:
+        'null':
+          id: 'null'
+          table: views
+          field: 'null'
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: group_id_from_url
+          default_argument_options: {  }
+          default_argument_skip_url: true
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          must_not_be: false
+          plugin_id: 'null'
         label:
           id: label
           table: groups_field_data
@@ -1737,17 +1782,19 @@ display:
           glossary: false
           limit: 0
           case: none
-          path_case: lower
+          path_case: none
           transform_dash: true
           break_phrase: false
           entity_type: group
           entity_field: label
           plugin_id: string
+      relationships: {  }
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - route
         - url
       tags:
         - 'config:field.storage.group.field_forum_containers'

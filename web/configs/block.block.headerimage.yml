@@ -10,7 +10,7 @@ dependencies:
 id: headerimage
 theme: atwork_barrio
 region: content
-weight: -9
+weight: -8
 provider: null
 plugin: 'entity_field:node:field_header_image'
 settings:

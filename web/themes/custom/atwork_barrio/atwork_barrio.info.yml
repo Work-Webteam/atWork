@@ -38,7 +38,7 @@ regions:
 libraries-override:
   fullcalendar_view/fullcalendar:
     js:
-      js/fullcalendar_view.js: js/atwork_group_fullcalendar_view.js
+      ../js/fullcalendar_view.js: js/atwork_group_fullcalendar_view.js
 
 #Custom styling for ckeditor.
 ckeditor_stylesheets:

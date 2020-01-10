@@ -1,4 +1,4 @@
-uuid: 31e41a13-0236-440e-b6ea-7a3ec86da103
+uuid: 7de7e8be-2ed2-4946-b2b3-b5dc589a22eb
 langcode: en
 status: false
 dependencies:
@@ -7,10 +7,10 @@ dependencies:
     - ctools_block
   theme:
     - atwork_barrio
-id: atwork_barrio_programtopicboxes
+id: programtopicboxes
 theme: atwork_barrio
 region: content
-weight: -3
+weight: -2
 provider: null
 plugin: 'entity_field:node:field_program_topic_boxes'
 settings:

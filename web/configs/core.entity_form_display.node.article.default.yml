@@ -81,16 +81,6 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_editor_tags:
-    weight: 20
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_header_image:
     type: media_library_widget
     weight: 0
@@ -105,7 +95,7 @@ content:
     type: h5p_editor
     region: content
   field_send_notifications:
-    weight: 21
+    weight: 20
     settings:
       display_label: true
     third_party_settings: {  }
@@ -197,7 +187,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   url_redirects:
-    weight: 22
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -205,4 +195,5 @@ hidden:
   comment: true
   field_development_tags: true
   field_display_title: true
+  field_editor_tags: true
   panelizer: true

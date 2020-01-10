@@ -102,11 +102,6 @@
 <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
 {% endif %}
     {% endif %}
-    {% set createdDate = node.getCreatedTime|format_date('atwork_datetime') %}
-    {% set createdTime = node.getCreatedTime|format_date('atwork_time') %}
-<div class="author-byline"{% trans %}{{ author_name }} posted on {{ createdDate }} {{ createdTime }}{% endtrans %}
-
-
 
 </div>
 {# Uncomment once comments are completed to show comment count on articles #}
@@ -118,7 +113,7 @@
     {{ content.body }}
     {{ content.field_interactive_content }}
     {{ content.field_tags }}
-    {# Social bar is our default link block #}
+{# Social bar is our default link block #}
 <div class="social-bar">
   <ul class="footer-links">
     <li class="subscribe">{{ content.flag_subscribe_node }}</li>

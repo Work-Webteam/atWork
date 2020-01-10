@@ -58,6 +58,9 @@ body.node--type-article {
 
 // Program landing pages - LSA, Premiers Awaards, etc
 body.node--type-background-page {
+  .social-bar {
+    display:none;
+  }
   main#content {
     .field--name-field-header-image {
       padding:0;
@@ -87,67 +90,81 @@ body.node--type-background-page {
             padding-right:15px;
           }
         }
-        .field--name-field-program-topic-boxes {
-          padding:10px;
-          width:100%;
-          background-color: $comment-blue;
-          @extend .d-flex;
-          @extend .flex-wrap;
-          @extend .justify-content-center;
-          > .field__item {
-            @extend .p-2;
-            @extend .flex-fill;
-            border:solid 1px $exec-greyborder;
-            background-color: $white;
-            min-width: 200px;
-            max-width: 500px;
-            text-align: center;
-            margin:10px;
-            padding:0!important;
-            .paragraph--type--program-topic-box {
-              .field--name-field-title {
-                @include size1824;
-                text-align: left;
-                font-weight:bold;
-                padding:5px 5px 0 5px;
-                margin:0 0 0 0;
-              }
-            }
-            p {
+      }
+    }
+      .field--name-field-program-topic-boxes {
+        padding:10px;
+        width:100%;
+        background-color: $comment-blue;
+        @extend .d-flex;
+        @extend .flex-wrap;
+        @extend .justify-content-center;
+        > .field__item {
+          @extend .p-2;
+          @extend .flex-fill;
+          border:solid 1px $exec-greyborder;
+          background-color: $white;
+          min-width: 200px;
+          max-width: 500px;
+          text-align: center;
+          margin:10px;
+          padding:0!important;
+          .paragraph--type--program-topic-box {
+            .field--name-field-title {
+              @include size1824;
               text-align: left;
-              padding:5px;
+              font-weight:bold;
+              padding:5px 5px 0 5px;
+              margin:0 0 0 0;
             }
-            .btn-group {
-              .btn {
-                border-radius: 0;
-                border:none;
+          }
+          p {
+            text-align: left;
+            padding:5px;
+            min-height: 120px;
+          }
+          .btn-group {
+            .btn {
+              border-radius: 0;
+              border:none;
+              background-color: $banner-blue;
+              color: $white;
+              font-size: .875rem;
+            }
+            .dropdown-menu {
+              width:100%;
+              left: -.75rem!important;
+              li {
+                border:solid 1px $exec-greyborder;
+                text-align: center;
+                padding: 3px 8px;
+                margin: 0 5px 5px;
+              }
+              :hover {
                 background-color: $banner-blue;
-                color: $white;
-                font-size: .875rem;
+                color:$white;
               }
-              .dropdown-menu {
-                width:100%;
-                left: -.75rem!important;
-                li {
-                  border:solid 1px $exec-greyborder;
-                  text-align: center;
-                  padding: 3px 8px;
-                  margin: 0 5px 5px;
-                }
-                :hover {
-                  background-color: $banner-blue;
-                  color:$white;
-                }
-              }
+              box-shadow:  0 6px 12px rgba(0, 0, 0, 0.175);
             }
           }
         }
       }
+  }
+}
+// Program content pages
+body.node--type-program-area-content {
+  .field--type-image {
+    padding:0;
+    margin:0;
+    img {
+      max-width:100%;
+      height:auto;
     }
   }
 }
 //Group Highlight Space on program and group landing pages
 body.path-group, body.node--type-background-page {
+  #block-grouphighlight,
   .field--name-field-program-highlight,
   .field--name-field-group-highlight {
     display:inline-block;
