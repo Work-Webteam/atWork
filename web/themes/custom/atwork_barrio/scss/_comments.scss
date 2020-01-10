@@ -124,3 +124,32 @@ body.node--type-group-post {
     @include load-more;
   }
 }
+
+// Comments, replies specific to forums and group forums
+article.by-viewer,
+article.forum {
+  .field--name-user-picture {
+    display:block;
+    border: solid 3px $link-blue;
+    background-image:url("../images/blue-avatar.jpg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    width:85px;
+    height:85px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .indented {
+    display: flexbox;
+    margin-left:35px;
+    > .indented {
+      margin-left:initial;
+    }
+    > article {
+      border-bottom:solid 4px $exec-greyborder;
+      margin-bottom:10px;
+    }
+  }
+}
