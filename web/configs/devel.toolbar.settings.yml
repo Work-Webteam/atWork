@@ -1,10 +1,16 @@
 toolbar_items:
-  - devel.admin_settings_link
   - devel.cache_clear
   - devel.container_info.service
+  - devel.admin_settings_link
+  - devel.elements_page
+  - devel.entity_info_page
+  - devel.event_info
+  - devel.layout_info
   - devel.menu_rebuild
   - devel.reinstall
   - devel.route_info
   - devel.run_cron
+  - devel.theme_registry
+  - devel.session
 _core:
   default_config_hash: IQjf_ytthngZTAk_MU8-74VecArWD3G5g0oEH6PM6GA

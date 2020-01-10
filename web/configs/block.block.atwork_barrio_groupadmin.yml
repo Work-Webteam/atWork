@@ -10,14 +10,14 @@ dependencies:
 id: atwork_barrio_groupadmin
 theme: atwork_barrio
 region: sidebar_first
-weight: -11
+weight: -8
 provider: null
 plugin: 'draggable_dashboard_block:draggable_dashboard_1549921752'
 settings:
   id: 'draggable_dashboard_block:draggable_dashboard_1549921752'
   label: 'Group Admin'
   provider: draggable_dashboard
-  label_display: '0'
+  label_display: visible
 visibility:
   group_type:
     id: group_type

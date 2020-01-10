@@ -45,6 +45,7 @@ content:
     region: content
 hidden:
   field_development_tags: true
+  field_display_title: true
   field_header_image: true
   field_program_ad_space: true
   field_program_area_menu: true

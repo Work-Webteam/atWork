@@ -50,6 +50,7 @@ hidden:
   field_attachments: true
   field_author_information: true
   field_development_tags: true
+  field_display_title: true
   field_editor_tags: true
   field_header_image: true
   field_interactive_content: true

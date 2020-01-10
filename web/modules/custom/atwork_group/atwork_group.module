@@ -92,6 +92,7 @@ function atwork_barrio_preprocess_group(&$variables) {
   $variables['administer_sidebar'] = $linkObject->toRenderable();
   // Load Related Content Block
   // This is causing problems and I feel like we are not using it, so commenting out for now.
+  /*
   $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
   if ($block->value !== NULL) {
     $block_content = \Drupal::entityTypeManager()
@@ -102,12 +103,13 @@ function atwork_barrio_preprocess_group(&$variables) {
 
 
   // Load Group Spotlight
+  /*
   $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_4');
   $block_content = \Drupal::entityTypeManager()
     ->getViewBuilder('block')
     ->view($block);
   $variables['group_spotlight'] = $block_content;
-
+*/
 }
 
 /**
@@ -382,7 +384,7 @@ function atwork_barrio_theme_suggestions_alter(array &$suggestions, array &$vari
   // Check that we are in the right region.
   if($hook == 'region' && in_array('region__sidebar_first', $suggestions)) {
     // If there is a groupadmin variable, we know we are in a group.
-    if(in_array('groupadmin', $variables['elements'])) {
+    if(in_array('atwork_barrio_groupadmin', $variables['elements']) ) {
       // grab parameters from the URI.
       $request = \Drupal::routeMatch();
       $param = $request->getParameters();
@@ -432,8 +434,3 @@ function atwork_group_comment_links_alter(array &$links, CommentInterface $entit
     ]);
   }
 }
-
-
-
-
-

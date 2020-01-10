@@ -186,6 +186,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  matomo:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   message_digest:
     type: options_select
     settings: {  }

@@ -43,8 +43,8 @@
   'field--name-' ~ field_name|clean_class,
   'field--type-' ~ field_type|clean_class,
   'field--label-' ~ label_display,
+  group_theme,
 ] %}
-{{ kint(field_name) }}
 {% set title_classes = [
   'field--label',
   label_display == 'visually_hidden' ? 'sr-only',

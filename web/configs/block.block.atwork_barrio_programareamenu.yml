@@ -10,7 +10,7 @@ dependencies:
 id: atwork_barrio_programareamenu
 theme: atwork_barrio
 region: sidebar_first
-weight: -12
+weight: -9
 provider: null
 plugin: program_area_menu
 settings:

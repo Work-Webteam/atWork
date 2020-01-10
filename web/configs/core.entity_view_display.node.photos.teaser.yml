@@ -43,6 +43,9 @@ content:
 hidden:
   comment: true
   comment_photos: true
+  field_display_title: true
   field_send_notifications: true
   field_tags: true
   langcode: true
+  likeit: true
+  search_api_excerpt: true
