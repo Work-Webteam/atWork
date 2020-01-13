@@ -86,14 +86,14 @@
   {{ title_suffix }}
 
   {% if display_submitted %}
-    <footer>
+    <section class="forum-author">
     <div id="comment-avatar" class="img-circle">{{ author_picture }}</div>
       
       <div{{ author_attributes.addClass('author') }}>
         {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
         {{ metadata }}
       </div>
-    </footer>
+    </section>
   {% endif %}
 
   <div{{ content_attributes.addClass('content') }}>

@@ -1,0 +1,47 @@
+{
+  "name": "drupal/vartheme_admin",
+  "description": "A simple one-column, tableless, minimalist administration theme for Varbase standard websites.",
+  "type": "drupal-theme",
+  "homepage": "https://www.drupal.org/project/vartheme_admin",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Vardot",
+      "homepage": "https://www.drupal.org/vardot",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "http://drupal.org/project/issues/vartheme_admin",
+    "source": "http://cgit.drupalcode.org/vartheme_admin"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+      },
+    "assets": {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "oomphinc/composer-installers-extender": "~1.0",
+    "cweagans/composer-patches": "~1.0",
+    "drupal/drupal-library-installer-plugin": "^0.3",
+    "drupal/adminimal_theme": "~1.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-8.x-6.x": "8.6.x-dev"
+    },
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true
+  }
+}

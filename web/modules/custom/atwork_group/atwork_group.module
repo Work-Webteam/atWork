@@ -23,12 +23,12 @@ function atwork_barrio_preprocess_node__group_post(&$variables) {
   }
 
   // Load Related Content Block
-  $block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
-  $block_content = \Drupal::entityTypeManager()
-    ->getViewBuilder('block')
-    ->view($block);
-  $variables['related_content'] = $block_content;
-  $variables['node_title'] = $variables['elements']['#node']->getTitle();
+  //$block = \Drupal\block\Entity\Block::load('views_block__related_content_block_3');
+  //$block_content = \Drupal::entityTypeManager()
+  //  ->getViewBuilder('block')
+  //  ->view($block);
+  //$variables['related_content'] = $block_content;
+  //$variables['node_title'] = $variables['elements']['#node']->getTitle();
 }
 
 /**

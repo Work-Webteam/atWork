@@ -1,0 +1,22 @@
+uuid: 18c8a2b2-a5ee-4fa4-a7e4-0fc46d1d2ffc
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+  theme:
+    - vartheme_admin
+_core:
+  default_config_hash: hGRTrMIizJS_U00c2seH_Qyg4arReDQVCUYjik7cOKA
+id: vartheme_admin_login
+theme: vartheme_admin
+region: content
+weight: 10
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: visible
+visibility: {  }

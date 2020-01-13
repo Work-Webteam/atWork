@@ -44,6 +44,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  extra_field_author_publish_date: true
   field_development_tags: true
   field_display_title: true
   field_header_image: true

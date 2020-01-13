@@ -1,0 +1,20 @@
+uuid: c0060f90-1e96-480e-bce6-a43212d4b4a9
+langcode: en
+status: true
+dependencies:
+  theme:
+    - vartheme_admin
+_core:
+  default_config_hash: ek6L3z2RWClZie20Ay0kEaAaeVvtXeFrzGEf0Yz7_aI
+id: vartheme_admin_local_actions
+theme: vartheme_admin
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

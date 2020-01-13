@@ -1,7 +1,47 @@
 // Styling for comments on all node types that show comments
 //section[rel~="schema:comment"] {
-body.node--type-group-post {
-  .group-related-content {
+body.node--type-group-post, body.node--type-forum {
+  main#content {
+    padding-left:0;
+    padding-right:0;
+    article h2 {
+      @include size2136;
+      background-color:$grp-muted-banner;
+      padding: 5px 10px;
+      a:before {
+         content:"Topic: ";
+      }
+    }
+    .view-content.row {
+      margin-left:0;
+      margin-right:0;
+    }
+    .flag-subscribe-node:before {
+      display: block;
+      float:left;
+      content:url("../images/subscribe-icon.svg");
+      width: 16px;
+      margin-right: 8px;
+      margin-top:inherit;
+    }
+    div.content section h2 {
+      background-color: $comment-blue;
+      padding: 10px;
+      margin-top:10px;
+    }
+    .forum-author {
+      width:130px;
+      margin-top:10px;
+      @include size1216;
+      float:left;
+      article {
+        border-bottom: solid 1px $exec-greyborder;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .group-related-content, form#comment-form  {
     background-color: $comment-blue;
     padding:12px;
     #edit-comment-body-wrapper, .form-type-textarea {
@@ -13,7 +53,7 @@ body.node--type-group-post {
       width:100%;
       height:50px;
       position: relative;
-      background-color: $white;
+      //background-color: $white;
       #edit-comment-body-0-format-help {
         position: absolute;
         right:0;
@@ -96,25 +136,60 @@ body.node--type-group-post {
                 width:90px;
                 height:90px;
                 overflow: hidden;
-                margin: 0 auto;
+                margin: 0 auto 8px;
               }
               .comment__author {
                 display: block;
                 width:100%;
-                text-align: center;;
+                text-align: center;
+                border-top:solid 1px #CCC;
+                padding-top:5px;
               }
             }
             .comment__content.col-sm-9 {
               max-width: none;
               flex:auto;
-              margin-left:10px;
+              padding-left:0;
+              padding-right:0;
               h3.card-title {
-                background-color: lighten($exec-greyborder,5%);
+                @include size1824;
+                background-color: $comment-blue;
                 padding: 6px 8px;
               }
-              .inline__links, .likeit, .flag {
+              p {
+                padding-left:15px;
+                padding-right:15px;
+                padding-bottom:10px;
+                border-bottom:solid 1px #CCC;
+              }
+              .inline__links {
+                font-size:.85rem;
                 float:left;
-                @extend .btn-sm;
+                margin-left:10px;
+                .comment-reply:before {
+                  display: block;
+                  float:left;
+                  content:url("../images/reply-arrow.svg");
+                  width: 20px;
+                  margin-right: 3px;
+                  margin-left:5px;
+                }
+              }
+              .flag {
+                float:right;
+                margin-right:10px;
+                font-size:.85rem;
+                :before {
+                  display: block;
+                  float:left;
+                  content:url("../images/flag-icon.svg");
+                  width: 14px;
+                  margin-right: 4px;
+                  margin-top:-1px;
+                }
+              }
+              .comment__time {
+                padding-left:10px;
               }
             }
           }
@@ -124,14 +199,20 @@ body.node--type-group-post {
     @include load-more;
   }
 }
+body.node--type-forum {
+  .field--name-body {
+    margin-left:140px;
+  }
+  
+}
 
 // Comments, replies specific to forums and group forums
 article.by-viewer,
 article.forum {
   .field--name-user-picture {
     display:block;
-    border: solid 3px $link-blue;
-    background-image:url("../images/blue-avatar.jpg");
+    //border: solid 3px $link-blue;
+    //background-image:url("../images/blue-avatar.jpg");
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: contain;

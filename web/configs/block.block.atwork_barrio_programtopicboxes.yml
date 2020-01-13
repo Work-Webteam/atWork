@@ -10,7 +10,7 @@ dependencies:
 id: atwork_barrio_programtopicboxes
 theme: atwork_barrio
 region: content
-weight: -3
+weight: -1
 provider: null
 plugin: 'entity_field:node:field_program_topic_boxes'
 settings:

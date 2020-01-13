@@ -111,7 +111,7 @@
         "drupal/forward": "^2.1",
         "drupal/fullcalendar_view": "^2.3",
         "drupal/gforum": "^1.0@beta",
-        "drupal/group": "1.x-dev",
+        "drupal/group": "^1.0@RC",
         "drupal/h5p": "^1.0@RC",
         "drupal/ics_field": "^1.0",
         "drupal/image_widget_crop": "^2.2",

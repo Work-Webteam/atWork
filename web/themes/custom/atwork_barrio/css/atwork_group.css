@@ -1,0 +1,100 @@
+/* line 2, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+/* line 5, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:first-of-type {
+  display: none;
+}
+
+/* line 8, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes {
+  flex-direction: column;
+  margin-right: 10px;
+  width: 120px;
+  background-color: #ECECEC;
+  border: solid 1px #999;
+  padding: 3px;
+}
+
+/* line 16, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .group-swatch {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 3px 3px;
+  border: solid 1px #999;
+}
+
+/* line 22, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .group-swatch .primary-col,
+form#group-atwork-groups-edit-form #edit-field-themes .group-swatch .secondary-col,
+form#group-atwork-groups-edit-form #edit-field-themes .group-swatch .link-col {
+  border-left: solid 25px;
+  margin-bottom: 5px;
+  padding-left: 5px;
+}
+
+/* line 33, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(2) .group-swatch .primary-col {
+  border-color: #8acccf;
+}
+
+/* line 36, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(2) .group-swatch .secondary-col {
+  border-color: #2f7274;
+}
+
+/* line 39, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(2) .group-swatch .link-col {
+  border-color: #406b93;
+}
+
+/* line 46, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(3) .group-swatch .primary-col {
+  border-color: #167516;
+}
+
+/* line 49, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(3) .group-swatch .secondary-col {
+  border-color: #145314;
+}
+
+/* line 52, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(3) .group-swatch .link-col {
+  border-color: #406b93;
+}
+
+/* line 59, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(4) .group-swatch .primary-col {
+  border-color: #18375f;
+}
+
+/* line 62, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(4) .group-swatch .secondary-col {
+  border-color: #10233c;
+}
+
+/* line 65, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(4) .group-swatch .link-col {
+  border-color: #406b93;
+}
+
+/* line 72, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(5) .group-swatch .primary-col {
+  border-color: #dfebf2;
+}
+
+/* line 75, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(5) .group-swatch .secondary-col {
+  border-color: #aed0e3;
+}
+
+/* line 78, ../../Users/cdeakin/Sites/devdesktop/atwork-barrio/web/themes/custom/atwork_barrio/scss/_atwork_group_swatch.scss */
+form#group-atwork-groups-edit-form #edit-field-themes .form-item-field-themes:nth-of-type(5) .group-swatch .link-col {
+  border-color: #3a55c1;
+}
+
+/*# sourceMappingURL=atwork_group.css.map */

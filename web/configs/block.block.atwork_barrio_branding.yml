@@ -11,7 +11,7 @@ _core:
 id: atwork_barrio_branding
 theme: atwork_barrio
 region: secondary_menu
-weight: -12
+weight: -10
 provider: null
 plugin: system_branding_block
 settings:
@@ -21,5 +21,5 @@ settings:
   label_display: '0'
   use_site_logo: true
   use_site_name: false
-  use_site_slogan: true
+  use_site_slogan: false
 visibility: {  }

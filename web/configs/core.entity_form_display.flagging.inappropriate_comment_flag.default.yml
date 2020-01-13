@@ -1,0 +1,12 @@
+uuid: 9b7c5db1-97f4-4649-8c90-0147e4607e77
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.inappropriate_comment_flag
+id: flagging.inappropriate_comment_flag.default
+targetEntityType: flagging
+bundle: inappropriate_comment_flag
+mode: default
+content: {  }
+hidden: {  }

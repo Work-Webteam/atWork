@@ -43,6 +43,7 @@ content:
 hidden:
   comment: true
   comment_photos: true
+  extra_field_author_publish_date: true
   field_display_title: true
   field_send_notifications: true
   field_tags: true

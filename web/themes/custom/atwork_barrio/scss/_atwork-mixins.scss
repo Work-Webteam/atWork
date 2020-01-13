@@ -399,7 +399,7 @@
 
 // Group Theme Colours
 
-@mixin theme_default_set {
+@mixin theme_default_set { // Teal Theme
   p a {
     color: $grp-default-link;
   }
@@ -416,14 +416,18 @@
   }
   #block-atwork-barrio-groupadmin > h2,
   #block-atwork-barrio-views-block-group-menu-block-1 h3.block-title,
-  #block-atwork-barrio-views-block-group-menu-block-3 h2.block-title {
+  #block-views-block-group-menu-block-3 h2 {
      background-color: $grp-default-banner;
      color: #4e4e4e;
   }
-  section#block-groupadmin > h2 a.btn-primary {
+  section#block-atwork-barrio-groupadmin  > h2 a.btn.btn-primary {
     background-color: $grp-default-btn;
-    border-right: solid 1px #4e4e4e;
+    border-left:none;
+    border-top:none;
+    border-right: solid 1px $white;
+    border-bottom:none;
     color: $white;
+    text-shadow: none;
   }
   .group-join, .group-leave {
     background-color: $grp-default-btn;
@@ -434,7 +438,7 @@
   }
 }
 
-@mixin theme_deep_set {
+@mixin theme_deep_set { // Dark Blue theme
   p a {
     color: $grp-deep-link;
   }
@@ -456,17 +460,21 @@
   }
   #block-atwork-barrio-groupadmin > h2,
   #block-atwork-barrio-views-block-group-menu-block-1 h3.block-title,
-  #block-atwork-barrio-views-block-group-menu-block-3 h2.block-title {
+  #block-views-block-group-menu-block-3 h2 {
      background-color: $grp-deep-banner;
      color: $white;
   }
-  #block-atwork-barrio-groupadmin > h2 a.btn-primary {
-    background-color: $grp-deep-btn;
-    border-right: solid 1px lightsteelblue;
+  #block-atwork-barrio-groupadmin > h2 a.btn.btn-primary {
+    background-color: $grp-deep-link;
+    border-left:none;
+    border-top:none;
+    border-right: solid 1px #d6d6d6;
+    border-bottom:none;
     color: $white;
+    text-shadow: none;
   }
   .group-join, .group-leave {
-    background-color: $grp-deep-btn;
+    background-color: $grp-deep-link;
     border-left: solid 1px lightsteelblue;
     a {
       color: $white;
@@ -474,7 +482,7 @@
   }
 }
 
-@mixin theme_bright_set {
+@mixin theme_bright_set { // Green Theme
   p a {
     color: $grp-deep-link;
   }
@@ -496,14 +504,15 @@
   }
   #block-atwork-barrio-groupadmin > h2,
   #block-atwork-barrio-views-block-group-menu-block-1 h3.block-title,
-  #block-atwork-barrio-views-block-group-menu-block-3 h2.block-title {
+  #block-views-block-group-menu-block-3 h2 {
      background-color: $grp-bright-btn;
      color: $white;
   }
-  section#block-groupadmin > h2 a.btn-primary {
+  #block-atwork-barrio-groupadmin h2 a.btn.btn-primary {
     background-color: $grp-bright-banner;
-    //border-right: solid 1px black;
+    border:none;
     color: $white;
+    text-shadow: none;
   }
   .group-join, .group-leave {
     background-color: $grp-bright-banner;
@@ -514,7 +523,7 @@
   }
 }
 
-@mixin theme_muted_set {
+@mixin theme_muted_set { // Light Blue theme
   p a {
     color: $grp-deep-link;
   }
@@ -536,18 +545,25 @@
   }
   #block-atwork-barrio-groupadmin > h2,
   #block-atwork-barrio-views-block-group-menu-block-1 h3.block-title,
-  #block-atwork-barrio-views-block-group-menu-block-3 h2.block-title {
+  #block-views-block-group-menu-block-3 h2 {
      background-color: $grp-muted-banner;
      color: $text;
   }
-  section#block-groupadmin > h2 a.btn-primary {
+  #block-atwork-barrio-groupadmin h2 a.btn.btn-primary {
     background-color: $grp-muted-btn;
-    border-right: solid 1px black;
+  }
+  section#block-atwork-barrio-groupadmin > h2 a.btn-primary {
+    background-color: $grp-muted-banner;
+    border-left:none;
+    border-top:none;
+    border-right: solid 1px #d6d6d6;
+    border-bottom:none;
     color: $text;
+    text-shadow: none;
   }
   .group-join, .group-leave {
     background-color: $grp-muted-btn;
-    border-left: solid 1px black;
+    border-left: solid 1px #d6d6d6;
     a {
       color: $text;
     }

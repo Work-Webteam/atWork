@@ -11,7 +11,7 @@ dependencies:
 id: atwork_barrio_footer1stblock
 theme: atwork_barrio
 region: footer_first
-weight: 0
+weight: -10
 provider: null
 plugin: 'block_content:b9432938-b110-41b7-a208-bbf7d81f5918'
 settings:

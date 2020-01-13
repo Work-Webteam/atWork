@@ -47,10 +47,6 @@
     {{ title_prefix }}
     {% if page %}
       <div class="group-title-banner">
-
-        <h1>
-         {{ label }}
-        </h1>
         {% if not member %}
           <div class="group-join">
             {{ join_link }}
@@ -60,6 +56,9 @@
             {{ leave_link }}
           </div>
         {% endif %}
+        <h1>
+         {{ label }}
+        </h1>
       </div>
     {% endif %}
     {% if not page %}

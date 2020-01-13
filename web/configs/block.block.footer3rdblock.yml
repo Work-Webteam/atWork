@@ -1,0 +1,25 @@
+uuid: e66fbc46-d0aa-4ac0-a57e-640c2bdad532
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9b394eb6-c998-4195-80fa-75a170aa379b'
+  module:
+    - block_content
+  theme:
+    - atwork_barrio
+id: footer3rdblock
+theme: atwork_barrio
+region: footer_third
+weight: 0
+provider: null
+plugin: 'block_content:9b394eb6-c998-4195-80fa-75a170aa379b'
+settings:
+  id: 'block_content:9b394eb6-c998-4195-80fa-75a170aa379b'
+  label: 'Footer 3rd Block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

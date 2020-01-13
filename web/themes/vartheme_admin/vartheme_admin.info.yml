@@ -1,0 +1,36 @@
+core: 8.x
+type: theme
+base theme: adminimal_theme
+
+name: 'Vartheme Admin'
+description: 'A simple one-column, tableless, minimalist administration theme'
+package: 'Varbase'
+# version: 8.x-6.x-dev
+
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first
+
+libraries:
+  - 'vartheme_admin/global-admin-styling'
+  - 'vartheme_admin/global-admin-scripts'
+  
+libraries-override:
+  seven/install-page:
+    css:
+      theme:
+        css/theme/install-page.css: css/install-page.css
+
+# Information added by Drupal.org packaging script on 2019-10-02
+version: '8.x-6.7'
+project: 'vartheme_admin'
+datestamp: 1570021093

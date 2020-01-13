@@ -38,6 +38,7 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  extra_field_author_publish_date: true
   field_display_title: true
   field_end: true
   field_start: true

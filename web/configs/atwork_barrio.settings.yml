@@ -25,7 +25,7 @@ features:
   favicon: true
 logo:
   use_default: false
-  path: ''
+  path: 'public://atwork-logo_1_0.png'
 favicon:
   use_default: true
 bootstrap_barrio_region_clean_background_image: 0
