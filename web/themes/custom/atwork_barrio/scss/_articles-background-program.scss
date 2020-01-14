@@ -1,3 +1,8 @@
+// Breadcrumb Test
+.breadcrumb-item.active {
+  color: $text;
+}
+
 .author-byline { // Author and date shown for article creation
   @include size1424;
   padding: 6px 0 18px;
@@ -312,6 +317,9 @@ button#group-add {
   top: -58px;
   right:0;
   font-size:.9rem;
+}
+button#edit-submit-atwork-groups {
+  background-color: $banner-blue;;
 }
 .view-filters {
   border:solid 1px $exec-greyborder;
