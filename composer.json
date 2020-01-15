@@ -241,6 +241,9 @@
 		"Uninstall validator patch": "https://www.drupal.org/files/issues/2019-12-31/group.entity-type-manager-interface-3103884-2.patch",
 		"WebProfiler": "https://www.drupal.org/project/group/issues/3103716"
 	    },
+	    "drupal/group": {
+		"Patch to fix group error with webprofiler": "https://www.drupal.org/files/issues/2019-12-30/group-web_profiler_fatal_error-3103716-2.patch"
+    	    },
 	    "libraries/superfish": {
 		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
 	    },

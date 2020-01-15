@@ -1,19 +1,19 @@
-uuid: 746ddbc4-4082-4754-bf00-dd6fe24048d5
+uuid: 8955cbb9-f926-4720-8bbf-b7348b47fce5
 langcode: en
 status: true
 dependencies:
   module:
-    - message
+    - poll
     - user
 _core:
-  default_config_hash: 2Up5NUvwF4aBVoO6eFTPeBXtnpUw_yiexv9I5u6ZD-g
-id: message
-label: Message
+  default_config_hash: 3kEzzukQtiq3RNSFBn-gP5Y_zDB-SA8JHZOG82Sc9V4
+id: poll_admin
+label: 'Poll admin'
 module: views
 description: ''
 tag: ''
-base_table: message_field_data
-base_field: mid
+base_table: poll_field_data
+base_field: id
 display:
   default:
     display_plugin: default
@@ -24,7 +24,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'overview messages'
+          perm: 'access poll overview'
       cache:
         type: none
         options: {  }
@@ -49,10 +49,15 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 25
+          items_per_page: 50
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: '‹ previous'
+            next: 'next ›'
+            first: '« first'
+            last: 'last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -61,11 +66,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: '‹ previous'
-            next: 'next ›'
-            first: '« first'
-            last: 'last »'
           quantity: 9
       style:
         type: table
@@ -79,120 +79,74 @@ display:
           summary: ''
           description: ''
           columns:
-            message_bulk_form_1: message_bulk_form_1
-            mid: mid
-            template: template
-            get_text: get_text
-            uid: uid
+            question: question
+            status: status
+            anonymous_vote_allow: anonymous_vote_allow
             created: created
+            votes: votes
+            operations: operations
           info:
-            message_bulk_form_1:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            mid:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            template:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: priority-medium
-            get_text:
+            question:
               sortable: false
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            uid:
-              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-medium
+              responsive: ''
+            status:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            anonymous_vote_allow:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             created:
               sortable: true
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
-              responsive: priority-low
-          default: mid
-          empty_table: false
+              responsive: ''
+            votes:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            operations:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: question
+          empty_table: true
       row:
         type: fields
-      fields:
-        message_bulk_form_1:
-          id: message_bulk_form_1
-          table: message
-          field: message_bulk_form
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Message operations bulk form'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
+        options:
+          default_field_elements: true
+          inline:
+            question: question
+          separator: ''
           hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          action_title: 'With selection'
-          include_exclude: include
-          selected_actions:
-            - message_delete_action
-          entity_type: message
-          plugin_id: bulk_form
-        mid:
-          id: mid
-          table: message_field_data
-          field: mid
+      fields:
+        question:
+          id: question
+          table: poll_field_data
+          field: question
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Message ID'
+          label: Question
           exclude: false
           alter:
             alter_text: false
@@ -234,10 +188,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: number_integer
+          type: string
           settings:
-            thousand_separator: ''
-            prefix_suffix: true
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -249,16 +202,16 @@ display:
           separator: ', '
           field_api_classes: false
           entity_type: null
-          entity_field: mid
+          entity_field: question
           plugin_id: field
-        template:
-          id: template
-          table: message_field_data
-          field: template
+        status_with_runtime:
+          id: status_with_runtime
+          table: poll_field_data
+          field: status_with_runtime
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Message template'
+          label: Active
           exclude: false
           alter:
             alter_text: false
@@ -287,71 +240,6 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
-          settings:
-            link: true
-          group_column: target_id
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: message
-          entity_field: template
-          plugin_id: field
-        get_text:
-          id: get_text
-          table: message
-          field: get_text
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Message text'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 500
-            word_boundary: true
-            ellipsis: false
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: true
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -364,16 +252,16 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          entity_type: message
-          plugin_id: get_text
-        uid:
-          id: uid
-          table: message_field_data
-          field: uid
+          entity_type: poll
+          plugin_id: poll_status
+        anonymous_vote_allow:
+          id: anonymous_vote_allow
+          table: poll_field_data
+          field: anonymous_vote_allow
           relationship: none
           group_type: group
           admin_label: ''
-          label: Author
+          label: 'Allow anonymous votes'
           exclude: false
           alter:
             alter_text: false
@@ -406,7 +294,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -414,11 +302,13 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: boolean
           settings:
-            link: true
-          group_column: target_id
+            format: on-off
+            format_custom_true: ''
+            format_custom_false: ''
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -428,17 +318,17 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: message
-          entity_field: uid
+          entity_type: poll
+          entity_field: anonymous_vote_allow
           plugin_id: field
         created:
           id: created
-          table: message_field_data
+          table: poll_field_data
           field: created
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Published date'
+          label: Created
           exclude: false
           alter:
             alter_text: false
@@ -471,7 +361,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -482,34 +372,129 @@ display:
           date_format: fallback
           custom_date_format: ''
           timezone: ''
-          entity_type: message
+          entity_type: poll
           entity_field: created
           plugin_id: date
-        message_ui_contextual_links:
-          id: message_ui_contextual_links
-          table: message
-          field: message_ui_contextual_links
-          entity_type: message
-          label: Operations
-      filters:
-        template:
-          id: template
-          table: message_field_data
-          field: template
+        votes:
+          id: votes
+          table: poll_field_data
+          field: votes
           relationship: none
           group_type: group
           admin_label: ''
-          operator: in
-          value: {  }
+          label: 'Total votes'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          entity_type: poll
+          plugin_id: poll_totalvotes
+        operations:
+          id: operations
+          table: poll
+          field: operations
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Operations links'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          destination: true
+          entity_type: poll
+          plugin_id: entity_operations
+      filters:
+        question:
+          id: question
+          table: poll_field_data
+          field: question
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: template_op
-            label: Template
+            operator_id: question_op
+            label: Question
             description: ''
             use_operator: false
-            operator: template_op
-            identifier: template
+            operator: question_op
+            identifier: question
             required: false
             remember: false
             multiple: false
@@ -517,7 +502,6 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
-            reduce: false
             operator_limit_selection: false
             operator_list: {  }
           is_grouped: false
@@ -532,33 +516,76 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: message
-          entity_field: template
-          plugin_id: bundle
+          entity_type: poll
+          entity_field: question
+          plugin_id: string
+        status:
+          id: status
+          table: poll_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: 'True'
+            description: null
+            use_operator: false
+            operator: status_op
+            identifier: status
+            required: true
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            operator_limit_selection: false
+            operator_list: {  }
+          is_grouped: true
+          group_info:
+            label: Active
+            description: ''
+            identifier: status
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: '1'
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: 'Yes'
+                operator: '='
+                value: '1'
+              2:
+                title: 'No'
+                operator: '='
+                value: '0'
+          entity_type: poll
+          entity_field: status
+          plugin_id: boolean
       sorts: {  }
-      title: Message
+      title: Poll
       header: {  }
       footer: {  }
       empty:
-        area:
-          id: area
+        area_text_custom:
+          id: area_text_custom
           table: views
-          field: area
+          field: area_text_custom
           relationship: none
           group_type: group
           admin_label: ''
           empty: true
           tokenize: false
-          content:
-            value: 'No messages created yet'
-            format: basic_html
-          plugin_id: text
+          content: 'No polls are available.'
+          plugin_id: text_custom
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      filter_groups:
-        operator: AND
-        groups: {  }
     cache_metadata:
       contexts:
         - 'languages:language_content'
@@ -566,8 +593,7 @@ display:
         - url
         - url.query_args
         - user.permissions
-      cacheable: false
-      max-age: 0
+      max-age: -1
       tags: {  }
   page_1:
     display_plugin: page
@@ -576,20 +602,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/content/messages
-      menu:
-        type: tab
-        title: Message
-        description: ''
-        parent: system.admin_content
-        weight: 0
-        context: '0'
-        menu_name: admin
-      tab_options:
-        type: none
-        title: ''
-        description: ''
-        weight: 0
+      path: admin/content/poll
     cache_metadata:
       contexts:
         - 'languages:language_content'
@@ -597,6 +610,5 @@ display:
         - url
         - url.query_args
         - user.permissions
-      cacheable: false
-      max-age: 0
+      max-age: -1
       tags: {  }
