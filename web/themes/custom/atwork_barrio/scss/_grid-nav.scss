@@ -12,6 +12,10 @@
   }
   #main-wrapper {
     margin-top:45px; // drops the main content 25px to allow room for the drop menu bar
+    main#content.main-content {
+      padding-left:0px;
+      padding-right:0px;
+    }
   }
   footer.site-footer {
     background-color: $banner-blue;

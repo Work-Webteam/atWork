@@ -39,14 +39,14 @@ content:
     third_party_settings: {  }
     region: content
   field_header_image:
+    type: media_thumbnail
     weight: 0
-    label: hidden
+    region: content
+    label: above
     settings:
       image_style: article_hero_image
       image_link: ''
     third_party_settings: {  }
-    type: media_thumbnail
-    region: content
   field_program_highlight:
     type: entity_reference_revisions_entity_view
     weight: 3

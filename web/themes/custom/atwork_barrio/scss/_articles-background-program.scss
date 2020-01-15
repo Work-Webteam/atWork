@@ -10,6 +10,12 @@
     @include author-post;
   }
 }
+.node--type-background-page {
+  .author-byline {
+    background-color:$banner-blue;
+    padding:0px;
+  }
+}
 body.node--type-article {
   main#content {
     /*ul, ol {

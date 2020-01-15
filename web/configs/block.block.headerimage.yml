@@ -1,10 +1,11 @@
 uuid: ee1f4f89-0746-4192-887b-33ec41c328b4
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - ctools
     - ctools_block
+    - node
   theme:
     - atwork_barrio
 id: headerimage
@@ -22,7 +23,7 @@ settings:
     label: visually_hidden
     type: media_thumbnail
     settings:
-      image_style: article_hero_image
+      image_style: article_top_image
       image_link: ''
     third_party_settings: {  }
     weight: 0
@@ -32,8 +33,14 @@ visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
-      article: article
-      background_page: background_page
+      program_area_content: program_area_content
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  node_type:
+    id: node_type
+    bundles:
+      program_area_content: program_area_content
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'

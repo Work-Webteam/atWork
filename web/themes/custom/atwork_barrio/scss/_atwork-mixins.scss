@@ -182,7 +182,12 @@
     margin-bottom: 24px;
     margin-top: 24px;
     .row.quote {
+      width:100%;
       @include quotes;
+      > div {
+        margin:0 auto;
+        text-align: initial;
+      }
     }
     .row.byline {
       @include QuoteAuthor;
