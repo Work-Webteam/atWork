@@ -820,11 +820,7 @@
   parent:
     value: 'menu_link_content:c8602f48-3a25-4646-8b79-fe2ae3f30e46'
   changed:
-<<<<<<< HEAD
-    value: '1577205688'
-=======
     value: '1573421360'
->>>>>>> master
   default_langcode:
     value: '1'
   revision_default:
@@ -1088,11 +1084,7 @@
   parent:
     value: 'menu_link_content:d97f0c6b-1245-4eef-9f95-99b58ea7d6e3'
   changed:
-<<<<<<< HEAD
     value: '1577205900'
-=======
-    value: '1573421360'
->>>>>>> master
   default_langcode:
     value: '1'
   revision_default:
@@ -1180,11 +1172,7 @@
   parent:
     value: 'menu_link_content:d97f0c6b-1245-4eef-9f95-99b58ea7d6e3'
   changed:
-<<<<<<< HEAD
     value: '1577205900'
-=======
-    value: '1573421360'
->>>>>>> master
   default_langcode:
     value: '1'
   revision_default:
@@ -2548,11 +2536,7 @@
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-<<<<<<< HEAD
     value: '1576108873'
-=======
-    value: '1567011595'
->>>>>>> master
   default_langcode:
     value: '1'
   revision_default:
@@ -2596,11 +2580,7 @@
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-<<<<<<< HEAD
     value: '1576108873'
-=======
-    value: '1567011595'
->>>>>>> master
   default_langcode:
     value: '1'
   revision_default:
@@ -2644,11 +2624,7 @@
   parent:
     value: 'menu_link_content:afd75845-08e6-4739-a407-31ae0f27591c'
   changed:
-<<<<<<< HEAD
     value: '1576108873'
-=======
-    value: '1567011595'
->>>>>>> master
   default_langcode:
     value: '1'
   revision_default:
