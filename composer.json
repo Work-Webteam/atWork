@@ -168,7 +168,7 @@
         "drupal/views_infinite_scroll": "^1.5",
         "drupal/viewsreference": "^1.2",
         "drupal/webform": "^5.0@RC",
-        "drush/drush": "^10.1",
+        "drush/drush": "^8.1",
         "harvesthq/chosen": "^1.8",
         "sortablejs/sortable": "^1.8@RC",
         "symfony/property-access": "^3.4",
