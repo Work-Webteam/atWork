@@ -1944,7 +1944,6 @@ display:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-<<<<<<< HEAD
           group: 1
         type:
           id: type
@@ -1956,8 +1955,6 @@ display:
           operator: 'not in'
           value:
             page: page
-=======
->>>>>>> master
           group: 1
           exposed: false
           expose:
