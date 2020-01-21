@@ -1,0 +1,25 @@
+{
+  "name": "drupal/media_gallery",
+  "description": "A simple gallery of media.",
+  "type": "drupal-module",
+  "keywords": [
+    "Drupal",
+    "Media",
+    "Gallery"
+  ],
+  "homepage": "http://drupal.org/project/media_gallery",
+  "license": "GPL-2.0+",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/media_gallery",
+    "source": "http://cgit.drupalcode.org/media_gallery"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  },
+  "require": {
+    "drupal/colorbox": "^1"
+  }
+}

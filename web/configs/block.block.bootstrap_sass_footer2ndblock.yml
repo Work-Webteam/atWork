@@ -2,6 +2,10 @@ uuid: a6f47bcf-50cb-40e5-8eff-34f805ffc4da
 langcode: en
 status: true
 dependencies:
+  content:
+    - 'block_content:basic:4adf5d0f-2477-499a-a7c3-7f0ae1a76ee7'
+  module:
+    - block_content
   theme:
     - bootstrap_sass
 id: bootstrap_sass_footer2ndblock

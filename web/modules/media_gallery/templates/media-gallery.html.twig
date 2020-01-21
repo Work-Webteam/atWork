@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a media gallery entity.
+ *
+ * This template is used when viewing a registered media gallery's page,
+ * e.g., /admin/content/media-gallery)/123. 123 being the media gallery's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.title'.
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_media_gallery()
+ */
+#}
+
+{{ attach_library('media_gallery/media_gallery') }}
+
+<article{{ attributes }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</article>

@@ -1,0 +1,7 @@
+entity.media_gallery.settings:
+  path: 'admin/structure/media-gallery'
+  defaults:
+    _form: '\Drupal\media_gallery\Form\MediaGallerySettingsForm'
+    _title: 'Media Gallery'
+  requirements:
+    _permission: 'administer media gallery'

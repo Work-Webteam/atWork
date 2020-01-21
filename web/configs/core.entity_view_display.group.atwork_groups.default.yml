@@ -15,7 +15,6 @@ dependencies:
     - group.type.atwork_groups
     - image.style.article_top_image
   module:
-    - entity_reference_revisions
     - image
     - options
     - text
@@ -41,18 +40,9 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_group_highlight:
-    type: entity_reference_revisions_entity_view
-    weight: 3
-    region: content
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
   field_group_tags:
     type: entity_reference_label
-    weight: 6
+    weight: 5
     region: content
     label: inline
     settings:
@@ -60,23 +50,23 @@ content:
     third_party_settings: {  }
   field_themes:
     type: list_key
-    weight: 7
+    weight: 6
     region: content
     label: visually_hidden
     settings: {  }
     third_party_settings: {  }
   flag_email_group:
-    weight: 8
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_email_groups:
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_group:
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -96,6 +86,7 @@ hidden:
   field_dev_tag: true
   field_forum_containers: true
   field_group_ad_space: true
+  field_group_highlight: true
   field_group_menu_link: true
   langcode: true
   search_api_excerpt: true

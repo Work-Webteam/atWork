@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Provides a media gallery entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function media_gallery_help($route_name, RouteMatchInterface $route_match) {
+
+}
+
+/**
+ * Implements hook_theme().
+ */
+function media_gallery_theme() {
+  return [
+    'media_gallery' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for media gallery templates.
+ *
+ * Default template: media-gallery.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the media gallery
+ *     information and any fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_media_gallery(array &$variables) {
+  $variables['media_gallery'] = $variables['elements']['#media_gallery'];
+
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function media_gallery_theme_suggestions_media_gallery(array $variables) {
+  $suggestions = [];
+  $media_gallery = $variables['elements']['#media_gallery'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'media_gallery__' . $sanitized_view_mode;
+  $suggestions[] = 'media_gallery__' . $media_gallery->bundle();
+  $suggestions[] = 'media_gallery__' . $media_gallery->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'media_gallery__' . $media_gallery->id();
+  $suggestions[] = 'media_gallery__' . $media_gallery->id() . '__' . $sanitized_view_mode;
+
+  return $suggestions;
+}

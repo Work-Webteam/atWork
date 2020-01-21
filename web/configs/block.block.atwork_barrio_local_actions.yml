@@ -9,7 +9,7 @@ _core:
 id: atwork_barrio_local_actions
 theme: atwork_barrio
 region: content
-weight: -8
+weight: -9
 provider: null
 plugin: local_actions_block
 settings:

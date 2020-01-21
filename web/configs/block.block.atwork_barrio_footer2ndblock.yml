@@ -1,4 +1,4 @@
-uuid: c1ac8a81-1415-4cdd-88d3-93591f624eb2
+uuid: a2142cdf-d3a6-44e5-a908-a6a5d190a4d7
 langcode: en
 status: true
 dependencies:
@@ -8,10 +8,10 @@ dependencies:
     - block_content
   theme:
     - atwork_barrio
-id: footer2ndblock
+id: atwork_barrio_footer2ndblock
 theme: atwork_barrio
 region: footer_second
-weight: -9
+weight: 0
 provider: null
 plugin: 'block_content:4adf5d0f-2477-499a-a7c3-7f0ae1a76ee7'
 settings:

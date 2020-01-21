@@ -1,6 +1,6 @@
-uuid: b6ae2bb7-5654-4d36-936e-d6d100f70311
+uuid: 7de7e8be-2ed2-4946-b2b3-b5dc589a22eb
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - ctools
@@ -10,7 +10,7 @@ dependencies:
 id: programtopicboxes
 theme: atwork_barrio
 region: content
-weight: -5
+weight: -2
 provider: null
 plugin: 'entity_field:node:field_program_topic_boxes'
 settings:

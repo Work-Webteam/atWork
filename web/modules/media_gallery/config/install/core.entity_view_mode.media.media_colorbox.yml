@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.media_colorbox
+label: 'Media Colorbox'
+targetEntityType: media
+cache: true

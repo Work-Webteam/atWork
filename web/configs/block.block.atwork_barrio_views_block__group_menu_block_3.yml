@@ -1,4 +1,4 @@
-uuid: 7588989d-25f5-4c6b-b5b6-e194afcb905b
+uuid: c0ca4581-fc60-48a8-be11-7279323b51e5
 langcode: en
 status: true
 dependencies:
@@ -9,10 +9,10 @@ dependencies:
     - views
   theme:
     - atwork_barrio
-id: views_block__group_menu_block_3
+id: atwork_barrio_views_block__group_menu_block_3
 theme: atwork_barrio
 region: sidebar_first
-weight: 0
+weight: -9
 provider: null
 plugin: 'views_block:group_menu-block_3'
 settings:

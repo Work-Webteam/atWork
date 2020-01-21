@@ -1,0 +1,22 @@
+entity.media_gallery.settings:
+  title: Settings
+  route_name: entity.media_gallery.settings
+  base_route: entity.media_gallery.settings
+entity.media_gallery.view:
+  title: View
+  route_name: entity.media_gallery.canonical
+  base_route: entity.media_gallery.canonical
+entity.media_gallery.edit_form:
+  title: Edit
+  route_name: entity.media_gallery.edit_form
+  base_route: entity.media_gallery.canonical
+entity.media_gallery.delete_form:
+  title: Delete
+  route_name: entity.media_gallery.delete_form
+  base_route: entity.media_gallery.canonical
+  weight: 10
+entity.media_gallery.collection:
+  title: Media Gallery
+  route_name: entity.media_gallery.collection
+  base_route: system.admin_content
+  weight: 10

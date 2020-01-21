@@ -35,11 +35,9 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
-  extra_field_author_publish_date: true
   field_articles: true
   field_comments: true
   field_did_you_know: true
-  field_display_title: true
   field_group_posts: true
   field_take_note: true
   langcode: true

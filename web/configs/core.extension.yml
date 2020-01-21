@@ -83,7 +83,6 @@ module:
   linkit: 0
   maillog: 0
   mailsystem: 0
-  matomo: 0
   maxlength: 0
   media: 0
   media_library: 0
@@ -133,7 +132,6 @@ module:
   shortcut: 0
   simplenews: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -161,7 +159,6 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
-  webprofiler: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1
@@ -177,7 +174,6 @@ theme:
   atwork_barrio: 0
   bootstrap_sass: 0
   adminimal_theme: 0
-  vartheme_admin: 0
 profile: standard
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc

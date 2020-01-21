@@ -1,4 +1,4 @@
-uuid: e66fbc46-d0aa-4ac0-a57e-640c2bdad532
+uuid: 98aaa508-ed65-4296-a819-65db72edf758
 langcode: en
 status: true
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
     - block_content
   theme:
     - atwork_barrio
-id: footer3rdblock
+id: atwork_barrio_footer3rdblock
 theme: atwork_barrio
 region: footer_third
 weight: 0

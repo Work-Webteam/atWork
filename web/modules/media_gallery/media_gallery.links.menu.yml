@@ -1,0 +1,10 @@
+entity.media_gallery.settings:
+  title: Media Gallery
+  description: Configure a Media Gallery entity type
+  route_name:  entity.media_gallery.settings
+  parent: system.admin_structure
+entity.media_gallery.collection:
+  title: Media Galleries
+  description: List of media galleries
+  route_name: entity.media_gallery.collection
+  parent: system.admin_content

@@ -9,7 +9,7 @@ h5p_whitelist: 'json png jpg jpeg gif bmp tif tiff svg eot ttf woff woff2 otf we
 h5p_library_whitelist_extras: 'js css'
 h5p_save_content_state: 0
 h5p_save_content_frequency: 30
-h5p_enable_lrs_content_types: 0
+h5p_enable_lrs_content_types: 1
 h5p_hub_is_enabled: 1
 h5p_send_usage_statistics: 0
 _core:

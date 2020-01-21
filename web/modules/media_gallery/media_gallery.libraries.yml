@@ -1,0 +1,4 @@
+media_gallery:
+  css:
+    component:
+      css/media_gallery.css: {}

@@ -30,34 +30,45 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   comment_forum:
-    label: hidden
     type: comment_default
-    weight: 3
+    weight: 4
     region: content
+    label: hidden
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
   flag_email_node:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_node:
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  taxonomy_forums:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: true
     third_party_settings: {  }
 hidden:
   extra_field_author_publish_date: true
   field_display_title: true
   langcode: true
   likeit: true
-  links: true
   search_api_excerpt: true
-  taxonomy_forums: true

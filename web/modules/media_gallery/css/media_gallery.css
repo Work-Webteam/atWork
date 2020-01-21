@@ -1,0 +1,13 @@
+.view-media-gallery .item-list ul,
+.view-media-galleries .view-content,
+.path-media-gallery .field--name-images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.view-media-gallery .item-list ul li,
+.view-media-galleries .view-content .views-row,
+.path-media-gallery .field--name-images .field__item {
+  padding: 3px;
+}
