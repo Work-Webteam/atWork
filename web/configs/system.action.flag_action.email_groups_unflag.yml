@@ -1,0 +1,15 @@
+uuid: 7ec1f320-6c1f-46f8-b17f-e584403f67f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.email_groups
+  module:
+    - flag
+id: flag_action.email_groups_unflag
+label: 'Don''t send email'
+type: group
+plugin: 'flag_action:email_groups_unflag'
+configuration:
+  flag_id: email_groups
+  flag_action: unflag

@@ -1,8 +1,0 @@
-uuid: 5522c33e-e52f-430d-b03d-f23770bc8f2c
-langcode: en
-status: true
-dependencies: {  }
-name: Tags-Editor
-vid: tags_editor
-description: 'Editor Exclusive Tags'
-weight: 0

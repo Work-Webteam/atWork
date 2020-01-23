@@ -1,8 +1,0 @@
-uuid: bebbf964-f3a7-4acf-84e5-301b826c5d3d
-langcode: en
-status: true
-dependencies: {  }
-id: atwork_date_time
-label: 'Atwork DateTime'
-locked: false
-pattern: 'F d, Y | g:i a'

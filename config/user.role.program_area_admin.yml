@@ -1,9 +1,0 @@
-uuid: d11013c4-cd69-4324-8f53-1d64edec3e77
-langcode: en
-status: true
-dependencies: {  }
-id: program_area_admin
-label: 'Program Area Admin'
-weight: 3
-is_admin: null
-permissions: {  }

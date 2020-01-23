@@ -1,8 +1,0 @@
-uuid: 80c70ed2-6c65-4442-bbfe-9e430ce02d1e
-langcode: en
-status: true
-dependencies: {  }
-name: 'Teaser Editor'
-format: teaser_editor
-weight: 0
-filters: {  }
