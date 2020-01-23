@@ -1,6 +1,6 @@
 uuid: 25cb9ecc-1c54-4cff-88a0-296a8fc2989e
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - views.view.atwork_groups
@@ -12,7 +12,7 @@ dependencies:
 id: views_block__atwork_groups_block_1
 theme: atworknext
 region: content
-weight: -6
+weight: -2
 provider: null
 plugin: 'views_block:atwork_groups-block_1'
 settings:

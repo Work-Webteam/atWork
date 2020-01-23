@@ -23,7 +23,6 @@ forward_email_logo: ''
 forward_email_subject: '[forward:sender-name] has forwarded a page to you from [site:name]'
 forward_email_message: '[forward:sender-name] thought you would like to see this page from the [site:name] web site.'
 forward_bypass_access_control: 0
-forward_filter_format: ''
 forward_flood_control_limit: 10
 forward_flood_control_error: 'You can''t send more than @number messages per hour. Please try again later.'
 _core:
@@ -66,3 +65,7 @@ forward_poll_poll: true
 forward_entity_poll_choice: false
 forward_poll_choice_poll_choice: false
 forward_node_background_page: 0
+forward_form_allow_plain_text: false
+forward_filter_format_html: ''
+forward_filter_format_plain_text: ''
+forward_email_footer: ''

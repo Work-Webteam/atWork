@@ -1238,7 +1238,7 @@ class ContainerBuilderTest extends TestCase
         $container = new ContainerBuilder();
 
         $container->register(A::class)->setPublic(true);
-        $bDefinition = $container->register('b', __NAMESPACE__.'\B');
+        $bDefinition = $container->register('b', B::class);
         $bDefinition->setAutowired(true);
         $bDefinition->setPublic(true);
 
@@ -1265,7 +1265,7 @@ class ContainerBuilderTest extends TestCase
         $this->expectExceptionMessage('The definition for "DateTime" has no class attribute, and appears to reference a class or interface in the global namespace.');
         $container = new ContainerBuilder();
 
-        $definition = $container->register(\DateTime::class);
+        $container->register(\DateTime::class);
         $container->compile();
     }
 
@@ -1295,7 +1295,7 @@ class ContainerBuilderTest extends TestCase
         $this->expectExceptionMessage('The definition for "123_abc" has no class.');
         $container = new ContainerBuilder();
 
-        $definition = $container->register('123_abc');
+        $container->register('123_abc');
         $container->compile();
     }
 
@@ -1305,7 +1305,7 @@ class ContainerBuilderTest extends TestCase
         $this->expectExceptionMessage('The definition for "\foo" has no class.');
         $container = new ContainerBuilder();
 
-        $definition = $container->register('\\foo');
+        $container->register('\\foo');
         $container->compile();
     }
 

@@ -1,1 +1,0 @@
-"Animated scroll to top" 

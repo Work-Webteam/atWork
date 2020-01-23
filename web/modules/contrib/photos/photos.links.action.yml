@@ -1,5 +1,0 @@
-photos.upload.directory:
-  route_name: photos.upload.directory
-  title: 'Upload directory'
-  appears_on:
-    - photos.admin
