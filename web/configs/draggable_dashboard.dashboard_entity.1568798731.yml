@@ -1,0 +1,9 @@
+uuid: a1ca2948-4d13-4f52-b29d-aa15015655f4
+langcode: en
+status: true
+dependencies: {  }
+id: '1568798731'
+title: 'Homepage Dashboard'
+description: ''
+columns: '1'
+blocks: '[{"bid":"views_block__atwork_groups_block_1_2","cln":"1","position":0},{"bid":"views_block__comments_recent_block_1","cln":"1","position":1},{"bid":"views_block__group_members_block_1","cln":"1","position":2},{"bid":"views_block__group_members_block_2","cln":"1","position":3}]'

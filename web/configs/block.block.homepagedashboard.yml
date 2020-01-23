@@ -1,0 +1,26 @@
+uuid: a72179fd-9542-44a9-98f1-5d9a05eceebf
+langcode: en
+status: true
+dependencies:
+  module:
+    - draggable_dashboard
+    - system
+  theme:
+    - atworknext
+id: homepagedashboard
+theme: atworknext
+region: content
+weight: -7
+provider: null
+plugin: 'draggable_dashboard_block:draggable_dashboard_1568798731'
+settings:
+  id: 'draggable_dashboard_block:draggable_dashboard_1568798731'
+  label: 'Homepage Dashboard'
+  provider: draggable_dashboard
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

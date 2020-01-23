@@ -1,0 +1,15 @@
+uuid: 728d1c64-f171-4281-b55c-b100cf48ef99
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.email_groups
+  module:
+    - flag
+id: flag_action.email_groups_flag
+label: 'Send email'
+type: group
+plugin: 'flag_action:email_groups_flag'
+configuration:
+  flag_id: email_groups
+  flag_action: flag

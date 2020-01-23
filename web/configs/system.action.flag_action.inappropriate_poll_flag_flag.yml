@@ -1,0 +1,15 @@
+uuid: ec64ba1a-69e4-4acc-8181-8ad9db0499ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - flag.flag.inappropriate_poll_flag
+  module:
+    - flag
+id: flag_action.inappropriate_poll_flag_flag
+label: 'Flag this item'
+type: poll
+plugin: 'flag_action:inappropriate_poll_flag_flag'
+configuration:
+  flag_id: inappropriate_poll_flag
+  flag_action: flag

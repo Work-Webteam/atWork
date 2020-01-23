@@ -1,0 +1,23 @@
+uuid: c67afed6-4e62-411c-8a9f-394f8bec851a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user_alert.field_alert_body
+    - user_alert.user_alert_type.maintenance
+  module:
+    - text
+id: user_alert.maintenance.field_alert_body
+field_name: field_alert_body
+entity_type: user_alert
+bundle: maintenance
+label: Alert
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary
