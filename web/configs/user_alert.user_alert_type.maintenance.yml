@@ -1,7 +1,0 @@
-uuid: 01c1ee0b-9003-452e-b0d4-d9831b407fc4
-langcode: en
-status: true
-dependencies: {  }
-id: maintenance
-label: Maintenance
-description: 'Test user alert type'

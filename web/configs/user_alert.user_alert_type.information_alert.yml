@@ -1,7 +1,0 @@
-uuid: 0f9af102-a8ea-41f3-91c2-bb049fda8763
-langcode: en
-status: true
-dependencies: {  }
-id: information_alert
-label: 'Information Alert'
-description: 'Test alert type'

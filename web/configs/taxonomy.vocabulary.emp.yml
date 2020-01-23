@@ -1,8 +1,0 @@
-uuid: e9a72c55-8251-406a-a211-592de13e29a2
-langcode: en
-status: true
-dependencies: {  }
-name: Segment/Segments
-vid: emp
-description: 'EMP Categories'
-weight: 0
