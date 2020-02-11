@@ -1,0 +1,99 @@
+uuid: bdb8309c-c17c-4ab9-9d20-4a3cc935cf20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group.atwork_groups.field_dev_tag
+    - field.field.group.atwork_groups.field_forum_containers
+    - field.field.group.atwork_groups.field_group
+    - field.field.group.atwork_groups.field_group_ad_space
+    - field.field.group.atwork_groups.field_group_description
+    - field.field.group.atwork_groups.field_group_highlight
+    - field.field.group.atwork_groups.field_group_menu_link
+    - field.field.group.atwork_groups.field_group_tags
+    - field.field.group.atwork_groups.field_themes
+    - group.type.atwork_groups
+    - image.style.article_top_image
+  module:
+    - entity_reference_revisions
+    - image
+    - options
+    - text
+id: group.atwork_groups.default
+targetEntityType: group
+bundle: atwork_groups
+mode: default
+content:
+  field_group:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: article_top_image
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_group_description:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_group_highlight:
+    type: entity_reference_revisions_entity_view
+    weight: 6
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  field_group_tags:
+    type: entity_reference_label
+    weight: 5
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_themes:
+    type: list_key
+    weight: 7
+    region: content
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+  flag_email_group:
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_email_groups:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_group:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  label:
+    label: hidden
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  field_dev_tag: true
+  field_forum_containers: true
+  field_group_ad_space: true
+  field_group_menu_link: true
+  langcode: true
+  search_api_excerpt: true
+  uid: true

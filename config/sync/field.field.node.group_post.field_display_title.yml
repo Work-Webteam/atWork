@@ -1,0 +1,19 @@
+uuid: 9fb356d3-0f93-4ac7-972f-b13dc2a180a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_title
+    - node.type.group_post
+id: node.group_post.field_display_title
+field_name: field_display_title
+entity_type: node
+bundle: group_post
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,53 @@
+uuid: 1754e700-7290-485d-a404-4a052ef18ae2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.simplenews_issue.body
+    - field.field.node.simplenews_issue.field_articles
+    - field.field.node.simplenews_issue.field_comments
+    - field.field.node.simplenews_issue.field_did_you_know
+    - field.field.node.simplenews_issue.field_display_title
+    - field.field.node.simplenews_issue.field_group_posts
+    - field.field.node.simplenews_issue.field_take_note
+    - node.type.simplenews_issue
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: n2xAKuCwCLXGUcR4BjVa08OIbG6UDdyIQFjq_S91h50
+id: node.simplenews_issue.teaser
+targetEntityType: node
+bundle: simplenews_issue
+mode: teaser
+content:
+  body:
+    type: text_trimmed
+    weight: 0
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    label: hidden
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  extra_field_author_publish_date: true
+  field_articles: true
+  field_comments: true
+  field_did_you_know: true
+  field_display_title: true
+  field_group_posts: true
+  field_take_note: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

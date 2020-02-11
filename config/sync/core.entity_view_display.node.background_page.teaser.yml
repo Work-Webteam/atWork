@@ -1,0 +1,56 @@
+uuid: 58c490ef-1248-4641-9190-dd1de5446ccc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.background_page.body
+    - field.field.node.background_page.field_development_tags
+    - field.field.node.background_page.field_display_title
+    - field.field.node.background_page.field_header_image
+    - field.field.node.background_page.field_program_ad_space
+    - field.field.node.background_page.field_program_area_menu
+    - field.field.node.background_page.field_program_highlight
+    - field.field.node.background_page.field_program_topic_boxes
+    - node.type.background_page
+  module:
+    - text
+    - user
+id: node.background_page.teaser
+targetEntityType: node
+bundle: background_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_development_tags: true
+  field_display_title: true
+  field_header_image: true
+  field_program_ad_space: true
+  field_program_area_menu: true
+  field_program_highlight: true
+  field_program_topic_boxes: true
+  langcode: true
+  search_api_excerpt: true

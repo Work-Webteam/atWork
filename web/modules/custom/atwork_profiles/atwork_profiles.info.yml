@@ -1,8 +1,0 @@
-name: Atwork Profiles
-type: module
-description: Tweaks to profile and employee views
-package: Custom
-version: 1.0
-core: 8.x
-dependencies:
-  - user

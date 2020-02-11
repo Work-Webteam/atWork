@@ -1,0 +1,22 @@
+uuid: 778aca9b-ecc9-49d9-bf1f-02060596eaf0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: atwork_barrio_messages
+theme: atwork_barrio
+region: highlighted
+weight: -6
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

@@ -1,0 +1,24 @@
+uuid: 8e0eb9e7-7885-4aa3-af0b-57d0bc75767e
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+  theme:
+    - bootstrap_barrio
+_core:
+  default_config_hash: MjMChFykEa-4UxdnGstVk1FcXqwUF3p_GBJLIFT3_XI
+id: bootstrap_barrio_group_operations
+theme: bootstrap_barrio
+region: sidebar_first
+weight: -20
+provider: null
+plugin: group_operations
+settings:
+  id: group_operations
+  label: 'Group operations'
+  provider: group
+  label_display: visible
+  context_mapping:
+    group: '@group.group_route_context:group'
+visibility: {  }

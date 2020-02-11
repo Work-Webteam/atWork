@@ -1,0 +1,22 @@
+uuid: 46b85ceb-4a36-422c-917b-ece628262cbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: atwork_barrio_content
+theme: atwork_barrio
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

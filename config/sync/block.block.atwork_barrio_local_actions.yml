@@ -1,0 +1,20 @@
+uuid: 1f82b1f2-5398-4848-8ae1-adaf45f97d1a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - atwork_barrio
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: atwork_barrio_local_actions
+theme: atwork_barrio
+region: content
+weight: -4
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

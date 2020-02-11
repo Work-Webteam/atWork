@@ -1,0 +1,8 @@
+uuid: 287b6af2-cecc-45d7-8bbc-d8ab079a4a16
+langcode: en
+status: true
+dependencies: {  }
+id: long-service-awards
+label: 'Long Service Awards'
+description: ''
+locked: true

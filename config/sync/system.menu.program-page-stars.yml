@@ -1,0 +1,8 @@
+uuid: 24ce00fe-0fd0-4278-aa6b-974fab1ab760
+langcode: en
+status: true
+dependencies: {  }
+id: program-page-stars
+label: 'program page stars'
+description: ''
+locked: true

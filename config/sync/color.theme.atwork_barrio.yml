@@ -1,0 +1,16 @@
+palette:
+  top: '#10233c'
+  bottom: '#10233c'
+  bg: '#ffffff'
+  sidebar: '#ffffff'
+  sidebarborders: '#cccccc'
+  footer: '#10233c'
+  button: '#10233c'
+  buttonhover: '#016c83'
+  titleslogan: '#ffffff'
+  text: '#333333'
+  link: '#406b93'
+logo: 'public://color/atwork_barrio-0522069f/logo.svg'
+stylesheets: {  }
+files:
+  - 'public://color/atwork_barrio-0522069f/logo.svg'

@@ -1,0 +1,25 @@
+uuid: dd82ffc6-e4a7-453e-85f3-9727d54ea21c
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9db08194-f2a0-403d-8503-661878eb4b63'
+  module:
+    - block_content
+  theme:
+    - atwork_barrio
+id: footer1stblock
+theme: atwork_barrio
+region: footer_first
+weight: 0
+provider: null
+plugin: 'block_content:9db08194-f2a0-403d-8503-661878eb4b63'
+settings:
+  id: 'block_content:9db08194-f2a0-403d-8503-661878eb4b63'
+  label: 'Footer 1st Block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

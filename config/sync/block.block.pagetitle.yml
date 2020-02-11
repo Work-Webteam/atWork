@@ -1,0 +1,27 @@
+uuid: 2381867b-afea-4e66-b65d-ff8e9de6c979
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+  theme:
+    - atwork_barrio
+id: pagetitle
+theme: atwork_barrio
+region: content
+weight: -6
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      page: page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

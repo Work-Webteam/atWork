@@ -1,0 +1,33 @@
+uuid: 8de874cf-a3ee-4082-af0c-5cd4b629d3aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.superfish_menu
+    - field.field.block_content.superfish_menu.body
+  module:
+    - text
+id: block_content.superfish_menu.default
+targetEntityType: block_content
+bundle: superfish_menu
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 26
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+    region: content
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -77,18 +77,13 @@
         "doctrine/annotations": "1.4",
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/admin_toolbar": "^2.0",
-        "drupal/admincss": "1.1",
-        "drupal/animated_scroll_to_top": "^1.2",
         "drupal/background_image": "^1.3",
         "drupal/background_image_formatter": "^1.3",
-        "drupal/better_exposed_filters": "^4.0@alpha",
         "drupal/bootstrap": "^3.13",
-        "drupal/bootstrap_barrio": "4.22",
+        "drupal/bootstrap_barrio": "^4.22",
         "drupal/bootstrap_datetime_picker": "^1.2",
         "drupal/bootstrap_layouts": "^5.1",
-        "drupal/bootstrap_library": "1.11",
         "drupal/bootstrap_sass": "^1.9",
-        "drupal/chosen": "^2.6",
         "drupal/ckeditor_bootstrap_grid": "^1.2",
         "drupal/ckeditor_widgets": "1.x-dev",
         "drupal/colorbox": "^1.4",
@@ -101,7 +96,8 @@
         "drupal/devel_entity_updates": "^1.0@RC",
         "drupal/draggable_dashboard": "^1.1",
         "drupal/drush": "^6.0@RC",
-        "drupal/easy_breadcrumb": "1.12",
+        "drupal/easy_breadcrumb": "^1.12",
+        "drupal/editor_advanced_link": "^1.6",
         "drupal/embed": "^1.0",
         "drupal/entity_embed": "^1.0",
         "drupal/externalauth": "^1.1",
@@ -118,14 +114,12 @@
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/insert": "^1.0",
         "drupal/libraries": "^3.0@alpha",
-        "drupal/like_dislike": "^1.1",
         "drupal/likeit": "^1.0",
         "drupal/linkit": "^4.3",
         "drupal/maillog": "1.x-dev",
         "drupal/matomo": "^1.9",
         "drupal/maxlength": "^1.0@beta",
         "drupal/menu_block": "^1.5",
-        "drupal/menu_export": "^1.2",
         "drupal/menu_item_extras": "^2.6",
         "drupal/menu_link_attributes": "^1.0",
         "drupal/message_digest": "^1.0@beta",
@@ -138,27 +132,17 @@
         "drupal/paragraphs": "^1.8",
         "drupal/pathauto": "^1.3",
         "drupal/photos": "^4.1",
-        "drupal/poll": "^1.2",
         "drupal/postal_code": "1.x-dev",
-        "drupal/printfriendly": "^3.3",
-        "drupal/queue_ui": "^2.0",
         "drupal/redirect": "^1.3",
         "drupal/reroute_email": "^1.0",
-        "drupal/rules": "^3.0@alpha",
         "drupal/scheduler": "^1.0",
         "drupal/search_api_sorts": "^1.0@beta",
-        "drupal/search_api_stats": "1.x-dev",
-        "drupal/search_api_stats_block": "1.x-dev",
-        "drupal/simplenews": "^1.0@beta",
         "drupal/simplify_menu": "^2.0",
         "drupal/superfish": "^1.3",
         "drupal/taxonomy_import": "^1.0",
         "drupal/taxonomy_manager": "^1.0@alpha",
         "drupal/taxonomy_permissions": "1.x-dev",
-        "drupal/term_csv_export_import": "^2.0",
-        "drupal/term_merge_manager": "^1.0@beta",
-        "drupal/tether_stats": "^1.1",
-        "drupal/title_field_for_manage_display": "1.9",
+        "drupal/title_field_for_manage_display": "^1.9",
         "drupal/token": "^1.5",
         "drupal/token_filter": "^1.0",
         "drupal/twig_tweak": "^2.3",
@@ -170,6 +154,10 @@
         "drupal/webform": "^5.0@RC",
         "drush/drush": "^8.1",
         "harvesthq/chosen": "^1.8",
+        "laminas/laminas-diactoros": "^1.8",
+        "laminas/laminas-escaper": "^2.6",
+        "laminas/laminas-feed": "^2.12",
+        "laminas/laminas-stdlib": "^3.2",
         "sortablejs/sortable": "^1.8@RC",
         "symfony/property-access": "^3.4",
         "symfony/var-dumper": "^3.4",
@@ -178,7 +166,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "^8.6.0"
+        "drupal/core-dev": "^8.8"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -224,31 +212,18 @@
             }
         },
 	"patches": {
-	    "drupal/like_dislike": {
-	        "Fixing error where like/dislike module was searching for language": "https://www.drupal.org/files/issues/2832520-php-notice-undefined-index-in-multilingual.patch"
-	    },
 	    "drupal/devel": {
 	        "Fixing kint issue": "https://www.drupal.org/files/issues/devel.ksm_.2857361.18.patch"
       	    },
 	    "drupal/mimemail": {
 	        "Implements send mail function for mimemail plugin": "https://www.drupal.org/files/issues/2018-07-25/2938963-10.patch"
 	    },
-      	    "drupal/poll": {
-                "Resolves Vote form/Results field ordering issue": "https://www.drupal.org/files/issues/2019-09-18/poll-manage-display-fix.patch"
-            },
 	    "drupal/group": {
 	        "Adds parent-group token for nodes": "https://www.drupal.org/files/issues/2018-12-19/group-2774827-41-gnode-tokens.patch",
-		"Uninstall validator patch": "https://www.drupal.org/files/issues/2019-12-31/group.entity-type-manager-interface-3103884-2.patch",
-		"WebProfiler": "https://www.drupal.org/project/group/issues/3103716"
+		"Uninstall validator patch": "https://www.drupal.org/files/issues/2019-12-31/group.entity-type-manager-interface-3103884-2.patch"
 	    },
-	    "drupal/group": {
-		"Patch to fix group error with webprofiler": "https://www.drupal.org/files/issues/2019-12-30/group-web_profiler_fatal_error-3103716-2.patch"
-    	    },
 	    "libraries/superfish": {
 		"Effectively makes superfish default to onclick when sftouchscreen plugin enabled." : "web/patches/superfish_no_hover.patch"
-	    },
-	    "drupal/core": {
-		"Adding patch for breadcrumbs." : "https://www.drupal.org/files/issues/2019-06-07/breadcrumb_shows_the_8.7.x-2607920-54.patch"
 	    },
 	   "drupal/taxonomy_permissions": {
 		"Fixing error with views/taxonomy permissions." : "https://www.drupal.org/files/issues/2019-01-30/taxonomy_permissions-Problem_when_using_an_ER_view_as_target_bundles-3009193-4-8.x.patch"

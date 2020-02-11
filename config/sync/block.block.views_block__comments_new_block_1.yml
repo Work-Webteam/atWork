@@ -1,0 +1,34 @@
+uuid: ee721f09-7b3e-4266-95d7-dfa6849cd25e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.comments_new
+  module:
+    - ctools
+    - views
+  theme:
+    - atwork_barrio
+id: views_block__comments_new_block_1
+theme: atwork_barrio
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:comments_new-block_1'
+settings:
+  id: 'views_block:comments_new-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      group_post: group_post
+      photos: photos
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

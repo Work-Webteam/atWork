@@ -1,0 +1,19 @@
+uuid: bce52c2b-ce60-41e4-9765-45d5c0bb186a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_title
+    - node.type.simplenews_issue
+id: node.simplenews_issue.field_display_title
+field_name: field_display_title
+entity_type: node
+bundle: simplenews_issue
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

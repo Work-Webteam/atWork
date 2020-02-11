@@ -1,0 +1,33 @@
+uuid: 84699e27-ef37-4b38-841a-934f1aee61fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.group_menu
+  module:
+    - group
+    - views
+  theme:
+    - atwork_barrio
+id: atwork_barrio_views_block__group_menu_block_3
+theme: atwork_barrio
+region: sidebar_first
+weight: -8
+provider: null
+plugin: 'views_block:group_menu-block_3'
+settings:
+  id: 'views_block:group_menu-block_3'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+  context_mapping: {  }
+visibility:
+  group_type:
+    id: group_type
+    group_types:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'

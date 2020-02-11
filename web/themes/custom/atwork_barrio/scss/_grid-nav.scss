@@ -3,7 +3,7 @@
 // #Page wrapper on all pages
 #page {
   #header.header {
-    max-width:1140px;
+    //max-width:1140px;
     margin:0 auto;
     background-color: $banner-blue;
     #navbar-main.navbar {
@@ -22,6 +22,12 @@
     padding: 0px;
     margin-top:15px;
     text-align: center;
+    a {
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
     .site-footer__top {
       @extend .d-flex;
       .block {
@@ -41,6 +47,8 @@
 
 // Superfish CSS placed locally to override default CSS
 nav#navbar-top {
+  max-width:1140px;
+  margin:0 auto;
   .region-secondary-menu {
     width:100%;
   }
@@ -74,7 +82,7 @@ nav#navbar-top {
     padding: 0;
   }
   ul.sf-menu.sf-style-none a, ul.sf-menu.sf-style-none a:visited, ul.sf-menu.sf-style-none span.nolink {
-    padding: 0.75em 1em;
+    padding: 0.65em 1em;
   }
   ul.sf-menu.sf-style-none.rtl a.sf-with-ul, ul.sf-menu.sf-style-none.rtl span.nolink.sf-with-ul {
     padding-left: 2.25em;
@@ -176,6 +184,9 @@ nav#navbar-top {
   }
   // Superfish Main menu changes
   ul#superfish-main {
+    > li > ul {
+      margin-top:3px;
+    }
     .sf-depth-1 {
       a:hover {
         background-color: $black;
@@ -197,7 +208,7 @@ nav#navbar-top {
       }
     }
     .sf-depth-2.next-menu-item.sf-no-children > a.sf-depth-2.next-menu-link {
-      padding-top:13px;
+      padding-top:11px;
     }
     .sf-depth-3 {
       a.sf-depth-3 {
@@ -279,7 +290,7 @@ body.path-group, body.path-groups {
         }
       }
       #block-atwork-barrio-views-block-group-menu-block-1,
-      #block-views-block-group-menu-block-3 {
+      #block-atwork-barrio-views-block-group-menu-block-3 {
         border-color:#CCC;
         .col-auto {
           padding: 0;
@@ -348,7 +359,7 @@ body.path-group, body.path-groups {
       & .block {
         padding:0;
       }
-      #block-views-block-group-menu-block-3 {
+      #block-atwork-barrio-views-block-group-menu-block-3 {
         font-size: .9rem;
         .view-content{
           p {
@@ -362,9 +373,20 @@ body.path-group, body.path-groups {
             margin-top:5px;
             width:100%;
           }
+          #group-admin {
+            p {
+              padding:0 15px;
+              margin:0;
+            }
+          }
         }
         .attachment-after {
           padding:0 10px 10px;
+          i.material-icons {
+            color:#6B6C6C;
+            vertical-align: middle;
+            margin-right: 5px;
+          }
         }
       }
     }

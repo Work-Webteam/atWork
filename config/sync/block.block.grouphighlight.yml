@@ -1,0 +1,37 @@
+uuid: e32fa288-8614-4f3b-9743-4a26259e4b9e
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - ctools_block
+  theme:
+    - atwork_barrio
+id: grouphighlight
+theme: atwork_barrio
+region: featured_bottom_first
+weight: 0
+provider: null
+plugin: 'entity_field:group:field_group_highlight'
+settings:
+  id: 'entity_field:group:field_group_highlight'
+  label: 'Group Highlight'
+  provider: ctools_block
+  label_display: '0'
+  formatter:
+    label: above
+    type: entity_reference_revisions_entity_view
+    settings:
+      view_mode: default
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@group.group_route_context:group'
+visibility:
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'
