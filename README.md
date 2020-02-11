@@ -1,4 +1,4 @@
-#@Work Drupal Project
+# @Work Drupal Project
 The @Work project contains the future site of the @Work website. 
 
 ## Composer
@@ -10,7 +10,7 @@ Git contains our composer files, custom code, libraries and a few other pieces t
 ## Settings.php
 Currently the settings.php file is not part of the repo. After you have imported all files for Drupal make sure to ```cp default.settings.php ./settings.php``` in the web/sites/default directory. Once you have a clean copy of settings.php you need to update the file with database and config file settings. Currently our config file sits in the top directory - for settings this is set as:
 
-```$settings['config_sync_directory'] = '../config/sync';'''
+```$settings['config_sync_directory'] = '../config/sync';```
 
 ## Database
 Currently the database is not included with the install, this should be ported between environments in a secure manner and imported via drush. ```drush sql-cli < $database_name```
