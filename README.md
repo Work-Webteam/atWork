@@ -43,7 +43,7 @@ We may want to consider adding environmental variables for the following options
  $settings['file_public_base_url'] = ''; 
  $settings['file_public_path'] = '';
  $settings['file_private_path'] = '';
- $config['system.file']['path']['temporary'] = '';
+ $settings['file_temp_path'] = '/tmp';
 ```
 
 ## settings.local.php
