@@ -33,7 +33,7 @@ The accepted variables are as follows:
 **ATWORK_HASH_SALT** = The hash salt for the install - this is used for security. Generally you would want this to match what the DB is expecting - but it is not necessary. If this variable is not set, hashsalt will be set to '', and youwill have to enter it manually before you can use the install. 
 ```
 
-### settings.local.php
+## settings.local.php
 You may want to create your own settings.local.php file in order to override anything set in the settings.php (in this case most things should be blank if the environmental variables do not exist). This is not part of the repo, and must be set up on your local install. 
 
 Go to your drupal install, and navigate to web/sites/default. After you are in the default directory run the command:
