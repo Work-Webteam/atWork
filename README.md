@@ -32,8 +32,21 @@ The accepted variables are as follows:
 ```
 **ATWORK_HASH_SALT** = The hash salt for the install - this is used for security. Generally you would want this to match what the DB is expecting - but it is not necessary. If this variable is not set, hashsalt will be set to '', and youwill have to enter it manually before you can use the install. 
 ```
+### TODO:
+We may want to consider adding environmental variables for the following options - depending on requirements:
+```php
+ $_SERVER['HTTPS'] = '';
+ $_SERVER['SERVER_PORT'] = '';
+ $settings['reverse_proxy'] = '';
+ $settings['reverse_proxy_addresses'] = array();
+ $settings['reverse_proxy_header'] = '';
+ $settings['file_public_base_url'] = ''; 
+ $settings['file_public_path'] = '';
+ $settings['file_private_path'] = '';
+ $config['system.file']['path']['temporary'] = '';
+```
 
-### settings.local.php
+## settings.local.php
 You may want to create your own settings.local.php file in order to override anything set in the settings.php (in this case most things should be blank if the environmental variables do not exist). This is not part of the repo, and must be set up on your local install. 
 
 Go to your drupal install, and navigate to web/sites/default. After you are in the default directory run the command:
@@ -60,20 +73,6 @@ $settings['config_sync_directory'] = '';
 $base_url = '';
 
 ```
-### TODO:
-We may want to consider adding environmental variables for the following options - depending on requirements:
-```php
- $_SERVER['HTTPS'] = '';
- $_SERVER['SERVER_PORT'] = '';
- $settings['reverse_proxy'] = '';
- $settings['reverse_proxy_addresses'] = array();
- $settings['reverse_proxy_header'] = '';
- $settings['file_public_base_url'] = ''; 
- $settings['file_public_path'] = '';
- $settings['file_private_path'] = '';
- $config['system.file']['path']['temporary'] = '';
-```
-
 
 ## Database
 Currently the database is not included with the install, this should be ported between environments in a secure manner and imported via drush. ```shell drush sql-cli < $database_name```
