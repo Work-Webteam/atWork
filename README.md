@@ -68,8 +68,8 @@ $databases['default']['default'] = array (
   'driver' => '',
 );
 
-$settings['config_sync_directory'] = '';
-#$settings['hash_salt'] = '';
+#$settings['config_sync_directory'] = '';
+$settings['hash_salt'] = '';
 $base_url = '';
 
 ```
