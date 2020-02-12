@@ -8,9 +8,72 @@ This project is maintained with composer. The main Drupal core and contrib modul
 Git contains our composer files, custom code, libraries and a few other pieces that we require to maintain the site. 
 
 ## Settings.php
-Currently the settings.php file is not part of the repo. After you have imported all files for Drupal make sure to ```cp default.settings.php ./settings.php``` in the web/sites/default directory. Once you have a clean copy of settings.php you need to update the file with database and config file settings. Currently our config file sits in the top directory - for settings this is set as:
+Currently the settings.php file is part of the git repo, and is set up to accept environmental variables. If you do not plan on using a settings.local.php (see below) you will need to modify the settings.php on your local install or set up your own environmental variables. 
 
-```$settings['config_sync_directory'] = '../config/sync';```
+The accepted variables are as follows:
+
+### Database Variables
+```php
+**ATWORK_DB** = The database name - if this variable is set, all other database variables are assumed to be present.
+**ATWORK_DRIVER** = The database type you are using. This is optional - if the variable is not set then it defaults to mysql.
+**ATWORK_DB_USER** = The Drupal user that has permissions to the database.
+**ATWORK_DB_PASSWORD** = The password for the database.
+**ATWORK_DB_HOST** = The host location of the database (i.e.localhost, an IP or a pod).
+**ATWORK_DB_PORT** = The port to use in order to connect to the database - traditionally 3306.
+```
+
+### Other Variables - Optional
+```php
+**ATWORK_BASE_URL** = The base URL for the install - if not set this remains blank.
+**ATWORK_CONFIGS** = The current config directory - if not set, this defaults to '..configs/sync' - the location of our default configs in the repo.
+```
+
+### Other Variables - Required
+```php
+**ATWORK_HASH_SALT** = The hash salt for the install - this is used for security. Generally you would want this to match what the DB is expecting - but it is not necessary. If this variable is not set, hashsalt will be set to '', and youwill have to enter it manually before you can use the install. 
+```
+
+### settings.local.php
+You may want to create your own settings.local.php file in order to override anything set in the settings.php (in this case most things should be blank if the environmental variables do not exist). This is not part of the repo, and must be set up on your local install. 
+
+Go to your drupal install, and navigate to web/sites/default. After you are in the default directory run the command:
+
+```shell
+cp ../example.settings.local.php ./settings.local.php
+```
+
+After that you can open the settings.local.php file with your editor of choice and add in your database, base_url, hash_salt and config path variables as you require. (NOTE: Base path will have been set to the expected config dir already, it is recommended you do not change this, or push a new config directory to the master branch). For convenience, the related variables are added below. 
+
+```
+$databases['default']['default'] = array (
+  'database' => '',
+  'username' => '',
+  'password' => '',
+  'prefix' => '',
+  'host' => '',
+  'port' => '',
+  'driver' => '',
+);
+
+$settings['config_sync_directory'] = '';
+#$settings['hash_salt'] = '';
+$base_url = '';
+
+```
+### TODO:
+We may want to consider adding environmental variables for the following options - depending on requirements:
+```
+ $_SERVER['HTTPS'] = '';
+ $_SERVER['SERVER_PORT'] = '';
+ $settings['reverse_proxy'] = '';
+ $settings['reverse_proxy_addresses'] = array();
+ $settings['reverse_proxy_header'] = '';
+ $settings['file_public_base_url'] = ''; 
+ $settings['file_public_path'] = '';
+ $settings['file_private_path'] = '';
+ $config['system.file']['path']['temporary'] = '';
+```
+
 
 ## Database
 Currently the database is not included with the install, this should be ported between environments in a secure manner and imported via drush. ```drush sql-cli < $database_name```
