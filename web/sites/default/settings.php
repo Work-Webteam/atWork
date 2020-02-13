@@ -773,6 +773,8 @@ if (getenv('ATWORK_BASE_URL')) {
 
 ### Config Directory
 if (getenv('ATWORK_CONFIGS')) {
+ 	$settings['config_sync_directory'] = getenv('ATWORK_CONFIGS');
+} else {
 	$settings['config_sync_directory'] = '../config/sync';
 }
 
