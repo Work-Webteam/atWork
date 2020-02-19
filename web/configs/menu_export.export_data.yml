@@ -1468,7 +1468,7 @@
   menu_name:
     value: main
   link:
-    uri: 'internal:/executive-message'
+    uri: 'internal:/news?type=All&field_article_type_value=Executive+Message&title=&sort_by=created&sort_order=ASC'
     title: ''
     options: {  }
   external:
@@ -1482,7 +1482,7 @@
   parent:
     value: 'menu_link_content:bd39bf01-a033-40fd-9e74-be469a17758e'
   changed:
-    value: '1565821466'
+    value: '1579723265'
   default_langcode:
     value: '1'
   revision_default:

@@ -89,7 +89,7 @@ display:
           default_field_elements: true
           inline: {  }
           separator: ' '
-          hide_empty: false
+          hide_empty: true
       fields:
         field_group_menu_link:
           id: field_group_menu_link
@@ -996,6 +996,8 @@ display:
         filters: false
         filter_groups: false
         title: false
+        group_by: false
+        query: false
       fields:
         group_roles:
           id: group_roles
@@ -1324,7 +1326,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="mailto: {{ mail }} >{{ field_user_given_name }} {{ field_user_surname }} </a> - {{ field_company }}'
+            text: "<p><i class=\"material-icons\" title=\"Contact email\">contact_mail</i><a href=\"mailto: {{ mail }}\" >{{ field_user_given_name }} {{ field_user_surname }} </a></p>\r\n<p>{{ field_company }}</p>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -1358,9 +1360,9 @@ display:
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
+          hide_empty: true
+          empty_zero: true
+          hide_alter_empty: true
           plugin_id: custom
       access:
         type: perm
@@ -1438,6 +1440,47 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
+        mail:
+          id: mail
+          table: users_field_data
+          field: mail
+          relationship: gc__user
+          group_type: group
+          admin_label: ''
+          operator: '!='
+          value: employee.news@gov.bc.ca
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: user
+          entity_field: mail
+          plugin_id: string
       filter_groups:
         operator: AND
         groups:
@@ -1446,6 +1489,15 @@ display:
       displays:
         block_3: block_3
       attachment_position: after
+      group_by: false
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: true
+          replica: false
+          query_comment: ''
+          query_tags: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -1647,7 +1699,7 @@ display:
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ', '
+          separator: ''
           field_api_classes: false
           plugin_id: field
         field_forum_containers:

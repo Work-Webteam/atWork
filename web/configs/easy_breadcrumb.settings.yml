@@ -1,4 +1,4 @@
-applies_admin_routes: false
+applies_admin_routes: true
 include_invalid_paths: false
 excluded_paths: ''
 replaced_titles: ''

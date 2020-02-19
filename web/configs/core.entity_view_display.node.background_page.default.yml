@@ -11,11 +11,9 @@ dependencies:
     - field.field.node.background_page.field_program_area_menu
     - field.field.node.background_page.field_program_highlight
     - field.field.node.background_page.field_program_topic_boxes
-    - image.style.article_hero_image
     - node.type.background_page
   module:
     - entity_reference_revisions
-    - media
     - panelizer
     - text
     - title_field_for_manage_display
@@ -34,14 +32,14 @@ content:
   body:
     label: hidden
     type: text_trimmed
-    weight: 2
+    weight: 1
     settings:
       trim_length: 300
     third_party_settings: {  }
     region: content
   field_display_title:
     type: title_value_field_formatter
-    weight: 1
+    weight: 0
     region: content
     label: hidden
     settings:
@@ -49,18 +47,9 @@ content:
       classes: page-title
       linked: 0
     third_party_settings: {  }
-  field_header_image:
-    type: media_thumbnail
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      image_style: article_hero_image
-      image_link: ''
-    third_party_settings: {  }
   field_program_topic_boxes:
     type: entity_reference_revisions_entity_view
-    weight: 3
+    weight: 2
     region: content
     label: hidden
     settings:
@@ -70,6 +59,7 @@ content:
 hidden:
   extra_field_author_publish_date: true
   field_development_tags: true
+  field_header_image: true
   field_program_ad_space: true
   field_program_area_menu: true
   field_program_highlight: true

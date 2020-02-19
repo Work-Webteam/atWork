@@ -18,7 +18,6 @@ module:
   block_content: 0
   bootstrap_layouts: 0
   breakpoint: 0
-  calendar_recurring_event: 0
   ckeditor: 0
   ckeditor_bootstrap_grid: 0
   ckeditor_widgets: 0
@@ -68,6 +67,7 @@ module:
   hal: 0
   help: 0
   history: 0
+  ics_field: 0
   image: 0
   image_widget_crop: 0
   inline_entity_form: 0
@@ -83,6 +83,7 @@ module:
   linkit: 0
   maillog: 0
   mailsystem: 0
+  matomo: 0
   maxlength: 0
   media: 0
   media_library: 0
@@ -154,6 +155,7 @@ module:
   update: 0
   user: 0
   video_embed_field: 0
+  video_embed_media: 0
   video_embed_wysiwyg: 0
   views_data_export: 0
   views_infinite_scroll: 0
