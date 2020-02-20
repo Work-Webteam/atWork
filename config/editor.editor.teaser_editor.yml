@@ -1,0 +1,44 @@
+uuid: 530b490f-cead-4f1b-80af-377f926d8afc
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.teaser_editor
+  module:
+    - ckeditor
+format: teaser_editor
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+  plugins:
+    language:
+      language_list: un
+    stylescombo:
+      styles: ''
+    video_embed:
+      defaults:
+        children:
+          autoplay: true
+          responsive: true
+          width: '854'
+          height: '480'
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null

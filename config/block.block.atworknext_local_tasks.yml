@@ -1,0 +1,22 @@
+uuid: 8618da34-57ac-4d41-92a4-bb1f24f8b6e3
+langcode: en
+status: true
+dependencies:
+  theme:
+    - atworknext
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: atworknext_local_tasks
+theme: atworknext
+region: content
+weight: -12
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

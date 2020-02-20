@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+#: exec_target = cli
+
+## Initialize/reinstall site
+##
+## Usage: fin init-site
+
+# Abort if anything fails
+set -e
+
+#-------------------------- Settings --------------------------------
+
+# PROJECT_ROOT and DOCROOT are set as env variables in cli
+SITE_DIRECTORY="default"
+DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
+SITEDIR_PATH="${DOCROOT_PATH}/sites/${SITE_DIRECTORY}"
+
+#-------------------------- END: Settings --------------------------------
+
+#-------------------------- Helper functions --------------------------------
+
+# Copy a settings file.
+# Skips if the destination file already exists.
+# @param $1 source file
+# @param $2 destination file
+copy_settings_file()
+{
+	local source="$1"
+	local dest="$2"
+
+	if [[ ! -f $dest ]]; then
+		echo "Copying ${dest}..."
+		cp $source $dest
+	else
+		echo "${dest} already in place."
+	fi
+}
+
+#-------------------------- END: Helper functions --------------------------------
+
+#-------------------------- Functions --------------------------------
+# Fix file/folder permissions
+fix_permissions ()
+{
+	echo "Making site directory writable..."
+	chmod 755 "${SITEDIR_PATH}"
+}
+
+# Composer Install
+composer_install ()
+{
+  cd $PROJECT_ROOT
+  composer install
+}
+
+install_items ()
+{
+  composer_install
+  fix_permissions
+  ${PROJECT_ROOT}/.docksal/commands/refresh
+}
+#-------------------------- END: Functions --------------------------------
+
+#-------------------------- Execution --------------------------------
+
+sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+
+if [[ ! -d ~/tmp ]]; then
+  mkdir ~/tmp
+fi
+
+time install_items
+
+# Project initialization steps
+#-------------------------- END: Execution --------------------------------

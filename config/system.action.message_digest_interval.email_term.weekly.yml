@@ -1,0 +1,15 @@
+uuid: ad2e1092-f5ce-4970-aa6f-cfa4b79c3f74
+langcode: en
+status: true
+dependencies:
+  module:
+    - message_digest_ui
+_core:
+  default_config_hash: d94_gn1_17hIrUOvmN_aewbE1iWhL6QqbBMZKVJklVM
+id: message_digest_interval.email_term.weekly
+label: 'Send notifications weekly'
+type: taxonomy_term
+plugin: 'message_digest_interval:email_term.weekly'
+configuration:
+  flag_id: email_term
+  value: 'message_digest:weekly'

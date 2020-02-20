@@ -80,7 +80,9 @@ Currently the database is not included with the install, this should be ported b
 drush sql-cli < $database_name
 ```
 
+
 ## Drush and Drupal Console
 Drush and Drupal Console are both included in the install. After you have downloaded and installed all required files with Git and Composer, you can use either Drush or Drupal Console 
 
 ## File structure
+

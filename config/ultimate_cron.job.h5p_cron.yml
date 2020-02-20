@@ -1,0 +1,17 @@
+uuid: 45ed46ef-f63f-49c5-badd-80081944388f
+langcode: en
+status: true
+dependencies:
+  module:
+    - h5p
+title: 'Default cron handler'
+id: h5p_cron
+weight: 0
+module: h5p
+callback: h5p_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

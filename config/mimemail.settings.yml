@@ -1,0 +1,6 @@
+format: full_html
+name: 'Employee News'
+mail: EmployeeNews@gov.bc.ca
+linkonly: 0
+_core:
+  default_config_hash: K-CsbDCpdo87etSfdahl1iomaod_-AfrRo-6I8RbTQA

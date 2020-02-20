@@ -1,0 +1,19 @@
+uuid: 420b3c4e-4dfd-49ef-b62d-5a0c8bb79a33
+langcode: en
+status: true
+dependencies:
+  module:
+    - atwork_messages
+_core:
+  default_config_hash: PZv7AOoiWqxw99JOW6l0SfjEJzbXg_qttFjGawDhN0c
+title: 'Removes sent subscription messages'
+id: atwork_messages_clean_sent
+weight: 0
+module: atwork_messages
+callback: atwork_messages_clean_sent
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

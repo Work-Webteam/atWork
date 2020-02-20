@@ -1,0 +1,14 @@
+uuid: db6868c4-f10a-4280-9bc3-e4bc5b6c0f73
+langcode: en
+status: true
+dependencies:
+  module:
+    - group
+id: atwork_group
+label: 'Atwork Group'
+type: 'canonical_entities:group'
+pattern: 'groups/[group:title]'
+selection_criteria: {  }
+selection_logic: and
+weight: -5
+relationships: {  }

@@ -1,0 +1,17 @@
+uuid: 9650ddd2-f988-4726-9b5d-079c8ef68a34
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.gallery_crop
+  module:
+    - crop
+name: gallery_image
+label: 'Gallery Image'
+effects:
+  e16de4df-c974-41f3-bc9e-d0317d0dca2b:
+    uuid: e16de4df-c974-41f3-bc9e-d0317d0dca2b
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: gallery_crop

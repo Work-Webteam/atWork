@@ -1,0 +1,22 @@
+uuid: f7cf308c-8600-4fac-9e17-2e701e1e8855
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.superfish_menu
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.superfish_menu.body
+field_name: body
+entity_type: block_content
+bundle: superfish_menu
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

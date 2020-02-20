@@ -1,0 +1,16 @@
+uuid: 3cb54c00-f989-4392-8d8c-aca61047e16b
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.type.atwork_groups
+  module:
+    - user
+id: atwork_groups-group_membership
+label: 'Atwork Groups: Group membership'
+description: 'Adds users to groups as members.'
+group_type: atwork_groups
+content_plugin: group_membership
+plugin_config:
+  group_cardinality: 0
+  entity_cardinality: 1

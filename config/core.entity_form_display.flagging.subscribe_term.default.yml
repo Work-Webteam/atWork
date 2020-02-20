@@ -1,0 +1,19 @@
+uuid: 708d09c9-bf7a-49e3-90e4-797c49f9eef3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.flagging.subscribe_term.message_digest
+    - flag.flag.subscribe_term
+id: flagging.subscribe_term.default
+targetEntityType: flagging
+bundle: subscribe_term
+mode: default
+content:
+  message_digest:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden: {  }
