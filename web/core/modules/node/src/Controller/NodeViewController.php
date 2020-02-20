@@ -2,6 +2,7 @@
 
 namespace Drupal\node\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Controller\EntityViewController;
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -120,12 +121,18 @@ class NodeViewController extends EntityViewController {
    *
    * @param \Drupal\Core\Entity\EntityInterface $node
    *   The current node.
+   * @param \Drupal\Core\Cache\CacheableMetadata $cacheable_metadata
+   *   (optional) The cacheable metadata for the title callback.
    *
    * @return string
    *   The page title.
    */
-  public function title(EntityInterface $node) {
-    return $this->entityRepository->getTranslationFromContext($node)->label();
+  public function title(EntityInterface $node, CacheableMetadata $cacheable_metadata = NULL) {
+    $node = $this->entityManager->getTranslationFromContext($node);
+    if ($cacheable_metadata) {
+      $cacheable_metadata->addCacheableDependency($node);
+    }
+    return $node->label();
   }
 
 }

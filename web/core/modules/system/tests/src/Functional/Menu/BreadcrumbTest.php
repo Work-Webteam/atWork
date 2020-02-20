@@ -432,4 +432,34 @@ class BreadcrumbTest extends BrowserTestBase {
     }
   }
 
+  /**
+   * Tests breadcrumb cacheability.
+   */
+  public function testBreadcrumbCacheability() {
+    // Create an article.
+    $node = $this->drupalCreateNode([
+      'type' => 'article',
+      'title' => 'Article Foo',
+    ]);
+
+    // Edit the article's title and create a new revision.
+    $node->setTitle('Article Bar');
+    $node->setNewRevision(TRUE);
+    $node->save();
+
+    // Open the Revisions tab so the breadcrumb is cached.
+    $this->drupalGet('node/' . $node->id() . '/revisions');
+    $this->assertText('Article Bar');
+
+    // Edit the article's title again and create a new revision.
+    $node->setTitle('Article Baz');
+    $node->setNewRevision(TRUE);
+    $node->save();
+
+    // Open the Revisions tab and check the breadcrumb.
+    $this->drupalGet('node/' . $node->id() . '/revisions');
+    $this->assertNoText('Article Bar');
+    $this->assertText('Article Baz');
+  }
+
 }

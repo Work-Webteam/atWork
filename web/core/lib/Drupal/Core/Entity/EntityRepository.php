@@ -110,6 +110,8 @@ class EntityRepository implements EntityRepositoryInterface {
       if ($entity->language()->getId() != $langcode) {
         $context['data'] = $entity;
         $context += ['operation' => 'entity_view', 'langcode' => $langcode];
+        // @todo Add cacheable metadata from determining the fallback candidates
+        //   in https://www.drupal.org/project/drupal/issues/3005360
         $candidates = $this->languageManager->getFallbackCandidates($context);
 
         // Ensure the default language has the proper language code.

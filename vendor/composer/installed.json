@@ -4254,7 +4254,8 @@
                     "[web-root]/profiles/README.txt": "assets/scaffold/files/profiles.README.txt",
                     "[web-root]/themes/README.txt": "assets/scaffold/files/themes.README.txt"
                 }
-            }
+            },
+            "patches_applied": []
         },
         "installation-source": "dist",
         "autoload": {

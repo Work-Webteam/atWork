@@ -7,7 +7,7 @@ use Drupal\Core\Access\AccessManagerInterface;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Controller\TitleResolverInterface;
+use Drupal\Core\Controller\CacheableTitleResolverInterface;
 use Drupal\Core\Link;
 use Drupal\Core\ParamConverter\ParamNotConvertedException;
 use Drupal\Core\Path\CurrentPathStack;
@@ -69,7 +69,7 @@ class PathBasedBreadcrumbBuilder implements BreadcrumbBuilderInterface {
   /**
    * The title resolver.
    *
-   * @var \Drupal\Core\Controller\TitleResolverInterface
+   * @var \Drupal\Core\Controller\CacheableTitleResolverInterface
    */
   protected $titleResolver;
 
@@ -116,7 +116,7 @@ class PathBasedBreadcrumbBuilder implements BreadcrumbBuilderInterface {
    * @param \Drupal\Core\Path\PathMatcherInterface $path_matcher
    *   The path matcher service.
    */
-  public function __construct(RequestContext $context, AccessManagerInterface $access_manager, RequestMatcherInterface $router, InboundPathProcessorInterface $path_processor, ConfigFactoryInterface $config_factory, TitleResolverInterface $title_resolver, AccountInterface $current_user, CurrentPathStack $current_path, PathMatcherInterface $path_matcher = NULL) {
+  public function __construct(RequestContext $context, AccessManagerInterface $access_manager, RequestMatcherInterface $router, InboundPathProcessorInterface $path_processor, ConfigFactoryInterface $config_factory, CacheableTitleResolverInterface $title_resolver, AccountInterface $current_user, CurrentPathStack $current_path, PathMatcherInterface $path_matcher = NULL) {
     $this->context = $context;
     $this->accessManager = $access_manager;
     $this->router = $router;
@@ -174,7 +174,9 @@ class PathBasedBreadcrumbBuilder implements BreadcrumbBuilderInterface {
         // the access result's cacheability metadata.
         $breadcrumb = $breadcrumb->addCacheableDependency($access);
         if ($access->isAllowed()) {
-          $title = $this->titleResolver->getTitle($route_request, $route_match->getRouteObject());
+          $cacheable_title = $this->titleResolver->getCacheableTitle($route_request, $route_match->getRouteObject());
+          $breadcrumb->addCacheableDependency($cacheable_title);
+          $title = $cacheable_title->getTitle();
           if (!isset($title)) {
             // Fallback to using the raw path component as the title if the
             // route is missing a _title or _title_callback attribute.

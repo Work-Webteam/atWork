@@ -107,11 +107,18 @@ class NodeTypeTest extends NodeTestBase {
     $assert->pageTextContains('Title');
     $assert->pageTextContains('Body');
 
+    $front_page_path = Url::fromRoute('<front>')->toString();
+
     // Rename the title field.
     $edit = [
       'title_label' => 'Foo',
     ];
     $this->drupalPostForm('admin/structure/types/manage/page', $edit, t('Save content type'));
+    $this->assertBreadcrumb('admin/structure/types/manage/page/fields', [
+      $front_page_path => 'Home',
+      'admin/structure/types' => 'Content types',
+      'admin/structure/types/manage/page' => 'Basic page',
+    ]);
 
     $this->drupalGet('node/add/page');
     $assert->pageTextContains('Foo');
@@ -123,6 +130,11 @@ class NodeTypeTest extends NodeTestBase {
       'description' => 'Lorem ipsum.',
     ];
     $this->drupalPostForm('admin/structure/types/manage/page', $edit, t('Save content type'));
+    $this->assertBreadcrumb('admin/structure/types/manage/page/fields', [
+      $front_page_path => 'Home',
+      'admin/structure/types' => 'Content types',
+      'admin/structure/types/manage/page' => 'Bar',
+    ]);
 
     $this->drupalGet('node/add');
     $assert->pageTextContains('Bar');
@@ -146,7 +158,6 @@ class NodeTypeTest extends NodeTestBase {
     $this->drupalPostForm('admin/structure/types/manage/page/fields/node.page.body/delete', [], t('Delete'));
     // Resave the settings for this type.
     $this->drupalPostForm('admin/structure/types/manage/page', [], t('Save content type'));
-    $front_page_path = Url::fromRoute('<front>')->toString();
     $this->assertBreadcrumb('admin/structure/types/manage/page/fields', [
       $front_page_path => 'Home',
       'admin/structure/types' => 'Content types',
