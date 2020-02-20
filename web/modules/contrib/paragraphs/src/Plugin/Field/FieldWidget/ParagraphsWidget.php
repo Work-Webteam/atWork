@@ -341,7 +341,7 @@ class ParagraphsWidget extends WidgetBase {
     }
     $features_labels = array_intersect_key($this->getSettingOptions('features'), array_filter($this->getSetting('features')));
     if (!empty($features_labels)) {
-      $summary[] = $this->t('Features: @features', ['@features' => implode($features_labels, ', ')]);
+      $summary[] = $this->t('Features: @features', ['@features' => implode(', ', $features_labels)]);
     }
 
     return $summary;
@@ -645,7 +645,7 @@ class ParagraphsWidget extends WidgetBase {
               '#paragraphs_mode' => 'closed',
               '#paragraphs_show_warning' => TRUE,
               '#attributes' => [
-                'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-collapse'],
+                'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-collapse', 'button--extrasmall'],
                 'title' => $this->t('Collapse'),
               ],
             ];
@@ -669,7 +669,7 @@ class ParagraphsWidget extends WidgetBase {
             '#access' => $paragraphs_entity->access('update') && !$translating_force_close,
             '#paragraphs_mode' => 'edit',
             '#attributes' => [
-              'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-edit'],
+              'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-edit', 'button--extrasmall'],
               'title' => $this->t('Edit'),
             ],
           ]);
@@ -701,14 +701,16 @@ class ParagraphsWidget extends WidgetBase {
           ];
         }
 
-        if (!$paragraphs_entity->access('update') && $paragraphs_entity->access('delete')) {
+        // Avoid checking delete access for new entities.
+        $delete_access = $paragraphs_entity->isNew() || $paragraphs_entity->access('delete');
+        if (!$paragraphs_entity->access('update') && $delete_access) {
           $info['edit'] = [
             '#theme' => 'paragraphs_info_icon',
             '#message' => $this->t('You are not allowed to edit this @title.', ['@title' => $this->getSetting('title')]),
             '#icon' => 'edit-disabled',
           ];
         }
-        elseif (!$paragraphs_entity->access('delete') && $paragraphs_entity->access('update')) {
+        elseif (!$delete_access && $paragraphs_entity->access('update')) {
           $info['remove'] = [
             '#theme' => 'paragraphs_info_icon',
             '#message' => $this->t('You are not allowed to remove this @title.', ['@title' => $this->getSetting('title')]),
@@ -731,13 +733,13 @@ class ParagraphsWidget extends WidgetBase {
         // Allow modules to alter widget actions.
         \Drupal::moduleHandler()->alter('paragraphs_widget_actions', $widget_actions, $context);
 
-        if (count($widget_actions['actions'])) {
+        if (!empty($widget_actions['actions'])) {
           // Expand all actions to proper submit elements and add it to top
           // actions sub component.
           $element['top']['actions']['actions'] = array_map([$this, 'expandButton'], $widget_actions['actions']);
         }
 
-        if (count($widget_actions['dropdown_actions'])) {
+        if (!empty($widget_actions['dropdown_actions'])) {
           // Expand all dropdown actions to proper submit elements and add
           // them to top dropdown actions sub component.
           $element['top']['actions']['dropdown_actions'] = array_map([$this, 'expandButton'], $widget_actions['dropdown_actions']);
@@ -877,7 +879,7 @@ class ParagraphsWidget extends WidgetBase {
       }
 
       // If we have any info items lets add them to the top section.
-      if (count($info)) {
+      if (!empty($info)) {
         foreach ($info as $info_item) {
           if (!isset($info_item['#access']) || $info_item['#access']) {
             $element['top']['icons']['items'] = $info;
@@ -925,6 +927,7 @@ class ParagraphsWidget extends WidgetBase {
         'class' => [
           'paragraph-type-add-modal',
           'first-button',
+          'paragraphs-add-wrapper',
         ],
       ],
       '#access' => $this->allowReferenceChanges(),
@@ -989,7 +992,7 @@ class ParagraphsWidget extends WidgetBase {
       $bundles = \Drupal::service('entity_type.bundle.info')->getBundleInfo($field_definition ? $field_definition->getSetting('target_type') : $this->fieldDefinition->getSetting('target_type'));
       $weight = 0;
       foreach ($bundles as $machine_name => $bundle) {
-        if (!count($this->getSelectionHandlerSetting('target_bundles'))
+        if (empty($this->getSelectionHandlerSetting('target_bundles'))
           || in_array($machine_name, $this->getSelectionHandlerSetting('target_bundles'))) {
 
           $return_bundles[$machine_name] = array(
@@ -1085,6 +1088,9 @@ class ParagraphsWidget extends WidgetBase {
         '#ajax' => [
           'callback' => [get_class($this), 'dragDropModeAjax'],
           'wrapper' => $this->fieldWrapperId,
+        ],
+        '#limit_validation_errors' => [
+          array_merge($this->fieldParents, [$field_name]),
         ],
         '#button_type' => 'primary',
       ]);
@@ -1306,7 +1312,7 @@ class ParagraphsWidget extends WidgetBase {
     foreach ($field_definitions as $child_field_name => $field_definition) {
       $child_path = implode('][', array_merge($array_parents, [$child_field_name]));
       $cardinality = $field_definition->getFieldStorageDefinition()->getCardinality();
-      $allowed_types = implode(array_keys($this->getAllowedTypes($field_definition)), ',');
+      $allowed_types = implode(',', array_keys($this->getAllowedTypes($field_definition)));
       $elements[$child_field_name] = [
         '#type' => 'container',
         '#attributes' => ['class' => ['paragraphs-dragdrop-wrapper']],
@@ -1547,7 +1553,7 @@ class ParagraphsWidget extends WidgetBase {
   protected function buildDropbutton(array $elements = []) {
     $build = [
       '#type' => 'container',
-      '#attributes' => ['class' => ['paragraphs-dropbutton-wrapper']],
+      '#attributes' => ['class' => ['paragraphs-dropbutton-wrapper', 'paragraphs-add-wrapper']],
     ];
 
     $operations = [];
@@ -1582,15 +1588,13 @@ class ParagraphsWidget extends WidgetBase {
     $add_mode = $this->getSetting('add_mode');
     $paragraphs_type_storage = \Drupal::entityTypeManager()->getStorage('paragraphs_type');
 
-    // Build the buttons.
-    $add_more_elements = [];
     foreach ($options as $machine_name => $label) {
       $button_key = 'add_more_button_' . $machine_name;
       $add_more_elements[$button_key] = $this->expandButton([
         '#type' => 'submit',
         '#name' => $this->fieldIdPrefix . '_' . $machine_name . '_add_more',
         '#value' => $add_mode == 'modal' ? $label : $this->t('Add @type', ['@type' => $label]),
-        '#attributes' => ['class' => ['field-add-more-submit']],
+        '#attributes' => ['class' => ['field-add-more-submit', 'paragraphs-add-wrapper']],
         '#limit_validation_errors' => [array_merge($this->fieldParents, [$this->fieldDefinition->getName(), 'add_more'])],
         '#submit' => [[get_class($this), 'addMoreSubmit']],
         '#ajax' => [
@@ -1612,7 +1616,7 @@ class ParagraphsWidget extends WidgetBase {
     }
     elseif ($add_mode == 'modal') {
       $this->buildModalAddForm($add_more_elements);
-      $add_more_elements['add_modal_form_area']['#suffix'] = $this->t('to %type', ['%type' => $this->fieldDefinition->getLabel()]);
+      $add_more_elements['add_modal_form_area']['#suffix'] = '<span class="paragraphs-add-suffix">' . $this->t('to %type', ['%type' => $this->fieldDefinition->getLabel()]) . '</span>';
     }
     $add_more_elements['#weight'] = 1;
 
@@ -1630,6 +1634,14 @@ class ParagraphsWidget extends WidgetBase {
     $field_title = $this->fieldDefinition->getLabel();
     $setting_title = $this->getSetting('title');
     $select_options = $this->getAccessibleOptions();
+
+    $add_more_elements = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['paragraphs-add-wrapper'],
+      ],
+    ];
+
     $add_more_elements['add_more_select'] = [
       '#type' => 'select',
       '#options' => $select_options,
@@ -2261,7 +2273,7 @@ class ParagraphsWidget extends WidgetBase {
         elseif (!$form_state->isValidationComplete() && $form_state->getLimitValidationErrors() === NULL) {
           $violations = $paragraphs_entity->validate();
           $violations->filterByFieldAccess();
-          if (count($violations)) {
+          if (!empty($violations)) {
             /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
             foreach ($violations as $violation) {
 
@@ -2555,7 +2567,7 @@ class ParagraphsWidget extends WidgetBase {
       // order and with the right settings.
       if ($mode === 'closed') {
         $edit_all['#attributes'] = [
-          'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-edit'],
+          'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-edit', 'button--extrasmall'],
           'title' => $this->t('Edit all'),
         ];
         $edit_all['#title'] = $this->t('Edit All');
@@ -2564,7 +2576,7 @@ class ParagraphsWidget extends WidgetBase {
       }
       else {
         $collapse_all['#attributes'] = [
-          'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-collapse'],
+          'class' => ['paragraphs-icon-button', 'paragraphs-icon-button-collapse', 'button--extrasmall'],
           'title' => $this->t('Collapse all'),
         ];
         $actions['actions']['collapse_all'] = $collapse_all;
@@ -2658,7 +2670,8 @@ class ParagraphsWidget extends WidgetBase {
    *   TRUE if we can remove paragraph, otherwise FALSE.
    */
   protected function removeButtonAccess(ParagraphInterface $paragraph) {
-    if (!$paragraph->access('delete')) {
+    // Avoid checking delete access for new entities.
+    if (!$paragraph->isNew() && !$paragraph->access('delete')) {
       return FALSE;
     }
 

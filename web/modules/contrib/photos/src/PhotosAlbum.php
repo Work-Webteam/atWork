@@ -276,7 +276,7 @@ class PhotosAlbum {
       ->execute();
     // Clear node cache.
     Cache::invalidateTags(['node:' . $pid, 'photos:album:' . $pid]);
-    drupal_set_message(t('Cover successfully set.'));
+    \Drupal::messenger()->addMessage(t('Cover successfully set.'));
   }
 
   /**
@@ -312,11 +312,11 @@ class PhotosAlbum {
       $images[] = $photos_image->load();
     }
     if (isset($images[0]->fid)) {
-      $node = \Drupal::entityManager()->getStorage('node')->load($this->pid);
+      $node = \Drupal::entityTypeManager()->getStorage('node')->load($this->pid);
       $images[0]->info = [
         'pid' => $node->id(),
         'title' => $node->getTitle(),
-        'uid' => $node->uid,
+        'uid' => $node->getOwnerId(),
       ];
       if (isset($node->album['cover'])) {
         $images[0]->info['cover'] = $node->album['cover'];
@@ -542,7 +542,7 @@ class PhotosAlbum {
     $time = $cron ? 7200 : 0;
     // @todo optimize. Check if new images since last count.
     $cron_last = \Drupal::state()->get('system.cron_last', 0);
-    if ((REQUEST_TIME - $cron_last) > $time) {
+    if ((\Drupal::time()->getRequestTime() - $cron_last) > $time) {
       $db = \Drupal::database();
       $result = $db->query('SELECT uid FROM {users} WHERE uid <> 0');
       foreach ($result as $t) {
@@ -565,6 +565,7 @@ class PhotosAlbum {
    */
   public static function setCount($type, $id = 0) {
     $db = \Drupal::database();
+    $requestTime = \Drupal::time()->getRequestTime();
     switch ($type) {
       case 'user_image':
         $count = $db->query('SELECT count(p.fid) FROM {photos_image} p INNER JOIN {file_managed} f ON p.fid = f.fid WHERE f.uid = :id',
@@ -572,7 +573,7 @@ class PhotosAlbum {
         $query = $db->update('photos_count');
         $query->fields([
           'value' => $count,
-          'changed' => REQUEST_TIME,
+          'changed' => $requestTime,
         ]);
         $query->condition('cid', $id);
         $query->condition('type', $type);
@@ -581,12 +582,14 @@ class PhotosAlbum {
           $db->insert('photos_count')
             ->fields([
               'cid' => $id,
-              'changed' => REQUEST_TIME,
+              'changed' => $requestTime,
               'type' => $type,
               'value' => $count,
             ])
             ->execute();
         }
+        // Clear cache tags.
+        Cache::invalidateTags(['photos:image:user:' . $id]);
         break;
 
       case 'user_album':
@@ -595,7 +598,7 @@ class PhotosAlbum {
         $query = $db->update('photos_count')
           ->fields([
             'value' => $count,
-            'changed' => REQUEST_TIME,
+            'changed' => $requestTime,
           ])
           ->condition('cid', $id)
           ->condition('type', $type);
@@ -604,12 +607,14 @@ class PhotosAlbum {
           $db->insert('photos_count')
             ->fields([
               'cid' => $id,
-              'changed' => REQUEST_TIME,
+              'changed' => $requestTime,
               'type' => $type,
               'value' => $count,
             ])
             ->execute();
         }
+        // Clear cache tags.
+        Cache::invalidateTags(['photos:album:user:' . $id]);
         break;
 
       case 'site_album':
@@ -617,7 +622,7 @@ class PhotosAlbum {
         $query = $db->update('photos_count')
           ->fields([
             'value' => $count,
-            'changed' => REQUEST_TIME,
+            'changed' => $requestTime,
           ])
           ->condition('cid', 0)
           ->condition('type', $type);
@@ -626,7 +631,7 @@ class PhotosAlbum {
           $db->insert('photos_count')
             ->fields([
               'cid' => 0,
-              'changed' => REQUEST_TIME,
+              'changed' => $requestTime,
               'type' => $type,
               'value' => $count,
             ])
@@ -639,7 +644,7 @@ class PhotosAlbum {
         $query = $db->update('photos_count')
           ->fields([
             'value' => $count,
-            'changed' => REQUEST_TIME,
+            'changed' => $requestTime,
           ])
           ->condition('cid', 0)
           ->condition('type', $type);
@@ -648,12 +653,14 @@ class PhotosAlbum {
           $db->insert('photos_count')
             ->fields([
               'cid' => 0,
-              'changed' => REQUEST_TIME,
+              'changed' => $requestTime,
               'type' => $type,
               'value' => $count,
             ])
             ->execute();
         }
+        // Clear cache tags.
+        Cache::invalidateTags(['photos:image:recent']);
         break;
 
       case 'node_node':
@@ -661,7 +668,7 @@ class PhotosAlbum {
         $query = $db->update('photos_count')
           ->fields([
             'value' => $count,
-            'changed' => REQUEST_TIME,
+            'changed' => $requestTime,
           ])
           ->condition('cid', $id)
           ->condition('type', $type);
@@ -670,7 +677,7 @@ class PhotosAlbum {
           $db->insert('photos_count')
             ->fields([
               'cid' => $id,
-              'changed' => REQUEST_TIME,
+              'changed' => $requestTime,
               'type' => $type,
               'value' => $count,
             ])
@@ -695,11 +702,21 @@ class PhotosAlbum {
    */
   public static function userAlbumCount() {
     $user = \Drupal::currentUser();
-    $array = $user->getRoles();
+    $user_roles = $user->getRoles();
     $t['create'] = PhotosAlbum::getCount('user_album', $user->id());
-    // @todo check all roles? See what number is highest.
     // @todo upgrade path? Check D7 role id and convert pnum variables as needed.
-    $t['total'] = \Drupal::config('photos.settings')->get('photos_pnum_' . $array[0]) ? \Drupal::config('photos.settings')->get('photos_pnum_' . $array[0]) : 20;
+    $role_limit = 0;
+    $t['total'] = 20;
+    // Check highest role limit.
+    foreach ($user_roles as $role) {
+      if (\Drupal::config('photos.settings')->get('photos_pnum_' . $role)
+        && \Drupal::config('photos.settings')->get('photos_pnum_' . $role) > $role_limit) {
+        $role_limit = \Drupal::config('photos.settings')->get('photos_pnum_' . $role);
+      }
+    }
+    if ($role_limit > 0) {
+      $t['total'] = $role_limit;
+    }
 
     $t['remain'] = ($t['total'] - $t['create']);
     if ($user->id() <> 1 && $t['remain'] <= 0) {

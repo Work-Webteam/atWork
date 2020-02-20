@@ -70,6 +70,23 @@ class DateFieldTest extends UnitTestCase {
         'Y-m-d H:i:s',
         'Y-m-d',
       ],
+      [
+        [
+          'type' => 'date',
+          'field_definition' => [
+            'data' => serialize([
+              'settings' => [
+                'granularity' => [
+                  0 => 'year',
+                  1 => 'month',
+                ],
+              ],
+            ]),
+          ],
+        ],
+        'Y-m-d\TH:i:s',
+        'Y-m-d',
+      ],
     ];
   }
 
@@ -84,6 +101,7 @@ class DateFieldTest extends UnitTestCase {
     $plugin = new DateField([], '', []);
 
     $this->expectException(MigrateException::class);
+
     $plugin->defineValueProcessPipeline($migration, 'field_date', ['type' => 'totoro']);
   }
 

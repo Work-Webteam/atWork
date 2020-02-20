@@ -91,7 +91,7 @@
   {% if page %}
     <div class="group-title-banner">
       <h2{{ title_attributes }}>
-        {{ label }}
+        {{ group_label }} : {{ label }}
       </h2>
     </div>
   {% endif %}
@@ -106,8 +106,8 @@
   {% endif %}
     {% if label %}
       {% if page %}
-        <h1 class="page-title">{{ label }}</h1>
-          {% else %}
+        <h1 class="page-title"> {{ label }}</h1>
+      {% else %}
         <h1 class="node-title"><a href="{{ url }}" class="node__title-link" rel="bookmark">{{ label }}</a></h1>
       {% endif %}
     {% endif %}

@@ -2,6 +2,7 @@
 
 namespace Drupal\photos\Plugin\migrate\destination;
 
+use Drupal\Core\Database\Database;
 use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Row;
 use Drupal\migrate\Plugin\migrate\destination\DestinationBase;
@@ -35,7 +36,7 @@ class PhotosCount extends DestinationBase implements ContainerFactoryPluginInter
    */
   public function import(Row $row, array $old_destination_id_values = []) {
 
-    db_merge('photos_count')
+    Database::getConnection('default')->merge('photos_count')
       ->key(['id' => $row->getDestinationProperty('id')])
       ->fields([
         'cid' => $row->getDestinationProperty('cid'),

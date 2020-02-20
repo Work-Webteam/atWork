@@ -12,19 +12,18 @@ dependencies:
     - field.field.node.article.field_custom_teaser
     - field.field.node.article.field_development_tags
     - field.field.node.article.field_editor_tags
-    - field.field.node.article.field_image
+    - field.field.node.article.field_header_image
     - field.field.node.article.field_interactive_content
     - field.field.node.article.field_send_notifications
     - field.field.node.article.field_tags
     - field.field.node.article.field_video
     - field.field.node.article.panelizer
-    - image.style.article_hero_image
     - node.type.article
   module:
     - comment
     - file
     - h5p
-    - image
+    - media
     - options
     - panelizer
     - text
@@ -333,6 +332,13 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_custom_teaser:
+    type: text_default
+    weight: 16
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_development_tags:
     type: entity_reference_label
     weight: 15
@@ -349,15 +355,15 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-  field_image:
-    type: image
+  field_header_image:
+    type: media_thumbnail
     weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: article_hero_image
+      image_style: ''
       image_link: ''
     third_party_settings: {  }
+    region: content
   field_interactive_content:
     type: h5p_default
     weight: 10
@@ -366,7 +372,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_send_notifications:
-    weight: 16
+    weight: 17
     label: above
     settings:
       format: default
@@ -420,7 +426,8 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_custom_teaser: true
+  field_image: true
   langcode: true
   panelizer: true
   rate_vote_widget: true
+  search_api_excerpt: true

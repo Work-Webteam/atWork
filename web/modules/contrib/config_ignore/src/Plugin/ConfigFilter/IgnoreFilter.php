@@ -52,7 +52,7 @@ class IgnoreFilter extends ConfigFilterBase implements ContainerFactoryPluginInt
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     // Get the list of ignored config.
-    $ignored = $container->get('config.factory')->get('config_ignore.settings')->get('ignored_config_entities');
+    $ignored = (array) $container->get('config.factory')->get('config_ignore.settings')->get('ignored_config_entities');
     // Allow hooks to alter the list.
     $container->get('module_handler')->invokeAll('config_ignore_settings_alter', [&$ignored]);
     // Set the list in the plugin configuration.
@@ -134,6 +134,9 @@ class IgnoreFilter extends ConfigFilterBase implements ContainerFactoryPluginInt
     }
 
     $active = $this->active->read($name);
+    if (!$active) {
+      return $data;
+    }
     foreach ($keys as $key) {
       $parts = explode('.', $key);
 
@@ -168,6 +171,9 @@ class IgnoreFilter extends ConfigFilterBase implements ContainerFactoryPluginInt
   protected function activeReadMultiple(array $names, array $data) {
     $filtered_data = [];
     foreach ($names as $name) {
+      if (!array_key_exists($name, $data)) {
+        $data[$name] = [];
+      }
       $filtered_data[$name] = $this->activeRead($name, $data[$name]);
     }
 

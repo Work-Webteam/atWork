@@ -1,0 +1,44 @@
+uuid: 13aec923-8c0a-4c23-a3c7-23b161def9d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.group_event.body
+    - node.type.group_event
+  module:
+    - text
+    - user
+id: node.group_event.teaser
+targetEntityType: node
+bundle: group_event
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_end: true
+  field_start: true
+  langcode: true
+  search_api_excerpt: true

@@ -3,16 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.group.field_forum_containers
     - field.storage.group.field_group_menu_link
+    - field.storage.group.field_themes
     - field.storage.group_content.group_roles
     - field.storage.user.field_company
     - field.storage.user.field_user_given_name
     - field.storage.user.field_user_surname
     - user.role.administrator
   module:
+    - atwork_group
     - entity_reference_revisions
     - group
     - node
+    - options
     - user
 id: group_menu
 label: 'Group Menu'
@@ -1463,14 +1467,285 @@ display:
           offset: 0
       defaults:
         pager: false
+        header: false
+        fields: false
+        arguments: false
+      header:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content: '<h3 class="block-title">Menu</h3>'
+          plugin_id: text_custom
+        area_text_custom_1:
+          id: area_text_custom_1
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: 'Add Content'
+          empty: true
+          tokenize: true
+          content: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\" role=\"tab\" id=\"heading-create-content\">\r\n  <h4 class=\"panel-title\">\r\n    <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-create-content\" aria-expanded=\"false\" aria-controls=\"collapse-create-content\">\r\n      <div>Create Group Content</div>\r\n    </a>\r\n  </h4>\r\n  </div>\r\n  <div id=\"collapse-create-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-create-content\">\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ raw_arguments.id }}/content/create/group_node%3Agroup_post\"> Create Post </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ raw_arguments.id }}/content/create/group_node%3Aphotos\"> Create Photo Gallery </a></div>\r\n      </div>\r\n            <div class=\"panel-body\">\r\n        <div><a href=\"/group/{{ raw_arguments.id }}/content/create/group_node%3Agroup_event\"> Create Event </a></div>\r\n      </div>\r\n  </div>\r\n  </div>\r\n</div>"
+          plugin_id: text_custom
+        area_text_custom_2:
+          id: area_text_custom_2
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: 'View Content'
+          empty: false
+          tokenize: true
+          content: "<div class=\"panel-group\" id=\"accordion\" role=\"tablist\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n  <div class=\"panel-heading\" role=\"tab\" id=\"heading-view-content\">\r\n  <h4 class=\"panel-title\">\r\n    <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse-view-content\" aria-expanded=\"false\" aria-controls=\"collapse-view-content\">\r\n      <div>View Group Content</div>\r\n    </a>\r\n  </h4>\r\n  </div>\r\n  <div id=\"collapse-view-content\" class=\"panel-collapse collapse\" role=\"tabpanel\" aria-labelledby=\"heading-view-content\">\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/posts\"> Posts </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/photo-galleries\"> Photo Galleries </a></div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div>{{ field_forum_containers }}</div>\r\n      </div>\r\n      <div class=\"panel-body\">\r\n        <div><a href=\"/groups/{{ raw_arguments.label }}/calendar\"> Calendar </a></div>\r\n      </div>\r\n  </div>\r\n  </div>\r\n</div>"
+          plugin_id: text_custom
+      fields:
+        field_group_menu_link:
+          id: field_group_menu_link
+          table: group__field_group_menu_link
+          field: field_group_menu_link
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: true
+            path: '{{ arguments.id }} '
+            absolute: false
+            external: false
+            replace_spaces: true
+            path_case: lower
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_revisions_entity_view
+          settings:
+            view_mode: default
+          group_column: ''
+          group_columns: {  }
+          group_rows: false
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        label:
+          id: label
+          table: groups_field_data
+          field: label
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: group
+          entity_field: label
+          plugin_id: field
+        field_forum_containers:
+          id: field_forum_containers
+          table: group__field_forum_containers
+          field: field_forum_containers
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: group_forum_link
+          settings: {  }
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      arguments:
+        label:
+          id: label
+          table: groups_field_data
+          field: label
+          relationship: none
+          group_type: group
+          admin_label: ''
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: raw
+          default_argument_options:
+            index: 1
+            use_alias: true
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          glossary: false
+          limit: 0
+          case: none
+          path_case: lower
+          transform_dash: true
+          break_phrase: false
+          entity_type: group
+          entity_field: label
+          plugin_id: string
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - route
         - url
       tags:
+        - 'config:field.storage.group.field_forum_containers'
         - 'config:field.storage.group.field_group_menu_link'
   block_2:
     display_plugin: block
@@ -2342,3 +2617,91 @@ display:
         - route
         - url
       tags: {  }
+  block_4:
+    display_plugin: block
+    id: block_4
+    display_title: 'Swatch Block'
+    position: 6
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      block_description: 'Grp Theme Swatch'
+      fields:
+        field_themes:
+          id: field_themes
+          table: group__field_themes
+          field: field_themes
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "Current theme: {{ field_themes }} \r\n<div id=\"{{ field_themes__value }}\">\r\n <div id=\"sw-main\"></div>\r\n <div id=\"sw-second\"></div>\r\n <div id=\"sw-link\"></div>\r\n</div>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      defaults:
+        fields: false
+        header: false
+        title: false
+      header: {  }
+      title: 'Group Theme'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - route
+        - url
+        - url.query_args
+      tags:
+        - 'config:field.storage.group.field_themes'

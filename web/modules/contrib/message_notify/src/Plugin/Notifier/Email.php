@@ -59,6 +59,7 @@ class Email extends MessageNotifierBase {
     $configuration += [
       'mail' => FALSE,
       'language override' => FALSE,
+      'from' => FALSE,
     ];
 
     parent::__construct($configuration, $plugin_id, $plugin_definition, $logger, $entity_type_manager, $render, $message);
@@ -92,10 +93,11 @@ class Email extends MessageNotifierBase {
     if (!$this->configuration['mail'] && !$account->id()) {
       // The message has no owner and no mail was passed. This will cause an
       // exception, we just make sure it's a clear one.
-      throw new MessageNotifyException('It is not possible to send a Message for an anonymous owner. You may set an owner using ::setOwner() or pass a "mail" to the $options array.');
+      throw new MessageNotifyException('It is not possible to send a Message to an anonymous owner. You may set an owner using ::setOwner() or pass a "mail" to the $options array.');
     }
 
     $mail = $this->configuration['mail'] ?: $account->getEmail();
+    $from = $this->configuration['from'] ?: NULL;
 
     if (!$this->configuration['language override']) {
       $language = $account->getPreferredLangcode();
@@ -106,7 +108,6 @@ class Email extends MessageNotifierBase {
 
     // The subject in an email can't be with HTML, so strip it.
     $output['mail_subject'] = trim(strip_tags($output['mail_subject']));
-    $output['mail_body'] = $output['mail_body'];
 
     // Pass the message entity along to hook_drupal_mail().
     $output['message_entity'] = $this->message;
@@ -116,7 +117,8 @@ class Email extends MessageNotifierBase {
       $this->message->getTemplate()->id(),
       $mail,
       $language,
-      $output
+      $output,
+      $from
     );
 
     return $result['result'];

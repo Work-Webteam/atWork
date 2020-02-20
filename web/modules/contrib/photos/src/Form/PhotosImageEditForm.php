@@ -5,7 +5,6 @@ namespace Drupal\photos\Form;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormBase;
@@ -39,13 +38,6 @@ class PhotosImageEditForm extends FormBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
-   */
-  protected $entityManager;
-
-  /**
-   * Entity type manager service.
-   *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
@@ -74,10 +66,9 @@ class PhotosImageEditForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function __construct(Connection $connection, DateFormatterInterface $date_formatter, EntityManagerInterface $entity_manager, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, RendererInterface $renderer) {
+  public function __construct(Connection $connection, DateFormatterInterface $date_formatter, EntityTypeManagerInterface $entity_type_manager, ModuleHandlerInterface $module_handler, RendererInterface $renderer) {
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
-    $this->entityManager = $entity_manager;
     $this->entityTypeManager = $entity_type_manager;
     $this->moduleHandler = $module_handler;
     $this->renderer = $renderer;
@@ -90,7 +81,6 @@ class PhotosImageEditForm extends FormBase {
     return new static(
       $container->get('database'),
       $container->get('date.formatter'),
-      $container->get('entity.manager'),
       $container->get('entity_type.manager'),
       $container->get('module_handler'),
       $container->get('renderer')
@@ -104,7 +94,7 @@ class PhotosImageEditForm extends FormBase {
     $user = $this->currentUser();
 
     // Get node object.
-    $node = $this->entityManager->getStorage('node')->load($image->pid);
+    $node = $this->entityTypeManager->getStorage('node')->load($image->pid);
     $nid = $node->id();
     $cover = isset($node->album['cover']) ? $node->album['cover'] : [];
     $image->info = [
@@ -139,7 +129,7 @@ class PhotosImageEditForm extends FormBase {
       '#title' => $del_label,
       '#type' => 'checkbox',
     ];
-    $image->user = $this->entityManager->getStorage('user')->load($image->uid);
+    $image->user = $this->entityTypeManager->getStorage('user')->load($image->uid);
     $image->href = 'photos/image/' . $image->fid;
     $item = [];
     $title = $image->title;
@@ -191,7 +181,7 @@ class PhotosImageEditForm extends FormBase {
     if ($this->moduleHandler->moduleExists('image_widget_crop') &&
       $crop_config = $this->config('image_widget_crop.settings')) {
       if ($crop_config->get('settings.crop_list')) {
-        $file = $this->entityManager->getStorage('file')->load($image->fid);
+        $file = $this->entityTypeManager->getStorage('file')->load($image->fid);
         // @todo move to form alter along with submit handler.
         $form['image_crop'] = [
           '#type' => 'image_crop',
@@ -332,7 +322,7 @@ class PhotosImageEditForm extends FormBase {
     // Image deleted or moved.
     if (isset($msg)) {
       $pid = $form_state->getValue('oldpid');
-      drupal_set_message($this->t('Image deleted.'));
+      \Drupal::messenger()->addMessage($this->t('Image deleted.'));
       // Redirect to album page.
       $nid = $form_state->getValue('nid');
       $url = Url::fromUri('base:photos/album/' . $nid);
@@ -341,7 +331,7 @@ class PhotosImageEditForm extends FormBase {
     // @todo redirect to image page?
     // @todo redirect to destination.
     if (empty($form_state_values['del'])) {
-      drupal_set_message($this->t('Changes saved.'));
+      \Drupal::messenger()->addMessage($this->t('Changes saved.'));
     }
 
   }

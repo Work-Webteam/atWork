@@ -1,12 +1,13 @@
 .photos_access_remove,
-#photos_access_password,
-#photos_access_viewuser {
+.photos-access-password,
+.photos-access-view-users {
   display: none;
 }
-div.photos_access_updateremove {
+.photos_access_updateremove {
   float: left;
   padding-right: 3px;
 }
-#edit-privacy-updateuser-wrapper {
+.photos-access-view-users,
+.photos-access-update-remove {
   clear: both;
 }

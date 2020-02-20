@@ -1,0 +1,19 @@
+uuid: 1416d5db-05bd-4daa-988a-9d4378b211ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+id: paragraph.field_topic_box
+field_name: field_topic_box
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

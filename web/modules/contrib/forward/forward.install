@@ -175,3 +175,50 @@ function forward_update_8001() {
     ->set('forward_max_recipients_error', "You can't send email to more than @number recipient(s) at a time.")
     ->save();
 }
+
+/**
+ * Add the default configuration value for 'forward_form_allow_plain_text'.
+ */
+function forward_update_8200() {
+  \Drupal::configFactory()->getEditable('forward.settings')
+    ->set('forward_form_allow_plain_text', FALSE)
+    ->save(TRUE);
+}
+
+/**
+ * Split 'forward_filter_format' setting into HTML vs. plain text filters.
+ */
+function forward_update_8201() {
+  $forward_settings =  \Drupal::configFactory()->getEditable('forward.settings');
+  $format = $forward_settings->get('forward_filter_format');
+  $forward_settings->set('forward_filter_format_html', $format);
+  $forward_settings->set('forward_filter_format_plain_text', '');
+  $forward_settings->save(TRUE);
+}
+
+/**
+ * Add the default configuration value for 'forward_email_footer'.
+ */
+function forward_update_8202() {
+  \Drupal::configFactory()->getEditable('forward.settings')
+    ->set('forward_email_footer', '')
+    ->save(TRUE);
+}
+
+/**
+ * Remove the configuration value for 'forward_max_recipients_error'.
+ */
+function forward_update_8203() {
+  \Drupal::configFactory()->getEditable('forward.settings')
+    ->clear('forward_max_recipients_error')
+    ->save(TRUE);
+}
+
+/**
+ * Purge the stale configuration value for 'forward_filter_format'.
+ */
+function forward_update_8204() {
+  \Drupal::configFactory()->getEditable('forward.settings')
+    ->clear('forward_filter_format')
+    ->save();
+}

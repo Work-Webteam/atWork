@@ -4,7 +4,7 @@ namespace Drupal\photos\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -23,9 +23,9 @@ class PhotosAlbumsRecentController extends ControllerBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The renderer.
@@ -39,14 +39,14 @@ class PhotosAlbumsRecentController extends ControllerBase {
    *
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */
-  public function __construct(Connection $connection, EntityManagerInterface $entity_manager, RendererInterface $renderer) {
+  public function __construct(Connection $connection, EntityTypeManagerInterface $entity_manager, RendererInterface $renderer) {
     $this->connection = $connection;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->renderer = $renderer;
   }
 
@@ -56,7 +56,7 @@ class PhotosAlbumsRecentController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('renderer')
     );
   }
@@ -80,7 +80,7 @@ class PhotosAlbumsRecentController extends ControllerBase {
 
     $output = '';
     foreach ($results as $result) {
-      $node = $this->entityManager->getStorage('node')->load($result->nid);
+      $node = $this->entityTypeManager->getStorage('node')->load($result->nid);
       $node_view = node_view($node, 'full');
       $output .= $this->renderer->render($node_view);
     }

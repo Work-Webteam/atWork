@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains atwork_program_pages.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function atwork_program_pages_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the atwork_program_pages module.
+    case 'help.page.atwork_program_pages':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('hooks for program pages.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

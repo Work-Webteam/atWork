@@ -57,12 +57,12 @@ forward.settings:
     forward_max_recipients:
       type: integer
       label: 'Maximum recipients'
-    forward_max_recipients_error:
-      type: label
-      label: 'Maximum recipients error message'
     forward_form_instructions:
       type: label
       label: 'Instructions'
+    forward_form_allow_plain_text:
+      type: boolean
+      label: 'Allow plain text'
     forward_form_display_page:
       type: boolean
       label: 'Display page'
@@ -96,12 +96,18 @@ forward.settings:
     forward_email_message:
       type: label
       label: 'Email message header'
+    forward_email_footer:
+      type: label
+      label: 'Email message footer'
     forward_bypass_access_control:
       type: integer
       label: 'Bypass access control'
-    forward_filter_format:
+    forward_filter_format_html:
       type: string
-      label: 'Filter format'
+      label: 'HTML filter format'
+    forward_filter_format_plain_text:
+      type: string
+      label: 'Plain text filter format'
     forward_flood_control_limit:
       type: integer
       label: 'Flood control limit'

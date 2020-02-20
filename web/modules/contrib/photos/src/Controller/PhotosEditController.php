@@ -8,7 +8,6 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Path\CurrentPathStack;
@@ -42,13 +41,6 @@ class PhotosEditController extends ControllerBase {
   protected $currentPath;
 
   /**
-   * The entity manager.
-   *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
-   */
-  protected $entityManager;
-
-  /**
    * The FormBuilder object.
    *
    * @var \Drupal\Core\Form\FormBuilderInterface
@@ -72,7 +64,7 @@ class PhotosEditController extends ControllerBase {
   /**
    * The current request stack.
    *
-   * @var Symfony\Component\HttpFoundation\RequestStack
+   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   private $requestStack;
 
@@ -90,23 +82,20 @@ class PhotosEditController extends ControllerBase {
    *   The database connection.
    * @param \Drupal\Core\Path\CurrentPathStack $current_path
    *   The current path.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
-   *   The entity manager service.
    * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
    *   The form builder service.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
-   * @param Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The current request stack.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(Connection $connection, CurrentPathStack $current_path, EntityManagerInterface $entity_manager, FormBuilderInterface $form_builder, ModuleHandlerInterface $module_handler, RendererInterface $renderer, RequestStack $request_stack, RouteMatchInterface $route_match) {
+  public function __construct(Connection $connection, CurrentPathStack $current_path, FormBuilderInterface $form_builder, ModuleHandlerInterface $module_handler, RendererInterface $renderer, RequestStack $request_stack, RouteMatchInterface $route_match) {
     $this->connection = $connection;
     $this->currentPath = $current_path;
-    $this->entityManager = $entity_manager;
     $this->formBuilder = $form_builder;
     $this->moduleHandler = $module_handler;
     $this->renderer = $renderer;
@@ -121,7 +110,6 @@ class PhotosEditController extends ControllerBase {
     return new static(
       $container->get('database'),
       $container->get('path.current'),
-      $container->get('entity.manager'),
       $container->get('form_builder'),
       $container->get('module_handler'),
       $container->get('renderer'),

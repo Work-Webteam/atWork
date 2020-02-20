@@ -4,6 +4,7 @@ namespace Drupal\photos;
 
 use Drupal\comment\CommentInterface;
 use Drupal\comment\CommentManagerInterface;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\image\Entity\ImageStyle;
@@ -92,7 +93,7 @@ class PhotosImage {
       $image->href = $variables['href'];
     }
     // Check scheme and prep image.
-    $scheme = file_uri_scheme($image->uri);
+    $scheme = \Drupal::service('file_system')->uriScheme($image->uri);
     $uri = $image->uri;
     // If private create temporary derivative.
     if ($scheme == 'private') {
@@ -191,7 +192,7 @@ class PhotosImage {
           ->execute();
         $cids = $result->fetchAssoc();
         if ($cids) {
-          $comments = \Drupal::entityManager()->getStorage('comment')->loadMultiple($cids);
+          $comments = \Drupal::entityTypeManager()->getStorage('comment')->loadMultiple($cids);
           foreach ($comments as $comment) {
             // Delete comment.
             $comment->delete();
@@ -210,7 +211,7 @@ class PhotosImage {
           $file_uris = file_scan_directory('private://photos/tmp_images', '~\b' . $basename . '\b~');
           foreach ($file_uris as $uri => $data) {
             // Delete.
-            file_unmanaged_delete($uri);
+            \Drupal::service('file_system')->delete($uri);
           }
         }
       }
@@ -250,7 +251,9 @@ class PhotosImage {
       // Delete file usage and delete files.
       $file_usage = \Drupal::service('file.usage');
       $file_usage->delete($file, 'photos', 'node', $file->pid);
-      file_delete($file->id());
+      $file->delete();
+      // Clear image cache.
+      Cache::invalidateTags(['photos:image:' . $fid]);
       return TRUE;
     }
     else {
@@ -383,9 +386,8 @@ class PhotosImage {
         $cids = $query->execute()->fetchCol();
 
         if (!empty($cids)) {
-          $comments = \Drupal::entityManager()->getStorage('comment')->loadMultiple($cids);
-          // comment_prepare_thread($comments);
-          $build = \Drupal::entityManager()->getViewBuilder('comment')->viewMultiple($comments);
+          $comments = \Drupal::entityTypeManager()->getStorage('comment')->loadMultiple($cids);
+          $build = \Drupal::entityTypeManager()->getViewBuilder('comment')->viewMultiple($comments);
           $build['pager']['#type'] = 'pager';
           $output['comments'] = $build;
         }
@@ -488,20 +490,24 @@ class PhotosImage {
     $results = $query->execute();
 
     $images = [];
+    $cache_tags = [];
     foreach ($results as $result) {
       $photos_image = new PhotosImage($result->fid);
       $image = $photos_image->load();
       $image->href = Url::fromUri('base:' . $url . '/' . $image->fid);
       $images[] = $image;
+      $cache_tags[] = 'photos:image:' . $image->fid;
     }
     if (isset($images[0]->fid)) {
       $render_array = [
         '#theme' => 'photos_block',
         '#images' => $images,
         '#block_type' => 'image',
+        '#cache' => [
+          'tags' => $cache_tags,
+        ],
       ];
-      // @todo use renderer.
-      $content = drupal_render($render_array);
+      $content = \Drupal::service('renderer')->render($render_array);
 
       if ($url && count($images) >= $limit) {
         $more_link = [
@@ -509,8 +515,7 @@ class PhotosImage {
           '#url' => Url::fromUri('base:' . $url),
           '#title' => t('View more'),
         ];
-        // @todo use renderer.
-        $content .= drupal_render($more_link);
+        $content .= \Drupal::service('renderer')->render($more_link);
       }
       if ($type == 'user') {
         return [

@@ -4,11 +4,10 @@ namespace Drupal\photos\Controller;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Render\RendererInterface;
@@ -50,9 +49,9 @@ class PhotosUserImagesController extends ControllerBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The renderer.
@@ -64,7 +63,7 @@ class PhotosUserImagesController extends ControllerBase {
   /**
    * The current request stack.
    *
-   * @var Symfony\Component\HttpFoundation\RequestStack
+   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   private $requestStack;
 
@@ -78,29 +77,26 @@ class PhotosUserImagesController extends ControllerBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
    * @param \Drupal\Core\Path\CurrentPathStack $current_path
    *   The current path.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
-   * @param Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The current request stack.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, CurrentPathStack $current_path, DateFormatterInterface $date_formatter, EntityManagerInterface $entity_manager, RendererInterface $renderer, RequestStack $request_stack, RouteMatchInterface $route_match) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, CurrentPathStack $current_path, DateFormatterInterface $date_formatter, EntityTypeManagerInterface $entity_manager, RendererInterface $renderer, RequestStack $request_stack, RouteMatchInterface $route_match) {
     $this->connection = $connection;
     $this->currentPath = $current_path;
     $this->dateFormatter = $date_formatter;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->renderer = $renderer;
     $this->requestStack = $request_stack;
     $this->routeMatch = $route_match;
@@ -111,11 +107,10 @@ class PhotosUserImagesController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
       $container->get('path.current'),
       $container->get('date.formatter'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('request_stack'),
       $container->get('current_route_match')
@@ -131,7 +126,7 @@ class PhotosUserImagesController extends ControllerBase {
   public function access(AccountInterface $account) {
     // Check if user can view account photos.
     $uid = $this->routeMatch->getParameter('user');
-    $account = $this->entityManager->getStorage('user')->load($uid);
+    $account = $this->entityTypeManager->getStorage('user')->load($uid);
     if ($this->currentUser()->hasPermission('view photo') && (!$account || _photos_access('viewUser', $account))) {
       return AccessResult::allowed();
     }
@@ -148,8 +143,8 @@ class PhotosUserImagesController extends ControllerBase {
     $user = $this->currentUser();
     $uid = $this->routeMatch->getParameter('user');
     if ($uid <> $user->id()) {
-      $account = $this->entityManager->getStorage('user')->load($uid);
-      return $this->t("@name's images", ['@name' => $account->getUsername()]);
+      $account = $this->entityTypeManager->getStorage('user')->load($uid);
+      return $this->t("@name's images", ['@name' => $account->getDisplayName()]);
     }
     else {
       return $this->t('My Images');
@@ -171,7 +166,7 @@ class PhotosUserImagesController extends ControllerBase {
     $uid = $this->routeMatch->getParameter('user');
     $account = FALSE;
     if ($uid && is_numeric($uid)) {
-      $account = $this->entityManager->getStorage('user')->load($uid);
+      $account = $this->entityTypeManager->getStorage('user')->load($uid);
     }
     if (!$account) {
       throw new NotFoundHttpException();
@@ -233,12 +228,12 @@ class PhotosUserImagesController extends ControllerBase {
         $image->links['count'] = $this->formatPlural($image->count, '@cou visit', '@cou visits', ['@cou' => $image->count]);
       }
       if ($account->id() || !empty($image->uid) && $image->uid <> $account->id()) {
-        $account = $this->entityManager->getStorage('user')->load($image->uid);
+        $account = $this->entityTypeManager->getStorage('user')->load($image->uid);
       }
       // Get username.
       $name = '';
       if (!empty($image->uid)) {
-        $account = $this->entityManager->getStorage('user')->load($image->uid);
+        $account = $this->entityTypeManager->getStorage('user')->load($image->uid);
         $name_render_array = [
           '#theme' => 'username',
           '#account' => $account,
@@ -322,7 +317,7 @@ class PhotosUserImagesController extends ControllerBase {
     }
     else {
       if ($account <> FALSE) {
-        $content = $this->t('@name has not uploaded any images yet.', ['@name' => $account->name]);
+        $content = $this->t('@name has not uploaded any images yet.', ['@name' => $account->getDisplayName()]);
       }
       else {
         $content = $this->t('No images have been uploaded yet.');

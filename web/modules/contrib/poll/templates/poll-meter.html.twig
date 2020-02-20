@@ -23,8 +23,9 @@
  * @ingroup themeable
  */
 #}
-<dt class="choice-title">{{ choice }}</dt>
-<dd class="choice-result">
+{% set is_current_selection_class = is_current_selection ? 'is-current-selection' : 'not-current-selection' %}
+<dt class="choice-title {{ is_current_selection_class }}">{{ choice }}</dt>
+<dd class="choice-result {{ is_current_selection_class }}">
   <div{{ attributes }}>
     <div style="width: {{ percentage }}%" class="foreground"></div>
   </div>

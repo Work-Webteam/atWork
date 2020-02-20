@@ -3,14 +3,15 @@ module:
   admin_toolbar_tools: 0
   animated_scroll_to_top: 0
   atwork_article: 0
+  atwork_calendar: 0
   atwork_comments: 0
   atwork_group: 0
   atwork_h5p: 0
   atwork_idir_update: 0
-  atwork_menu: 0
+  atwork_mail_send_update: 0
   atwork_messages: 0
   atwork_poll: 0
-  atwork_profiles: 0
+  atwork_program_pages: 0
   background_image: 0
   background_image_formatter: 0
   big_pipe: 0
@@ -19,6 +20,8 @@ module:
   bootstrap_layouts: 0
   breakpoint: 0
   ckeditor: 0
+  ckeditor_bootstrap_grid: 0
+  ckeditor_widgets: 0
   color: 0
   colorbox: 0
   colorbox_inline: 0
@@ -33,14 +36,18 @@ module:
   ctools: 0
   ctools_block: 0
   datetime: 0
+  datetime_range: 0
   dblog: 0
   devel: 0
+  devel_entity_updates: 0
   devel_generate: 0
   draggable_dashboard: 0
   dynamic_page_cache: 0
   editor: 0
+  embed: 0
+  entity: 0
+  entity_embed: 0
   entity_reference_revisions: 0
-  externalauth: 0
   extrafield_views_integration: 0
   field: 0
   field_ui: 0
@@ -49,6 +56,8 @@ module:
   flag: 0
   focal_point: 0
   forward: 0
+  fullcalendar_view: 0
+  gforum: 0
   gnode: 0
   group: 0
   h5p: 0
@@ -56,8 +65,10 @@ module:
   hal: 0
   help: 0
   history: 0
+  ics_field: 0
   image: 0
   image_widget_crop: 0
+  inline_entity_form: 0
   inline_form_errors: 0
   insert: 0
   kint: 0
@@ -68,11 +79,14 @@ module:
   likeit: 0
   link: 0
   linkit: 0
+  maillog: 0
   mailsystem: 0
+  maxlength: 0
   media: 0
   media_library: 0
   menu_block: 0
   menu_export: 0
+  menu_item_extras: 0
   menu_link_attributes: 0
   menu_ui: 0
   message: 0
@@ -107,15 +121,11 @@ module:
   rest: 0
   rules: 0
   scheduler: 0
-  search_api: 0
-  search_api_sorts: 0
-  search_api_stats: 0
-  search_api_stats_block: 0
   serialization: 0
   settings_tray: 0
   shortcut: 0
+  simplenews: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -146,6 +156,7 @@ module:
   forum: 1
   menu_link_content: 1
   pathauto: 1
+  externalauth: 10
   views: 10
   paragraphs: 11
   standard: 1000

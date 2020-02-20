@@ -47,28 +47,20 @@ content:
     type: file_default
     region: content
   field_image:
+    type: image
     weight: 0
+    region: content
     label: hidden
     settings:
       image_style: article_top_image
       image_link: ''
     third_party_settings: {  }
-    type: image
-    region: content
   field_interactive_content:
     weight: 3
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: h5p_default
-    region: content
-  field_parent_program:
-    weight: 6
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
     region: content
   field_tags:
     weight: 5
@@ -90,19 +82,21 @@ content:
     type: video_embed_field_video
     region: content
   flag_email_node:
-    weight: 8
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_subscribe_node:
     weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   links:
-    weight: 9
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_parent_program: true
   langcode: true
+  search_api_excerpt: true

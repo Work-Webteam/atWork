@@ -30,7 +30,7 @@ settings:
   title_field: true
   title_field_required: true
   default_image:
-    uuid: 276dedaf-cf9d-45cf-84a0-3a60c603b2db
+    uuid: acf8802a-d71b-4974-a92f-0533316b12f9
     alt: 'Profile Image'
     title: 'Profile Image'
     width: 1200

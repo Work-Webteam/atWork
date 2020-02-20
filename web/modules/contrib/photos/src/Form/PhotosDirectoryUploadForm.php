@@ -2,9 +2,8 @@
 
 namespace Drupal\photos\Form;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -28,9 +27,9 @@ class PhotosDirectoryUploadForm extends FormBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The module handler.
@@ -42,19 +41,16 @@ class PhotosDirectoryUploadForm extends FormBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
    *   The module handler.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, EntityManagerInterface $entity_manager, ModuleHandlerInterface $module_handler) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, EntityTypeManagerInterface $entity_manager, ModuleHandlerInterface $module_handler) {
     $this->connection = $connection;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->moduleHandler = $module_handler;
   }
 
@@ -63,9 +59,8 @@ class PhotosDirectoryUploadForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('module_handler')
     );
   }
@@ -189,7 +184,7 @@ class PhotosDirectoryUploadForm extends FormBase {
       $scheme = 'default';
       $album_viewid = 0;
       if ($this->moduleHandler->moduleExists('photos_access')) {
-        $node = $this->entityManager->getStorage('node')->load($nid);
+        $node = $this->entityTypeManager->getStorage('node')->load($nid);
         if (isset($node->privacy) && isset($node->privacy['viewid'])) {
           $album_viewid = $node->privacy['viewid'];
           if ($album_viewid > 0) {
@@ -199,13 +194,15 @@ class PhotosDirectoryUploadForm extends FormBase {
             }
             else {
               // Set warning message.
-              drupal_set_message($this->t('Warning: image files can still be accessed by visiting the direct URL.
-                For better security, ask your website admin to setup a private file path.'), 'warning');
+              \Drupal::messenger()->addWarning($this->t('Warning: image
+                files can still be accessed by visiting the direct URL. For
+                better security, ask your website admin to setup a private
+                file path.'));
             }
           }
         }
       }
-      $account = $this->entityManager->getStorage('user')->load($album_uid);
+      $account = $this->entityTypeManager->getStorage('user')->load($album_uid);
       // Check if zip is included.
       $allow_zip = $config->get('photos_upzip') ? '|zip|ZIP' : '';
       $file_extensions = 'png|PNG|jpg|JPG|jpeg|JPEG|gif|GIF' . $allow_zip;

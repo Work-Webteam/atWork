@@ -44,6 +44,11 @@ class PhotosRecentImages extends BlockBase {
     if ($content = PhotosImage::blockView('latest', $count, 'photos/image')) {
       return [
         '#markup' => $content,
+        '#cache' => [
+          'tags' => [
+            'photos:image:recent',
+          ],
+        ],
       ];
     }
   }

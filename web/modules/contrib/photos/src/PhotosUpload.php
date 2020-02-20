@@ -3,8 +3,8 @@
 namespace Drupal\photos;
 
 use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Cache\Cache;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 
 /**
@@ -20,12 +20,12 @@ class PhotosUpload {
     if (\Drupal::config('photos.settings')->get('photos_rname')) {
       if ($name) {
         $name_parts = explode('.', $name);
-        return round(rand(15770, 967049700)) . REQUEST_TIME . '.' . ($ext ? $ext : end($name_parts));
+        return round(rand(15770, 967049700)) . \Drupal::time()->getRequestTime() . '.' . ($ext ? $ext : end($name_parts));
       }
       if (!empty($_FILES['files'])) {
         foreach ($_FILES['files']['name'] as $field => $filename) {
           $filename_parts = explode('.', $filename);
-          $_FILES['files']['name'][$field] = round(rand(15770, 967049700)) . REQUEST_TIME . '.' . ($ext ? $ext : end($filename_parts));
+          $_FILES['files']['name'][$field] = round(rand(15770, 967049700)) . \Drupal::time()->getRequestTime() . '.' . ($ext ? $ext : end($filename_parts));
         }
       }
     }
@@ -51,7 +51,7 @@ class PhotosUpload {
       else {
         $message .= ' ' . array_pop($errors);
       }
-      drupal_set_message($message);
+      \Drupal::messenger()->addMessage($message);
       return 0;
     }
     $file->save();
@@ -126,11 +126,11 @@ class PhotosUpload {
     }
     $path = [];
     if (\Drupal::config('photos.settings')->get('photos_path')) {
-      $mm = \Drupal::service('date.formatter')->format(REQUEST_TIME, 'custom', "Y|m|d");
+      $mm = \Drupal::service('date.formatter')->format(\Drupal::time()->getRequestTime(), 'custom', "Y|m|d");
       $m = explode('|', $mm);
       $a = [
         '%uid' => $account->id(),
-        '%username' => $account->getUsername(),
+        '%username' => $account->getAccountName(),
         '%Y' => $m[0],
         '%m' => $m[1],
         '%d' => $m[2],
@@ -155,10 +155,11 @@ class PhotosUpload {
         break;
     }
     $dirs = [];
+    $t = FALSE;
     foreach ($path as $folder) {
       $dirs[] = $folder;
       $t = $scheme . '://' . implode('/', $dirs);
-      if (!file_prepare_directory($t, FILE_CREATE_DIRECTORY)) {
+      if (!\Drupal::service('file_system')->prepareDirectory($t, FileSystemInterface::CREATE_DIRECTORY)) {
         return FALSE;
       }
     }
@@ -173,7 +174,9 @@ class PhotosUpload {
     $file_count = 0;
     if (version_compare(PHP_VERSION, '5') >= 0) {
       if (!is_file($source)) {
-        drupal_set_message(t('Compressed file does not exist, please check the path: @src', ['@src' => $source]));
+        \Drupal::messenger()->addMessage(t('Compressed file does not exist, please check the path: @src', [
+          '@src' => $source,
+        ]));
         return 0;
       }
       $type = ['jpg', 'gif', 'png', 'jpeg', 'JPG', 'GIF', 'PNG', 'JPEG'];
@@ -188,7 +191,7 @@ class PhotosUpload {
           $filename_parts = explode('.', $image['name']);
           $ext = end($filename_parts);
           if (in_array($ext, $type)) {
-            $path = file_create_filename(PhotosUpload::rename($image['name'], $ext), PhotosUpload::path($scheme, '', $account));
+            $path = \Drupal::service('file_system')->createFilename(PhotosUpload::rename($image['name'], $ext), PhotosUpload::path($scheme, '', $account));
             if ($temp_file = file_save_data($zip->getFromIndex($x), $path)) {
               // Update file values.
               $temp_file->pid = $value->pid;
@@ -209,10 +212,12 @@ class PhotosUpload {
         }
         $zip->close();
         // Delete zip file.
-        file_unmanaged_delete($source);
+        \Drupal::service('file_system')->delete($source);
       }
       else {
-        drupal_set_message(t('Compressed file does not exist, please try again: @src', ['@src' => $source]), 'warning');
+        \Drupal::messenger()->addWarning(t('Compressed file does not exist, please try again: @src', [
+          '@src' => $source,
+        ]));
       }
     }
 
@@ -238,19 +243,20 @@ class PhotosUpload {
 
     $count = 0;
     foreach ($process_files as $dir_file) {
-      $ext = Unicode::substr($dir_file->uri, -3);
+      $ext = mb_substr($dir_file->uri, -3);
       if ($ext <> 'zip' && $ext <> 'ZIP') {
         // Prepare directory.
         $photos_path = PhotosUpload::path($scheme, '', $account);
         $photos_name = PhotosUpload::rename($dir_file->filename);
-        $file_uri = file_destination($photos_path . '/' . $photos_name, FILE_EXISTS_RENAME);
+        $file_uri = \Drupal::service('file_system')
+          ->getDestinationFilename($photos_path . '/' . $photos_name, FileSystemInterface::EXISTS_RENAME);
         // Display current file name.
         $context['message'] = t('Processing:') . ' ' . Html::escape($photos_name);
         if ($copy) {
-          $file_processed = file_unmanaged_copy($dir_file->uri, $file_uri);
+          $file_processed = \Drupal::service('file_system')->copy($dir_file->uri, $file_uri);
         }
         else {
-          $file_processed = file_unmanaged_move($dir_file->uri, $file_uri);
+          $file_processed = \Drupal::service('file_system')->move($dir_file->uri, $file_uri);
         }
         if ($file_processed) {
           // Save file to album. Include title and description.
@@ -278,20 +284,21 @@ class PhotosUpload {
       else {
         // Process zip file.
         if (!\Drupal::config('photos.settings')->get('photos_upzip')) {
-          drupal_set_message(t('Please update settings to allow zip uploads.'), 'error');
+          \Drupal::messenger()->addError(t('Please update settings to allow zip uploads.'));
         }
         else {
           $directory = PhotosUpload::path();
-          file_prepare_directory($directory);
+          \Drupal::service('file_system')->prepareDirectory($directory);
           // Display current file name.
           $context['message'] = t('Processing:') . ' ' . Html::escape($dir_file->uri);
-          $zip = file_destination($directory . '/' . trim(basename($dir_file->uri)), FILE_EXISTS_RENAME);
+          $zip = \Drupal::service('file_system')
+            ->getDestinationFilename($directory . '/' . trim(basename($dir_file->uri)), FileSystemInterface::EXISTS_RENAME);
           // @todo large zip files could fail here.
           if ($copy) {
-            $file_processed = file_unmanaged_copy($dir_file->uri, $zip);
+            $file_processed = \Drupal::service('file_system')->copy($dir_file->uri, $zip);
           }
           else {
-            $file_processed = file_unmanaged_move($dir_file->uri, $zip);
+            $file_processed = \Drupal::service('file_system')->move($dir_file->uri, $zip);
           }
           if ($file_processed) {
             $value = new \stdClass();
@@ -339,7 +346,7 @@ class PhotosUpload {
     else {
       $message = t('Finished with an error.');
     }
-    drupal_set_message($message);
+    \Drupal::messenger()->addMessage($message);
   }
 
 }

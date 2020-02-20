@@ -234,7 +234,8 @@ class Poll extends ContentEntityBase implements PollInterface {
       ->setDisplayOptions('form', array(
         'type' => 'string_textfield',
         'weight' => -100,
-      ));
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['langcode'] = BaseFieldDefinition::create('language')
       ->setLabel(t('Language code'))
@@ -254,7 +255,8 @@ class Poll extends ContentEntityBase implements PollInterface {
         'type' => 'poll_choice_default',
         'settings' => [],
         'weight' => -20,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE);
 
     // Poll attributes
     $duration = array(
@@ -291,7 +293,8 @@ class Poll extends ContentEntityBase implements PollInterface {
       ->setDisplayOptions('form', array(
         'type' => 'options_select',
         'weight' => 0,
-      ));
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['anonymous_vote_allow'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Allow anonymous votes'))
@@ -303,7 +306,8 @@ class Poll extends ContentEntityBase implements PollInterface {
           'display_label' => TRUE,
         ),
         'weight' => 1,
-      ));
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['cancel_vote_allow'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Allow cancel votes'))
@@ -315,7 +319,8 @@ class Poll extends ContentEntityBase implements PollInterface {
           'display_label' => TRUE,
         ),
         'weight' => 2,
-      ));
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['result_vote_allow'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Allow view results'))
@@ -327,7 +332,8 @@ class Poll extends ContentEntityBase implements PollInterface {
           'display_label' => TRUE,
         ),
         'weight' => 3,
-      ));
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Active'))
@@ -339,7 +345,8 @@ class Poll extends ContentEntityBase implements PollInterface {
           'display_label' => TRUE,
         ),
         'weight' => -5,
-      ));
+      ))
+      ->setDisplayConfigurable('form', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))

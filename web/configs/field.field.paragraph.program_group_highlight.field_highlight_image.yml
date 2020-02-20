@@ -1,0 +1,38 @@
+uuid: ad7353c3-5290-455c-a7fc-332543844f8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_highlight_image
+    - paragraphs.paragraphs_type.program_group_highlight
+  module:
+    - image
+id: paragraph.program_group_highlight.field_highlight_image
+field_name: field_highlight_image
+entity_type: paragraph
+bundle: program_group_highlight
+label: 'Highlight Image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: 600x400
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: true
+  title_field_required: true
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

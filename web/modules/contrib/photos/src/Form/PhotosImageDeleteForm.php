@@ -128,7 +128,7 @@ class PhotosImageDeleteForm extends ConfirmFormBase {
     $v = $image->delete(NULL, TRUE);
 
     if ($v) {
-      drupal_set_message(t('Image deleted.'));
+      \Drupal::messenger()->addMessage(t('Image deleted.'));
       // Invalidate cache tags.
       Cache::invalidateTags([
         'node:' . $pid, 'photos:album:' . $pid,
@@ -139,7 +139,7 @@ class PhotosImageDeleteForm extends ConfirmFormBase {
       $form_state->setRedirectUrl($url);
     }
     else {
-      drupal_set_message(t('Delete failed.'));
+      \Drupal::messenger()->addError(t('Delete failed.'));
       // Redirect to cancel URL.
       $form_state->setRedirectUrl($this->getCancelUrl());
     }

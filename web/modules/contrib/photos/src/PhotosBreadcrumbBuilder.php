@@ -5,7 +5,7 @@ namespace Drupal\photos;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RequestContext;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -34,9 +34,9 @@ class PhotosBreadcrumbBuilder implements BreadcrumbBuilderInterface {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * Constructs the PathBasedBreadcrumbBuilder.
@@ -45,13 +45,13 @@ class PhotosBreadcrumbBuilder implements BreadcrumbBuilderInterface {
    *   The database connection.
    * @param \Drupal\Core\Routing\RequestContext $context
    *   The router request context.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    */
-  public function __construct(Connection $connection, RequestContext $context, EntityManagerInterface $entity_manager) {
+  public function __construct(Connection $connection, RequestContext $context, EntityTypeManagerInterface $entity_manager) {
     $this->connection = $connection;
     $this->context = $context;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
   }
 
   /**
@@ -81,12 +81,12 @@ class PhotosBreadcrumbBuilder implements BreadcrumbBuilderInterface {
       $breadcrumb->addLink(Link::createFromRoute($this->t('Images'), 'photos.image.recent'));
       // Images by User.
       $uid = $this->connection->query("SELECT uid FROM {file_managed} WHERE fid = :fid", [':fid' => $fid])->fetchField();
-      $account = $this->entityManager->getStorage('user')->load($uid);
-      $username = $account->getUsername();
+      $account = $this->entityTypeManager->getStorage('user')->load($uid);
+      $username = $account->getDisplayName();
       $breadcrumb->addLink(Link::createFromRoute($this->t('Images by :name', [':name' => $username]), 'photos.user.images', ['user' => $uid]));
       // Album.
       $pid = $this->connection->query("SELECT pid FROM {photos_image} WHERE fid = :fid", [':fid' => $fid])->fetchField();
-      $node = $this->entityManager->getStorage('node')->load($pid);
+      $node = $this->entityTypeManager->getStorage('node')->load($pid);
       $breadcrumb->addLink(Link::createFromRoute($node->getTitle(), 'photos.album', ['node' => $pid]));
     }
 

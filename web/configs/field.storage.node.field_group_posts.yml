@@ -1,0 +1,19 @@
+uuid: cd7495d6-8ae6-455c-a6af-30e78b427aee
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_group_posts
+field_name: field_group_posts
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 5
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,26 @@
+uuid: d329dd9e-6838-4f76-bd0d-6126186e7cdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_range
+    - node.type.group_event
+  module:
+    - datetime_range
+id: node.group_event.field_range
+field_name: field_range
+entity_type: node
+bundle: group_event
+label: Range
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+    default_end_date_type: relative
+    default_end_date: '+1 days'
+default_value_callback: ''
+settings: {  }
+field_type: daterange

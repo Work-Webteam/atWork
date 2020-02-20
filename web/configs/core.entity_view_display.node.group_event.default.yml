@@ -1,0 +1,89 @@
+uuid: f656ba98-7d1e-4930-946c-5f140cb79061
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.group_event.body
+    - field.field.node.group_event.field_download_event
+    - field.field.node.group_event.field_end
+    - field.field.node.group_event.field_range
+    - field.field.node.group_event.field_start
+    - node.type.group_event
+  module:
+    - datetime
+    - datetime_range
+    - ics_field
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+id: node.group_event.default
+targetEntityType: node
+bundle: group_event
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_download_event:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: calendar_download_default_formatter
+    region: content
+  field_end:
+    weight: 1
+    label: inline
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_range:
+    weight: 6
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_start:
+    weight: 0
+    label: inline
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  flag_email_node:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_subscribe_node:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  search_api_excerpt: true

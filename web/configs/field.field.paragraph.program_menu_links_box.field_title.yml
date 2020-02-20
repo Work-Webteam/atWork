@@ -1,0 +1,21 @@
+uuid: a8329941-e7be-4462-af4d-ff6f2b58108d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.program_menu_links_box
+id: paragraph.program_menu_links_box.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: program_menu_links_box
+label: 'Explore Within'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'Explore Within'
+default_value_callback: ''
+settings: {  }
+field_type: string

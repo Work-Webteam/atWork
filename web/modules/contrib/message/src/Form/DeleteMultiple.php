@@ -108,6 +108,7 @@ class DeleteMultiple extends ConfirmFormBase {
     $form = parent::buildForm($form, $form_state);
 
     $form['actions']['cancel']['#href'] = $this->getCancelRoute();
+    $form['actions']['submit']['#submit'] = ['::submitForm'];
     return $form;
   }
 
@@ -120,7 +121,7 @@ class DeleteMultiple extends ConfirmFormBase {
       $this->tempStoreFactory->get('message_multiple_delete_confirm')->delete(\Drupal::currentUser()->id());
       $count = count($this->messages);
       $this->logger('message')->notice('Deleted @count messages.', ['@count' => $count]);
-      drupal_set_message(\Drupal::translation()->formatPlural($count, 'Deleted 1 message.', 'Deleted @count messages.'));
+      $this->messenger()->addMessage(\Drupal::translation()->formatPlural($count, 'Deleted 1 message.', 'Deleted @count messages.'));
     }
     $form_state->setRedirect('message.messages');
   }

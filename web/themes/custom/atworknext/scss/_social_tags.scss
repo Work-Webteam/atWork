@@ -2,10 +2,11 @@
 
 // Articles tags used by Comms Team
 article .field--name-field-tags,
-body.path-poll .field--name-field-tags {
+body.path-poll .field--name-field-tags,
+body.path-group .atwork-group-tags {
     margin:10px 0;
-    text-transform: uppercase;
-    @include size1216;
+    text-transform: capitalize;
+    @include size1416;
     .field--label {
         display: inline;
         float: left;
@@ -19,19 +20,28 @@ body.path-poll .field--name-field-tags {
         padding-right: 5px;
         border-right: solid 1px $link-blue;
     }
+    .field--name-field-group-tags {
+      > div:nth-child(1) {
+        display:none;
+      }
+      .field--item:first-child:before {
+        content:"Tags:";
+        font-weight:bold;
+        padding-right:5px;
+      }
+    }
 }
 // Social Bar icons
 // Printer icon contained in HTML Print button
-
-
 // Subscribe - Forward/Email - Flag - Reads - Comments - Likes
 // Appear at the bottom of each article page
 article .social-bar,
 .form-group #comment-links {
   display: inline-block;
   width:100%;
-  padding-left:40px;
-  padding-right:40px;
+  //padding-left:40px;
+  //padding-right:40px;
+  margin-top:40px;
   position: relative;
   @include size1416;
   @include button-text-reset;
@@ -97,9 +107,10 @@ article .social-bar,
           margin-right: 10px;
         }
       }
-    }
+    } 
   }
 }
+
 body.path-group { // Adds subscription icon to the Group Subscription link.
   .flag-subscribe-group:before {
     display: block;
@@ -110,7 +121,7 @@ body.path-group { // Adds subscription icon to the Group Subscription link.
     margin-top: 2px;
   }
 }
-.form-group #comment-links {
+.form-group #comment-links, .forum.full .list-inline {
   padding-left: 75px;
   padding-top:12px;
   margin-right: 0px;
@@ -124,7 +135,7 @@ body.path-group { // Adds subscription icon to the Group Subscription link.
   }
 }
 article .field--name-field-tags { // Adjust the spacing for the tags bar to align with the social-bar
-  margin:20px 25px;
+  //margin:20px 25px;
 }
 // Share link modal pop-up
 #dialog-share,

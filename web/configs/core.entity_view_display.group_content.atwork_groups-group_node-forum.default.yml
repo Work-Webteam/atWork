@@ -1,0 +1,16 @@
+uuid: 8a0f135a-27c9-43a4-8903-d928ab228bad
+langcode: en
+status: true
+dependencies:
+  config:
+    - group.content_type.atwork_groups-group_node-forum
+id: group_content.atwork_groups-group_node-forum.default
+targetEntityType: group_content
+bundle: atwork_groups-group_node-forum
+mode: default
+content: {  }
+hidden:
+  entity_id: true
+  langcode: true
+  search_api_excerpt: true
+  uid: true

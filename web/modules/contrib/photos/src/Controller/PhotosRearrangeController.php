@@ -5,10 +5,9 @@ namespace Drupal\photos\Controller;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -34,9 +33,9 @@ class PhotosRearrangeController extends ControllerBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The renderer.
@@ -62,23 +61,20 @@ class PhotosRearrangeController extends ControllerBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
-   * @param Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The current request stack.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, EntityManagerInterface $entity_manager, RendererInterface $renderer, RequestStack $request_stack, RouteMatchInterface $route_match) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, EntityTypeManagerInterface $entity_manager, RendererInterface $renderer, RequestStack $request_stack, RouteMatchInterface $route_match) {
     $this->connection = $connection;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->renderer = $renderer;
     $this->requestStack = $request_stack;
     $this->routeMatch = $route_match;
@@ -89,9 +85,8 @@ class PhotosRearrangeController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('request_stack'),
       $container->get('current_route_match')
@@ -120,7 +115,7 @@ class PhotosRearrangeController extends ControllerBase {
     // Check user for album rearrange.
     $user = $this->routeMatch->getParameter('user');
     if ($user && !is_object($user)) {
-      $user = $this->entityManager->getStorage('user')->load($user);
+      $user = $this->entityTypeManager->getStorage('user')->load($user);
     }
     if ($node && _photos_access('editAlbum', $node)) {
       return AccessResult::allowed();
@@ -173,7 +168,7 @@ class PhotosRearrangeController extends ControllerBase {
     $output .= $this->t('Limit: @link_100 - @link_500', ['@link_100' => $link_100, '@link_500' => $link_500]);
     $default_message = $this->t('%img_count images to rearrange.', ['%img_count' => $count]);
     $output .= '<div id="photos-sort-message">' . $default_message . $update_button . ' ' . '<span id="photos-sort-updates"></span></div>';
-    $output .= '<ul id="photos-sortable">';
+    $output .= '<ul id="photos-sortable" class="photos-sortable">';
     foreach ($images as $image) {
       $title = $image->title;
       // @todo set photos_sort_style variable for custom image style settings.
@@ -209,7 +204,7 @@ class PhotosRearrangeController extends ControllerBase {
     $build = [];
     $account = $this->routeMatch->getParameter('user');
     if ($account && !is_object($account)) {
-      $account = $this->entityManager->getStorage('user')->load($account);
+      $account = $this->entityTypeManager->getStorage('user')->load($account);
     }
     $uid = $account->id();
     // Load library photos.dragndrop.
@@ -226,10 +221,10 @@ class PhotosRearrangeController extends ControllerBase {
     $output .= ' - ' . Link::fromTextAndUrl(500, $limit_uri)->toString();
     $default_message = $this->t('%album_count albums to rearrange.', ['%album_count' => $count]);
     $output .= '<div id="photos-sort-message">' . $default_message . ' ' . '<span id="photos-sort-updates"></span></div>';
-    $output .= '<ul id="photos-sortable">';
+    $output .= '<ul id="photos-sortable" class="photos-sortable">';
     foreach ($albums as $album) {
       $title = $album['title'];
-      $cover = $this->entityManager->getStorage('file')->load($album['fid']);
+      $cover = $this->entityTypeManager->getStorage('file')->load($album['fid']);
       // @todo set photos_sort_style variable for custom image style settings.
       $image_sizes = $config->get('photos_size');
       $style_name = key($image_sizes);
@@ -339,7 +334,7 @@ class PhotosRearrangeController extends ControllerBase {
     if ($nid) {
       $access = FALSE;
       if ($nid) {
-        $node = $this->entityManager->getStorage('node')->load($nid);
+        $node = $this->entityTypeManager->getStorage('node')->load($nid);
         // Check for node_accss.
         $access = _photos_access('editAlbum', $node);
       }
@@ -381,7 +376,7 @@ class PhotosRearrangeController extends ControllerBase {
         // Update weight for all albums in array.
         foreach ($order as $album_id) {
           $pid = str_replace('photos_', '', $album_id);
-          $node = $this->entityManager->getStorage('node')->load($pid);
+          $node = $this->entityTypeManager->getStorage('node')->load($pid);
           // Check for node_accss.
           $access = _photos_access('editAlbum', $node);
           if ($access) {

@@ -4,11 +4,9 @@ namespace Drupal\photos\Controller;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Asset\LibraryDiscoveryInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Image\ImageFactory;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
@@ -41,13 +39,6 @@ class PhotosAlbumController extends ControllerBase {
   protected $dateFormatter;
 
   /**
-   * The entity manager.
-   *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
-   */
-  protected $entityManager;
-
-  /**
    * The image factory.
    *
    * @var \Drupal\Core\Image\ImageFactory
@@ -64,7 +55,7 @@ class PhotosAlbumController extends ControllerBase {
   /**
    * The current request stack.
    *
-   * @var Symfony\Component\HttpFoundation\RequestStack
+   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   private $requestStack;
 
@@ -78,28 +69,22 @@ class PhotosAlbumController extends ControllerBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
-   *   The entity manager service.
    * @param \Drupal\Core\Image\ImageFactory $image_factory
    *   The image factory.
    * @param \Drupal\Core\Asset\LibraryDiscoveryInterface $library_discovery
    *   The library discovery service.
-   * @param Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The current request stack.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, DateFormatterInterface $date_formatter, EntityManagerInterface $entity_manager, ImageFactory $image_factory, LibraryDiscoveryInterface $library_discovery, RequestStack $request_stack, RouteMatchInterface $route_match) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, DateFormatterInterface $date_formatter, ImageFactory $image_factory, LibraryDiscoveryInterface $library_discovery, RequestStack $request_stack, RouteMatchInterface $route_match) {
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
-    $this->entityManager = $entity_manager;
     $this->imageFactory = $image_factory;
     $this->libraryDiscovery = $library_discovery;
     $this->requestStack = $request_stack;
@@ -111,10 +96,8 @@ class PhotosAlbumController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
       $container->get('date.formatter'),
-      $container->get('entity.manager'),
       $container->get('image.factory'),
       $container->get('library.discovery'),
       $container->get('request_stack'),

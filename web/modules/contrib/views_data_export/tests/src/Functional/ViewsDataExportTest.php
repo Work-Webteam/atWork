@@ -20,6 +20,8 @@ class ViewsDataExportTest extends ViewTestBase {
     'rest',
     'views_data_export',
     'views_data_export_test',
+    'csv_serialization',
+    'xls_serialization',
   ];
 
   /**
@@ -47,7 +49,7 @@ class ViewsDataExportTest extends ViewTestBase {
     $this->assertSession()->statusCodeEquals(200);
 
     // Click on the link to export.
-    $this->clickLink(t('Subscribe to Test serialize'));
+    $this->clickLink('Download JSON');
     $this->assertSession()->statusCodeEquals(200);
   }
 

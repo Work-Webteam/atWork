@@ -48,7 +48,7 @@ class PollVoteDeleteForm extends ContentEntityConfirmFormBase implements Contain
       '%user' => $account->id(),
       '%poll' => $this->entity->id()
     ));
-    drupal_set_message($this->t('Your vote was cancelled.'));
+    $this->messenger()->addMessage($this->t('Your vote was cancelled.'));
 
     // Display the original poll.
     $form_state->setRedirect('entity.poll.canonical', array('poll' => $this->entity->id()));

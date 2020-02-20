@@ -2,13 +2,12 @@
 
 namespace Drupal\photos\Form;
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\Cache;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Image\ImageFactory;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -33,9 +32,9 @@ class PhotosUploadForm extends FormBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The image factory.
@@ -68,11 +67,9 @@ class PhotosUploadForm extends FormBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Image\ImageFactory $image_factory
    *   The image factory.
@@ -81,10 +78,9 @@ class PhotosUploadForm extends FormBase {
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, EntityManagerInterface $entity_manager, ImageFactory $image_factory, ModuleHandlerInterface $module_handler, RouteMatchInterface $route_match) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, EntityTypeManagerInterface $entity_manager, ImageFactory $image_factory, ModuleHandlerInterface $module_handler, RouteMatchInterface $route_match) {
     $this->connection = $connection;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->imageFactory = $image_factory;
     $this->logger = $this->getLogger('photos');
     $this->moduleHandler = $module_handler;
@@ -96,9 +92,8 @@ class PhotosUploadForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('image.factory'),
       $container->get('module_handler'),
       $container->get('current_route_match')
@@ -224,7 +219,7 @@ class PhotosUploadForm extends FormBase {
     $scheme = 'default';
     $album_viewid = 0;
     if ($this->moduleHandler->moduleExists('photos_access')) {
-      $node = $this->entityManager->getStorage('node')->load($nid);
+      $node = $this->entityTypeManager->getStorage('node')->load($nid);
       if (isset($node->privacy) && isset($node->privacy['viewid'])) {
         $album_viewid = $node->privacy['viewid'];
         if ($album_viewid > 0) {
@@ -234,8 +229,10 @@ class PhotosUploadForm extends FormBase {
           }
           else {
             // Set warning message.
-            drupal_set_message($this->t('Warning: image files can still be accessed by visiting the direct URL.
-              For better security, ask your website admin to setup a private file path.'), 'warning');
+            \Drupal::messenger()->addWarning($this->t('Warning: image
+              files can still be accessed by visiting the direct URL. For
+              better security, ask your website admin to setup a private file
+              path.'));
           }
         }
       }
@@ -243,7 +240,7 @@ class PhotosUploadForm extends FormBase {
     if (empty($album_uid)) {
       $album_uid = $user->id();
     }
-    $account = $this->entityManager->getStorage('user')->load($album_uid);
+    $account = $this->entityTypeManager->getStorage('user')->load($album_uid);
     // Check if plupload is enabled.
     // @todo check for plupload library?
     if ($config->get('photos_plupload_status')) {
@@ -251,18 +248,19 @@ class PhotosUploadForm extends FormBase {
       foreach ($plupload_files as $uploaded_file) {
         if ($uploaded_file['status'] == 'done') {
           // Check for zip files.
-          $ext = Unicode::substr($uploaded_file['name'], -3);
+          $ext = mb_substr($uploaded_file['name'], -3);
           if ($ext <> 'zip' && $ext <> 'ZIP') {
             // Prepare directory.
             $photos_path = PhotosUpload::path($scheme, '', $account);
             $photos_name = PhotosUpload::rename($uploaded_file['name']);
-            $file_uri = file_destination($photos_path . '/' . $photos_name, FILE_EXISTS_RENAME);
-            if (file_unmanaged_move($uploaded_file['tmppath'], $file_uri)) {
+            $file_uri = \Drupal::service('file_system')
+              ->getDestinationFilename($photos_path . '/' . $photos_name, FileSystemInterface::EXISTS_RENAME);
+            if (\Drupal::service('file_system')->move($uploaded_file['tmppath'], $file_uri)) {
               $path_parts = pathinfo($file_uri);
               $image = $this->imageFactory->get($file_uri);
               if ($path_parts['extension'] && $image->getWidth()) {
                 // Create a file entity.
-                $file = $this->entityManager->getStorage('file')->create([
+                $file = $this->entityTypeManager->getStorage('file')->create([
                   'uri' => $file_uri,
                   'uid' => $user->id(),
                   'status' => FILE_STATUS_PERMANENT,
@@ -279,7 +277,7 @@ class PhotosUploadForm extends FormBase {
                 $count++;
               }
               else {
-                file_delete($file_uri);
+                \Drupal::service('file_system')->delete($file_uri);
                 $this->logger->notice('Wrong file type');
               }
             }
@@ -289,12 +287,14 @@ class PhotosUploadForm extends FormBase {
           }
           else {
             if (!$config->get('photos_upzip')) {
-              drupal_set_message($this->t('Please set Album photos to open zip uploads.'), 'error');
+              \Drupal::messenger()->addError($this->t('Please set Album
+                photos to open zip uploads.'));
             }
             $directory = PhotosUpload::path();
-            file_prepare_directory($directory);
-            $zip = file_destination($directory . '/' . $uploaded_file['name'], FILE_EXISTS_RENAME);
-            if (file_unmanaged_move($uploaded_file['tmppath'], $zip)) {
+            \Drupal::service('file_system')->prepareDirectory($directory);
+            $zip = \Drupal::service('file_system')
+              ->getDestinationFilename($directory . '/' . $uploaded_file['name'], FileSystemInterface::EXISTS_RENAME);
+            if (\Drupal::service('file_system')->move($uploaded_file['tmppath'], $zip)) {
               $value = new \StdClass();
               $value->pid = $form_state->getValue('pid');
               $value->nid = $form_state->getValue('nid');
@@ -302,7 +302,7 @@ class PhotosUploadForm extends FormBase {
               $value->des = '';
               // Unzip it.
               if (!$file_count = PhotosUpload::unzip($zip, $value, $scheme, $account)) {
-                drupal_set_message($this->t('Zip upload failed.'), 'error');
+                \Drupal::messenger()->addError($this->t('Zip upload failed.'));
               }
               else {
                 // Update image upload count.
@@ -312,7 +312,7 @@ class PhotosUploadForm extends FormBase {
           }
         }
         else {
-          drupal_set_message($this->t('Error uploading some photos.'), 'error');
+          \Drupal::messenger()->addError($this->t('Error uploading some photos.'));
         }
       }
     }
@@ -321,8 +321,8 @@ class PhotosUploadForm extends FormBase {
       $pid = $form_state->getValue('pid');
       $photos_num = $config->get('photos_num');
       for ($i = 0; $i < $photos_num; ++$i) {
-        if ($_FILES['files']['name']['images_' . $i]) {
-          $ext = Unicode::substr($_FILES['files']['name']['images_' . $i], -3);
+        if (isset($_FILES['files']['name']['images_' . $i]) && $_FILES['files']['name']['images_' . $i]) {
+          $ext = mb_substr($_FILES['files']['name']['images_' . $i], -3);
           if ($ext <> 'zip' && $ext <> 'ZIP') {
             // Prepare directory.
             $photos_path = PhotosUpload::path($scheme, '', $account);
@@ -339,13 +339,14 @@ class PhotosUploadForm extends FormBase {
           else {
             // Zip upload from manual upload form.
             if (!$config->get('photos_upzip')) {
-              drupal_set_message($this->t('Please update settings to allow zip uploads.'), 'error');
+              \Drupal::messenger()->addError($this->t('Please update settings to allow zip uploads.'));
             }
             else {
               $directory = PhotosUpload::path();
-              file_prepare_directory($directory);
-              $zip = file_destination($directory . '/' . trim(basename($_FILES['files']['name']['images_' . $i])), FILE_EXISTS_RENAME);
-              if (file_unmanaged_move($_FILES['files']['tmp_name']['images_' . $i], $zip)) {
+              \Drupal::service('file_system')->prepareDirectory($directory);
+              $zip = \Drupal::service('file_system')
+                ->getDestinationFilename($directory . '/' . trim(basename($_FILES['files']['name']['images_' . $i])), FileSystemInterface::EXISTS_RENAME);
+              if (\Drupal::service('file_system')->move($_FILES['files']['tmp_name']['images_' . $i], $zip)) {
                 $value = new \stdClass();
                 $value->pid = $pid;
                 $value->nid = $form_state->getValue('nid') ? $form_state->getValue('nid') : $form_state->getValue('pid');
@@ -366,7 +367,7 @@ class PhotosUploadForm extends FormBase {
     // Clear node and album page cache.
     Cache::invalidateTags(['node:' . $nid, 'photos:album:' . $nid]);
     $message = $this->formatPlural($count, '1 image uploaded.', '@count images uploaded.');
-    drupal_set_message($message);
+    \Drupal::messenger()->addMessage($message);
   }
 
 }

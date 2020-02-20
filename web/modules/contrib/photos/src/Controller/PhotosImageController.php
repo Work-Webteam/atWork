@@ -5,10 +5,9 @@ namespace Drupal\photos\Controller;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Asset\LibraryDiscoveryInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -32,9 +31,9 @@ class PhotosImageController extends ControllerBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The library discovery service.
@@ -53,21 +52,18 @@ class PhotosImageController extends ControllerBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Asset\LibraryDiscoveryInterface $library_discovery
    *   The library discovery service.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, EntityManagerInterface $entity_manager, LibraryDiscoveryInterface $library_discovery, RouteMatchInterface $route_match) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, EntityTypeManagerInterface $entity_manager, LibraryDiscoveryInterface $library_discovery, RouteMatchInterface $route_match) {
     $this->connection = $connection;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->libraryDiscovery = $library_discovery;
     $this->routeMatch = $route_match;
   }
@@ -77,9 +73,8 @@ class PhotosImageController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('library.discovery'),
       $container->get('current_route_match')
     );
@@ -132,7 +127,7 @@ class PhotosImageController extends ControllerBase {
       throw new NotFoundHttpException();
     }
 
-    $node = $this->entityManager->getStorage('node')->load($image->pid);
+    $node = $this->entityTypeManager->getStorage('node')->load($image->pid);
     if (_photos_access('imageEdit', $node)) {
       $image->ajax['edit_url'] = Url::fromUri('base:photos/image/' . $image->fid . '/update')->toString();
       // Set album cover.

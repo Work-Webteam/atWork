@@ -63,8 +63,9 @@ Examples: <ul>
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $values = $form_state->getValues();
     $config_ignore_settings = $this->config('config_ignore.settings');
-    $config_ignore_settings_array = preg_split("[\n|\r]", $values['ignored_config_entities']);
+    $config_ignore_settings_array = preg_split("/[\r\n]+/", $values['ignored_config_entities']);
     $config_ignore_settings_array = array_filter($config_ignore_settings_array);
+    $config_ignore_settings_array = array_values($config_ignore_settings_array);
     $config_ignore_settings->set('ignored_config_entities', $config_ignore_settings_array);
     $config_ignore_settings->save();
     parent::submitForm($form, $form_state);

@@ -1,13 +1,12 @@
 /* /photos/{node}/rearrange */
-#photos-sortable {
+.photos-sortable {
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 100%;
 }
-#photos-sortable li {
+.photos-sortable li {
   margin: 3px 3px 3px 0;
-  padding: 1px;
   float: left;
   width: 100px;
   height: 100px;
@@ -15,7 +14,7 @@
   cursor: move;
   list-style: none;
 }
-#photos-sortable li img {
-  max-width: 100%;
-  max-height: 100%;
+.photos-sortable li img {
+  max-width: 98%;
+  max-height: 98%;
 }

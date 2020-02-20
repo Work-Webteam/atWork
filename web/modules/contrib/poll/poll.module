@@ -77,7 +77,8 @@ function poll_theme() {
         'choice' => NULL,
         'value' => NULL,
         'percentage' => NULL,
-        'attributes' => array()
+        'attributes' => array(),
+        'poll' => NULL,
       ),
     ),
   );
@@ -109,7 +110,7 @@ function poll_cron() {
  */
 function poll_entity_extra_field_info() {
   $extra = array();
-  $extra['poll']['poll']['display']['poll_votes'] = [
+  $extra['poll']['poll']['display']['poll'] = [
     'label' => t('Vote form/Results'),
     'description' => t('Vote form of the poll or the results depending on current user.'),
     'weight' => 0,
@@ -144,7 +145,7 @@ function template_preprocess_poll_vote(&$variables) {
  *     tag.
  */
 function template_preprocess_poll_meter(&$variables) {
-
+  $poll = $variables['poll'];
   $attributes = $variables['attributes'];
   foreach (array(
              'form',
@@ -163,7 +164,9 @@ function template_preprocess_poll_meter(&$variables) {
       $attributes['data-' . $key] = $variables[$key];
     }
   }
-
+  $current_user_vote = \Drupal::service('poll_vote.storage')->getUserVote($poll);
+  $options = $poll->getOptions();
+  $variables['is_current_selection'] = (int) $current_user_vote['chid'] === array_search($variables['choice'], $options);
   $variables['attributes'] = new Attribute($attributes);
 }
 

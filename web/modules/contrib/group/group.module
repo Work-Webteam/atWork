@@ -5,6 +5,7 @@
  * Allows you to group users, content and other entities.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -17,7 +18,6 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\group\Entity\GroupContent;
 use Drupal\user\RoleInterface;
-use Drupal\views\ViewEntityInterface;
 
 /**
  * Implements hook_help().
@@ -110,6 +110,10 @@ function template_preprocess_group(&$variables) {
   $variables['label'] = $group->label();
   $variables['url'] = $group->toUrl('canonical', ['language' => $group->language()]);
 
+  $variables['attributes']['class'][] = 'group';
+  $variables['attributes']['class'][] = Html::cleanCssIdentifier('group--' . $variables['view_mode']);
+  $variables['attributes']['class'][] = Html::cleanCssIdentifier('group--' . $variables['group']->bundle());
+
   // See if we are rendering the group at its canonical route.
   $route_match = \Drupal::routeMatch();
   if ($route_match->getRouteName() == 'entity.group.canonical') {
@@ -143,6 +147,9 @@ function template_preprocess_group_content(&$variables) {
   $variables['view_mode'] = $variables['elements']['#view_mode'];
   $variables['label'] = $group_content->label();
   $variables['url'] = $group_content->toUrl('canonical', ['language' => $group_content->language()]);
+
+  $variables['attributes']['class'][] = 'group-content';
+  $variables['attributes']['class'][] = Html::cleanCssIdentifier('group-content--' . $variables['view_mode']);
 
   // See if we are rendering the group at its canonical route.
   $route_match = \Drupal::routeMatch();

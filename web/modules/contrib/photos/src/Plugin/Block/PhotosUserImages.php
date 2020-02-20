@@ -134,6 +134,12 @@ class PhotosUserImages extends BlockBase implements ContainerFactoryPluginInterf
       return [
         '#markup' => $block_info['content'],
         '#title' => $block_info['title'],
+        '#cache' => [
+          'tags' => [
+            'photos:image:user:' . $uid,
+            'user:' . $uid,
+          ],
+        ],
       ];
     }
   }

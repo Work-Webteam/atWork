@@ -3,11 +3,10 @@
 namespace Drupal\photos\Controller;
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
@@ -38,9 +37,9 @@ class PhotosImagesRecentController extends ControllerBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The renderer.
@@ -52,31 +51,28 @@ class PhotosImagesRecentController extends ControllerBase {
   /**
    * The current request stack.
    *
-   * @var Symfony\Component\HttpFoundation\RequestStack
+   * @var \Symfony\Component\HttpFoundation\RequestStack
    */
   private $requestStack;
 
   /**
    * Constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The factory for configuration objects.
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter service.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
-   * @param Symfony\Component\HttpFoundation\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The current request stack.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Connection $connection, DateFormatterInterface $date_formatter, EntityManagerInterface $entity_manager, RendererInterface $renderer, RequestStack $request_stack) {
-    $this->configFactory = $config_factory;
+  public function __construct(Connection $connection, DateFormatterInterface $date_formatter, EntityTypeManagerInterface $entity_manager, RendererInterface $renderer, RequestStack $request_stack) {
     $this->connection = $connection;
     $this->dateFormatter = $date_formatter;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->renderer = $renderer;
     $this->requestStack = $request_stack;
   }
@@ -86,10 +82,9 @@ class PhotosImagesRecentController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('config.factory'),
       $container->get('database'),
       $container->get('date.formatter'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('request_stack')
     );
@@ -158,7 +153,7 @@ class PhotosImagesRecentController extends ControllerBase {
       // Get username.
       $name = '';
       if (!empty($image->uid)) {
-        $account = $this->entityManager->getStorage('user')->load($image->uid);
+        $account = $this->entityTypeManager->getStorage('user')->load($image->uid);
         $name_render_array = [
           '#theme' => 'username',
           '#account' => $account,

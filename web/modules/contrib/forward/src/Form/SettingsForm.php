@@ -170,7 +170,7 @@ class SettingsForm extends ConfigFormBase {
     $defaults = [];
     foreach ($modes as $mode => $info) {
       $options[$mode] = $info;
-      if ($settings['forward_view_' . $mode]) {
+      if (!empty($settings['forward_view_' . $mode])) {
         $defaults[] = $mode;
       }
     }
@@ -274,6 +274,12 @@ class SettingsForm extends ConfigFormBase {
       '#rows' => 5,
       '#description' => $this->t('The instructions to display above the form.  Replacement tokens may be used.  This field may contain HTML.'),
     ];
+    $form['forward_form']['forward_form_allow_plain_text'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Allow plain text option'),
+      '#default_value' => $settings['forward_form_allow_plain_text'],
+      '#description' => $this->t('Should there be an option on the forward form to send the email as plain text?'),
+    ];
     $form['forward_form']['form_display_options'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Form Fields'),
@@ -309,7 +315,6 @@ class SettingsForm extends ConfigFormBase {
       '#title' => $this->t('Allow HTML in personal messages'),
       '#return_value' => 1,
       '#default_value' => $settings['forward_personal_message_filter'],
-      '#description' => $this->t('Filter XSS and all tags not allowed below from the personal message.  Otherwise any HTML in the message will be converted to plain text.'),
       '#states' => [
         'invisible' => [
           ':input[name=forward_personal_message]' => ['value' => 0],
@@ -323,7 +328,8 @@ class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('List of tags (separated by commas) that will be allowed if HTML is enabled above.  Defaults to: p,br,em,strong,cite,code,ul,ol,li,dl,dt,dd'),
       '#states' => [
         'invisible' => [
-          ':input[name=forward_personal_message]' => ['value' => 0],
+          [':input[name=forward_personal_message]' => ['value' => 0]],
+          [':input[name=forward_personal_message_filter]' => ['checked' => FALSE]],
         ],
       ],
     ];
@@ -332,13 +338,6 @@ class SettingsForm extends ConfigFormBase {
       '#title' => $this->t('Maximum allowed recipients'),
       '#default_value' => $settings['forward_max_recipients'],
       '#description' => $this->t('The maximum number of recipients for the email.'),
-    ];
-    $form['forward_form']['forward_max_recipients_error'] = [
-      '#type' => 'textarea',
-      '#title' => $this->t('Maximum recipients error'),
-      '#default_value' => $settings['forward_max_recipients_error'],
-      '#rows' => 5,
-      '#description' => $this->t('This text appears if a user tries to send to more recipients than allowed. The value of the maximum recipient limit will appear in place of @number in the message presented to users.'),
     ];
     $form['forward_form']['forward_form_confirmation'] = [
       '#type' => 'textarea',
@@ -383,6 +382,13 @@ class SettingsForm extends ConfigFormBase {
       '#rows' => 5,
       '#description' => $this->t('Introductory text that appears above the entity being forwarded. Replacement tokens may be used. The sender may be able to add their own personal message after this.  This field may contain HTML.'),
     ];
+    $form['forward_email_defaults']['forward_email_footer'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('E-mail footer text'),
+      '#default_value' => $settings['forward_email_footer'],
+      '#rows' => 5,
+      '#description' => $this->t('Replacement tokens may be used.'),
+    ];
     // Post processing filters.
     $filter_options = [];
     $filter_options[''] = $this->t('- None -');
@@ -395,12 +401,24 @@ class SettingsForm extends ConfigFormBase {
         '#title' => $this->t('Filter'),
         '#open' => FALSE,
       ];
-      $form['forward_filter_options']['forward_filter_format'] = [
+      $form['forward_filter_options']['forward_filter_format_html'] = [
         '#type' => 'select',
-        '#title' => $this->t('Filter format'),
-        '#default_value' => $settings['forward_filter_format'],
+        '#title' => t('Filter format'),
+        '#default_value' => $settings['forward_filter_format_html'],
         '#options' => $filter_options,
         '#description' => $this->t('Select a filter to apply to the email message body. A filter with <a href="http://drupal.org/project/pathologic">Pathologic</a> assigned to it will convert relative links to absolute links. &nbsp;<a href="http://drupal.org/project/modules">More filters</a>.'),
+      ];
+      $form['forward_filter_options']['forward_filter_format_plain_text'] = [
+        '#type' => 'select',
+        '#title' => t('Plain text filter format'),
+        '#default_value' => $settings['forward_filter_format_plain_text'],
+        '#options' => $filter_options,
+        '#description' => $this->t('Select a filter to apply to the email message body when sending as plain text.'),
+        '#states' => [
+          'visible' => [
+            ':input[name=forward_form_allow_plain_text]' => ['checked' => TRUE],
+          ],
+        ],
       ];
     }
     // Access Control.
@@ -480,29 +498,29 @@ class SettingsForm extends ConfigFormBase {
     foreach ($entity_types as $type => $info) {
       if (is_a($info, 'Drupal\Core\Entity\ContentEntityType')) {
         if (!empty($values[$type])) {
-          $this->config('forward.settings')
-            ->set('forward_entity_' . $type, TRUE);
+          $this->config('forward.settings')->set('forward_entity_' . $type, TRUE);
         }
         else {
-          $this->config('forward.settings')
-            ->set('forward_entity_' . $type, FALSE);
+          $this->config('forward.settings')->clear('forward_entity_' . $type);
         }
         $bundles = $this->bundleInfoManager->getBundleInfo($type);
         foreach ($bundles as $bundle => $bundle_info) {
           $bundle_values = $form_state->getValue('forward_' . $type . '_types');
           if (!empty($values[$type]) && !empty($bundle_values[$bundle])) {
-            $this->config('forward.settings')
-              ->set('forward_' . $type . '_' . $bundle, TRUE);
+            $this->config('forward.settings')->set('forward_' . $type . '_' . $bundle, TRUE);
           }
           else {
-            $this->config('forward.settings')
-              ->set('forward_' . $type . '_' . $bundle, FALSE);
+            $this->config('forward.settings')->clear('forward_' . $type . '_' . $bundle);
           }
           // If only one bundle, it gets the same setting as its type.
           if (count($bundles) == 1) {
-            $this->config('forward.settings')
-              ->set('forward_' . $type . '_' . $bundle, $this->config('forward.settings')
-                ->get('forward_entity_' . $type));
+            $entity_type_value = $this->config('forward.settings')->get('forward_entity_' . $type);
+            if (!empty($entity_type_value)) {
+              $this->config('forward.settings')->set('forward_' . $type . '_' . $bundle, $entity_type_value);
+            }
+            else {
+              $this->config('forward.settings')->clear('forward_' . $type . '_' . $bundle);
+            }
           }
         }
       }
@@ -530,6 +548,7 @@ class SettingsForm extends ConfigFormBase {
       ->set('forward_link_noindex', $form_state->getValue('forward_link_noindex'))
       ->set('forward_link_nofollow', $form_state->getValue('forward_link_nofollow'))
       ->set('forward_form_instructions', $form_state->getValue('forward_form_instructions'))
+      ->set('forward_form_allow_plain_text', $form_state->getValue('forward_form_allow_plain_text'))
       ->set('forward_form_display_page', $form_state->getValue('forward_form_display_page'))
       ->set('forward_form_display_subject', $form_state->getValue('forward_form_display_subject'))
       ->set('forward_form_display_body', $form_state->getValue('forward_form_display_body'))
@@ -541,12 +560,13 @@ class SettingsForm extends ConfigFormBase {
       ->set('forward_email_from_address', $form_state->getValue('forward_email_from_address'))
       ->set('forward_email_subject', $form_state->getValue('forward_email_subject'))
       ->set('forward_email_message', $form_state->getValue('forward_email_message'))
-      ->set('forward_filter_format', $form_state->getValue('forward_filter_format'))
+      ->set('forward_email_footer', $form_state->getValue('forward_email_footer'))
+      ->set('forward_filter_format_html', $form_state->getValue('forward_filter_format_html'))
+      ->set('forward_filter_format_plain_text', $form_state->getValue('forward_filter_format_plain_text'))
       ->set('forward_bypass_access_control', $form_state->getValue('forward_bypass_access_control'))
       ->set('forward_flood_control_limit', $form_state->getValue('forward_flood_control_limit'))
       ->set('forward_flood_control_error', $form_state->getValue('forward_flood_control_error'))
       ->set('forward_max_recipients', $form_state->getValue('forward_max_recipients'))
-      ->set('forward_max_recipients_error', $form_state->getValue('forward_max_recipients_error'))
       ->save();
 
     parent::submitForm($form, $form_state);

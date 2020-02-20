@@ -1,13 +1,12 @@
 name: 'Message subscribe test module'
 description: 'Functionality to assist message subscribe testing.'
 type: module
-# core: 8.x
+core: 8.x
 dependencies:
   - message_subscribe
 package: Testing
 
-# Information added by Drupal.org packaging script on 2018-05-07
-version: '8.x-1.0-beta5'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-10-04
+version: '8.x-1.0'
 project: 'message_subscribe'
-datestamp: 1525719493
+datestamp: 1570212487

@@ -30,7 +30,7 @@ use Drupal\user\UserInterface;
  * @see https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Utility%21token.api.php/8
  */
 function hook_forward_token(FormStateInterface $form_state) {
-  return ['my_module' => ('my_token' => 'my_value')];
+  return ['my_module' => ['my_token' => 'my_value']];
 }
 
 /**

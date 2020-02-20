@@ -12,8 +12,15 @@ dependencies:
     - field.field.node.group_post.field_tags
     - node.type.group_post
   module:
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 id: node.group_post.teaser
 targetEntityType: node
 bundle: group_post
@@ -22,29 +29,9 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 101
+    weight: 0
     settings:
       trim_length: 600
-    third_party_settings: {  }
-    region: content
-  flag_email_node:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  flag_inappropriate:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  flag_subscribe_node:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  links:
-    weight: 100
-    settings: {  }
     third_party_settings: {  }
     region: content
 hidden:
@@ -53,5 +40,10 @@ hidden:
   field_interactive_content: true
   field_send_notifications: true
   field_tags: true
+  flag_email_node: true
+  flag_inappropriate: true
+  flag_subscribe_node: true
   langcode: true
   likeit: true
+  links: true
+  search_api_excerpt: true

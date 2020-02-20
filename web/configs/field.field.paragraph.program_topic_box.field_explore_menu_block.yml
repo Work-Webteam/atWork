@@ -1,0 +1,43 @@
+uuid: 469c72ea-04d6-4d15-9200-f0e3307d6600
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_explore_menu_block
+    - paragraphs.paragraphs_type.program_menu_links_box
+    - paragraphs.paragraphs_type.program_topic_box
+  module:
+    - entity_reference_revisions
+id: paragraph.program_topic_box.field_explore_menu_block
+field_name: field_explore_menu_block
+entity_type: paragraph
+bundle: program_topic_box
+label: 'Explore Menu Block'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      program_menu_links_box: program_menu_links_box
+    target_bundles_drag_drop:
+      explore_links:
+        weight: 6
+        enabled: false
+      group_menu_link:
+        weight: 7
+        enabled: false
+      menu_links:
+        weight: 8
+        enabled: false
+      program_menu_links_box:
+        enabled: true
+        weight: 9
+      program_topic_box:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

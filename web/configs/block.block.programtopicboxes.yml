@@ -1,0 +1,37 @@
+uuid: 8b8ccc19-3a56-43b2-9a4e-0fa56b77e72f
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - ctools_block
+  theme:
+    - atworknext
+id: programtopicboxes
+theme: atworknext
+region: content
+weight: -8
+provider: null
+plugin: 'entity_field:node:field_program_topic_boxes'
+settings:
+  id: 'entity_field:node:field_program_topic_boxes'
+  label: 'Program Topic Boxes'
+  provider: ctools_block
+  label_display: '0'
+  formatter:
+    label: hidden
+    type: entity_reference_revisions_entity_view
+    settings:
+      view_mode: default
+    third_party_settings: {  }
+    weight: 0
+  context_mapping:
+    entity: '@node.node_route_context:node'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      background_page: background_page
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

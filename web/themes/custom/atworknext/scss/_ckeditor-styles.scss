@@ -16,7 +16,7 @@ article { // Updates box used on articles / background pages.
     @include atwork-button;
   }
   div.bluebox {
-    @include size1824;
+    @include size2160;
     display: block;
     background-color: $horz-ad;
     padding: 24px;

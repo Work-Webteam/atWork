@@ -68,7 +68,7 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
         if (isset($input['op']) && $input['op'] == $this->t('Vote')) {
           // If this happened, then the form submission was likely a cached page.
           // Force a session for this user so he can see the results.
-          drupal_set_message($this->t('Your vote for this poll has already been submitted.'), 'error');
+          $this->messenger()->addError($this->t('Your vote for this poll has already been submitted.'));
           $_SESSION['poll_vote'][$this->poll->id()] = FALSE;
         }
       }
@@ -258,6 +258,7 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
         '#value' => $vote,
         '#percentage' => $percentage,
         '#attributes' => array('class' => array('bar')),
+        '#poll' => $poll,
       );
     }
 
@@ -294,7 +295,7 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
       '%user' => $this->currentUser()->id(),
       '%poll' => $this->poll->id(),
     ));
-    drupal_set_message($this->t('Your vote was cancelled.'));
+    $this->messenger()->addMessage($this->t('Your vote was cancelled.'));
 
     // In case of an ajax submission, trigger a form rebuild so that we can
     // return an updated form through the ajax callback.
@@ -342,7 +343,7 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
     /** @var \Drupal\poll\PollVoteStorage $vote_storage */
     $vote_storage = \Drupal::service('poll_vote.storage');
     $vote_storage->saveVote($options);
-    drupal_set_message($this->t('Your vote has been recorded.'));
+    $this->messenger()->addMessage($this->t('Your vote has been recorded.'));
 
     if ($this->currentUser()->isAnonymous()) {
       // The vote is recorded so the user gets the result view instead of the
@@ -392,7 +393,9 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
       // And the user has the cancel own vote permission.
       && $this->currentUser()->hasPermission('cancel own vote')
       // And the user is authenticated or his session contains the voted flag.
-      && (\Drupal::currentUser()->isAuthenticated() || !empty($_SESSION['poll_vote'][$poll->id()]));
+      && (\Drupal::currentUser()->isAuthenticated() || !empty($_SESSION['poll_vote'][$poll->id()]))
+      // And poll is open.
+      && $poll->isOpen();
   }
 
 }

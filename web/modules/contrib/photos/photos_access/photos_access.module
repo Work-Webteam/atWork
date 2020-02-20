@@ -94,21 +94,21 @@ function photos_access_form_node_form_alter(&$form, FormStateInterface &$form_st
         ],
       ];
       // Prep password field.
-      $display_password = ' class="photos_access-hidden-field"';
+      $classes = ' class="photos-access-password photos_access-hidden-field"';
       if ($default_viewid == 3) {
-        $display_password = '';
+        $classes = ' class="photos-access-password"';
       }
       $form['privacy']['pass'] = [
         '#type' => 'password',
         '#title' => t('Password'),
         '#default_value' => isset($node->privacy['pass']) ? $node->privacy['pass'] : '',
-        '#prefix' => '<div id="photos_access_password"' . $display_password . '>',
+        '#prefix' => '<div id="photos_access_password"' . $classes . '>',
         '#suffix' => '</div>',
       ];
       // Prep designated users field.
-      $display_user = ' class="photos_access-hidden-field"';
+      $classes = ' class="photos-access-view-users photos_access-hidden-field"';
       if ($default_viewid == 2) {
-        $display_user = '';
+        $classes = ' class="photos-access-view-users"';
       }
       $userhelp = t('Separated by commas. eg: username1,username2,username3.');
       $form['privacy']['viewuser'] = [
@@ -119,7 +119,7 @@ function photos_access_form_node_form_alter(&$form, FormStateInterface &$form_st
         '#tags' => TRUE,
         '#default_value' => (isset($node->privacy['viewuser']) && !is_array($node->privacy['viewuser'])) ? $node->privacy['viewuser'] : NULL,
         '#process_default_value' => FALSE,
-        '#prefix' => '<div id="photos_access_viewuser"' . $display_user . '>',
+        '#prefix' => '<div id="photos_access_viewuser"' . $classes . '>',
         '#suffix' => '</div>',
       ];
       if (!empty($old['viewuser'])) {
@@ -128,7 +128,7 @@ function photos_access_form_node_form_alter(&$form, FormStateInterface &$form_st
             '#type' => 'checkbox',
             '#default_value' => isset($node->viewremove[$u->uid]) ? $node->viewremove[$u->uid] : '',
             '#title' => t('Delete: @name', ['@name' => $u->name]),
-            '#prefix' => '<div id="photos_access_remove"' . $display_user . '>',
+            '#prefix' => '<div id="photos_access_remove"' . $classes . '>',
             '#suffix' => '</div>',
           ];
         }
@@ -148,7 +148,7 @@ function photos_access_form_node_form_alter(&$form, FormStateInterface &$form_st
             '#type' => 'checkbox',
             '#default_value' => isset($node->updateremove[$u->uid]) ? $node->updateremove[$u->uid] : '',
             '#title' => t('Delete: @name', ['@name' => $u->name]),
-            '#prefix' => '<div id="photos_access_updateremove">',
+            '#prefix' => '<div id="photos_access_updateremove" class="photos-access-update-remove">',
             '#suffix' => '</div>',
           ];
         }
@@ -215,8 +215,9 @@ function photos_access_move_files_form_submit(&$form, FormStateInterface $form_s
   else {
     if (!$public) {
       // Set warning message.
-      drupal_set_message(t('Warning: image files can still be accessed by visiting the direct URL.
-        For better security, ask your website admin to setup a private file path.'), 'warning');
+      \Drupal::messenger()->addWarning(t('Warning: image files can still
+        be accessed by visiting the direct URL. For better security, ask your
+        website admin to setup a private file path.'));
     }
   }
 }
@@ -229,7 +230,7 @@ function photos_access_move_files($node, $public = TRUE) {
   $db = \Drupal::database();
   // Get user account.
   $album_uid = $db->query("SELECT uid FROM {node_field_data} WHERE nid = :nid", [':nid' => $nid])->fetchField();
-  $account = \Drupal::entityManager()->getStorage('user')->load($album_uid);
+  $account = \Drupal::entityTypeManager()->getStorage('user')->load($album_uid);
   // Query all files in album.
   $results = $db->query("SELECT fid FROM {photos_image} WHERE pid = :nid", [':nid' => $nid]);
   // Check file wrapper.
@@ -282,7 +283,7 @@ function photos_access_move_files($node, $public = TRUE) {
       $file_uris = file_scan_directory($private_image_styles_path, '~\b' . $basename . '\b~');
       foreach ($file_uris as $uri => $data) {
         // Delete.
-        file_unmanaged_delete($uri);
+        \Drupal::service('file_system')->delete($uri);
       }
     }
   }
@@ -889,7 +890,7 @@ function photos_access_pass_validate($t) {
         return TRUE;
       }
       // If password is set, but does not match re enter password.
-      drupal_set_message(t('Password has expired.'));
+      \Drupal::messenger()->addMessage(t('Password has expired.'));
 
       // Redirect.
       $current_path = \Drupal::service('path.current')->getPath();
@@ -904,7 +905,7 @@ function photos_access_pass_validate($t) {
     }
     else {
       // If password is not set, password is required.
-      drupal_set_message(t('Password required.'));
+      \Drupal::messenger()->addMessage(t('Password required.'));
 
       // Redirect.
       $current_path = \Drupal::service('path.current')->getPath();

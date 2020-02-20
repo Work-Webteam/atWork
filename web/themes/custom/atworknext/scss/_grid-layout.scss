@@ -6,10 +6,12 @@
     width: 1140px;
     padding-left:0px;
     padding-right:0px;
-    padding-top:35px;
+    //padding-top:35px;
   }
 }
-
+.main-container .col-sm-12[role~="heading"] {
+  padding-top:25px;
+}
 
 section.col-sm-12 {
   /*8@include make-sm-column(10);
@@ -40,30 +42,175 @@ header {
 //Footer
 footer.footer.container {
   border-top:none; // Hides top border from overrides.min.css
-  .region.region-footer {
-    padding-top:15px;
-    padding-bottom:15px;
-    background-color:$banner-blue;
-    p {
-      color:$white;
-      font-size: .9rem;
-      line-height: 14px;
+  background-color: $banner-blue;
+  padding-top:15px;
+  padding-bottom:15px;
+  .region-footer {
+    .field--type-text-with-summary {
+      .footer-box {
+        p {
+          color: $exec-greyborder;
+          padding:initial;
+          margin:initial;
+          font-size: .9em;
+          a {
+            color: $exec-greyborder;
+            text-decoration: underline;
+          }
+        }
+      }
+      .fb1, .fb2, .fb3 {;
+        float:left;
+        text-align: center;
+      }
+      .fb1, .fb3 {
+        width:25%;
+      }
+      .fb2 {
+        width:50%;
+        img {
+          margin-top:20px;
+        }
+        border-left: 1px solid darken($color: $exec-greyborder, $amount: 90);
+        border-right: solid 1px darken($color: $exec-greyborder, $amount: 90);
+      }
+    }
+  }
+}
+
+
+// Styling for All Content Page. Using a flex-grid layout. This code may move to another file
+// August 20,2019
+
+// Temporary styling for all content news page {
+.news-no-image {
+   display:block;
+   border:solid 1px $exec-greyborder;
+   background-color: #E0E7E8;
+   max-width: inherit;
+   height: 115px;
+}
+.all-content-type {
+ text-align: center;
+} 
+.all-content-row {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-end;
+  text-align: left;
+  margin-top:10px;
+  margin-right: .5vh;
+  .content-piece {
+    display: flex;
+    padding:0;
+    border: solid 1px $exec-greyborder;
+    h3, p {
+      padding:0;
+      margin:0;
+    }
+    aside {
+      border-right:solid 1px $exec-greyborder;
+      margin-right:10px;
+      width:208px;
+      height:170px;
+      @include size1216;
       text-align: center;
+      .content-image {
+        width:inherit;
+        margin-bottom:10px;
+        border-bottom:solid 5px $icon-grey;
+      }
+      p {
+        text-align:center;
+        padding:0 10px 5px 0;
+        &:first-of-type {
+          margin-bottom: 5px;
+        }
+      }
+      &.group_post {
+        background-color: floralwhite;
+      }
+      &.program_area_content {
+        background-color: beige;
+      }
+      &.article[data-content="Corporate Article"] {
+        background-color: darken($color: $exec-greyborder, $amount:1);
+      }
+      &.article[data-content="Executive Message"] {
+        background-color: $comment-blue;
+      }
+      &.article[data-content="Video Article"] {
+        background-color: darken($color: $exec-greyborder, $amount:10);
+      }
     }
-    a {
-      color:$white;
-      text-decoration: underline;
+    .content-info {
+      position:relative;
+      width:330px;
+      padding-right:12px;
+      .content-info-date {
+        @include size1216;
+        margin-bottom: 5px;
+      }
+      h3 {
+        margin:10px 10px 0 0;
+      }
+      .content-info-text {
+        @include size1416;
+        margin-top:15px;
+      }
+      .parent-program, .parent-group {
+        @include size1216;
+        margin-top:25px;
+        position: absolute;
+        bottom:10px;
+      }
     }
-    #footer-info {
-      display: table;
-      width:100%;
+  }
+}
+// Filter values at the top of the news page
+body.path-news {
+  .views-exposed-form {
+    border: solid 1px $exec-greyborder;
+    padding: 5px;
+    margin-bottom: 20px;
+    text-align: left;
+    @include size1216;
+    .form-item {
+      //max-width:210px;
+      //width: -moz-available;
+      min-width:130px;
+      margin-bottom:3px;
+      margin-right:8px;
     }
-    #footer-left, #footer-middle, #footer-right {
-        display: table-cell;
-        vertical-align: top;
+    label.control-label {
+      font-weight: normal;
+      padding-right: 5px;
     }
-    #footer-left, #footer-right {
-      width:25%;
+    input.form-control, .form-select.form-control {
+      padding:0px 5px;
+      height: inherit;
+      color: $banner-blue;
+      @include size1216;
+      &:focus {
+        background-color: $comment-blue;
+      }
+    }
+    .form-item-sort-by, .form-item-sort-order{
+      max-width:min-content;
+      margin-right: 10px;
+      .form-select.form-control {
+        padding:0 20px 0 0;
+      }
+    }
+    #edit-actions {
+      .btn-info {
+        height: 25px;
+        padding:0 10px;
+      }
     }
   }
 }

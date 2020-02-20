@@ -72,7 +72,7 @@ function photos_access_schema() {
  * Implements hook_install().
  */
 function photos_access_install() {
-  drupal_set_message(t("Photos Access settings are available under admin/config/media/photos Basic settings."));
+  \Drupal::messenger()->addMessage(t("Photos Access settings are available under admin/config/media/photos Basic settings."));
 }
 
 /**

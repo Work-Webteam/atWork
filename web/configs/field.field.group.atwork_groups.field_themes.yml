@@ -1,0 +1,23 @@
+uuid: 777d8411-e073-4bd2-8c21-2e7d71260905
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.group.field_themes
+    - group.type.atwork_groups
+  module:
+    - options
+id: group.atwork_groups.field_themes
+field_name: field_themes
+entity_type: group
+bundle: atwork_groups
+label: Theme
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: theme_default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

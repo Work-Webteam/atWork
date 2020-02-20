@@ -10,12 +10,13 @@ dependencies:
     - field.field.node.program_area_content.field_parent_program
     - field.field.node.program_area_content.field_tags
     - field.field.node.program_area_content.field_video
-    - image.style.medium
+    - image.style.thumbnail
     - node.type.program_area_content
   module:
     - file
     - h5peditor
     - image_widget_crop
+    - maxlength
     - path
     - scheduler
     - text
@@ -30,8 +31,8 @@ content:
     weight: 2
     settings:
       rows: 9
-      summary_rows: 3
       placeholder: ''
+      summary_rows: 3
     third_party_settings: {  }
     region: content
   created:
@@ -41,18 +42,20 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_attachments:
-    weight: 5
+    weight: 6
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
   field_image:
+    type: image_widget_crop
     weight: 1
+    region: content
     settings:
       show_default_crop: true
-      preview_image_style: medium
-      crop_preview_image_style: medium
+      preview_image_style: thumbnail
+      crop_preview_image_style: crop_thumbnail
       crop_list:
         - article_730_330
       progress_indicator: throbber
@@ -60,8 +63,6 @@ content:
       show_crop_area: false
       warn_multiple_usages: false
     third_party_settings: {  }
-    type: image_widget_crop
-    region: content
   field_interactive_content:
     weight: 4
     settings: {  }
@@ -69,16 +70,16 @@ content:
     type: h5p_editor
     region: content
   field_parent_program:
-    weight: 7
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_tags:
-    weight: 6
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -131,8 +132,11 @@ content:
     region: content
     settings:
       size: 60
-      placeholder: ''
-    third_party_settings: {  }
+      placeholder: 'Limit is 75 characters including spaces.'
+    third_party_settings:
+      maxlength:
+        maxlength_js: 75
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
   uid:
     type: entity_reference_autocomplete
     weight: 8

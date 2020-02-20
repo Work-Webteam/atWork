@@ -1,0 +1,43 @@
+uuid: c4c11cfe-910e-4e20-8a1e-683b13d7d2a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.program_group_highlight.field_highlight_image
+    - field.field.paragraph.program_group_highlight.field_highlight_text
+    - field.field.paragraph.program_group_highlight.field_highlight_title
+    - image.style.highlight_image
+    - paragraphs.paragraphs_type.program_group_highlight
+  module:
+    - image
+    - text
+id: paragraph.program_group_highlight.default
+targetEntityType: paragraph
+bundle: program_group_highlight
+mode: default
+content:
+  field_highlight_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: highlight_image
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_highlight_text:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_highlight_title:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

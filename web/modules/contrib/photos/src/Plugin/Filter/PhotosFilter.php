@@ -2,7 +2,6 @@
 
 namespace Drupal\photos\Plugin\Filter;
 
-use Drupal\Component\Utility\Unicode;
 use Drupal\filter\FilterProcessResult;
 use Drupal\filter\Plugin\FilterBase;
 
@@ -25,7 +24,7 @@ class PhotosFilter extends FilterBase {
     $result = new FilterProcessResult($text);
     $text = ' ' . $text . ' ';
     $text = preg_replace_callback('/\[photos=(.*?)\](.*?)\[\/photos\]/ms', '_photos_filter_process', $text);
-    $text = Unicode::substr($text, 1, -1);
+    $text = mb_substr($text, 1, -1);
     $result->setProcessedText($text);
     return $result;
   }

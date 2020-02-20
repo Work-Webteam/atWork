@@ -65,7 +65,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
   }
   .field--name-field-title { // Poll article title
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      @include size3236;
+      @include size3732;
       color: $text;
       font-weight: bold;
       margin:0;
@@ -101,7 +101,7 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
             @include size1624;
             font-weight: normal;
           }
-          .choice-result, {
+          .choice-result {
           .foreground,
           .bar {
               -webkit-border-radius: 8px;
@@ -164,14 +164,14 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
   }
   section.col-sm-12 {
     .region-content {
-      background-color: $comment-blue;
+      background-color: $white;
     }
     h1.page-title {
       background-color: $banner-blue;
       color: $white;
       padding-top:15px;
-      padding-left:15px;
-      padding-right:15px;
+      padding-left:30px;
+      padding-right:30px;
     }
     .field--name-body.field--type-text-with-summary {
       padding:0 0 25px;
@@ -180,64 +180,92 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
       margin-bottom:5px;
       p {
         color:$white;
-        padding-left:15px;
-        padding-right:15px;
+        font-size: 1.15em;
+        padding-left:30px;
+        padding-right:30px;
       }
     }
-    #block-programtopic {
-      padding-bottom: 20px;
-        .field--type-text-with-summary {
-          .field--item {
-            @include make-sm-column(6);
-            margin-top:10px;
-            h3 {
+    #block-programtopicboxes {
+      .field--name-field-program-topic-boxes {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: row wrap;
+        justify-content: space-around;
+        padding:10px;
+        background-color: $comment-blue;
+        .field--item {
+          width:100%;
+          max-width:550px;
+        }
+        .paragraph--type--program-topic-box {
+          min-height:210px;
+          margin-bottom:10px;
+          display: flex;
+          flex-direction: column;
+          background-color: $white;
+          border: solid 1px #CCC;
+          padding:12px 12px 0px;
+          position: relative;
+          .field--name-field-title {
+            @include size2592;
+              font-weight:bold;
               padding:5px 5px 0 5px;
               margin:0 0 0 0;
-              background-color: $white;
-              border-left:solid 1px #CCC;
-              border-top:solid 1px #CCC;
-              border-right:solid 1px #CCC;
-            }
-            p {
-              padding: 0 8px 10px 5px;
-              margin:0;
-              background-color:$white;
-              border-left:solid 1px #CCC;
-              border-right:solid 1px #CCC;
-              &:last-of-type {
-                border-bottom:solid 1px #CCC;
-              }
-            }
-            .btn {
-              border-radius: 0;
-              background-color: $banner-blue;
+          }
+          p {
+            padding: 0 8px 10px 5px;
+            margin:0 0 10px;
+          }
+          .btn {
+            border-radius: 0;
+            border:none;
+            background-color: $banner-blue;
+            color: $white;
+            padding:8px 30px 5px;
+            &::after {
+              content: " ▴";
               color: $white;
-              &::after {
-                content: " ▴";
-                color: $white;
-                font-size: 32px;
-                line-height: 0;
-                vertical-align: inherit;
-              }
+              font-size: 22px;
+              line-height: 0;
+              vertical-align: inherit;
+              padding-left:5px;
             }
-            .dropup {
+          }
+          .dropup {
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            bottom:0;
+            width:100%;
+            .dropdown-menu {
+              padding:3px 5px;
+              left: 50%;
+              right: auto;
               text-align: center;
-              margin:-34px 0 0 0;
-              .dropdown-menu {
-                left: 50%;
-                right: auto;
-                text-align: center;
-                transform: translate(-50%, 0);
-                > li a:hover {
-                  background-color: $banner-blue;
-                  color:$white;
-                }
+              transform: translate(-50%, 0);
+              a {
+                margin:2px;
+                border:solid 1px #CCC;
+              }
+              > li a:hover {
+                background-color: $banner-blue;
+                color:$white;
+              }
+              a[data-target="#"] {
+                display: none;
               }
             }
           }
         }
       }
+    }
   }
+}
+span .paragraph-info {
+  visibility: hidden!important;
 }
 
 // Related Content Blocks
@@ -250,33 +278,46 @@ span.baec5a81-e4d6-4674-97f3-e9220f0136c1 {
 }
 
 
-//Group Ad Space on program pages
+//Group Highlight Space on program and group landing pages
 body.path-group, body.page-node-type-background-page, body.page-node-type-article, body.page-node-type-group-post {
-  div#group-ad-space, #program-ad-space {
-    display:flex;
-    flex-direction: column;
-    flex-wrap:nowrap;
-    margin-top:10px;
-    margin-bottom:10px;
-    div#ad-box {
-      display:flex;
-      flex-direction: row;
-      border:solid 1px $exec-greyborder;
-      div#ad-content {
-        padding: 5px 10px;
-        flex: 1;
-      }
-      div#ad-image {
-        flex:0 1 auto;
-      }
+  #block-programhighlight,
+  .group-highlight,
+  .field--name-field-group-highlight {
+    display:inline-block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    //background-color: $white;
+    h2.block-title,
+    .field--label:first-of-type {
+      text-transform: uppercase;
+      font-size: 1.125rem;
+      background-color: #e6f2f9;
+      padding: 8px;
+      margin: 0px;
+      border-left: solid 1px #E0E7E8;
+      border-top: solid 1px #E0E7E8;
+      border-right: solid 1px #E0E7E8;
     }
-    #ad-tab h3 {
-      background-color: $comment-blue;
-      padding:8px;
-      margin:0px;
-      border-left: solid 1px $exec-greyborder;
-      border-top: solid 1px $exec-greyborder;
-      border-right: solid 1px $exec-greyborder;
+    .paragraph--type--program-group-highlight {
+      display: inline-block;
+      width:100%;
+      border: solid 1px $exec-greyborder;
+      padding: 5px 10px;
+        .field--name-field-highlight-title {
+          font-family: 'BCSans';
+          font-size: 1.125rem;
+          line-height: 24px;
+          color: #333333;
+          font-weight: bold;
+        }
+        .field--name-field-highlight-text {
+          margin:10px 0px;
+        }
+        .field--name-field-highlight-image {
+          float:right;
+          margin-left: 10px;
+        }
     }
   }
 }

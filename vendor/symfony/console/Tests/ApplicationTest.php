@@ -74,6 +74,7 @@ class ApplicationTest extends TestCase
         require_once self::$fixturesPath.'/FooSubnamespaced2Command.php';
         require_once self::$fixturesPath.'/TestAmbiguousCommandRegistering.php';
         require_once self::$fixturesPath.'/TestAmbiguousCommandRegistering2.php';
+        require_once self::$fixturesPath.'/FooHiddenCommand.php';
     }
 
     protected function normalizeLineBreaks($text)
@@ -520,7 +521,7 @@ class ApplicationTest extends TestCase
 
         // Subnamespace + plural
         try {
-            $a = $application->find('foo3:');
+            $application->find('foo3:');
             $this->fail('->find() should throw an Symfony\Component\Console\Exception\CommandNotFoundException if a command is ambiguous because of a subnamespace, with alternatives');
         } catch (\Exception $e) {
             $this->assertInstanceOf('Symfony\Component\Console\Exception\CommandNotFoundException', $e);
@@ -557,7 +558,7 @@ class ApplicationTest extends TestCase
             $this->assertRegExp(sprintf('/Command "%s" is not defined./', $commandName), $e->getMessage(), '->find() throws a CommandNotFoundException if command does not exist, with alternatives');
             $this->assertRegExp('/afoobar1/', $e->getMessage(), '->find() throws a CommandNotFoundException if command does not exist, with alternative : "afoobar1"');
             $this->assertRegExp('/foo:bar1/', $e->getMessage(), '->find() throws a CommandNotFoundException if command does not exist, with alternative : "foo:bar1"');
-            $this->assertNotRegExp('/foo:bar(?>!1)/', $e->getMessage(), '->find() throws a CommandNotFoundException if command does not exist, without "foo:bar" alternative');
+            $this->assertNotRegExp('/foo:bar(?!1)/', $e->getMessage(), '->find() throws a CommandNotFoundException if command does not exist, without "foo:bar" alternative');
         }
     }
 
@@ -567,6 +568,9 @@ class ApplicationTest extends TestCase
         $fooCommand->setAliases(['foo2']);
 
         $application = new Application();
+        $application->setCommandLoader(new FactoryCommandLoader([
+            'foo3' => static function () use ($fooCommand) { return $fooCommand; },
+        ]));
         $application->add($fooCommand);
 
         $result = $application->find('foo');
@@ -616,6 +620,7 @@ class ApplicationTest extends TestCase
         $application->add(new \Foo1Command());
         $application->add(new \Foo2Command());
         $application->add(new \Foo3Command());
+        $application->add(new \FooHiddenCommand());
 
         $expectedAlternatives = [
             'afoobar',
@@ -1583,23 +1588,6 @@ class ApplicationTest extends TestCase
 
         $tester->run(['--help' => true]);
         $this->assertStringContainsString('The foo:bar command', $tester->getDisplay());
-    }
-
-    /**
-     * @requires function posix_isatty
-     */
-    public function testCanCheckIfTerminalIsInteractive()
-    {
-        $application = new CustomDefaultCommandApplication();
-        $application->setAutoExit(false);
-
-        $tester = new ApplicationTester($application);
-        $tester->run(['command' => 'help']);
-
-        $this->assertFalse($tester->getInput()->hasParameterOption(['--no-interaction', '-n']));
-
-        $inputStream = $tester->getInput()->getStream();
-        $this->assertEquals($tester->getInput()->isInteractive(), @posix_isatty($inputStream));
     }
 
     public function testRunLazyCommandService()

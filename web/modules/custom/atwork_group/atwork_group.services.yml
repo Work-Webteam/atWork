@@ -1,5 +1,12 @@
 services:
   atwork_group.breadcrumb:
-    class: Drupal\atwork_group\Breadcrumb\atworkGroupBreadcrumbBuilder
+    class: Drupal\atwork_group\Breadcrumb\AtworkGroupBreadcrumbBuilder
     tags:
       - { name: breadcrumb_builder, priority: 100 }
+
+  paramconverter.group.forum:
+    class: Drupal\atwork_group\ParamConverter\GroupForumConverter
+    arguments: ['@entity.manager']
+    tags:
+      - { name: paramconverter, priority: 10 }
+    lazy: true

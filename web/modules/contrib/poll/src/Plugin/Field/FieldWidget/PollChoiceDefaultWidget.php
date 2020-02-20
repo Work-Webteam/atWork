@@ -59,6 +59,7 @@ class PollChoiceDefaultWidget extends WidgetBase {
       '#type' => 'textfield',
       '#placeholder' => t('Choice'),
       '#empty_value' => '',
+      '#maxlength' => 255,
       '#default_value' => $choice ? $choice->choice->value : NULL,
       '#prefix' => '<div class="container-inline">',
     );

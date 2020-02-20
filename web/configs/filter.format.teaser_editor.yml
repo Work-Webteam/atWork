@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 name: 'Teaser Editor'
 format: teaser_editor
-weight: 0
+weight: -8
 filters: {  }

@@ -10,8 +10,15 @@ dependencies:
     - node.type.forum
   module:
     - comment
+    - panelizer
     - text
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 _core:
   default_config_hash: TM_8DV1XKUAtF-wGxTBLOtg_GTtF5CX9WLrADxG7Xm4
 id: node.forum.default
@@ -37,17 +44,19 @@ content:
     third_party_settings: {  }
   flag_email_node:
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   flag_subscribe_node:
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   links:
     weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
   taxonomy_forums:
     type: entity_reference_label
     weight: -1
@@ -58,3 +67,4 @@ content:
     third_party_settings: {  }
 hidden:
   langcode: true
+  search_api_excerpt: true

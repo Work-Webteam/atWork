@@ -58,7 +58,7 @@ class ConfigIgnoreTest extends ConfigIgnoreBrowserTestBase {
     $this->drupalLogin($this->drupalCreateUser(['import configuration']));
 
     $edit = [
-      'ignored_config_entities' => 'config.test',
+      'ignored_config_entities' => 'config.test_01' . "\r\n" . 'config.test_02',
     ];
 
     $this->drupalGet('admin/config/development/configuration/ignore');
@@ -66,7 +66,7 @@ class ConfigIgnoreTest extends ConfigIgnoreBrowserTestBase {
 
     $settings = $this->config('config_ignore.settings')->get('ignored_config_entities');
 
-    $this->assertEqual($settings, ['config.test']);
+    $this->assertEquals(['config.test_01', 'config.test_02'], $settings);
   }
 
   /**

@@ -1,0 +1,8 @@
+containers_field_machine_name: field_forum_containers
+group_forum_access_perm: 'view group_node:forum content'
+taxonomy_term_redirect: true
+remove_core_create_ui: true
+remove_core_create_disallowed_message: true
+topic_create_help: 'To create forum topics, visit your group page.'
+_core:
+  default_config_hash: _qLWpNKgwCo8c0fW1YtPeK0DDz65Pfz74ae-67WWVwk

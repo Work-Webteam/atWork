@@ -5,11 +5,12 @@
  * Install, update and uninstall functions for the group module.
  */
 
-use Drupal\group\Entity\GroupContent;
 use Drupal\Core\Config\ExtensionInstallStorage;
 use Drupal\Core\Config\InstallStorage;
 use Drupal\Core\Entity\EntityTypeListenerInterface;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
+use Drupal\group\Entity\GroupContent;
+use Drupal\group\Entity\Storage\GroupContentStorageSchema;
 
 /**
  * Resave all GroupContent labels and remove orphaned entities.
@@ -437,4 +438,18 @@ function group_update_8015() {
  */
 function group_update_8016() {
   // Empty update. See group_post_update_view_cache_contexts();
+}
+
+
+/**
+ * Add storage schema to group content.
+ */
+function group_update_8017() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  // Add the new storage schema to the GroupContent entity type, which should
+  // automatically reindex the table.
+  $entity_type = $manager->getEntityType('group_content');
+  $entity_type->setHandlerClass('storage_schema', GroupContentStorageSchema::class);
+  $manager->updateEntityType($entity_type);
 }

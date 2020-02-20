@@ -66,3 +66,4 @@ forward_poll_poll: true
 forward_entity_poll_choice: false
 forward_poll_choice_poll_choice: false
 forward_node_background_page: 0
+forward_node_program_area_content: 0

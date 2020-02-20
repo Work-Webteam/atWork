@@ -83,7 +83,7 @@ class PollStorage extends SqlContentEntityStorage implements PollStorageInterfac
    * {@inheritdoc}
    */
   public function getExpiredPolls() {
-    $query = $this->database->query("SELECT id FROM {poll_field_data} WHERE (UNIX_TIMESTAMP() > (created + runtime)) AND status = 1 AND runtime <> 0");
+    $query = $this->database->query('SELECT id FROM {poll_field_data} WHERE (:timestamp > (created + runtime)) AND status = 1 AND runtime <> 0', [':timestamp' => \Drupal::time()->getCurrentTime()]);
     return $this->loadMultiple($query->fetchCol());
   }
 }

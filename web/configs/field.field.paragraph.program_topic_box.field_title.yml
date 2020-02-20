@@ -1,0 +1,19 @@
+uuid: 69208a51-c290-46a9-a946-38f88750552a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.program_topic_box
+id: paragraph.program_topic_box.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: program_topic_box
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

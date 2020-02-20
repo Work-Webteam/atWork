@@ -2,7 +2,6 @@
 
 // Top Nav Bar on each page
 #navbar {
-  background-color: $banner-blue;
   #block-atworknext-search {
     width:30%;
     float:right;
@@ -21,7 +20,7 @@
     .navbar-nav li a {
       color:$white;
       &.is-active {
-        color:$banner-blue;
+        color:$white;
       }
     }
     .menu.menu--account.nav.navbar-nav.navbar-right {
@@ -36,7 +35,7 @@
   @include size1416;
   padding:0;
     .next-menu-link {
-      color: $white;
+      color: $exec-greyborder;
   }
   section#block-mainnavigation {
     ul.sf-menu.sf-style-none {
@@ -54,12 +53,7 @@
     ul.sf-menu.sf-style-none a,
     ul.sf-menu.sf-style-none a:visited,
     ul.sf-menu.sf-style-none span.nolink {
-      border: 0 none;
       padding: 0.75em 1em;
-    }
-    ul.sf-menu.sf-style-none a.sf-with-ul,
-    ul.sf-menu.sf-style-none span.nolink.sf-with-ul {
-      padding-right: 2.25em;
     }
     ul.sf-menu.sf-style-none.rtl a.sf-with-ul,
     ul.sf-menu.sf-style-none.rtl span.nolink.sf-with-ul {
@@ -80,21 +74,23 @@
     }
     ul.sf-menu.sf-style-none li li,
     ul.sf-menu.sf-style-none.sf-navbar > li > ul {
-      background: #CCCCCC;
+      background: $comment-blue;
+      a {
+        color:$text;
+      }
     }
     ul.sf-menu.sf-style-none li li li {
-      background: $comment-blue;
-      border-bottom:solid 1px $white;
+      background: $white;
     }
     ul.sf-menu.sf-style-none li:hover,
     ul.sf-menu.sf-style-none li.sfHover,
     ul.sf-menu.sf-style-none a:focus,
     ul.sf-menu.sf-style-none a:hover,
     ul.sf-menu.sf-style-none span.nolink:hover {
-      background: $mtBlue1;
+      //background: $black;
       outline: 0;
       text-decoration: none;
-      color: $mtTeal;
+      color:$exec-greyborder;
     }
     div.sf-accordion-toggle.sf-style-none a {
       background: #bdd2ff;
@@ -177,29 +173,60 @@
     ul.sf-menu.sf-style-none li.sf-multicolumn-wrapper span.nolink.menuparent {
       font-weight: bold;
     }
+
 // Superfish Main menu changes
-    .sf-clicked {
-      color:$mtTeal;
-    }
-    a.sf-depth-3.next-menu-link {
-      color:black;
-    }
-    .sf-depth-2 {
-      > ul {
-        border: solid 1px #CCCCCC;
+    ul#superfish-main {
+      .sf-depth-1 {
+        a:hover {
+          background-color: $black;
+          color:$exec-greyborder;
+        }
+      }
+      .sf-depth-2 {
+        a.sf-depth-2 {
+          &:hover {
+            background-color: $black;
+            color:$exec-greyborder;
+          }
+        } 
+        > ul {
+          background-color: $white;
+          border: solid 1px #CCCCCC;
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+          padding:5px 5px 2px;
+        }
+      }
+      .sf-depth-2.next-menu-item.sf-no-children > a.sf-depth-2.next-menu-link {
+        padding-top:13px;
+      }
+      .sf-depth-3 {
+        a.sf-depth-3 {
+          color:$text;
+          display: block;
+          border: solid 1px #CCCCCC;
+          margin-bottom:3px;
+          padding-top:8px;
+          padding-bottom:4px;
+          &:hover {
+            color:$white;
+            background-color: $banner-blue;
+          }
+        }
       }
     }
-    .is-active.sf-depth-2.next-menu-link,
-    .is-active.sf-depth-3.next-menu-link,
-    .active-trail.sf-depth-2.next-menu-item.menuparent
-     {
-      background-color: #044573;
-      color:$white;
+    .sf-depth-1.next-menu-item.menuparent.sf-breadcrumb.sfHover,
+    .active-trail.sf-depth-2.next-menu-item.sf-no-children > a, 
+    .active-trail.sf-depth-2.next-menu-item.menuparent > a {
+      background-color: $black;
+      color:$exec-greyborder;
     }
+  }
+  .next-menu-link.menuparent.sf-with-ul span.glyphicon.glyphicon-menu-down {
+    margin-left:8px;
   }
 }
 // Group and Landing Page side menus
-body.path-group,
+body.path-group, body.path-groups,
 body.page-node-type-program-area-content {
   .region-sidebar-nav {
     @include make-sm-column(3);
@@ -207,32 +234,109 @@ body.page-node-type-program-area-content {
     padding-right:0px;
     @include size1416;
     .draggable-dashboard-block__header {
-      border-bottom:solid 1px #999;
+      border-bottom:solid 1px lighten($button-hover, 35%);
     }
-    .group-side-menu {
+    .group-side-menu,
+    section#block-programareamenu {
       border:solid 1px $exec-greyborder;
       margin-top:10px;
       margin-bottom:5px;
       padding:5px;
-      h3.block-title {
-        background-color: $mtTeal;
+      h3, h3.block-title {
         color:$white;
         text-align: center;
-        padding:7px 0;
+        padding:9px 0;
         margin:0 0 10px 0;
         font-weight: normal;
         text-transform: uppercase;
         border-bottom:solid 2px #999;
+        @include size1416;
       }
       #accordion.panel-group {
         margin-bottom: 5px;
+        .panel {
+          background-color:$exec-greyborder;
+        }
         h4.panel-title {
           padding: 5px 10px;
           border-bottom:solid 1px #999;
+          @include size1416;
+          font-weight: normal;
+          .caret {
+            display:block;
+            float:right;
+            margin-top: 10px;
+          }
         }
-        .field--name-field-group-menu-link .panel-body {
-          border-bottom:solid 1px $exec-greyborder;
+        .panel-body {
+          border-left:solid 1px $exec-greyborder;
+          border-top:solid 1px $exec-greyborder;
+          border-bottom: solid 1px #999;
+          border-right:solid 1px #999;
+          background-color: $white;
+          margin:5px;
+          padding:0px;
+          a {
+            display:block;
+            padding:5px;
+            &:hover {
+              background-color:$banner-blue;
+              color:$white;
+            }
+          }
         }
+      }
+    }
+    section#block-programareamenu {
+      h2 {
+        padding:inherit;
+        margin:0px;
+        color:$white;
+        text-align: center;
+        background-color: $banner-blue;
+      }
+      #accordion.panel-group {
+        margin-bottom:0px;
+        .panel-default {
+          border:none;
+        }
+        .panel-heading {
+          background-color: $comment-blue;
+          margin-top:5px;
+        }
+        h4.panel-title {
+          border-bottom: initial;
+        }
+      }
+      h4.panel-title {
+        .caret {
+          display:block;
+          float:right;
+          margin-top: 10px;
+        }
+      }
+    }
+    aside#side-menu {
+      h3 {
+        background-color: $banner-blue;
+      }
+      a {
+        display: block;
+        border:solid 1px #ECECEC;
+        padding:10px;
+        margin-bottom:5px;
+        &:hover {
+          text-decoration: none;
+          background-color: $banner-blue;
+          color:$white;
+        }
+      }
+      #atworkgroups-sidebar-menu {
+        padding:0px;
+        margin:0px;
+         li {
+           list-style-type: none;
+         }
       }
     }
   }

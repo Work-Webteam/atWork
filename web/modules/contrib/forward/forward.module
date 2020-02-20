@@ -81,9 +81,14 @@ function forward_entity_view(array &$build, EntityInterface $entity, EntityViewD
     return;
   }
 
-  // Display a forward link or form unless the entity is being rendered for a forward email.
+  // Display a forward link or form unless the entity is being rendered
+  // for a forward email or by layout builder.  When using layout builder,
+  // the Forward block (Link or Form) is placed directly into the layout.
   $show = \Drupal::service('forward.access_checker')
-    ->isAllowed($settings, $entity, $view_mode) && empty($build['#forward_build']);
+    ->isAllowed($settings, $entity, $view_mode)
+     && empty($build['#forward_build'])
+     && empty($build['_layout_builder'])
+  ;
   if ($show) {
     if ($settings['forward_interface_type'] == 'link') {
       $build['forward'] = \Drupal::service('forward.link_builder')
@@ -104,15 +109,28 @@ function forward_theme($existing, $type, $theme, $path) {
     'forward' => [
       'variables' => [
         'email' => NULL,
+        'recipient' => NULL,
         'header' => NULL,
+        'footer' => NULL,
         'message' => NULL,
         'settings' => NULL,
         'entity' => NULL,
         'content' => NULL,
         'view_mode' => NULL,
+        'email_format' => NULL,
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function forward_theme_suggestions_forward(array $variables) {
+  $suggestions = [];
+  $suggestions[] = 'forward__' . $variables['email_format'];
+  $suggestions[] = 'forward__' . $variables['email_format'] . '__' . $variables['view_mode'];
+  return $suggestions;
 }
 
 /**
@@ -162,8 +180,14 @@ function forward_mail($key, &$message, $params) {
 function forward_mail_alter(&$message) {
   if ($message['module'] == 'forward') {
     if (($message['key'] == 'mail_entity') || ($message['key'] == 'send_entity')) {
+      if (!empty($message['params']['plain_text'])) {
+        $message['headers']['Content-Type'] = 'text/plain; charset=utf-8';
+      }
+      else {
+        $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
+      }
+
       $message['headers']['MIME-Version'] = '1.0';
-      $message['headers']['Content-Type'] = 'text/html; charset=utf-8';
       $message['headers']['Reply-to'] = $message['params']['headers']['Reply-To'];
       $message['headers']['Sender'] = $message['headers']['From'];
     }
@@ -185,7 +209,7 @@ function forward_form_alter(&$form, FormStateInterface $form_state, $form_id) {
       '#type' => 'checkbox',
       '#title' => t('Show forwarding link/form'),
       '#return_value' => 1,
-      '#default_value' => $settings['forward_node_' . $node_type],
+      '#default_value' => isset($settings['forward_node_' . $node_type]) ? $settings['forward_node_' . $node_type] : 0,
       '#description' => t('Further configuration is available on the <a href="@settings-url">Forward settings page</a>.', ['@settings-url' => $url->toString()]),
     ];
     $form['actions']['submit']['#submit'][] = 'forward_node_type_edit_form_submit';
@@ -196,11 +220,14 @@ function forward_form_alter(&$form, FormStateInterface $form_state, $form_id) {
  * Implements submit handler for hook_form_alter().
  */
 function forward_node_type_edit_form_submit($form, FormStateInterface $form_state) {
-  \Drupal::getContainer()
-    ->get('config.factory')
-    ->getEditable('forward.settings')
-    ->set('forward_node_' . $form['#node_type'], $form_state->getValue('forward_node'))
-    ->save();
+  $value = $form_state->getValue('forward_node');
+  $settings = \Drupal::getContainer()->get('config.factory')->getEditable('forward.settings');
+  if (!empty($value)) {
+    $settings->set('forward_node_' . $form['#node_type'], $value)->save();
+  }
+  else {
+    $settings->clear('forward_node_' . $form['#node_type']);
+  }
 }
 
 /**

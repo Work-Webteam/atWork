@@ -1,9 +1,0 @@
-uuid: 59f71a4e-2a5c-446f-a287-569cce45f7b9
-langcode: en
-status: true
-dependencies: {  }
-id: menu_links
-label: 'Menu links'
-icon_uuid: null
-description: ''
-behavior_plugins: {  }

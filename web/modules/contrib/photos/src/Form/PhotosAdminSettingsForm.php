@@ -612,8 +612,9 @@ class PhotosAdminSettingsForm extends ConfigFormBase {
 
     // Set warning if private file path is not set.
     if (!PrivateStream::basePath() && $form_state->getValue('photos_access_photos')) {
-      drupal_set_message($this->t('Warning: image files can still be accessed by visiting the direct URL.
-        For better security, ask your website admin to setup a private file path.'), 'warning');
+      \Drupal::messenger()->addWarning($this->t('Warning: image files can
+        still be accessed by visiting the direct URL. For better security, ask
+        your website admin to setup a private file path.'));
     }
   }
 

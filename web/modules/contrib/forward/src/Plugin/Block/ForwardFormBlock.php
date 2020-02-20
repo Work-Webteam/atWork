@@ -5,6 +5,7 @@ namespace Drupal\forward\Plugin\Block;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -107,6 +108,36 @@ class ForwardFormBlock extends BlockBase implements ContainerFactoryPluginInterf
   /**
    * {@inheritdoc}
    */
+  public function blockForm($form, FormStateInterface $form_state) {
+    $form = parent::blockForm($form, $form_state);
+    $config = $this->configuration;
+
+    $form['body'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Body'),
+      '#description' => $this->t('If set, this is placed in the block before the form.'),
+    ];
+
+    if (isset($config['body']['value'])) {
+      $form['body']['#default_value'] = $config['body']['value'];
+      $form['body']['#format'] = $config['body']['format'];
+    }
+
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+    parent::blockSubmit($form, $form_state);
+
+    $this->configuration['body'] = $form_state->getValue('body');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function blockAccess(AccountInterface $account) {
     return $this->isAllowed() ? AccessResult::allowed() : AccessResult::forbidden();
   }
@@ -128,6 +159,10 @@ class ForwardFormBlock extends BlockBase implements ContainerFactoryPluginInterf
     $parameters = $this->routeMatch->getParameters();
     if ($parameters->has('node')) {
       $entity = $parameters->get('node');
+      $bundle = $entity->bundle();
+    }
+    if ($parameters->has('commerce_product')) {
+      $entity = $parameters->get('commerce_product');
       $bundle = $entity->bundle();
     }
     if ($parameters->has('taxonomy_term')) {
@@ -154,10 +189,18 @@ class ForwardFormBlock extends BlockBase implements ContainerFactoryPluginInterf
   public function build() {
     $render_array = [];
 
-    // Build the link unless Forward is rendering an email.
+    // Build the form unless Forward is rendering an email.
     $config = $this->getConfiguration();
     if (empty($config['build']['#forward_build']) && $this->isAllowed()) {
-      $render_array = $this->formBuilder->buildForwardEntityForm($this->entity, $this->settings);
+      $render_array = [];
+      if (!empty($config['body']['value'])) {
+        $render_array[] = [
+          '#type' => 'processed_text',
+          '#text' => $config['body']['value'],
+          '#format' => $config['body']['format'],
+        ];
+      }
+      $render_array[] = $this->formBuilder->buildForwardEntityForm($this->entity, $this->settings);
     }
 
     return $render_array;

@@ -1,31 +1,32 @@
-uuid: 2de0e883-a24e-4420-b3a1-0d9a1ad7054c
+uuid: d5233001-0477-48f9-9c65-b6301e25f87f
 langcode: en
 status: false
 dependencies:
   config:
     - views.view.related_content
   module:
-    - ctools
+    - group
     - views
   theme:
     - atworknext
 id: views_block__related_content_block_4
 theme: atworknext
 region: content
-weight: 0
+weight: -1
 provider: null
 plugin: 'views_block:related_content-block_4'
 settings:
   id: 'views_block:related_content-block_4'
   label: ''
   provider: views
-  label_display: '0'
+  label_display: visible
   views_label: ''
   items_per_page: none
+  context_mapping: {  }
 visibility:
-  'entity_bundle:group':
-    id: 'entity_bundle:group'
-    bundles:
+  group_type:
+    id: group_type
+    group_types:
       atwork_groups: atwork_groups
     negate: false
     context_mapping:

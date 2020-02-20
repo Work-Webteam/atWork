@@ -1,0 +1,40 @@
+uuid: 9e396eba-fb95-4c84-9896-1615481e2cc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_program_topic_boxes
+    - node.type.background_page
+    - paragraphs.paragraphs_type.program_topic_box
+  module:
+    - entity_reference_revisions
+id: node.background_page.field_program_topic_boxes
+field_name: field_program_topic_boxes
+entity_type: node
+bundle: background_page
+label: 'Program Topic Boxes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      program_topic_box: program_topic_box
+    target_bundles_drag_drop:
+      explore_links:
+        weight: 5
+        enabled: false
+      group_menu_link:
+        weight: 6
+        enabled: false
+      menu_links:
+        weight: 7
+        enabled: false
+      program_topic_box:
+        enabled: true
+        weight: 8
+field_type: entity_reference_revisions

@@ -1,0 +1,5 @@
+name: 'Atwork Calendar'
+type: module
+description: 'Module to implement calendar actions.'
+core: 8.x
+package: 'Atwork'

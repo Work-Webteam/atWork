@@ -34,7 +34,6 @@ use Drupal\shortcut\ShortcutInterface;
  *       "edit" = "Drupal\shortcut\ShortcutForm",
  *       "delete" = "Drupal\shortcut\Form\ShortcutDeleteForm"
  *     },
- *     "translation" = "Drupal\content_translation\ContentTranslationHandler"
  *   },
  *   base_table = "shortcut",
  *   data_table = "shortcut_field_data",
@@ -148,7 +147,7 @@ class Shortcut extends ContentEntityBase implements ShortcutInterface {
       ->setDescription(t('The location this shortcut points to.'))
       ->setRequired(TRUE)
       ->setSettings([
-        'link_type' => LinkItemInterface::LINK_GENERIC,
+        'link_type' => LinkItemInterface::LINK_INTERNAL,
         'title' => DRUPAL_DISABLED,
       ])
       ->setDisplayOptions('form', [

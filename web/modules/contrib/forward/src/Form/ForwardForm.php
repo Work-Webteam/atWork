@@ -433,6 +433,18 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
         '#required' => ($settings['forward_personal_message'] == 2),
       ];
     }
+    if ($settings['forward_form_allow_plain_text']) {
+      $form['message']['email_format'] = [
+        '#type' => 'select',
+        '#title' => $this->t('E-mail format'),
+        '#default_value' => 'html',
+        '#options' => [
+          'html' => $this->t('HTML'),
+          'plain_text' => $this->t('Plain text'),
+        ],
+        '#required' => TRUE,
+      ];
+    }
 
     // Submit button.
     if ($settings['forward_interface_type'] == 'form') {
@@ -483,13 +495,18 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
 
     $recipients = $this->splitEmailAddresses($form_state->getValue('recipient'));
     if (count($recipients) > $this->settings['forward_max_recipients']) {
-      $message = new FormattableMarkup($this->settings['forward_max_recipients_error'], ['@number' => $this->settings['forward_max_recipients']]);
-      $form_state->setErrorByName('', $message);
+      $message = $this->getStringTranslation()->formatPlural(
+        $this->settings['forward_max_recipients'],
+        "You can't send email to more than 1 recipient at a time.",
+        "You can't send email to more than @count recipients at a time."
+      );
+      $form_state->setErrorByName('recipient', $message);
     }
+
     foreach ($recipients as $recipient) {
       if (!$this->emailValidator->isValid($recipient)) {
         $message = $this->t('The email address %mail is not valid.', ['%mail' => $recipient]);
-        $form_state->setErrorByName('', $message);
+        $form_state->setErrorByName('recipient', $message);
       }
     }
     parent::validateForm($form, $form_state);
@@ -502,6 +519,12 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
     // Get form values.
     $entity = $form_state->get('#entity');
     $recipients = $this->splitEmailAddresses($form_state->getValue('recipient'));
+
+    // Decide if we're sending HTML or plain text. Default to HTML.
+    $email_format = 'html';
+    if ($form_state->getValue('email_format') == 'plain_text') {
+      $email_format = 'plain_text';
+    }
 
     // Use the entity language to drive translation.
     $langcode = $entity->language()->getId();
@@ -524,19 +547,13 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
       $elements = [];
       if ($entity->access('view')) {
         $view_builder = $this->entityTypeManager->getViewBuilder($entity->getEntityTypeId());
-        $view_mode = 'forward';
-        if ($this->isValidDisplay($entity, $view_mode)) {
-          $elements = $view_builder->view($entity, $view_mode, $langcode);
-        }
-        if (empty($elements)) {
-          $view_mode = 'teaser';
+        foreach (['forward', 'teaser', 'full'] as $view_mode) {
           if ($this->isValidDisplay($entity, $view_mode)) {
             $elements = $view_builder->view($entity, $view_mode, $langcode);
           }
-        }
-        if (empty($elements)) {
-          $view_mode = 'full';
-          $elements = $view_builder->view($entity, $view_mode, $langcode);
+          if (!empty($elements)) {
+            break;
+          }
         }
       }
       // Prevent recursion.
@@ -545,6 +562,9 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
 
       // Build the header line.
       $header = ['#markup' => $this->tokenService->replace($this->settings['forward_email_message'], $token, ['langcode' => $langcode])];
+
+      // Build the footer line.
+      $footer = ['#markup' => $this->tokenService->replace($this->settings['forward_email_footer'], $token, ['langcode' => $langcode])];
 
       // Build the personal message if present.
       $message = '';
@@ -558,20 +578,24 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
         }
         else {
           // HTML not allowed in personal message, so use the sanitized version converted to plain text.
-          $message = ['#plain_text' => nl2br($form_state->getValue('message'))];
+          $message = ['#plain_text' => $form_state->getValue('message')];
         }
       }
 
       // Build the email body.
+      $recipient = implode(',', $recipients);
       $render_array = [
         '#theme' => 'forward',
         '#email' => $form_state->getValue('email'),
+        '#recipient' => $recipient,
         '#header' => $header,
         '#message' => $message,
         '#settings' => $this->settings,
         '#entity' => $entity,
         '#content' => $content,
         '#view_mode' => $view_mode,
+        '#email_format' => $email_format,
+        '#footer' => $footer,
       ];
 
       // Allow modules to alter the render array for the message.
@@ -581,11 +605,12 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
       $params['body'] = $this->renderer->render($render_array);
 
       // Apply filters such as Pathologic for link correction.
-      if ($this->settings['forward_filter_format']) {
+      $format_setting = "forward_filter_format_$email_format";
+      if ($this->settings[$format_setting]) {
         // This filter was setup by the Forward administrator for this purpose only,
         // whose permission to run the filter was checked at that time.
         // Therefore, no need to check filter access again here.
-        $params['body'] = check_markup($params['body'], $this->settings['forward_filter_format'], $langcode);
+        $params['body'] = check_markup($params['body'], $this->settings[$format_setting], $langcode);
       }
 
       // Allow modules to alter the final message body.
@@ -613,6 +638,11 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
       $site_mail = ini_get('sendmail_from');
     }
     $params['headers']['Reply-To'] = trim(Unicode::mimeHeaderEncode($form_state->getValue('name')) . ' <' . $form_state->getValue('email') . '>');
+
+    // Handle plain text vs. HTML setting.
+    if ($email_format == 'plain_text') {
+      $params['plain_text'] = TRUE;
+    }
 
     // Prepare for Event dispatch.
     $account = $this->entityTypeManager->getStorage('user')
@@ -658,7 +688,7 @@ class ForwardForm extends FormBase implements BaseFormIdInterface {
     // Display a confirmation message.
     $message = $this->tokenService->replace($this->settings['forward_form_confirmation'], $token, ['langcode' => $langcode]);
     if ($message) {
-      drupal_set_message($message);
+      $this->messenger()->addMessage($message);
     }
 
     // Redirect back to entity page unless a redirect is already set.

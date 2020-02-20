@@ -1,0 +1,29 @@
+group.forum:
+  path: '/groups/{group}/forum/{taxonomy_term}'
+  defaults:
+    _controller: 'Drupal\atwork_group\Controller\GroupForumController::groupForumPage'
+    _title_callback: 'Drupal\atwork_group\Controller\GroupForumController::groupForumTitle'
+  requirements:
+    _permission: 'access content'
+
+group.forum.topic:
+  path: '/groups/{group}/topic/{node}'
+  defaults:
+    _controller: 'Drupal\atwork_group\Controller\GroupForumTopicController::groupForumTopicView'
+  requirements:
+    _permission: 'access content'
+
+group.forum.topic.reply:
+  path: '/groups/{group}/comment/reply/{entity_type}/{entity}/{field_name}/{pid}'
+  defaults:
+    _controller: 'Drupal\atwork_group\Controller\GroupForumReplyController::getGroupForumReplyForm'
+    _title: 'Add new comment'
+    pid: ~
+  requirements:
+    _custom_access: 'Drupal\atwork_group\Controller\GroupForumReplyController::groupForumReplyFormAccess'
+  options:
+    parameters:
+      group:
+        type: entity:group
+      entity:
+        type: entity:{entity_type}

@@ -11,7 +11,8 @@ body.path-group .region-content nav.tabs ul.tabs--primary {
   display: none; // hides the edit links which were moved to the group admin menu
 }
 // Group content
-body.path-group section.col-sm-12 {
+body.path-group, body.path-groups {
+  section.col-sm-12 {
   .region-content {
     .group-page-content{
       margin-top:-10px;
@@ -23,13 +24,12 @@ body.path-group section.col-sm-12 {
       padding:5px 5px 10px;
       margin-bottom: 5px;
       h2.block-title {
-        background-color: $mtTeal;
-        color:$white;
-        padding:10px;
+        padding:9px 10px;
         margin:inherit;
         font-weight: normal;
         text-align: center;
         border-bottom:solid 2px #999;
+        @include size1416;
       }
       h3 {
         border-top:solid 1px $exec-greyborder;
@@ -37,6 +37,7 @@ body.path-group section.col-sm-12 {
         padding:0;
         margin:10px 0;
         text-align: center;
+        @include size1416;
       }
       p {
         padding:0;
@@ -55,14 +56,12 @@ body.path-group section.col-sm-12 {
           &:before {
             content:"Group: ";
           }
-          @include size2136;
-          font-family: 'Myriad Pro', 'DejaVu Sans Condensed', Helvetica, Arial, sans-serif;
-          font-weight: normal;
-          padding:3px 0 0 15px;
+          @include size1824;
+          font-family: 'BCSans';
+          font-weight: 600;
+          padding:8px 0 7px 15px;
           margin:0;
           text-transform: uppercase;
-          background-color:$mtTeal;
-          color:$white;
           display: block;
         }
       }
@@ -78,23 +77,18 @@ body.path-group section.col-sm-12 {
       }
       .group-join, .group-leave {
         display:inline-block;
-        background-color:$banner-blue;
         position: absolute;
         right:0;
         top:0;
         width:180px;
-        padding: 8px 0;
+        padding: 8px 0px 5px;
         text-align: center;
+        text-transform: uppercase;
         > a {
-          color:$white;
           &:hover {
             text-decoration: none;
-            color:$mtOrange;
           }
         }
-      }
-      .field--name-field-group.field--type-image img {
-        border-bottom:solid 8px $mtTeal;
       }
       .field--name-field-group-description {
         padding-top:12px;
@@ -102,6 +96,7 @@ body.path-group section.col-sm-12 {
       }
     }
   }
+}
 // Empty spacer box if no Group Ad Space specified
   #no-ad-space {
     display: flex;
@@ -116,7 +111,6 @@ body.path-group section.col-sm-12 {
       padding-left:0px;
       padding-right:0px;
         > h2.block-title {
-          background-color: $mtTeal;
           margin-bottom: 10px;
           color:$white;
           padding:8px 0 5px 10px;
@@ -134,7 +128,7 @@ body.path-group section.col-sm-12 {
       padding:0;
       margin:0;
       width:100%;
-      background-color:$mtTeal;
+      //background-color:$mtTeal;
       border-bottom:solid 2px #999;
       .btn-primary {
         border-radius: 0px;
@@ -149,14 +143,12 @@ body.path-group section.col-sm-12 {
         margin-bottom:5px;
         &:hover {
           text-decoration: none;
-          color:$mtBlue1;
-          background-color: $mtBlue2;
         }
       }
     }
     .well {
-      border-color:$mtBlue2;
-      background-color:rgba($mtBlue2, .5);
+      //border-color:lightseagreen;
+      background-color:lightgray;
       padding: 10px 10px 0;
       margin-bottom: initial;
     }
@@ -164,7 +156,7 @@ body.path-group section.col-sm-12 {
       min-height:inherit;
     }
     .draggable-dashboard-block {
-      border-color:$mtBlue2;
+      border-color:lighten($button-hover, 35%);
       h2 {
         padding:0;
         margin:0;
@@ -179,4 +171,131 @@ body.path-group section.col-sm-12 {
 .groups-landing,
 .all-group-posts {
   @include blue-grid-box;
+}
+
+// Group Theme Switch Colours
+
+.theme_default {
+  @include theme_default_set;
+}
+.theme_dark {
+  @include theme_deep_set;
+}
+.theme_bright {
+  @include theme_bright_set;
+}
+.theme_muted {
+  @include theme_muted_set;
+}
+
+// Group Admin Front panel theme info
+#theme_dark,
+#theme_muted,
+#theme_bright,
+#theme_default {
+  text-align: center;
+  #sw-main,
+  #sw-second,
+  #sw-link {
+    display: inline-block;
+    width: 30%;
+    height:20px;
+    border: solid 1px #999;
+  }
+}
+#theme_dark {
+  #sw-main {
+    background-color: $grp-deep-banner;
+  }
+  #sw-second {
+    background-color: $grp-deep-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_default {
+  #sw-main {
+    background-color: $grp-default-banner;
+  }
+  #sw-second {
+    background-color: $grp-default-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_bright {
+  #sw-main {
+    background-color: $grp-bright-banner;
+  }
+  #sw-second {
+    background-color: $grp-bright-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+#theme_muted {
+  #sw-main {
+    background-color: $grp-muted-banner;
+  }
+  #sw-second {
+    background-color: $grp-muted-btn;
+  }
+  #sw-link {
+    background-color: $grp-default-link;
+  }
+}
+
+// Group Calendar and Events
+
+.js-drupal-fullcalendar {
+  .fc-header-toolbar {
+    font-size: .85em;
+  }
+  .fc-content-skeleton {
+    table {
+      td.fc-event-container {
+        > a.fc-day-grid-event {
+          background-color: rgb(178, 213, 230)!important;
+        }
+        .fc-content {
+          padding: 3px 5px;
+          a {
+            color: $black;
+          }
+          .fc-time {
+            padding-right: 3px;
+            color: rgb(0, 0, 0);
+          }
+        }
+      }
+    }
+  }
+}
+.fc-unthemed td.fc-today {
+  background-color: $exec-greyborder;
+}
+article.group-event.full {
+  .author-byline {
+    padding: 3px 5px;
+  }
+  .node_content {
+    .field--type-text-with-summary {
+      margin:10px 45px;
+      padding: 10px;
+      background-color: #B2D5E6;
+      color: $black;
+    }
+    > p {
+      display: none;
+    }
+    .group_event_dates {
+      margin-top: 25px;
+    }
+  }
 }

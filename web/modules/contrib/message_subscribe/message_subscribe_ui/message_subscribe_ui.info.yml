@@ -1,14 +1,13 @@
 name: 'Message subscribe UI'
 description: 'Message subscribe UI'
-# core: 8.x
+core: 8.x
 package: Message
 dependencies:
-  - message_subscribe
-  - views
+  - message_subscribe:message_subscribe
+  - drupal:views
 type: module
 
-# Information added by Drupal.org packaging script on 2018-05-07
-version: '8.x-1.0-beta5'
-core: '8.x'
+# Information added by Drupal.org packaging script on 2019-10-04
+version: '8.x-1.0'
 project: 'message_subscribe'
-datestamp: 1525719493
+datestamp: 1570212487

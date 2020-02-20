@@ -1,0 +1,40 @@
+uuid: d69e5f59-be95-4ecb-a148-ebbe31248cc7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_program_area_menu
+    - node.type.background_page
+    - paragraphs.paragraphs_type.group_menu_link
+  module:
+    - entity_reference_revisions
+id: node.background_page.field_program_area_menu
+field_name: field_program_area_menu
+entity_type: node
+bundle: background_page
+label: 'Program Menu'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      group_menu_link: group_menu_link
+    target_bundles_drag_drop:
+      group_menu_link:
+        enabled: true
+        weight: 6
+      program_group_highlight:
+        weight: 8
+        enabled: false
+      program_menu_links_box:
+        weight: 9
+        enabled: false
+      program_topic_box:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

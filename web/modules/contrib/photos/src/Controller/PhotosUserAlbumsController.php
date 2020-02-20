@@ -5,7 +5,7 @@ namespace Drupal\photos\Controller;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -29,9 +29,9 @@ class PhotosUserAlbumsController extends ControllerBase {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The renderer.
@@ -52,16 +52,16 @@ class PhotosUserAlbumsController extends ControllerBase {
    *
    * @param \Drupal\Core\Database\Connection $connection
    *   The database connection.
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_manager
    *   The entity manager service.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_match
    *   The current route match.
    */
-  public function __construct(Connection $connection, EntityManagerInterface $entity_manager, RendererInterface $renderer, RouteMatchInterface $route_match) {
+  public function __construct(Connection $connection, EntityTypeManagerInterface $entity_manager, RendererInterface $renderer, RouteMatchInterface $route_match) {
     $this->connection = $connection;
-    $this->entityManager = $entity_manager;
+    $this->entityTypeManager = $entity_manager;
     $this->renderer = $renderer;
     $this->routeMatch = $route_match;
   }
@@ -72,7 +72,7 @@ class PhotosUserAlbumsController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('database'),
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('renderer'),
       $container->get('current_route_match')
     );
@@ -87,7 +87,7 @@ class PhotosUserAlbumsController extends ControllerBase {
   public function access(AccountInterface $account) {
     // Check if user can view account photos.
     $uid = $this->routeMatch->getParameter('user');
-    $account = $this->entityManager->getStorage('user')->load($uid);
+    $account = $this->entityTypeManager->getStorage('user')->load($uid);
     if (!$account || _photos_access('viewUser', $account)) {
       return AccessResult::allowed();
     }
@@ -104,8 +104,8 @@ class PhotosUserAlbumsController extends ControllerBase {
     $user = $this->currentUser();
     $uid = $this->routeMatch->getParameter('user');
     if ($uid <> $user->id()) {
-      $account = $this->entityManager->getStorage('user')->load($uid);
-      return $this->t("@name's albums", ['@name' => $account->getUsername()]);
+      $account = $this->entityTypeManager->getStorage('user')->load($uid);
+      return $this->t("@name's albums", ['@name' => $account->getDisplayName()]);
     }
     else {
       return $this->t('My Albums');
@@ -125,7 +125,7 @@ class PhotosUserAlbumsController extends ControllerBase {
     $uid = $this->routeMatch->getParameter('user');
     $account = FALSE;
     if ($uid && is_numeric($uid)) {
-      $account = $this->entityManager->getStorage('user')->load($uid);
+      $account = $this->entityTypeManager->getStorage('user')->load($uid);
     }
     if (!$account) {
       throw new NotFoundHttpException();
@@ -163,7 +163,7 @@ class PhotosUserAlbumsController extends ControllerBase {
       $nid = $result->nid;
       $cache_tags[] = 'node:' . $nid;
       $cache_tags[] = 'photos:album:' . $nid;
-      $node = $this->entityManager->getStorage('node')->load($result->nid);
+      $node = $this->entityTypeManager->getStorage('node')->load($result->nid);
       $node_view = node_view($node, 'full');
       $output .= $this->renderer->render($node_view);
     }
@@ -173,7 +173,7 @@ class PhotosUserAlbumsController extends ControllerBase {
     }
     else {
       if ($account <> FALSE) {
-        $output .= $this->t('@name has not created an album yet.', ['@name' => $account->getUsername()]);
+        $output .= $this->t('@name has not created an album yet.', ['@name' => $account->getDisplayName()]);
       }
       else {
         $output .= $this->t('No albums have been created yet.');
