@@ -1,4 +1,0 @@
-administer postal code:
-  title: 'Administer postal code'
-  description: 'This will allow user to administer postal code module settings'
-  restrict access: TRUE

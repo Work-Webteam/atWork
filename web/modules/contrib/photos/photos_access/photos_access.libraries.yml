@@ -1,5 +1,0 @@
-photos_access.node.form:
-  version: 1.x
-  css:
-    theme:
-      css/photos_access.node.form.css: {}
