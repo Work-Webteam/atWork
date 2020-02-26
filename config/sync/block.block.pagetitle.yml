@@ -9,7 +9,7 @@ dependencies:
 id: pagetitle
 theme: atwork_barrio
 region: content
-weight: -6
+weight: -11
 provider: null
 plugin: page_title_block
 settings:

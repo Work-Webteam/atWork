@@ -1,6 +1,6 @@
 uuid: 83943087-a00f-4573-802e-2620765cc460
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - photos

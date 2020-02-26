@@ -240,7 +240,7 @@ nav#navbar-top {
   }
 
  // Group and Landing Page side menus
-body.path-group, body.path-groups {
+body.path-group, body.path-groups, body.node--type-program-area-content {
   #sidebar_first {
     aside.section {
       #block-atwork-barrio-groupadmin {
@@ -250,6 +250,11 @@ body.path-group, body.path-groups {
         h2 {
           padding:0;
           margin:0;
+          font-weight: 600;
+          text-transform: uppercase;
+          text-align:center;
+          font-size: .875rem;
+          padding: 8px 0 9px 0;
           a.btn-primary {
             border-radius: 0;
           }
@@ -257,7 +262,11 @@ body.path-group, body.path-groups {
         .draggable-dashboard {
           background-color: $exec-greyborder;
           h2 {
-            border-bottom: none;;
+            border-bottom: none;
+            padding:0;
+            font-size:.875rem;
+            text-transform: initial;
+            text-align: left;
           }
           #column-1 {
             padding:10px;
@@ -287,10 +296,17 @@ body.path-group, body.path-groups {
              }
            }
          }
+         &.draggable-dashboard .draggable-dashboard-column {
+           min-height:auto;
+         }
+         .draggable-dashboard-block {
+           margin-bottom:10px;
+         }
         }
       }
       #block-atwork-barrio-views-block-group-menu-block-1,
-      #block-atwork-barrio-views-block-group-menu-block-3 {
+      #block-atwork-barrio-views-block-group-menu-block-3,
+      #block-programareamenu {
         border-color:#CCC;
         .col-auto {
           padding: 0;

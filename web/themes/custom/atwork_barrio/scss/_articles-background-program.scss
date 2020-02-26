@@ -115,7 +115,7 @@ body.node--type-background-page {
           @extend .flex-fill;
           border:solid 1px $exec-greyborder;
           background-color: $white;
-          min-width: 200px;
+          min-width: 450px;
           max-width: 500px;
           text-align: center;
           margin:10px;
@@ -172,6 +172,16 @@ body.node--type-program-area-content {
       height:auto;
     }
   }
+  #block-programareamenu {
+    h2 {
+      background-color: $banner-blue;
+      color: $white;
+    }
+    #accordion.panel-group {
+      padding:5px;
+      margin-bottom: 5px;
+    }
+  }
 }
 //Group Highlight Space on program and group landing pages
 body.path-group, body.node--type-background-page {
@@ -209,6 +219,9 @@ body.path-group, body.node--type-background-page {
         padding:0;
       }
     }
+  }
+  #block-programhighlight {
+    width:100%;
   }
 }
 // Grid landing pages - News
