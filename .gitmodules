@@ -1,3 +1,0 @@
-[submodule "web/modules/custom/web/modules/custom/ckeditor_trackchanges"]
-	path = web/modules/custom/web/modules/custom/ckeditor_trackchanges
-	url = https://git.drupalcode.org/project/ckeditor_trackchanges
