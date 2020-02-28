@@ -1,0 +1,7 @@
+name: ckeditor_lite
+type: module
+description: Track Changes Plugin
+core: 8.x
+package: CKEditor
+dependencies:
+  - ckeditor
