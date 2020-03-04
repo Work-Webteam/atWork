@@ -1,0 +1,22 @@
+uuid: 0aa408f2-54a3-46b3-b68c-2f7461191833
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.competency_term
+id: node.competency_term.promote
+field_name: promote
+entity_type: node
+bundle: competency_term
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,8 @@
+uuid: 42ce6016-cb23-4351-941e-22923e0af567
+langcode: en
+status: true
+dependencies: {  }
+name: Tags-Competencies
+vid: tags_competencies
+description: 'Cometency headings'
+weight: 0

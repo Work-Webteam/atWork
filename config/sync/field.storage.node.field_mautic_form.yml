@@ -1,0 +1,19 @@
+uuid: 2856e52b-08da-4a71-9ca7-2da0eeadab4d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_mautic_form
+field_name: field_mautic_form
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,29 @@
+uuid: 44b2ccd5-ae5e-4daa-a3f2-bded293d0a1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_competency_tag
+    - node.type.competency_term
+    - taxonomy.vocabulary.tags_competencies
+id: node.competency_term.field_competency_tag
+field_name: field_competency_tag
+entity_type: node
+bundle: competency_term
+label: 'Competency Tag'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags_competencies: tags_competencies
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

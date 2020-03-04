@@ -1,6 +1,6 @@
 uuid: 2381867b-afea-4e66-b65d-ff8e9de6c979
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - ctools
@@ -9,7 +9,7 @@ dependencies:
 id: pagetitle
 theme: atwork_barrio
 region: content
-weight: -11
+weight: -2
 provider: null
 plugin: page_title_block
 settings:

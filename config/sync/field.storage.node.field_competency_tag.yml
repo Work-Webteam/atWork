@@ -1,0 +1,20 @@
+uuid: c5c19e5a-58a2-43d7-a4f0-945f5b1c5a23
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_competency_tag
+field_name: field_competency_tag
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 3
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

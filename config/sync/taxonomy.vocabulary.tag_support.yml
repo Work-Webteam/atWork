@@ -1,0 +1,8 @@
+uuid: 23b53515-9fbe-4927-b530-045a0fa7d0e7
+langcode: en
+status: true
+dependencies: {  }
+name: Tag-Support
+vid: tag_support
+description: 'Supporting competenicies for dictionaries'
+weight: 0

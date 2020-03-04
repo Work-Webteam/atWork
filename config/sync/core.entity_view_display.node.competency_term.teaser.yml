@@ -1,33 +1,31 @@
-uuid: c8e73543-0b12-4750-ae65-c84c7f4ab467
+uuid: d1898e08-e9bf-416f-8a33-c45aaabde2a1
 langcode: en
 status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.page.body
-    - field.field.node.page.field_display_title
-    - field.field.node.page.field_editor_tags
-    - field.field.node.page.field_mautic_form
-    - field.field.node.page.field_tags
-    - node.type.page
+    - field.field.node.competency_term.body
+    - field.field.node.competency_term.field_competency_tag
+    - field.field.node.competency_term.field_dictionary_tag
+    - field.field.node.competency_term.field_display_title
+    - field.field.node.competency_term.field_support_tag
+    - node.type.competency_term
   module:
     - text
     - user
-_core:
-  default_config_hash: cSv5lDnbIgDug475Hdz3woED2XMqYv3awI-J9u1JLbY
-id: node.page.teaser
+id: node.competency_term.teaser
 targetEntityType: node
-bundle: page
+bundle: competency_term
 mode: teaser
 content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 100
-    region: content
+    weight: 101
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
   flag_email_node:
     weight: 10
     settings: {  }
@@ -39,14 +37,14 @@ content:
     third_party_settings: {  }
     region: content
   links:
-    weight: 101
-    region: content
+    weight: 100
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   extra_field_author_publish_date: true
+  field_competency_tag: true
+  field_dictionary_tag: true
   field_display_title: true
-  field_editor_tags: true
-  field_mautic_form: true
-  field_tags: true
+  field_support_tag: true
   search_api_excerpt: true

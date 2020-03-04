@@ -1,0 +1,8 @@
+uuid: bef99c27-9e3e-4045-8667-ac588ec4bb18
+langcode: en
+status: true
+dependencies: {  }
+name: Tag-Dictionary
+vid: tag_dictionary
+description: 'Competency dictionaries'
+weight: 0

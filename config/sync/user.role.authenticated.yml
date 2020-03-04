@@ -34,6 +34,7 @@ permissions:
   - likeit_like
   - likeit_view
   - 'never autoplay videos'
+  - 'opt-in or out of matomo tracking'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
@@ -53,5 +54,8 @@ permissions:
   - 'view media'
   - 'view post access counter'
   - 'view terms in forums'
+  - 'view terms in tag_dictionary'
+  - 'view terms in tag_support'
   - 'view terms in tags'
   - 'view terms in tags_community'
+  - 'view terms in tags_competencies'
