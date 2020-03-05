@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cd0c4fd4ffb11229ef6b69447c8e76d",
+    "content-hash": "543a069c2372ff19738b3bb9860c796b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2053,6 +2053,57 @@
                 "source": "https://git.drupalcode.org/project/business_rules"
             },
             "time": "2020-02-07T15:12:00+00:00"
+        },
+        {
+            "name": "drupal/ckeditor_accordion",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_accordion.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_accordion-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "4b431372426a5b3ceb66518f38e766e4980922a4"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1551184385",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "j-vee",
+                    "homepage": "https://www.drupal.org/user/2843273"
+                },
+                {
+                    "name": "rreiss",
+                    "homepage": "https://www.drupal.org/user/2609534"
+                }
+            ],
+            "description": "Allows users to create & display content in an accordion using CKEditor.",
+            "homepage": "https://www.drupal.org/project/ckeditor_accordion",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_accordion"
+            }
         },
         {
             "name": "drupal/ckeditor_bootstrap_grid",

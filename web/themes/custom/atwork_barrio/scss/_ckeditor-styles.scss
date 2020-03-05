@@ -34,6 +34,10 @@ article { // Updates box used on articles / background pages.
         &.align-right {
             margin: 8px 0 8px 10px;
         }
+        img {
+            width:100%;
+            height:auto;
+        }
     }
     div.inset-text-left {
         @include side-text;
@@ -76,6 +80,12 @@ article { // Updates box used on articles / background pages.
           font-weight: 600;
         }
         margin-bottom: 24px;
+    }
+    table.related-inset {
+        img {
+            width:100%;
+            height:auto;
+        }
     }
     p.videobyline {
         @include caption-text;

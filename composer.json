@@ -86,6 +86,7 @@
         "drupal/bootstrap_layouts": "^5.1",
         "drupal/bootstrap_sass": "^1.9",
         "drupal/business_rules": "1.x-dev",
+        "drupal/ckeditor_accordion": "^1.2",
         "drupal/ckeditor_bootstrap_grid": "^1.2",
         "drupal/ckeditor_widgets": "1.x-dev",
         "drupal/colorbox": "^1.4",
