@@ -15854,16 +15854,18 @@ body.path-competency-dictionary div.competency-support div.view-content.row .vie
 
 /* line 458, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping .view-grouping-header {
-  text-align: left;
+  text-align: center;
   padding: 0 0 5px 8px;
+  font-style: oblique;
+  color: #6B6C6C;
 }
 
-/* line 462, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 464, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping .view-grouping-content {
   padding: 0 5px;
 }
 
-/* line 465, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 467, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping h3 {
   background-color: #E0E7E8;
   font-size: initial;
@@ -15871,20 +15873,20 @@ body.path-competency-dictionary div.competency-support div.view-content.row .vie
   padding: 5px 0;
 }
 
-/* line 471, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 473, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group {
   padding: 5px;
   margin-bottom: 5px;
 }
 
-/* line 474, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 476, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group .panel {
   background-color: #E0E7E8;
   padding-bottom: 5px;
   border: solid 1px #CCCCCC;
 }
 
-/* line 479, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 481, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group h4.panel-title {
   padding: 5px 10px;
   border-bottom: solid 1px #CCC;
@@ -15894,19 +15896,19 @@ body.path-competency-dictionary div.competency-support div.view-content.row .vie
   font-weight: normal;
 }
 
-/* line 485, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 487, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group h4.panel-title .material-icons {
   float: right;
   margin-top: -3px;
   color: #999 !important;
 }
 
-/* line 491, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 493, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group h4.panel-title a[aria-expanded="true"] .material-icons {
   transform: rotate(180deg);
 }
 
-/* line 496, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 498, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group .panel-body {
   border-left: solid 1px #E0E7E8;
   border-top: solid 1px #E0E7E8;
@@ -15918,24 +15920,34 @@ body.path-competency-dictionary div.competency-support div.view-content.row .vie
   font-size: inherit;
 }
 
-/* line 505, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 507, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group .panel-body a {
   display: block;
   padding: 5px;
 }
 
-/* line 508, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 510, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group .panel-body a:hover {
   background-color: #10233c;
   color: white;
 }
 
-/* line 514, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+/* line 516, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
 body.path-competency-dictionary div.competency-support div.view-content.row .view-grouping #accordion.panel-group .panel-footer p {
   padding: 0;
   margin-bottom: 0;
   text-transform: uppercase;
   font-size: smaller;
+}
+
+/* line 525, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+body.path-competency-dictionary div.competency-support div.view-content.row > .view-grouping:nth-of-type(1) > .view-grouping-header::after {
+  content: " - Managers, Supervisors & Staff";
+}
+
+/* line 528, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_articles-background-program.scss */
+body.path-competency-dictionary div.competency-support div.view-content.row > .view-grouping:nth-of-type(2) > .view-grouping-header::after {
+  content: " - Executives & Director";
 }
 
 /* line 5, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_ckeditor-styles.scss */
