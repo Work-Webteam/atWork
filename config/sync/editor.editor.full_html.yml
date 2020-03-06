@@ -83,6 +83,16 @@ settings:
           items:
             - ShowBlocks
             - Source
+            - '-'
+        -
+          name: 'Track Changes'
+          items:
+            - lite-acceptall
+            - lite-acceptone
+            - lite-rejectall
+            - lite-rejectone
+            - lite-toggleshow
+            - lite-toggletracking
   plugins:
     language:
       language_list: un

@@ -1,0 +1,17 @@
+uuid: 341d1f19-324c-4c33-b15f-a99f92e233b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - workspaces
+title: 'Default cron handler'
+id: workspaces_cron
+weight: 0
+module: workspaces
+callback: workspaces_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

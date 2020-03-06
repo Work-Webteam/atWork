@@ -118,6 +118,7 @@
         "drupal/likeit": "^1.0",
         "drupal/linkit": "^4.3",
         "drupal/maillog": "1.x-dev",
+        "drupal/masquerade": "^2.0@beta",
         "drupal/matomo": "^1.9",
         "drupal/maxlength": "^1.0@beta",
         "drupal/menu_block": "^1.5",

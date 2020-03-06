@@ -19,6 +19,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   ckeditor_bootstrap_grid: 0
+  ckeditor_lite: 0
   ckeditor_widgets: 0
   color: 0
   colorbox: 0
@@ -27,6 +28,7 @@ module:
   config: 0
   config_filter: 0
   config_ignore: 0
+  content_moderation: 0
   contextual: 0
   crop: 0
   csv_serialization: 0
@@ -73,6 +75,7 @@ module:
   insert: 0
   kint: 0
   layout_discovery: 0
+  legal: 0
   libraries: 0
   likeit: 0
   link: 0
@@ -123,7 +126,6 @@ module:
   settings_tray: 0
   shortcut: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -149,7 +151,12 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
-  webprofiler: 0
+  workflow: 0
+  workflow_access: 0
+  workflow_operations: 0
+  workflow_ui: 0
+  workflows: 0
+  workspaces: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1

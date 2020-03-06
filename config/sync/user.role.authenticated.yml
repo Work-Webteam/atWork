@@ -34,6 +34,7 @@ permissions:
   - likeit_like
   - likeit_view
   - 'never autoplay videos'
+  - 'opt-in or out of matomo tracking'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
@@ -49,6 +50,7 @@ permissions:
   - 'use text format comment_editor'
   - 'use text format restricted_html'
   - 'use text format teaser_editor'
+  - 'view Terms and Conditions'
   - 'view background image'
   - 'view media'
   - 'view post access counter'
