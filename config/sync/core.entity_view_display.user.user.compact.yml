@@ -7,6 +7,7 @@ dependencies:
     - field.field.user.user.field_about_me
     - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
+    - field.field.user.user.field_job_function_code
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
     - field.field.user.user.field_user_department
@@ -67,6 +68,7 @@ hidden:
   field_about_me: true
   field_blog_bio: true
   field_company: true
+  field_job_function_code: true
   field_street: true
   field_user_city: true
   field_user_department: true
@@ -84,3 +86,4 @@ hidden:
   member_for: true
   message_digest: true
   message_subscribe_email: true
+  search_api_excerpt: true

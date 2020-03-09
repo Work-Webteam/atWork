@@ -51,6 +51,9 @@ module:
   entity_reference_revisions: 0
   extra_field: 0
   extrafield_views_integration: 0
+  facets: 0
+  facets_range_widget: 0
+  facets_rest: 0
   field: 0
   field_ui: 0
   file: 0
@@ -74,6 +77,7 @@ module:
   inline_form_errors: 0
   insert: 0
   kint: 0
+  language: 0
   layout_discovery: 0
   legal: 0
   libraries: 0
@@ -121,7 +125,11 @@ module:
   rest: 0
   scheduler: 0
   search_api: 0
+  search_api_autocomplete: 0
+  search_api_solr: 0
+  search_api_solr_admin: 0
   search_api_sorts: 0
+  search_api_spellcheck: 0
   serialization: 0
   settings_tray: 0
   shortcut: 0
@@ -156,7 +164,6 @@ module:
   workflow_operations: 0
   workflow_ui: 0
   workflows: 0
-  workspaces: 0
   forum: 1
   menu_link_content: 1
   pathauto: 1

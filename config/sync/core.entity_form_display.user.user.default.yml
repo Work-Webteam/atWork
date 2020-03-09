@@ -228,3 +228,4 @@ content:
     region: content
 hidden:
   field_user_guid: true
+  langcode: true

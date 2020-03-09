@@ -1,14 +1,14 @@
-uuid: 341d1f19-324c-4c33-b15f-a99f92e233b7
+uuid: 80ad4a80-6a97-4fa1-a3a0-4dce032a20df
 langcode: en
 status: true
 dependencies:
   module:
-    - workspaces
+    - search_api_solr
 title: 'Default cron handler'
-id: workspaces_cron
+id: search_api_solr_cron
 weight: 0
-module: workspaces
-callback: workspaces_cron
+module: search_api_solr
+callback: search_api_solr_cron
 scheduler:
   id: simple
 launcher:

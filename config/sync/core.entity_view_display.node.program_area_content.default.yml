@@ -98,6 +98,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  extra_field_author_publish_date: true
   field_display_title: true
   field_parent_program: true
   langcode: true

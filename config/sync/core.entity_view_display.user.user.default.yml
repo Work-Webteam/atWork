@@ -169,3 +169,4 @@ hidden:
   message_subscribe_email: true
   photos_album_count: true
   photos_image_count: true
+  search_api_excerpt: true
