@@ -1,4 +1,4 @@
-applies_admin_routes: true
+applies_admin_routes: false
 include_home_segment: true
 home_segment_title: 'Front Page'
 home_segment_keep: false

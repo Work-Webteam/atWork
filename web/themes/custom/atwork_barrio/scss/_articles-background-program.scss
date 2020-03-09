@@ -388,6 +388,22 @@ button#edit-submit-atwork-groups {
     }
   }
 }
+li.all-posts-row {
+  #all-post-info {
+    padding:0 8px;
+    .all-post-title {
+      min-height:51px;
+    }
+    .all-post-teaser {
+      min-height:50px;
+    }
+    .all-post-date,
+    .all-post-start {
+      font-size: smaller;
+    }
+    padding-bottom: 10px;;
+  }
+}
 .views-infinite-scroll-content-wrapper {
   width:100%;
   .post-list-content {

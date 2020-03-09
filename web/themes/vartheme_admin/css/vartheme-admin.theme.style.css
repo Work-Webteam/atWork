@@ -55,10 +55,6 @@ body .form-wrapper .counter {
   background: #007bc6;
 }
 
-.adminimal .ui-dialog.ui-widget.ui-widget-content {
-  /* Hide revision information vertical tabs for media edit */
-}
-
 .adminimal .ui-dialog.ui-widget.ui-widget-content .media-image-edit-form .form-type-vertical-tabs .vertical-tabs__menu {
   display: none;
 }

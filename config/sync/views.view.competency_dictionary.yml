@@ -43,8 +43,12 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: tag
-        options: {  }
+        type: time
+        options:
+          results_lifespan: 3600
+          results_lifespan_custom: 0
+          output_lifespan: 3600
+          output_lifespan_custom: 0
       query:
         type: views_query
         options:
@@ -74,6 +78,7 @@ display:
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
+              secondary_open: false
             filter:
               field_dictionary_tag_target_id:
                 plugin_id: bef
@@ -115,15 +120,14 @@ display:
           grouping:
             -
               field: field_dictionary_tag
-              rendered: false
+              rendered: true
               rendered_strip: false
             -
               field: field_support_tag
-              rendered: false
+              rendered: true
               rendered_strip: false
           row_class: comp-terms
           default_row_class: true
-          uses_fields: true
       row:
         type: fields
         options:
@@ -833,7 +837,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: " <div id=\"accordion\" class=\"panel-group\">\r\n  <div class=\"panel panel-default\">\r\n    <div class=\"panel-heading\">\r\n      <h4 class=\"panel-title\">\r\n        <a data-toggle=\"collapse\" href=\"#{{ field_competency_tag_1 }}\">{{ title }}</a><i class=\"material-icons\">keyboard_arrow_down</i>\r\n      </h4>\r\n    </div>\r\n    <div id=\"{{ field_competency_tag_1 }}\" class=\"panel-collapse collapse\">\r\n      <div class=\"panel-body\">{{ body }}</div>\r\n      <div class=\"panel-footer\"><p align=\"center\">- {{ field_dictionary_tag }} - {{ field_support_tag }} - {{ field_competency_tag }} -</p></div>\r\n    </div>\r\n  </div>\r\n</div> "
+            text: " <div id=\"accordion\" class=\"panel-group\" aria-multiselectable=\"true\">\r\n  <div class=\"panel panel-default\">\r\n    <div class=\"panel-heading\">\r\n      <h4 class=\"panel-title\">\r\n        <a data-toggle=\"collapse\" href=\"#{{ field_competency_tag_1 }}\" aria-expanded=\"false\" aria-controls=\"collapse{{ field_competency_tag_1 }}\">{{ title }}<i class=\"material-icons\">keyboard_arrow_down</i></a>\r\n      </h4>\r\n    </div>\r\n    <div id=\"{{ field_competency_tag_1 }}\" class=\"panel-collapse collapse\">\r\n      <div class=\"panel-body\">{{ body }}</div>\r\n      <div class=\"panel-footer\"><p align=\"center\">- {{ field_dictionary_tag }} - {{ field_support_tag }} - {{ field_competency_tag }} -</p></div>\r\n    </div>\r\n  </div>\r\n</div> "
             make_link: false
             path: ''
             absolute: false

@@ -388,7 +388,6 @@ hidden:
   field_editor_tags: true
   field_image: true
   field_send_notifications: true
-  langcode: true
   links: true
   panelizer: true
   rate_vote_widget: true

@@ -36,13 +36,13 @@ settings:
           name: Widgets
           items:
             - WidgetTemplateMenu
+            - widgetbootstrapAccordion
+            - widgetcommonBox
             - widgetbootstrapLeftCol
             - widgetbootstrapRightCol
             - widgetbootstrapTwoCol
             - widgetbootstrapThreeCol
             - widgetbootstrapAlert
-            - widgetbootstrapAccordion
-            - widgetcommonBox
             - widgetcommonQuotebox
         -
           name: Copy/Paste/Undo/Redo

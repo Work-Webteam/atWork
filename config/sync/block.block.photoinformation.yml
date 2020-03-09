@@ -1,0 +1,28 @@
+uuid: 1d24ae77-2af2-409a-bfe3-6987921368f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - photos
+  theme:
+    - atwork_barrio
+id: photoinformation
+theme: atwork_barrio
+region: content
+weight: 0
+provider: null
+plugin: photos_information
+settings:
+  id: photos_information
+  label: 'Photo Information'
+  provider: photos
+  label_display: '0'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    bundles:
+      photos: photos
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'

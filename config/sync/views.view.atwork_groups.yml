@@ -7,6 +7,7 @@ dependencies:
     - image.style.highlight_image
     - image.style.medium
   module:
+    - better_exposed_filters
     - group
     - image
     - user
@@ -716,6 +717,10 @@ display:
       defaults:
         header: false
         fields: false
+        sorts: false
+        exposed_form: false
+        filters: false
+        filter_groups: false
       fields:
         field_group:
           id: field_group
@@ -988,7 +993,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"all-post-image\">{{field_group}}</div>\r\n   <div class=\"all-post-title\"><h5>{{label}}</h5></div>\r\n   <div class=\"all-post-teaser\"><p>&nbsp;</p></div>\r\n   <div class=\"all-post-date\">Started on: {{created}}</div>\r\n   <div class=\"all-post-date\">Started by: {{uid}}</div>\r\n   <p>&nbsp;</p>\r\n\r\n"
+            text: "<div class=\"all-post-image\">{{field_group}}</div>\r\n<div id=\"all-post-info\">\r\n   <div class=\"all-post-title\"><h5>{{label}}</h5></div>\r\n   <div class=\"all-post-teaser\"></div>\r\n   <div class=\"all-post-date\">Started on: {{created}}</div>\r\n   <div class=\"all-post-start\">Started by: {{uid}}</div>\r\n</div>\r\n\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -1026,13 +1031,160 @@ display:
           empty_zero: false
           hide_alter_empty: false
           plugin_id: custom
+      sorts:
+        created:
+          id: created
+          table: groups_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: 'Creation Date | Older'
+          granularity: second
+          entity_type: group
+          entity_field: created
+          plugin_id: date
+        created_1:
+          id: created_1
+          table: groups_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: 'Creation Date | Newer'
+          granularity: second
+          entity_type: group
+          entity_field: created
+          plugin_id: date
+        label:
+          id: label
+          table: groups_field_data
+          field: label
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: 'Group Name | A - Z'
+          entity_type: group
+          entity_field: label
+          plugin_id: standard
+        label_1:
+          id: label_1
+          table: groups_field_data
+          field: label
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: 'Group Name | Z - A'
+          entity_type: group
+          entity_field: label
+          plugin_id: standard
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: false
+          sort_asc_label: Older
+          sort_desc_label: Newer
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: full_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: true
+              autosubmit_textfield_delay: 125
+              autosubmit_hide: true
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+            sort:
+              plugin_id: default
+              advanced:
+                combine: false
+                combine_rewrite: "Created date Asc|Oldest first\r\nCreated date Desc|Newest first\r\nGroup Name Asc|A -> Z\r\nGroup Name|Z -> A"
+                reset: false
+                reset_label: ''
+                collapsible: false
+                collapsible_label: 'Sort options'
+                is_secondary: false
+            filter:
+              label:
+                plugin_id: default
+                advanced:
+                  placeholder_text: ''
+                  collapsible: false
+                  is_secondary: false
+      filters:
+        label:
+          id: label
+          table: groups_field_data
+          field: label
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: word
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: label_op
+            label: 'Group Name'
+            description: ''
+            use_operator: false
+            operator: label_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: label
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              program_area_admin: '0'
+            placeholder: 'Type the group name'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: group
+          entity_field: label
+          plugin_id: string
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
       tags:
         - 'config:field.storage.group.field_group'

@@ -1,5 +1,4 @@
-@import url(//fonts.googleapis.com/earlyaccess/droidarabickufi.css);
-body.adminimal {
+@import url(//fonts.googleapis.com/earlyaccess/droidarabickufi.css); body.adminimal {
   font-family: 'Droid Arabic Kufi', sans-serif;
 }
 
@@ -8,7 +7,8 @@ body.adminimal .action-links .button--primary {
   line-height: 19px;
 }
 
-body.adminimal select:focus, body.adminimal select:hover {
+body.adminimal select:focus,
+body.adminimal select:hover {
   background: url("../images/caret-down.svg") no-repeat 2% 64% #fcfcfa;
 }
 
@@ -26,7 +26,9 @@ div.vertical-tabs ul li.vertical-tab-button.selected a {
   border-right: 0px;
 }
 
-div.vertical-tabs ul li.vertical-tab-button.selected a:hover, div.vertical-tabs ul li.vertical-tab-button.selected a:focus, div.vertical-tabs ul li.vertical-tab-button.selected a:active {
+div.vertical-tabs ul li.vertical-tab-button.selected a:hover,
+div.vertical-tabs ul li.vertical-tab-button.selected a:focus,
+div.vertical-tabs ul li.vertical-tab-button.selected a:active {
   border-left: 0 none;
   border-right: 5px solid #0074bd;
   margin-left: 0px;

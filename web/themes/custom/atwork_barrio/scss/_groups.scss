@@ -142,3 +142,14 @@ article.group-event.full {
 .theme_muted {
   @include theme_muted_set;
 }
+
+
+// Group related image galleries
+
+body.node--type-photos {
+  .content {
+    img {
+      width:225px;
+    }
+  }
+}
