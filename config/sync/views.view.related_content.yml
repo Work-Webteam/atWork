@@ -17,6 +17,7 @@ dependencies:
     - image
     - media
     - node
+    - photos
     - text
     - user
     - views_infinite_scroll
@@ -3198,6 +3199,9 @@ display:
         relationships: false
         fields: false
         title: false
+        style: false
+        row: false
+        pager: false
       relationships:
         group_content:
           id: group_content
@@ -3228,10 +3232,10 @@ display:
           entity_field: gid
           plugin_id: standard
       fields:
-        field_image:
-          id: field_image
-          table: node__field_image
-          field: field_image
+        fid:
+          id: fid
+          table: photos_album
+          field: fid
           relationship: none
           group_type: group
           admin_label: ''
@@ -3272,26 +3276,13 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: '<div class="no-article-image"><p>&nbsp;</p></div>'
-          hide_empty: false
-          empty_zero: false
+          empty: ''
+          hide_empty: true
+          empty_zero: true
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: image
-          settings:
-            image_style: article_top_image
-            image_link: content
-          group_column: ''
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 1
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
+          link_photo: ''
+          image_style: highlight_image
+          plugin_id: photos_image
         type:
           id: type
           table: node_field_data
@@ -3489,55 +3480,6 @@ display:
           entity_type: node
           entity_field: created
           plugin_id: field
-        nothing:
-          id: nothing
-          table: views
-          field: nothing
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: true
-            text: "<div class=\"related-box\">\r\n <div class=\"related-image\">{{field_image}}</div>\r\n <div class=\"related-title\"><h5>{{title}}</h5></div>\r\n <div class=\"related-date\">{{created}}</div>\r\n</div>"
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: custom
         comment_count:
           id: comment_count
           table: comment_entity_statistics
@@ -3546,7 +3488,7 @@ display:
           group_type: group
           admin_label: ''
           label: ''
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -3595,7 +3537,86 @@ display:
           prefix: ''
           suffix: ' Comment(s)'
           plugin_id: numeric
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div class=\"related-box\">\r\n <div class=\"related-image\">{{ fid }}</div>\r\n <div class=\"related-title\"><h5>{{title}}</h5></div>\r\n <div class=\"related-date\">{{created}}</div>\r\n<div class=\"comment-count\">{{ comment_count }}</div>\r\n</div>\r\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
       title: 'Photo Galleries'
+      style:
+        type: default
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+      row:
+        type: fields
+        options: {  }
+      pager:
+        type: infinite_scroll
+        options:
+          items_per_page: 4
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: «
+            next: »
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -3605,5 +3626,4 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      tags:
-        - 'config:field.storage.node.field_image'
+      tags: {  }

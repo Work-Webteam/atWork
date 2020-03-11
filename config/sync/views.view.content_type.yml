@@ -22,6 +22,7 @@ dependencies:
     - media
     - node
     - options
+    - photos
     - text
     - user
     - video_embed_field
@@ -1194,6 +1195,57 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        fid:
+          id: fid
+          table: photos_album
+          field: fid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: true
+          empty_zero: true
+          hide_alter_empty: true
+          link_photo: ''
+          image_style: highlight_image
+          plugin_id: photos_image
         type:
           id: type
           table: node_field_data
@@ -1976,7 +2028,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"content-piece\">\r\n  <aside class=\"{{type_2}}\" data-content=\"{{ field_article_type }}\">\r\n    <div class=\"content-image\">{{ field_image }} {{ field_header_image }} {{ field_video }}</div>\r\n    <span>{{ field_parent_program }}</span>\r\n    <span>{{ gid }}</span>\r\n    <div class=\"article-type\">{{ field_article_type }}</div>\r\n  </aside>\r\n  <div class=\"content-info\">\r\n    <h3>{{ title }}</h3>\r\n    <p class=\"content-info-date\">{{ created }}</p>\r\n    <p class=\"content-info-text\">{{ body }}</p>\r\n    <span class=\"parent-program\"> {{ field_parent_program_1 }} </span>\r\n    <span class=\"parent-group\"> {{ gid_1 }} </span>\r\n  </div>\r\n</div>"
+            text: "<div class=\"content-piece\">\r\n  <aside class=\"{{type_2}}\" data-content=\"{{ field_article_type }}\">\r\n    <div class=\"content-image\">{{ field_image }} {{ field_header_image }} {{ field_video }} {{ fid }}</div>\r\n    <span>{{ field_parent_program }}</span>\r\n    <span>{{ gid }}</span>\r\n    <div class=\"article-type\">{{ field_article_type }}</div>\r\n  </aside>\r\n  <div class=\"content-info\">\r\n    <h3>{{ title }}</h3>\r\n    <p class=\"content-info-date\">{{ created }}</p>\r\n    <p class=\"content-info-text\">{{ body }}</p>\r\n    <span class=\"parent-program\"> {{ field_parent_program_1 }} </span>\r\n    <span class=\"parent-group\"> {{ gid_1 }} </span>\r\n  </div>\r\n</div>"
             make_link: false
             path: ''
             absolute: false

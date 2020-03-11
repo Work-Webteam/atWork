@@ -153,3 +153,142 @@ body.node--type-photos {
     }
   }
 }
+
+// Group Photo Galleries and Albums
+body.path-frontpage { //Temp styling - removed when new HP is in place
+  .image-style-highlight-image {
+    width:100%;
+  }
+}
+body.node--type-photos,
+body.path-photos {
+  article {
+    display:flex;
+    flex-direction: row;
+    flex: auto;
+    footer {
+      font-size: .75rem;
+      img.image-style-thumbnail {
+        width:auto;
+      }
+    }
+    .content {
+      img {
+        width:100%;
+      }
+      .flag, .inline__links {
+        display: inline-block;
+        width:auto;
+      }
+      .field--name-field-tags {
+        display: flex;
+        h3 {
+          margin-right: 5px;
+          margin-top: -2px;
+        }
+      }
+    }
+  }
+  .photos-album-header {
+    margin-bottom: 20px;
+    border-bottom: solid 5px lightgray;
+  }
+  .photos-col {
+    border: solid 1px $exec-greyborder;
+    width: 235px!important;
+    min-height:340px;
+    padding: 5px;
+    margin-right:10px;
+    margin-bottom:10px;
+    h2 {
+      width:100%;
+      font-size:1.15em;
+      min-height:60px;
+    }
+    .photos-list-view-info {
+      border-top: solid 2px $exec-greyborder;
+      margin-top:5px;
+      font-size: .75rem;
+    }
+    .photos-list-view-thumb {
+      height:125px;
+      overflow: hidden;
+      img {
+        width:100%;
+      }
+    }
+  }
+  #image-load {
+    .photos-image {
+      img {
+        width:100%;
+      }
+    }
+  }
+  #photos-default {
+    h2:nth-of-type(1), h2:nth-of-type(2) {
+      background-color:$comment-blue;
+      padding:3px 10px;
+      text-transform: uppercase;
+      font-size: initial;
+      margin-bottom:10px;
+    }
+    h2:nth-of-type(3), h2:nth-of-type(4) {
+      background-color:$icon-grey;
+      padding:3px 10px;
+      text-transform: uppercase;
+      font-size: initial;
+      margin-bottom:10px;
+      color:$white;
+    }
+    ul.list-group {
+      flex-direction: row;
+      .list-group-item {
+        .photos-image-html {
+          width:225px;
+          height:125px;
+          overflow:hidden;
+          img {
+            width:100%;
+          }
+        }
+        font-size: .75rem;
+        text-align: center;
+      }
+    }
+  }
+}
+body.path-groups {
+  .views-infinite-scroll-content-wrapper {
+    width:100%;
+    .views-row {
+      .views-field {
+        .field-content {
+          @extend .d-flex;
+          @extend .flex-row;
+          @extend .flex-wrap;
+          @extend .justify-content-center;
+          .related-box {
+            width:225px;
+            padding:0;
+            margin:0 5px 10px 5px;
+            background-color: $comment-blue;
+            border:solid 1px lighten($button-hover, 35%);
+            padding:5px;
+            .related-title {
+              min-height:50px;
+            }
+            .related-image {
+              img {
+                width:100%;
+              }
+            }
+            .related-date {
+              font-size:.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

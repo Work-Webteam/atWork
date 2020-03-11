@@ -39,14 +39,14 @@ content:
     third_party_settings: {  }
     region: content
   comment:
+    type: comment_default
     weight: 3
+    region: content
     label: above
     settings:
       view_mode: default
       pager_id: 0
     third_party_settings: {  }
-    type: comment_default
-    region: content
   field_image:
     weight: 0
     label: hidden
@@ -107,6 +107,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  extra_field_author_publish_date: true
   field_display_title: true
-  langcode: true
   search_api_excerpt: true

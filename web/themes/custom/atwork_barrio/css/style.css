@@ -10819,7 +10819,7 @@ button.bg-dark:focus {
 /* line 6305, ../../xampp/htdocs/atWork/web/libraries/bootstrap/css/bootstrap.css */
 .d-flex, #page footer.site-footer .site-footer__top, body.node--type-article main#content #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.node--type-background-page main#content .field--name-field-program-topic-boxes, body.layout-no-sidebars.path-news .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-groups .views-infinite-scroll-content-wrapper .post-list-content, body.path-my-profile #profile-card,
 body.path-employees #profile-card,
-body.path-executives #profile-card, body.path-employees .attachment-before, body.path-executives .attachment-before, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.node--type-group-post .new-comments .view-content.row .views-infinite-scroll-content-wrapper .views-row article.comment, body.node--type-forum .new-comments .view-content.row .views-infinite-scroll-content-wrapper .views-row article.comment, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
+body.path-executives #profile-card, body.path-employees .attachment-before, body.path-executives .attachment-before, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content, body.node--type-group-post .new-comments .view-content.row .views-infinite-scroll-content-wrapper .views-row article.comment, body.node--type-forum .new-comments .view-content.row .views-infinite-scroll-content-wrapper .views-row article.comment, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
   display: -ms-flexbox !important;
   display: flex !important;
 }
@@ -11088,7 +11088,7 @@ body.path-executives #profile-card, body.path-employees .attachment-before, body
 /* line 6518, ../../xampp/htdocs/atWork/web/libraries/bootstrap/css/bootstrap.css */
 .flex-row, body.node--type-article main#content #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-news .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-groups .views-infinite-scroll-content-wrapper .post-list-content, body.path-my-profile #profile-card,
 body.path-employees #profile-card,
-body.path-executives #profile-card, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
+body.path-executives #profile-card, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
   -ms-flex-direction: row !important;
   flex-direction: row !important;
 }
@@ -11112,7 +11112,7 @@ body.path-executives #profile-card, body.path-employees .all-employee-page .view
 }
 
 /* line 6538, ../../xampp/htdocs/atWork/web/libraries/bootstrap/css/bootstrap.css */
-.flex-wrap, body.node--type-article main#content #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.node--type-background-page main#content .field--name-field-program-topic-boxes, body.layout-no-sidebars.path-news .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-groups .views-infinite-scroll-content-wrapper .post-list-content, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
+.flex-wrap, body.node--type-article main#content #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.node--type-background-page main#content .field--name-field-program-topic-boxes, body.layout-no-sidebars.path-news .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-groups .views-infinite-scroll-content-wrapper .post-list-content, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
   -ms-flex-wrap: wrap !important;
   flex-wrap: wrap !important;
 }
@@ -11172,7 +11172,7 @@ body.path-executives #profile-card, body.path-employees .all-employee-page .view
 }
 
 /* line 6588, ../../xampp/htdocs/atWork/web/libraries/bootstrap/css/bootstrap.css */
-.justify-content-center, body.node--type-article main#content #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.node--type-background-page main#content .field--name-field-program-topic-boxes, body.layout-no-sidebars.path-news .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-groups .views-infinite-scroll-content-wrapper .post-list-content, body.path-employees .attachment-before, body.path-executives .attachment-before, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
+.justify-content-center, body.node--type-article main#content #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.node--type-background-page main#content .field--name-field-program-topic-boxes, body.layout-no-sidebars.path-news .views-infinite-scroll-content-wrapper, body.layout-no-sidebars.path-groups .views-infinite-scroll-content-wrapper .post-list-content, body.path-employees .attachment-before, body.path-executives .attachment-before, body.path-employees .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.path-executives .all-employee-page .view-content.row .views-infinite-scroll-content-wrapper, body.node--type-group-post #block-views-block-related-content-block-1 .related-wrapper .views-infinite-scroll-content-wrapper, body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content, body.path-frontpage .region-content .view-content .views-row, body.path-frontpage .region-content .view-header .views-row {
   -ms-flex-pack: center !important;
   justify-content: center !important;
 }
@@ -17480,6 +17480,191 @@ article.group-event.full .node_content .group_event_dates {
 /* line 151, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .content img {
   width: 225px;
+}
+
+/* line 159, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.path-frontpage .image-style-highlight-image {
+  width: 100%;
+}
+
+/* line 165, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article,
+body.path-photos article {
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+}
+
+/* line 169, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article footer,
+body.path-photos article footer {
+  font-size: .75rem;
+}
+
+/* line 171, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article footer img.image-style-thumbnail,
+body.path-photos article footer img.image-style-thumbnail {
+  width: auto;
+}
+
+/* line 176, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article .content img,
+body.path-photos article .content img {
+  width: 100%;
+}
+
+/* line 179, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article .content .flag, body.node--type-photos article .content .inline__links,
+body.path-photos article .content .flag,
+body.path-photos article .content .inline__links {
+  display: inline-block;
+  width: auto;
+}
+
+/* line 183, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article .content .field--name-field-tags,
+body.path-photos article .content .field--name-field-tags {
+  display: flex;
+}
+
+/* line 185, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos article .content .field--name-field-tags h3,
+body.path-photos article .content .field--name-field-tags h3 {
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+/* line 192, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-album-header,
+body.path-photos .photos-album-header {
+  margin-bottom: 20px;
+  border-bottom: solid 5px lightgray;
+}
+
+/* line 196, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col,
+body.path-photos .photos-col {
+  border: solid 1px #E0E7E8;
+  width: 235px !important;
+  min-height: 340px;
+  padding: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 203, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col h2,
+body.path-photos .photos-col h2 {
+  width: 100%;
+  font-size: 1.15em;
+  min-height: 60px;
+}
+
+/* line 208, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col .photos-list-view-info,
+body.path-photos .photos-col .photos-list-view-info {
+  border-top: solid 2px #E0E7E8;
+  margin-top: 5px;
+  font-size: .75rem;
+}
+
+/* line 213, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col .photos-list-view-thumb,
+body.path-photos .photos-col .photos-list-view-thumb {
+  height: 125px;
+  overflow: hidden;
+}
+
+/* line 216, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col .photos-list-view-thumb img,
+body.path-photos .photos-col .photos-list-view-thumb img {
+  width: 100%;
+}
+
+/* line 223, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #image-load .photos-image img,
+body.path-photos #image-load .photos-image img {
+  width: 100%;
+}
+
+/* line 229, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #photos-default h2:nth-of-type(1), body.node--type-photos #photos-default h2:nth-of-type(2),
+body.path-photos #photos-default h2:nth-of-type(1),
+body.path-photos #photos-default h2:nth-of-type(2) {
+  background-color: #e6f2f9;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  font-size: initial;
+  margin-bottom: 10px;
+}
+
+/* line 236, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #photos-default h2:nth-of-type(3), body.node--type-photos #photos-default h2:nth-of-type(4),
+body.path-photos #photos-default h2:nth-of-type(3),
+body.path-photos #photos-default h2:nth-of-type(4) {
+  background-color: #6B6C6C;
+  padding: 3px 10px;
+  text-transform: uppercase;
+  font-size: initial;
+  margin-bottom: 10px;
+  color: white;
+}
+
+/* line 244, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #photos-default ul.list-group,
+body.path-photos #photos-default ul.list-group {
+  flex-direction: row;
+}
+
+/* line 246, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #photos-default ul.list-group .list-group-item,
+body.path-photos #photos-default ul.list-group .list-group-item {
+  font-size: .75rem;
+  text-align: center;
+}
+
+/* line 247, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #photos-default ul.list-group .list-group-item .photos-image-html,
+body.path-photos #photos-default ul.list-group .list-group-item .photos-image-html {
+  width: 225px;
+  height: 125px;
+  overflow: hidden;
+}
+
+/* line 251, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos #photos-default ul.list-group .list-group-item .photos-image-html img,
+body.path-photos #photos-default ul.list-group .list-group-item .photos-image-html img {
+  width: 100%;
+}
+
+/* line 262, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.path-groups .views-infinite-scroll-content-wrapper {
+  width: 100%;
+}
+
+/* line 271, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content .related-box {
+  width: 225px;
+  padding: 0;
+  margin: 0 5px 10px 5px;
+  background-color: #e6f2f9;
+  border: solid 1px #c4c4c4;
+  padding: 5px;
+}
+
+/* line 278, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content .related-box .related-title {
+  min-height: 50px;
+}
+
+/* line 282, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content .related-box .related-image img {
+  width: 100%;
+}
+
+/* line 286, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.path-groups .views-infinite-scroll-content-wrapper .views-row .views-field .field-content .related-box .related-date {
+  font-size: .8rem;
 }
 
 /* line 4, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_comments.scss */

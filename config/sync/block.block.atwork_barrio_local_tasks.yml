@@ -11,7 +11,7 @@ _core:
 id: atwork_barrio_local_tasks
 theme: atwork_barrio
 region: content
-weight: -11
+weight: -12
 provider: null
 plugin: local_tasks_block
 settings:

@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comment_photos.default
     - field.field.node.photos.body
     - field.field.node.photos.comment_photos
     - field.field.node.photos.field_display_title
@@ -11,9 +10,9 @@ dependencies:
     - field.field.node.photos.field_tags
     - node.type.photos
   module:
-    - comment
     - panelizer
     - text
+    - title_field_for_manage_display
     - user
 third_party_settings:
   panelizer:
@@ -30,20 +29,21 @@ mode: default
 content:
   body:
     type: text_default
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     label: hidden
     region: content
-  comment_photos:
-    label: above
-    type: comment_default
-    weight: 3
-    settings:
-      pager_id: 0
-      view_mode: default
-    third_party_settings: {  }
+  field_display_title:
+    type: title_value_field_formatter
+    weight: 0
     region: content
+    label: hidden
+    settings:
+      tag: h1
+      classes: ''
+      linked: 0
+    third_party_settings: {  }
   field_tags:
     weight: 5
     label: above
@@ -53,12 +53,12 @@ content:
     type: entity_reference_label
     region: content
   flag_email_node:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_node:
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -68,7 +68,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  comment_photos: true
   extra_field_author_publish_date: true
-  field_display_title: true
   field_send_notifications: true
   search_api_excerpt: true

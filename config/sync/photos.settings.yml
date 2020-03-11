@@ -1,6 +1,6 @@
 photos_access_photos: true
 photos_additional_sizes: 6
-photos_comment: true
+photos_comment: false
 photos_cover_imagesize: article_top_image
 photos_display_full_imagesize: gallery_image
 photos_display_full_viewnum: 10
@@ -8,7 +8,7 @@ photos_display_imageorder: created|desc
 photos_display_list_imagesize: gallery_image
 photos_display_page_display: 3
 photos_display_page_user: true
-photos_display_teaser_display: 2
+photos_display_teaser_display: 3
 photos_display_teaser_imagesize: gallery_image
 photos_display_teaser_user: true
 photos_display_teaser_viewnum: 10
@@ -37,7 +37,7 @@ photos_pnum_administrator: 10
 _core:
   default_config_hash: wn3MckoW6ul8OjY7YTtcEPNpQDGSEyeqd4l9Nj8X_xg
 photos_album_column_count: 4
-photos_album_display_type: list
-photos_display_colorbox_max_height: 75
-photos_display_colorbox_max_width: 75
+photos_album_display_type: grid
+photos_display_colorbox_max_height: 95
+photos_display_colorbox_max_width: 95
 photos_pnum_program_area_admin: '20'
