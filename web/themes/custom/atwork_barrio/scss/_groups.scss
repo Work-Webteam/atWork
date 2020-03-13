@@ -246,14 +246,13 @@ body.path-photos {
       padding-bottom:0;
     }
     .photos-list-view-des {
-      min-height: 50px;
+      min-height: 40px;
       @include size1416;
+      border-bottom: solid 1px $exec-greyborder;
     }
     .photos-list-view-info {
-      position: absolute;
       min-height:62px;
       bottom: 5px;
-      border-top: solid 2px $exec-greyborder;
       margin-top:5px;
       font-size: .75rem;
       a {
@@ -263,6 +262,12 @@ body.path-photos {
         &:hover {
           text-decoration: none;
           background-color: $exec-greyborder;
+        }
+      }
+      .image-count {
+        display: inline-block;
+        &::after {
+          content:"  |  ";
         }
       }
     }
@@ -359,6 +364,63 @@ body.path-photos {
         }
         font-size: .75rem;
         text-align: center;
+      }
+    }
+  }
+  form#photos-image-edit {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    border: solid 1px $icon-grey;
+    padding: 10px;
+    .js-form-item {
+      padding-left:0px;
+      input#edit-del[name="del"] {
+        margin-left:15px;
+        margin-top:.4rem;
+      }
+      label[for="edit-del"] {
+        margin-left:35px;
+      }
+      &.form-item-del {
+        background-color: $banner-blue;
+        color:$white;
+      }
+    }
+    ul.list-group li {
+      padding:5px;
+      margin-bottom:5px;
+    }
+  }
+  form#comment-form  {
+    background-color: $comment-blue;
+    padding:12px;
+    #edit-comment-body-wrapper, .form-type-textarea {
+      padding-right:0;
+      padding-left:0;
+      label {
+        font-weight:bold;
+      }
+    }
+    #edit-comment-body-0-format {
+      display: block;
+      width:100%;
+      height:50px;
+      position: relative;
+      //background-color: $white;
+      #edit-comment-body-0-format-help {
+        position: absolute;
+        right:0;
+        margin: 10px 0 0;
+      }
+      .js-form-item {
+        position: absolute;
+        margin-top: 5px;
+        left:0;
+        label {
+          display: none;
+        }
       }
     }
   }

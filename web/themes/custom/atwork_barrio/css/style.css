@@ -17668,23 +17668,22 @@ body.path-photos .photos-col .photos-list-view-title {
 /* line 248, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .photos-col .photos-list-view-des,
 body.path-photos .photos-col .photos-list-view-des {
-  min-height: 50px;
+  min-height: 40px;
   font-size: .875rem;
   line-height: 16px;
+  border-bottom: solid 1px #E0E7E8;
 }
 
-/* line 252, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 253, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .photos-col .photos-list-view-info,
 body.path-photos .photos-col .photos-list-view-info {
-  position: absolute;
   min-height: 62px;
   bottom: 5px;
-  border-top: solid 2px #E0E7E8;
   margin-top: 5px;
   font-size: .75rem;
 }
 
-/* line 259, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 258, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .photos-col .photos-list-view-info a,
 body.path-photos .photos-col .photos-list-view-info a {
   display: inline-block;
@@ -17692,21 +17691,33 @@ body.path-photos .photos-col .photos-list-view-info a {
   margin-right: 3px;
 }
 
-/* line 263, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 262, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .photos-col .photos-list-view-info a:hover,
 body.path-photos .photos-col .photos-list-view-info a:hover {
   text-decoration: none;
   background-color: #E0E7E8;
 }
 
-/* line 270, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 267, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col .photos-list-view-info .image-count,
+body.path-photos .photos-col .photos-list-view-info .image-count {
+  display: inline-block;
+}
+
+/* line 269, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos .photos-col .photos-list-view-info .image-count::after,
+body.path-photos .photos-col .photos-list-view-info .image-count::after {
+  content: "  |  ";
+}
+
+/* line 275, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums,
 body.path-photos .recent-photo-albums {
   display: flex;
   flex-direction: row;
 }
 
-/* line 273, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 278, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums .photos-col,
 body.path-photos .recent-photo-albums .photos-col {
   position: relative;
@@ -17714,20 +17725,20 @@ body.path-photos .recent-photo-albums .photos-col {
   height: 370px;
 }
 
-/* line 277, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 282, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums .photos-col .all-post-image img,
 body.path-photos .recent-photo-albums .photos-col .all-post-image img {
   width: 100%;
   height: auto;
 }
 
-/* line 282, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 287, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums .photos-col .all-post-info .all-post-title,
 body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-title {
   min-height: 50px;
 }
 
-/* line 285, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 290, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums .photos-col .all-post-info .all-post-date,
 body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-date {
   margin: 8px 0;
@@ -17735,7 +17746,7 @@ body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-date 
   line-height: 16px;
 }
 
-/* line 289, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 294, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums .photos-col .all-post-info .all-post-comments-likes,
 body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-comments-likes {
   position: absolute;
@@ -17744,7 +17755,7 @@ body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-comme
   line-height: 16px;
 }
 
-/* line 293, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 298, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos .recent-photo-albums .photos-col .all-post-info .all-post-comments-likes .image-count, body.node--type-photos .recent-photo-albums .photos-col .all-post-info .all-post-comments-likes .all-post-comments,
 body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-comments-likes .image-count,
 body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-comments-likes .all-post-comments {
@@ -17752,39 +17763,39 @@ body.path-photos .recent-photo-albums .photos-col .all-post-info .all-post-comme
   margin-right: 7px;
 }
 
-/* line 302, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 307, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photos-view-links,
 body.path-photos #image-load .photos-view-links {
   display: inline-flex;
 }
 
-/* line 304, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 309, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photos-view-links .photo-links-info,
 body.path-photos #image-load .photos-view-links .photo-links-info {
   margin-top: 5px;
 }
 
-/* line 306, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 311, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photos-view-links .photo-links-info a,
 body.path-photos #image-load .photos-view-links .photo-links-info a {
   text-decoration: underline;
   margin-right: 5px;
 }
 
-/* line 309, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 314, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photos-view-links .photo-links-info a:hover,
 body.path-photos #image-load .photos-view-links .photo-links-info a:hover {
   text-decoration: none;
 }
 
-/* line 315, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 320, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photo-link-pager,
 body.path-photos #image-load .photo-link-pager {
   display: inline-flex;
   float: right;
 }
 
-/* line 318, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 323, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photo-link-pager .photo-pager-left a,
 body.node--type-photos #image-load .photo-link-pager .photo-pager-right a,
 body.path-photos #image-load .photo-link-pager .photo-pager-left a,
@@ -17811,19 +17822,19 @@ body.path-photos #image-load .photo-link-pager .photo-pager-right a:hover {
   text-decoration: none;
 }
 
-/* line 326, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 331, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photos-image,
 body.path-photos #image-load .photos-image {
   vertical-align: top;
 }
 
-/* line 328, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 333, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #image-load .photos-image img,
 body.path-photos #image-load .photos-image img {
   width: 100%;
 }
 
-/* line 334, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 339, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #photos-default h2:nth-of-type(1), body.node--type-photos #photos-default h2:nth-of-type(2),
 body.path-photos #photos-default h2:nth-of-type(1),
 body.path-photos #photos-default h2:nth-of-type(2) {
@@ -17834,7 +17845,7 @@ body.path-photos #photos-default h2:nth-of-type(2) {
   margin-bottom: 10px;
 }
 
-/* line 341, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 346, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #photos-default h2:nth-of-type(3), body.node--type-photos #photos-default h2:nth-of-type(4),
 body.path-photos #photos-default h2:nth-of-type(3),
 body.path-photos #photos-default h2:nth-of-type(4) {
@@ -17846,20 +17857,20 @@ body.path-photos #photos-default h2:nth-of-type(4) {
   color: white;
 }
 
-/* line 349, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 354, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #photos-default ul.list-group,
 body.path-photos #photos-default ul.list-group {
   flex-direction: row;
 }
 
-/* line 351, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 356, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #photos-default ul.list-group .list-group-item,
 body.path-photos #photos-default ul.list-group .list-group-item {
   font-size: .75rem;
   text-align: center;
 }
 
-/* line 352, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 357, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #photos-default ul.list-group .list-group-item .photos-image-html,
 body.path-photos #photos-default ul.list-group .list-group-item .photos-image-html {
   width: 225px;
@@ -17867,19 +17878,116 @@ body.path-photos #photos-default ul.list-group .list-group-item .photos-image-ht
   overflow: hidden;
 }
 
-/* line 356, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 361, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.node--type-photos #photos-default ul.list-group .list-group-item .photos-image-html img,
 body.path-photos #photos-default ul.list-group .list-group-item .photos-image-html img {
   width: 100%;
 }
 
-/* line 367, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 370, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#photos-image-edit,
+body.path-photos form#photos-image-edit {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+  border: solid 1px #6B6C6C;
+  padding: 10px;
+}
+
+/* line 377, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#photos-image-edit .js-form-item,
+body.path-photos form#photos-image-edit .js-form-item {
+  padding-left: 0px;
+}
+
+/* line 379, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#photos-image-edit .js-form-item input#edit-del[name="del"],
+body.path-photos form#photos-image-edit .js-form-item input#edit-del[name="del"] {
+  margin-left: 15px;
+  margin-top: .4rem;
+}
+
+/* line 383, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#photos-image-edit .js-form-item label[for="edit-del"],
+body.path-photos form#photos-image-edit .js-form-item label[for="edit-del"] {
+  margin-left: 35px;
+}
+
+/* line 386, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#photos-image-edit .js-form-item.form-item-del,
+body.path-photos form#photos-image-edit .js-form-item.form-item-del {
+  background-color: #10233c;
+  color: white;
+}
+
+/* line 391, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#photos-image-edit ul.list-group li,
+body.path-photos form#photos-image-edit ul.list-group li {
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+/* line 396, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form,
+body.path-photos form#comment-form {
+  background-color: #e6f2f9;
+  padding: 12px;
+}
+
+/* line 399, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form #edit-comment-body-wrapper, body.node--type-photos form#comment-form .form-type-textarea,
+body.path-photos form#comment-form #edit-comment-body-wrapper,
+body.path-photos form#comment-form .form-type-textarea {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/* line 402, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form #edit-comment-body-wrapper label, body.node--type-photos form#comment-form .form-type-textarea label,
+body.path-photos form#comment-form #edit-comment-body-wrapper label,
+body.path-photos form#comment-form .form-type-textarea label {
+  font-weight: bold;
+}
+
+/* line 406, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form #edit-comment-body-0-format,
+body.path-photos form#comment-form #edit-comment-body-0-format {
+  display: block;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+
+/* line 412, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form #edit-comment-body-0-format #edit-comment-body-0-format-help,
+body.path-photos form#comment-form #edit-comment-body-0-format #edit-comment-body-0-format-help {
+  position: absolute;
+  right: 0;
+  margin: 10px 0 0;
+}
+
+/* line 417, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form #edit-comment-body-0-format .js-form-item,
+body.path-photos form#comment-form #edit-comment-body-0-format .js-form-item {
+  position: absolute;
+  margin-top: 5px;
+  left: 0;
+}
+
+/* line 421, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+body.node--type-photos form#comment-form #edit-comment-body-0-format .js-form-item label,
+body.path-photos form#comment-form #edit-comment-body-0-format .js-form-item label {
+  display: none;
+}
+
+/* line 429, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.path-groups .all-post-comments-likes {
   font-size: .875rem;
   line-height: 16px;
 }
 
-/* line 369, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
+/* line 431, ../../xampp/htdocs/atWork/web/themes/custom/atwork_barrio/scss/_groups.scss */
 body.path-groups .all-post-comments-likes .image-count, body.path-groups .all-post-comments-likes .all-post-comments {
   display: inline-block;
   margin-right: 7px;

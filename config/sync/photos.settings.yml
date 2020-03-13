@@ -1,6 +1,6 @@
 photos_access_photos: true
 photos_additional_sizes: 6
-photos_comment: false
+photos_comment: true
 photos_cover_imagesize: article_top_image
 photos_display_full_imagesize: gallery_image
 photos_display_full_viewnum: 10
@@ -14,7 +14,7 @@ photos_display_teaser_user: false
 photos_display_teaser_viewnum: 10
 photos_display_user: false
 photos_display_view_imagesize: gallery_image
-photos_display_viewpager: 8
+photos_display_viewpager: 12
 photos_exif: false
 photos_exif_cache: false
 photos_image_count: false
@@ -29,7 +29,7 @@ photos_size:
   max_650x650: Large
   large: Medium
   gallery_image: 'Gallery Crop'
-photos_size_max: ''
+photos_size_max: 2000x2000
 photos_upzip: true
 photos_user_count_cron: true
 photos_pnum_authenticated: 10
