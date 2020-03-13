@@ -162,11 +162,14 @@ body.path-frontpage { //Temp styling - removed when new HP is in place
 }
 body.node--type-photos,
 body.path-photos {
-  article {
-    display:flex;
+  .photos {
+    display:inline-flex;
     flex-direction: row;
-    flex: auto;
+    flex: 1 0 auto;
     footer {
+      display: flex;
+      flex-direction:column;
+      margin-right:20px;
       font-size: .75rem;
       img.image-style-thumbnail {
         width:auto;
@@ -175,41 +178,60 @@ body.path-photos {
     .content {
       img {
         width:100%;
+        border-bottom:solid 10px $exec-greyborder;
+        margin-bottom:10px;
       }
       .flag, .inline__links {
+        @include size1416;
+        @include button-text-reset;
         display: inline-block;
         width:auto;
       }
+      .flag-subscribe-node:before {
+        display: block;
+        float:left;
+        content:url("../images/subscribe-icon.svg");
+        width: 16px;
+        margin-right: 3px;
+      }
+      .photos-album.nav-link:before {
+        display: block;
+        float:left;
+        content:url("../images/photo_album-24px.svg");
+        width: 16px;
+        margin-right: 8px;
+        margin-top:-3px;        
+      }
       .field--name-field-tags {
         display: flex;
+        text-transform: capitalize;
         h3 {
           margin-right: 5px;
           margin-top: -2px;
         }
       }
     }
+    h2 a {
+      display:none;
+    }
+  }
+  .photos-album-menu a {
+    @include atwork-button;
+    @include size1416;
+    margin-bottom:10px;
   }
   .photos-album-header {
     margin-bottom: 20px;
     border-bottom: solid 5px lightgray;
   }
   .photos-col {
+    position: relative;
     border: solid 1px $exec-greyborder;
-    width: 235px!important;
-    min-height:340px;
+    width: 260px!important;
+    min-height:300px;
     padding: 5px;
     margin-right:10px;
     margin-bottom:10px;
-    h2 {
-      width:100%;
-      font-size:1.15em;
-      min-height:60px;
-    }
-    .photos-list-view-info {
-      border-top: solid 2px $exec-greyborder;
-      margin-top:5px;
-      font-size: .75rem;
-    }
     .photos-list-view-thumb {
       height:125px;
       overflow: hidden;
@@ -217,9 +239,92 @@ body.path-photos {
         width:100%;
       }
     }
+    .photos-list-view-title {
+      width:100%;
+      font-size:1.15em;
+      min-height:60px;
+      padding-bottom:0;
+    }
+    .photos-list-view-des {
+      min-height: 50px;
+      @include size1416;
+    }
+    .photos-list-view-info {
+      position: absolute;
+      min-height:62px;
+      bottom: 5px;
+      border-top: solid 2px $exec-greyborder;
+      margin-top:5px;
+      font-size: .75rem;
+      a {
+        display: inline-block;
+        text-decoration: underline;
+        margin-right: 3px;
+        &:hover {
+          text-decoration: none;
+          background-color: $exec-greyborder;
+        }
+      }
+    }
+  }
+  .recent-photo-albums {
+    display:flex;
+    flex-direction: row;
+    .photos-col {
+      position: relative;
+      display: inline-flex;
+      height: 370px;
+      .all-post-image img {
+        width:100%;
+        height:auto;
+      }
+      .all-post-info {
+        .all-post-title {
+          min-height:50px;
+        }
+        .all-post-date {
+          margin: 8px 0;
+          @include size1416;
+        }
+        .all-post-comments-likes {
+          position:absolute;
+          bottom:5px;
+          @include size1416;
+          .image-count, .all-post-comments {
+            display: inline-block;
+            margin-right:7px;
+          }
+        }
+      }
+    }
   }
   #image-load {
+    .photos-view-links {
+      display: inline-flex;
+      .photo-links-info {
+        margin-top:5px;
+        a {
+          text-decoration: underline;
+          margin-right:5px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+    .photo-link-pager {
+      display: inline-flex;
+      float:right;
+      .photo-pager-left a,
+      .photo-pager-right a {
+        @include atwork-button;
+        margin-right:5px;
+        margin-bottom: 5px;
+        @include size1416;
+      }
+    }
     .photos-image {
+      vertical-align: top;
       img {
         width:100%;
       }
@@ -259,36 +364,11 @@ body.path-photos {
   }
 }
 body.path-groups {
-  .views-infinite-scroll-content-wrapper {
-    width:100%;
-    .views-row {
-      .views-field {
-        .field-content {
-          @extend .d-flex;
-          @extend .flex-row;
-          @extend .flex-wrap;
-          @extend .justify-content-center;
-          .related-box {
-            width:225px;
-            padding:0;
-            margin:0 5px 10px 5px;
-            background-color: $comment-blue;
-            border:solid 1px lighten($button-hover, 35%);
-            padding:5px;
-            .related-title {
-              min-height:50px;
-            }
-            .related-image {
-              img {
-                width:100%;
-              }
-            }
-            .related-date {
-              font-size:.8rem;
-            }
-          }
-        }
-      }
+  .all-post-comments-likes {
+    @include size1416;
+    .image-count, .all-post-comments {
+      display: inline-block;
+      margin-right:7px;
     }
   }
 }

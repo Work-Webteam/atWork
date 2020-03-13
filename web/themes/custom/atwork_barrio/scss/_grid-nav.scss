@@ -1,5 +1,18 @@
 // Header, main content width
-
+/*html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display:flex;
+  flex-direction: column;
+  max-width:1140px;
+  margin:0 auto;
+}
+footer {
+  margin-top:auto;
+}
+*/
 // #Page wrapper on all pages
 #page {
   #header.header {

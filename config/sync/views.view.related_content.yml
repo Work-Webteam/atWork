@@ -3143,9 +3143,9 @@ display:
       tags:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_image'
-  page_2:
+  page_3:
     display_plugin: page
-    id: page_2
+    id: page_3
     display_title: 'Group Photo Galleries Page'
     position: 3
     display_options:
@@ -3201,6 +3201,10 @@ display:
         title: false
         style: false
         row: false
+        css_class: false
+        filters: false
+        filter_groups: false
+        sorts: false
         pager: false
       relationships:
         group_content:
@@ -3215,9 +3219,14 @@ display:
             'group_node:photos': 'group_node:photos'
             'group_node:article': '0'
             'group_node:background_page': '0'
+            'group_node:competency_term': '0'
+            'group_node:event': '0'
             'group_node:forum': '0'
+            'group_node:group_event': '0'
             'group_node:group_post': '0'
             'group_node:page': '0'
+            'group_node:program_area_content': '0'
+            'group_node:simplenews_issue': '0'
           entity_type: node
           plugin_id: group_content_to_entity_reverse
         gid:
@@ -3283,8 +3292,8 @@ display:
           link_photo: ''
           image_style: highlight_image
           plugin_id: photos_image
-        type:
-          id: type
+        type_1:
+          id: type_1
           table: node_field_data
           field: type
           relationship: none
@@ -3535,7 +3544,64 @@ display:
           format_plural: false
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
-          suffix: ' Comment(s)'
+          suffix: ''
+          plugin_id: numeric
+        count:
+          id: count
+          table: photos_album
+          field: count
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ','
+          format_plural: false
+          format_plural_string: !!binary MQNAY291bnQ=
+          prefix: ''
+          suffix: ' images'
           plugin_id: numeric
         nothing:
           id: nothing
@@ -3548,7 +3614,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class=\"related-box\">\r\n <div class=\"related-image\">{{ fid }}</div>\r\n <div class=\"related-title\"><h5>{{title}}</h5></div>\r\n <div class=\"related-date\">{{created}}</div>\r\n<div class=\"comment-count\">{{ comment_count }}</div>\r\n</div>\r\n"
+            text: "<div class=\"all-post-image\">{{fid}}</div>\r\n<div class=\"all-post-info\">\r\n   <div class=\"all-post-title\"><h5>{{title}}</h5></div>\r\n   <div class=\"all-post-date\">{{created}}</div>\r\n   <div class=\"all-post-teaser\">{{body}}</div>\r\n   <div class=\"all-post-comments-likes\">\r\n       <div class=\"image-count\">{{ count }} </div>\r\n       <div class=\"all-post-comments\">{{ comment_count }} Comments</div>\r\n   </div>\r\n</div>\r\n"
             make_link: false
             path: ''
             absolute: false
@@ -3587,19 +3653,70 @@ display:
           hide_alter_empty: false
           plugin_id: custom
       title: 'Photo Galleries'
+      enabled: true
       style:
-        type: default
+        type: html_list
         options:
           grouping: {  }
-          row_class: ''
+          row_class: all-posts-row
           default_row_class: true
+          type: ul
+          wrapper_class: post-list
+          class: post-list-content
       row:
         type: fields
         options: {  }
+      css_class: all-group-galleries
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+          group: 1
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: Date
+          granularity: second
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+        comment_count:
+          id: comment_count
+          table: comment_entity_statistics
+          field: comment_count
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: '# of comments'
+          plugin_id: standard
       pager:
         type: infinite_scroll
         options:
-          items_per_page: 4
+          items_per_page: 8
           offset: 0
           id: 0
           total_pages: null
@@ -3624,6 +3741,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
