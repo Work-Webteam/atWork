@@ -1,0 +1,32 @@
+uuid: 2de0e883-a24e-4420-b3a1-0d9a1ad7054c
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.related_content
+  module:
+    - ctools
+    - views
+  theme:
+    - atwork_barrio
+id: views_block__related_content_block_4
+theme: atwork_barrio
+region: content
+weight: 2
+provider: null
+plugin: 'views_block:related_content-block_4'
+settings:
+  id: 'views_block:related_content-block_4'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:group':
+    id: 'entity_bundle:group'
+    bundles:
+      atwork_groups: atwork_groups
+    negate: false
+    context_mapping:
+      group: '@group.group_route_context:group'

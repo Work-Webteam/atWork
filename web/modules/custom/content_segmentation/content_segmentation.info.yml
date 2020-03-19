@@ -1,0 +1,8 @@
+name: 'Content Segmentation'
+type: module
+description: 'BC Content Segmentation - EMPC'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - views
+  - taxonomy

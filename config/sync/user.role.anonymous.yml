@@ -10,4 +10,6 @@ weight: 0
 is_admin: false
 permissions:
   - 'subscribe to newsletters'
+  - 'view terms in emp'
   - 'view terms in forums'
+  - 'view user alert entities'

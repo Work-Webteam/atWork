@@ -1,6 +1,5 @@
 ignored_config_entities:
   - siteminder.settings
-  - core.extension
   - config_ignore.settings
 _core:
   default_config_hash: UVH1aJ4b44UM-VdPVN7hNNuuVqfReJxwfVeDQH1Hvsk

@@ -1,0 +1,10 @@
+uuid: 90b5cb15-c0ce-4812-be74-8daddbc307e4
+langcode: en
+status: true
+dependencies: {  }
+id: messages_emp
+label: 'EMP - Messages'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -27,6 +27,7 @@ module:
   config: 0
   config_filter: 0
   config_ignore: 0
+  content_segmentation: 0
   contextual: 0
   crop: 0
   csv_serialization: 0
@@ -39,6 +40,7 @@ module:
   devel_entity_updates: 0
   devel_generate: 0
   draggable_dashboard: 0
+  draggableviews: 0
   dynamic_page_cache: 0
   easy_breadcrumb: 0
   editor: 0
@@ -109,6 +111,7 @@ module:
   path_alias: 0
   photos: 0
   photos_access: 0
+  poll: 0
   postal_code: 0
   quickedit: 0
   rdf: 0
@@ -122,8 +125,8 @@ module:
   serialization: 0
   settings_tray: 0
   shortcut: 0
+  shs: 0
   simplify_menu: 0
-  siteminder: 0
   statistics: 0
   superfish: 0
   syslog: 0
@@ -142,6 +145,7 @@ module:
   ultimate_cron: 0
   update: 0
   user: 0
+  user_alert: 0
   video_embed_field: 0
   video_embed_media: 0
   video_embed_wysiwyg: 0

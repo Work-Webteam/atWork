@@ -6,29 +6,39 @@ dependencies:
     - views.view.comments_new
   module:
     - ctools
+    - user
     - views
   theme:
     - atwork_barrio
 id: views_block__comments_new_block_1
 theme: atwork_barrio
 region: content
-weight: 0
+weight: -3
 provider: null
 plugin: 'views_block:comments_new-block_1'
 settings:
   id: 'views_block:comments_new-block_1'
-  label: ''
+  label: Comments
   provider: views
-  label_display: visible
-  views_label: ''
+  label_display: '0'
+  views_label: Comments
   items_per_page: none
   context_mapping: {  }
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'
     bundles:
+      article: article
+      forum: forum
       group_post: group_post
       photos: photos
     negate: false
     context_mapping:
       node: '@node.node_route_context:node'
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

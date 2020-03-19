@@ -1,0 +1,19 @@
+uuid: e656c7a8-2a6b-4131-9466-930049f3ac31
+langcode: en
+status: true
+dependencies:
+  module:
+    - text
+    - user_alert
+id: user_alert.field_alert_body
+field_name: field_alert_body
+entity_type: user_alert
+type: text_with_summary
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

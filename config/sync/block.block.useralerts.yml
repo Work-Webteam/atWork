@@ -1,0 +1,20 @@
+uuid: 3fb81feb-c8c5-4e79-a985-cfc6871fceaa
+langcode: en
+status: true
+dependencies:
+  module:
+    - user_alert
+  theme:
+    - atwork_barrio
+id: useralerts
+theme: atwork_barrio
+region: content
+weight: -10
+provider: null
+plugin: user_alert_block
+settings:
+  id: user_alert_block
+  label: 'User Alerts'
+  provider: user_alert
+  label_display: '0'
+visibility: {  }
