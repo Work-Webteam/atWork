@@ -6,6 +6,7 @@ dependencies:
     - field.field.user.user.field_about_me
     - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
+    - field.field.user.user.field_emp
     - field.field.user.user.field_job_function_code
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
@@ -131,12 +132,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   flag_email_user:
-    weight: 13
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   flag_subscribe_user:
-    weight: 14
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -157,15 +158,16 @@ content:
     third_party_settings: {  }
     label: hidden
 hidden:
+  field_emp: true
   field_job_function_code: true
   field_street: true
   field_user_guid: true
   field_user_organization_code: true
   field_user_postal_code: true
   field_user_province: true
-  langcode: true
   member_for: true
   message_digest: true
   message_subscribe_email: true
   photos_album_count: true
   photos_image_count: true
+  search_api_excerpt: true

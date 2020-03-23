@@ -6,6 +6,7 @@ dependencies:
     - field.field.user.user.field_about_me
     - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
+    - field.field.user.user.field_emp
     - field.field.user.user.field_job_function_code
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
@@ -28,6 +29,7 @@ dependencies:
     - image_widget_crop
     - path
     - postal_code
+    - shs
     - telephone
     - text
     - user
@@ -74,6 +76,16 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_emp:
+    weight: 24
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
+    third_party_settings: {  }
+    type: options_shs
+    region: content
   field_job_function_code:
     weight: 23
     settings:

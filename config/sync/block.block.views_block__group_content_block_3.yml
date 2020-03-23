@@ -1,0 +1,27 @@
+uuid: d866e971-ceba-4cab-9ec9-bbccce8d5e5e
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.group_content
+  module:
+    - views
+  theme:
+    - seven
+id: views_block__group_content_block_3
+theme: seven
+region: draggable_dashboard_region
+weight: null
+provider: null
+plugin: 'views_block:group_content-block_3'
+settings:
+  id: 'views_block:group_content-block_3'
+  label: 'Community News'
+  provider: views
+  label_display: visible
+  views_label: 'Community News'
+  items_per_page: none
+  override:
+    items_per_page: none
+  views_label_checkbox: 1
+visibility: {  }

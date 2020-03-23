@@ -1,0 +1,9 @@
+uuid: e380d63f-37b0-4d69-830a-7b01ad2ee203
+langcode: en
+status: true
+dependencies: {  }
+id: '1584994368'
+title: 'Homepage Dashboard'
+description: 'Homepage Dashboard'
+columns: '1'
+blocks: '[{"bid":"views_block__corporate_news_block_1","cln":"1","position":0},{"bid":"views_block__group_content_block_2","cln":"1","position":1},{"bid":"views_block__group_content_block_3","cln":"1","position":2}]'

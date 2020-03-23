@@ -7,6 +7,8 @@ dependencies:
     - field.field.user.user.field_about_me
     - field.field.user.user.field_blog_bio
     - field.field.user.user.field_company
+    - field.field.user.user.field_emp
+    - field.field.user.user.field_job_function_code
     - field.field.user.user.field_street
     - field.field.user.user.field_user_city
     - field.field.user.user.field_user_department
@@ -26,7 +28,14 @@ dependencies:
     - image.style.thumbnail
   module:
     - image
+    - panelizer
     - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
 _core:
   default_config_hash: '-cLsS3M3JycipXQt9rEb81_HxKneReoGuRh8ijcOPXs'
 id: user.user.compact
@@ -36,24 +45,24 @@ mode: compact
 content:
   flag_email_user:
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   flag_subscribe_user:
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   photos_album_count:
     weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   photos_image_count:
     weight: 15
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   user_picture:
     type: image
     weight: 0
@@ -67,6 +76,8 @@ hidden:
   field_about_me: true
   field_blog_bio: true
   field_company: true
+  field_emp: true
+  field_job_function_code: true
   field_street: true
   field_user_city: true
   field_user_department: true
@@ -80,7 +91,7 @@ hidden:
   field_user_province: true
   field_user_surname: true
   field_user_title: true
-  langcode: true
   member_for: true
   message_digest: true
   message_subscribe_email: true
+  search_api_excerpt: true

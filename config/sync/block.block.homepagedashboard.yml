@@ -1,0 +1,26 @@
+uuid: 1d41c0eb-79d1-4dbc-baf8-78a5dc2e9608
+langcode: en
+status: true
+dependencies:
+  module:
+    - draggable_dashboard
+    - system
+  theme:
+    - atwork_barrio
+id: homepagedashboard
+theme: atwork_barrio
+region: content
+weight: -7
+provider: null
+plugin: 'draggable_dashboard_block:draggable_dashboard_1584994368'
+settings:
+  id: 'draggable_dashboard_block:draggable_dashboard_1584994368'
+  label: 'Homepage Dashboard'
+  provider: draggable_dashboard
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }
