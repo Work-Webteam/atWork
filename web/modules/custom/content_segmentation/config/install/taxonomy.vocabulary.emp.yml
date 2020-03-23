@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - content_segmentation
+_core:
+  default_config_hash: _l6TOtmFu_b1rWVmB_02Ld8yfgAxNT8J4z5hULxQjF0
+name: Segment/Segments
+vid: emp
+description: 'EMP Categories'
+weight: 0

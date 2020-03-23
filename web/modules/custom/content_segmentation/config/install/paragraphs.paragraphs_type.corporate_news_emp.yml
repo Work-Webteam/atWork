@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: corporate_news_emp
+label: 'EMP - Corporate News'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

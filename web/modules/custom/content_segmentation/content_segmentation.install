@@ -1,0 +1,39 @@
+<?php
+/**
+ * @file
+ * Install and uninstall functions for the content_segmentation module.
+ */
+
+/**
+ * Implements hook_schema().
+ * @return array
+ */
+function content_segmentation_schema() {
+  $schema['cs_user_alert_track'] = array(
+    'description' => 'CS User Alert table.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The serial ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uuid_alert' => array(
+        'description' => 'Unique Key: Universally unique identifier for this entity.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => FALSE,
+      ),
+      'uuid_user' => array(
+        'description' => 'The UUID of the user.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '0',
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}

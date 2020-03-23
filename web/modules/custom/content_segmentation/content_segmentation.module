@@ -1,0 +1,260 @@
+<?php
+
+/**
+ * @file
+ * Contains content_segmentation.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+/**
+ * Implements hook_help().
+ */
+function content_segmentation_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the content_segmentation module.
+    case 'help.page.content_segmentation':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('BC Content Segmentation - EMPC') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function content_segmentation_preprocess_views_view(&$variables) {
+  // add form before the view,
+  // this is a alternative to print the form in DefaultController, keep only one variant
+  if ($variables['id'] == 'content_emp' && $variables['display_id'] == 'page_1' ) {
+  	$form = \Drupal::formBuilder()->getForm('\Drupal\content_segmentation\Form\CorporateNewsEmp');
+  	$variables['attachment_after'][] = $form;
+  }
+  if ($variables['id'] == 'content_emp' && $variables['display_id'] == 'page_2' ) {
+    $form = \Drupal::formBuilder()->getForm('\Drupal\content_segmentation\Form\MessagesEmp');
+    $variables['attachment_after'][] = $form;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function content_segmentation_theme() {
+  return array(
+    'cs_user_alert_message' => array(
+      'variables' => array(
+        'alert' => NULL,
+        'id' => NULL,
+        'is_closeable' => FALSE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_entity_presave().
+ * Helper to sync Job Function Code field and Segments
+ * Each segment starts with the number of the Job Function code 
+ * folowed by space and description: 1 BARGAINING UNIT, 0 EXCLUDED, 04 MANAGEMENT (MJEP)
+ */
+function content_segmentation_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  // If the entity is a user
+  if ($entity->getEntityType()->id() == 'user') {
+    // If the entity has the field Segment and the field Job Function Code.
+    if ($entity->hasField('field_emp') && $entity->hasField('field_job_function_code') ){
+      
+      // Sync value from field_emp to field_job_function_code
+      // Take last child from field_emp, extract the code and save to field_job_function_code
+      if ($entity->get('field_emp')->entity){
+        $field_emp_value = $entity->get('field_emp')->entity->getName();
+        $field_job_function_code_value = explode(" ", $field_emp_value);
+        $field_job_function_code_value = $field_job_function_code_value[0];
+        $entity->field_job_function_code->value = $field_job_function_code_value; 
+      }else{
+        $entity->field_job_function_code->value = '';
+      }
+      
+      /*
+      // Sync value from field_job_function_code to field_emp
+      // Populate the field segment base on the Job Function Code value.
+      if ($entity->get('field_job_function_code')->getValue()){
+        $field_job_function_code_value = $entity->field_job_function_code[0]->value;
+        $query = db_query("SELECT tid FROM {taxonomy_term_field_data}
+                       WHERE vid = 'emp'
+                         AND name like '".$field_job_function_code_value." %'
+                       LIMIT 1");
+        $field_emp_value = $query->fetchField(0);
+        $entity->field_emp->target_id = $field_emp_value; 
+      }else{
+        $entity->field_emp->target_id = '';
+      }
+      */
+    }
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function content_segmentation_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  
+  //Segmented Corporate News
+  if ($view->id() == 'corporate_news' && $view->current_display == 'block_1') {
+    // Get Current User emp code.
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    //$user = \Drupal\user\Entity\User::load(99838);
+    if ($user->hasField('field_emp')){
+      $parent_tid = $user->field_emp->target_id; // the parent term id
+
+      // Get emp code children tree values.
+      $vid = 'emp';
+      $depth = NULL; // 1 to get only immediate children, NULL to load entire tree
+      $load_entities = FALSE; // True will return loaded entities rather than ids
+      $tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, $parent_tid, $depth, $load_entities);
+     
+      $tids = array_column($tids, 'tid');
+      array_unshift($tids, $parent_tid);
+
+      // NOTE: if the taxonomy tree is note needed, then use only $parent_tid
+      // $tids = [$parent_tid];
+     
+      // Get from draggable views all the corporate news sort by weight 
+      // that match the emp tree values limit by 5.
+      // make sure article is corporate and it is enabled
+      $q = db_query("SELECT DISTINCT cn.field_corporate_news_target_id
+                         FROM `paragraph__field_corporate_news` cn
+                         INNER JOIN `draggableviews_structure` dv
+                          ON (cn.entity_id = dv.entity_id)
+                         INNER JOIN `node_field_data` nd 
+                          ON (cn.field_corporate_news_target_id = nd.nid)
+                         INNER JOIN `node__field_article_type` nda 
+                          ON (nd.nid = nda.entity_id 
+                              AND nda.deleted = '0')
+                         WHERE dv.view_name = 'content_emp' 
+                         AND dv.view_display = 'page_1'
+                         AND nd.status = '1'
+                         AND nd.type = 'article'
+                         AND nda.field_article_type_value = 'Corporate Article'
+                         AND cn.entity_id IN (SELECT entity_id FROM `paragraph__field_emp` 
+                                              WHERE bundle = 'corporate_news_emp'
+                                              AND field_emp_target_id IN (:tids[]) )
+                         ORDER BY dv.weight LIMIT 5", array(':tids[]' => $tids));
+      $corporate_news = $q->fetchAll();
+      $corporate_news = array_column($corporate_news, 'field_corporate_news_target_id');
+
+    }
+    // If there is less than 5 news then by default complete the 5 with the latest news.
+    $limit = 5 - count(array_filter((array)$corporate_news));
+    $restrict_news = ($limit == 5) ? [0] : $corporate_news ;
+
+    if ($limit > 0){
+      $q = db_query("SELECT DISTINCT nd.nid
+                         FROM `node_field_data` nd 
+                         INNER JOIN `node__field_article_type` nda 
+                          ON (nd.nid = nda.entity_id 
+                              AND nda.deleted = '0')
+                         WHERE nd.status = '1'
+                         AND nd.type = 'article'
+                         AND nda.field_article_type_value = 'Corporate Article'
+                         AND nd.nid NOT IN (:nids[])
+                         ORDER BY nd.created DESC LIMIT " . $limit , array(':nids[]' => (array)$restrict_news));
+      $corporate_news_default = $q->fetchAll();
+      $corporate_news_default = array_column($corporate_news_default, 'nid');
+      $corporate_news =  array_merge((array)$corporate_news , (array)$corporate_news_default);
+    }
+
+    // Update the query to display the 5 calculated corporate news
+    foreach ($query->where as &$conditions_group) {
+      foreach ($conditions_group as &$conditions) {
+        if (is_array($conditions)){
+          foreach ($conditions as &$condition){
+            // check if we want to alter the condition and if so alter it
+            if (isset($condition['field']) && ($condition['field'] === 'node_field_data.nid')) {
+              $condition['value'] = $corporate_news;
+              $condition['operator'] = 'in';
+            }
+          }
+        }
+      }
+    }
+    // Update the query to adjust the sort
+    unset($query->orderby);
+    $query->addOrderBy(NULL, 'FIELD(node_field_data.nid, ' . rtrim(implode(',', $corporate_news), ',') . ')', 'ASC', 'order_field');
+  }
+
+  //My Groups
+  if ($view->id() == 'group_content' && $view->current_display == 'block_2') {
+    // Get Current User groups
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    //$user = \Drupal\user\Entity\User::load(99838);
+    $groups = array();
+    $grp_membership_service = \Drupal::service('group.membership_loader');
+    $grps = $grp_membership_service->loadByUser($user);
+    foreach ($grps as $grp) {
+            $groups[] = $grp->getGroup()->id();
+    }    
+    $groups = (empty($groups)) ? [0] : $groups;
+  
+    // Update the query to display only my groups
+    foreach ($query->where as &$conditions_group) {
+      foreach ($conditions_group as &$conditions) {
+        if (is_array($conditions)){
+          foreach ($conditions as &$condition){
+            // check if we want to alter the condition and if so alter it
+            if (isset($condition['field']) && ($condition['field'] === 'group_content_field_data_node_field_data.gid')) {
+              $condition['value'] = $groups;
+              $condition['operator'] = 'in';
+            }
+          }
+        }
+      }
+    } 
+  }
+
+  //Community News
+  if ($view->id() == 'group_content' && $view->current_display == 'block_3') {
+    // Get Current User groups.
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    //$user = \Drupal\user\Entity\User::load(99838);
+    $groups = array();
+    $grp_membership_service = \Drupal::service('group.membership_loader');
+    $grps = $grp_membership_service->loadByUser($user);
+    foreach ($grps as $grp) {
+            $groups[] = $grp->getGroup()->id();
+    }
+    $groups = (empty($groups)) ? [0] : $groups;
+
+   // Update the query to display other than my groups
+    foreach ($query->where as &$conditions_group) {
+      foreach ($conditions_group as &$conditions) {
+        if (is_array($conditions)){
+          foreach ($conditions as &$condition){
+            // check if we want to alter the condition and if so alter it
+            if (isset($condition['field']) && ($condition['field'] === 'group_content_field_data_node_field_data.gid')) {
+              $condition['value'] = $groups;
+              $condition['operator'] = 'not in';
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

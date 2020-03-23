@@ -1,0 +1,36 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.corporate_news_emp.field_corporate_news
+    - field.field.paragraph.corporate_news_emp.field_emp
+    - paragraphs.paragraphs_type.corporate_news_emp
+  module:
+    - shs
+id: paragraph.corporate_news_emp.default
+targetEntityType: paragraph
+bundle: corporate_news_emp
+mode: default
+content:
+  field_corporate_news:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_emp:
+    weight: 1
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
+    third_party_settings: {  }
+    type: options_shs
+    region: content
+hidden:
+  created: true
+  status: true

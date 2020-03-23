@@ -1,0 +1,26 @@
+{#
+/**
+ * @file user_alert.html.twig
+ * Default theme implementation to present User alert data.
+ *
+ * This template is used when viewing User alert pages.
+ *
+ *
+ * Available variables:
+ * - alert: A list of alert items. Use 'alert' to print all alerts, or
+ * - attributes: HTML attributes for the container element.
+ * - is_closeable: Boolean to determine if alert can be closed.
+ *
+ * @see template_preprocess_user_alert()
+ *
+ * @ingroup themeable
+ */
+#}
+<div id="user-alert-{{ id }}" {{ attributes.addClass('user-alert') }}>
+  {% if is_closeable %}
+    <div class="user-alert-close"><a href="javascript:;" rel="{{ id }}">x</a></div>
+  {% endif %}
+  {% if alert %}
+    {{- alert -}}
+  {% endif %}
+</div>
