@@ -1,0 +1,27 @@
+uuid: 4222632c-1946-4d37-bede-64ed46350c56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_corporate_news
+    - paragraphs.paragraphs_type.corporate_news_emp
+_core:
+  default_config_hash: pIVZj0N1I6CXlNEj_PCrDgsRSnxtbQ-6zASP7jHjTPU
+id: paragraph.corporate_news_emp.field_corporate_news
+field_name: field_corporate_news
+entity_type: paragraph
+bundle: corporate_news_emp
+label: 'Corporate News'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: corporate_news
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

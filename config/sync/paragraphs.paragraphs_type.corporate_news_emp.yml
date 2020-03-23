@@ -1,0 +1,12 @@
+uuid: f48b27dd-1c7b-4c81-876f-7b5e2c822554
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: GgrcGFn8fkILKYSeoiIG3gn8iCxTjPrIjF-rrQB9md8
+id: corporate_news_emp
+label: 'EMP - Corporate News'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

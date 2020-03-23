@@ -1,0 +1,22 @@
+uuid: 306fcdca-c12e-4991-8a12-f3bff943f2b9
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - paragraphs
+_core:
+  default_config_hash: pTn3CEkCOkWY7evUB2dkorzHmLkRVewNcu9wAgp_U7w
+id: paragraph.field_corporate_news
+field_name: field_corporate_news
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

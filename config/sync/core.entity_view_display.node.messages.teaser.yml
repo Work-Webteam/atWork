@@ -1,0 +1,40 @@
+uuid: 4f0f1172-5689-42bc-ae1c-fc797c1cdb3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.messages.body
+    - field.field.node.messages.field_display_title
+    - node.type.messages
+  module:
+    - panelizer
+    - text
+    - user
+third_party_settings:
+  panelizer:
+    enable: false
+    custom: false
+    allow: false
+    default: default
+_core:
+  default_config_hash: GZ1kbo_DKss1TxbhrBBVy7Vts7VWqp3pimZimJKCHgg
+id: node.messages.teaser
+targetEntityType: node
+bundle: messages
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 0
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_display_title: true
+  flag_email_node: true
+  flag_subscribe_node: true
+  links: true
+  search_api_excerpt: true

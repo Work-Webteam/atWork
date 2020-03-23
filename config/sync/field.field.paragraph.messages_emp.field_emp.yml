@@ -1,0 +1,31 @@
+uuid: 6874bb88-53f4-45a4-a5d0-865f57360352
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_emp
+    - paragraphs.paragraphs_type.messages_emp
+    - taxonomy.vocabulary.emp
+_core:
+  default_config_hash: XxH8KzKFsKRHTO9uK-DUvcL8HNG0Fj83hvsmfMPLir0
+id: paragraph.messages_emp.field_emp
+field_name: field_emp
+entity_type: paragraph
+bundle: messages_emp
+label: Segment
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      emp: emp
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

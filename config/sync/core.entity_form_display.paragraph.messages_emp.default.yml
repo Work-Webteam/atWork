@@ -1,0 +1,40 @@
+uuid: 8b160c50-efdb-47b5-83ed-b5bf8315a49e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.messages_emp.field_emp
+    - field.field.paragraph.messages_emp.field_message
+    - paragraphs.paragraphs_type.messages_emp
+  module:
+    - shs
+_core:
+  default_config_hash: H_RwBD5dYp4r8KdgVhgtGVzKDerZyM1lAbDd-50WQFk
+id: paragraph.messages_emp.default
+targetEntityType: paragraph
+bundle: messages_emp
+mode: default
+content:
+  field_emp:
+    weight: 1
+    settings:
+      display_node_count: false
+      create_new_items: false
+      create_new_levels: false
+      force_deepest: false
+    third_party_settings: {  }
+    type: options_shs
+    region: content
+  field_message:
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+hidden:
+  created: true
+  status: true

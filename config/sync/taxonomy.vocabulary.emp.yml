@@ -1,0 +1,13 @@
+uuid: bed3ec03-d64d-46f4-8a10-234c1e8d6c25
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - content_segmentation
+_core:
+  default_config_hash: DdVVCAKbAStycKOZljwuDofm9eoGFV-EzvknPrHio64
+name: Segment/Segments
+vid: emp
+description: 'EMP Categories'
+weight: 0

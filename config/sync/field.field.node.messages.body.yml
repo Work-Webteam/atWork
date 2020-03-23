@@ -1,0 +1,25 @@
+uuid: a652a869-74f4-43d2-a573-25297f386acc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.messages
+  module:
+    - text
+_core:
+  default_config_hash: wxUrdFtnbRvUCCwGeb-5TWrCnAMGZYwTe2W5FHjXEY0
+id: node.messages.body
+field_name: body
+entity_type: node
+bundle: messages
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

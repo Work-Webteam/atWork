@@ -1,0 +1,12 @@
+uuid: 3aadf491-38e0-4fa7-b53a-2caaf270f75c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: FS-e7Ag0jL1NBn1UymrFj1_HClP2TtjxfxnzvQbT3xI
+id: messages_emp
+label: 'EMP - Messages'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

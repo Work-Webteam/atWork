@@ -1,0 +1,43 @@
+uuid: 2d3c7681-125f-42f5-81b7-1b489c0b6bdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.messages.body
+    - field.field.node.messages.field_display_title
+    - node.type.messages
+  module:
+    - text
+    - user
+_core:
+  default_config_hash: SkOjqZcAwTe0C1mZSNb-Z4CAMWD3ZDwNjQS6WngxwnE
+id: node.messages.default
+targetEntityType: node
+bundle: messages
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_email_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  flag_subscribe_node:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_display_title: true
+  search_api_excerpt: true
