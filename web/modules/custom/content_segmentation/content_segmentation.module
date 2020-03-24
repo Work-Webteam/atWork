@@ -59,7 +59,7 @@ function content_segmentation_theme() {
 /**
  * Implements hook_entity_presave().
  * Helper to sync Job Function Code field and Segments
- * Each segment starts with the number of the Job Function code 
+ * Each segment starts with the number of the Job Function code
  * folowed by space and description: 1 BARGAINING UNIT, 0 EXCLUDED, 04 MANAGEMENT (MJEP)
  */
 function content_segmentation_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
@@ -67,18 +67,18 @@ function content_segmentation_entity_presave(Drupal\Core\Entity\EntityInterface 
   if ($entity->getEntityType()->id() == 'user') {
     // If the entity has the field Segment and the field Job Function Code.
     if ($entity->hasField('field_emp') && $entity->hasField('field_job_function_code') ){
-      
+
       // Sync value from field_emp to field_job_function_code
       // Take last child from field_emp, extract the code and save to field_job_function_code
       if ($entity->get('field_emp')->entity){
         $field_emp_value = $entity->get('field_emp')->entity->getName();
         $field_job_function_code_value = explode(" ", $field_emp_value);
         $field_job_function_code_value = $field_job_function_code_value[0];
-        $entity->field_job_function_code->value = $field_job_function_code_value; 
+        $entity->field_job_function_code->value = $field_job_function_code_value;
       }else{
         $entity->field_job_function_code->value = '';
       }
-      
+
       /*
       // Sync value from field_job_function_code to field_emp
       // Populate the field segment base on the Job Function Code value.
@@ -89,7 +89,7 @@ function content_segmentation_entity_presave(Drupal\Core\Entity\EntityInterface 
                          AND name like '".$field_job_function_code_value." %'
                        LIMIT 1");
         $field_emp_value = $query->fetchField(0);
-        $entity->field_emp->target_id = $field_emp_value; 
+        $entity->field_emp->target_id = $field_emp_value;
       }else{
         $entity->field_emp->target_id = '';
       }
@@ -102,7 +102,7 @@ function content_segmentation_entity_presave(Drupal\Core\Entity\EntityInterface 
  * Implements hook_views_query_alter().
  */
 function content_segmentation_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
-  
+
   //Segmented Corporate News
   if ($view->id() == 'corporate_news' && $view->current_display == 'block_1') {
     // Get Current User emp code.
@@ -116,31 +116,31 @@ function content_segmentation_views_query_alter(ViewExecutable $view, QueryPlugi
       $depth = NULL; // 1 to get only immediate children, NULL to load entire tree
       $load_entities = FALSE; // True will return loaded entities rather than ids
       $tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, $parent_tid, $depth, $load_entities);
-     
+
       $tids = array_column($tids, 'tid');
       array_unshift($tids, $parent_tid);
 
       // NOTE: if the taxonomy tree is note needed, then use only $parent_tid
       // $tids = [$parent_tid];
-     
-      // Get from draggable views all the corporate news sort by weight 
+
+      // Get from draggable views all the corporate news sort by weight
       // that match the emp tree values limit by 5.
       // make sure article is corporate and it is enabled
-      $q = db_query("SELECT DISTINCT cn.field_corporate_news_target_id
+      $q = db_query("SELECT DISTINCT cn.field_corporate_news_target_id, dv.weight
                          FROM `paragraph__field_corporate_news` cn
                          INNER JOIN `draggableviews_structure` dv
                           ON (cn.entity_id = dv.entity_id)
-                         INNER JOIN `node_field_data` nd 
+                         INNER JOIN `node_field_data` nd
                           ON (cn.field_corporate_news_target_id = nd.nid)
-                         INNER JOIN `node__field_article_type` nda 
-                          ON (nd.nid = nda.entity_id 
+                         INNER JOIN `node__field_article_type` nda
+                          ON (nd.nid = nda.entity_id
                               AND nda.deleted = '0')
-                         WHERE dv.view_name = 'content_emp' 
+                         WHERE dv.view_name = 'content_emp'
                          AND dv.view_display = 'page_1'
                          AND nd.status = '1'
                          AND nd.type = 'article'
                          AND nda.field_article_type_value = 'Corporate Article'
-                         AND cn.entity_id IN (SELECT entity_id FROM `paragraph__field_emp` 
+                         AND cn.entity_id IN (SELECT entity_id FROM `paragraph__field_emp`
                                               WHERE bundle = 'corporate_news_emp'
                                               AND field_emp_target_id IN (:tids[]) )
                          ORDER BY dv.weight LIMIT 5", array(':tids[]' => $tids));
@@ -153,10 +153,10 @@ function content_segmentation_views_query_alter(ViewExecutable $view, QueryPlugi
     $restrict_news = ($limit == 5) ? [0] : $corporate_news ;
 
     if ($limit > 0){
-      $q = db_query("SELECT DISTINCT nd.nid
-                         FROM `node_field_data` nd 
-                         INNER JOIN `node__field_article_type` nda 
-                          ON (nd.nid = nda.entity_id 
+      $q = db_query("SELECT DISTINCT nd.nid, nd.created
+                         FROM `node_field_data` nd
+                         INNER JOIN `node__field_article_type` nda
+                          ON (nd.nid = nda.entity_id
                               AND nda.deleted = '0')
                          WHERE nd.status = '1'
                          AND nd.type = 'article'
@@ -197,9 +197,9 @@ function content_segmentation_views_query_alter(ViewExecutable $view, QueryPlugi
     $grps = $grp_membership_service->loadByUser($user);
     foreach ($grps as $grp) {
             $groups[] = $grp->getGroup()->id();
-    }    
+    }
     $groups = (empty($groups)) ? [0] : $groups;
-  
+
     // Update the query to display only my groups
     foreach ($query->where as &$conditions_group) {
       foreach ($conditions_group as &$conditions) {
@@ -213,7 +213,7 @@ function content_segmentation_views_query_alter(ViewExecutable $view, QueryPlugi
           }
         }
       }
-    } 
+    }
   }
 
   //Community News

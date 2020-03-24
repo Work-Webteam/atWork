@@ -70,7 +70,7 @@ class UserAlertController extends ControllerBase implements ContainerInjectionIn
    */
   public function displayAlert() {
 
-    $module_handler = \Drupal::service('module_handler'); 
+    $module_handler = \Drupal::service('module_handler');
     if ($module_handler->moduleExists('translation')) {
       $language = \Drupal::languageManager()->getCurrentLanguage()->getId();
     } else {
@@ -95,26 +95,26 @@ class UserAlertController extends ControllerBase implements ContainerInjectionIn
 
       // NOTE: if the taxonomy tree is note needed, then use only $parent_tid
       // $tids = [$parent_tid];
-     
+
       ///Get the active messages ids that hit the hierachically segments of the user,
       // And that haven't been closed by the user.
-      $query = db_query("SELECT DISTINCT pm.field_message_target_id as nid
+      $query = db_query("SELECT DISTINCT pm.field_message_target_id as nid, dv.weight, nd.nid
                          FROM `paragraph__field_message` pm
                          INNER JOIN `draggableviews_structure` dv
                           ON (pm.entity_id = dv.entity_id)
-                         INNER JOIN `node_field_data` nd 
+                         INNER JOIN `node_field_data` nd
                           ON (pm.field_message_target_id = nd.nid)
-                         WHERE dv.view_name = 'content_emp' 
+                         WHERE dv.view_name = 'content_emp'
                          AND dv.view_display = 'page_2'
                          AND nd.status = '1'
                          AND nd.type = 'messages'
-                         AND pm.entity_id IN (SELECT entity_id FROM `paragraph__field_emp` 
+                         AND pm.entity_id IN (SELECT entity_id FROM `paragraph__field_emp`
                                               WHERE bundle = 'messages_emp'
                                               AND field_emp_target_id IN (:tids[]) )
                          AND nd.nid NOT IN (
-                                         SELECT uat.uuid_alert 
-                                         FROM {cs_user_alert_track} uat 
-                                         WHERE uat.uuid_user = :cookie) 
+                                         SELECT uat.uuid_alert
+                                         FROM {cs_user_alert_track} uat
+                                         WHERE uat.uuid_user = :cookie)
                          ORDER BY dv.weight, nd.nid DESC", array(':cookie' => $_COOKIE['Drupal_visitor_UUID'], ':tids[]' => $tids));
 
       $records = $query->fetchAllAssoc('nid', PDO::FETCH_ASSOC);
@@ -164,7 +164,7 @@ class UserAlertController extends ControllerBase implements ContainerInjectionIn
     $query->condition('uuid_alert', $alert->id());
     $query->condition('uuid_user', $_COOKIE['Drupal_visitor_UUID']);
     $query->execute();
-    
+
     db_insert('cs_user_alert_track')->fields($fields)->execute();
 
     return new JsonResponse();
