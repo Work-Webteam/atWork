@@ -98,7 +98,7 @@ class UserAlertController extends ControllerBase implements ContainerInjectionIn
 
       ///Get the active messages ids that hit the hierachically segments of the user,
       // And that haven't been closed by the user.
-      $query = db_query("SELECT DISTINCT pm.field_message_target_id as nid, dv.weight, nd.nid
+      $query = db_query("SELECT DISTINCT pm.field_message_target_id as nid, dv.weight, nd.nid,
                          FROM `paragraph__field_message` pm
                          INNER JOIN `draggableviews_structure` dv
                           ON (pm.entity_id = dv.entity_id)
