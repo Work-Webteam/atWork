@@ -7,7 +7,6 @@ dependencies:
   module:
     - node
     - options
-    - paragraphs
     - user
 _core:
   default_config_hash: wUOjuZnUPLt8m405fZnFA44J5IaSw-MAPM16c6-QHkw
@@ -18,6 +17,7 @@ description: ''
 tag: ''
 base_table: node_field_data
 base_field: nid
+core: 8.x
 display:
   default:
     display_plugin: default
@@ -30,7 +30,7 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: tag
+        type: none
         options: {  }
       query:
         type: views_query
@@ -141,8 +141,6 @@ display:
           id: status
           expose:
             operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
           group: 1
         field_article_type_value:
           id: field_article_type_value
@@ -169,8 +167,6 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -210,8 +206,6 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -265,17 +259,7 @@ display:
     position: 2
     display_options:
       display_extenders: {  }
-      relationships:
-        reverse__paragraph__field_corporate_news:
-          id: reverse__paragraph__field_corporate_news
-          table: node_field_data
-          field: reverse__paragraph__field_corporate_news
-          relationship: none
-          group_type: group
-          admin_label: field_corporate_news
-          required: false
-          entity_type: node
-          plugin_id: entity_reverse
+      relationships: {  }
       defaults:
         relationships: false
         pager: false
@@ -289,18 +273,6 @@ display:
           items_per_page: 5
           offset: 0
       sorts:
-        weight:
-          id: weight
-          table: draggableviews_structure
-          field: weight
-          relationship: reverse__paragraph__field_corporate_news
-          group_type: group
-          admin_label: ''
-          order: DESC
-          exposed: false
-          expose:
-            label: ''
-          plugin_id: standard
         created:
           id: created
           table: node_field_data
@@ -327,8 +299,6 @@ display:
           id: status
           expose:
             operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
           group: 1
         field_article_type_value:
           id: field_article_type_value
@@ -355,8 +325,6 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -396,8 +364,6 @@ display:
             remember_roles:
               authenticated: authenticated
             reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -413,6 +379,50 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        nid:
+          id: nid
+          table: node_field_data
+          field: nid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: node
+          entity_field: nid
+          plugin_id: numeric
       filter_groups:
         operator: AND
         groups:
@@ -465,55 +475,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        content_segmentation_user:
-          id: content_segmentation_user
-          table: draggableviews_structure
-          field: content_segmentation_user
-          relationship: reverse__paragraph__field_corporate_news
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          plugin_id: content_segmentation_user
     cache_metadata:
       max-age: -1
       contexts:
