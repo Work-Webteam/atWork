@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+id: user_shortcut
+label: 'User Shortcuts'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

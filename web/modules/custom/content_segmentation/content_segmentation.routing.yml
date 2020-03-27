@@ -1,10 +1,15 @@
-#content_segmentation.default_controller_content:
-#  path: '/admin/structure/corporate_news_emp'
-#  defaults:
-#    _controller: '\Drupal\content_segmentation\Controller\CorporateNewsEmpController::content'
+# Deleting paragraphs bundles
+content_segmentation.delete_content_controller:
+  path: '/content_segmentation/dl/{paragraph}'
+  defaults:
+    _controller: '\Drupal\content_segmentation\Controller\ContentSegmentationController::delete'
 #    _title: 'Content'
-#  requirements:
-#    _permission: 'access content'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      user:
+        type: entity:paragraph
 
 # UserAlert ajax endpoints
 entity.content_segmentation.user_alert.get_message:

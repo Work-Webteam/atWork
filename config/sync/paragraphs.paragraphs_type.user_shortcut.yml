@@ -1,0 +1,9 @@
+uuid: 032bd61a-9976-4755-9d8d-4030a1c74809
+langcode: en
+status: true
+dependencies: {  }
+id: user_shortcut
+label: 'User Shortcuts'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

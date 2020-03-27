@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_us_shortcut
+    - paragraphs.paragraphs_type.user_shortcut
+  module:
+    - link
+id: paragraph.user_shortcut.field_us_shortcut
+field_name: field_us_shortcut
+entity_type: paragraph
+bundle: user_shortcut
+label: Link
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

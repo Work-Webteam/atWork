@@ -39,6 +39,10 @@ function content_segmentation_preprocess_views_view(&$variables) {
     $form = \Drupal::formBuilder()->getForm('\Drupal\content_segmentation\Form\MessagesEmp');
     $variables['attachment_after'][] = $form;
   }
+  if ($variables['id'] == 'user_shortcuts' && $variables['display_id'] == 'page_1' ) {
+    $form = \Drupal::formBuilder()->getForm('\Drupal\content_segmentation\Form\UserLinks');
+    $variables['attachment_before'][] = $form;
+  }
 }
 
 /**
@@ -245,16 +249,26 @@ function content_segmentation_views_query_alter(ViewExecutable $view, QueryPlugi
     }
   }
 
+  //Include user shortcuts to toplinks if the user doesn't have
+  if ($view->id() == 'user_shortcuts' && $view->current_display == 'block_1') {
+   // \Drupal::currentUser()->id()
+    $total_rows = $view->query->query()->countQuery()->execute()->fetchField();
+    if ($total_rows == 0){
+      //if zero rows then copy the default short cuts to the user links.
+      $shortcuts =  \Drupal::entityManager()->getStorage("shortcut_set")->load("user")->getShortcuts();
+      foreach ($shortcuts as $shortcut) {
+        $entity = \Drupal::service('entity.manager')->getStorage('paragraph')->create([ 'type' => 'user_shortcut' ]);
+        $entity->field_us_user->target_id = \Drupal::currentUser()->id();
+        $url = $shortcut->getUrl()->toRenderArray();
+        $url['title'] = $shortcut->getTitle();
+        $entity->set('field_us_shortcut', [
+                      'uri' => $shortcut->getUrl()->toUriString(),
+                      'title' => $shortcut->getTitle(),
+                      'options' => $shortcut->getUrl()->getOptions()
+                    ]);
+        $entity->save();
+      }
+    }
+  }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-

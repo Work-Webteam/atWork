@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - content_segmentation
+id: user
+label: 'User Shortcuts'

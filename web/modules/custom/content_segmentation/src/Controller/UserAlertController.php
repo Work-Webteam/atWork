@@ -92,13 +92,14 @@ class UserAlertController extends ControllerBase implements ContainerInjectionIn
       $tids = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid, $parent_tid, $depth, $load_entities);
       $tids = array_column($tids, 'tid');
       array_unshift($tids, $parent_tid);
+      //kint($tids);
 
-      // NOTE: if the taxonomy tree is note needed, then use only $parent_tid
+      // NOTE: if the taxonomy tree is not needed, then use only $parent_tid
       // $tids = [$parent_tid];
 
       ///Get the active messages ids that hit the hierachically segments of the user,
       // And that haven't been closed by the user.
-      $query = db_query("SELECT DISTINCT pm.field_message_target_id as nid, dv.weight, nd.nid,
+      $query = db_query("SELECT DISTINCT nd.nid, dv.weight
                          FROM `paragraph__field_message` pm
                          INNER JOIN `draggableviews_structure` dv
                           ON (pm.entity_id = dv.entity_id)
@@ -108,9 +109,14 @@ class UserAlertController extends ControllerBase implements ContainerInjectionIn
                          AND dv.view_display = 'page_2'
                          AND nd.status = '1'
                          AND nd.type = 'messages'
-                         AND pm.entity_id IN (SELECT entity_id FROM `paragraph__field_emp`
+                         AND (
+                              pm.entity_id IN (SELECT entity_id FROM `paragraph__field_emp`
                                               WHERE bundle = 'messages_emp'
                                               AND field_emp_target_id IN (:tids[]) )
+                              OR
+                              0 = (SELECT COUNT(entity_id) FROM `paragraph__field_emp`
+                                              WHERE bundle = 'messages_emp' AND entity_id = pm.entity_id)
+                              )
                          AND nd.nid NOT IN (
                                          SELECT uat.uuid_alert
                                          FROM {cs_user_alert_track} uat

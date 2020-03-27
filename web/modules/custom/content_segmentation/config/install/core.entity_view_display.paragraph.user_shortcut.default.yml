@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.user_shortcut.field_us_shortcut
+    - field.field.paragraph.user_shortcut.field_us_user
+    - paragraphs.paragraphs_type.user_shortcut
+  module:
+    - link
+id: paragraph.user_shortcut.default
+targetEntityType: paragraph
+bundle: user_shortcut
+mode: default
+content:
+  field_us_shortcut:
+    weight: 0
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  field_us_user: true
+  search_api_excerpt: true
