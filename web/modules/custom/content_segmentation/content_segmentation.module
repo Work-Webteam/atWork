@@ -107,6 +107,34 @@ function content_segmentation_entity_presave(Drupal\Core\Entity\EntityInterface 
  */
 function content_segmentation_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
 
+  // Override -Any- as All for messages_emp
+  if ($view->id() == 'content_emp' && $view->current_display == 'page_2'){
+    $request = \Drupal::request();
+    $empc = $request->get('empc');
+    if ($empc == 'All'){
+      // Add table relationship to filter
+      $extra[] = [ 'field'=> 'deleted','value' => 0,'numeric' => TRUE];
+      $extra[] = [ 'left_field' =>'langcode','field' => 'langcode' ];
+      $extra[] = [ 'field'=>'bundle','value' => ['corporate_news_emp']];
+      $configuration = [
+        'table'      => 'paragraph__field_emp',
+        'left_field' => 'id',
+        'field'      => 'entity_id',
+        'extra'      => $extra,
+        'join_id'    => 'field_or_language_join',
+        'left_table' => 'paragraphs_item_field_data',
+        'type'       => 'LEFT',
+        'extra_operator'   => 'AND'
+      ];
+      $join_obj = \Drupal\views\Views::pluginManager('join')->createInstance('field_or_language_join', $configuration);
+      $rel = $query->addRelationship('paragraph__field_emp', $join_obj, 'paragraph__field_emp');
+      $query->addTable('paragraph__field_emp', $rel, $join_obj, 'paragraph__field_emp');
+      $join_obj->extra = $extra;
+      // Add condition to filer
+      $query->addWhere('', 'paragraph__field_emp.field_emp_target_id', NULL, 'IS NULL');
+    }
+  }
+
   //Segmented Corporate News
   if ($view->id() == 'corporate_news' && $view->current_display == 'block_1') {
     // Get Current User emp code.
